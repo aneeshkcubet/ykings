@@ -1,0 +1,533 @@
+/*-----------------------------------*/
+/* Forms & Form Elements */
+/*-----------------------------------*/
+
+/* Form Elements */
+/*-----------------------------------*/
+
+.placeholder(@input-font-size, 700, @section-title-before, uppercase); // font-size, font-weight, color, text-transform
+input:focus:-moz-placeholder {color: transparent !important;}
+input:focus::-moz-placeholder {color: transparent !important;}
+
+input,
+textarea,
+input[type="submit"]:focus,
+button:focus {
+  outline: none;
+}
+select.select-styled {visibility: hidden;}
+
+.contact-form label,
+.contact-form input,
+.contact-form button,
+.contact-form select,
+.contact-form textarea,
+.contact-form input[type="submit"],
+.contact-form input[type="reset"],
+.contact-form input[type="button"]
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+label, input, button, select, textarea {
+
+  vertical-align: top;
+  margin: 0;
+  border-radius: 0;
+  font-size: inherit;
+  line-height: normal;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  appearance: checkbox;
+  margin: 0;
+}
+input[type="radio"] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  appearance: radio;
+  margin: 0;
+}
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="email"],
+textarea {
+  border: none;
+  background-color: @input-color;
+  padding:0 16px;
+  font-size: @input-font-size;
+  font-weight: @input-font-weight;
+  color: @input-font-color;
+  text-transform: uppercase;
+  width: 100%;
+  height: @input-height;
+  margin: 0;
+  text-overflow: ellipsis;
+}
+textarea {
+  padding: 14px 16px;
+  height: 200px;
+  resize: vertical;
+  overflow: auto;
+  text-transform: none;
+}
+.ie8 input[type="text"],
+.ie8 input[type="password"],
+.ie8 input[type="search"],
+.ie8 input[type="url"],
+.ie8 input[type="email"] {
+  line-height: @input-height;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+}
+.field-text.buttoned input[type="text"],
+.field-text.buttoned input[type="password"],
+.field-text.buttoned input[type="search"],
+.field-text.buttoned input[type="url"],
+.field-text.buttoned input[type="email"] {
+  padding-right: @input-height;
+}
+.field-text.white input[type="text"],
+.field-text.white input[type="password"],
+.field-text.white input[type="search"],
+.field-text.white input[type="url"],
+.field-text.white input[type="email"],
+.field-text.white textarea {
+  background-color: @base-color6;
+}
+button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.field-text button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: @input-height;
+  height: @input-height;
+  font-size: @input-font-size;
+  color: @base-color2;
+}
+.field-text, .field-select {margin-bottom: 30px; position: relative;}
+
+.field-text.pull-left,
+.field-select.pull-left,
+.field-text.pull-right,
+.field-select.pull-right {
+  width: 48%;
+}
+.label-title {
+  display: inline-block;
+  font-size: @input-font-size;
+  font-weight: @input-font-weight;
+  color: @subtitles-color;
+  text-transform: @text-transform-subtitles;
+  cursor: default;
+  margin-bottom: 8px;
+}
+
+/* Dark Form Elements */
+.form-dark {
+  .placeholder(@input-dark-font-size, 400, @input-font-color, none); // font-size, font-weight, color, text-transform
+
+  input[type="text"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="email"],
+  textarea {
+    font-size: @input-dark-font-size;
+    font-weight: @input-font-weight;
+    color: @input-dark-font-color;
+    background-color: @input-dark-color;
+    border: 3px solid @input-dark-border-color;
+    text-transform: none;
+    height: @input-dark-height;
+  }
+  textarea {
+    height: 194px;
+  }
+  .ie8 input[type="text"],
+  .ie8 input[type="password"],
+  .ie8 input[type="search"],
+  .ie8 input[type="url"],
+  .ie8 input[type="email"] {
+    line-height: @input-dark-height;
+  }
+  .label-title {
+    font-size: @input-font-size + 1;
+    color: @label-dark-font-color;
+    margin-bottom: 11px;
+    letter-spacing: 1px;
+  }
+}
+
+/*Responsive*/
+@media (max-width: 479px) {
+  .field-text.pull-left,
+  .field-select.pull-left,
+  .field-text.pull-right,
+  .field-select.pull-right {
+    width: 100%;
+    float: none !important;
+  }
+  .field-text, .field-select {margin-bottom: 20px;}
+  .box-gray .field-text {margin-bottom: 30px;}
+
+  .form-dark .label-title {font-size: @input-font-size; letter-spacing: 0;}
+}
+
+/* Styled Checkboxes, Radios */
+/*-----------------------------------*/
+
+.custom-checkbox, .custom-radio {
+  position:relative;
+  &::selection {background: transparent; color: inherit;}
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  label {
+    &::selection {background: transparent; color: inherit;}
+    &.focus {outline: none;}
+    position: relative;
+    display: inline-block;
+    font-size: @input-font-size;
+    font-weight: @input-font-weight;
+    color: @label-font-color;
+    line-height: @input-font-size + 4;
+    text-transform: uppercase;
+    padding: 0 0 0 @input-font-size + 10;
+    margin-bottom: 10px;
+    cursor: pointer;
+    min-height: @input-font-size + 4;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &:before {
+      .square(@input-font-size + 4);
+      border: 1px solid @base-color5;
+    }
+    &.checked:after {
+      .square(@input-font-size - 4);
+      margin: 4px;
+      background-color: @base-color1;
+    }
+  }
+}
+.custom-radio label {
+  &:before, &.checked:after {border-radius: 50%;}
+}
+@media (max-width: 991px) {
+  .custom-checkbox, .custom-radio {
+    label {font-size: @input-font-size - 2;}
+  }
+}
+
+/* Contact Form */
+/*-----------------------------------*/
+
+.contact-form {
+  margin: 0 10px 0 88px;
+  .field-text,
+  .field-select {
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+    margin-bottom: 60px;
+  }
+  .field-textarea {width: 100%; margin-right: 0;}
+}
+@media (max-width: 1199px) {
+  .contact-form {
+    margin: 0 0 0 60px;
+    .field-text, .field-select {margin-bottom: 50px;}
+  }
+}
+@media (max-width: 991px) {
+  .contact-form {
+    margin: 0;
+    .field-text, .field-select {margin-bottom: 40px;}
+  }
+}
+@media (max-width: 479px) {
+  .contact-form {
+    .field-text,
+    .field-select {
+      width: 100%;
+      float: none;
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: block;
+      span, input {padding: 0 5px;}
+    }
+  }
+}
+
+/* Widget Forms */
+/*-----------------------------------*/
+
+.widget {
+  input[type="text"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="email"],
+  textarea {
+    font-size: @input-dark-font-size;
+    font-weight: @input-font-weight;
+    color: @input-dark-font-color;
+    background-color: @input-dark-color;
+    border: 2px solid @input-dark-border-color;
+    text-transform: none;
+    height: @input-height + 3;
+  }
+  .ie8 input[type="text"],
+  .ie8 input[type="password"],
+  .ie8 input[type="search"],
+  .ie8 input[type="url"],
+  .ie8 input[type="email"] {
+    line-height: @input-height + 3;
+  }
+  .field-text button {
+    width: @input-height + 3;
+    height: @input-height + 3;
+    font-size: 15px;
+    color: @base-color1;
+  }
+}
+
+/* Comment Form */
+/*-----------------------------------*/
+
+.comment-reply-title {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+.comment-form {
+  margin-bottom: 72px;
+  background-color: @comment-form-bg;
+  padding: 55px 27px 20px;
+
+  &:before, &:after {content: ''; display: table;}
+  &:after {clear: both;}
+
+  p {
+    width: 46%;
+    margin: 0 2% 33px;
+    float: left;
+  }
+  .comment-form-comment,
+  .form-submit {
+    float: right;
+  }
+  .logged {width: 96%;}
+  
+  label {
+    font-size: @comment-form-label-font-size;
+    font-weight: 700;
+    color: @comment-form-label-color;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+  }
+  .placeholder(@comment-form-input-font-size, 400, @comment-form-input-font-color, none); // font-size, font-weight, color, text-transform
+  input[type="text"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="email"],
+  textarea {
+    font-size: @comment-form-input-font-size;
+    font-weight: 400;
+    color: @comment-form-input-font-color;
+    background-color: @comment-form-input-color;
+    text-transform: none;
+    height: @comment-form-input-height;
+  }
+  textarea {
+    height: 206px;
+    line-height: 1.8em;
+    padding: 10px 16px;
+  }
+  .ie8 input[type="text"],
+  .ie8 input[type="password"],
+  .ie8 input[type="search"],
+  .ie8 input[type="url"],
+  .ie8 input[type="email"] {
+    line-height: @input-height;
+  }
+  .optional {
+    display: block;
+    font-size: @comment-form-input-font-size - 2;
+  }
+  input[type="submit"],
+  input[type="reset"] {
+      float:right;
+    position: relative;
+    height: @comment-form-input-height;
+    border: 2px solid @base-color1;
+    padding: 0 36px;
+    font-size: @comment-form-input-font-size - 2;
+    font-weight: 700;
+    color: @button-font-color;
+    text-transform: uppercase;
+    background-color: @base-color1;
+    .transition(all 0.3s);
+
+    &:hover {
+      background-color: transparent;
+      color: @base-color1;
+    }
+    &:active {top: 2px;}
+  }
+  .ie8 input[type="submit"],
+  .ie8 input[type="reset"] {
+    line-height: @comment-form-input-height - 4;
+  }
+  input[type="reset"] {
+    float: right;
+    padding: 0 14px;
+    color: @base-color2;
+    background-color: transparent;
+    border-color: @base-color2;
+
+    &:hover {
+      color: @base-color6;
+      background-color: @base-color2;
+      border-color: @base-color2;
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .comment-form input[type="submit"],
+  .comment-form input[type="reset"] {
+    font-size: 11px;
+    padding: 0 14px;
+  }
+}
+@media (max-width: 991px) {
+  .comment-form {
+    margin-bottom: 60px;
+    padding: 32px 20px 0;
+    p {width:100%}
+    input[type="submit"],
+    input[type="reset"] {
+      float: none;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .comment-form-comment, .form-submit {float:none;}
+  }
+}
+@media (max-width: 767px) {
+  .comment-form {margin-bottom: 40px;}
+}
+@media (max-width: 479px) {
+  .comment-form {
+    margin-bottom: 20px;
+    padding: 20px 15px 0;
+    label {margin-bottom: .2em;}
+
+    p {
+      width: 100%;
+      margin: 0 0 20px;
+      float: none !important;
+    }
+  }
+}
+
+/* Post Password Form */
+/*-----------------------------------*/
+
+.post-password-form input[type="submit"] {
+  padding: 0 26px;
+  height: 44px;
+  line-height: 40px;
+  outline: none;
+  font-size: @button-font-size;
+  font-weight: 700;
+  color: @button-font-color;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 2px solid @base-color1;
+  border-radius: 0;
+  background-color: @base-color1;
+  .transition(all 0.3s);
+  vertical-align: bottom;
+
+  &:hover {
+    background-color: transparent;
+    color: @base-color1;
+  }
+}
+@media (max-width: 479px) {
+  .post-password-form {
+    label, input[type="submit"] {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+//--------------------------------------------------
+
+.contactForm, .reservationForm {
+  .input_styled.inlinelist .radiolabel {
+    margin-top: -5px;
+    margin-left: 5px;
+  }
+  .input_styled.checklist input {
+    float:left;
+  }
+  .input_styled.checklist label {
+    margin-top: -3px;
+    margin-left: 5px;
+  }
+  .link-reset {
+    float: right;
+    margin-top: 20px;
+  }
+  .field-text.captcha img {
+    float:left;
+  }
+  .tfuse_captcha_input {
+    margin-top: 5px;
+  }
+}
+@media (max-width: 479px) {
+  .contact-form .field-text, .contact-form .field-select {
+    max-width:100%;
+  }
+}
+@media (max-width: 768px) {
+  .contactForm .link-reset, .reservationForm .link-reset {
+    margin-right: 75px;
+  }
+}
+@media (max-width: 991px) {
+  .contact-form .field-text, .contact-form .field-select {
+    max-width:100%;
+  }
+}

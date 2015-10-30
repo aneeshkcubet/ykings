@@ -1,0 +1,262 @@
+/*-----------------------------------*/
+/* Pagination */
+/*-----------------------------------*/
+
+/* Post Listing */
+/*-----------------------------------*/
+
+.paging-navigation {
+  margin-top: @section-padding;
+  &:before, &:after {content: ''; display: table;}
+  &:after {clear: both;}
+
+  .pagination {
+    float: right;
+    margin: 0;
+    border-radius: 0;
+
+    .page_prev, .page_next, .page-number {
+      height: 83px;
+      line-height: 83px;
+      float: left;
+      background-color: @base-color2;
+      color: @base-color6;
+    }
+    .page_prev, .page_next {
+      font-size: 30px;
+      padding: 0 41px;
+      .transition(all .3s ease);
+
+      &:hover {background-color: @base-color1;}
+    }
+    .page-number {
+      font-size: @font-size + 2;
+      font-weight: 700;
+      padding: 0 58px;
+      margin: 0 2px;
+    }
+
+    // Post Listing in WP Post Formats
+    .page-numbers {
+        display: inline-block;
+        width: 40px;
+        height: 38px;
+        line-height: 34px;
+        vertical-align: top;
+        border: 2px solid @base-color2;
+        font-size: @font-size + 1;
+        font-weight: 700;
+        color: @base-color2;
+        text-align: center;
+        margin: 0 2px 5px 0;
+        .transition(all .3s ease);
+
+      &:hover, &.current {border-color: @base-color3; color: @base-color3;}
+      &.dots {border-color: @base-color2; color: @base-color2;}
+
+      &.prev, &.next {
+        overflow: hidden;
+
+        &:before {
+          .tficon-font();
+          content: '\e60f';
+          display: block;
+          width: 36px;
+          height: 34px;
+          line-height: 34px;
+          text-align: center;
+        }
+      }
+      &.next:before {content: '\e60e';}
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .paging-navigation {top: round(@section-padding/1.3);}
+}
+@media (max-width: 991px) {
+  .paging-navigation {top: round(@section-padding/1.86);}
+}
+@media (max-width: 767px) {
+  .paging-navigation {top: 0; margin-bottom: 80px;}
+}
+@media (max-width: 479px) {
+  .paging-navigation {
+    margin-bottom: 60px;
+
+    .pagination {
+      .page_prev, .page_next, .page-number {height: 70px; line-height: 72px;}
+      .page_prev, .page_next {padding: 0 26px;}
+      .page-number {font-size: @font-size; padding: 0 32px;}
+    }
+  }
+}
+
+/* Post Pagination, Comments Pagination */
+/*--------------------------------------*/
+
+.post-pagination,
+.comments-pagination {
+  margin-bottom: 50px;
+
+  .title {
+    font-weight: 400;
+    margin-bottom: 1.8em;
+  }
+  a, span {
+    display: inline-block;
+    width: 40px;
+    height: 38px;
+    line-height: 34px;
+    border: 2px solid @base-color2;
+    font-size: @font-size + 1;
+    font-weight: 700;
+    color: @base-color2;
+    text-align: center;
+    margin: 0 2px 5px 0;
+    .transition(all .3s ease);
+
+    &:hover, &.current {
+      border-color: @subtitles-color;
+      color: @subtitles-color;
+    }
+  }
+}
+.post-pagination {
+  float: right;
+  max-width: 50%;
+  margin-bottom: 27px;
+}
+@media (max-width: 479px) {
+  .post-pagination {
+    float: none;
+    max-width: none;
+  }
+}
+.comments-pagination .next.page-numbers, .comments-pagination .prev.page-numbers {width:100px;}
+
+/* Prev, Next Post */
+/*-----------------------------------*/
+
+.blog-post-navigation {
+  margin-bottom: round(@section-padding/1.26);
+
+  a {
+    position: relative;
+    float: left;
+    width: 49.5%;
+    height: 180px;
+    background-color: darken(@base_color7_extended, 8%);
+    padding: 50px 60px 0;
+    font-size: @font-size - 1;
+    color: @bmi-color;
+    line-height: 1.6em;
+    text-align: center;
+    overflow: hidden;
+    .transition(background-color .3s ease);
+
+    span {
+      display: block;
+      font-size: @font-size - 2;
+      font-weight: 700;
+      color: @subtitles-color;
+      text-transform: uppercase;
+      margin-bottom: 1em;
+    }
+    i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      margin-top: -32px;
+      font-size: 64px;
+      color: @base-color2;
+    }
+
+    &[rel='next'] {
+      float: right;
+      i {left: auto; right: 16px;}
+    }
+    &:hover {background-color: @base_color7_extended;}
+  }
+}
+@media (max-width: 1199px) {
+  .blog-post-navigation a {
+    font-size: @font-size - 2;
+    padding: 50px 44px 0;
+    &[rel='prev'] i {left: 6px;}
+    &[rel='next'] i {right: 6px;}
+  }
+}
+@media (max-width: 991px) {
+  .blog-post-navigation {
+    margin-bottom: 80px;
+    a {
+      padding: 50px 10px 0;
+      i {display: none;}
+    }
+  }
+}
+@media (max-width: 767px) {
+  .blog-post-navigation {margin-bottom: 60px;}
+}
+@media (max-width: 479px) {
+  .blog-post-navigation {
+    margin-bottom: 20px;
+    a {
+      float: none;
+      display: block;
+      width: 100%;
+      height: auto;
+      padding: 20px 10px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+/* Pagination inside Post (WP Post Formats) */
+/*------------------------------------------*/
+
+.page-links {
+  margin-bottom: 20px;
+
+  & > a, & > span {
+    display: inline-block;
+    width: 40px;
+    height: 38px;
+    line-height: 34px;
+    border: 2px solid @base-color2;
+    font-size: @font-size + 1;
+    font-weight: 700;
+    color: @base-color2;
+    text-align: center;
+    margin: 0 2px 5px 0;
+    .transition(all .3s ease);
+  }
+  & > a:hover, & > span {
+    border-color: @base-color3;
+    color: @base-color3;
+  }
+
+  .page-links-title {
+    display: inline-block;
+    width: auto;
+    font-size: @font-size;
+    font-weight: 400;
+    color: @base-color2;
+    border: none;
+  }
+}
+
+//------------------------------------------------------------
+
+.stories-pagination,
+.services-pagination {
+  text-align: center;
+  .paging-navigation .pagination {float:none;}
+}
+.services-pagination .paging-navigation {margin-top: 0;}
+.blog-pagination .paging-navigation {
+  margin-top: 0;
+  position: relative;
+  top: 130px;
+}

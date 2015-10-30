@@ -1,0 +1,145 @@
+// Icon Font
+@tficon-font-path:                'fonts'; // Relative path from style.css to the Fonts Folder
+@tficon-font-name:                'tficons'; // Iconic Font Name
+
+//Section Paddings
+@section-padding:                 130px; // Top and Bottom Padding of each Section
+
+//Base Colors
+@base-color1:                     #00c8d6;  // Turquoise
+@base-color2:                     #291c1c;  // Black
+@base-color3:                     #d34d5e;  // Red
+@base-color4:                     #fed516;  // Yellow
+@base-color5:                     #999;     // Gray
+@base-color6:                     #fff;     // White
+@base-color7:                     #ebeff0;  // Light Gray
+
+@text-transform-subtitles:uppercase;
+
+//menu text color
+@logo-color:@base-color6; // Logo Color
+@main-menu-font-color:@base-color5; // Main Menu Font Color
+
+//text color
+@gray_color:#999;
+@bmi-color:@base-color2;
+@quote-text: #d34d5e;
+
+//subtitles
+@subtitles-color:@base-color3;
+@headings-hover:#00c8d6;
+@a-color:#fff;
+
+//headings
+@calendar-slider-title:@base-color6;
+@calendar-item-title:@base-color4;
+@section-title-before:@base-color2;
+@mega-nav-title:#999;
+
+@arrow-color:#00c8d6;
+
+
+@slider_text: #fff;
+@base_color7_extended:#ebeff0;
+
+//Global Font
+@font-family:                     'Montserrat', sans-serif;
+@font-size:                       15px;
+@font-color:                      @base-color5;
+
+@titles-font:                     'Montserrat', sans-serif;
+@subtitles-font:                  'Montserrat', sans-serif;
+
+//Body Background
+@body-background:                 @base-color6; // May set not only color, but complex (url, position, repeat)
+
+//Headers
+@font-size-h1:                    42px;
+@font-size-h2:                    33px;
+@font-size-h3:                    25px;
+@font-size-h4:                    22px;
+@font-size-h5:                    17px;
+@font-size-h6:                    13px;
+@header-color:                    @base-color2; // Headers Color
+
+//Buttons
+//You can Generate Different Buttons in the bottom of buttons.less File via .button(className, Button Color, Font Color)
+@button-font-size:                @font-size - 1; // Button Font Size
+@button-font-color:                @base-color6; // Button Font Color
+
+//Site Logo, Menu
+
+@logo-font-size:                  20px; // Logo Font Size
+@main-menu-background:            darken(@base-color2, 5%); // Main Menu Background
+@main-menu-font-size:             13px; // Main Menu Font Size
+
+@main-menu-hover-font-color:      @base-color6; // Main Menu Font Color on Hover
+
+//Workout Calendar
+@workout-cal-bg:                  #161a1b; // Calendar Background
+@workout-cal-height:              334px; // Calendar Height
+
+//Events Calendar
+@event-cal-bg:                    @base-color6; // Calendar Background
+@event-cal-font-size:             @font-size - 2; // Calendar font-size
+@event-cal-headers-color:         @base-color2; // Calendar Headers Color
+@event-cal-cell-default:          darken(@base_color7_extended, 10%); // Empty Cell Color
+@event-cal-cell-event:            @base-color1; // Cell Color with Event
+@event-cal-cell-hover:            @base-color3; // Cell Color on hover, Today Cell
+@event-cal-font-default:          @base-color5; // Empty Cell Font Color
+@event-cal-font-event:            @base-color2; // Cell with Event Font Color
+@event-cal-font-hover:            @base-color6; // Font Color on hover, Today Cell Font Color
+
+//Progress Bars
+@progress-font-size:              @font-size - 4; // ProgressBar Font Size
+@progress-color-bg:               @base_color7_extended; // ProgressBar Background Color
+@progress-color-low:              @base-color1; // ProgressBar Foreground Color, Low Percentage
+@progress-color-middle:           @base-color4; // ProgressBar Foreground Color, Middle Percentage
+@progress-color-high:             @base-color3; // ProgressBar Foreground Color, High Percentage
+
+//Pricing
+@pricing-font-size:               @font-size; // Price Item Font Size
+@pricing-bg:                      @base-color6; // Price Item Background
+@pricing-head-bg:                 @base-color2; // Price Item Head Background
+@pricing-color:                   @base-color1; // Default Price Item Color
+@pricing-color-red:               @base-color3; // Red Price Item Color
+@pricing-color-yellow:            desaturate(@base-color4, 20%); // Yellow Price Item Color
+
+//Form Elements
+@input-height:                    44px; // Input Height
+@input-color:                     @base_color7_extended; // Input Color
+@input-font-size:                 @font-size - 2; // Input Font Size
+@input-font-weight:               700; // Input Font Weight
+@input-font-color:                @base-color2; // Input Font Color
+@label-font-color:                @base-color3; // Label Font Color
+
+//Dark Form Elements
+@input-dark-height:               @input-height + 8; // Input Height
+@input-dark-color:                transparent; // Input Color
+@input-dark-border-color:         @base-color2; // Input Border Color
+@input-dark-font-size:            @font-size; // Input Font Size
+@input-dark-font-weight:          700; // Input Font Weight
+@input-dark-font-color:           @base-color2; // Input Font Color
+@label-dark-font-color:           @base-color2; // Label Font Color
+
+//Comment Form
+@comment-form-bg:                 darken(@base_color7_extended, 8%); // Form Background
+@comment-form-label-font-size:    @font-size - 2; // Label Font Size
+@comment-form-label-color:        @base-color2; // Label Color
+@comment-form-input-height:       @input-height; // Input Height
+@comment-form-input-font-size:    @font-size - 1; // Input Font Size
+@comment-form-input-color:        @base-color6; // Input Color
+@comment-form-input-font-color:   @base-color2; // Input Font Color
+
+//Tables
+@table-cell-padding:              10px; // Padding for <th> and <td>.
+@table-bg:                        transparent; // Background color used for all tables.
+@table-bg-accent:                 @base_color7_extended; // Background color used for Striped Table.
+@table-bg-hover:                  @base_color7_extended; // Background color used for Hovered Table.
+
+//Tooltips
+@tooltip-bg-color:                @base-color1; // Tooltip Color
+@tooltip-font-color:              @base-color6; // Tooltip Font Color
+
+//Footer Copyright Font Size
+@copyright-font-size:             @font-size - 3;
