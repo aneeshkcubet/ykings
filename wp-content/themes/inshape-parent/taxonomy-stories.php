@@ -1,1 +1,0 @@
-<?php include 'archive-stories.php'; ?>
