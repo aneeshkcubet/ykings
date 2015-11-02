@@ -1,0 +1,188 @@
+/*-----------------------------------*/
+/* Select Elements */
+/*-----------------------------------*/
+
+.cusel,
+#cuselBox .cusel-scroll-wrap,
+#cuselBox .jScrollPaneContainer,
+#cuselBox .cusel-scroll-pane {
+  width: 100% !important;
+}
+.cusel {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  outline: none;
+  padding: 0;
+}
+.cuselOpen {z-index: 999;}
+
+.cuselText label::selection {background-color: transparent;}
+
+/* Right Arrow */
+.cuselFrameRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: @input-height - 10;
+  cursor: pointer;
+  text-align: center;
+}
+.cuselFrameRight:before {
+  content: '\e618';
+  .tficon-font();
+  font-size: 8px;
+  color: @input-font-color;
+  line-height: @input-height;
+}
+
+/* Selected Item */
+.cuselText {
+  cursor: pointer; /* Needed for iPad */
+  height: @input-height;
+}
+
+.cuselText label {
+  width: 100%;
+  height: 100%;
+  line-height: @input-height;
+  font-size: @input-font-size;
+  font-weight: @input-font-weight;
+  color: @input-font-color;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0 @input-height - 10 0 12px;
+  background-color: @base_color7_extended;
+}
+
+/* Select List */
+#cuselBox {
+  position: absolute;
+  z-index: 999;
+  background: @base_color7_extended;
+  padding: 5px 0;
+  text-align: left;
+}
+#cuselBox .jScrollPaneContainer {
+  position: relative;
+  overflow: hidden;
+}
+#cuselBox .cusel-scroll-pane {padding-right: 0 !important;}
+
+#cuselBox span {
+  display: block;
+  cursor: pointer; /* Needed for iPad */
+  padding: 0 8px;
+}
+#cuselBox span label {
+  display: block;
+  cursor: pointer;
+  padding: 8px 4px;
+  position: relative;
+  border-top: 1px solid darken(@base_color7_extended, 10%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: @input-font-size;
+  font-weight: @input-font-weight;
+  color: @input-font-color;
+  text-transform: uppercase;
+  -webkit-touch-callout: none;
+}
+#cuselBox span:hover label,
+#cuselBox span.cuselOptHover label,
+#cuselBox span.cuselActive label {
+  color: @base-color1;
+}
+
+/*Optgroup*/
+#cuselBox span.optgroup {cursor: default;}
+#cuselBox span.optgroup label {
+  cursor: default;
+  padding: 11px 0;
+  font-size: @input-font-size + 1;
+  font-weight: 700;
+  color: @base-color1;
+}
+
+/*Disabled Option*/
+#cuselBox span.disabled {cursor: default;}
+#cuselBox span.disabled label {cursor: default; color: lighten(@base-color5, 14%);}
+
+/* Scrolling */
+#cuselBox .jScrollPaneTrack {
+  width: 4px !important;
+  position: absolute;
+  top: 0;
+  right: 2px;
+  bottom: 0;
+}
+#cuselBox .jScrollPaneDrag {
+  position: absolute;
+  cursor: pointer;
+  width: 100% !important;
+  background: @base-color5;
+}
+/*
+.jScrollArrowUp,
+.jScrollArrowDown {
+    width: 10px !important;
+    height: 8px;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    cursor: pointer;
+}
+.jScrollArrowDown {
+    top: auto;
+    bottom: 0;
+}
+.jScrollArrowUp:before,
+.jScrollArrowDown:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #b8c901;
+}
+.jScrollArrowDown:before {
+    border-top: 8px solid #b8c901;
+    border-bottom: none;
+}*/
+
+/* BMI Calculator */
+.bmi-calc {
+  .cuselFrameRight {display: none;}
+  .cuselText label {padding: 0 6px 0 12px;}
+}
+
+/* Dark Form */
+
+.form-dark {
+  .cuselText {
+    font-size: @input-dark-font-size;
+    font-weight: @input-font-weight;
+    color: @input-dark-font-color;
+    border: 3px solid @input-dark-border-color;
+    height: @input-dark-height;
+    label {background-color: @input-dark-color;}
+  }
+  .cuselFrameRight:before {line-height: @input-dark-height;}
+}
+
+
+
+
+
+
+
+
+
+
+

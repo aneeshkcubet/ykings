@@ -1,0 +1,239 @@
+/*-----------------------------------*/
+/* Calendars */
+/*-----------------------------------*/
+
+/* Workout Calendar */
+/*-----------------------------------*/
+
+.calendar-slider {
+  background-color: @workout-cal-bg;
+  text-align: center;
+  padding-left: 223px;
+  position: relative;
+
+  .caroufredsel_wrapper {box-shadow: inset -2px 0 0 rgba(255,255,255,.1);}
+
+  .calendar-item {
+    float: left;
+    width: 240px;
+    text-align: center;
+    height: @workout-cal-height;
+    border-right: 2px solid  lighten(@workout-cal-bg, 10%);
+    border-right: 2px solid  rgba(255,255,255,.1);
+
+    a {
+      display: block;
+      height: 100%;
+      .transition(background-color .1s linear);
+
+      h6, .more {
+        color: desaturate(@base-color4, 40%);
+        height: 52px;
+        line-height: 52px;
+        margin: 0;
+      }
+      .more {
+        color: @base-color6;
+        font-size: 12px;
+
+        i, i:before, i:after {
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: @base-color6;
+          position: relative;
+        }
+        i:before, i:after {content: ''; position: absolute; top: 0; left: -8px;}
+        i:after {left: auto; right: -8px;}
+        span {
+          display: none;
+          font-size: 13px;
+          color: @base-color1;
+        }
+      }
+      .exercises {
+        height: @workout-cal-height - 104;
+        line-height: @workout-cal-height - 110;
+        border-top: 2px solid  lighten(@workout-cal-bg, 10%);
+        border-top: 2px solid  rgba(255,255,255,.1);
+        border-bottom: 2px solid  lighten(@workout-cal-bg, 10%);
+        border-bottom: 2px solid  rgba(255,255,255,.1);
+
+        ul {
+          display: inline-block;
+          vertical-align: middle;
+          * {line-height: normal;}
+
+          li {
+            color: @base-color5;
+            font-size: 11px;
+            margin-top: 2em;
+            &:first-child {margin-top: 0; padding: 20px;}
+            strong {
+              display: block;
+              font-size: 16px;
+              color: @base-color6;
+              text-transform: uppercase;
+              margin-bottom: .2em;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        background-color: darken(@base-color5, 40%);
+        background-color: fade(@base-color6, 10%);
+        .more i {display: none;}
+        .more span {display: block;}
+      }
+    }
+  }
+  .calendar-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 223px;
+    height: @workout-cal-height;
+    line-height: @workout-cal-height - 4px;
+    border-right: 2px solid  lighten(@workout-cal-bg, 10%);
+    border-right: 2px solid  rgba(255,255,255,.1);
+
+    .inner {
+      display: inline-block;
+      vertical-align: middle;
+      * {line-height: normal;}
+      .section-title-before {font-size: 12px;}
+      .section-title {font-size: 20px; color: @base-color6; margin-bottom: .8em;}
+      .section-subtitle {font-size: 13px;}
+    }
+    .section-subtitle{
+        color:#999999;
+    }
+
+    .prev, .next {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      margin-left: -30px;
+      line-height: normal;
+      font-size: 30px;
+      color: @gray_color;
+    }
+    .next {margin-left: 15px;}
+  }
+}
+@media (max-width: 479px) {
+  .calendar-slider {
+    padding-left: 160px;
+    .calendar-item {width: 160px;}
+    .calendar-controls {
+      width: 160px;
+      .inner .section-title {font-size: 16px;}
+    }
+  }
+}
+
+/* Events Calendar */
+/*-----------------------------------*/
+
+.event-calendar {
+  position: relative;
+  padding: 38px 64px 60px;
+  background-color: @event-cal-bg;
+
+  .calendar-header {
+    margin-bottom: 30px;
+    li {
+      float: left;
+      width: 14.2857%;
+      font-size: @event-cal-font-size + 1;
+      font-weight: 700;
+      color: @event-cal-headers-color;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+  .calendar-month ul li {
+    float: left;
+    width: 14.2857%;
+    padding: 1.5px;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 134px;
+      line-height: 130px - 20px;
+      padding: 10px;
+      font-size: @event-cal-font-size;
+      color: @event-cal-font-event;
+      text-align: center;
+      background-color: @event-cal-cell-event;
+      .transition(all .3s);
+
+      span {
+        display: inline-block;
+        line-height: normal;
+        vertical-align: middle;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        word-wrap: break-word;
+      }
+    }
+    &.disabled a {
+      color: @event-cal-font-default;
+      background-color: @event-cal-cell-default;
+    }
+    & a:hover,
+    &.current a,
+    &.disabled a:hover {
+      color: @event-cal-font-hover;
+      background-color: @subtitles-color;
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .event-calendar {padding: 38px 36px 60px;}
+}
+@media (max-width: 991px) {
+  .event-calendar .calendar-month ul li a {
+    height: 100px;
+    line-height: 100px - 10px;
+    padding: 5px;
+    font-size: @event-cal-font-size - 1;
+  }
+}
+@media (max-width: 767px) {
+  .event-calendar .calendar-month ul li a {
+    height: 60px;
+    span {display: none;}
+  }
+}
+@media (max-width: 479px) {
+  .event-calendar {
+    padding: 25px 15px 60px;
+
+    .calendar-header {
+      margin-bottom: 20px;
+      li {font-size: @event-cal-font-size - 2;}
+    }
+    .calendar-month ul li a {height: 40px;}
+  }
+}
+
+/* Widget Calendar */
+/*-----------------------------------*/
+
+.widget.widget-calendar table tr {
+  & > th {
+    border-left: 1px solid #ebeff0;
+    padding:7px;
+    text-align: left;
+  }
+  & > td {
+    border-top: 1px solid #ebeff0 !important;
+    border-left: 1px solid #ebeff0;
+  }
+}

@@ -1,0 +1,257 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+/*-----------------------------------*/
+/* Global Reset */
+/*-----------------------------------*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+/*-----------------------------------*/
+/* Workout, Print Version */
+/*-----------------------------------*/
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+}
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.site-header,
+.main-row,
+.site-footer,
+.exercise-stats,
+.slicknav_menu {
+  display: none;
+}
+.site-header.print,
+.main-row.print,
+.site-footer.print,
+.exercise-stats.print,
+.slicknav_menu.print {
+  display: block;
+}
+/* Exercises (Workout Details) */
+/*-----------------------------------*/
+.postlist-exercises .section-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+.postlist-exercises .section-subtitle {
+  color: #000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.postlist-exercises .post {
+  margin-bottom: 50px;
+}
+.postlist-exercises .post .entry-content {
+  float: right;
+  width: 64%;
+}
+.postlist-exercises .post .entry-title-before {
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: .6em;
+}
+.postlist-exercises .post .entry-title {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: .5em;
+}
+.postlist-exercises .post .post-thumbnail {
+  position: relative;
+  float: left;
+  width: 34%;
+  margin: 0;
+}
+.postlist-exercises .post p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: .8em;
+}
+.postlist-exercises .post .entry-meta {
+  font-size: 14px;
+  color: #000;
+  text-transform: uppercase;
+}
+.postlist-exercises .post .entry-meta i {
+  display: none;
+}
+.postlist-exercises .post:last-child {
+  margin-bottom: 0;
+}
+/* Exercise Statistics */
+.exercise-stats {
+  border: 2px solid #eee;
+  padding: 32px 24px 20px;
+  margin-bottom: 50px;
+}
+.exercise-stats .section-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.exercise-stats:last-child {
+  margin-bottom: 0;
+}
+/* Progress Bars */
+.progress-wrap .progress {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.progress-wrap .progress-bar {
+  background-color: #999;
+}
+.progress-wrap .progress-mark {
+  display: none;
+}
+.progress-wrap .progress-label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+a:link:after, a:visited:after { display:none; }

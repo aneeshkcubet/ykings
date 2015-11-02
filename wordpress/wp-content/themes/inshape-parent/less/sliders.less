@@ -1,0 +1,335 @@
+/*-----------------------------------*/
+/* Sliders */
+/*-----------------------------------*/
+
+/* Main Slider */
+/*-----------------------------------*/
+
+.main-slider {
+  .animated {
+    -webkit-animation-duration: .6s;
+    animation-duration: .6s;
+  }
+  background-color: @main-menu-background;
+  text-align: left;
+  .page-title {font-size: @font-size-h1 + 8; margin-top: .3em; color:@base-color6;}
+
+  .page-desc {
+    background-color: #422424;
+    background-color: rgba(0,0,0,.65);
+    font-size: @font-size + 2;
+    color: @slider_text;
+    line-height: 1.8em;
+    padding: 31px 10px 29px 36px;
+    margin: 0 60px 14px 0;
+    position: relative;
+    width: auto;
+
+    .angle {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 100px solid #422424;
+      border-top: 100px solid rgba(0,0,0,.65);
+      border-right: 60px solid transparent;
+      position: absolute;
+      top: 0;
+      right: -60px;
+    }
+  }
+
+  /*Controls*/
+  .carousel-control {display: none;}
+  .carousel-indicators {
+    top: 420px;
+    left: 50%;
+    bottom: auto;
+    z-index: 15;
+    width: auto;
+    padding: 0;
+    margin: 0 0 0 -567px;
+
+    li {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 3px 0 0;
+      border: 2px solid @base-color6;
+      border-radius: 50%;
+
+      &.active {background-color: @base-color6;}
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .main-slider .carousel-indicators {margin-left: -470px;}
+  .main-slider .page-title {font-size: @font-size-h1;}
+  .main-slider .item {padding-top: 170px; min-height: 560px;}
+}
+@media (max-width: 991px) {
+  .main-slider .carousel-indicators {margin-left: -360px;}
+  .main-slider .page-title {font-size: @font-size-h1 - 8;}
+  .main-slider .item {padding-top: 120px; min-height: 500px;}
+  .main-slider .page-desc {font-size: @font-size; padding: 14px 4px 20px 20px;}
+}
+@media (max-width: 767px) {
+  .main-slider .carousel-indicators {left: 15px; margin-left: 0;}
+  .main-slider .page-title {font-size: @font-size-h1 - 10; margin-top: 0;}
+  .main-slider .item {padding-top: 80px; padding-bottom: 20px;}
+  .main-slider .carousel-indicators {
+    -webkit-animation-duration: 0;
+    animation-duration: 0;
+    li {
+      width: 20px;
+      height: 20px;
+      margin: 0 8px 0 0;
+    }
+  }
+}
+@media (max-width: 479px) {
+  .main-slider .page-title {font-size: 22px;}
+  .main-slider .item {padding-top: 60px; min-height: 440px;}
+  .main-slider .page-desc {
+    font-size: @font-size - 2;
+    margin-right: 0;
+    .angle {display: none;}
+  }
+}
+
+/* Workout Slider */
+/*-----------------------------------*/
+
+.workout-slider {
+  text-align: center;
+  .btn {
+    margin-top: 68px;
+    span {padding: 0 40px;}
+  }
+  .item {
+    padding-top: 110px;
+    p {
+      font-size: @font-size - 2;
+      color: @base-color6;
+      line-height: 2em;
+    }
+  }
+  .page-title {font-size: @font-size-h1 - 4; margin: 0 0 2.1em; color:@base-color6;}
+
+  .title {
+    position: relative;
+    font-weight: 400;
+    color: @base-color6;
+    margin-bottom: 1em;
+    i {
+      font-size: 40px;
+      position: absolute;
+      top: -11px;
+      left: 0;
+    }
+  }
+  .text-left {
+    margin-bottom: 20px;
+  }
+  .text-right {
+    margin-bottom: 20px;
+  }
+
+  /*Controls*/
+  .carousel-indicators {display: none;}
+  .carousel-control {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: -36px 0 0 -570px;
+    border: none;
+    opacity: 1;
+    font-size: 40px;
+    color: @base-color6;
+    text-shadow: none;
+    text-align: center;
+
+    &.left, &.right {background: none; filter: none;}
+    &.right {margin-left: 550px;}
+  }
+}
+@media (max-width: 1199px) {
+  .workout-slider {
+    .item {padding-top: 70px;}
+    .page-title {margin-bottom: 1.4em;}
+    .carousel-control.left {margin-left: -500px;}
+    .carousel-control.right {margin-left: 480px;}
+    .title {font-size: 19px;}
+    .btn {margin-top: 30px;}
+  }
+}
+@media (max-width: 991px) {
+  .workout-slider {
+    .item {padding-top: 45px;}
+    .page-title {font-size: 34px; margin-bottom: 1em; padding: 0 20px;}
+    .carousel-control.left,
+    .carousel-control.right {
+      top: 106px;
+      margin-left: 0;
+      left: 5px;
+    }
+    .carousel-control.right {
+      left: auto;
+      right: 5px;
+    }
+    .title {font-size: 17px;}
+    .btn, .workout-rating {margin-top: 0;}
+  }
+}
+@media (max-width: 767px) {
+  .workout-slider {
+    .item {
+      min-height: 640px;
+      padding-top: 40px;
+      p {line-height: 1.4em;}
+    }
+    .page-title {font-size: 28px;}
+    .carousel-control.left, .carousel-control.right {top: 98px;}
+  }
+}
+@media (max-width: 479px) {
+  .workout-slider {
+    .item {min-height: 520px;}
+    .page-title {font-size: 22px;}
+    .carousel-control.left, .carousel-control.right {top: 92px;}
+    .workout-rating {display: none;}
+  }
+}
+
+/* Categories Slider */
+/*-----------------------------------*/
+
+.categories-slider {
+  background-color: rgba(0,0,0,.6);
+  padding: 43px 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .caroufredsel_wrapper {margin: 0 auto !important;}
+
+  .categories-item {
+    float: left;
+    a {
+      display: block;
+      height: 24px;
+      line-height: 24px;
+      font-size: @font-size - 2;
+      font-weight: 700;
+      color: @a-color;
+      text-transform: uppercase;
+      padding-left: 30px;
+      margin: 0 30px;
+      position: relative;
+
+      &:before {
+        content: '';
+        width: 24px;
+        height: 24px;
+        border: 2px solid @base-color1;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &:after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: transparent;
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        .transition(background-color .3s ease);
+      }
+    }
+    &.active a:after,
+    a:hover:after {
+      background-color: @base-color1;
+    }
+  }
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: 24px;
+    color: @base-color6;
+    height: 24px;
+    line-height: 24px;
+    margin-top: -12px;
+  }
+  .next {left: auto; right: 0;}
+}
+@media (max-width: 991px) {
+  .categories-slider {padding: 26px 0;}
+  .categories-slider .categories-item a {margin: 0 20px;}
+}
+@media (max-width: 479px) {
+  .categories-slider {padding: 20px 0;}
+}
+
+/* Exercises Slider */
+/*-----------------------------------*/
+
+.exercises-slider {
+  position: relative;
+
+  /*Controls*/
+  .carousel-control {
+    display: block;
+    position: absolute;
+    top: auto;
+    bottom: -43px;
+    left: 50%;
+    z-index: 2;
+    width: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 0 -106px;
+    border: none;
+    opacity: 1;
+    font-size: 28px;
+    color: @arrow-color;
+    text-shadow: none;
+    text-align: center;
+
+    &.left, &.right {background: none; filter: none;}
+    &.right {margin-left: 90px;}
+  }
+  .carousel-indicators {
+    bottom: -34px;
+    left: 0;
+    right: 0;
+    z-index: auto;
+    width: auto;
+    margin-left: 0;
+
+    li {
+      display: none;
+      &.active {
+        display: block;
+        width: auto;
+        height: auto;
+        margin: 0;
+        text-indent: 0;
+        border: none;
+        border-radius: 0;
+        cursor: text;
+        background-color: transparent;
+        font-size: @event-cal-font-size + 1;
+        color: @event-cal-headers-color;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
