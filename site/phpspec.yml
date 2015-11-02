@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Ykings
+        psr4_prefix: Ykings
         src_path: app

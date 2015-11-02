@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Ykings\Http\Controllers\Auth;
 
-use App\User;
+use Ykings\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Ykings\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
