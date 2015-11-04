@@ -1,6 +1,6 @@
 <?php
 
-namespace Ykings\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

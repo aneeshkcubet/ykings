@@ -1643,17 +1643,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.1.22",
-        "version_normalized": "5.1.22.0",
+        "version": "v5.1.23",
+        "version_normalized": "5.1.23.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "11d9627c7cd4d12b6e884b87daa7a2f898cf54cb"
+            "reference": "a4ea877d2bb6a68796b244a741594968796c1c4e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/11d9627c7cd4d12b6e884b87daa7a2f898cf54cb",
-            "reference": "11d9627c7cd4d12b6e884b87daa7a2f898cf54cb",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/a4ea877d2bb6a68796b244a741594968796c1c4e",
+            "reference": "a4ea877d2bb6a68796b244a741594968796c1c4e",
             "shasum": ""
         },
         "require": {
@@ -1735,7 +1735,7 @@
             "predis/predis": "Required to use the redis cache and queue drivers (~1.0).",
             "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0)."
         },
-        "time": "2015-10-28 21:58:18",
+        "time": "2015-11-03 16:32:33",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3040,486 +3040,135 @@
         ]
     },
     {
-        "name": "cocur/slugify",
-        "version": "v1.1",
-        "version_normalized": "1.1.0.0",
+        "name": "phpseclib/phpseclib",
+        "version": "0.3.10",
+        "version_normalized": "0.3.10.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/cocur/slugify.git",
-            "reference": "2b67d4e2b75dbaed2ebefa9eb5683e8940513847"
+            "url": "https://github.com/phpseclib/phpseclib.git",
+            "reference": "d15bba1edcc7c89e09cc74c5d961317a8b947bf4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/cocur/slugify/zipball/2b67d4e2b75dbaed2ebefa9eb5683e8940513847",
-            "reference": "2b67d4e2b75dbaed2ebefa9eb5683e8940513847",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d15bba1edcc7c89e09cc74c5d961317a8b947bf4",
+            "reference": "d15bba1edcc7c89e09cc74c5d961317a8b947bf4",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.3"
+            "php": ">=5.0.0"
         },
         "require-dev": {
-            "codeclimate/php-test-reporter": "dev-master",
-            "laravel/framework": "~4.1",
-            "latte/latte": "~2.2",
-            "mockery/mockery": "~0.9",
-            "nette/di": "~2.2",
-            "phpunit/phpunit": "~3.7",
-            "sami/sami": "~1.3",
-            "satooshi/php-coveralls": "0.6.*",
-            "silex/silex": "~1.2",
-            "symfony/dependency-injection": "~2.4",
-            "symfony/http-kernel": "~2.4",
-            "twig/twig": "~1",
-            "zendframework/zend-modulemanager": "~2.2",
-            "zendframework/zend-servicemanager": "~2.2",
-            "zendframework/zend-view": "~2.2"
-        },
-        "time": "2015-03-18 08:21:30",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Cocur\\Slugify\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Ivo Bathke",
-                "email": "ivo.bathke@gmail.com"
-            },
-            {
-                "name": "Florian Eckerstorfer",
-                "email": "florian@eckerstorfer.co",
-                "homepage": "https://florian.ec"
-            }
-        ],
-        "description": "Converts a string into a slug.",
-        "keywords": [
-            "slug",
-            "slugify"
-        ]
-    },
-    {
-        "name": "cviebrock/eloquent-sluggable",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-            "reference": "666928685989e04cf1ab28d049984f457e80cd76"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/666928685989e04cf1ab28d049984f457e80cd76",
-            "reference": "666928685989e04cf1ab28d049984f457e80cd76",
-            "shasum": ""
-        },
-        "require": {
-            "cocur/slugify": "1.1.*",
-            "illuminate/config": "5.*",
-            "illuminate/database": "5.*",
-            "illuminate/support": "5.*",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "orchestra/testbench": "3.0.*",
-            "phpunit/phpunit": "4.*"
-        },
-        "time": "2015-10-26 16:58:25",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Cviebrock\\EloquentSluggable\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Colin Viebrock",
-                "email": "colin@viebrock.ca"
-            }
-        ],
-        "description": "Easy creation of slugs for your Eloquent models in Laravel",
-        "homepage": "https://github.com/cviebrock/eloquent-sluggable",
-        "keywords": [
-            "eloquent",
-            "laravel",
-            "slug"
-        ]
-    },
-    {
-        "name": "cviebrock/eloquent-taggable",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cviebrock/eloquent-taggable.git",
-            "reference": "04e60f8773cec3e121ffc4cfe27476d8dac22ffb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cviebrock/eloquent-taggable/zipball/04e60f8773cec3e121ffc4cfe27476d8dac22ffb",
-            "reference": "04e60f8773cec3e121ffc4cfe27476d8dac22ffb",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/config": "~4|~5",
-            "illuminate/support": "~4|~5",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "orchestra/testbench": "~2.0|~3.0@dev",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-07-31 04:08:50",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Cviebrock\\EloquentTaggable\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Colin Viebrock",
-                "email": "colin@viebrock.ca"
-            }
-        ],
-        "description": "Easy ability to tag your Eloquent models in Laravel.",
-        "homepage": "https://github.com/cviebrock/eloquent-taggable",
-        "keywords": [
-            "Taggable",
-            "eloquent",
-            "laravel",
-            "tag",
-            "tagging"
-        ]
-    },
-    {
-        "name": "cartalyst/support",
-        "version": "v1.1.2",
-        "version_normalized": "1.1.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cartalyst/support.git",
-            "reference": "c90931d25e89734ba89875a769af6b2e050593a5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cartalyst/support/zipball/c90931d25e89734ba89875a769af6b2e050593a5",
-            "reference": "c90931d25e89734ba89875a769af6b2e050593a5",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "illuminate/mail": "~4.1|~5.0",
-            "illuminate/validation": "~4.1|~5.0",
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-06-24 13:00:53",
-        "type": "library",
-        "extra": {
-            "component": "package",
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Cartalyst\\Support\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Cartalyst LLC",
-                "email": "help@cartalyst.com"
-            },
-            {
-                "name": "Bruno Gaspar",
-                "email": "bruno.gaspar@cartalyst.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Dan Syme",
-                "email": "dan.syme@cartalyst.com",
-                "role": "Project Lead"
-            },
-            {
-                "name": "Suhayb Wardany",
-                "email": "su.wardany@cartalyst.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "Support helpers.",
-        "keywords": [
-            "cartalyst",
-            "helper",
-            "laravel",
-            "support"
-        ]
-    },
-    {
-        "name": "cartalyst/sentinel",
-        "version": "v2.0.7",
-        "version_normalized": "2.0.7.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cartalyst/sentinel.git",
-            "reference": "ff4a3c0100474dd135e7732b379962715f6d6b03"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/ff4a3c0100474dd135e7732b379962715f6d6b03",
-            "reference": "ff4a3c0100474dd135e7732b379962715f6d6b03",
-            "shasum": ""
-        },
-        "require": {
-            "cartalyst/support": "~1.0",
-            "illuminate/support": "~5.0",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "illuminate/cookie": "~5.0",
-            "illuminate/database": "~5.0",
-            "illuminate/http": "~5.0",
-            "illuminate/session": "~5.0",
-            "ircmaxell/password-compat": "~1.0",
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
+            "phing/phing": "~2.7",
+            "phpunit/phpunit": "~4.0",
+            "sami/sami": "~2.0",
+            "squizlabs/php_codesniffer": "~1.5"
         },
         "suggest": {
-            "illuminate/database": "By default, Sentinel utilizes the powerful Illuminate database layer.",
-            "illuminate/events": "To hook into various events across Sentinel, we recommend using Illuminate's event dispatcher.",
-            "ircmaxell/password-compat": "Default hashing uses PHP 5.5 password_* functions, with forward-compatible support.",
-            "symfony/http-foundation": "Required for native implementations."
+            "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+            "ext-mcrypt": "Install the Mcrypt extension in order to speed up a wide variety of cryptographic operations.",
+            "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 4.3.3."
         },
-        "time": "2015-08-26 18:31:52",
+        "time": "2015-01-28 21:50:33",
         "type": "library",
         "extra": {
-            "component": "package",
             "branch-alias": {
-                "dev-master": "2.0.x-dev"
+                "dev-master": "0.3-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "Cartalyst\\Sentinel\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Ben Corlett",
-                "email": "ben.corlett@cartalyst.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Cartalyst LLC",
-                "email": "help@cartalyst.com"
-            },
-            {
-                "name": "Bruno Gaspar",
-                "email": "bruno.gaspar@cartalyst.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Dan Syme",
-                "email": "dan.syme@cartalyst.com",
-                "role": "Creator & Designer"
-            },
-            {
-                "name": "Suhayb Wardany",
-                "email": "su.wardany@cartalyst.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "PHP 5.4+ Fully-featured Authentication & Authorization System",
-        "keywords": [
-            "auth",
-            "cartalyst",
-            "codeigniter",
-            "fuelphp",
-            "laravel",
-            "php",
-            "security"
-        ]
-    },
-    {
-        "name": "laravelcollective/html",
-        "version": "v5.1.6",
-        "version_normalized": "5.1.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/LaravelCollective/html.git",
-            "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/LaravelCollective/html/zipball/8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
-            "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/http": "5.1.*",
-            "illuminate/routing": "5.1.*",
-            "illuminate/session": "5.1.*",
-            "illuminate/support": "5.1.*",
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-09-03 17:16:48",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Collective\\Html\\": "src/"
+            "psr-0": {
+                "Crypt": "phpseclib/",
+                "File": "phpseclib/",
+                "Math": "phpseclib/",
+                "Net": "phpseclib/",
+                "System": "phpseclib/"
             },
             "files": [
-                "src/helpers.php"
+                "phpseclib/Crypt/Random.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            "phpseclib/"
+        ],
         "license": [
             "MIT"
         ],
         "authors": [
             {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
+                "name": "Jim Wigginton",
+                "email": "terrafrost@php.net",
+                "role": "Lead Developer"
             },
             {
-                "name": "Adam Engebretson",
-                "email": "adam@laravelcollective.com"
-            }
-        ]
-    },
-    {
-        "name": "league/fractal",
-        "version": "0.12.0",
-        "version_normalized": "0.12.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/thephpleague/fractal.git",
-            "reference": "0a51dcb6398dc2377d086210d0624996a1df8322"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/fractal/zipball/0a51dcb6398dc2377d086210d0624996a1df8322",
-            "reference": "0a51dcb6398dc2377d086210d0624996a1df8322",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4"
-        },
-        "require-dev": {
-            "illuminate/contracts": "~5.0",
-            "mockery/mockery": "~0.9",
-            "pagerfanta/pagerfanta": "~1.0.0",
-            "phpunit/phpunit": "~4.0",
-            "squizlabs/php_codesniffer": "~1.5",
-            "zendframework/zend-paginator": "~2.3"
-        },
-        "suggest": {
-            "illuminate/pagination": "The Illuminate Pagination component.",
-            "pagerfanta/pagerfanta": "Pagerfanta Paginator",
-            "zendframework/zend-paginator": "Zend Framework Paginator"
-        },
-        "time": "2015-03-19 15:16:43",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "0.13-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "League\\Fractal\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
+                "name": "Patrick Monnerat",
+                "email": "pm@datasphere.ch",
+                "role": "Developer"
+            },
             {
-                "name": "Phil Sturgeon",
-                "email": "me@philsturgeon.uk",
-                "homepage": "http://philsturgeon.uk/",
+                "name": "Andreas Fischer",
+                "email": "bantu@phpbb.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Hans-Jürgen Petrich",
+                "email": "petrich@tronic-media.com",
                 "role": "Developer"
             }
         ],
-        "description": "Handle the output of complex data structures ready for API output.",
-        "homepage": "http://fractal.thephpleague.com/",
+        "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+        "homepage": "http://phpseclib.sourceforge.net",
         "keywords": [
-            "api",
-            "json",
-            "league",
-            "rest"
+            "BigInteger",
+            "aes",
+            "asn.1",
+            "asn1",
+            "blowfish",
+            "crypto",
+            "cryptography",
+            "encryption",
+            "rsa",
+            "security",
+            "sftp",
+            "signature",
+            "signing",
+            "ssh",
+            "twofish",
+            "x.509",
+            "x509"
         ]
     },
     {
-        "name": "yajra/laravel-datatables-oracle",
-        "version": "v5.11.12",
-        "version_normalized": "5.11.12.0",
+        "name": "namshi/jose",
+        "version": "5.0.2",
+        "version_normalized": "5.0.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/yajra/laravel-datatables.git",
-            "reference": "f27ed79325302ef9ce5ff252f00e44bb135e0b70"
+            "url": "https://github.com/namshi/jose.git",
+            "reference": "8c7eba486f74c014ea1d8faedafe5109a31ea95b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/f27ed79325302ef9ce5ff252f00e44bb135e0b70",
-            "reference": "f27ed79325302ef9ce5ff252f00e44bb135e0b70",
+            "url": "https://api.github.com/repos/namshi/jose/zipball/8c7eba486f74c014ea1d8faedafe5109a31ea95b",
+            "reference": "8c7eba486f74c014ea1d8faedafe5109a31ea95b",
             "shasum": ""
         },
         "require": {
-            "illuminate/database": "~5.0",
-            "illuminate/filesystem": "~5.0",
-            "illuminate/http": "~5.0",
-            "illuminate/support": "~5.0",
-            "illuminate/view": "~5.0",
-            "laravelcollective/html": "~5.0",
-            "league/fractal": "0.12.*",
-            "php": ">=5.4.0"
+            "lib-openssl": "*",
+            "php": ">=5.3.3",
+            "phpseclib/phpseclib": "~0.3"
         },
         "require-dev": {
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
+            "phpunit/phpunit": "~4.5",
+            "satooshi/php-coveralls": "dev-master"
         },
-        "time": "2015-10-29 05:33:15",
+        "time": "2015-06-29 05:41:44",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-0": {
-                "yajra\\Datatables": "src/"
+                "Namshi\\JOSE": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -3528,18 +3177,137 @@
         ],
         "authors": [
             {
-                "name": "Arjay Angeles",
-                "email": "aqangeles@gmail.com"
+                "name": "Alessandro Nadalin",
+                "email": "alessandro.nadalin@gmail.com"
             }
         ],
-        "description": "jQuery DataTables API for Laravel 4|5",
+        "description": "JSON Object Signing and Encryption library for PHP.",
         "keywords": [
-            "datatable",
-            "datatables",
-            "datatables jquery plugin",
+            "JSON Web Signature",
+            "JSON Web Token",
+            "JWS",
+            "json",
+            "jwt",
+            "token"
+        ]
+    },
+    {
+        "name": "tymon/jwt-auth",
+        "version": "0.5.5",
+        "version_normalized": "0.5.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/tymondesigns/jwt-auth.git",
+            "reference": "eb4abc9bf9d301e3e22f4eaa45a509d6b3100d58"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/eb4abc9bf9d301e3e22f4eaa45a509d6b3100d58",
+            "reference": "eb4abc9bf9d301e3e22f4eaa45a509d6b3100d58",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/http": "~5.0",
+            "illuminate/support": "~5.0",
+            "namshi/jose": "5.0.*",
+            "nesbot/carbon": "~1.0",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "illuminate/auth": "~5.0",
+            "illuminate/console": "~5.0",
+            "illuminate/database": "~5.0",
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "4.*"
+        },
+        "time": "2015-09-15 21:20:29",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Tymon\\JWTAuth\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Sean Tymon",
+                "email": "tymon148@gmail.com",
+                "homepage": "http://tymondesigns.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "JSON Web Token Authentication for Laravel 4 and 5",
+        "homepage": "https://github.com/tymondesigns/jwt-auth",
+        "keywords": [
+            "Authentication",
+            "JSON Web Token",
+            "auth",
+            "jwt",
             "laravel",
-            "laravel4",
-            "laravel5"
+            "tymon"
+        ]
+    },
+    {
+        "name": "acacha/admin-lte-template-laravel",
+        "version": "1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/acacha/adminlte-laravel.git",
+            "reference": "aaa0dd5c80e07721487729cade1f6e850a5faf77"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/aaa0dd5c80e07721487729cade1f6e850a5faf77",
+            "reference": "aaa0dd5c80e07721487729cade1f6e850a5faf77",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/console": "~5.0",
+            "illuminate/support": "~5.0",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-10-19 08:08:45",
+        "type": "package",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Acacha\\AdminLTETemplateLaravel\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Sergi Tur Badenas",
+                "email": "sergiturbadenas@gmail.com",
+                "homepage": "http://acacha.org"
+            }
+        ],
+        "description": "AdminLTE template applied to Laravel Scaffolding",
+        "keywords": [
+            "AdminLTE",
+            "admin",
+            "admin-lte",
+            "administrator",
+            "bootstrap",
+            "laravel",
+            "template",
+            "theme"
         ]
     }
 ]

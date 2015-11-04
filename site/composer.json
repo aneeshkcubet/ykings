@@ -7,12 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "cartalyst/sentinel": "2.0.*",
-        "laravelcollective/html": "5.1.*",
-        "cviebrock/eloquent-sluggable": "dev-master",
-        "cviebrock/eloquent-taggable": "dev-master",
-        "yajra/laravel-datatables-oracle": "~5.0",
-        "cartalyst/sentry": "dev-feature/laravel-5"
+        "tymon/jwt-auth": "0.5.*",
+        "acacha/admin-lte-template-laravel": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -25,7 +21,7 @@
             "database"
         ],
         "psr-4": {
-            "Ykings\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
