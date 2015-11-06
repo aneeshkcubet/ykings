@@ -15,9 +15,11 @@
 
 Route::group(['prefix' => 'api'], function()
 {
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    Route::post('authenticate', 'AuthenticateController@authenticate');
-    Route::get('users', 'AuthenticateController@index');
+    Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
+    Route::get('authenticate', 'Api\AuthenticateController@authenticate');
+    Route::get('users', 'Api\AuthenticateController@index');
+    
+    Route::post('user', 'Api\UsersController@postRegister');
 });
 
 // Authentication routes...
@@ -37,7 +39,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-Route::get('/home', ['middleware' => 'auth', function () {
+Route::get('/admin', ['middleware' => 'auth', function () {
     return view('home');
 }]);
 

@@ -1,27 +1,30 @@
-<?php
+<?php namespace App\Http\Controllers\Auth;
 
-namespace App\Http\Controllers\Auth;
-
-use App\User;
 use Validator;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Hash;
+
+use App\User;
+use App\Profile;
 
 class AuthController extends Controller
 {
     /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Registration & Login Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles the registration of new users, as well as the
+      | authentication of existing users. By default, this controller uses
+      | a simple trait to add these behaviors. Why don't you explore it?
+      |
+     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+use AuthenticatesAndRegistersUsers,
+    ThrottlesLogins;
 
     /**
      * Create a new authentication controller instance.
@@ -30,6 +33,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = '/admin';
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -42,24 +46,37 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+                'first_name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
+                'gender' => 'required',
+                'fitness_status' => 'required',
+                'goal' => 'required'
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
+    
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+
+
+        $user = User::create([
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'status' => 1
         ]);
+
+        $profile = new Profile([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'gender' => $data['last_name'],
+            'fitness_status' => $data['last_name'],
+            'goal' => $data['goal'],
+            'quote' => isset($data['quote']) ? $data['quote'] : ''
+        ]);
+
+        $user = User::find($user->id);
+
+        $comment = $user->profile()->save($profile);
     }
 }
