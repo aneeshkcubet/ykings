@@ -24,5 +24,4 @@ return array(
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
-    'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );

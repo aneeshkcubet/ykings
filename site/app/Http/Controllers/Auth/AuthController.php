@@ -63,7 +63,7 @@ use AuthenticatesAndRegistersUsers,
         $user = User::create([
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'status' => 1
+                'status' => 0
         ]);
 
         $profile = new Profile([

@@ -1,8 +1,7 @@
-<?php
-
-namespace App\Exceptions;
+<?php namespace App\Exceptions;
 
 use Exception;
+use App\Exceptions\InvalidConfirmationCodeException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -43,9 +43,26 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof ModelNotFoundException) {
+
             $e = new NotFoundHttpException($e->getMessage(), $e);
+        } elseif ($e instanceof InvalidConfirmationCodeException) {
+
+            return $this->renderException($request, $e);
         }
 
         return parent::render($request, $e);
     }
+
+    protected function renderException($request, $e)
+    {
+
+        switch ($e) {
+            case ($e instanceof InvalidConfirmationCodeException):
+                return parent::render($request, $e);
+                break;
+            default:
+                
+        }
+    }
 }
+    
