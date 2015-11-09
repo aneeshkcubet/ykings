@@ -9,9 +9,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Exceptions\InvalidConfirmationCodeException;
 use App\User;
 use App\Profile;
-use App\Exceptions\InvalidConfirmationCodeException;
 
 class UsersController extends Controller
 {
@@ -45,11 +45,9 @@ class UsersController extends Controller
     {
         return Validator::make($data, [
                 'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|min:6',
-                'gender' => 'required',
-                'fitness_status' => 'required',
-                'goal' => 'required'
+                'password' => 'required|min:6'
         ]);
     }
 
@@ -137,9 +135,9 @@ class UsersController extends Controller
         if ($validator->fails()) {
 
             return response()->json(['error' => $validator->messages()->toArray()], 422);
-        }               
+        }
 
-        if($this->create($request->all())){
+        if ($this->create($request->all())) {
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->get();
             return response()->json(['success' => 'successfully_created_user', 'user' => $user->toArray()], 200);
         } else {
@@ -184,40 +182,17 @@ class UsersController extends Controller
         $userProfile = $user->profile()->save($profile);
 
         $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
-        
-        if(!is_null($user)){
+
+        if (!is_null($user)) {
             return true;
         } else {
             return false;
         }
-
-        
-    }
-
-    public function confirm(Request $request)
-    {
-        $conformationCode = $request->input('token');
-
-        if (!$conformationCode) {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user = User::whereConfirmationCode($conformationCode)->first();
-
-        if (!$user) {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user->status = 1;
-        $user->confirmation_code = null;
-        $user->save();
-
-        return Redirect::route('login_path');
-    }
+    }    
 
     /**
-     * @api {post} /user/login CreateUserAccount
-     * @apiName CreateUserAccount
+     * @api {post} /user/login LoginUser
+     * @apiName LoginUser
      * @apiGroup User
      *
      * @apiParam {string} email email address of user *required
@@ -229,6 +204,7 @@ class UsersController extends Controller
      *     HTTP/1.1 200 OK
      *     {
      *     "success": "successfully_logged_in",
+     *     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcwNjQ1MDQiLCJleHAiOiIxNDQ3NDI0NTA0IiwibmJmIjoiMTQ0NzA2NDUwNCIsImp0aSI6IjEzMTFkNDg1YTEzMzUwZTY3Y2MwMjJhNWE4YzEzMzQwIn0.hJdOlak3z2I3gOLTt8e7u8zSMsvHUSDMGMKNpCphLVk",
      *     "user": [
      *         {
      *             "id": "2",
@@ -280,10 +256,10 @@ class UsersController extends Controller
      *       "error": "token_not_provided"
      *     }
      * 
-     *@apiErrorExample Error-Response:
+     * @apiErrorExample Error-Response:
      *     HTTP/1.1 422 user_not_verified
      *     {
-     *       "error": "invalid_credentials"
+     *       "error": "user_not_verified"
      *     }
      * 
      * @apiErrorExample Error-Response:
@@ -298,15 +274,152 @@ class UsersController extends Controller
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
 
-            if (Auth::user()->status == 1) {                
+            if (Auth::user()->status == 1) {
                 $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
-                
-                return response()->json(['success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
+                try {
+                    // verify the credentials and create a token for the user
+                    if (!$token = JWTAuth::fromUser($user)) {
+                        return response()->json(['error' => 'invalid_credentials'], 401);
+                    }
+                } catch (JWTException $e) {
+                    // something went wrong
+                    return response()->json(['error' => 'could_not_create_token'], 500);
+                }
+
+                // if no errors are encountered we can return a JWT
+                return response()->json(['success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
             } else {
                 return response()->json(['error' => 'user_not_verified'], 401);
             }
         } else {
             return response()->json(['error' => 'invalid_credentials'], 422);
+        }
+    }
+
+    /**
+     * @api {get} /user/get GetUserDetails
+     * @apiName GetUserDetails
+     * @apiGroup User
+     *
+     * @apiParam {integer} id id of user *required
+     *
+     * @apiSuccess {String} success.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *     "success": "user_details",
+     *     "user": [
+     *         {
+     *             "id": "2",
+     *             "email": "aneeshk@cubettech.com",
+     *             "confirmation_code": null,
+     *             "status": "1",
+     *             "created_at": "2015-11-06 12:14:48",
+     *             "updated_at": "2015-11-06 12:15:04",
+     *             "profile": {
+     *                 "id": "1",
+     *                 "user_id": "2",
+     *                 "first_name": "Aneesh",
+     *                 "last_name": "Kallikkattil",
+     *                 "gender": "0",
+     *                 "fitness_status": "0",
+     *                 "goal": "3",
+     *                 "image": null,
+     *                 "city": null,
+     *                 "state": null,
+     *                 "country": null,
+     *                 "quote": "I am Simple",
+     *                 "created_at": "2015-11-06 12:14:48",
+     *                 "updated_at": "2015-11-06 12:14:48"
+     *             }
+     *         }
+     *     ]
+     * }
+     *
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError user_not_verified User error.
+     * @apiError invalid_credentials User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 user_not_verified
+     *     {
+     *       "error": "user_not_verified"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 invalid_credentials
+     *     {
+     *       "error": "invalid_credentials"
+     *     }
+     */
+    public function getUser(Request $request)
+    {
+        $data = $request->all();
+        print_r($data);
+        $userId = Auth::user()->id;
+        if (isset($data['id'])) {
+            $userId = $data['id'];
+        }
+
+        // Authentication passed...
+
+        if (Auth::user()->status == 1) {
+            $user = User::where('id', '=', $userId)->with(['profile'])->first();
+
+            return response()->json(['success' => 'user_details', 'user' => $user->toArray()], 200);
+        } else {
+            return response()->json(['error' => 'user_not_verified'], 401);
+        }
+    }
+    
+    public function confirm(Request $request)
+    {
+        $conformationCode = $request->input('token');
+
+        if (!$conformationCode) {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user = User::whereConfirmationCode($conformationCode)->first();
+
+        if (!$user) {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user->status = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+        return Redirect::to('/');
+    }
+
+    public function logout(Request $request)
+    {
+        if (Auth::user()) {
+            Auth::logout();
+            return response()->json(['success' => 'user_successfully_logged_out'], 200);
+        } else {
+            return response()->json(['error' => 'user_already_logged_out'], 401);
         }
     }
 }

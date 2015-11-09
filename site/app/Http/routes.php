@@ -17,20 +17,43 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('authenticate', 'Api\AuthenticateController@authenticate');
     Route::get('users', 'Api\AuthenticateController@index');
 
-    Route::post('user', 'Api\UsersController@postRegister');
+    Route::post('user/get', [
+        'as' => 'user.get',
+        'uses' => 'Api\UsersController@getUser'
+    ]);
+
+    Route::post('user', [
+        'as' => 'user.signup',
+        'uses' => 'Api\UsersController@postRegister'
+    ]);
+
     Route::get('verify', [
         'as' => 'confirmation_path',
         'uses' => 'Api\UsersController@confirm'
     ]);
-    
+
     Route::post('user/login', [
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
     ]);
+    
+    Route::post('user/logout', [
+        'as' => 'user.logout',
+        'uses' => 'Api\UsersController@logout'
+    ]);
+    
+    Route::post('password/email', [
+        'as' => 'password.email',
+        'uses' => 'Api\PasswordController@postEmail'
+    ]);
 });
 
 // Authentication routes...
-Route::get('auth/login', ['uses' => 'Auth\AuthController@getLogin', 'as' => 'login_path']);
+Route::get('auth/login', [
+    'uses' => 'Auth\AuthController@getLogin',
+    'as' => 'login_path'
+]);
+
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
