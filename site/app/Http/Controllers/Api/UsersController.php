@@ -11,9 +11,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Profile;
-
 use App\Exceptions\InvalidConfirmationCodeException;
-
 
 class UsersController extends Controller
 {
@@ -73,12 +71,36 @@ class UsersController extends Controller
      * @apiParam {string} quote Quote added by user *optional
      *
      * @apiSuccess {String} success.
-     *
-     * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *       
-     *     }
+     *     "success": "successfully_created_user",
+     *     "user": [
+     *         {
+     *             "id": "2",
+     *             "email": "aneeshk@cubettech.com",
+     *             "confirmation_code": null,
+     *             "status": "0",
+     *             "created_at": "2015-11-06 12:14:48",
+     *             "updated_at": "2015-11-06 12:15:04",
+     *             "profile": {
+     *                 "id": "1",
+     *                 "user_id": "2",
+     *                 "first_name": "Aneesh",
+     *                 "last_name": "Kallikkattil",
+     *                 "gender": "0",
+     *                 "fitness_status": "0",
+     *                 "goal": "3",
+     *                 "image": null,
+     *                 "city": null,
+     *                 "state": null,
+     *                 "country": null,
+     *                 "quote": "I am Simple",
+     *                 "created_at": "2015-11-06 12:14:48",
+     *                 "updated_at": "2015-11-06 12:14:48"
+     *             }
+     *         }
+     *     ]
+     * }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -115,9 +137,14 @@ class UsersController extends Controller
         if ($validator->fails()) {
 
             return response()->json(['error' => $validator->messages()->toArray()], 422);
-        }
+        }               
 
-        $this->create($request->all());
+        if($this->create($request->all())){
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->get();
+            return response()->json(['success' => 'successfully_created_user', 'user' => $user->toArray()], 200);
+        } else {
+            return response()->json(['error' => 'could_not_create_user'], 500);
+        }
     }
 
     /**
@@ -135,7 +162,7 @@ class UsersController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'confirmation_code' => $confirmation_code,
-                'status' => 1
+                'status' => 0
         ]);
 
         Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
@@ -147,24 +174,24 @@ class UsersController extends Controller
         $profile = new Profile([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'gender' => $data['last_name'],
-            'fitness_status' => $data['last_name'],
+            'gender' => $data['gender'],
+            'fitness_status' => $data['fitness_status'],
             'goal' => $data['goal'],
             'quote' => isset($data['quote']) ? $data['quote'] : ''
         ]);
 
-        $user = User::find($user->id);
 
-        if (is_object($user)) {
+        $userProfile = $user->profile()->save($profile);
 
-            $userProfile = $user->profile()->save($profile);
-
-            $dataUser = User::find($user->id)->toArray();
-
-            return response()->json(['success' => 'successfully_created_user'], 200);
+        $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
+        
+        if(!is_null($user)){
+            return true;
         } else {
-            return response()->json(['error' => 'could_not_create_user'], 500);
+            return false;
         }
+
+        
     }
 
     public function confirm(Request $request)
@@ -187,7 +214,7 @@ class UsersController extends Controller
 
         return Redirect::route('login_path');
     }
-    
+
     /**
      * @api {post} /user/login CreateUserAccount
      * @apiName CreateUserAccount
@@ -201,11 +228,38 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *       
-     *     }
+     *     "success": "successfully_logged_in",
+     *     "user": [
+     *         {
+     *             "id": "2",
+     *             "email": "aneeshk@cubettech.com",
+     *             "confirmation_code": null,
+     *             "status": "1",
+     *             "created_at": "2015-11-06 12:14:48",
+     *             "updated_at": "2015-11-06 12:15:04",
+     *             "profile": {
+     *                 "id": "1",
+     *                 "user_id": "2",
+     *                 "first_name": "Aneesh",
+     *                 "last_name": "Kallikkattil",
+     *                 "gender": "0",
+     *                 "fitness_status": "0",
+     *                 "goal": "3",
+     *                 "image": null,
+     *                 "city": null,
+     *                 "state": null,
+     *                 "country": null,
+     *                 "quote": "I am Simple",
+     *                 "created_at": "2015-11-06 12:14:48",
+     *                 "updated_at": "2015-11-06 12:14:48"
+     *             }
+     *         }
+     *     ]
+     * }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
+     * @apiError user_not_verified User error.
      * @apiError invalid_credentials User error.
      *
      * @apiErrorExample Error-Response:
@@ -226,8 +280,14 @@ class UsersController extends Controller
      *       "error": "token_not_provided"
      *     }
      * 
+     *@apiErrorExample Error-Response:
+     *     HTTP/1.1 422 user_not_verified
+     *     {
+     *       "error": "invalid_credentials"
+     *     }
+     * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 500 invalid_credentials
+     *     HTTP/1.1 401 invalid_credentials
      *     {
      *       "error": "invalid_credentials"
      *     }
@@ -237,15 +297,16 @@ class UsersController extends Controller
         $data = $request->all();
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
-            
-//            echo Auth::user()->id;
-//            die;
-            
-            $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->get();
-            
-            return response()->json(['success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);            
+
+            if (Auth::user()->status == 1) {                
+                $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
+                
+                return response()->json(['success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
+            } else {
+                return response()->json(['error' => 'user_not_verified'], 401);
+            }
         } else {
-            return response()->json(['error' => 'invalid_credentials'], 200);
-        }        
+            return response()->json(['error' => 'invalid_credentials'], 422);
+        }
     }
 }
