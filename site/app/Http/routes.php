@@ -1,5 +1,4 @@
 <?php
-
 /*
   |--------------------------------------------------------------------------
   | Application Routes
@@ -50,6 +49,11 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
+    ]);
+
+    Route::post('user/settings', [
+        'as' => 'user.settings',
+        'uses' => 'Api\UserSettingsController@userSettings'
     ]);
 });
 
