@@ -64,6 +64,7 @@ class SocialController extends Controller
 
      *
      * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
       "success": "successfully_logged_in",

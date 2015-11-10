@@ -45,6 +45,8 @@ class UserSettingsController extends Controller
      * @apiParam {String} settings_key notification/subscription
      * @apiParam {String} status 0-off/1-on
      * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
       "success": "successfully_updated",

@@ -69,11 +69,12 @@ class UsersController extends Controller
      * @apiParam {string} quote Quote added by user *optional
      *
      * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *     "success": "successfully_created_user",
-     *     "user": [
-     *         {
+     *     "user": {
      *             "id": "2",
      *             "email": "aneeshk@cubettech.com",
      *             "confirmation_code": null,
@@ -95,9 +96,8 @@ class UsersController extends Controller
      *                 "quote": "I am Simple",
      *                 "created_at": "2015-11-06 12:14:48",
      *                 "updated_at": "2015-11-06 12:14:48"
-     *             }
-     *         }
-     *     ]
+     *             }     
+     *      }
      * }
      *
      * @apiError error Message token_invalid.
@@ -175,20 +175,148 @@ class UsersController extends Controller
             'gender' => $data['gender'],
             'fitness_status' => $data['fitness_status'],
             'goal' => $data['goal'],
+            'city' => isset($data['city']) ? $data['city'] : '',
+            'state' => isset($data['state']) ? $data['state'] : '',
+            'country' => isset($data['country']) ? $data['country'] : '',
             'quote' => isset($data['quote']) ? $data['quote'] : ''
         ]);
 
 
         $userProfile = $user->profile()->save($profile);
 
-        $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
+        $user = User::where('email', '=', $data['email'])->with(['profile'])->first();
 
         if (!is_null($user)) {
             return true;
         } else {
             return false;
         }
-    }    
+    }
+
+    /**
+     * @api {post} /user/update UpdateUserAccount
+     * @apiName UpdateUserAccount
+     * @apiGroup User
+     *
+     * @apiParam {string} first_name Firstname of user *optional
+     * @apiParam {string} last_name Firstname of user *optional
+     * @apiParam {string} email email address of user *readonly *required 
+     * @apiParam {number} gender gender of the user 1-Male, 2-Female *optional
+     * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
+     * @apiParam {number} goal user's goal *optional
+     * @apiParam {string} city user's city *optional
+     * @apiParam {string} state user's state *optional
+     * @apiParam {string} country user's country *optional
+     * @apiParam {string} quote Quote added by user *optional
+     *
+     * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     *        "success": "successfully_updated_user_profile",
+     *        "user": {
+     *               "id": "1",
+     *               "email": "admin@ykings.com",
+     *               "confirmation_code": null,
+     *               "status": "1",
+     *               "created_at": "2015-11-06 12:14:48",
+     *               "updated_at": "2015-11-06 12:15:04",
+     *               "profile": {
+     *                   "id": "1",
+     *                   "user_id": "1",
+     *                   "first_name": "Ykings",
+     *                   "last_name": "Cubet",
+     *                   "gender": "0",
+     *                   "fitness_status": "0",
+     *                   "goal": "3",
+     *                   "image": null,
+     *                   "city": null,
+     *                   "state": null,
+     *                   "country": null,
+     *                   "quote": "I am Simple",
+     *                   "created_at": "2015-11-06 12:14:48",
+     *                   "updated_at": "2015-11-10 13:35:24"
+     *              }
+     *        }
+     *  }
+     *
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError could_not_update_user_profile User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 could_not_create_user
+     *     {
+     *       "error": "could_not_create_user"
+     *     }
+     */
+    public function update(Request $request)
+    {
+        $data = $request->all();
+
+        $profData = [];
+
+        if (isset($data['first_name'])) {
+            $profData['first_name'] = $data['first_name'];
+        }
+
+        if (isset($data['last_name'])) {
+            $profData['last_name'] = $data['last_name'];
+        }
+
+        if (isset($data['gender'])) {
+            $profData['gender'] = $data['gender'];
+        }
+
+        if (isset($data['fitness_status'])) {
+            $profData['fitness_status'] = $data['fitness_status'];
+        }
+
+        if (isset($data['quote'])) {
+            $profData['quote'] = $data['quote'];
+        }
+
+        if (isset($data['city'])) {
+            $profData['city'] = $data['city'];
+        }
+
+        if (isset($data['state'])) {
+            $profData['state'] = $data['state'];
+        }
+
+        if (isset($data['country'])) {
+            $profData['country'] = $data['country'];
+        }
+
+        if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
+
+            $user->profile()->update($profData);
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+
+            return response()->json(['success' => 'successfully_updated_user_profile', 'user' => $user->toArray()], 200);
+        } else {
+            return response()->json(['error' => 'could_not_update_user'], 500);
+        }
+    }
 
     /**
      * @api {post} /user/login LoginUser
@@ -205,8 +333,7 @@ class UsersController extends Controller
      *     {
      *     "success": "successfully_logged_in",
      *     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcwNjQ1MDQiLCJleHAiOiIxNDQ3NDI0NTA0IiwibmJmIjoiMTQ0NzA2NDUwNCIsImp0aSI6IjEzMTFkNDg1YTEzMzUwZTY3Y2MwMjJhNWE4YzEzMzQwIn0.hJdOlak3z2I3gOLTt8e7u8zSMsvHUSDMGMKNpCphLVk",
-     *     "user": [
-     *         {
+     *     "user":  {
      *             "id": "2",
      *             "email": "aneeshk@cubettech.com",
      *             "confirmation_code": null,
@@ -228,9 +355,8 @@ class UsersController extends Controller
      *                 "quote": "I am Simple",
      *                 "created_at": "2015-11-06 12:14:48",
      *                 "updated_at": "2015-11-06 12:14:48"
-     *             }
-     *         }
-     *     ]
+     *          }
+     *      }
      * }
      *
      * @apiError error Message token_invalid.
@@ -309,8 +435,7 @@ class UsersController extends Controller
      *     HTTP/1.1 200 OK
      *     {
      *     "success": "user_details",
-     *     "user": [
-     *         {
+     *     "user": {
      *             "id": "2",
      *             "email": "aneeshk@cubettech.com",
      *             "confirmation_code": null,
@@ -332,9 +457,8 @@ class UsersController extends Controller
      *                 "quote": "I am Simple",
      *                 "created_at": "2015-11-06 12:14:48",
      *                 "updated_at": "2015-11-06 12:14:48"
-     *             }
-     *         }
-     *     ]
+     *              }
+     *        } 
      * }
      *
      * @apiError error Message token_invalid.
@@ -375,7 +499,7 @@ class UsersController extends Controller
     public function getUser(Request $request)
     {
         $data = $request->all();
-        print_r($data);
+        //print_r($data);
         $userId = Auth::user()->id;
         if (isset($data['id'])) {
             $userId = $data['id'];
@@ -391,7 +515,7 @@ class UsersController extends Controller
             return response()->json(['error' => 'user_not_verified'], 401);
         }
     }
-    
+
     public function confirm(Request $request)
     {
         $conformationCode = $request->input('token');

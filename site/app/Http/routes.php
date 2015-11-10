@@ -36,6 +36,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
     ]);
+    
+    Route::post('user/update', [
+        'as' => 'user.update',
+        'uses' => 'Api\UsersController@update'
+    ]);
 
     Route::post('user/logout', [
         'as' => 'user.logout',

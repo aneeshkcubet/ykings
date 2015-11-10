@@ -27,7 +27,7 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * @api {post} /authenticate Get JW token
+     * @api {get} /authenticate Get JW token
      * @apiName Athenticate
      * @apiGroup General
      *
