@@ -45,6 +45,10 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('password/email', [
         'as' => 'password.email',
         'uses' => 'Api\PasswordController@postEmail'
+      Route::post('social/facebookLogin', [
+        'as' => 'facebook.login',
+        'uses' => 'Api\SocialController@facebookLogin'
+
     ]);
 });
 
