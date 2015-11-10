@@ -1,4 +1,5 @@
 <?php
+
 /*
   |--------------------------------------------------------------------------
   | Application Routes
@@ -36,19 +37,19 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
     ]);
-    
+
     Route::post('user/logout', [
         'as' => 'user.logout',
         'uses' => 'Api\UsersController@logout'
     ]);
-    
+
     Route::post('password/email', [
         'as' => 'password.email',
         'uses' => 'Api\PasswordController@postEmail'
-      Route::post('social/facebookLogin', [
+    ]);
+    Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
-
     ]);
 });
 
