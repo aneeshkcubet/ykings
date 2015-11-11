@@ -94,10 +94,10 @@ class UserVideosController extends Controller
      *               "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
      *               "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
      *               "video": "http://localhost:8000/uploads/videos",
-     *               "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
-     *               "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
-     *               "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
-     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *               "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
+     *               "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
+     *               "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
+     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
      *           }
      *       }
      *
@@ -214,10 +214,10 @@ class UserVideosController extends Controller
      *               "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
      *               "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
      *               "video": "http://localhost:8000/uploads/videos",
-     *               "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
-     *               "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
-     *               "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
-     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *               "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
+     *               "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
+     *               "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
+     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
      *           }
      *       }
      *
