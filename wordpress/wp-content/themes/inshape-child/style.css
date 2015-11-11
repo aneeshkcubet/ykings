@@ -9,3 +9,95 @@ Template: inshape-parent
 */
 
 @import url("../inshape-parent/style.css");
+.quote-author span {
+    color: #291c1c;
+    font-weight: bold;
+}
+.quote-author {
+    color: #999999;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: none;
+}
+.testimonial_content {
+    width: 100%;
+}
+.quote-author span {
+    color: #291c1c;
+    font-weight: bold;
+}
+.quote-author {
+    color: #999999;
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 40px;
+    text-align: center;
+    text-transform: none;
+}
+.quote-text {
+    color: #d34d5e;
+    font-size: 20px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+.testimonial_content {
+    width: 100%;
+}
+.testimonial_heading {
+    color: #1a1212;
+    font-size: 52px;
+    font-weight: bold;
+    margin-bottom: 65px;
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+}
+.quote-text {
+    color: #1a1212;
+    font-size: 19px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    margin-top: 13px;
+}
+.testimonial_heading {
+    color: #1a1212;
+    font-size: 52px;
+    font-weight: bold;
+    margin-bottom: 65px;
+    width: 100%;
+}
+.slider {
+    position: relative;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.slider_quotes .prev,.slider_quotes .next {
+    color: #fcc42e;
+    top: 20px;
+    margin: 2px 40px 0 0;
+    font-size: 24px;
+}
+.quote-text {
+    color: #1a1212;
+    font-size: 19px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    /* margin-bottom: 10px; */
+    margin-top: 13px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+    background: url(../images/testtimonialQt.png) no-repeat left;
+    padding-top: 20px;
+    /*padding-left: 96px;*/
+}
+.dbl-quote{
+    position: absolute;
+    top: 219px;
+    left: 223px;
+}
