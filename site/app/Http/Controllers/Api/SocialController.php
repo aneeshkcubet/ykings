@@ -48,7 +48,11 @@ class SocialController extends Controller
     protected function validator1(array $data)
     {
         return Validator::make($data, [
-                'email' => 'required|email|max:255'
+                'email' => 'required|email|max:255',
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'provider_id' => 'required',
+                'provider' => 'required',
         ]);
     }
 

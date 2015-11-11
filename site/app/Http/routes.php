@@ -60,6 +60,21 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
     ]);
+
+    Route::post('feeds/create', [
+        'as' => 'feeds.create',
+        'uses' => 'Api\FeedController@createFeeds'
+    ]);
+    
+     Route::post('user/feedlist', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@userFeeds'
+    ]);
+     
+     Route::post('feeds/list', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@listFeeds'
+    ]);
 });
 
 // Authentication routes...

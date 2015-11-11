@@ -35,7 +35,7 @@ class Profile extends Model
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function user()
+    public function user()
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
     }

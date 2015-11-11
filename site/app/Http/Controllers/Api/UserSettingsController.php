@@ -38,12 +38,12 @@ class UserSettingsController extends Controller
     }
 
     /**
-     * @api {post} /userSettings userSettings
+     * @api {post} /user/settings userSettings
      * @apiName User Settings
      * @apiGroup Settings
      * @apiParam {Number} user_id Id of user 
      * @apiParam {String} settings_key notification/subscription
-     * @apiParam {String} status 0-off/1-on
+     * @apiParam {String} status json array of [{"comments":"1"},{"claps":"0"},{"follow":"0"},{"my_performance":"1"},{"motivation_knowledge":"1"}]
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:

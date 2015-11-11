@@ -1,32 +1,33 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Social extends Model {
+class Images extends Model
+{
 
     /**
      * Set the database specific table name
      */
-    protected $table = 'user_social_accounts';
+    protected $table = 'images';
 
     /**
      * Set the fillable fields within the model
      */
     protected $fillable = ['user_id',
-        'provider',
-        'provider_uid'
+        'path',
+        'description',
+        'parent_type',
+        'parent_id'
     ];
- /**
+
+    /**
      * Define the relationship for the author
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    public function user()
+    public function feeds()
     {
-        return $this->belongsTo('App\User', 'id', 'user_id');
+       return $this->belongsTo('App\Feeds', 'id', 'parent_id');
     }
-   
 }

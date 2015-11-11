@@ -62,4 +62,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Settings', 'user_id', 'id');
     }
+    /**
+     * Fetch the user's social account via a one to one
+     * relationship on the user_social_account table
+     */
+    public function feeds()
+    {
+        return $this->hasMany('App\Feeds', 'user_id', 'id');
+    }
 }
