@@ -31,8 +31,6 @@ class AuthenticateController extends Controller
      * @apiName Athenticate
      * @apiGroup General
      *
-     * @apiParam {number} id user id of the user
-     *
      * @apiSuccess {String} token JWT Auth token.
      *
      * @apiSuccessExample Success-Response:

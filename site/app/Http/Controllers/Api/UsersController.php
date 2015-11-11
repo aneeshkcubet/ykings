@@ -3,7 +3,8 @@
 use Validator,
     Hash,
     Mail,
-    Auth;
+    Auth,
+    Image;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -138,7 +139,38 @@ class UsersController extends Controller
         }
 
         if ($this->create($request->all())) {
-            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->get();
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+            
+            if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK){
+                
+                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+                
+                if(!in_array($_FILES['image']['type'],$accepableTypes)){
+                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);                    
+                }
+                
+                $image = Image::make($_FILES['image']['tmp_name']);
+                
+                $image->encode('jpeg');
+                
+                $image->save(config('image.profileOriginalPath').$user->id.'_'.time().'.jpg');
+                
+                $image->crop(400,400);
+                
+                $image->save(config('image.profileLargePath').$user->id.'_'.time().'.jpg');
+                
+                $image->crop(150,150);
+                
+                $image->save(config('image.profileMediumPath').$user->id.'_'.time().'.jpg');
+                
+                $image->crop(65,65);
+                
+                $image->save(config('image.profileSmallPath').$user->id.'_'.time().'.jpg');
+                
+                $user->profile()->update(['image' => $user->id.'_'.time().'.jpg']);               
+                
+            }
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
             return response()->json(['success' => 'successfully_created_user', 'user' => $user->toArray()], 200);
         } else {
             return response()->json(['error' => 'could_not_create_user'], 500);
@@ -203,6 +235,7 @@ class UsersController extends Controller
      * @apiParam {string} email email address of user *readonly *required 
      * @apiParam {number} gender gender of the user 1-Male, 2-Female *optional
      * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
+     * @apiParam {file} image user avatar image *optional *accepted formats JPEG, PNG, and GIF
      * @apiParam {number} goal user's goal *optional
      * @apiParam {string} city user's city *optional
      * @apiParam {string} state user's state *optional
@@ -308,8 +341,41 @@ class UsersController extends Controller
         }
 
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
-
+            
             $user->profile()->update($profData);
+            
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+            
+            if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK){
+                
+                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+                
+                if(!in_array($_FILES['image']['type'],$accepableTypes)){
+                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);                    
+                }
+                
+                $image = Image::make($_FILES['image']['tmp_name']);
+                
+                $image->encode('jpeg');
+                
+                $image->save(config('image.profileOriginalPath').$user->id.'_'.time().'.jpg');
+                
+                $image->fit(400,400);
+                
+                $image->save(config('image.profileLargePath').$user->id.'_'.time().'.jpg');
+                
+                $image->fit(150,150);
+                
+                $image->save(config('image.profileMediumPath').$user->id.'_'.time().'.jpg');
+                
+                $image->fit(65,65);
+                
+                $image->save(config('image.profileSmallPath').$user->id.'_'.time().'.jpg');
+                
+                $user->profile()->update(['image' => $user->id.'_'.time().'.jpg']);               
+                
+            }
+            
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
 
             return response()->json(['success' => 'successfully_updated_user_profile', 'user' => $user->toArray()], 200);

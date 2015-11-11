@@ -5,19 +5,6 @@ define({ "api": [
     "title": "Get JW token",
     "name": "Athenticate",
     "group": "General",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>number</p> ",
-            "optional": false,
-            "field": "id",
-            "description": "<p>user id of the user</p> "
-          }
-        ]
-      }
-    },
     "success": {
       "fields": {
         "Success 200": [
