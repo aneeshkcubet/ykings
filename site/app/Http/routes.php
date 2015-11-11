@@ -41,6 +41,16 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.update',
         'uses' => 'Api\UsersController@update'
     ]);
+    
+    Route::post('user/videos', [
+        'as' => 'user.videos',
+        'uses' => 'Api\UserVideosController@GetUserVideos'
+    ]);
+    
+    Route::post('user/video/delete', [
+        'as' => 'user.video.delete',
+        'uses' => 'Api\UserVideosController@deleteUserVideo'
+    ]);
 
     Route::post('user/logout', [
         'as' => 'user.logout',
@@ -71,10 +81,12 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\FeedController@userFeeds'
     ]);
      
-     Route::post('feeds/list', [
+    Route::post('feeds/list', [
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@listFeeds'
     ]);
+    
+    
 });
 
 // Authentication routes...

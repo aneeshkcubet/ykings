@@ -73,33 +73,65 @@ class UsersController extends Controller
      * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-     *     {
-     *     "success": "successfully_created_user",
-     *     "user": {
-     *             "id": "2",
-     *             "email": "aneeshk@cubettech.com",
-     *             "confirmation_code": null,
-     *             "status": "0",
-     *             "created_at": "2015-11-06 12:14:48",
-     *             "updated_at": "2015-11-06 12:15:04",
-     *             "profile": {
-     *                 "id": "1",
-     *                 "user_id": "2",
-     *                 "first_name": "Aneesh",
-     *                 "last_name": "Kallikkattil",
-     *                 "gender": "0",
-     *                 "fitness_status": "0",
-     *                 "goal": "3",
-     *                 "image": null,
-     *                 "city": null,
-     *                 "state": null,
-     *                 "country": null,
-     *                 "quote": "I am Simple",
-     *                 "created_at": "2015-11-06 12:14:48",
-     *                 "updated_at": "2015-11-06 12:14:48"
-     *             }     
-     *      }
-     * }
+     *       {
+     *           "success": "successfully_updated_user_profile",
+     *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
+     *           "user": {
+     *               "id": "2",
+     *               "email": "aneeshk@cubettech.com",
+     *               "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
+     *               "status": "1",
+     *               "created_at": "2015-11-11 11:40:04",
+     *               "updated_at": "2015-11-11 11:40:04",
+     *               "profile": {
+     *                   "id": "2",
+     *                   "user_id": "2",
+     *                   "first_name": "Aneesh",
+     *                   "last_name": "Kallikkattil",
+     *                   "gender": "0",
+     *                   "fitness_status": "0",
+     *                   "goal": "0",
+     *                   "image": "2_1447242011.jpg",
+     *                   "city": "",
+     *                   "state": "",
+     *                   "country": "",
+     *                   "quote": "",
+     *                   "created_at": "2015-11-11 11:40:10",
+     *                   "updated_at": "2015-11-11 11:40:11"
+     *               },
+     *               "videos": [
+     *                   {
+     *                       "id": "2",
+     *                       "user_id": "2",
+     *                       "video_id": "1",
+     *                       "created_at": "2015-11-11 11:40:05",
+     *                       "updated_at": "2015-11-11 11:40:05",
+     *                       "video": {
+     *                           "id": "1",
+     *                           "user_id": "1",
+     *                           "path": "Now1.mp4",
+     *                           "description": "Test Description",
+     *                           "parent_type": "1",
+     *                           "type": "1",
+     *                           "parent_id": "1",
+     *                           "created_at": "2015-11-11 07:26:40",
+     *                           "updated_at": "2015-11-11 17:43:27"
+     *                       }
+     *                   }
+     *               ]
+     *           },
+     *           "urls": {
+     *               "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
+     *               "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
+     *               "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
+     *               "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
+     *               "video": "http://localhost:8000/uploads/videos",
+     *               "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
+     *               "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
+     *               "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
+     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *           }
+     *       }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -128,6 +160,12 @@ class UsersController extends Controller
      *     {
      *       "error": "could_not_create_user"
      *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
+     *     {
+     *       "error": "user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
+     *     }
      */
     public function postRegister(Request $request)
     {
@@ -139,7 +177,7 @@ class UsersController extends Controller
         }
 
         if ($this->create($request->all())) {
-            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+            $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
             
             if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK){
                 
@@ -170,8 +208,8 @@ class UsersController extends Controller
                 $user->profile()->update(['image' => $user->id.'_'.time().'.jpg']);               
                 
             }
-            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
-            return response()->json(['success' => 'successfully_created_user', 'user' => $user->toArray()], 200);
+            $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
+            return response()->json(['success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['error' => 'could_not_create_user'], 500);
         }
@@ -204,9 +242,9 @@ class UsersController extends Controller
         $profile = new Profile([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'gender' => $data['gender'],
-            'fitness_status' => $data['fitness_status'],
-            'goal' => $data['goal'],
+            'gender' => isset($data['gender'])?$data['gender']:'',
+            'fitness_status' => isset($data['fitness_status'])?$data['fitness_status']:'',
+            'goal' => isset($data['goal'])?$data['goal']:'',
             'city' => isset($data['city']) ? $data['city'] : '',
             'state' => isset($data['state']) ? $data['state'] : '',
             'country' => isset($data['country']) ? $data['country'] : '',
@@ -246,34 +284,65 @@ class UsersController extends Controller
      * 
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-     *        "success": "successfully_updated_user_profile",
-     *        "user": {
-     *               "id": "1",
-     *               "email": "admin@ykings.com",
-     *               "confirmation_code": null,
+     *       {
+     *           "success": "successfully_updated_user_profile",
+     *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
+     *           "user": {
+     *               "id": "2",
+     *               "email": "aneeshk@cubettech.com",
+     *               "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
      *               "status": "1",
-     *               "created_at": "2015-11-06 12:14:48",
-     *               "updated_at": "2015-11-06 12:15:04",
+     *               "created_at": "2015-11-11 11:40:04",
+     *               "updated_at": "2015-11-11 11:40:04",
      *               "profile": {
-     *                   "id": "1",
-     *                   "user_id": "1",
-     *                   "first_name": "Ykings",
-     *                   "last_name": "Cubet",
+     *                   "id": "2",
+     *                   "user_id": "2",
+     *                   "first_name": "Aneesh",
+     *                   "last_name": "Kallikkattil",
      *                   "gender": "0",
      *                   "fitness_status": "0",
-     *                   "goal": "3",
-     *                   "image": null,
-     *                   "city": null,
-     *                   "state": null,
-     *                   "country": null,
-     *                   "quote": "I am Simple",
-     *                   "created_at": "2015-11-06 12:14:48",
-     *                   "updated_at": "2015-11-10 13:35:24"
-     *              }
-     *        }
-     *  }
-     *
+     *                   "goal": "0",
+     *                   "image": "2_1447242011.jpg",
+     *                   "city": "",
+     *                   "state": "",
+     *                   "country": "",
+     *                   "quote": "",
+     *                   "created_at": "2015-11-11 11:40:10",
+     *                   "updated_at": "2015-11-11 11:40:11"
+     *               },
+     *               "videos": [
+     *                   {
+     *                       "id": "2",
+     *                       "user_id": "2",
+     *                       "video_id": "1",
+     *                       "created_at": "2015-11-11 11:40:05",
+     *                       "updated_at": "2015-11-11 11:40:05",
+     *                       "video": {
+     *                           "id": "1",
+     *                           "user_id": "1",
+     *                           "path": "Now1.mp4",
+     *                           "description": "Test Description",
+     *                           "parent_type": "1",
+     *                           "type": "1",
+     *                           "parent_id": "1",
+     *                           "created_at": "2015-11-11 07:26:40",
+     *                           "updated_at": "2015-11-11 17:43:27"
+     *                       }
+     *                   }
+     *               ]
+     *           },
+     *           "urls": {
+     *               "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
+     *               "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
+     *               "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
+     *               "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
+     *               "video": "http://localhost:8000/uploads/videos",
+     *               "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
+     *               "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
+     *               "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
+     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *           }
+     *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_update_user_profile User error.
@@ -300,6 +369,12 @@ class UsersController extends Controller
      *     HTTP/1.1 500 could_not_create_user
      *     {
      *       "error": "could_not_create_user"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
+     *     {
+     *       "error": "user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
      *     }
      */
     public function update(Request $request)
@@ -376,9 +451,9 @@ class UsersController extends Controller
                 
             }
             
-            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+            $user = User::where('email', '=', $request->input('email'))->with(['profile','videos'])->first();
 
-            return response()->json(['success' => 'successfully_updated_user_profile', 'user' => $user->toArray()], 200);
+            return response()->json(['success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['error' => 'could_not_update_user'], 500);
         }
@@ -396,34 +471,65 @@ class UsersController extends Controller
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-     *     {
-     *     "success": "successfully_logged_in",
-     *     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcwNjQ1MDQiLCJleHAiOiIxNDQ3NDI0NTA0IiwibmJmIjoiMTQ0NzA2NDUwNCIsImp0aSI6IjEzMTFkNDg1YTEzMzUwZTY3Y2MwMjJhNWE4YzEzMzQwIn0.hJdOlak3z2I3gOLTt8e7u8zSMsvHUSDMGMKNpCphLVk",
-     *     "user":  {
-     *             "id": "2",
-     *             "email": "aneeshk@cubettech.com",
-     *             "confirmation_code": null,
-     *             "status": "1",
-     *             "created_at": "2015-11-06 12:14:48",
-     *             "updated_at": "2015-11-06 12:15:04",
-     *             "profile": {
-     *                 "id": "1",
-     *                 "user_id": "2",
-     *                 "first_name": "Aneesh",
-     *                 "last_name": "Kallikkattil",
-     *                 "gender": "0",
-     *                 "fitness_status": "0",
-     *                 "goal": "3",
-     *                 "image": null,
-     *                 "city": null,
-     *                 "state": null,
-     *                 "country": null,
-     *                 "quote": "I am Simple",
-     *                 "created_at": "2015-11-06 12:14:48",
-     *                 "updated_at": "2015-11-06 12:14:48"
-     *          }
-     *      }
-     * }
+     *       {
+     *           "success": "successfully_logged_in",
+     *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
+     *           "user": {
+     *               "id": "2",
+     *               "email": "aneeshk@cubettech.com",
+     *               "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
+     *               "status": "1",
+     *               "created_at": "2015-11-11 11:40:04",
+     *               "updated_at": "2015-11-11 11:40:04",
+     *               "profile": {
+     *                   "id": "2",
+     *                   "user_id": "2",
+     *                   "first_name": "Aneesh",
+     *                   "last_name": "Kallikkattil",
+     *                   "gender": "0",
+     *                   "fitness_status": "0",
+     *                   "goal": "0",
+     *                   "image": "2_1447242011.jpg",
+     *                   "city": "",
+     *                   "state": "",
+     *                   "country": "",
+     *                   "quote": "",
+     *                   "created_at": "2015-11-11 11:40:10",
+     *                   "updated_at": "2015-11-11 11:40:11"
+     *               },
+     *               "videos": [
+     *                   {
+     *                       "id": "2",
+     *                       "user_id": "2",
+     *                       "video_id": "1",
+     *                       "created_at": "2015-11-11 11:40:05",
+     *                       "updated_at": "2015-11-11 11:40:05",
+     *                       "video": {
+     *                           "id": "1",
+     *                           "user_id": "1",
+     *                           "path": "Now1.mp4",
+     *                           "description": "Test Description",
+     *                           "parent_type": "1",
+     *                           "type": "1",
+     *                           "parent_id": "1",
+     *                           "created_at": "2015-11-11 07:26:40",
+     *                           "updated_at": "2015-11-11 17:43:27"
+     *                       }
+     *                   }
+     *               ]
+     *           },
+     *           "urls": {
+     *               "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
+     *               "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
+     *               "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
+     *               "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
+     *               "video": "http://localhost:8000/uploads/videos",
+     *               "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
+     *               "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
+     *               "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
+     *               "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *           }
+     *       }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -467,7 +573,7 @@ class UsersController extends Controller
             // Authentication passed...
 
             if (Auth::user()->status == 1) {
-                $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
+                $user = User::where('id', '=', Auth::user()->id)->with(['profile', 'videos'])->first();
                 try {
                     // verify the credentials and create a token for the user
                     if (!$token = JWTAuth::fromUser($user)) {
@@ -479,7 +585,7 @@ class UsersController extends Controller
                 }
 
                 // if no errors are encountered we can return a JWT
-                return response()->json(['success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
+                return response()->json(['success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['error' => 'user_not_verified'], 401);
             }
@@ -500,32 +606,64 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
-     *     "success": "user_details",
-     *     "user": {
-     *             "id": "2",
-     *             "email": "aneeshk@cubettech.com",
-     *             "confirmation_code": null,
-     *             "status": "1",
-     *             "created_at": "2015-11-06 12:14:48",
-     *             "updated_at": "2015-11-06 12:15:04",
-     *             "profile": {
-     *                 "id": "1",
-     *                 "user_id": "2",
-     *                 "first_name": "Aneesh",
-     *                 "last_name": "Kallikkattil",
-     *                 "gender": "0",
-     *                 "fitness_status": "0",
-     *                 "goal": "3",
-     *                 "image": null,
-     *                 "city": null,
-     *                 "state": null,
-     *                 "country": null,
-     *                 "quote": "I am Simple",
-     *                 "created_at": "2015-11-06 12:14:48",
-     *                 "updated_at": "2015-11-06 12:14:48"
-     *              }
-     *        } 
-     * }
+     *       "success": "user_details",
+     *       "user": {
+     *           "id": "2",
+     *           "email": "aneeshk@ykings.com",
+     *           "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
+     *           "status": "0",
+     *           "created_at": "2015-11-11 11:40:04",
+     *           "updated_at": "2015-11-11 11:40:04",
+     *           "profile": {
+     *               "id": "2",
+     *               "user_id": "2",
+     *               "first_name": "Aneesh",
+     *               "last_name": "Kallikkattil",
+     *               "gender": "0",
+     *               "fitness_status": "0",
+     *               "goal": "0",
+     *               "image": "2_1447242011.jpg",
+     *               "city": "",
+     *               "state": "",
+     *               "country": "",
+     *               "quote": "",
+     *               "created_at": "2015-11-11 11:40:10",
+     *               "updated_at": "2015-11-11 11:40:11"
+     *           },
+     *           "videos": [
+     *               {
+     *                   "id": "2",
+     *                   "user_id": "2",
+     *                   "video_id": "1",
+     *                   "created_at": "2015-11-11 11:40:05",
+     *                   "updated_at": "2015-11-11 11:40:05",
+     *                   "video": {
+     *                       "id": "1",
+     *                       "user_id": "1",
+     *                       "path": "Now1.mp4",
+     *                       "description": "Test Description",
+     *                       "parent_type": "1",
+     *                       "type": "1",
+     *                       "parent_id": "1",
+     *                      "created_at": "2015-11-11 07:26:40",
+     *                       "updated_at": "2015-11-11 17:43:27"
+     *                   }     
+     *                }
+     *
+     *           ]
+     *       },
+     *       "urls": {
+     *           "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
+     *           "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
+     *           "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
+     *           "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
+     *           "video": "http://localhost:8000/uploads/videos",
+     *           "feedImageSmall": "http://localhost:8000/uploads/images/feeds/small",
+     *           "feedImageMedium": "http://localhost:8000/uploads/images/feeds/medium",
+     *           "feedImageLarge": "http://localhost:8000/uploads/images/feeds/large",
+     *           "feedImageOriginal": "http://localhost:8000/uploads/images/feeds/original"
+     *       }
+     *   }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -574,9 +712,9 @@ class UsersController extends Controller
         // Authentication passed...
 
         if (Auth::user()->status == 1) {
-            $user = User::where('id', '=', $userId)->with(['profile'])->first();
+            $user = User::where('id', '=', $userId)->with(['profile', 'videos'])->first();
 
-            return response()->json(['success' => 'user_details', 'user' => $user->toArray()], 200);
+            return response()->json(['success' => 'user_details', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['error' => 'user_not_verified'], 401);
         }

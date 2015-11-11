@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use Event;
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -14,6 +16,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authenticatable,
         Authorizable,
         CanResetPassword;
+    
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::created(function($user) {
+            Event::fire('user.created', $user);
+        });
+
+        static::deleted(function($user) {
+            Event::fire('user.deleted', $user);
+        });
+    }
 
     /**
      * The database table used by the model.
@@ -69,5 +85,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function feeds()
     {
         return $this->hasMany('App\Feeds', 'user_id', 'id');
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function videos()
+    {
+        return $this->hasMany('App\Uservideo', 'user_id', 'id')->with(['video']);
     }
 }
