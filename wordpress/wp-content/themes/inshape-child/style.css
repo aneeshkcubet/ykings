@@ -96,7 +96,7 @@ Template: inshape-parent
     margin: 0 auto;
     text-align: center;
     margin-bottom: 10px;
-    background: url(../images/testtimonialQt.png) no-repeat left;
+    /*background: url(../images/testtimonialQt.png) no-repeat left;*/
     padding-top: 20px;
     position: relative;
 }
