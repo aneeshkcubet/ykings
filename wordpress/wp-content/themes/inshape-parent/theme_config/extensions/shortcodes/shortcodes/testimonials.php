@@ -35,11 +35,14 @@ function tfuse_testimonials($atts, $content = null) {
             $id = get_the_ID();
             $slide .= '
                 <div class="slider-item">
-                    <div class="slider-item">
                     <div class="quote-image">
-                    <img style="margin-left:500px; border-radius: 50%; height:100px;width:100px;" src="'.get_field( 'quote_image', $post->ID ).'"/>
+                        <img style="margin-left:500px; border-radius: 50%; height:100px;width:100px;" src="'.get_field( 'quote_image', $post->ID ).'"/>
                     </div>
-                	<div class="quote-text">'.strip_tags(apply_filters('the_content',$post->post_content)). '</div>
+                    <div class="quote-text">
+                        <div class="dbl-quote">
+                            <img src="'.get_field('dbl_quote',$post->ID).'">
+                        </div>
+                    '.strip_tags(apply_filters('the_content',$post->post_content)). '</div>
                     <div class="quote-author">' . $post->post_title . '</div>                 
                 </div>
         ';
@@ -69,7 +72,7 @@ function tfuse_testimonials($atts, $content = null) {
                         duration: 300
                     }
                 });
-            });	
+            }); 
     </script>  ';
     }
     return $output;
