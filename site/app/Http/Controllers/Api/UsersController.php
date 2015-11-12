@@ -258,7 +258,7 @@ class UsersController extends Controller
 
         if (isset($data['subscription'])) {
             Settings::create(['user_id' => $user->id,
-                'key' => 'subscription', 'value' => $request->input('subscription')
+                'key' => 'subscription', 'value' => $data['subscription']
             ]);
         }
 
