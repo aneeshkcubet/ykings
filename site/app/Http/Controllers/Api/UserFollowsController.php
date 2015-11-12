@@ -48,9 +48,9 @@ class UserFollowsController extends Controller
     }
 
     /**
-     * @api {get} /follow/add add follow
+     * @api {get} /follow/add followUser
      * @apiName followUser
-     * @apiGroup User
+     * @apiGroup Follow
      *
      * @apiParam {integer} follower_id id of follower user  *required
      * @apiParam {integer} following_id id of following user *required
@@ -121,15 +121,15 @@ class UserFollowsController extends Controller
       ]
       },
       "urls": {
-      "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
-      "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
-      "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
-      "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
-      "video": "http://localhost:8000/uploads/videos",
-      "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
-      "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
-      "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
-      "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
       }
       }
      *
@@ -288,7 +288,7 @@ class UserFollowsController extends Controller
     }
 
     /**
-     * @api {get} /follow/unfollow add follower
+     * @api {get} /follow/unfollow unfollowUser
      * @apiName unfollowUser
      * @apiGroup Follow
      *
@@ -361,15 +361,15 @@ class UserFollowsController extends Controller
       ]
       },
       "urls": {
-      "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
-      "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
-      "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
-      "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
-      "video": "http://localhost:8000/uploads/videos",
-      "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
-      "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
-      "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
-      "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
       }
       }
      *
@@ -529,7 +529,7 @@ class UserFollowsController extends Controller
     }
 
     /**
-     * @api {get} /follow/get get user followers
+     * @api {get} /follow/get getFollowers
      * @apiName getFollowers
      * @apiGroup Follow
      *
@@ -631,15 +631,15 @@ class UserFollowsController extends Controller
         ]
     },
     "urls": {
-        "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
-        "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
-        "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
-        "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
-        "video": "http://localhost:8000/uploads/videos",
-        "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
-        "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
-        "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
-        "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
+        "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+        "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+        "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+        "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+        "video": "http://sandbox.ykings.com/uploads/videos",
+        "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+        "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+        "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+        "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
     }
 }
      *
@@ -730,7 +730,7 @@ class UserFollowsController extends Controller
     }
     
     /**
-     * @api {get} /follow/follows get user followers
+     * @api {get} /follow/follows getFollowings
      * @apiName getFollowings
      * @apiGroup Follow
      *
@@ -832,15 +832,15 @@ class UserFollowsController extends Controller
         ]
     },
     "urls": {
-        "profileImageSmall": "http://localhost:8000/uploads/images/profile/small",
-        "profileImageMedium": "http://localhost:8000/uploads/images/profile/medium",
-        "profileImageLarge": "http://localhost:8000/uploads/images/profile/large",
-        "profileImageOriginal": "http://localhost:8000/uploads/images/profile/original",
-        "video": "http://localhost:8000/uploads/videos",
-        "feedImageSmall": "http://localhost:8000/uploads/images/feed/small",
-        "feedImageMedium": "http://localhost:8000/uploads/images/feed/medium",
-        "feedImageLarge": "http://localhost:8000/uploads/images/feed/large",
-        "feedImageOriginal": "http://localhost:8000/uploads/images/feed/original"
+        "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+        "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+        "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+        "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+        "video": "http://sandbox.ykings.com/uploads/videos",
+        "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+        "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+        "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+        "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
     }
 }
      *
