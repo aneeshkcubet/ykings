@@ -58,7 +58,7 @@ class SocialController extends Controller
     }
 
     /**
-     * @api {post} /facebook facebookLogin
+     * @api {post} /social/facebookLogin facebookLogin
      * @apiName Facebook Login
      * @apiGroup Social
      *
@@ -69,8 +69,12 @@ class SocialController extends Controller
      * @apiParam {string} email email address of user *required
      * @apiParam {string} provider_id Facebook id of user *required
      * @apiParam {string} provider Provider facebook
-     * @apiParam {string} subscription Permission flag 0/1
-     *
+     * @apiParam {string} [subscription] Permission flag 0/1
+     * @apiParam {string} [gender] gender 
+     * @apiParam {string} [fitness_status] fitness_status
+     * @apiParam {string} [goal] goal 
+     * @apiParam {string} [quote] quote 
+    
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
@@ -137,6 +141,21 @@ class SocialController extends Controller
      *     {
      *       "error": "could_not_create_user"
      *     }
+     *  @apiErrorExample Error-Response:
+     * {
+            "status": 0,
+            "error": {
+                "email": [
+                    "The email field is required."
+                ],
+                "provider_id": [
+                    "The provider id field is required."
+                ],
+                "provider": [
+                    "The provider field is required."
+                ]
+            }
+        }
      */
     public function facebookLogin(Request $request)
     {
