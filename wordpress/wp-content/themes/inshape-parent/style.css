@@ -5510,6 +5510,8 @@ button {
   border: 1px solid #ebeff0;
   margin: 0 0.7%;
   width: 31%;
+  min-height: 260px;
+  text-align: center;
 }
 .postlist-sidebar.recent-posts li:first-child {
   border-top: 1px solid #ebeff0;
