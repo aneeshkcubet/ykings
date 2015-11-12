@@ -95,4 +95,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Uservideo', 'user_id', 'id')->with(['video']);
     }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function followers()
+    {
+        return $this->hasMany('App\Follow', 'follow_id', 'id');
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function followings()
+    {
+        return $this->hasMany('App\Follow', 'user_id', 'id');
+    }
 }

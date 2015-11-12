@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Exceptions\InvalidConfirmationCodeException;
 use App\User;
 use App\Profile;
+use App\Settings;
 
 class UsersController extends Controller
 {
@@ -63,12 +64,12 @@ class UsersController extends Controller
      * @apiParam {string} password password added by user *required
      * @apiParam {number} gender user id of the user 1-Male, 2-Female *optional
      * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
-     * @apiParam {number} goal user's goal *optional
+     * @apiParam {number} goal user's goal *optional 1-Get Lean, 2-Get Fit, 3-Get Strong 
      * @apiParam {string} city user's city *optional
      * @apiParam {string} state user's state *optional
      * @apiParam {string} country user's country *optional
      * @apiParam {string} quote Quote added by user *optional
-     *
+     * @apiParam {number} subscription Whether Newsletter subscription selected by user *required
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -208,9 +209,9 @@ class UsersController extends Controller
                 $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
             }
             $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
-            return response()->json(['status' => 1,'success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
-            return response()->json(['status' => 0,'error' => 'could_not_create_user'], 500);
+            return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
         }
     }
 
@@ -254,6 +255,12 @@ class UsersController extends Controller
         $userProfile = $user->profile()->save($profile);
 
         $user = User::where('email', '=', $data['email'])->with(['profile'])->first();
+
+        if (isset($data['subscription'])) {
+            Settings::create(['user_id' => $user->id,
+                'key' => 'subscription', 'value' => $request->input('subscription')
+            ]);
+        }
 
         if (!is_null($user)) {
             return true;
@@ -451,9 +458,9 @@ class UsersController extends Controller
 
             $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
 
-            return response()->json(['status' => 1,'success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
-            return response()->json(['status' => 0,'error' => 'could_not_update_user'], 500);
+            return response()->json(['status' => 0, 'error' => 'could_not_update_user'], 500);
         }
     }
 
@@ -575,20 +582,20 @@ class UsersController extends Controller
                 try {
                     // verify the credentials and create a token for the user
                     if (!$token = JWTAuth::fromUser($user)) {
-                        return response()->json(['status' => 0,'error' => 'invalid_credentials'], 401);
+                        return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
                     }
                 } catch (JWTException $e) {
                     // something went wrong
-                    return response()->json(['status' => 0,'error' => 'could_not_create_token'], 500);
+                    return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                 }
 
                 // if no errors are encountered we can return a JWT
-                return response()->json(['status' => 1,'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
-                return response()->json(['status' => 0,'error' => 'user_not_verified'], 401);
+                return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
             }
         } else {
-            return response()->json(['status' => 0,'error' => 'invalid_credentials'], 422);
+            return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
         }
     }
 
@@ -712,9 +719,9 @@ class UsersController extends Controller
         if (Auth::user()->status == 1) {
             $user = User::where('id', '=', $userId)->with(['profile', 'videos'])->first();
 
-            return response()->json(['status' => 1,'success' => 'user_details', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
-            return response()->json(['status' => 0,'error' => 'user_not_verified'], 401);
+            return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
         }
     }
 
@@ -743,9 +750,9 @@ class UsersController extends Controller
     {
         if (Auth::user()) {
             Auth::logout();
-            return response()->json(['status' => 1,'success' => 'user_successfully_logged_out'], 200);
+            return response()->json(['status' => 1, 'success' => 'user_successfully_logged_out'], 200);
         } else {
-            return response()->json(['status' => 0,'error' => 'user_already_logged_out'], 401);
+            return response()->json(['status' => 0, 'error' => 'user_already_logged_out'], 401);
         }
     }
 }
