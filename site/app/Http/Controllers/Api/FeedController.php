@@ -12,6 +12,7 @@ use App\User;
 use App\Profile;
 use App\Feeds;
 use App\Images;
+use App\Clap;
 use Image;
 
 class FeedController extends Controller
@@ -162,7 +163,7 @@ class FeedController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0,'error' => $validator->messages()->toArray()], 422);
         }
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
@@ -206,9 +207,9 @@ class FeedController extends Controller
                 $feeds->images()->save($image_upload);
             }
             $feeds = Feeds::with(['user', 'images'])->get();
-            return response()->json(['success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
+            return response()->json(['status' => 1,'success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            return response()->json(['status' => 0,'error' => 'user_not_exists'], 500);
         }
     }
 
@@ -340,7 +341,7 @@ class FeedController extends Controller
         $validator = $this->validator_list($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0,'error' => $validator->messages()->toArray()], 422);
         }
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
@@ -349,9 +350,9 @@ class FeedController extends Controller
                 ->with(['user', 'commentCount'])
                 ->skip($request->input('offset'))->take($request->input('limit'))
                 ->get();
-            return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+            return response()->json(['status' => 1,'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            return response()->json(['status' => 0,'error' => 'user_not_exists'], 500);
         }
     }
 
@@ -452,16 +453,16 @@ class FeedController extends Controller
         $validator = $this->validator_list($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0,'error' => $validator->messages()->toArray()], 422);
         }
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
         if ($user) {
             $feeds = Feeds::with(['user', 'commentCount'])->skip($request->input('offset'))->take($request->input('limit'))->get();
 
-            return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+            return response()->json(['status' => 1,'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            return response()->json(['status' => 0,'error' => 'user_not_exists'], 500);
         }
     }
 
@@ -546,25 +547,49 @@ class FeedController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->messages()->toArray()], 422);
         }
-        $feed = Feed::where('id', '=', $request->input('user_id'))->first();
+        $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
 
-        if ($feed) {
+        if (!is_null($feed)) {
             $clap = Clap::where('user_id', '=', $request->input('user_id'))
                 ->where('item_id', '=', $request->input('feed_id'))
                 ->where('item_type', '=', 'feed')
                 ->first();
-            if (empty($clap)) {
+            if (!is_null($clap)) {
                 $clap_details = new Clap(['user_id' => $request->input('user_id'),
                     'item_id' => $request->input('feed_id'), 'item_type' => 'feed'
                 ]);
                 $feed->clap()->save($clap_details);
             }
-             $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount','clap'])->get();
+            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount', 'clap'])->get();
             return response()->json(['success' => 'List', 'clap' => $clap->toArray()], 200);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            return response()->json(['error' => 'feed_not_exists'], 422);
         }
     }
+    public function loadComments(Request $request)
+    {
+        $validator = $this->validator_clap($request->all());
 
-    
+        if ($validator->fails()) {
+            return response()->json(['status' => 0,'error' => $validator->messages()->toArray()], 422);
+        }
+       return $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
+
+        if (!is_null($feed)) {
+            $clap = Clap::where('user_id', '=', $request->input('user_id'))
+                ->where('item_id', '=', $request->input('feed_id'))
+                ->where('item_type', '=', 'feed')
+                ->first();
+            if (!is_null($clap)) {
+                $clap_details = new Clap(['user_id' => $request->input('user_id'),
+                    'item_id' => $request->input('feed_id'), 'item_type' => 'feed'
+                ]);
+                $feed->clap()->save($clap_details);
+            }
+            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount', 'clap'])->get();
+            return response()->json(['status' => 1,'success' => 'List', 'clap' => $clap->toArray()], 200);
+        } else {
+            return response()->json(['status' => 0,'error' => 'feed_not_exists'], 422);
+        }
+    }
 }

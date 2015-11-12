@@ -144,9 +144,9 @@ class UserVideosController extends Controller
         $userVideos = Uservideo::where('user_id', '=', $userId)->with(['video', 'user'])->get();
 
         if (!is_null($userVideos)) {
-            return response()->json(['success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1,'success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
-            return response()->json(['success' => 'no_videos', 'videos' => []], 200);
+            return response()->json(['status' => 1,'success' => 'no_videos', 'videos' => []], 200);
         }
     }
 
@@ -263,12 +263,12 @@ class UserVideosController extends Controller
             $userVideos = Uservideo::where('user_id', '=', $userId)->with(['video', 'user'])->get();
 
             if (!is_null($userVideos)) {
-                return response()->json(['success' => 'successfully_deleted_video', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1,'success' => 'successfully_deleted_video', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
-                return response()->json(['success' => 'no_videos', 'videos' => []], 200);
+                return response()->json(['status' => 1,'success' => 'no_videos', 'videos' => []], 200);
             }
         } else {
-            return response()->json(['error' => 'cannot_able_to_delete_this_video'], 422);
+            return response()->json(['status' => 0,'error' => 'cannot_able_to_delete_this_video'], 422);
         }
 
         // Authentication passed...

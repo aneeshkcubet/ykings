@@ -139,10 +139,12 @@ class SocialController extends Controller
         $validator = $this->validator1($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
         }
 
         if ($this->create($request->all())) {
+
+
             $user = User::where('email', '=', $request->input('email'))
                     ->with(['profile', 'social'])->first();
 
@@ -153,27 +155,27 @@ class SocialController extends Controller
                     try {
                         // verify the credentials and create a token for the user
                         if (!$token = JWTAuth::fromUser($user)) {
-                            return response()->json(['error' => 'invalid_credentials'], 401);
+                            return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
                         }
                     } catch (JWTException $e) {
                         // something went wrong
-                        return response()->json(['error' => 'could_not_create_token'], 500);
+                        return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                     }
 
                     // if no errors are encountered we can return a JWT
-                    return response()->json(['success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
+                    return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
                 } else {
-                    return response()->json(['error' => 'user_not_verified'], 401);
+                    return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
                 }
             } else {
-                return response()->json(['error' => 'invalid_credentials'], 422);
+                return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
             }
 
 
 
-            return response()->json(['success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
+            return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
         } else {
-            return response()->json(['error' => 'could_not_create_user'], 500);
+            return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
         }
     }
 
@@ -201,6 +203,29 @@ class SocialController extends Controller
                 'quote' => isset($data['quote']) ? $data['quote'] : ''
             ]);
             $userProfile = $user->profile()->save($profile);
+
+            if (isset($data['image_ul']) && $data['image_ul'] != '') {
+
+                $image = Image::make($data['image_ul']);
+
+                $image->encode('jpeg');
+
+                $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(400, 400);
+
+                $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(150, 150);
+
+                $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(65, 65);
+
+                $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
+
+                $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+            }
             //user social account table
             $social = new Social([
                 'provider' => $data['provider'],

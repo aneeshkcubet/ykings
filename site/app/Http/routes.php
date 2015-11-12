@@ -95,6 +95,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.clap',
         'uses' => 'Api\FeedController@clapFeed'
     ]);
+    
+     Route::post('feeds/comments', [
+        'as' => 'feeds.comments',
+        'uses' => 'Api\FeedController@loadComments'
+    ]);
 });
 
 // Authentication routes...

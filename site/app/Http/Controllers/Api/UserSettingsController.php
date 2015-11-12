@@ -123,7 +123,7 @@ class UserSettingsController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
         }
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
@@ -142,9 +142,9 @@ class UserSettingsController extends Controller
             }
             $user = User::where('id', '=', $request->input('user_id'))
                     ->with(['profile', 'social', 'settings'])->first();
-            return response()->json(['success' => 'successfully_updated', 'user' => $user->toArray()], 200);
+            return response()->json(['status' => 1, 'success' => 'successfully_updated', 'user' => $user->toArray()], 200);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
         }
     }
 }
