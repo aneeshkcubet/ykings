@@ -67,7 +67,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function social()
     {
-        return $this->hasOne('App\Social', 'user_id', 'id');
+        return $this->hasMany('App\Social', 'user_id', 'id');
     }
 
     /**

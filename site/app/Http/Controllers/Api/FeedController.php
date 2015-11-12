@@ -12,6 +12,7 @@ use App\User;
 use App\Profile;
 use App\Feeds;
 use App\Images;
+use Image;
 
 class FeedController extends Controller
 {
@@ -49,7 +50,9 @@ class FeedController extends Controller
     protected function validator_list(array $data)
     {
         return Validator::make($data, [
-                'user_id' => 'required'
+                'user_id' => 'required',
+                'offset' => 'required',
+                'limit' => 'required'
         ]);
     }
 
@@ -60,6 +63,20 @@ class FeedController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator_feed(array $data)
+    {
+        return Validator::make($data, [
+                'user_id' => 'required',
+                'feed_id' => 'required'
+        ]);
+    }
+
+    /**
+     * Get a validator for details of particular feed.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator_clap(array $data)
     {
         return Validator::make($data, [
                 'user_id' => 'required',
@@ -156,7 +173,39 @@ class FeedController extends Controller
                 'feed_text' => $request->input('text')]);
             $feed = $user->feeds()->save($feeds);
 
-            $feeds = Feeds::with(['user'])->get();
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+                if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                }
+
+                $image = Image::make($_FILES['image']['tmp_name']);
+
+                $image->encode('jpeg');
+
+                $image->save(config('image.feedOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(400, 400);
+
+                $image->save(config('image.feedLargePath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(150, 150);
+
+                $image->save(config('image.feedMediumPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->crop(65, 65);
+
+                $image->save(config('image.feedSmallPath') . $user->id . '_' . time() . '.jpg');
+
+                $image_upload = new Images(['user_id' => $request->input('user_id'),
+                    'path' => $user->id . '_' . time() . '.jpg',
+                    'description' => $request->input('text'),
+                    'parent_type' => '2', 'parent_id' => $feed->id]);
+                $feeds->images()->save($image_upload);
+            }
+            $feeds = Feeds::with(['user', 'images'])->get();
             return response()->json(['success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
         } else {
             return response()->json(['error' => 'user_not_exists'], 500);
@@ -296,7 +345,9 @@ class FeedController extends Controller
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
         if ($user) {
-            $feeds = Feeds::where('user_id', '=', $request->input('user_id'))->with(['user'])
+            $feeds = Feeds::where('user_id', '=', $request->input('user_id'))
+                ->with(['user', 'commentCount'])
+                ->skip($request->input('offset'))->take($request->input('limit'))
                 ->get();
             return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
         } else {
@@ -406,7 +457,7 @@ class FeedController extends Controller
         $user = User::where('id', '=', $request->input('user_id'))->first();
 
         if ($user) {
-            $feeds = Feeds::with(['user', 'commentCount'])->get();
+            $feeds = Feeds::with(['user', 'commentCount'])->skip($request->input('offset'))->take($request->input('limit'))->get();
 
             return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
         } else {
@@ -414,6 +465,62 @@ class FeedController extends Controller
         }
     }
 
+    /**
+     * @api {post} feeds/feedDetails feedDetails
+     * @apiName feedDetails
+     * @apiGroup Feeds
+     * @apiParam {Number} user_id Id of user 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "success": "List",
+      "feed_list": [
+      {
+      "id": "15",
+      "user_id": "11",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 03:51:01",
+      "updated_at": "2015-11-11 03:51:01",
+      "user": {
+      "id": "11",
+      "email": "ansa@cubettech.com",
+      "confirmation_code": null,
+      "status": "1",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-09 12:40:07"
+      },
+      "comment_count": null
+      }
+      ]
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError could_not_create_user User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     */
     public function feedsDetails(Request $request)
     {
         $validator = $this->validator_feed($request->all());
@@ -431,4 +538,33 @@ class FeedController extends Controller
             return response()->json(['error' => 'user_not_exists'], 500);
         }
     }
+
+    public function clapFeed(Request $request)
+    {
+        $validator = $this->validator_clap($request->all());
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()->toArray()], 422);
+        }
+        $feed = Feed::where('id', '=', $request->input('user_id'))->first();
+
+        if ($feed) {
+            $clap = Clap::where('user_id', '=', $request->input('user_id'))
+                ->where('item_id', '=', $request->input('feed_id'))
+                ->where('item_type', '=', 'feed')
+                ->first();
+            if (empty($clap)) {
+                $clap_details = new Clap(['user_id' => $request->input('user_id'),
+                    'item_id' => $request->input('feed_id'), 'item_type' => 'feed'
+                ]);
+                $feed->clap()->save($clap_details);
+            }
+             $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount','clap'])->get();
+            return response()->json(['success' => 'List', 'clap' => $clap->toArray()], 200);
+        } else {
+            return response()->json(['error' => 'user_not_exists'], 500);
+        }
+    }
+
+    
 }

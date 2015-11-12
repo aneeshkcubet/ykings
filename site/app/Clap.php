@@ -3,22 +3,21 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Images extends Model
+class Clap extends Model
 {
 
     /**
      * Set the database specific table name
      */
-    protected $table = 'images';
+    protected $table = 'claps';
 
     /**
      * Set the fillable fields within the model
      */
     protected $fillable = ['user_id',
-        'path',
-        'description',
-        'parent_type',
-        'parent_id'
+        'item_type',
+        'item_id'
+        
     ];
 
     /**

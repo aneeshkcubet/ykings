@@ -39,7 +39,7 @@ class Feeds extends Model
      */
     public function images()
     {
-        return $this->hasOne('App\Images', 'parent_id', 'id');
+        return $this->hasMany('App\Images', 'parent_id', 'id');
     }
 
     /**
@@ -49,8 +49,15 @@ class Feeds extends Model
      */
     public function commentCount()
     {
-        
         return $this->belongsTo('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed');
-      
+    }
+    /**
+     * Relation with image table.
+     * @author <ansa@cubettech.com>
+     * @since 11-11-2015
+     */
+    public function clap()
+    {
+        return $this->hasMany('App\Clap', 'item_type', 'id');
     }
 }

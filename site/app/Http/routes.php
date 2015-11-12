@@ -36,7 +36,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
     ]);
-    
+
     Route::post('user/update', [
         'as' => 'user.update',
         'uses' => 'Api\UsersController@update'
@@ -75,8 +75,8 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.create',
         'uses' => 'Api\FeedController@createFeeds'
     ]);
-    
-     Route::post('user/feedlist', [
+
+    Route::post('user/feedlist', [
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@userFeeds'
     ]);
@@ -85,8 +85,16 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@listFeeds'
     ]);
-    
-    
+
+    Route::post('feeds/feedDetails', [
+        'as' => 'feeds.details',
+        'uses' => 'Api\FeedController@feedsDetails'
+    ]);
+
+    Route::post('feeds/claps', [
+        'as' => 'feeds.clap',
+        'uses' => 'Api\FeedController@clapFeed'
+    ]);
 });
 
 // Authentication routes...
