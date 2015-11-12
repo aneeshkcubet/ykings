@@ -58,6 +58,15 @@ class Feeds extends Model
      */
     public function clap()
     {
-        return $this->hasMany('App\Clap', 'item_type', 'id');
+        return $this->hasMany('App\Clap', 'item_id', 'id');
+    }
+     /**
+     * Relation with image table.
+     * @author <ansa@cubettech.com>
+     * @since 11-11-2015
+     */
+    public function comment()
+    {
+        return $this->hasMany('App\Comment', 'parent_type', 'id');
     }
 }

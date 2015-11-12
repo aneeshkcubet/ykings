@@ -49,8 +49,8 @@ class SocialController extends Controller
     {
         return Validator::make($data, [
                 'email' => 'required|email|max:255',
-                'first_name' => 'required|max:255',
-                'last_name' => 'required|max:255',
+                // 'first_name' => 'required|max:255',
+                // 'last_name' => 'required|max:255',
                 'provider_id' => 'required',
                 'provider' => 'required',
         ]);
@@ -61,11 +61,13 @@ class SocialController extends Controller
      * @apiName Facebook Login
      * @apiGroup Social
      *
-     * @apiParam {string} first_name Firstname of user *required
-     * @apiParam {string} last_name Firstname of user *required
+     * @apiParam {string} [first_name] Firstname of user 
+     * @apiParam {string} [last_name] LastName of user 
+     * @apiParam {string} [image_url] Facebook Profile Image Url of user 
+     * @apiParam {string} [access_token] Access Token 
      * @apiParam {string} email email address of user *required
-     * @apiParam {string} id Facebook id of user *required
-
+     * @apiParam {string} provider_id Facebook id of user *required
+     * @apiParam {string} provider Provider facebook
      *
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -144,7 +146,6 @@ class SocialController extends Controller
 
         if ($this->create($request->all())) {
 
-
             $user = User::where('email', '=', $request->input('email'))
                     ->with(['profile', 'social'])->first();
 
@@ -170,9 +171,6 @@ class SocialController extends Controller
             } else {
                 return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
             }
-
-
-
             return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
@@ -228,8 +226,9 @@ class SocialController extends Controller
             }
             //user social account table
             $social = new Social([
-                'provider' => $data['provider'],
-                'provider_uid' => $data['provider_id']
+                'provider' => isset($data['access_token']) ? $data['access_token'] : '',
+                'provider_uid' => $data['provider_id'],
+                'access_token' => isset($data['access_token']) ? $data['access_token'] : '',
             ]);
             $socialAccount = $user->social()->save($social);
 
