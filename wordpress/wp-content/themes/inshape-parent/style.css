@@ -1459,7 +1459,7 @@ address {
   padding: 240px 0 40px;
   margin: 0;
   border: none;
-  min-height: 670px;
+  min-height: 700px;
 }
 .page-header {
   padding-top: 105px;
@@ -5460,7 +5460,7 @@ button {
 /*---------------------------------------*/
 .postlist-sidebar {
   list-style: none !important;
-  padding-left: 0 !important;
+  padding-left:20px;
 }
 .postlist-sidebar ul {
   list-style: none;
@@ -5499,14 +5499,17 @@ button {
 }
 .postlist-sidebar li {
   padding: 15px;
+  float: left;
 }
 .postlist-sidebar li:nth-child(even) {
   background-color: #ebeff0;
 }
 .postlist-sidebar.recent-posts li {
-  padding: 15px 0;
-  background-color: transparent;
-  border-bottom: 1px solid #ebeff0;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ebeff0;
+  margin: 0 0.7%;
+  width: 31%;
 }
 .postlist-sidebar.recent-posts li:first-child {
   border-top: 1px solid #ebeff0;
@@ -6095,19 +6098,18 @@ button {
 /* Widgets */
 /*-----------------------------------*/
 .widget {
-   margin-top: 25px;
+  margin-top: 25px;
 }
 .sidebar .widget {
-  margin-bottom: 85Gpx;
+  margin-bottom: 85px;
 }
 .widget-title {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
   color: #d34d5e;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 1em;
-  margin-top: 1em;
 }
 .widget.widget-freshpost select,
 .widget.widget-archives select {
@@ -8010,3 +8012,15 @@ table {
     padding: 5px;
   }
 }
+  .testimonial_heading{
+    width: 40%;
+    margin-left: 10%;
+    float: left;
+    font-size: 30px;
+    font-weight: bold;
+  }
+   .testimonial_content{
+    width: 40%;
+    float: left;
+    margin-right: 10%;
+  }
