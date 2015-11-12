@@ -10,7 +10,7 @@ class Follow extends Model
     /**
      * Set the database specific table name
      */
-    protected $table = 'user_videos';
+    protected $table = 'follows';
 
     /**
      * Set the fillable fields within the model
@@ -38,7 +38,29 @@ class Follow extends Model
      */
     public function following()
     {
-        return $this->hasOne('App\User', 'id', 'follow_id')->with(['profile']);;
+        return $this->hasOne('App\User', 'id', 'follow_id')->with(['profile']);
     }
+    
+    /**
+     * Relation with user table.
+     * @author <aneesh@cubettech.com>
+     * @since 12th November 2015
+     */
+    public function followProfile()
+    {
+        return $this->hasOne('App\User', 'id', 'follow_id')->with(['profile']);
+    }
+    
+    /**
+     * Relation with user table.
+     * @author <aneesh@cubettech.com>
+     * @since 12th November 2015
+     */
+    public function followingProfile()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id')->with(['profile']);
+    }
+    
+    
 
 }

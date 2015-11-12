@@ -62,6 +62,7 @@ class UsersController extends Controller
      * @apiParam {string} last_name Firstname of user *required
      * @apiParam {string} email email address of user *required
      * @apiParam {string} password password added by user *required
+     * @apiParam {file} image user avatar image *optional *accepted formats JPEG, PNG, and GIF
      * @apiParam {number} gender user id of the user 1-Male, 2-Female *optional
      * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
      * @apiParam {number} goal user's goal *optional 1-Get Lean, 2-Get Fit, 3-Get Strong 
@@ -69,7 +70,7 @@ class UsersController extends Controller
      * @apiParam {string} state user's state *optional
      * @apiParam {string} country user's country *optional
      * @apiParam {string} quote Quote added by user *optional
-     * @apiParam {number} subscription Whether Newsletter subscription selected by user *required
+     * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -285,6 +286,7 @@ class UsersController extends Controller
      * @apiParam {string} state user's state *optional
      * @apiParam {string} country user's country *optional
      * @apiParam {string} quote Quote added by user *optional
+     * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
      *
      * @apiSuccess {String} success.
      * 

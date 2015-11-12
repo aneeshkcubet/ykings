@@ -102,7 +102,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function followers()
     {
-        return $this->hasMany('App\Follow', 'follow_id', 'id');
+        return $this->hasMany('App\Follow', 'follow_id', 'id')->with(['followingProfile'])->orderBy('user_id');
     }
     
     /**
@@ -111,6 +111,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function followings()
     {
-        return $this->hasMany('App\Follow', 'user_id', 'id');
+        return $this->hasMany('App\Follow', 'user_id', 'id')->with(['followProfile'])->orderBy('follow_id');
     }
 }

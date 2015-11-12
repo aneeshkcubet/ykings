@@ -104,7 +104,22 @@ Route::group(['prefix' => 'api'], function() {
 
     Route::post('follow/add', [
         'as' => 'follow.add',
-        'uses' => 'Api\UserFollowsController@addFollow'
+        'uses' => 'Api\UserFollowsController@follow'
+    ]);
+    
+    Route::post('follow/unfollow', [
+        'as' => 'follow.unfollow',
+        'uses' => 'Api\UserFollowsController@unFollow'
+    ]);
+    
+    Route::post('follow/get', [
+        'as' => 'follow.get',
+        'uses' => 'Api\UserFollowsController@getFollowers'
+    ]);
+    
+    Route::post('follow/follows', [
+        'as' => 'follow.follows',
+        'uses' => 'Api\UserFollowsController@getMyFollowings'
     ]);
 });
 
