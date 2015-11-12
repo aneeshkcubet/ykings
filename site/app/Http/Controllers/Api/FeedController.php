@@ -86,7 +86,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /createFeeds createFeeds
+     * @api {post} /feeds/create?token= createFeeds
      * @apiName Create Feeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -160,64 +160,72 @@ class FeedController extends Controller
      */
     public function createFeeds(Request $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-        $user = User::where('id', '=', $request->input('user_id'))->first();
-
-        if ($user) {
-            $feeds = new Feeds(['user_id' => $request->input('user_id'),
-                'item_type' => $request->input('item_type'),
-                'item_id' => $request->input('item_id'),
-                'feed_text' => $request->input('text')]);
-            $feed = $user->feeds()->save($feeds);
-
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-
-                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                if (!in_array($_FILES['image']['type'], $accepableTypes)) {
-                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                }
-
-                $image = Image::make($_FILES['image']['tmp_name']);
-
-                $image->encode('jpeg');
-
-                $image->save(config('image.feedOriginalPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(400, 400);
-
-                $image->save(config('image.feedLargePath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(150, 150);
-
-                $image->save(config('image.feedMediumPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(65, 65);
-
-                $image->save(config('image.feedSmallPath') . $user->id . '_' . time() . '.jpg');
-
-                $image_upload = new Images(['user_id' => $request->input('user_id'),
-                    'path' => $user->id . '_' . time() . '.jpg',
-                    'description' => $request->input('text'),
-                    'parent_type' => '2', 'parent_id' => $feed->id]);
-                $feeds->images()->save($image_upload);
-            }
-            $feeds = Feeds::with(['user', 'images'])->get();
-            return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->item_type) || ($request->item_type == NULL)) {
+            return response()->json(["status" => "0", "error" => "The item_type field is required"]);
+        } elseif (!isset($request->item_id) || ($request->item_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The item_id field is required."]);
+        } elseif (!isset($request->text) || ($request->text == NULL)) {
+            return response()->json(["status" => "0", "error" => "The text field is required."]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $feeds = new Feeds(['user_id' => $request->input('user_id'),
+                    'item_type' => $request->input('item_type'),
+                    'item_id' => $request->input('item_id'),
+                    'feed_text' => $request->input('text')]);
+                $feed = $user->feeds()->save($feeds);
+
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+                    if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                        return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                    }
+
+                    $image = Image::make($_FILES['image']['tmp_name']);
+
+                    $image->encode('jpeg');
+
+                    $image->save(config('image.feedOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(400, 400);
+
+                    $image->save(config('image.feedLargePath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(150, 150);
+
+                    $image->save(config('image.feedMediumPath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(65, 65);
+
+                    $image->save(config('image.feedSmallPath') . $user->id . '_' . time() . '.jpg');
+
+                    $image_upload = new Images(['user_id' => $request->input('user_id'),
+                        'path' => $user->id . '_' . time() . '.jpg',
+                        'description' => $request->input('text'),
+                        'parent_type' => '2', 'parent_id' => $feed->id]);
+                    $feeds->images()->save($image_upload);
+                }
+                $feeds = Feeds::with(['user', 'images'])->get();
+                return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
         }
     }
 
     /**
-     * @api {post} user/feedlist UserFeeds
+     * @api {post} /user/feedlist?token= UserFeeds
      * @apiName UserFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} offser offset
+     * @apiParam {Number} limit limit 
      * @apiSuccess {String} success.
      *  @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
@@ -338,29 +346,34 @@ class FeedController extends Controller
      */
     public function userFeeds(Request $request)
     {
-        $validator = $this->validator_list($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-        $user = User::where('id', '=', $request->input('user_id'))->first();
-
-        if ($user) {
-            $feeds = Feeds::where('user_id', '=', $request->input('user_id'))
-                ->with(['user', 'commentCount'])
-                ->skip($request->input('offset'))->take($request->input('limit'))
-                ->get();
-            return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->offset) || ($request->offset == NULL)) {
+            return response()->json(["status" => "0", "error" => "The offset field is required"]);
+        } else if (!isset($request->limit) || ($request->limit == NULL)) {
+            return response()->json(["status" => "0", "error" => "The limit field is required"]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $feeds = Feeds::where('user_id', '=', $request->input('user_id'))
+                    ->with(['user', 'commentCount'])
+                    ->skip($request->input('offset'))->take($request->input('limit'))
+                    ->get();
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
         }
     }
 
     /**
-     * @api {post} feeds/list ListFeeds
+     * @api {post} /feeds/list?token= ListFeeds
      * @apiName ListFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} offset offset 
+     * @apiParam {Number} limit limit
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
@@ -450,24 +463,27 @@ class FeedController extends Controller
      */
     public function listFeeds(Request $request)
     {
-        $validator = $this->validator_list($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-        $user = User::where('id', '=', $request->input('user_id'))->first();
-
-        if ($user) {
-            $feeds = Feeds::with(['user', 'commentCount'])->skip($request->input('offset'))->take($request->input('limit'))->get();
-
-            return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->offset) || ($request->offset == NULL)) {
+            return response()->json(["status" => "0", "error" => "The offset field is required"]);
+        } else if (!isset($request->limit) || ($request->limit == NULL)) {
+            return response()->json(["status" => "0", "error" => "The limit field is required"]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $feeds = Feeds::with(['user', 'commentCount'])->skip($request->input('offset'))->take($request->input('limit'))->get();
+
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
         }
     }
 
     /**
-     * @api {post} feeds/feedDetails feedDetails
+     * @api {post} /feeds/feedDetails?token= FeedDetails
      * @apiName feedDetails
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -524,19 +540,20 @@ class FeedController extends Controller
      */
     public function feedsDetails(Request $request)
     {
-        $validator = $this->validator_feed($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
-        }
-        $user = User::where('id', '=', $request->input('user_id'))->first();
-
-        if ($user) {
-            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount'])->get();
-
-            return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
-            return response()->json(['error' => 'user_not_exists'], 500);
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount'])->get();
+
+                return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+            } else {
+                return response()->json(['error' => 'user_not_exists'], 500);
+            }
         }
     }
 
@@ -572,12 +589,12 @@ class FeedController extends Controller
         $validator = $this->validator_clap($request->all());
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
+            return response()->json(['status' => 0, 'error' => $validator->errors()->getMessages()], 422);
         }
         $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
 
         if (!is_null($feed)) {
-            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with([ 'comment'])->get();
+            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comment'])->get();
             return response()->json(['status' => 1, 'success' => 'comments list', 'comments' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);

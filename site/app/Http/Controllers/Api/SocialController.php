@@ -50,15 +50,13 @@ class SocialController extends Controller
     {
         return Validator::make($data, [
                 'email' => 'required|email|max:255',
-                // 'first_name' => 'required|max:255',
-                // 'last_name' => 'required|max:255',
                 'provider_id' => 'required',
                 'provider' => 'required',
         ]);
     }
 
     /**
-     * @api {post} /social/facebookLogin facebookLogin
+     * @api {post} /social/facebookLogin?token= facebookLogin
      * @apiName Facebook Login
      * @apiGroup Social
      *
@@ -74,7 +72,7 @@ class SocialController extends Controller
      * @apiParam {string} [fitness_status] fitness_status
      * @apiParam {string} [goal] goal 
      * @apiParam {string} [quote] quote 
-    
+
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
@@ -143,58 +141,62 @@ class SocialController extends Controller
      *     }
      *  @apiErrorExample Error-Response:
      * {
-            "status": 0,
-            "error": {
-                "email": [
-                    "The email field is required."
-                ],
-                "provider_id": [
-                    "The provider id field is required."
-                ],
-                "provider": [
-                    "The provider field is required."
-                ]
-            }
-        }
+      "status": 0,
+      "error": {
+      "email": [
+      "The email field is required."
+      ],
+      "provider_id": [
+      "The provider id field is required."
+      ],
+      "provider": [
+      "The provider field is required."
+      ]
+      }
+      }
      */
     public function facebookLogin(Request $request)
     {
-        $validator = $this->validator1($request->all());
 
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-
-        if ($this->create($request->all())) {
-
-            $user = User::where('email', '=', $request->input('email'))
-                    ->with(['profile', 'social'])->first();
-
-            if (Auth::loginUsingId($user->id)) {
-                // Authentication passed...
-
-                if (Auth::user()->status == 1) {
-                    try {
-                        // verify the credentials and create a token for the user
-                        if (!$token = JWTAuth::fromUser($user)) {
-                            return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
-                        }
-                    } catch (JWTException $e) {
-                        // something went wrong
-                        return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
-                    }
-
-                    // if no errors are encountered we can return a JWT
-                    return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
-                } else {
-                    return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
-                }
-            } else {
-                return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
-            }
-            return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
+        if (!isset($request->email) || ($request->email == NULL)) {
+            return response()->json(["status" => "0", "error" => "The email field is required"]);
+        } elseif (!isset($request->provider_id) || ($request->provider_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The provider id field is required"]);
+        } elseif (!isset($request->provider) || ($request->provider == NULL)) {
+            return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
+
+            if ($this->create($request->all())) {
+
+                $user = User::where('email', '=', $request->input('email'))
+                        ->with(['profile', 'social'])->first();
+
+                if (Auth::loginUsingId($user->id)) {
+                    // Authentication passed...
+
+                    if (Auth::user()->status == 1) {
+                        try {
+                            // verify the credentials and create a token for the user
+                            if (!$token = JWTAuth::fromUser($user)) {
+                                return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
+                            }
+                        } catch (JWTException $e) {
+                            // something went wrong
+                            return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
+                        }
+
+                        // if no errors are encountered we can return a JWT
+                        return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray()], 200);
+                    } else {
+                        return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
+                    }
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
+                }
+                return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
+            }
         }
     }
 

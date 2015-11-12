@@ -38,7 +38,7 @@ class UserSettingsController extends Controller
     }
 
     /**
-     * @api {post} /user/settings userSettings
+     * @api {post} /user/settings?token= userSettings
      * @apiName User Settings
      * @apiGroup Settings
      * @apiParam {Number} user_id Id of user 
@@ -120,31 +120,35 @@ class UserSettingsController extends Controller
      */
     public function userSettings(Request $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-        $user = User::where('id', '=', $request->input('user_id'))->first();
-
-        if ($user) {
-            $userSettings = Settings::where('user_id', '=', $request->input('user_id'))
-                ->where('key', '=', $request->input('settings_key'))
-                ->first();
-            if ($userSettings) {
-                $userSettings->value = $request->input('status');
-                $userSettings->update();
-            } else {
-                $settings = new Settings(['user_id' => $request->input('user_id'),
-                    'key' => $request->input('settings_key'), 'value' => $request->input('status')
-                ]);
-                $user->settings()->save($settings);
-            }
-            $user = User::where('id', '=', $request->input('user_id'))
-                    ->with(['profile', 'social', 'settings'])->first();
-            return response()->json(['status' => 1, 'success' => 'successfully_updated', 'user' => $user->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->settings_key) || ($request->settings_key == NULL)) {
+            return response()->json(["status" => "0", "error" => "The settings_key field is required"]);
+        } elseif (!isset($request->status) || ($request->status == NULL)) {
+            return response()->json(["status" => "0", "error" => "The status field is required."]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $userSettings = Settings::where('user_id', '=', $request->input('user_id'))
+                    ->where('key', '=', $request->input('settings_key'))
+                    ->first();
+                if ($userSettings) {
+                    $userSettings->value = $request->input('status');
+                    $userSettings->update();
+                } else {
+                    $settings = new Settings(['user_id' => $request->input('user_id'),
+                        'key' => $request->input('settings_key'), 'value' => $request->input('status')
+                    ]);
+                    $user->settings()->save($settings);
+                }
+                $user = User::where('id', '=', $request->input('user_id'))
+                        ->with(['profile', 'social', 'settings'])->first();
+                return response()->json(['status' => 1, 'success' => 'successfully_updated', 'user' => $user->toArray()], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
+            }
         }
     }
 }

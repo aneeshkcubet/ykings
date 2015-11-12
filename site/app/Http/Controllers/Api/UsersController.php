@@ -171,48 +171,53 @@ class UsersController extends Controller
      */
     public function postRegister(Request $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-
-            return response()->json(['status' => 0, 'error' => $validator->messages()->toArray()], 422);
-        }
-
-        if ($this->create($request->all())) {
-            $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
-
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-
-                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                if (!in_array($_FILES['image']['type'], $accepableTypes)) {
-                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                }
-
-                $image = Image::make($_FILES['image']['tmp_name']);
-
-                $image->encode('jpeg');
-
-                $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(400, 400);
-
-                $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(150, 150);
-
-                $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(65, 65);
-
-                $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
-
-                $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
-            }
-            $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
-            return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+        if (!isset($request->email) || ($request->email == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The text field is required."]);
+        } elseif (!isset($request->password) || ($request->password == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The password field is required."]);
+        } elseif (!isset($request->first_name) || ($request->first_name == NULL)) {
+            return response()->json(["status" => "0", "error" => "The first_name field is required"]);
+        } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The last_name field is required"]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
+
+            if ($this->create($request->all())) {
+                $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
+
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+                    if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
+                        return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                    }
+
+                    $image = Image::make($_FILES['image']['tmp_name']);
+
+                    $image->encode('jpeg');
+
+                    $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(400, 400);
+
+                    $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(150, 150);
+
+                    $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
+
+                    $image->crop(65, 65);
+
+                    $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
+
+                    $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+                }
+                $user = User::where('email', '=', $request->input('email'))->with([ 'profile',
+                        'videos'])->first();
+                return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
+            }
         }
     }
 
@@ -249,13 +254,12 @@ class UsersController extends Controller
             'city' => isset($data['city']) ? $data['city'] : '',
             'state' => isset($data['state']) ? $data['state'] : '',
             'country' => isset($data['country']) ? $data['country'] : '',
-            'quote' => isset($data['quote']) ? $data['quote'] : ''
-        ]);
+            'quote' => isset($data['quote']) ? $data['quote'] : '']);
 
 
         $userProfile = $user->profile()->save($profile);
 
-        $user = User::where('email', '=', $data['email'])->with(['profile'])->first();
+        $user = User::where('email', '=', $data['email'])->with([ 'profile'])->first();
 
         if (isset($data['subscription'])) {
             Settings::create(['user_id' => $user->id,
@@ -412,20 +416,16 @@ class UsersController extends Controller
         }
 
         if (isset($data['city'])) {
-            $profData['city'] = $data['city'];
+            $profData ['city'] = $data['city'];
         }
 
         if (isset($data['state'])) {
             $profData['state'] = $data['state'];
         }
-
         if (isset($data['country'])) {
             $profData['country'] = $data['country'];
         }
 
-        if (isset($data['subscription'])) {
-          
-        }
 
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
 
@@ -437,7 +437,7 @@ class UsersController extends Controller
 
                 $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
 
-                if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
                     return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
                 }
 
@@ -462,7 +462,7 @@ class UsersController extends Controller
                 $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
             }
 
-            $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
+            $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
 
             if (isset($data['subscription'])) {
                 Settings::where('user_id', '=', $user->id)
@@ -586,7 +586,7 @@ class UsersController extends Controller
     public function login(Request $request)
     {
         $data = $request->all();
-        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        if (Auth::attempt([ 'email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
 
             if (Auth::user()->status == 1) {
@@ -594,11 +594,11 @@ class UsersController extends Controller
                 try {
                     // verify the credentials and create a token for the user
                     if (!$token = JWTAuth::fromUser($user)) {
-                        return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
+                        return response()->json([ 'status' => 0, 'error' => 'invalid_credentials'], 401);
                     }
                 } catch (JWTException $e) {
                     // something went wrong
-                    return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
+                    return response()->json([ 'status' => 0, 'error' => 'could_not_create_token'], 500);
                 }
 
                 // if no errors are encountered we can return a JWT
@@ -722,7 +722,8 @@ class UsersController extends Controller
         $data = $request->all();
         //print_r($data);
         $userId = Auth::user()->id;
-        if (isset($data['id'])) {
+        if (isset($data['id']
+            )) {
             $userId = $data['id'];
         }
 
@@ -742,7 +743,7 @@ class UsersController extends Controller
         $conformationCode = $request->input('token');
 
         if (!$conformationCode) {
-            throw new InvalidConfirmationCodeException;
+            throw newInvalidConfirmationCodeException;
         }
 
         $user = User::whereConfirmationCode($conformationCode)->first();
