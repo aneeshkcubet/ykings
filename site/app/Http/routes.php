@@ -22,16 +22,6 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UsersController@getUser'
     ]);
 
-    Route::post('user', [
-        'as' => 'user.signup',
-        'uses' => 'Api\UsersController@postRegister'
-    ]);
-
-    Route::get('verify', [
-        'as' => 'confirmation_path',
-        'uses' => 'Api\UsersController@confirm'
-    ]);
-
     Route::post('user/login', [
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
@@ -41,12 +31,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.update',
         'uses' => 'Api\UsersController@update'
     ]);
-    
+
     Route::post('user/videos', [
         'as' => 'user.videos',
         'uses' => 'Api\UserVideosController@GetUserVideos'
     ]);
-    
+
     Route::post('user/video/delete', [
         'as' => 'user.video.delete',
         'uses' => 'Api\UserVideosController@deleteUserVideo'
@@ -57,13 +47,19 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UsersController@logout'
     ]);
 
+    Route::post('user', [
+        'as' => 'user.signup',
+        'uses' => 'Api\UsersController@postRegister'
+    ]);
+
+    Route::get('verify', [
+        'as' => 'confirmation_path',
+        'uses' => 'Api\UsersController@confirm'
+    ]);
+
     Route::post('password/email', [
         'as' => 'password.email',
         'uses' => 'Api\PasswordController@postEmail'
-    ]);
-    Route::post('social/facebookLogin', [
-        'as' => 'facebook.login',
-        'uses' => 'Api\SocialController@facebookLogin'
     ]);
 
     Route::post('user/settings', [
@@ -71,16 +67,21 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UserSettingsController@userSettings'
     ]);
 
+    Route::post('user/feedlist', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@userFeeds'
+    ]);
+
+    Route::post('social/facebookLogin', [
+        'as' => 'facebook.login',
+        'uses' => 'Api\SocialController@facebookLogin'
+    ]);
+
     Route::post('feeds/create', [
         'as' => 'feeds.create',
         'uses' => 'Api\FeedController@createFeeds'
     ]);
 
-    Route::post('user/feedlist', [
-        'as' => 'feeds.list',
-        'uses' => 'Api\FeedController@userFeeds'
-    ]);
-     
     Route::post('feeds/list', [
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@listFeeds'
@@ -95,10 +96,15 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.clap',
         'uses' => 'Api\FeedController@clapFeed'
     ]);
-    
-     Route::post('feeds/comments', [
+
+    Route::post('feeds/comments', [
         'as' => 'feeds.comments',
         'uses' => 'Api\FeedController@loadComments'
+    ]);
+
+    Route::post('follow/add', [
+        'as' => 'follow.add',
+        'uses' => 'Api\UserFollowsController@addFollow'
     ]);
 });
 
