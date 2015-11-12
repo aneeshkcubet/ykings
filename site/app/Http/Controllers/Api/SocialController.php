@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Profile;
 use App\Social;
+use App\Settings;
 
 class SocialController extends Controller
 {
@@ -68,6 +69,7 @@ class SocialController extends Controller
      * @apiParam {string} email email address of user *required
      * @apiParam {string} provider_id Facebook id of user *required
      * @apiParam {string} provider Provider facebook
+     * @apiParam {string} subscription Permission flag 0/1
      *
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -223,6 +225,11 @@ class SocialController extends Controller
                 $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
 
                 $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+            }
+            if (isset($data['subscription'])) {
+                Settings::create(['user_id' => $user->id,
+                    'key' => 'subscription', 'value' => $data['subscription']
+                ]);
             }
             //user social account table
             $social = new Social([

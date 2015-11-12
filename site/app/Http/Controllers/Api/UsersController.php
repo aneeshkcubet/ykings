@@ -421,6 +421,10 @@ class UsersController extends Controller
             $profData['country'] = $data['country'];
         }
 
+        if (isset($data['subscription'])) {
+          
+        }
+
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
 
             $user->profile()->update($profData);
