@@ -458,6 +458,12 @@ class UsersController extends Controller
 
             $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
 
+            if (isset($data['subscription'])) {
+                Settings::where('user_id', '=', $user->id)
+                    ->where('key', '=', 'subscription')
+                    ->update(['value' => $data['subscription']]);
+            }
+
             return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'could_not_update_user'], 500);
