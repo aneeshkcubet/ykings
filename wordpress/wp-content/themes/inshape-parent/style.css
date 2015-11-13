@@ -5430,8 +5430,8 @@ button {
   right: 0;
   bottom: 0;
   padding: 26px 21px;
-  background-color: #291c1c;
-  background-color: rgba(0, 0, 0, 0.8);
+  /*background-color: #291c1c;
+  background-color: rgba(0, 0, 0, 0.8);*/
   font-size: 15px;
   color: #ffffff;
 }
