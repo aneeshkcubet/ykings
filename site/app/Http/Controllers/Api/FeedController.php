@@ -87,15 +87,19 @@ class FeedController extends Controller
 
     /**
      * @api {post} /feeds/create?token= createFeeds
-     * @apiName Create Feeds
+     * @apiName CreateFeeds
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {String} item_type 'excercise','workout','motivation','announcement'
-     * @apiParam {String} image FormData
+     * @apiParam {Number} user_id Id of user *required 
+     * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
+     * @apiParam {String} item_id id of the targetting item *required
+     * @apiParam {file} image *optional
+     * 
      * @apiSuccess {String} success.
+     * 
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
+      "status" : 1,
       "success": "feed_created_successfully",
       "feed": [
       {
@@ -137,24 +141,73 @@ class FeedController extends Controller
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
      * @apiError could_not_create_user User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
+     *     } 
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The item_type field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The item_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The text field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
+     *     } 
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_does_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "user_does_not_exists"
      *     }
      * 
      */
@@ -173,10 +226,13 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $feeds = new Feeds(['user_id' => $request->input('user_id'),
+                $feeds = new Feeds([
+                    'user_id' => $request->input('user_id'),
                     'item_type' => $request->input('item_type'),
                     'item_id' => $request->input('item_id'),
-                    'feed_text' => $request->input('text')]);
+                    'feed_text' => $request->input('text')
+                ]);
+
                 $feed = $user->feeds()->save($feeds);
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -205,16 +261,19 @@ class FeedController extends Controller
 
                     $image->save(config('image.feedSmallPath') . $user->id . '_' . time() . '.jpg');
 
-                    $image_upload = new Images(['user_id' => $request->input('user_id'),
+                    $image_upload = new Images([
+                        'user_id' => $request->input('user_id'),
                         'path' => $user->id . '_' . time() . '.jpg',
                         'description' => $request->input('text'),
-                        'parent_type' => '2', 'parent_id' => $feed->id]);
+                        'parent_type' => 'feed', 'parent_id' => $feed->id
+                    ]);
+
                     $feeds->images()->save($image_upload);
                 }
                 $feeds = Feeds::with(['user', 'images'])->get();
                 return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
             } else {
-                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
         }
     }
@@ -357,8 +416,9 @@ class FeedController extends Controller
 
             if ($user) {
                 $feeds = Feeds::where('user_id', '=', $request->input('user_id'))
-                    ->with(['user', 'commentCount'])
-                    ->skip($request->input('offset'))->take($request->input('limit'))
+                    ->with(['user', 'commentCount', 'image'])
+                    ->skip($request->input('offset'))
+                    ->take($request->input('limit'))
                     ->get();
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
             } else {
@@ -473,7 +533,10 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $feeds = Feeds::with(['user', 'commentCount'])->skip($request->input('offset'))->take($request->input('limit'))->get();
+                $feeds = Feeds::with(['user', 'commentCount'])
+                    ->skip($request->input('offset'))
+                    ->take($request->input('limit'))
+                    ->get();
 
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
             } else {

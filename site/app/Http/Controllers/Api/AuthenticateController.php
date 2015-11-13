@@ -5,7 +5,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
 use App\User;
 
 class AuthenticateController extends Controller
@@ -36,6 +35,7 @@ class AuthenticateController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
+     *       "status" : 1,
      *       "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY2MzMwNzgiLCJleHAiOiIxNDQ2NjM2Njc4IiwibmJmIjoiMTQ0NjYzMzA3OCIsImp0aSI6ImFiNDAwNTllZmU0OTI3ODYwMTczYjI1ZGEzZWJmMDkwIn0.uM_G0OAne9b-twd60tAZlAUGmpitINP0JMgGC3ZrNoo",
      *     }
      *
@@ -45,12 +45,14 @@ class AuthenticateController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 404 invalid_credentials
      *     {
+     *       "status" : 0,
      *       "error": "invalid_credentials"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_token
      *     {
+     *       "status" : 0,
      *       "error": "could_not_create_token"
      *     }
      */
@@ -61,14 +63,14 @@ class AuthenticateController extends Controller
         try {
             // verify the credentials and create a token for the user
             if (!$token = JWTAuth::fromUser($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
         }
 
         // if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
+        return response()->json(['status' => 1, 'token' => $token], 200);
     }
 }

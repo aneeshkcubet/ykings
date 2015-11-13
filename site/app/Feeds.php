@@ -15,7 +15,8 @@ class Feeds extends Model
     /**
      * Set the fillable fields within the model
      */
-    protected $fillable = ['user_id',
+    protected $fillable = [
+        'user_id',
         'item_type',
         'item_id',
         'feed_text'
@@ -29,7 +30,7 @@ class Feeds extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasOne('App\User', 'user_id', 'id')->with(['profile']);
     }
 
     /**
@@ -37,36 +38,36 @@ class Feeds extends Model
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
-    public function images()
+    public function image()
     {
-        return $this->hasMany('App\Images', 'parent_id', 'id');
+        return $this->hasOne('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
 
     /**
-     * Relation with image table.
+     * Returns comment count
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
     public function commentCount()
     {
-        return $this->belongsTo('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed');
+        return $this->comments()->count();        
     }
     /**
-     * Relation with image table.
+     * Relation with clap table.
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
-    public function clap()
+    public function claps()
     {
-        return $this->hasMany('App\Clap', 'item_id', 'id');
+        return $this->hasMany('App\Clap', 'item_id', 'id')->where('parent_type', '=', 'feed');
     }
      /**
      * Relation with image table.
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
-    public function comment()
+    public function comments()
     {
-        return $this->hasMany('App\Comment', 'parent_type', 'id');
+        return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed');
     }
 }

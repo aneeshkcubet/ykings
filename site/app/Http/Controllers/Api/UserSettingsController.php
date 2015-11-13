@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Api;
 
-use Auth,
-    Validator;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,28 +12,15 @@ use App\Profile;
 
 class UserSettingsController extends Controller
 {
-    /*
-      |--------------------------------------------------------------------------
-      | Settings Controller
-      |--------------------------------------------------------------------------
-      |
-      | This controller handles the settings.
-      |
-     */
 
     /**
-     * Get a validator for an incoming registration request.
+     * Create a new authentication controller instance.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return void
      */
-    protected function validator(array $data)
+    public function __construct()
     {
-        return Validator::make($data, [
-                'user_id' => 'required',
-                'settings_key' => 'required',
-                'status' => 'required'
-        ]);
+        $this->middleware('jwt.auth');
     }
 
     /**
@@ -49,6 +35,7 @@ class UserSettingsController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
+     * "status" : 1,
       "success": "successfully_updated",
       "user": {
       "id": "1",
@@ -97,26 +84,53 @@ class UserSettingsController extends Controller
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError could_not_create_user User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
      *     }
      * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The settings_key field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The status field is required."
+     *     } 
+     *  
      */
     public function userSettings(Request $request)
     {

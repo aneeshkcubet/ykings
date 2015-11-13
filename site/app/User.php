@@ -84,7 +84,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function feeds()
     {
-        return $this->hasMany('App\Feeds', 'user_id', 'id');
+        return $this->hasMany('App\Feeds', 'user_id', 'id')->with('commentCount');
     }
     
     /**

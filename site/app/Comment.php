@@ -15,11 +15,11 @@ class Comment extends Model
     /**
      * Set the fillable fields within the model
      */
-    protected $fillable = ['user_id',
+    protected $fillable = [
+        'user_id',
         'parent_type',
         'parent_id',
         'comment_text'
     ];
 
-   
 }

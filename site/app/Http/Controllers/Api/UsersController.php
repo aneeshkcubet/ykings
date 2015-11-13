@@ -38,22 +38,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-                'first_name' => 'required|max:255',
-                'last_name' => 'required|max:255',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|min:6'
-        ]);
-    }
-
-    /**
      * @api {post} /user CreateUserAccount
      * @apiName CreateUserAccount
      * @apiGroup User
@@ -76,6 +60,7 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *       {
+     *           "status" : 1,
      *           "success": "successfully_updated_user_profile",
      *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
      *           "user": {
@@ -137,42 +122,81 @@ class UsersController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Message user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images.
      * @apiError could_not_create_user User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The password field is required."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The first_name field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The last_name field is required"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_user
      *     {
+     *       "status" : 0,
      *       "error": "could_not_create_user"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
      *     {
+     *       "status" : 0,
      *       "error": "user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
      *     }
      */
     public function postRegister(Request $request)
     {
         if (!isset($request->email) || ($request->email == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The text field is required."]);
+            return response()->json([ "status" => "0", "error" => "The email field is required."]);
         } elseif (!isset($request->password) || ($request->password == NULL)) {
             return response()->json([ "status" => "0", "error" => "The password field is required."]);
         } elseif (!isset($request->first_name) || ($request->first_name == NULL)) {
@@ -297,6 +321,7 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      *       {
+     *           "status" : 1,
      *           "success": "successfully_updated_user_profile",
      *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
      *           "user": {
@@ -357,29 +382,42 @@ class UsersController extends Controller
      *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError could_not_update_user_profile User error.
+     * @apiError error Validation error.
+     * @apiError error Message could_not_update_user_profile User error.
+     * @apiError error Message user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required."
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_user
      *     {
+     *       "status" : 0,
      *       "error": "could_not_create_user"
      *     }
      * 
@@ -392,6 +430,10 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
+
+        if (!isset($request->email) || ($request->email == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+        }
 
         $profData = [];
 
@@ -489,6 +531,7 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *       {
+     *           "status" : 1
      *           "success": "successfully_logged_in",
      *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
      *           "user": {
@@ -550,42 +593,77 @@ class UsersController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError user_not_verified User error.
-     * @apiError invalid_credentials User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error user_not_verified User error.
+     * @apiError error invalid_credentials User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
      *     }
      * 
      * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required."
+     *     }
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The password field is required."
+     *     }
+     *  
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The password field is required."
+     *     }
+     * @apiErrorExample Error-Response:
      *     HTTP/1.1 422 user_not_verified
      *     {
+     *       "status" : 0,
      *       "error": "user_not_verified"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 invalid_credentials
      *     {
+     *       "status" : 0,
      *       "error": "invalid_credentials"
      *     }
      */
     public function login(Request $request)
     {
         $data = $request->all();
+
+        if (!isset($request->email) || ($request->email == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+        } elseif (!isset($request->password) || ($request->password == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The password field is required."]);
+        }
+
         if (Auth::attempt([ 'email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
 
@@ -623,6 +701,7 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
+     *       "status" : 1,
      *       "success": "user_details",
      *       "user": {
      *           "id": "2",
@@ -684,50 +763,60 @@ class UsersController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError user_not_verified User error.
-     * @apiError invalid_credentials User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error user_not_verified User error.
+     * @apiError error invalid_credentials User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "user_id required"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 422 user_not_verified
      *     {
+     *       "status" : 0,
      *       "error": "user_not_verified"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 invalid_credentials
      *     {
+     *       "status" : 0,
      *       "error": "invalid_credentials"
      *     }
      */
     public function getUser(Request $request)
     {
         $data = $request->all();
-        //print_r($data);
-        $userId = Auth::user()->id;
-        if (isset($data['id']
-            )) {
-            $userId = $data['id'];
-        }
 
-        // Authentication passed...
+        if (!isset($data['user_id'])) {
+            return response()->json(['status' => 0, 'error' => 'user_id required'], 422);
+        }
 
         if (Auth::user()->status == 1) {
             $user = User::where('id', '=', $userId)->with(['profile', 'videos'])->first();

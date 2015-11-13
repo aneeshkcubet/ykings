@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers\Api;
 
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -32,17 +31,6 @@ class PasswordController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, ['email' => 'required|email']);
-    }
-
-    /**
      * @api {post} password/emai RequestPassword
      * @apiName RequestPassword
      * @apiGroup password
@@ -54,6 +42,7 @@ class PasswordController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
+     *          "status" : 1,
      *          "success": "successfully_sent_email_to_your_email_address",
      *          "email": "aneeshk@cubettech.com"
      *      }
@@ -65,36 +54,45 @@ class PasswordController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *      "status" : 0,
      *       "error": "token_not_provided"
      *     }
-     * 
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 email_reqired
+     *     {
+     *          "status" : 0,
+     *          "error": "email field is required"
+     *          "email": "aneeshk@cubettech.com"
+     *     }  
      * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 invalid_email
+     *     HTTP/1.1 500 invalid_email
      *     {
+     *          "status" : 0,
      *          "error": "invalid_email"
      *          "email": "aneeshk@cubettech.com"
      *     }
+     *      
      */
     public function postEmail(Request $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
+        if (!isset($request->email)) {
+            return response()->json(['status' => 0, 'error' => 'email field is required'], 422);
         }
 
         $response = Password::sendResetLink($request->only('email'), function (Message $message) {
@@ -103,10 +101,10 @@ class PasswordController extends Controller
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return response()->json(['success' => 'successfully_sent_email_to_your_email_address', 'email' => $request->input('email')], 200);
+                return response()->json(['status' => 1, 'success' => 'Successfully sent email to your email.', 'email' => $request->input('email')], 200);
 
             case Password::INVALID_USER:
-                return response()->json(['error' => 'invalid_email', 'email' => $request->input('email')], 500);
+                return response()->json(['status' => 0, 'error' => 'invalid_email', 'email' => $request->input('email')], 500);
         }
     }
 

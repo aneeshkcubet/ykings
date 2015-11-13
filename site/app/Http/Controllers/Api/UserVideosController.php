@@ -13,16 +13,15 @@ class UserVideosController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | User Actions Controller
+      | User Videos Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles the registration of new users, as well as the
-      | authentication of existing users. Why don't you explore it?
+      | This controller handles the video subscription of users.
       |
      */
 
     /**
-     * Create a new authentication controller instance.
+     * Create a new videos controller instance.
      *
      * @return void
      */
@@ -43,6 +42,7 @@ class UserVideosController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *       {
+     *           "status" : 1,
      *           "success": "user_videos",
      *           "videos": [
      *               {
@@ -103,50 +103,60 @@ class UserVideosController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError user_not_verified User error.
-     * @apiError invalid_credentials User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation Error.
+     * @apiError error no_videos.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
      *     }
-     * 
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation Error
+     *     {
+     *       "status" : 0,
+     *       "error": "user_id required"
+     *     }
      * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 invalid_credentials
+     *     HTTP/1.1 500 no_videos
      *     {
-     *       "error": "invalid_credentials"
+     *       "status" : 0,
+     *       "error": "no_videos"
      *     }
+     * 
      */
     public function GetUserVideos(Request $request)
     {
         $data = $request->all();
-        //print_r($data);
-        $userId = Auth::user()->id;
-        if (isset($data['id'])) {
-            $userId = $data['id'];
+        if (!isset($data['user_id'])) {
+            return response()->json(['status' => 0, 'error' => 'user_id required'], 422);
         }
 
         // Authentication passed...
         $userVideos = Uservideo::where('user_id', '=', $userId)->with(['video', 'user'])->get();
 
         if (!is_null($userVideos)) {
-            return response()->json(['status' => 1,'success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
         } else {
-            return response()->json(['status' => 1,'success' => 'no_videos', 'videos' => []], 200);
+            return response()->json(['status' => 0, 'error' => 'no_videos'], 422);
         }
     }
 
@@ -155,14 +165,15 @@ class UserVideosController extends Controller
      * @apiName deleteUserVideo
      * @apiGroup User
      *
-     * @apiParam {integer} id id of user *required
-     * @apiParam {integer} video_id id of user video*required
+     * @apiParam {integer} user_id id of user *required
+     * @apiParam {integer} video_id id of user video *required
      *
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *       {
+     *           "status" : 1,
      *           "success": "user_videos",
      *           "videos": [
      *               {
@@ -223,30 +234,50 @@ class UserVideosController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError user_not_verified User error.
-     * @apiError invalid_credentials User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error
+     * @apiError error Validation error
+     * @apiError error cannot_able_to_delete_this_video
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status" : 0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status" : 0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status" : 0,
      *       "error": "token_not_provided"
      *     }
      * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 cannot_able_to_delete_this_video
+     *     HTTP/1.1 422 Validation error
      *     {
+     *       "status" : 0,
+     *       "error": "user_id required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "video_id_id required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 cannot_able_to_delete_this_video
+     *     {
+     *       "status" : 0,
      *       "error": "cannot_able_to_delete_this_video"
      *     }
      * 
@@ -254,23 +285,24 @@ class UserVideosController extends Controller
     public function deleteUserVideo(Request $request)
     {
         $data = $request->all();
-        $userId = Auth::user()->id;
-        if (isset($data['id'])) {
-            $userId = $data['id'];
+        if (!isset($data['user_id'])) {
+            return response()->json(['status' => 0, 'error' => 'user_id required'], 422);
+        }
+
+        if (!isset($data['video_id'])) {
+            return response()->json(['status' => 0, 'error' => 'video_id_id required'], 422);
         }
 
         if (Uservideo::where('user_id', '=', $userId)->where('id', '=', 'video_id')->delete()) {
             $userVideos = Uservideo::where('user_id', '=', $userId)->with(['video', 'user'])->get();
 
             if (!is_null($userVideos)) {
-                return response()->json(['status' => 1,'success' => 'successfully_deleted_video', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'successfully_deleted_video', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
-                return response()->json(['status' => 1,'success' => 'no_videos', 'videos' => []], 200);
+                return response()->json(['status' => 1, 'success' => 'no_videos', 'videos' => []], 200);
             }
         } else {
-            return response()->json(['status' => 0,'error' => 'cannot_able_to_delete_this_video'], 422);
+            return response()->json(['status' => 0, 'error' => 'cannot_able_to_delete_this_video'], 422);
         }
-
-        // Authentication passed...
     }
 }
