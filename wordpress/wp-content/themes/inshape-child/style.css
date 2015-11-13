@@ -127,7 +127,7 @@ Template: inshape-parent
 }
 .postlist-sidebar.recent-posts .post-thumbnail img{
    /* border-radius: 50%;*/
-    width: 1000px;
+    width: 200px;
 }
 /*.postlist-sidebar.recent-posts li{
     height: 300px;
