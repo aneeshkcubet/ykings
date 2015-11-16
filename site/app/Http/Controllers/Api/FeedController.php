@@ -60,40 +60,55 @@ class FeedController extends Controller
       "success": "feed_created_successfully",
       "feed": [
       {
-      "id": "15",
-      "user_id": "11",
+      "id": "42",
+      "user_id": "15",
       "item_type": "workout",
       "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:51:01",
-      "updated_at": "2015-11-11 03:51:01",
+      "feed_text": "sdggs",
+      "created_at": "2015-11-16 06:18:06",
+      "updated_at": "2015-11-16 06:18:06",
+      "comment_count": 0,
+      "clap_count": 0,
       "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
+      "id": "15",
+      "email": "dibin@cubettech.com",
       "confirmation_code": null,
       "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
+      "created_at": "2015-11-11 06:25:34",
+      "updated_at": "2015-11-11 06:25:34",
+      "profile": {
+      "id": "9",
+      "user_id": "15",
+      "first_name": "Dibu",
+      "last_name": "k",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": null,
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-11 06:25:34",
+      "updated_at": "2015-11-11 06:25:34"
       }
       },
-      {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36",
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
+      "image": [],
+      "comments": [],
+      "claps": []
       }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
       }
-      ]
       }
      * 
      * @apiError error Message token_invalid.
@@ -225,9 +240,9 @@ class FeedController extends Controller
                         'parent_type' => 'feed', 'parent_id' => $feed->id
                     ]);
 
-                    $feeds->images()->save($image_upload);
+                    $feeds->image()->save($image_upload);
                 }
-                $feeds = Feeds::with(['user', 'images'])->get();
+                $feeds = Feeds::with(['user', 'image'])->get();
                 return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
@@ -287,7 +302,18 @@ class FeedController extends Controller
       "comments": [],
       "claps": []
       }
-      ]
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
       }
      * 
      * 
@@ -406,7 +432,18 @@ class FeedController extends Controller
       "comments": [],
       "claps": []
       }
-      ]
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
       }
      * 
      * 
