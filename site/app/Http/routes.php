@@ -46,22 +46,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.logout',
         'uses' => 'Api\UsersController@logout'
     ]);
-
-    Route::post('user', [
-        'as' => 'user.signup',
-        'uses' => 'Api\UsersController@postRegister'
+    
+    Route::post('user/resendverify', [
+        'as' => 'user.resendverify',
+        'uses' => 'Api\UsersController@resendVerifyEmail'
     ]);
-
-    Route::get('verify', [
-        'as' => 'confirmation_path',
-        'uses' => 'Api\UsersController@confirm'
-    ]);
-
-    Route::post('password/email', [
-        'as' => 'password.email',
-        'uses' => 'Api\PasswordController@postEmail'
-    ]);
-
+    
     Route::post('user/settings', [
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
@@ -70,6 +60,21 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('user/feedlist', [
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@userFeeds'
+    ]);
+
+    Route::post('user', [
+        'as' => 'user.signup',
+        'uses' => 'Api\UsersController@postRegister'
+    ]);
+    
+    Route::get('verify', [
+        'as' => 'confirmation_path',
+        'uses' => 'Api\UsersController@confirm'
+    ]);
+
+    Route::post('password/email', [
+        'as' => 'password.email',
+        'uses' => 'Api\PasswordController@postEmail'
     ]);
 
     Route::post('social/facebookLogin', [

@@ -4,7 +4,8 @@ use Validator,
     Hash,
     Mail,
     Auth,
-    Image;
+    Image,
+    Redirect;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -180,6 +181,13 @@ class UsersController extends Controller
      *     }
      * 
      * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 This email already signed up with us.
+     *     {
+     *       "status" : 0,
+     *       "error": "This email already signed up with us."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_user
      *     {
      *       "status" : 0,
@@ -204,6 +212,12 @@ class UsersController extends Controller
         } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
             return response()->json([ "status" => "0", "error" => "The last_name field is required"]);
         } else {
+            
+            $user = User::where('email', '=', $request->email)->first();
+            
+            if(!is_null($user)){
+                return response()->json([ "status" => "0", "error" => "This email already signed up with us."], 422);
+            }
 
             if ($this->create($request->all())) {
                 $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
@@ -825,6 +839,97 @@ class UsersController extends Controller
         } else {
             return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
         }
+    }
+    
+    /**
+     * @api {post} password/email RequestPassword
+     * @apiName RequestPassword
+     * @apiGroup password
+     *
+     * @apiParam {string} email email address of user *required
+     *
+     * @apiSuccess {String} success.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *          "status" : 1,
+     *          "success": "Successfully sent email to your email address.",
+     *          "email": "aneeshk@cubettech.com"
+     *      }
+     *
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError invalid_email User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status" : 0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *      "status" : 0,
+     *       "error": "token_not_provided"
+     *     }
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 email_reqired
+     *     {
+     *          "status" : 0,
+     *          "error": "email field is required"
+     *          "email": "aneeshk@cubettech.com"
+     *     }  
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 email not registered with us
+     *     {
+     *          "status" : 0,
+     *          "error": "email not registered with us"
+     *     }
+     * 
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 email already verified
+     *     {
+     *          "status" : 0,
+     *          "error": "email already verified"
+     *     }
+     *      
+     */
+    public function resendVerifyEmail(Request $request)
+    {
+        if (!isset($request->email)) {
+            return response()->json(['status' => 0, 'error' => 'email field is required'], 422);
+        }
+        
+        
+        $user = User::where(['email' => $request->email])->with(['profile'])->first();
+        
+        if(is_null($user)){
+            return response()->json(['status' => 0, 'error' => 'email not registered with us'], 422);            
+        }
+        
+        if($user->status == 1){
+            return response()->json(['status' => 0, 'error' => 'email already verified'], 422);            
+        }
+
+        Mail::send('email.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user, $request) {
+            $message->to($request->email, $user->profile->first_name . ' ' . $user->profile->last_name)
+                ->subject('Verify your email address');
+        });
+
+        return response()->json(['status' => 1, 'success' => 'Successfully sent email to your email address.', 'email' => $request->input('email')], 200);
     }
 
     public function confirm(Request $request)

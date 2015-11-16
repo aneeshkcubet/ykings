@@ -31,7 +31,7 @@ class PasswordController extends Controller
     }
 
     /**
-     * @api {post} password/emai RequestPassword
+     * @api {post} password/email RequestPassword
      * @apiName RequestPassword
      * @apiGroup password
      *

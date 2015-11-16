@@ -9,7 +9,7 @@
         <div>
             Thanks for creating an account with the verification Ykings app.
             Please follow the link below to verify your email address
-            {{ URL::to('api/verify?token=' . $confirmation_code) }}.<br/>
+            <a href="{{ URL::to('api/verify?token=' . $confirmation_code) }}">Verify Email Address</a>.<br/>
 
         </div>
 

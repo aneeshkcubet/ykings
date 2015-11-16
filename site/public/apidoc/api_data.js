@@ -1,8 +1,8 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "/feeds/create?token=",
-    "title": "createFeeds",
+    "url": "/feeds/create",
+    "title": "",
     "name": "CreateFeeds",
     "group": "Feeds",
     "parameter": {
@@ -130,8 +130,8 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/feeds/list?token=",
-    "title": "ListFeeds",
+    "url": "/feeds/list",
+    "title": "",
     "name": "ListFeeds",
     "group": "Feeds",
     "parameter": {
@@ -147,14 +147,14 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "<p>Number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "offset",
             "description": "<p>offset</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>Number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "limit",
             "description": "<p>limit</p> "
           }
@@ -176,7 +176,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"success\": \"list\",\n      \"feed_list\": [\n      {\n      \"id\": \"15\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:51:01\",\n      \"updated_at\": \"2015-11-11 03:51:01\"\n      },\n      {\n      \"id\": \"16\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:58:36\",\n      \"updated_at\": \"2015-11-11 03:58:36\"\n      },\n      {\n      \"id\": \"17\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:59:27\",\n      \"updated_at\": \"2015-11-11 03:59:27\"\n      },\n      {\n      \"id\": \"18\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 04:00:05\",\n      \"updated_at\": \"2015-11-11 04:00:05\"\n      },\n      {\n      \"id\": \"19\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 04:05:11\",\n      \"updated_at\": \"2015-11-11 04:05:11\"\n      },\n      {\n      \"id\": \"20\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 05:05:37\",\n      \"updated_at\": \"2015-11-11 05:05:37\"\n      }\n      ]\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ]\n      }",
           "type": "json"
         }
       ]
@@ -193,7 +193,7 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "could_not_create_user",
+            "field": "user_not_exists",
             "description": "<p>User error.</p> "
           }
         ]
@@ -201,17 +201,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
           "type": "json"
         }
       ]
@@ -222,8 +232,8 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/user/feedlist?token=",
-    "title": "UserFeeds",
+    "url": "/user/feedlist",
+    "title": "",
     "name": "UserFeeds",
     "group": "Feeds",
     "parameter": {
@@ -239,14 +249,14 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "offser",
+            "optional": true,
+            "field": "offset",
             "description": "<p>offset</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>Number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "limit",
             "description": "<p>limit</p> "
           }
@@ -268,7 +278,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      {\n      \"id\": \"23\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:50:18\",\n      \"updated_at\": \"2015-11-11 06:50:18\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      {\n      \"id\": \"24\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:57:04\",\n      \"updated_at\": \"2015-11-11 06:57:04\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      {\n      \"id\": \"25\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:57:21\",\n      \"updated_at\": \"2015-11-11 06:57:21\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      }\n      ]\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ]\n      }",
           "type": "json"
         }
       ]
@@ -285,7 +295,7 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "could_not_create_user",
+            "field": "user_not_exists",
             "description": "<p>User error.</p> "
           }
         ]
@@ -293,17 +303,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
           "type": "json"
         }
       ]
@@ -314,9 +334,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/feeds/feedDetails?token=",
-    "title": "FeedDetails",
-    "name": "feedDetails",
+    "url": "/feeds/claps",
+    "title": "",
+    "name": "clapFeed",
     "group": "Feeds",
     "parameter": {
       "fields": {
@@ -327,6 +347,13 @@ define({ "api": [
             "optional": false,
             "field": "user_id",
             "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "feed_id",
+            "description": "<p>feed_id</p> "
           }
         ]
       }
@@ -346,7 +373,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"15\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:51:01\",\n      \"updated_at\": \"2015-11-11 03:51:01\",\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\"\n      },\n      \"comment_count\": null\n      }\n      ]\n      }",
+          "content": "HTTP/1.1 200 OK\n   {\n   \"status\": 1,\n   \"feed\": [\n   {\n   \"id\": \"16\",\n   \"user_id\": \"11\",\n   \"item_type\": \"workout\",\n   \"item_id\": \"1\",\n   \"feed_text\": \"testttttttttt\",\n   \"created_at\": \"2015-11-11 03:58:36\",\n   \"updated_at\": \"2015-11-11 03:58:36\",\n   \"comment_count\": 0,\n   \"clap_count\": 1,\n   \"comments\": [],\n   \"image\": [],\n   \"claps\": [\n   {\n   \"id\": \"2\",\n   \"user_id\": \"15\",\n   \"item_type\": \"feed\",\n   \"item_id\": \"16\",\n   \"created_at\": \"2015-11-16 04:54:59\",\n   \"updated_at\": \"2015-11-16 04:54:59\"\n   }\n   ]\n   }\n   ],\n   \"urls\": {\n   \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n   \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n   \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n   \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n   \"video\": \"http://ykings.me/uploads/videos\",\n   \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n   \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n   \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n   \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n   }\n   }",
           "type": "json"
         }
       ]
@@ -363,7 +390,7 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "could_not_create_user",
+            "field": "user_not_exists",
             "description": "<p>User error.</p> "
           }
         ]
@@ -371,17 +398,232 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"feed_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "groupTitle": "Feeds"
+  },
+  {
+    "type": "post",
+    "url": "/feeds/feedDetails",
+    "title": "",
+    "name": "feedDetails",
+    "group": "Feeds",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "feed_id",
+            "description": "<p>feed_id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"16\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:58:36\",\n      \"updated_at\": \"2015-11-11 03:58:36\",\n      \"comment_count\": 0,\n      \"clap_count\": 1,\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\",\n      \"profile\": {\n      \"id\": \"7\",\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"11_1447237788.jpg\",\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-12 09:05:16\"\n      }\n      },\n      \"comments\": [],\n      \"claps\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"15\",\n      \"item_type\": \"feed\",\n      \"item_id\": \"16\",\n      \"created_at\": \"2015-11-16 04:54:59\",\n      \"updated_at\": \"2015-11-16 04:54:59\"\n      }\n      ]\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "groupTitle": "Feeds"
+  },
+  {
+    "type": "post",
+    "url": "/feeds/comments",
+    "title": "",
+    "name": "loadComments",
+    "group": "Feeds",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "feed_id",
+            "description": "<p>feed_id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\"status\": 1,\n\"feed\": [\n{\n\"id\": \"16\",\n\"user_id\": \"11\",\n\"item_type\": \"workout\",\n\"item_id\": \"1\",\n\"feed_text\": \"testttttttttt\",\n\"created_at\": \"2015-11-11 03:58:36\",\n\"updated_at\": \"2015-11-11 03:58:36\",\n\"comment_count\": 0,\n\"clap_count\": 1,\n\"comments\": [],\n\"image\": [],\n\"claps\": [\n{\n\"id\": \"2\",\n\"user_id\": \"15\",\n\"item_type\": \"feed\",\n\"item_id\": \"16\",\n\"created_at\": \"2015-11-16 04:54:59\",\n\"updated_at\": \"2015-11-16 04:54:59\"\n}\n]\n}\n],\n\"urls\": {\n\"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n\"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n\"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n\"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n\"video\": \"http://ykings.me/uploads/videos\",\n\"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n\"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n\"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n\"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"feed_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
           "type": "json"
         }
       ]
