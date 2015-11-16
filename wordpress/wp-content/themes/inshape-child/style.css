@@ -146,6 +146,22 @@ Template: inshape-parent
     margin: 0 auto;
     width: 100px;
 }
+.app-store{
+    float:left; 
+    padding-right:15px;
+}
+ .main-slider .page-title{
+     text-shadow: 0 1px 0 #2B2B2B;
+}
+.banner-heading{
+    color: #fff; 
+    font-size: 72px; 
+    font-weight: bold;   
+    text-align: center;  
+    top: 40%;  
+    width: 100%;
+    position: absolute;  
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
@@ -156,4 +172,43 @@ Template: inshape-parent
     .postlist-sidebar{
         padding-right: 20px;
     }
+    .testimonial_heading{
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .app-store{
+        margin-bottom: 5px;
+    }
+    .basics{
+        margin-top: 50px;
+    }
+    .recent-posts .widget-title{
+        font-size: 32px;
+        margin-top: 0;
+    }
+    .main-slider .page-title{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .main-slider .carousel-indicators {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .banner-heading{
+        font-size: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+@media only screen and (max-width: 479px) {
+    .recent-posts .widget-title{
+        font-size: 22px;
+    }
+    .testimonial_heading{
+        font-size: 22px;
+    }
+    .banner-heading{
+        font-size: 30px;
+    }
+    
 }
