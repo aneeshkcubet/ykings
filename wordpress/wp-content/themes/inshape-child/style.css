@@ -119,17 +119,34 @@ Template: inshape-parent
 
 }
 .postlist-sidebar.recent-posts .post-thumbnail{
-    outline: none;
     float: none !important;
     display: block;
     margin: 0 auto;
-    width: 200px;
+    outline: medium none;
+    width: 100%;
 }
 .postlist-sidebar.recent-posts .post-thumbnail img{
     /*border-radius: 50%;*/
-    width: 200px;
+    margin: 0 auto 20px;
+    max-width: 200px;
+    width: 100%;
+
 }
 /*.postlist-sidebar.recent-posts li{
     height: 300px;
     height: 300px;
 }*/
+.common_padding{
+    padding: 0 15px;
+}
+@media only screen and (max-width: 767px) {
+    .postlist-sidebar.recent-posts li{
+        width: 100%;
+        margin-bottom: 20px;
+        margin-left: 0px;
+        min-height: 100px;
+    }
+    .postlist-sidebar{
+        padding-right: 20px;
+    }
+}
