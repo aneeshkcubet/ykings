@@ -54,7 +54,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\" : 1,\n      \"success\": \"feed_created_successfully\",\n      \"feed\": [\n      {\n      \"id\": \"15\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:51:01\",\n      \"updated_at\": \"2015-11-11 03:51:01\",\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\"\n      }\n      },\n      {\n      \"id\": \"16\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:58:36\",\n      \"updated_at\": \"2015-11-11 03:58:36\",\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\"\n      }\n      }\n      ]\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\" : 1,\n      \"success\": \"feed_created_successfully\",\n      \"feed\": [\n      {\n      \"id\": \"42\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:18:06\",\n      \"updated_at\": \"2015-11-16 06:18:06\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"15\",\n      \"email\": \"dibin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\",\n      \"profile\": {\n      \"id\": \"9\",\n      \"user_id\": \"15\",\n      \"first_name\": \"Dibu\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -176,7 +176,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ]\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -278,7 +278,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ]\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\",\n      \"profile\": {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1563,6 +1563,11 @@
         },
         {
           "title": "Error-Response:",
+          "content": "HTTP/1.1 422 This email already signed up with us.\n{\n  \"status\" : 0,\n  \"error\": \"This email already signed up with us.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
           "content": "HTTP/1.1 500 could_not_create_user\n{\n  \"status\" : 0,\n  \"error\": \"could_not_create_user\"\n}",
           "type": "json"
         },
@@ -1852,6 +1857,93 @@
   },
   {
     "type": "post",
+    "url": "user/resendverify",
+    "title": "ResendVerificationEmail",
+    "name": "ResendVerificationEmail",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email address of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\" : 1,\n     \"success\": \"Successfully sent email to your email address.\",\n     \"email\": \"aneeshk@cubettech.com\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 email_reqired\n{\n     \"status\" : 0,\n     \"error\": \"email field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 email not registered with us\n{\n     \"status\" : 0,\n     \"error\": \"email not registered with us\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 email already verified\n{\n     \"status\" : 0,\n     \"error\": \"email already verified\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
     "url": "/user/update",
     "title": "UpdateUserAccount",
     "name": "UpdateUserAccount",
@@ -2110,7 +2202,7 @@
   },
   {
     "type": "post",
-    "url": "password/emai",
+    "url": "password/email",
     "title": "RequestPassword",
     "name": "RequestPassword",
     "group": "password",

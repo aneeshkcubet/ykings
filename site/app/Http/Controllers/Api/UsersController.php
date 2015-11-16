@@ -842,9 +842,9 @@ class UsersController extends Controller
     }
     
     /**
-     * @api {post} password/email RequestPassword
-     * @apiName RequestPassword
-     * @apiGroup password
+     * @api {post} user/resendverify ResendVerificationEmail
+     * @apiName ResendVerificationEmail
+     * @apiGroup User
      *
      * @apiParam {string} email email address of user *required
      *
@@ -860,7 +860,10 @@ class UsersController extends Controller
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError invalid_email User error.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation Error.
+     * @apiError error email not registered with us.
+     * @apiError error email already verified.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
@@ -888,7 +891,6 @@ class UsersController extends Controller
      *     {
      *          "status" : 0,
      *          "error": "email field is required"
-     *          "email": "aneeshk@cubettech.com"
      *     }  
      * 
      * @apiErrorExample Error-Response:
