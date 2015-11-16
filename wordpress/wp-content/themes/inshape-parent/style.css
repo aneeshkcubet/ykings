@@ -8026,3 +8026,10 @@ table {
     float: left;
     margin-right: 10%;
   }
+  .quote-image img{
+    border-radius: 50%;
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+}
