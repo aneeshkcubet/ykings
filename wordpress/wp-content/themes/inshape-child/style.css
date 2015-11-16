@@ -109,7 +109,7 @@ Template: inshape-parent
     width: 33%
 }
 .recent-posts .widget-title{
-    color: #1a1212;
+    color: #291c1c;
     font-weight: bold;
     width: 100%;
     font-size: 42px;
@@ -126,7 +126,7 @@ Template: inshape-parent
     width: 200px;
 }
 .postlist-sidebar.recent-posts .post-thumbnail img{
-   /* border-radius: 50%;*/
+    /*border-radius: 50%;*/
     width: 200px;
 }
 /*.postlist-sidebar.recent-posts li{
