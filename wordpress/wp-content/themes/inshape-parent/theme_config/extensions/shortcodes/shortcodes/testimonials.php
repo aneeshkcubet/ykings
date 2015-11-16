@@ -36,7 +36,7 @@ function tfuse_testimonials($atts, $content = null) {
             $slide .= '
                 <div class="slider-item">
                     <div class="quote-image">
-                        <img style="margin-left:500px; border-radius: 50%; height:100px;width:100px;" src="'.get_field( 'quote_image', $post->ID ).'"/>
+                        <img src="'.get_field( 'quote_image', $post->ID ).'"/>
                     </div>
                     <div class="quote-text">
                         <div class="dbl-quote">
