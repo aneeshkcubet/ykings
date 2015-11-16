@@ -139,6 +139,13 @@ Template: inshape-parent
 .common_padding{
     padding: 0 15px;
 }
+.quote-image img{
+    border-radius: 50%;
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
