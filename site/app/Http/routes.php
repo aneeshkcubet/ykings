@@ -126,6 +126,10 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'follow.follows',
         'uses' => 'Api\UserFollowsController@getMyFollowings'
     ]);
+    Route::post('connect/connectFriends', [
+        'as' => 'connect.phone',
+        'uses' => 'Api\UserFriendsController@connectFriends'
+    ]);
 });
 
 // Authentication routes...

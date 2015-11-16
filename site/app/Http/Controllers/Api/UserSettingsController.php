@@ -134,11 +134,11 @@ class UserSettingsController extends Controller
      */
     public function userSettings(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } elseif (!isset($request->settings_key) || ($request->settings_key == NULL)) {
+        } elseif (!isset($request->settings_key) || ($request->settings_key == null)) {
             return response()->json(["status" => "0", "error" => "The settings_key field is required"]);
-        } elseif (!isset($request->status) || ($request->status == NULL)) {
+        } elseif (!isset($request->status) || ($request->status == null)) {
             return response()->json(["status" => "0", "error" => "The status field is required."]);
         } else {
 

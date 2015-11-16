@@ -75,7 +75,7 @@ class Feeds extends Model
     }
 
     /**
-     * Relation with image table.
+     * Relation with comment table.
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */

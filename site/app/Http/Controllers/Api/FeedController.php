@@ -185,13 +185,13 @@ class FeedController extends Controller
      */
     public function createFeeds(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } elseif (!isset($request->item_type) || ($request->item_type == NULL)) {
+        } elseif (!isset($request->item_type) || ($request->item_type == null)) {
             return response()->json(["status" => "0", "error" => "The item_type field is required"]);
-        } elseif (!isset($request->item_id) || ($request->item_id == NULL)) {
+        } elseif (!isset($request->item_id) || ($request->item_id == null)) {
             return response()->json(["status" => "0", "error" => "The item_id field is required."]);
-        } elseif (!isset($request->text) || ($request->text == NULL)) {
+        } elseif (!isset($request->text) || ($request->text == null)) {
             return response()->json(["status" => "0", "error" => "The text field is required."]);
         } else {
 
@@ -486,7 +486,7 @@ class FeedController extends Controller
      */
     public function listFeeds(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
@@ -625,9 +625,9 @@ class FeedController extends Controller
      */
     public function feedsDetails(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+        } else if (!isset($request->feed_id) || ($request->feed_id == null)) {
             return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
@@ -736,9 +736,9 @@ class FeedController extends Controller
      */
     public function clapFeed(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+        } else if (!isset($request->feed_id) || ($request->feed_id == null)) {
             return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
             $feed = Feeds::where('id', '=', $request->input('feed_id'))->with(['claps'])->first();
@@ -861,9 +861,9 @@ class FeedController extends Controller
      */
     public function loadComments(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+        } else if (!isset($request->feed_id) || ($request->feed_id == null)) {
             return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
             $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
