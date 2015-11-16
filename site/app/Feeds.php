@@ -21,6 +21,7 @@ class Feeds extends Model
         'item_id',
         'feed_text'
     ];
+    protected $appends = array('comment_count', 'clap_count');
 
     /**
      * Relation with user table.
@@ -30,7 +31,7 @@ class Feeds extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User', 'user_id', 'id')->with(['profile']);
+        return $this->belongsTo('App\User', 'user_id', 'id')->with(['profile']);
     }
 
     /**
@@ -40,7 +41,7 @@ class Feeds extends Model
      */
     public function image()
     {
-        return $this->hasOne('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
+        return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
 
     /**
@@ -48,10 +49,21 @@ class Feeds extends Model
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
-    public function commentCount()
+    public function getCommentCountAttribute()
     {
-        return $this->comments()->count();        
+        return $this->comments->count();
     }
+
+    /**
+     * Returns clap count
+     * @author <ansa@cubettech.com>
+     * @since 16-11-2015
+     */
+    public function getClapCountAttribute()
+    {
+        return $this->claps->count();
+    }
+
     /**
      * Relation with clap table.
      * @author <ansa@cubettech.com>
@@ -59,9 +71,10 @@ class Feeds extends Model
      */
     public function claps()
     {
-        return $this->hasMany('App\Clap', 'item_id', 'id')->where('parent_type', '=', 'feed');
+        return $this->hasMany('App\Clap', 'item_id', 'id')->where('item_type', '=', 'feed');
     }
-     /**
+
+    /**
      * Relation with image table.
      * @author <ansa@cubettech.com>
      * @since 11-11-2015

@@ -27,7 +27,7 @@ class Clap extends Model
      */
     public function feeds()
     {
-       return $this->belongsTo('App\Feeds', 'id', 'parent_id');
+       return $this->belongsTo('App\Feeds', 'id', 'item_id');
     }
     
 }

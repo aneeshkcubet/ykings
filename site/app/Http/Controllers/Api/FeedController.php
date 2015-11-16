@@ -43,50 +43,7 @@ class FeedController extends Controller
     }
 
     /**
-     * Get a validator for listing all feeds.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator_list(array $data)
-    {
-        return Validator::make($data, [
-                'user_id' => 'required',
-                'offset' => 'required',
-                'limit' => 'required'
-        ]);
-    }
-
-    /**
-     * Get a validator for details of particular feed.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator_feed(array $data)
-    {
-        return Validator::make($data, [
-                'user_id' => 'required',
-                'feed_id' => 'required'
-        ]);
-    }
-
-    /**
-     * Get a validator for details of particular feed.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator_clap(array $data)
-    {
-        return Validator::make($data, [
-                'user_id' => 'required',
-                'feed_id' => 'required'
-        ]);
-    }
-
-    /**
-     * @api {post} /feeds/create?token= createFeeds
+     * @api {post} /feeds/create
      * @apiName CreateFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
@@ -271,7 +228,7 @@ class FeedController extends Controller
                     $feeds->images()->save($image_upload);
                 }
                 $feeds = Feeds::with(['user', 'images'])->get();
-                return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray()], 200);
+                return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -279,16 +236,17 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /user/feedlist?token= UserFeeds
+     * @api {post} /user/feedlist
      * @apiName UserFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} offset offset
-     * @apiParam {Number} limit limit 
+     * @apiParam {Number} [offset] offset
+     * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
      *  @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
+      "status": 1,
       "success": "List",
       "feed_list": [
       {
@@ -299,82 +257,35 @@ class FeedController extends Controller
       "feed_text": "testttttttttt",
       "created_at": "2015-11-11 06:27:51",
       "updated_at": "2015-11-11 06:27:51",
+      "comment_count": 0,
+      "clap_count": 0,
       "user": {
       "id": "14",
       "email": "sachin@cubettech.com",
       "confirmation_code": null,
       "status": "1",
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56",
+      "profile": {
+      "id": "8",
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": null,
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
       "created_at": "2015-11-11 06:23:56",
       "updated_at": "2015-11-11 06:23:56"
       }
       },
-      {
-      "id": "22",
-      "user_id": "14",
-      "item_type": "excercise",
-      "item_id": "1",
-      "feed_text": "afassdfsd",
-      "created_at": "2015-11-11 06:49:38",
-      "updated_at": "2015-11-11 06:49:38",
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
-      },
-      {
-      "id": "23",
-      "user_id": "14",
-      "item_type": "excercise",
-      "item_id": "1",
-      "feed_text": "afassdfsd",
-      "created_at": "2015-11-11 06:50:18",
-      "updated_at": "2015-11-11 06:50:18",
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
-      },
-      {
-      "id": "24",
-      "user_id": "14",
-      "item_type": "excercise",
-      "item_id": "1",
-      "feed_text": "afassdfsd",
-      "created_at": "2015-11-11 06:57:04",
-      "updated_at": "2015-11-11 06:57:04",
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
-      },
-      {
-      "id": "25",
-      "user_id": "14",
-      "item_type": "excercise",
-      "item_id": "1",
-      "feed_text": "afassdfsd",
-      "created_at": "2015-11-11 06:57:21",
-      "updated_at": "2015-11-11 06:57:21",
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
+      "image": [],
+      "comments": [],
+      "claps": []
       }
       ]
       }
@@ -382,45 +293,61 @@ class FeedController extends Controller
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError could_not_create_user User error.
+     * @apiError user_not_exists User error.
+     * @apiError user_not_exists User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status":"0",
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status":"0",
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status":"0",
      *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
      *     }
      * 
      */
     public function userFeeds(Request $request)
     {
-        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->offset) || ($request->offset == NULL)) {
-            return response()->json(["status" => "0", "error" => "The offset field is required"]);
-        } else if (!isset($request->limit) || ($request->limit == NULL)) {
-            return response()->json(["status" => "0", "error" => "The limit field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
+            $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
+
             if ($user) {
-                $feeds = Feeds::where('user_id', '=', $request->input('user_id'))
-                    ->with(['user', 'commentCount', 'image'])
-                    ->skip($request->input('offset'))
-                    ->take($request->input('limit'))
-                    ->get();
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+                $feedQuery->with(['user', 'image']);
+                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
+                    $feedQuery->skip($request->input('offset'));
+                    $feedQuery->take($request->input('limit'));
+                }
+                $feeds = $feedQuery->get();
+
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -428,71 +355,56 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/list?token= ListFeeds
+     * @api {post} /feeds/list
      * @apiName ListFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} offset offset 
-     * @apiParam {Number} limit limit
+     * @apiParam {Number} [offset] offset 
+     * @apiParam {Number} [limit] limit
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "success": "list",
+      "status": 1,
+      "success": "List",
       "feed_list": [
       {
-      "id": "15",
-      "user_id": "11",
-      "item_type": "workout",
+      "id": "21",
+      "user_id": "14",
+      "item_type": "excercise",
       "item_id": "1",
       "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:51:01",
-      "updated_at": "2015-11-11 03:51:01"
+      "created_at": "2015-11-11 06:27:51",
+      "updated_at": "2015-11-11 06:27:51",
+      "comment_count": 0,
+      "clap_count": 0,
+      "user": {
+      "id": "14",
+      "email": "sachin@cubettech.com",
+      "confirmation_code": null,
+      "status": "1",
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56",
+      "profile": {
+      "id": "8",
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": null,
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56"
+      }
       },
-      {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36"
-      },
-      {
-      "id": "17",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:59:27",
-      "updated_at": "2015-11-11 03:59:27"
-      },
-      {
-      "id": "18",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 04:00:05",
-      "updated_at": "2015-11-11 04:00:05"
-      },
-      {
-      "id": "19",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 04:05:11",
-      "updated_at": "2015-11-11 04:05:11"
-      },
-      {
-      "id": "20",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 05:05:37",
-      "updated_at": "2015-11-11 05:05:37"
+      "image": [],
+      "comments": [],
+      "claps": []
       }
       ]
       }
@@ -500,45 +412,57 @@ class FeedController extends Controller
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError could_not_create_user User error.
+     * @apiError user_not_exists User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status":"0",
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status":"0",
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status":"0",
      *       "error": "token_not_provided"
      *     }
-     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
      */
     public function listFeeds(Request $request)
     {
         if (!isset($request->user_id) || ($request->user_id == NULL)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->offset) || ($request->offset == NULL)) {
-            return response()->json(["status" => "0", "error" => "The offset field is required"]);
-        } else if (!isset($request->limit) || ($request->limit == NULL)) {
-            return response()->json(["status" => "0", "error" => "The limit field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-
+            $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
             if ($user) {
-                $feeds = Feeds::with(['user', 'commentCount'])
-                    ->skip($request->input('offset'))
-                    ->take($request->input('limit'))
-                    ->get();
+                $feedQuery->with(['user', 'image']);
+                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
+                    $feedQuery->skip($request->input('offset'));
+                    $feedQuery->take($request->input('limit'));
+                }
+                $feeds = $feedQuery->get();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -546,7 +470,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/feedDetails?token= FeedDetails
+     * @api {post} /feeds/feedDetails
      * @apiName feedDetails
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -558,47 +482,107 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "15",
+      "id": "16",
       "user_id": "11",
       "item_type": "workout",
       "item_id": "1",
       "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:51:01",
-      "updated_at": "2015-11-11 03:51:01",
+      "created_at": "2015-11-11 03:58:36",
+      "updated_at": "2015-11-11 03:58:36",
+      "comment_count": 0,
+      "clap_count": 1,
       "user": {
       "id": "11",
       "email": "ansa@cubettech.com",
       "confirmation_code": null,
       "status": "1",
       "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
+      "updated_at": "2015-11-09 12:40:07",
+      "profile": {
+      "id": "7",
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": "11_1447237788.jpg",
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-12 09:05:16"
+      }
       },
-      "comment_count": null
+      "comments": [],
+      "claps": [
+      {
+      "id": "2",
+      "user_id": "15",
+      "item_type": "feed",
+      "item_id": "16",
+      "created_at": "2015-11-16 04:54:59",
+      "updated_at": "2015-11-16 04:54:59"
       }
       ]
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
       }
      * 
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
-     * @apiError could_not_create_user User error.
+     * @apiError user_not_exists User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
+     *       "status":"0",
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
+     *       "status":"0",
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
+     *       "status":"0",
      *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The feed_id field is required"
      *     }
      * 
      */
@@ -612,56 +596,247 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount'])->get();
+                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->get();
 
-                return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray()], 200);
+                return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
-                return response()->json(['error' => 'user_not_exists'], 500);
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
     }
 
+    /**
+     * @api {post} /feeds/claps
+     * @apiName clapFeed
+     * @apiGroup Feeds
+     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} feed_id feed_id 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     *    HTTP/1.1 200 OK
+      {
+      "status": 1,
+      "feed": [
+      {
+      "id": "16",
+      "user_id": "11",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 03:58:36",
+      "updated_at": "2015-11-11 03:58:36",
+      "comment_count": 0,
+      "clap_count": 1,
+      "comments": [],
+      "image": [],
+      "claps": [
+      {
+      "id": "2",
+      "user_id": "15",
+      "item_type": "feed",
+      "item_id": "16",
+      "created_at": "2015-11-16 04:54:59",
+      "updated_at": "2015-11-16 04:54:59"
+      }
+      ]
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "feed_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The feed_id field is required"
+     *     }
+     * 
+     */
     public function clapFeed(Request $request)
     {
-        $validator = $this->validator_clap($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()->toArray()], 422);
-        }
-        $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
-
-        if (!is_null($feed)) {
-            $clap = Clap::where('user_id', '=', $request->input('user_id'))
-                ->where('item_id', '=', $request->input('feed_id'))
-                ->where('item_type', '=', 'feed')
-                ->first();
-            if (is_null($clap)) {
-                $clap_details = new Clap(['user_id' => $request->input('user_id'),
-                    'item_type' => 'feed', 'item_id' => $request->input('feed_id')
-                ]);
-                $feed->clap()->save($clap_details);
-            }
-            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'commentCount', 'clap'])->get();
-            return response()->json(['success' => 'List', 'clap' => $feeds->toArray()], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
-            return response()->json(['error' => 'feed_not_exists'], 422);
+            $feed = Feeds::where('id', '=', $request->input('feed_id'))->with(['claps'])->first();
+
+            if (!is_null($feed)) {
+                $clap = Clap::where('user_id', '=', $request->input('user_id'))
+                    ->where('item_id', '=', $request->input('feed_id'))
+                    ->where('item_type', '=', 'feed')
+                    ->first();
+                if (is_null($clap)) {
+                    $clap_details = new Clap([
+                        'user_id' => $request->input('user_id'),
+                        'item_type' => 'feed',
+                        'item_id' => $request->input('feed_id')
+                    ]);
+
+                    $feed->claps()->save($clap_details);
+                }
+
+                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
+                return response()->json(['success' => 'clap added', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
+            }
         }
     }
 
+    /**
+     * @api {post} /feeds/comments
+     * @apiName loadComments
+     * @apiGroup Feeds
+     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} feed_id feed_id 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+      {
+      "status": 1,
+      "feed": [
+      {
+      "id": "16",
+      "user_id": "11",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 03:58:36",
+      "updated_at": "2015-11-11 03:58:36",
+      "comment_count": 0,
+      "clap_count": 1,
+      "comments": [],
+      "image": [],
+      "claps": [
+      {
+      "id": "2",
+      "user_id": "15",
+      "item_type": "feed",
+      "item_id": "16",
+      "created_at": "2015-11-16 04:54:59",
+      "updated_at": "2015-11-16 04:54:59"
+      }
+      ]
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
+
+
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "feed_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The feed_id field is required"
+     *     }
+     * 
+     */
     public function loadComments(Request $request)
     {
-        $validator = $this->validator_clap($request->all());
-
-        if ($validator->fails()) {
-            return response()->json(['status' => 0, 'error' => $validator->errors()->getMessages()], 422);
-        }
-        $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
-
-        if (!is_null($feed)) {
-            $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comment'])->get();
-            return response()->json(['status' => 1, 'success' => 'comments list', 'comments' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+        if (!isset($request->user_id) || ($request->user_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->feed_id) || ($request->feed_id == NULL)) {
+            return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
-            return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
+            $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
+
+            if (!is_null($feed)) {
+                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'image', 'claps'])->get();
+                return response()->json(['status' => 1, 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
+            }
         }
     }
 }
