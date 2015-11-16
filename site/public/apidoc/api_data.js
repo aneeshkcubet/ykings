@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/feeds/create",
-    "title": "",
+    "title": "CreateFeeds",
     "name": "CreateFeeds",
     "group": "Feeds",
     "parameter": {
@@ -28,6 +28,13 @@ define({ "api": [
             "optional": false,
             "field": "item_id",
             "description": "<p>id of the targetting item *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "text",
+            "description": "<p>*required</p> "
           },
           {
             "group": "Parameter",
@@ -131,7 +138,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/feeds/list",
-    "title": "",
+    "title": "ListFeeds",
     "name": "ListFeeds",
     "group": "Feeds",
     "parameter": {
@@ -233,7 +240,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/user/feedlist",
-    "title": "",
+    "title": "UserFeeds",
     "name": "UserFeeds",
     "group": "Feeds",
     "parameter": {

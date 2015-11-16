@@ -43,12 +43,13 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/create
+     * @api {post} /feeds/create CreateFeeds
      * @apiName CreateFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
      * @apiParam {String} item_id id of the targetting item *required
+     * @apiParam {String} text *required
      * @apiParam {file} image *optional
      * 
      * @apiSuccess {String} success.
@@ -237,7 +238,8 @@ class FeedController extends Controller
                         'user_id' => $request->input('user_id'),
                         'path' => $user->id . '_' . time() . '.jpg',
                         'description' => $request->input('text'),
-                        'parent_type' => 'feed', 'parent_id' => $feed->id
+                        'parent_type' => 2, 
+                        'parent_id' => $feed->id
                     ]);
 
                     $feeds->image()->save($image_upload);
@@ -251,7 +253,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /user/feedlist
+     * @api {post} /user/feedlist UserFeeds
      * @apiName UserFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -381,7 +383,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/list
+     * @api {post} /feeds/list ListFeeds
      * @apiName ListFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 

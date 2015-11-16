@@ -106,7 +106,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.comments',
         'uses' => 'Api\FeedController@loadComments'
     ]);
-
+    
+    Route::post('feeds/addComment', [
+        'as' => 'feeds.addComment',
+        'uses' => 'Api\CommentsController@addFeedComment'
+    ]);
+ 
     Route::post('follow/add', [
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'
