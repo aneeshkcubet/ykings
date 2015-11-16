@@ -283,7 +283,7 @@ class FeedController extends Controller
      * @apiName UserFeeds
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} offser offset
+     * @apiParam {Number} offset offset
      * @apiParam {Number} limit limit 
      * @apiSuccess {String} success.
      *  @apiSuccessExample Success-Response:
@@ -550,6 +550,7 @@ class FeedController extends Controller
      * @apiName feedDetails
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} feed_id feed_id 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
