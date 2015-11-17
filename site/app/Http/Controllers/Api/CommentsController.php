@@ -205,7 +205,7 @@ class CommentsController extends Controller
      * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
-      {
+     *HTTP/1.1 200 OK{
     "status": 1,
     "comments": [
         {
@@ -359,7 +359,11 @@ class CommentsController extends Controller
      * @apiParam {Number} comment_id feed_id 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
-
+     * HTTP/1.1 200 OK{
+     *      "status": 1,
+     *      "message" :comment deleted
+     * }
+     * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      *

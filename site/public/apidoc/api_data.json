@@ -381,7 +381,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n            \"status\": 1,\n            \"success\": \"commented_on_feed_successfully\",\n            \"feed\": {\n                \"id\": \"6\",\n                \"user_id\": \"2\",\n                \"item_type\": \"excercise\",\n                \"item_id\": \"1\",\n                \"feed_text\": \"This is a sample feed text.\",\n                \"created_at\": \"2015-11-16 11:55:34\",\n                \"updated_at\": \"2015-11-16 11:55:34\",\n                \"comment_count\": 2,\n                \"clap_count\": 0,\n                \"comments\": [\n                    {\n                        \"id\": \"2\",\n                        \"user_id\": \"2\",\n                        \"parent_type\": \"feed\",\n                        \"parent_id\": \"6\",\n                        \"comment_text\": \"This is another comment\",\n                        \"created_at\": \"2015-11-16 13:55:14\",\n                        \"updated_at\": \"2015-11-16 13:55:14\"\n                    },\n                    {\n                        \"id\": \"3\",\n                        \"user_id\": \"5\",\n                        \"parent_type\": \"feed\",\n                        \"parent_id\": \"6\",\n                        \"comment_text\": \"This is another comment\",\n                        \"created_at\": \"2015-11-16 13:55:40\",\n                        \"updated_at\": \"2015-11-16 13:55:40\"\n                    }\n                ],\n                \"image\": [\n                    {\n                        \"id\": \"2\",\n                        \"user_id\": \"2\",\n                        \"path\": \"2_1447674934.jpg\",\n                        \"description\": \"This is a sample feed text.\",\n                        \"parent_type\": \"2\",\n                        \"parent_id\": \"6\",\n                        \"created_at\": \"2015-11-16 11:55:34\",\n                        \"updated_at\": \"2015-11-16 11:55:34\"\n                    }\n                ],\n                \"claps\": []\n            },\n            \"urls\": {\n                \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n                \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n                \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n                \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n                \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n                \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n                \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n                \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n                \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n            }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"commented_on_feed_successfully\",\n      \"feed\": {\n      \"id\": \"6\",\n      \"user_id\": \"2\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"This is a sample feed text.\",\n      \"created_at\": \"2015-11-16 11:55:34\",\n      \"updated_at\": \"2015-11-16 11:55:34\",\n      \"comment_count\": 2,\n      \"clap_count\": 0,\n      \"comments\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"parent_type\": \"feed\",\n      \"parent_id\": \"6\",\n      \"comment_text\": \"This is another comment\",\n      \"created_at\": \"2015-11-16 13:55:14\",\n      \"updated_at\": \"2015-11-16 13:55:14\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"5\",\n      \"parent_type\": \"feed\",\n      \"parent_id\": \"6\",\n      \"comment_text\": \"This is another comment\",\n      \"created_at\": \"2015-11-16 13:55:40\",\n      \"updated_at\": \"2015-11-16 13:55:40\"\n      }\n      ],\n      \"image\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"path\": \"2_1447674934.jpg\",\n      \"description\": \"This is a sample feed text.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"6\",\n      \"created_at\": \"2015-11-16 11:55:34\",\n      \"updated_at\": \"2015-11-16 11:55:34\"\n      }\n      ],\n      \"claps\": []\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -546,6 +546,100 @@
   },
   {
     "type": "post",
+    "url": "/feeds/deleteComment",
+    "title": "deleteComment",
+    "name": "deleteComment",
+    "group": "Feeds",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "comment_id",
+            "description": "<p>feed_id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK{\n     \"status\": 1,\n     \"message\" :comment deleted\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"comment_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The comment_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "groupTitle": "Feeds"
+  },
+  {
+    "type": "post",
     "url": "/feeds/feedDetails",
     "title": "",
     "name": "feedDetails",
@@ -699,7 +793,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "      {\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"image\": null\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"image\": \"11_1447237788.jpg\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
+          "content": "HTTP/1.1 200 OK{\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"8\",\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:23:56\",\n                        \"updated_at\": \"2015-11-11 06:23:56\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
           "type": "json"
         }
       ]
@@ -755,7 +849,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1609,7 +1703,7 @@
             "type": "<p>string</p> ",
             "optional": false,
             "field": "provider",
-            "description": "<p>Provider facebook</p> "
+            "description": "<p>Provider,eg:facebook</p> "
           },
           {
             "group": "Parameter",
@@ -1664,7 +1758,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"success\": \"successfully_logged_in\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL3NvY2lhbFwvZmFjZWJvb2tMb2dpbiIsImlhdCI6IjE0NDcxMjk3NTkiLCJleHAiOiIxNDQ3NDg5NzU5IiwibmJmIjoiMTQ0NzEyOTc1OSIsImp0aSI6ImNiODMzMmU5ZGI4ODMyMTYwODM2YjVjMzBhNTkwNWQ2In0.flzfuwss7oEZcrQoy05sECz1o74ofIkgf5F24xvNKE0\",\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\",\n      \"profile\": {\n      \"id\": \"7\",\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\"\n      },\n      \"social\": {\n      \"id\": \"2\",\n      \"user_id\": \"11\",\n      \"provider\": \"facebook\",\n      \"provider_uid\": \"123456789\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\"\n      }\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"8\",\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:23:56\",\n                        \"updated_at\": \"2015-11-11 06:23:56\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
           "type": "json"
         }
       ]
