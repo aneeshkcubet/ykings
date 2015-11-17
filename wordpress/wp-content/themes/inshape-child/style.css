@@ -210,5 +210,11 @@ Template: inshape-parent
     }
     .banner-heading{
         font-size: 30px;
+    }
+    .main-slider .page-title{
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     } 
 }
