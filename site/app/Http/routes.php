@@ -107,7 +107,7 @@ Route::group(['prefix' => 'api'], function() {
     ]);
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
-        'uses' => 'Api\FeedController@loadComments'
+        'uses' => 'Api\CommentsController@loadComments'
     ]);
 
     Route::post('feeds/addComment', [
