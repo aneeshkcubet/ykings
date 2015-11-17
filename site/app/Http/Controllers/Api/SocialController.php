@@ -24,7 +24,7 @@ class SocialController extends Controller
       | This controller handles the registration and login from social media.
       |
      */
-   
+
     /**
      * @api {post} /social/facebookLogin?token= facebookLogin
      * @apiName Facebook Login
@@ -36,7 +36,7 @@ class SocialController extends Controller
      * @apiParam {string} [access_token] Access Token 
      * @apiParam {string} email email address of user *required
      * @apiParam {string} provider_id Facebook id of user *required
-     * @apiParam {string} provider Provider facebook
+     * @apiParam {string} provider Provider,eg:facebook
      * @apiParam {string} [subscription] Permission flag 0/1
      * @apiParam {string} [gender] gender 
      * @apiParam {string} [fitness_status] fitness_status
@@ -47,39 +47,46 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "status": 1,
-    "success": "successfully_logged_in",
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MCIsImlzcyI6Imh0dHA6XC9cL3NhbmRib3gueWtpbmdzLmNvbVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ3NzYxMzQzIiwiZXhwIjoiMTQ0ODEyMTM0MyIsIm5iZiI6IjE0NDc3NjEzNDMiLCJqdGkiOiJhMTQ2ZmIzZTEwMTYyMDI2N2ZjMTA1OThhY2NkYzNjNCJ9.FKQFCH_CU5GAmDKIhso6f5KgfZWFh-zbaT-mLfDf62o",
-    "user": {
-        "id": "50",
-        "email": "sreejith@ileafsolutions.net",
-        "confirmation_code": null,
-        "status": "1",
-        "created_at": "2015-11-17 11:40:30",
-        "updated_at": "2015-11-17 11:40:30",
-        "profile": [
-            {
-                "user_id": "50",
-                "first_name": "Sreejith",
-                "last_name": "ILeaf",
-                "image": "50_1447760430.jpg",
-                "gender": "0",
-                "fitness_status": "3",
-                "goal": "1"
-            }
-        ],
-        "social": [
-            {
-                "id": "6",
-                "user_id": "50",
-                "provider": "",
-                "provider_uid": "1519915411654030",
-                "created_at": "2015-11-17 11:40:30",
-                "updated_at": "2015-11-17 11:40:30"
-            }
-        ]
-    }
-}
+      "status": 1,
+      "success": "successfully_logged_in",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MiIsImlzcyI6Imh0dHA6XC9cL3NhbmRib3gueWtpbmdzLmNvbVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ3NzYyMjUxIiwiZXhwIjoiMTQ0ODEyMjI1MSIsIm5iZiI6IjE0NDc3NjIyNTEiLCJqdGkiOiIxZWI0Zjc2NTRmMzlkMWNhODk2YjlkMWVjYzVlZTE0OCJ9.u93VMAAck-18L3aW40h29jcJAlNFkoBU0nXjJwzx5Mw",
+      "user": {
+      "id": "52",
+      "email": "sreejith@ileafsolutions.net",
+      "confirmation_code": null,
+      "status": "1",
+      "created_at": "2015-11-17 12:10:51",
+      "updated_at": "2015-11-17 12:10:51",
+      "profile": [
+      {
+      "id": "42",
+      "user_id": "52",
+      "first_name": "Sreejith",
+      "last_name": "ILeaf",
+      "gender": "0",
+      "fitness_status": "3",
+      "goal": "1",
+      "image": "52_1447762251.jpg",
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-17 12:10:51",
+      "updated_at": "2015-11-17 12:10:51"
+      }
+      ],
+      "social": [
+      {
+      "id": "8",
+      "user_id": "52",
+      "provider": "",
+      "provider_uid": "1519915411654030",
+      "created_at": "2015-11-17 12:10:51",
+      "updated_at": "2015-11-17 12:10:51"
+      }
+      ]
+      }
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.

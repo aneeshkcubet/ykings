@@ -206,61 +206,83 @@ class CommentsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
       {
-      "status": 1,
-      "comments": [
-      {
-      "id": "1",
-      "user_id": "14",
-      "parent_type": "feed",
-      "parent_id": "15",
-      "comment_text": "This is a sample comment",
-      "created_at": "2015-11-16 13:53:47",
-      "updated_at": "2015-11-17 13:01:09",
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "profile": [
-      {
-      "user_id": "14",
-      "first_name": "sachii",
-      "image": null
-      }
-      ]
-      }
-      },
-      {
-      "id": "2",
-      "user_id": "11",
-      "parent_type": "feed",
-      "parent_id": "15",
-      "comment_text": "This is another comment",
-      "created_at": "2015-11-16 13:55:14",
-      "updated_at": "2015-11-17 13:02:38",
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "profile": [
-      {
-      "user_id": "11",
-      "first_name": "ansa",
-      "image": "11_1447237788.jpg"
-      }
-      ]
-      }
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
-      }
+    "status": 1,
+    "comments": [
+        {
+            "id": "1",
+            "user_id": "14",
+            "parent_type": "feed",
+            "parent_id": "15",
+            "comment_text": "This is a sample comment",
+            "created_at": "2015-11-16 13:53:47",
+            "updated_at": "2015-11-17 13:01:09",
+            "user": {
+                "id": "14",
+                "email": "sachin@cubettech.com",
+                "profile": [
+                    {
+                        "id": "8",
+                        "user_id": "14",
+                        "first_name": "sachii",
+                        "last_name": "k",
+                        "gender": "0",
+                        "fitness_status": "0",
+                        "goal": "0",
+                        "image": null,
+                        "city": null,
+                        "state": null,
+                        "country": null,
+                        "quote": "",
+                        "created_at": "2015-11-11 06:23:56",
+                        "updated_at": "2015-11-11 06:23:56"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "user_id": "11",
+            "parent_type": "feed",
+            "parent_id": "15",
+            "comment_text": "This is another comment",
+            "created_at": "2015-11-16 13:55:14",
+            "updated_at": "2015-11-17 13:02:38",
+            "user": {
+                "id": "11",
+                "email": "ansa@cubettech.com",
+                "profile": [
+                    {
+                        "id": "7",
+                        "user_id": "11",
+                        "first_name": "ansa",
+                        "last_name": "v",
+                        "gender": "0",
+                        "fitness_status": "0",
+                        "goal": "0",
+                        "image": "11_1447237788.jpg",
+                        "city": null,
+                        "state": null,
+                        "country": null,
+                        "quote": "",
+                        "created_at": "2015-11-09 12:40:07",
+                        "updated_at": "2015-11-12 09:05:16"
+                    }
+                ]
+            }
+        }
+    ],
+    "urls": {
+        "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+        "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+        "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+        "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+        "video": "http://ykings.me/uploads/videos",
+        "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+        "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+        "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+        "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+    }
+}
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError user_not_exists User error.
