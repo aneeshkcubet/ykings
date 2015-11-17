@@ -14,8 +14,8 @@ use App\Profile;
 use App\Feeds;
 use App\Images;
 use App\Clap;
-use Image;
-use Comment;
+use App\Image;
+use App\Comment;
 
 class FeedController extends Controller
 {
@@ -886,47 +886,66 @@ class FeedController extends Controller
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
      * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} [offset] offset 
+     * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
       {
-      "status": 1,
-      "feed": [
-      {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36",
-      "comment_count": 0,
-      "clap_count": 1,
-      "comments": [],
-      "image": [],
-      "claps": [
-      {
-      "id": "2",
-      "user_id": "15",
-      "item_type": "feed",
-      "item_id": "16",
-      "created_at": "2015-11-16 04:54:59",
-      "updated_at": "2015-11-16 04:54:59"
-      }
-      ]
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
-      }
+    "status": 1,
+    "comments": [
+        {
+            "id": "1",
+            "user_id": "14",
+            "parent_type": "feed",
+            "parent_id": "15",
+            "comment_text": "This is a sample comment",
+            "created_at": "2015-11-16 13:53:47",
+            "updated_at": "2015-11-17 13:01:09",
+            "user": {
+                "id": "14",
+                "email": "sachin@cubettech.com",
+                "profile": [
+                    {
+                        "user_id": "14",
+                        "first_name": "sachii",
+                        "image": null
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "user_id": "11",
+            "parent_type": "feed",
+            "parent_id": "15",
+            "comment_text": "This is another comment",
+            "created_at": "2015-11-16 13:55:14",
+            "updated_at": "2015-11-17 13:02:38",
+            "user": {
+                "id": "11",
+                "email": "ansa@cubettech.com",
+                "profile": [
+                    {
+                        "user_id": "11",
+                        "first_name": "ansa",
+                        "image": "11_1447237788.jpg"
+                    }
+                ]
+            }
+        }
+    ],
+    "urls": {
+        "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+        "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+        "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+        "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+        "video": "http://ykings.me/uploads/videos",
+        "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+        "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+        "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+        "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+    }
+}
 
 
      * @apiError error Message token_invalid.
@@ -982,10 +1001,15 @@ class FeedController extends Controller
         } else {
             $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
             if (!is_null($feed)) {
-                $feeds = Feeds::where('id', '=', $request->input('feed_id'))
-                    ->with(['comments', 'image', 'claps'])
-                    ->get();
-                return response()->json(['status' => 1, 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                $commentQuery = Comment::where('parent_id', '=', $request->input('feed_id'))
+                    ->where('parent_type', 'feed')
+                    ->with(['user']);
+                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
+                    $commentQuery->skip($request->input('offset'));
+                    $commentQuery->take($request->input('limit'));
+                }
+                $comments = $commentQuery->get();
+                return response()->json(['status' => 1, 'comments' => $comments->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
