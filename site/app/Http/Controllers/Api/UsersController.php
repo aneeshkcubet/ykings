@@ -833,7 +833,7 @@ class UsersController extends Controller
         }
 
         if (Auth::user()->status == 1) {
-            $user = User::where('id', '=', $userId)->with(['profile', 'videos'])->first();
+            $user = User::where('id', '=', $data['user_id'])->with(['profile', 'videos'])->first();
 
             return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
         } else {

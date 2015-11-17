@@ -643,7 +643,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/clap
+     * @api {post} /feeds/clap clapFeed
      * @apiName clapFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -767,8 +767,8 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/unclap
-     * @apiName clapFeed
+     * @api {post} /feeds/unclap unclapFeed
+     * @apiName unclapFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
      * @apiParam {Number} feed_id feed_id 
@@ -881,7 +881,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/comments
+     * @api {post} /feeds/comments loadComments
      * @apiName loadComments
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 

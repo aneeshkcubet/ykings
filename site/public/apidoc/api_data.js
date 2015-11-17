@@ -2,8 +2,8 @@ define({ "api": [
   {
     "type": "post",
     "url": "/feeds/create",
-    "title": "CreateFeeds",
-    "name": "CreateFeeds",
+    "title": "CreateFeed",
+    "name": "CreateFeed",
     "group": "Feeds",
     "parameter": {
       "fields": {
@@ -74,12 +74,6 @@ define({ "api": [
             "optional": false,
             "field": "error",
             "description": "<p>Message token_invalid.</p> "
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "could_not_create_user",
-            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -121,7 +115,7 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images\"\n}",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images\"\n}",
           "type": "json"
         },
         {
@@ -452,8 +446,8 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/feeds/claps",
-    "title": "",
+    "url": "/feeds/clap",
+    "title": "clapFeed",
     "name": "clapFeed",
     "group": "Feeds",
     "parameter": {
@@ -653,7 +647,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/feeds/comments",
-    "title": "",
+    "title": "loadComments",
     "name": "loadComments",
     "group": "Feeds",
     "parameter": {
@@ -672,6 +666,20 @@ define({ "api": [
             "optional": false,
             "field": "feed_id",
             "description": "<p>feed_id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "offset",
+            "description": "<p>offset</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>limit</p> "
           }
         ]
       }
@@ -691,7 +699,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\"status\": 1,\n\"feed\": [\n{\n\"id\": \"16\",\n\"user_id\": \"11\",\n\"item_type\": \"workout\",\n\"item_id\": \"1\",\n\"feed_text\": \"testttttttttt\",\n\"created_at\": \"2015-11-11 03:58:36\",\n\"updated_at\": \"2015-11-11 03:58:36\",\n\"comment_count\": 0,\n\"clap_count\": 1,\n\"comments\": [],\n\"image\": [],\n\"claps\": [\n{\n\"id\": \"2\",\n\"user_id\": \"15\",\n\"item_type\": \"feed\",\n\"item_id\": \"16\",\n\"created_at\": \"2015-11-16 04:54:59\",\n\"updated_at\": \"2015-11-16 04:54:59\"\n}\n]\n}\n],\n\"urls\": {\n\"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n\"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n\"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n\"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n\"video\": \"http://ykings.me/uploads/videos\",\n\"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n\"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n\"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n\"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n}\n}",
+          "content": "      {\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"image\": null\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"image\": \"11_1447237788.jpg\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
           "type": "json"
         }
       ]
@@ -742,6 +750,111 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "groupTitle": "Feeds"
+  },
+  {
+    "type": "post",
+    "url": "/feeds/unclap",
+    "title": "unclapFeed",
+    "name": "unclapFeed",
+    "group": "Feeds",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "feed_id",
+            "description": "<p>feed_id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n   {\n   \"success\": \"unclaped\",\n   \"feed\": [\n   {\n   \"id\": \"16\",\n   \"user_id\": \"11\",\n   \"item_type\": \"workout\",\n   \"item_id\": \"1\",\n   \"feed_text\": \"testttttttttt\",\n   \"created_at\": \"2015-11-11 03:58:36\",\n   \"updated_at\": \"2015-11-11 03:58:36\",\n   \"comment_count\": 0,\n   \"clap_count\": 0,\n   \"comments\": [],\n   \"claps\": [],\n   \"image\": []\n   }\n   ],\n   \"urls\": {\n   \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n   \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n   \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n   \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n   \"video\": \"http://ykings.me/uploads/videos\",\n   \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n   \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n   \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n   \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n   }\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"feed_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"not_yet_claped\"\n}",
           "type": "json"
         }
       ]
