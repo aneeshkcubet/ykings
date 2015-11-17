@@ -238,7 +238,7 @@ class FeedController extends Controller
                         'user_id' => $request->input('user_id'),
                         'path' => $user->id . '_' . time() . '.jpg',
                         'description' => $request->input('text'),
-                        'parent_type' => 2, 
+                        'parent_type' => 2,
                         'parent_id' => $feed->id
                     ]);
 
@@ -497,14 +497,18 @@ class FeedController extends Controller
                         ->with(['followers'])->first();
 
                 foreach ($getFollowers->followers as $followers) {
-                    $feedQuery = Feeds::where('user_id', '=', $followers->user_id);
-                    $feedQuery->with(['user', 'image']);
-                    if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
-                        $feedQuery->skip($request->input('offset'));
-                        $feedQuery->take($request->input('limit'));
-                    }
-                    $feeds[] = $feedQuery->get();
+                    $followersId[] = $followers->user_id;
                 }
+
+                $feedQuery = Feeds::whereIn('user_id', $followersId);
+                $feedQuery->with(['user', 'image']);
+                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
+                    $feedQuery->skip($request->input('offset'));
+                    $feedQuery->take($request->input('limit'));
+                }
+                $feedQuery->orderBy('created_at');
+                $feeds = $feedQuery->get();
+
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
