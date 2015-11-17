@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    Validator;
+    Validator,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -22,29 +23,13 @@ class FeedController extends Controller
       | Workout Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles feeds,workout,excersice.
+      | This controller handles feeds,workout,excercise.
       |
      */
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-                'user_id' => 'required',
-                'item_type' => 'required',
-                'item_id' => 'required',
-                'text' => 'required'
-        ]);
-    }
-
-    /**
-     * @api {post} /feeds/create CreateFeeds
-     * @apiName CreateFeeds
+     * @api {post} /feeds/create CreateFeed
+     * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
@@ -119,7 +104,8 @@ class FeedController extends Controller
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error Validation error.
-     * @apiError could_not_create_user User error.
+     * @apiError error feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
+     * @apiError error user_does_not_exists
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
@@ -173,7 +159,7 @@ class FeedController extends Controller
      *     HTTP/1.1 422 Validation error
      *     {
      *       "status" : 0,
-     *       "error": "user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
+     *       "error": "feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
      *     } 
      * 
      * @apiErrorExample Error-Response:
@@ -213,7 +199,7 @@ class FeedController extends Controller
                     $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
 
                     if (!in_array($_FILES['image']['type'], $accepableTypes)) {
-                        return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                        return response()->json(['error' => 'feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
                     }
 
                     $image = Image::make($_FILES['image']['tmp_name']);
@@ -493,14 +479,13 @@ class FeedController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
-                $getFollowers = User::where('id', '=', $request->user_id)
-                        ->with(['followers'])->first();
+                
+                $followersQuery = DB::table('follows')
+                    ->select('user_id')
+                    ->where('follow_id', '=', $request->user_id)
+                    ->toSql();
 
-                foreach ($getFollowers->followers as $followers) {
-                    $followersId[] = $followers->user_id;
-                }
-
-                $feedQuery = Feeds::whereIn('user_id', $followersId);
+                $feedQuery = Feeds::whereIn('user_id', $followersQuery);
                 $feedQuery->with(['user', 'image']);
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));

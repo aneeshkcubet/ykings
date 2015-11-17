@@ -341,6 +341,117 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/feeds/addComment",
+    "title": "addFeedComment",
+    "name": "addFeedComment",
+    "group": "Feeds",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "feed_id",
+            "description": "<p>of the targetting item *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "text",
+            "description": "<p>*required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n            \"status\": 1,\n            \"success\": \"commented_on_feed_successfully\",\n            \"feed\": {\n                \"id\": \"6\",\n                \"user_id\": \"2\",\n                \"item_type\": \"excercise\",\n                \"item_id\": \"1\",\n                \"feed_text\": \"This is a sample feed text.\",\n                \"created_at\": \"2015-11-16 11:55:34\",\n                \"updated_at\": \"2015-11-16 11:55:34\",\n                \"comment_count\": 2,\n                \"clap_count\": 0,\n                \"comments\": [\n                    {\n                        \"id\": \"2\",\n                        \"user_id\": \"2\",\n                        \"parent_type\": \"feed\",\n                        \"parent_id\": \"6\",\n                        \"comment_text\": \"This is another comment\",\n                        \"created_at\": \"2015-11-16 13:55:14\",\n                        \"updated_at\": \"2015-11-16 13:55:14\"\n                    },\n                    {\n                        \"id\": \"3\",\n                        \"user_id\": \"5\",\n                        \"parent_type\": \"feed\",\n                        \"parent_id\": \"6\",\n                        \"comment_text\": \"This is another comment\",\n                        \"created_at\": \"2015-11-16 13:55:40\",\n                        \"updated_at\": \"2015-11-16 13:55:40\"\n                    }\n                ],\n                \"image\": [\n                    {\n                        \"id\": \"2\",\n                        \"user_id\": \"2\",\n                        \"path\": \"2_1447674934.jpg\",\n                        \"description\": \"This is a sample feed text.\",\n                        \"parent_type\": \"2\",\n                        \"parent_id\": \"6\",\n                        \"created_at\": \"2015-11-16 11:55:34\",\n                        \"updated_at\": \"2015-11-16 11:55:34\"\n                    }\n                ],\n                \"claps\": []\n            },\n            \"urls\": {\n                \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n                \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n                \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n                \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n                \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n                \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n                \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n                \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n                \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n            }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The feed_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The text field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_does_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_does_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 feed_does_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"feed_does_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "groupTitle": "Feeds"
+  },
+  {
+    "type": "post",
     "url": "/feeds/claps",
     "title": "",
     "name": "clapFeed",
@@ -1226,6 +1337,108 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/connect/connectFriends",
+    "title": "",
+    "name": "Connect_Friends",
+    "group": "Social",
+    "description": "<p>API for connecting facebook/phone book.</p> ",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email Ids from contact,json array</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>facebook/phonebook</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n      {\n        \"status\": 1,\n        \"registered_emails\": [\n            {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"confirmation_code\": null,\n                \"status\": \"1\",\n                \"created_at\": \"2015-11-09 12:40:07\",\n                \"updated_at\": \"2015-11-09 12:40:07\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ],\n                \"image\": []\n            },\n            {\n                \"id\": \"15\",\n                \"email\": \"dibin@cubettech.com\",\n                \"confirmation_code\": null,\n                \"status\": \"1\",\n                \"created_at\": \"2015-11-11 06:25:34\",\n                \"updated_at\": \"2015-11-11 06:25:34\",\n                \"profile\": [\n                    {\n                        \"id\": \"9\",\n                        \"user_id\": \"15\",\n                        \"first_name\": \"Dibu\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:25:34\",\n                        \"updated_at\": \"2015-11-11 06:25:34\"\n                    }\n                ],\n                \"image\": []\n            }\n        ],\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n        },\n        \"type\": \"phonebook\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The type field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
+    "groupTitle": "Social"
   },
   {
     "type": "post",
