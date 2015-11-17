@@ -22,39 +22,7 @@ class SocialController extends Controller
       | This controller handles the registration and login from social media.
       |
      */
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-                'first_name' => 'required|max:255',
-                'last_name' => 'required|max:255',
-                'email' => 'required|email|max:255',
-                'provider_id' => 'required',
-                'provider' => 'required',
-        ]);
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator1(array $data)
-    {
-        return Validator::make($data, [
-                'email' => 'required|email|max:255',
-                'provider_id' => 'required',
-                'provider' => 'required',
-        ]);
-    }
-
+   
     /**
      * @api {post} /social/facebookLogin?token= facebookLogin
      * @apiName Facebook Login
@@ -225,9 +193,9 @@ class SocialController extends Controller
             ]);
             $userProfile = $user->profile()->save($profile);
 
-            if (isset($data['image_ul']) && $data['image_ul'] != '') {
+            if (isset($data['image_url']) && $data['image_url'] != '') {
 
-                $image = Image::make($data['image_ul']);
+                $image = Image::make($data['image_url']);
 
                 $image->encode('jpeg');
 
