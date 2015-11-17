@@ -57,7 +57,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function profile()
     {
-        return $this->hasMany('App\Profile', 'user_id', 'id');
+        return $this->hasMany('App\Profile', 'user_id', 'id')->select(array('user_id', 'first_name','image'));
     }
 
     /**

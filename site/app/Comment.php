@@ -22,4 +22,14 @@ class Comment extends Model
         'comment_text'
     ];
 
+    /**
+     * Relation with user table.
+     * @author <ansa@cubettech.com>
+     * @since 17-11-2015
+     * 
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id')->with(['profile'])->select(array('id' , 'email'));
+    }
 }

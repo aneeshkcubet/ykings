@@ -97,21 +97,24 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\FeedController@feedsDetails'
     ]);
 
-    Route::post('feeds/claps', [
+    Route::post('feeds/clap', [
         'as' => 'feeds.clap',
         'uses' => 'Api\FeedController@clapFeed'
     ]);
-
+    Route::post('feeds/unclap', [
+        'as' => 'feeds.unclap',
+        'uses' => 'Api\FeedController@unclapFeed'
+    ]);
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
         'uses' => 'Api\FeedController@loadComments'
     ]);
-    
+
     Route::post('feeds/addComment', [
         'as' => 'feeds.addComment',
         'uses' => 'Api\CommentsController@addFeedComment'
     ]);
- 
+
     Route::post('follow/add', [
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'

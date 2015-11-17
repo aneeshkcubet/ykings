@@ -81,6 +81,6 @@ class Feeds extends Model
      */
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed');
+        return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
 }

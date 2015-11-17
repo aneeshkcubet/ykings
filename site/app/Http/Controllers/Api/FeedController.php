@@ -15,6 +15,7 @@ use App\Feeds;
 use App\Images;
 use App\Clap;
 use Image;
+use Comment;
 
 class FeedController extends Controller
 {
@@ -478,24 +479,23 @@ class FeedController extends Controller
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            if ($user) {                
-               
-                $feedQuery = Feeds::whereIn('user_id', function($query) use ($request){
-                    $query->select('user_id')
-                        ->from('follows')
-                        ->where('follow_id', $request->user_id);
-                        
-                });
-                
+            if ($user) {
+
+                $feedQuery = Feeds::whereIn('user_id', function($query) use ($request) {
+                        $query->select('user_id')
+                            ->from('follows')
+                            ->where('follow_id', $request->user_id);
+                    });
+
                 $feedQuery->orWhere('user_id', 1);
 
                 $feedQuery->with(['user', 'image']);
-                
+
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
                     $feedQuery->take($request->input('limit'));
                 }
-                
+
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
 
@@ -643,7 +643,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/claps
+     * @api {post} /feeds/clap
      * @apiName clapFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -760,6 +760,120 @@ class FeedController extends Controller
 
                 $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
                 return response()->json(['success' => 'clap added', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /feeds/unclap
+     * @apiName clapFeed
+     * @apiGroup Feeds
+     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} feed_id feed_id 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     *    HTTP/1.1 200 OK
+      {
+      "success": "unclaped",
+      "feed": [
+      {
+      "id": "16",
+      "user_id": "11",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 03:58:36",
+      "updated_at": "2015-11-11 03:58:36",
+      "comment_count": 0,
+      "clap_count": 0,
+      "comments": [],
+      "claps": [],
+      "image": []
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "feed_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The feed_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "not_yet_claped"
+     *     }
+     */
+    public function unclapFeed(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->feed_id) || ($request->feed_id == null)) {
+            return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
+        } else {
+            $feed = Feeds::where('id', '=', $request->input('feed_id'))->with(['claps'])->first();
+            if (!is_null($feed)) {
+                $clap = Clap::where('user_id', '=', $request->input('user_id'))
+                    ->where('item_id', '=', $request->input('feed_id'))
+                    ->where('item_type', '=', 'feed')
+                    ->first();
+                if (!is_null($clap)) {
+                    $clap->delete();
+                    $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
+                    return response()->json(['success' => 'unclaped', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
+                }
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
