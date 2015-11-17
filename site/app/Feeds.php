@@ -83,4 +83,13 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
+     /**
+     * Relation with comment table.
+     * @author <ansa@cubettech.com>
+     * @since 11-11-2015
+     */
+    public function is_comments()
+    {
+        return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
+    }
 }

@@ -981,9 +981,10 @@ class FeedController extends Controller
             return response()->json(["status" => "0", "error" => "The feed_id field is required"]);
         } else {
             $feed = Feeds::where('id', '=', $request->input('feed_id'))->first();
-
             if (!is_null($feed)) {
-                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'image', 'claps'])->get();
+                $feeds = Feeds::where('id', '=', $request->input('feed_id'))
+                    ->with(['comments', 'image', 'claps'])
+                    ->get();
                 return response()->json(['status' => 1, 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
