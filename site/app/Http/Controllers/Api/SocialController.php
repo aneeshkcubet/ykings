@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
+    Image,
     Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -11,6 +12,7 @@ use App\User;
 use App\Profile;
 use App\Social;
 use App\Settings;
+use App\Images;
 
 class SocialController extends Controller
 {
@@ -45,41 +47,39 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "success": "successfully_logged_in",
-      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL3NvY2lhbFwvZmFjZWJvb2tMb2dpbiIsImlhdCI6IjE0NDcxMjk3NTkiLCJleHAiOiIxNDQ3NDg5NzU5IiwibmJmIjoiMTQ0NzEyOTc1OSIsImp0aSI6ImNiODMzMmU5ZGI4ODMyMTYwODM2YjVjMzBhNTkwNWQ2In0.flzfuwss7oEZcrQoy05sECz1o74ofIkgf5F24xvNKE0",
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07",
-      "profile": {
-      "id": "7",
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": null,
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
-      },
-      "social": {
-      "id": "2",
-      "user_id": "11",
-      "provider": "facebook",
-      "provider_uid": "123456789",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
-      }
-      }
-      }
+    "status": 1,
+    "success": "successfully_logged_in",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MCIsImlzcyI6Imh0dHA6XC9cL3NhbmRib3gueWtpbmdzLmNvbVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ3NzYxMzQzIiwiZXhwIjoiMTQ0ODEyMTM0MyIsIm5iZiI6IjE0NDc3NjEzNDMiLCJqdGkiOiJhMTQ2ZmIzZTEwMTYyMDI2N2ZjMTA1OThhY2NkYzNjNCJ9.FKQFCH_CU5GAmDKIhso6f5KgfZWFh-zbaT-mLfDf62o",
+    "user": {
+        "id": "50",
+        "email": "sreejith@ileafsolutions.net",
+        "confirmation_code": null,
+        "status": "1",
+        "created_at": "2015-11-17 11:40:30",
+        "updated_at": "2015-11-17 11:40:30",
+        "profile": [
+            {
+                "user_id": "50",
+                "first_name": "Sreejith",
+                "last_name": "ILeaf",
+                "image": "50_1447760430.jpg",
+                "gender": "0",
+                "fitness_status": "3",
+                "goal": "1"
+            }
+        ],
+        "social": [
+            {
+                "id": "6",
+                "user_id": "50",
+                "provider": "",
+                "provider_uid": "1519915411654030",
+                "created_at": "2015-11-17 11:40:30",
+                "updated_at": "2015-11-17 11:40:30"
+            }
+        ]
+    }
+}
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.

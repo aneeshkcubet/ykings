@@ -114,7 +114,10 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.addComment',
         'uses' => 'Api\CommentsController@addFeedComment'
     ]);
-
+    Route::post('feeds/deleteComment', [
+        'as' => 'feeds.comments',
+        'uses' => 'Api\CommentsController@deleteComment'
+    ]);
     Route::post('follow/add', [
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'

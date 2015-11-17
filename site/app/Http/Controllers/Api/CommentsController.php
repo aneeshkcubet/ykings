@@ -328,4 +328,73 @@ class CommentsController extends Controller
             }
         }
     }
+
+    /**
+     * @api {post} /feeds/deleteComment deleteComment
+     * @apiName deleteComment
+     * @apiGroup Feeds
+     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} comment_id feed_id 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "comment_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The comment_id field is required"
+     *     }
+     * 
+     */
+    public function deleteComment(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else if (!isset($request->comment_id) || ($request->comment_id == null)) {
+            return response()->json(["status" => "0", "error" => "The comment_id field is required"]);
+        } else {
+            $commentQuery = Comment::where('id', '=', $request->input('comment_id'))->first();
+            if (!is_null($commentQuery)) {
+                $commentQuery->delete();
+                return response()->json(['status' => 1, 'message' => 'comment deleted'], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'comment_not_exists'], 422);
+            }
+        }
+    }
 }
