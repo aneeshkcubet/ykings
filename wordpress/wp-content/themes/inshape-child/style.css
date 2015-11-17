@@ -151,7 +151,7 @@ Template: inshape-parent
     padding-right:15px;
 }
  .main-slider .page-title{
-     text-shadow: 0 1px 0 #2B2B2B;
+     text-shadow: 2px 1px 3px #000;
 }
 .banner-heading{
     color: #fff; 
@@ -189,6 +189,7 @@ Template: inshape-parent
     .main-slider .page-title{
         padding-left: 15px;
         padding-right: 15px;
+        min-height: 150px;
     }
     .main-slider .carousel-indicators {
         padding-left: 15px;
@@ -209,6 +210,5 @@ Template: inshape-parent
     }
     .banner-heading{
         font-size: 30px;
-    }
-    
+    } 
 }
