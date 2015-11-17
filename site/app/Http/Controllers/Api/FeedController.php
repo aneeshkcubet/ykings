@@ -478,20 +478,25 @@ class FeedController extends Controller
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            if ($user) {
+            if ($user) {                
+               
+                $feedQuery = Feeds::whereIn('user_id', function($query) use ($request){
+                    $query->select('user_id')
+                        ->from('follows')
+                        ->where('follow_id', $request->user_id);
+                        
+                });
                 
-                $followersQuery = DB::table('follows')
-                    ->select('user_id')
-                    ->where('follow_id', '=', $request->user_id)
-                    ->toSql();
+                $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery = Feeds::whereIn('user_id', $followersQuery);
                 $feedQuery->with(['user', 'image']);
+                
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
                     $feedQuery->take($request->input('limit'));
                 }
-                $feedQuery->orderBy('created_at');
+                
+                $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
 
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds, 'urls' => config('urls.urls')], 200);
