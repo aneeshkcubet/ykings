@@ -216,5 +216,8 @@ Template: inshape-parent
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .workout-similar .workout {
+        width: 100%;
     } 
 }
