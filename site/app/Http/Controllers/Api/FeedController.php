@@ -492,16 +492,20 @@ class FeedController extends Controller
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
             if ($user) {
-                $feedQuery->with(['user', 'image']);
-                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
-                    $feedQuery->skip($request->input('offset'));
-                    $feedQuery->take($request->input('limit'));
-                }
-                $feeds = $feedQuery->get();
+                $getFollowers = User::where('id', '=', $request->user_id)
+                        ->with(['followers'])->first();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                foreach ($getFollowers->followers as $followers) {
+                    $feedQuery = Feeds::where('user_id', '=', $followers->user_id);
+                    $feedQuery->with(['user', 'image']);
+                    if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
+                        $feedQuery->skip($request->input('offset'));
+                        $feedQuery->take($request->input('limit'));
+                    }
+                    $feeds[] = $feedQuery->get();
+                }
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

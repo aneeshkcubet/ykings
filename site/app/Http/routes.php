@@ -46,12 +46,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.logout',
         'uses' => 'Api\UsersController@logout'
     ]);
-    
+
     Route::post('user/resendverify', [
         'as' => 'user.resendverify',
         'uses' => 'Api\UsersController@resendVerifyEmail'
     ]);
-    
+
     Route::post('user/settings', [
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.signup',
         'uses' => 'Api\UsersController@postRegister'
     ]);
-    
+
     Route::get('verify', [
         'as' => 'confirmation_path',
         'uses' => 'Api\UsersController@confirm'
@@ -81,7 +81,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
     ]);
-
+    //Feed
     Route::post('feeds/create', [
         'as' => 'feeds.create',
         'uses' => 'Api\FeedController@createFeeds'
@@ -116,17 +116,17 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'
     ]);
-    
+
     Route::post('follow/unfollow', [
         'as' => 'follow.unfollow',
         'uses' => 'Api\UserFollowsController@unFollow'
     ]);
-    
+
     Route::post('follow/get', [
         'as' => 'follow.get',
         'uses' => 'Api\UserFollowsController@getFollowers'
     ]);
-    
+
     Route::post('follow/follows', [
         'as' => 'follow.follows',
         'uses' => 'Api\UserFollowsController@getMyFollowings'
