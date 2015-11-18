@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
+    Image,
     Validator,
     DB;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ use App\Profile;
 use App\Feeds;
 use App\Images;
 use App\Clap;
-use App\Image;
 use App\Comment;
 
 class FeedController extends Controller

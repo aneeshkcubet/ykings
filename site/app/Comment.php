@@ -32,4 +32,14 @@ class Comment extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id')->with(['profile'])->select(array('id' , 'email'));
     }
+    /**
+     * Relation with user profile table.
+     * @author <ansa@cubettech.com>
+     * @since 18-11-2015
+     * 
+     */
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id', 'user_id')->select(array('user_id' , 'first_name','last_name','image'));
+    }
 }
