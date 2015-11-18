@@ -635,7 +635,7 @@ class FeedController extends Controller
             if ($user) {
                 $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->get();
 
-                return response()->json(['success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1,'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -759,7 +759,7 @@ class FeedController extends Controller
                 }
 
                 $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
-                return response()->json(['success' => 'clap added', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1,'success' => 'clap added', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
@@ -870,7 +870,7 @@ class FeedController extends Controller
                 if (!is_null($clap)) {
                     $clap->delete();
                     $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
-                    return response()->json(['success' => 'unclaped', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                    return response()->json(['status' => 1,'success' => 'unclaped', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
                 }
