@@ -31,7 +31,7 @@ class UserVideosController extends Controller
     }
 
     /**
-     * @api {get} /user/videos GetUserVideos
+     * @api {post} /user/videos GetUserVideos
      * @apiName GetUserVideos
      * @apiGroup User
      *
@@ -161,7 +161,7 @@ class UserVideosController extends Controller
     }
 
     /**
-     * @api {get} /user/video/delete deleteUserVideo
+     * @api {post} /user/video/delete deleteUserVideo
      * @apiName deleteUserVideo
      * @apiGroup User
      *

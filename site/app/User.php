@@ -1,6 +1,7 @@
 <?php namespace App;
 
-use Event;
+use Event,
+    DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -50,6 +51,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+    
+    protected $appends = array('is_subscribed');
 
     /**
      * Fetch the user's profile via a one to one
@@ -122,5 +125,29 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function image()
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
+    }
+    
+    public function getIsSubscribedAttribute() {
+        
+        return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
+    }
+
+    public function isSubscribed($userId)
+    {
+        $time = time();
+        $subscription = DB::table('subscriptions')
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->orderBy('id', 'DESC')
+            ->first();
+        if(is_null($subscription)){
+            return 0;
+        }        
+       
+        if($subscription->end_time <= $time){
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

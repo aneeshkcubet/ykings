@@ -704,7 +704,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @api {get} /user/get GetUserDetails
+     * @api {post} /user/get GetUserDetails
      * @apiName GetUserDetails
      * @apiGroup User
      *

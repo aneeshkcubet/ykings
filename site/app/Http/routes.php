@@ -141,6 +141,17 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'connect.phone',
         'uses' => 'Api\UserFriendsController@connectFriends'
     ]);
+    Route::post('subscription/update', [
+        'as' => 'subscription.update',
+        'uses' => 'Api\SubscriptionsController@updateSubscription'
+    ]);
+    
+    Route::post('exercises/list', [
+        'as' => 'exercises.list',
+        'uses' => 'Api\ExercisesController@loadExercises'
+    ]);
+    
+    
 });
 
 // Authentication routes...

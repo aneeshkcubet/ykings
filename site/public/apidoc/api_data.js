@@ -1,6 +1,88 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/exercises/list",
+    "title": "loadExercises",
+    "name": "loadExercises",
+    "group": "Exercise",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "groupTitle": "Exercise"
+  },
+  {
+    "type": "post",
     "url": "/feeds/create",
     "title": "CreateFeed",
     "name": "CreateFeed",
@@ -958,7 +1040,7 @@ define({ "api": [
     "groupTitle": "Feeds"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/follow/add",
     "title": "followUser",
     "name": "followUser",
@@ -1077,7 +1159,7 @@ define({ "api": [
     "groupTitle": "Follow"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/follow/get",
     "title": "getFollowers",
     "name": "getFollowers",
@@ -1169,7 +1251,7 @@ define({ "api": [
     "groupTitle": "Follow"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/follow/follows",
     "title": "getFollowings",
     "name": "getFollowings",
@@ -1261,7 +1343,7 @@ define({ "api": [
     "groupTitle": "Follow"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/follow/unfollow",
     "title": "unfollowUser",
     "name": "unfollowUser",
@@ -2010,7 +2092,7 @@ define({ "api": [
     "groupTitle": "User"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/user/get",
     "title": "GetUserDetails",
     "name": "GetUserDetails",
@@ -2097,7 +2179,7 @@ define({ "api": [
     "groupTitle": "User"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/user/videos",
     "title": "GetUserVideos",
     "name": "GetUserVideos",
@@ -2534,7 +2616,7 @@ define({ "api": [
     "groupTitle": "User"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/user/video/delete",
     "title": "deleteUserVideo",
     "name": "deleteUserVideo",
