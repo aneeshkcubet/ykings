@@ -35,8 +35,9 @@ class FeedController extends Controller
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
      * @apiParam {String} item_id id of the targetting item *required
+     * @apiParam {String} [time_taken] time in seconds
      * @apiParam {String} text *required
-     * @apiParam {file} image *optional
+     * @apiParam {file} [image]
      * 
      * @apiSuccess {String} success.
      * 
@@ -141,6 +142,27 @@ class FeedController extends Controller
                     'item_id' => $request->input('item_id'),
                     'feed_text' => $request->input('text')
                 ]);
+                if (!isset($request->time_taken) || ($request->time_taken != null)) {
+                    if ($request->input('item_type') == 'exercise') {
+                        $exerciseUsers = Exerciseuser::where('user_id', $request->input('user_id'))
+                            ->where('exercise_id', $request->input('item_id'));
+
+                        if (!is_null($exerciseUsers)) {
+                            $exerciseUsers->time = $request->input('time_taken') * 60;
+                            ;
+                            $exerciseUsers->update();
+                        }
+                    } else if ($request->input('item_type') == 'workout') {
+                        $workoutUsers = Workoutuser::where('user_id', $request->input('user_id'))
+                            ->where('exercise_id', $request->input('item_id'));
+
+                        if (!is_null($workoutUsers)) {
+                            $workoutUsers->time = $request->input('time_taken') * 60;
+
+                            $workoutUsers->update();
+                        }
+                    }
+                }
 
                 $feed = $user->feeds()->save($feeds);
 
@@ -305,7 +327,7 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['image']);
+                $feedQuery->with(['user', 'image']);
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
                     $feedQuery->take($request->input('limit'));
@@ -459,7 +481,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery->with(['image']);
+                $feedQuery->with(['user', 'image']);
 
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));

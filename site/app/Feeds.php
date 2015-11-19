@@ -22,8 +22,6 @@ class Feeds extends Model
         'feed_text'
     ];
 
-    //   protected $appends = array('comment_count', 'clap_count');
-
     /**
      * Relation with user table.
      * @author <ansa@cubettech.com>
@@ -44,26 +42,7 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-    /**
-     * Returns comment count
-     * @author <ansa@cubettech.com>
-     * @since 11-11-2015
-     */
-//    public function getCommentCountAttribute()
-//    {
-//        return $this->comments->count();
-//    }
-
-    /**
-     * Returns clap count
-     * @author <ansa@cubettech.com>
-     * @since 16-11-2015
-     */
-//    public function getClapCountAttribute()
-//    {
-//        return $this->claps->count();
-//    }
-
+  
     /**
      * Relation with clap table.
      * @author <ansa@cubettech.com>
