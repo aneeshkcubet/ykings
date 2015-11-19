@@ -21,9 +21,8 @@ class Feeds extends Model
         'item_id',
         'feed_text'
     ];
-    
-    
-    protected $appends = array('comment_count', 'clap_count');
+
+    //   protected $appends = array('comment_count', 'clap_count');
 
     /**
      * Relation with user table.
@@ -45,26 +44,25 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-
     /**
      * Returns comment count
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
      */
-    public function getCommentCountAttribute()
-    {
-        return $this->comments->count();
-    }
+//    public function getCommentCountAttribute()
+//    {
+//        return $this->comments->count();
+//    }
 
     /**
      * Returns clap count
      * @author <ansa@cubettech.com>
      * @since 16-11-2015
      */
-    public function getClapCountAttribute()
-    {
-        return $this->claps->count();
-    }
+//    public function getClapCountAttribute()
+//    {
+//        return $this->claps->count();
+//    }
 
     /**
      * Relation with clap table.
@@ -85,13 +83,6 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
-     /**
-     * Relation with comment table.
-     * @author <ansa@cubettech.com>
-     * @since 11-11-2015
-     */
-    public function is_comments()
-    {
-        return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
-    }
+
+   
 }

@@ -203,42 +203,43 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "21",
-      "user_id": "14",
-      "item_type": "excercise",
+      "id": "42",
+      "user_id": "15",
+      "item_type": "workout",
       "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 06:27:51",
-      "updated_at": "2015-11-11 06:27:51",
-      "comment_count": 0,
+      "feed_text": "sdggs",
+      "created_at": "2015-11-16 06:18:06",
+      "updated_at": "2015-11-16 06:18:06",
       "clap_count": 0,
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56",
-      "profile": {
-      "id": "8",
-      "user_id": "14",
-      "first_name": "sachii",
-      "last_name": "k",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": null,
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": []
       },
-      "image": [],
-      "comments": [],
-      "claps": []
+      {
+      "id": "41",
+      "user_id": "15",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "sdggs",
+      "created_at": "2015-11-16 06:17:52",
+      "updated_at": "2015-11-16 06:17:52",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [
+      {
+      "id": "5",
+      "user_id": "11",
+      "path": "11_1447242388.jpg",
+      "description": "testttttttttt",
+      "parent_type": "2",
+      "parent_id": "37",
+      "created_at": "2015-11-11 11:46:28",
+      "updated_at": "2015-11-11 11:46:28"
+      }
+      ]
       }
       ],
       "urls": {
@@ -304,14 +305,33 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['user', 'image']);
+                $feedQuery->with(['image']);
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
                     $feedQuery->take($request->input('limit'));
                 }
                 $feeds = $feedQuery->get();
+                if ($feeds) {
+                    foreach ($feeds as $feedsArray) {
+                        //Clap count
+                        $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
+                            ->where('item_type', '=', 'feed')
+                            ->count();
+                        //comments count
+                        $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
+                            ->where('parent_type', '=', 'feed')
+                            ->count();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                        //is_commented
+                        $feedsArray['is_commented'] = Comment::isCommented($request->user_id, $feedsArray['id'], 'feed');
+                        //is claped
+                        $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
+
+                        $feedsResponse[] = $feedsArray;
+                        unset($feedsArray);
+                    }
+                }
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -333,42 +353,43 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "21",
-      "user_id": "14",
-      "item_type": "excercise",
+      "id": "42",
+      "user_id": "15",
+      "item_type": "workout",
       "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 06:27:51",
-      "updated_at": "2015-11-11 06:27:51",
-      "comment_count": 0,
+      "feed_text": "sdggs",
+      "created_at": "2015-11-16 06:18:06",
+      "updated_at": "2015-11-16 06:18:06",
       "clap_count": 0,
-      "user": {
-      "id": "14",
-      "email": "sachin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56",
-      "profile": {
-      "id": "8",
-      "user_id": "14",
-      "first_name": "sachii",
-      "last_name": "k",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": null,
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-11 06:23:56",
-      "updated_at": "2015-11-11 06:23:56"
-      }
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": []
       },
-      "image": [],
-      "comments": [],
-      "claps": []
+      {
+      "id": "41",
+      "user_id": "15",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "sdggs",
+      "created_at": "2015-11-16 06:17:52",
+      "updated_at": "2015-11-16 06:17:52",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [
+      {
+      "id": "5",
+      "user_id": "11",
+      "path": "11_1447242388.jpg",
+      "description": "testttttttttt",
+      "parent_type": "2",
+      "parent_id": "37",
+      "created_at": "2015-11-11 11:46:28",
+      "updated_at": "2015-11-11 11:46:28"
+      }
+      ]
       }
       ],
       "urls": {
@@ -447,8 +468,27 @@ class FeedController extends Controller
 
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
+                if ($feeds) {
+                    foreach ($feeds as $feedsArray) {
+                        //Clap count
+                        $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
+                            ->where('item_type', '=', 'feed')
+                            ->count();
+                        //comments count
+                        $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
+                            ->where('parent_type', '=', 'feed')
+                            ->count();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                        //is_commented
+                        $feedsArray['is_commented'] = Comment::isCommented($request->user_id, $feedsArray['id'], 'feed');
+                        //is claped
+                        $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
+
+                        $feedsResponse[] = $feedsArray;
+                        unset($feedsArray);
+                    }
+                }
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -582,9 +622,24 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->get();
+                $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->first();
+                if ($feedsArray) {
+                    $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
+                        ->where('item_type', '=', 'feed')
+                        ->count();
+                    //comments count
+                    $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
+                        ->where('parent_type', '=', 'feed')
+                        ->count();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                    //is_commented
+                    $feedsArray['is_commented'] = Comment::isCommented($request->user_id, $feedsArray['id'], 'feed');
+                    //is claped
+                    $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
+
+                    $feedsResponse[] = $feedsArray;
+                }
+                return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $feedsResponse, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

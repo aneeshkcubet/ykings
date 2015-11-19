@@ -42,4 +42,24 @@ class Comment extends Model
     {
         return $this->hasOne('App\Profile', 'user_id', 'user_id')->select(array('user_id' , 'first_name','last_name','image'));
     }
+     /**
+     * Function to check user commented this feed.
+     * @author <ansa@cubettech.com>
+     * @since 19-11-2015
+     */
+    public static function isCommented($userId, $parentId, $parentType)
+    {
+         $commentCount = DB::table('comments')
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->where('parent_id', '=', $parentId)
+            ->where('parent_type', '=', $parentType)
+            ->count();
+        
+        if ($commentCount <= 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }
