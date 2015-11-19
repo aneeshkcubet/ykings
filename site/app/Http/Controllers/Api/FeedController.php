@@ -42,60 +42,9 @@ class FeedController extends Controller
      * 
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-      "status" : 1,
-      "success": "feed_created_successfully",
-      "feed": [
-      {
-      "id": "42",
-      "user_id": "15",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "sdggs",
-      "created_at": "2015-11-16 06:18:06",
-      "updated_at": "2015-11-16 06:18:06",
-      "comment_count": 0,
-      "clap_count": 0,
-      "user": {
-      "id": "15",
-      "email": "dibin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:25:34",
-      "updated_at": "2015-11-11 06:25:34",
-      "profile": {
-      "id": "9",
-      "user_id": "15",
-      "first_name": "Dibu",
-      "last_name": "k",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": null,
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-11 06:25:34",
-      "updated_at": "2015-11-11 06:25:34"
-      }
-      },
-      "image": [],
-      "comments": [],
-      "claps": []
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+     *  {
+      "status": 1,
+      "success": "feed_created_successfully"
       }
      * 
      * @apiError error Message token_invalid.
@@ -232,7 +181,7 @@ class FeedController extends Controller
                     $feeds->image()->save($image_upload);
                 }
                 $feeds = Feeds::with(['user', 'image'])->get();
-                return response()->json(['status' => 1, 'success' => 'feed_created_successfully', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'feed_created_successfully'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -489,7 +438,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery->with(['user', 'image']);
+                $feedQuery->with(['image']);
 
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
@@ -635,7 +584,7 @@ class FeedController extends Controller
             if ($user) {
                 $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->get();
 
-                return response()->json(['status' => 1,'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -653,42 +602,7 @@ class FeedController extends Controller
      *    HTTP/1.1 200 OK
       {
       "status": 1,
-      "feed": [
-      {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36",
-      "comment_count": 0,
-      "clap_count": 1,
-      "comments": [],
-      "image": [],
-      "claps": [
-      {
-      "id": "2",
-      "user_id": "15",
-      "item_type": "feed",
-      "item_id": "16",
-      "created_at": "2015-11-16 04:54:59",
-      "updated_at": "2015-11-16 04:54:59"
-      }
-      ]
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+      "success": "clap added"
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -759,7 +673,7 @@ class FeedController extends Controller
                 }
 
                 $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
-                return response()->json(['status' => 1,'success' => 'clap added', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'clap added'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
@@ -776,34 +690,7 @@ class FeedController extends Controller
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
       {
-      "success": "unclaped",
-      "feed": [
-      {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36",
-      "comment_count": 0,
-      "clap_count": 0,
-      "comments": [],
-      "claps": [],
-      "image": []
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+      "success": "unclaped"
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -870,7 +757,7 @@ class FeedController extends Controller
                 if (!is_null($clap)) {
                     $clap->delete();
                     $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
-                    return response()->json(['status' => 1,'success' => 'unclaped', 'feed' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
+                    return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
                 }

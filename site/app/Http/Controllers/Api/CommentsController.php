@@ -191,7 +191,7 @@ class CommentsController extends Controller
 
             $feed = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'image', 'claps'])->first();
 
-            return response()->json(['status' => 1, 'success' => 'commented_on_feed_successfully', 'feed' => $feed->toArray(), 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'commented_on_feed_successfully'], 200);
         }
     }
 
