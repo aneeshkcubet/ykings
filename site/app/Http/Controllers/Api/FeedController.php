@@ -142,27 +142,6 @@ class FeedController extends Controller
                     'item_id' => $request->input('item_id'),
                     'feed_text' => $request->input('text')
                 ]);
-                if (!isset($request->time_taken) || ($request->time_taken != null)) {
-                    if ($request->input('item_type') == 'exercise') {
-                        $exerciseUsers = Exerciseuser::where('user_id', $request->input('user_id'))
-                            ->where('exercise_id', $request->input('item_id'));
-
-                        if (!is_null($exerciseUsers)) {
-                            $exerciseUsers->time = $request->input('time_taken') * 60;
-                            ;
-                            $exerciseUsers->update();
-                        }
-                    } else if ($request->input('item_type') == 'workout') {
-                        $workoutUsers = Workoutuser::where('user_id', $request->input('user_id'))
-                            ->where('exercise_id', $request->input('item_id'));
-
-                        if (!is_null($workoutUsers)) {
-                            $workoutUsers->time = $request->input('time_taken') * 60;
-
-                            $workoutUsers->update();
-                        }
-                    }
-                }
 
                 $feed = $user->feeds()->save($feeds);
 
@@ -319,6 +298,7 @@ class FeedController extends Controller
      */
     public function userFeeds(Request $request)
     {
+        $feedsResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
@@ -334,24 +314,7 @@ class FeedController extends Controller
                 }
                 $feeds = $feedQuery->get();
                 if ($feeds) {
-                    foreach ($feeds as $feedsArray) {
-                        //Clap count
-                        $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
-                            ->where('item_type', '=', 'feed')
-                            ->count();
-                        //comments count
-                        $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
-                            ->where('parent_type', '=', 'feed')
-                            ->count();
-
-                        //is_commented
-                        $feedsArray['is_commented'] = Comment::isCommented($request->user_id, $feedsArray['id'], 'feed');
-                        //is claped
-                        $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
-
-                        $feedsResponse[] = $feedsArray;
-                        unset($feedsArray);
-                    }
+                    $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
             } else {
@@ -467,6 +430,7 @@ class FeedController extends Controller
      */
     public function listFeeds(Request $request)
     {
+        $feedsResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
@@ -491,30 +455,42 @@ class FeedController extends Controller
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
                 if ($feeds) {
-                    foreach ($feeds as $feedsArray) {
-                        //Clap count
-                        $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
-                            ->where('item_type', '=', 'feed')
-                            ->count();
-                        //comments count
-                        $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
-                            ->where('parent_type', '=', 'feed')
-                            ->count();
-
-                        //is_commented
-                        $feedsArray['is_commented'] = Comment::isCommented($request->user_id, $feedsArray['id'], 'feed');
-                        //is claped
-                        $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
-
-                        $feedsResponse[] = $feedsArray;
-                        unset($feedsArray);
-                    }
+                    $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
+    }
+
+    /**
+     * Function to get additional parameters in feeds
+     * @since 19/11/2015
+     * @author ansa@cubettech.com
+     * @return json
+     */
+    protected function AdditionalFeedsDetails($feeds, $userId)
+    {
+        foreach ($feeds as $feedsArray) {
+            //Clap count
+            $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
+                ->where('item_type', '=', 'feed')
+                ->count();
+            //comments count
+            $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
+                ->where('parent_type', '=', 'feed')
+                ->count();
+
+            //is_commented
+            $feedsArray['is_commented'] = Comment::isCommented($userId, $feedsArray['id'], 'feed');
+            //is claped
+            $feedsArray['is_claped'] = Clap::isClaped($userId, $feedsArray['id'], 'feed');
+
+            $feedsResponse[] = $feedsArray;
+            unset($feedsArray);
+        }
+        return $feedsResponse;
     }
 
     /**
