@@ -3,7 +3,8 @@
 use Auth,
     Image,
     Validator,
-    DB;
+    DB,
+    Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,10 @@ use App\Feeds;
 use App\Images;
 use App\Clap;
 use App\Comment;
+use App\Exerciseuser;
+use App\WorkoutUser;
+
+
 
 class FeedController extends Controller
 {
@@ -35,7 +40,9 @@ class FeedController extends Controller
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
      * @apiParam {String} item_id id of the targetting item *required
-     * @apiParam {String} [time_taken] time in seconds
+     * @apiParam {String} time_taken time in seconds
+     * @apiParam {String} rewards points earned by doing activity
+     * @apiParam {String} category in case of workout completion
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * 
@@ -136,6 +143,57 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
+                
+                $itemId = $request->input('item_id');
+
+                if ($request->item_type == 'exercise') {
+                    Exerciseuser::create([
+                        'user_id' => $request->user_id,
+                        'exercise_id' => $request->item_id,
+                        'status' => 1,
+                        'time' => $request->time_taken,
+                    ]);
+
+                    $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
+                        ->where('exercise_id', $request->item_id)
+                        ->where('status', 1)
+                        ->first();
+
+                    $itemId = $exerciseDetails->id;
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'activity' => 'exercise_completed',
+                        'points' => $request->rewards,
+                        'created_at' => Carbon::now()
+                    ]);
+                } elseif ($request->item_type == 'workout') {
+
+                    WorkoutUser::create([
+                        'workout_id' => $request->item_id,
+                        'user_id' => $request->user_id,
+                        'status' => 1,
+                        'time' => $request->time_taken,
+                        'category' => $request->category,
+                        'is_starred' => 0
+                    ]);
+
+                    $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
+                        ->where('workout_id', $request->item_id)
+                        ->where('status', 1)
+                        ->where('category', $request->category)
+                        ->first();
+
+                    $itemId = $exerciseDetails->id;
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'activity' => 'workout_completed',
+                        'points' => $request->rewards,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
+
                 $feeds = new Feeds([
                     'user_id' => $request->input('user_id'),
                     'item_type' => $request->input('item_type'),
@@ -330,8 +388,8 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['image', 'profile','workout','exercise']);
-                 if ($request->offset != null && $request->limit != null) {
+                $feedQuery->with(['image', 'profile', 'workout', 'exercise']);
+                if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
                 }
@@ -491,9 +549,9 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery->with(['image', 'profile' ,'workout','exercise']);
+                $feedQuery->with(['image', 'profile', 'workout', 'exercise']);
 
-                 if ($request->offset != null && $request->limit != null) {
+                if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
                 }

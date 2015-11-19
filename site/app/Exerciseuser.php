@@ -21,7 +21,7 @@ class Exerciseuser extends Model
         'status',
         'time'
     ];
-    
+
     /**
      * Define the relationship for the author
      *
@@ -31,6 +31,4 @@ class Exerciseuser extends Model
     {
         return $this->hasOne('App\Profile', 'user_id', 'user_id');
     }
-    
-    
 }

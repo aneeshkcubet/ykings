@@ -22,7 +22,7 @@ class WorkoutUser extends Model
         'time',
         'category'
     ];
-    
+
     /**
      * Define the relationship for the author
      *
@@ -32,6 +32,9 @@ class WorkoutUser extends Model
     {
         return $this->hasOne('App\Profile', 'user_id', 'user_id');
     }
-    
-    
+
+    public function completeWorkout($data)
+    {
+        
+    }
 }

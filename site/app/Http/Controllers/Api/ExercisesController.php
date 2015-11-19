@@ -34,9 +34,9 @@ class ExercisesController extends Controller
     }
 
     /**
-     * @api {post} /workout/list loadWorkouts
-     * @apiName loadWorkouts
-     * @apiGroup Workouts
+     * @api {post} /workout/list loadExercises
+     * @apiName loadExercises
+     * @apiGroup Exercise
      * @apiParam {Number} user_id Id of user 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:

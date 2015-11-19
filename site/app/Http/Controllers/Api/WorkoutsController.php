@@ -39,7 +39,7 @@ class WorkoutsController extends Controller
     /**
      * @api {post} /workout/list loadWorkouts
      * @apiName loadWorkouts
-     * @apiGroup Exercise
+     * @apiGroup Workout
      * @apiParam {Number} user_id Id of user 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -356,6 +356,113 @@ class WorkoutsController extends Controller
                 $workoutExercises = Workoutexercise::where('category', '=', $request->category)->get();
                 
                 $workoutArray['exercises'] = $workoutExercises->toArray();
+                
+                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
+            }
+        }
+    }
+    
+    /**
+     * @api {post} /workout/addstar addStar
+     * @apiName addStar
+     * @apiGroup Workout
+     * @apiParam {Number} workout_id Id of workout *required
+     * @apiParam {Number} category of workout *required 1-beginer, 2-advanced, 3-professional
+     * @apiParam {Number} user_id of workout *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message Validation error
+     * @apiError error Message workout_not_exists
+     * @apiError error Message You need to complete this workout to star.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The exercise_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The category field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 You need to complete this workout to star.
+     *     {
+     *       "status" : 0,
+     *       "error": "You need to complete this workout to star."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 workout_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "workout_not_exists"
+     *     }
+     * 
+     */
+    public function addStar(Request $request)
+    {
+        if (!isset($request->workout_id) || ($request->workout_id == null)) {
+            return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
+        } elseif (!isset($request->category) || ($request->category == null)) {
+            return response()->json(["status" => "0", "error" => "The category field is required"]);
+        } elseif (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
+            if (!is_null($workout)) {
+                
+                $workoutUser = WorkoutUser::where('workout_id', $workout->id)
+                    ->where('user_id', $request->user_id)
+                    ->where('category', $request->category)
+                    ->first();
+                
+                if(!is_null($workoutUser)){
+                    $workoutUser->update(['is_stared' => 1]);
+                    
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'You need to complete this workout to star.'], 422);                    
+                }
                 
                 return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
             } else {
