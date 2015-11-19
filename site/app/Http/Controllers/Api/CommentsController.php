@@ -36,62 +36,8 @@ class CommentsController extends Controller
      * HTTP/1.1 200 OK
      * {
       "status": 1,
-      "success": "commented_on_feed_successfully",
-      "feed": {
-      "id": "6",
-      "user_id": "2",
-      "item_type": "excercise",
-      "item_id": "1",
-      "feed_text": "This is a sample feed text.",
-      "created_at": "2015-11-16 11:55:34",
-      "updated_at": "2015-11-16 11:55:34",
-      "comment_count": 2,
-      "clap_count": 0,
-      "comments": [
-      {
-      "id": "2",
-      "user_id": "2",
-      "parent_type": "feed",
-      "parent_id": "6",
-      "comment_text": "This is another comment",
-      "created_at": "2015-11-16 13:55:14",
-      "updated_at": "2015-11-16 13:55:14"
-      },
-      {
-      "id": "3",
-      "user_id": "5",
-      "parent_type": "feed",
-      "parent_id": "6",
-      "comment_text": "This is another comment",
-      "created_at": "2015-11-16 13:55:40",
-      "updated_at": "2015-11-16 13:55:40"
-      }
-      ],
-      "image": [
-      {
-      "id": "2",
-      "user_id": "2",
-      "path": "2_1447674934.jpg",
-      "description": "This is a sample feed text.",
-      "parent_type": "2",
-      "parent_id": "6",
-      "created_at": "2015-11-16 11:55:34",
-      "updated_at": "2015-11-16 11:55:34"
-      }
-      ],
-      "claps": []
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-      }
+      "success": "commented_on_feed_successfully"
+      
       }
      * 
      * @apiError error Message token_invalid.
@@ -189,8 +135,6 @@ class CommentsController extends Controller
                     'comment_text' => $request->text
             ]);
 
-            $feed = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'image', 'claps'])->first();
-
             return response()->json(['status' => 1, 'success' => 'commented_on_feed_successfully'], 200);
         }
     }
@@ -207,51 +151,51 @@ class CommentsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
       {
-        "status": 1,
-        "comments": [
-            {
-                "id": "1",
-                "user_id": "14",
-                "parent_type": "feed",
-                "parent_id": "15",
-                "comment_text": "This is a sample comment",
-                "created_at": "2015-11-16 13:53:47",
-                "updated_at": "2015-11-17 13:01:09",
-                "profile": {
-                    "user_id": "14",
-                    "first_name": "sachii",
-                    "last_name": "k",
-                    "image": null
-                }
-            },
-            {
-                "id": "2",
-                "user_id": "11",
-                "parent_type": "feed",
-                "parent_id": "15",
-                "comment_text": "This is another comment",
-                "created_at": "2015-11-16 13:55:14",
-                "updated_at": "2015-11-17 13:02:38",
-                "profile": {
-                    "user_id": "11",
-                    "first_name": "ansa",
-                    "last_name": "v",
-                    "image": "11_1447237788.jpg"
-                }
-            }
-        ],
-        "urls": {
-            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-            "video": "http://ykings.me/uploads/videos",
-            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-        }
-    }
+      "status": 1,
+      "comments": [
+      {
+      "id": "1",
+      "user_id": "14",
+      "parent_type": "feed",
+      "parent_id": "15",
+      "comment_text": "This is a sample comment",
+      "created_at": "2015-11-16 13:53:47",
+      "updated_at": "2015-11-17 13:01:09",
+      "profile": {
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "image": null
+      }
+      },
+      {
+      "id": "2",
+      "user_id": "11",
+      "parent_type": "feed",
+      "parent_id": "15",
+      "comment_text": "This is another comment",
+      "created_at": "2015-11-16 13:55:14",
+      "updated_at": "2015-11-17 13:02:38",
+      "profile": {
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "image": "11_1447237788.jpg"
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError user_not_exists User error.

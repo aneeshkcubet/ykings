@@ -491,7 +491,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery->with(['image', 'profile']);
+                $feedQuery->with(['image', 'profile' ,'workout','exercise']);
 
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));

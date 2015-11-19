@@ -41,7 +41,7 @@ class Feeds extends Model
      */
     public function profile()
     {
-        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id','first_name','last_name','image'));
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image'));
     }
 
     /**
@@ -72,5 +72,25 @@ class Feeds extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
+    }
+
+    /**
+     * Relation with workout table.
+     * @author <ansa@cubettech.com>
+     * @since 19-11-2015
+     */
+    public function workout()
+    {
+        return $this->hasMany('App\Workout', 'category','feed');
+    }
+    
+    /**
+     * Relation with exercise table.
+     * @author <ansa@cubettech.com>
+     * @since 19-11-2015
+     */
+    public function exercise()
+    {
+        return $this->hasMany('App\Exercise', 'category','feed');
     }
 }
