@@ -204,27 +204,44 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "42",
-      "user_id": "15",
+      "id": "38",
+      "user_id": "11",
       "item_type": "workout",
       "item_id": "1",
-      "feed_text": "sdggs",
-      "created_at": "2015-11-16 06:18:06",
-      "updated_at": "2015-11-16 06:18:06",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 11:53:35",
+      "updated_at": "2015-11-11 11:53:35",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "image": []
+      "image": [
+      {
+      "id": "6",
+      "user_id": "11",
+      "path": "11_1447242815.jpg",
+      "description": "testttttttttt",
+      "parent_type": "2",
+      "parent_id": "38",
+      "created_at": "2015-11-11 11:53:35",
+      "updated_at": "2015-11-11 11:53:35"
+      }
+      ],
+      "profile": {
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "image": "11_1447237788.jpg"
+      }
       },
       {
-      "id": "41",
-      "user_id": "15",
+      "id": "37",
+      "user_id": "11",
       "item_type": "workout",
       "item_id": "1",
-      "feed_text": "sdggs",
-      "created_at": "2015-11-16 06:17:52",
-      "updated_at": "2015-11-16 06:17:52",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 11:46:28",
+      "updated_at": "2015-11-11 11:46:28",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
@@ -240,7 +257,13 @@ class FeedController extends Controller
       "created_at": "2015-11-11 11:46:28",
       "updated_at": "2015-11-11 11:46:28"
       }
-      ]
+      ],
+      "profile": {
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "image": "11_1447237788.jpg"
+      }
       }
       ],
       "urls": {
@@ -307,7 +330,7 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['user', 'image']);
+                $feedQuery->with(['image', 'profile']);
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
                     $feedQuery->take($request->input('limit'));
@@ -338,27 +361,44 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "42",
-      "user_id": "15",
+      "id": "38",
+      "user_id": "11",
       "item_type": "workout",
       "item_id": "1",
-      "feed_text": "sdggs",
-      "created_at": "2015-11-16 06:18:06",
-      "updated_at": "2015-11-16 06:18:06",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 11:53:35",
+      "updated_at": "2015-11-11 11:53:35",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "image": []
+      "image": [
+      {
+      "id": "6",
+      "user_id": "11",
+      "path": "11_1447242815.jpg",
+      "description": "testttttttttt",
+      "parent_type": "2",
+      "parent_id": "38",
+      "created_at": "2015-11-11 11:53:35",
+      "updated_at": "2015-11-11 11:53:35"
+      }
+      ],
+      "profile": {
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "image": "11_1447237788.jpg"
+      }
       },
       {
-      "id": "41",
-      "user_id": "15",
+      "id": "37",
+      "user_id": "11",
       "item_type": "workout",
       "item_id": "1",
-      "feed_text": "sdggs",
-      "created_at": "2015-11-16 06:17:52",
-      "updated_at": "2015-11-16 06:17:52",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 11:46:28",
+      "updated_at": "2015-11-11 11:46:28",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
@@ -374,7 +414,13 @@ class FeedController extends Controller
       "created_at": "2015-11-11 11:46:28",
       "updated_at": "2015-11-11 11:46:28"
       }
-      ]
+      ],
+      "profile": {
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "image": "11_1447237788.jpg"
+      }
       }
       ],
       "urls": {
@@ -445,7 +491,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
 
-                $feedQuery->with(['user', 'image']);
+                $feedQuery->with(['image', 'profile']);
 
                 if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
                     $feedQuery->skip($request->input('offset'));
@@ -465,7 +511,7 @@ class FeedController extends Controller
     }
 
     /**
-     * Function to get additional parameters in feeds
+     * Function to get additional parameters in feeds.
      * @since 19/11/2015
      * @author ansa@cubettech.com
      * @return json
@@ -503,53 +549,27 @@ class FeedController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "success": "List",
-      "feed_list": [
+      "status": 1,
+      "success": "Details",
+      "feed_details": [
       {
-      "id": "16",
-      "user_id": "11",
-      "item_type": "workout",
+      "id": "21",
+      "user_id": "14",
+      "item_type": "excercise",
       "item_id": "1",
       "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 03:58:36",
-      "updated_at": "2015-11-11 03:58:36",
+      "created_at": "2015-11-11 06:27:51",
+      "updated_at": "2015-11-11 06:27:51",
+      "clap_count": 0,
       "comment_count": 0,
-      "clap_count": 1,
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07",
+      "is_commented": 0,
+      "is_claped": 0,
       "profile": {
-      "id": "7",
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": "11_1447237788.jpg",
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-12 09:05:16"
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "image": null
       }
-      },
-      "comments": [],
-      "claps": [
-      {
-      "id": "2",
-      "user_id": "15",
-      "item_type": "feed",
-      "item_id": "16",
-      "created_at": "2015-11-16 04:54:59",
-      "updated_at": "2015-11-16 04:54:59"
-      }
-      ]
       }
       ],
       "urls": {
@@ -558,6 +578,7 @@ class FeedController extends Controller
       "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
       "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
       "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
       "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
       "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
       "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
@@ -620,7 +641,8 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))->with(['user', 'comments', 'claps'])->first();
+                $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))
+                        ->with(['profile'])->first();
                 if ($feedsArray) {
                     $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
                         ->where('item_type', '=', 'feed')

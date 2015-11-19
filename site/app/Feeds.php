@@ -34,6 +34,17 @@ class Feeds extends Model
     }
 
     /**
+     * Relation with user table.
+     * @author <ansa@cubettech.com>
+     * @since 19-11-2015
+     * 
+     */
+    public function profile()
+    {
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id','first_name','last_name','image'));
+    }
+
+    /**
      * Relation with image table.
      * @author <ansa@cubettech.com>
      * @since 11-11-2015
@@ -42,7 +53,7 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-  
+
     /**
      * Relation with clap table.
      * @author <ansa@cubettech.com>
@@ -62,6 +73,4 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
-
-   
 }
