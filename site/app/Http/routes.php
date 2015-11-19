@@ -154,8 +154,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('exercise/get', [
         'as' => 'exercise.get',
         'uses' => 'Api\ExercisesController@getExercise'
-    ]);
-    
+    ]); 
     
 });
 

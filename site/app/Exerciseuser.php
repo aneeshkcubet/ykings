@@ -18,8 +18,19 @@ class Exerciseuser extends Model
     protected $fillable = [
         'user_id',
         'exercise_id',
-        'status'
+        'status',
+        'time'
     ];
+    
+    /**
+     * Define the relationship for the author
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function profile()
+    {
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id');
+    }
     
     
 }

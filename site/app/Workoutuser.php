@@ -18,7 +18,8 @@ class Workout extends Model
     protected $fillable = [
         'workout_id',
         'user_id',
-        'status'
+        'status',
+        'time'
     ];
     
     
