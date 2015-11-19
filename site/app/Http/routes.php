@@ -146,9 +146,14 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\SubscriptionsController@updateSubscription'
     ]);
     
-    Route::post('exercises/list', [
-        'as' => 'exercises.list',
+    Route::post('exercise/list', [
+        'as' => 'exercise.list',
         'uses' => 'Api\ExercisesController@loadExercises'
+    ]);
+    
+    Route::post('exercise/get', [
+        'as' => 'exercise.get',
+        'uses' => 'Api\ExercisesController@getExercise'
     ]);
     
     

@@ -34,6 +34,7 @@ class Video extends Model
     protected $fillable = [
         'user_id',
         'path',
+        'videothumbnail',
         'parent_type',
         'parent_id'
     ];

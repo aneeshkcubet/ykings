@@ -34,7 +34,7 @@ class ExercisesController extends Controller
     }
 
     /**
-     * @api {post} /exercises/list loadExercises
+     * @api {post} /exercise/list loadExercises
      * @apiName loadExercises
      * @apiGroup Exercise
      * @apiParam {Number} user_id Id of user 
@@ -43,49 +43,94 @@ class ExercisesController extends Controller
      * HTTP/1.1 200 OK
      * {
             "status": 1,
-            "exercises": [
-                {
-                    "id": "1",
-                    "name": "Jumping Pullups",
-                    "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-                    "category": "1",
-                    "type": "1",
-                    "rewards": "6.00",
-                    "repititions": "10",
-                    "duration": "1.00",
-                    "equipment": "",
-                    "created_at": "2015-11-17 13:30:19",
-                    "updated_at": "2015-11-17 13:30:19",
-                    "video": [
-                        {
-                            "id": "1",
-                            "user_id": "1",
-                            "path": "Now1.mp4",
-                            "description": "Test Description",
-                            "parent_type": "1",
-                            "type": "1",
-                            "parent_id": "1",
-                            "created_at": "2015-11-11 07:26:40",
-                            "updated_at": "2015-11-11 17:43:27"
-                        }
-                    ]
-                },
-                {
-                    "id": "2",
-                    "name": "Australian Pullups",
-                    "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
-                    "category": "1",
-                    "type": "1",
-                    "rewards": "6.00",
-                    "repititions": "10",
-                    "duration": "1.00",
-                    "equipment": "",
-                    "created_at": "2015-11-17 13:30:20",
-                    "updated_at": "2015-11-17 13:30:20",
-                    "video": []
-                }
-           ]
-      }
+            "exercises": {
+                "beginer": [
+                    {
+                        "id": "1",
+                        "name": "Jumping Pullups",
+                        "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+                        "category": "1",
+                        "type": "1",
+                        "rewards": "6.00",
+                        "repititions": "10",
+                        "duration": "1.00",
+                        "equipment": "",
+                        "created_at": "2015-11-17 13:30:19",
+                        "updated_at": "2015-11-17 13:30:19",
+                        "video": [
+                            {
+                                "id": "1",
+                                "user_id": "1",
+                                "path": "Now1.mp4",
+                                "description": "Test Description",
+                                "parent_type": "1",
+                                "type": "1",
+                                "parent_id": "1",
+                                "created_at": "2015-11-11 07:26:40",
+                                "updated_at": "2015-11-11 17:43:27"
+                            }
+                        ]
+                    }
+                ],
+               "advanced": [
+                    {
+                        "id": "1",
+                        "name": "Jumping Pullups",
+                        "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+                        "category": "1",
+                        "type": "1",
+                        "rewards": "6.00",
+                        "repititions": "10",
+                        "duration": "1.00",
+                        "equipment": "",
+                        "created_at": "2015-11-17 13:30:19",
+                        "updated_at": "2015-11-17 13:30:19",
+                        "video": [
+                            {
+                                "id": "1",
+                                "user_id": "1",
+                                "path": "Now1.mp4",
+                                "description": "Test Description",
+                                "parent_type": "1",
+                                "type": "1",
+                                "parent_id": "1",
+                                "created_at": "2015-11-11 07:26:40",
+                                "updated_at": "2015-11-11 17:43:27"
+                            }
+                        ]
+                    }
+                ],
+                "professional": [
+                    {
+                        "id": "1",
+                        "name": "Jumping Pullups",
+                        "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+                        "category": "1",
+                        "type": "1",
+                        "rewards": "6.00",
+                        "repititions": "10",
+                        "duration": "1.00",
+                        "equipment": "",
+                        "created_at": "2015-11-17 13:30:19",
+                        "updated_at": "2015-11-17 13:30:19",
+                        "video": [
+                            {
+                                "id": "1",
+                                "user_id": "1",
+                                "path": "Now1.mp4",
+                                "description": "Test Description",
+                                "parent_type": "1",
+                                "type": "1",
+                                "parent_id": "1",
+                                "created_at": "2015-11-11 07:26:40",
+                                "updated_at": "2015-11-11 17:43:27"
+                            }
+                        ]
+                    }
+                ]
+            }
+      
+        }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -136,13 +181,82 @@ class ExercisesController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
                 if ($user->is_subscribed == 1) {
-                    $exercises = Exercise::all()->with(['video']);
+                    $leanExercises = Exercise::where('category', '=', 1)->with(['video'])->get();
+                    $athleticExercises = Exercise::where('category', '=', 2)->with(['video'])->get();
+                    $strongExercises = Exercise::where('category', '=', 3)->with(['video'])->get();
                 } else {
-                    $exercises = Exercise::where('type', '=', 1)->with(['video'])->get();
+                    $leanExercises = Exercise::where('category', '=', 1)->where('type', '=', 1)->with(['video'])->get();
+                    $athleticExercises = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
+                    $strongExercises = Exercise::where('category', '=', 3)->where('type', '=', 3)->with(['video'])->get();
                 }
-                return response()->json(['status' => 1, 'exercises' => $exercises->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'exercises' => ['beginer'=>$leanExercises, 'advanced' => $athleticExercises, 'professional' => $strongExercises], 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
+        }
+    }
+    
+    /**
+     * @api {post} /exercise/get getExercise
+     * @apiName getExercise
+     * @apiGroup Exercise
+     * @apiParam {Number} exercise_id Id of exercise 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message exercise_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The exercise_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 exercise_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "exercise_not_exists"
+     *     }
+     * 
+     */
+    public function getExercise(Request $request)
+    {
+        if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
+            return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
+        } else {
+            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->with(['video','users'])->first();
+            if (!is_null($exercise)) {                
+                return response()->json(['status' => 1, 'exercise' => $exercise, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'exercise_not_exists'], 500);
             }
         }
     }

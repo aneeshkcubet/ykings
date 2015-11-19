@@ -1,7 +1,89 @@
 [
   {
     "type": "post",
-    "url": "/exercises/list",
+    "url": "/exercise/get",
+    "title": "getExercise",
+    "name": "getExercise",
+    "group": "Exercise",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "exercise_id",
+            "description": "<p>Id of exercise</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The exercise_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 exercise_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"exercise_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "groupTitle": "Exercise"
+  },
+  {
+    "type": "post",
+    "url": "/exercise/list",
     "title": "loadExercises",
     "name": "loadExercises",
     "group": "Exercise",
@@ -33,7 +115,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK",
+          "content": "HTTP/1.1 200 OK\n{\n            \"status\": 1,\n            \"exercises\": {\n                \"beginer\": [\n                    {\n                        \"id\": \"1\",\n                        \"name\": \"Jumping Pullups\",\n                        \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                        \"category\": \"1\",\n                        \"type\": \"1\",\n                        \"rewards\": \"6.00\",\n                        \"repititions\": \"10\",\n                        \"duration\": \"1.00\",\n                        \"equipment\": \"\",\n                        \"created_at\": \"2015-11-17 13:30:19\",\n                        \"updated_at\": \"2015-11-17 13:30:19\",\n                        \"video\": [\n                            {\n                                \"id\": \"1\",\n                                \"user_id\": \"1\",\n                                \"path\": \"Now1.mp4\",\n                                \"description\": \"Test Description\",\n                                \"parent_type\": \"1\",\n                                \"type\": \"1\",\n                                \"parent_id\": \"1\",\n                                \"created_at\": \"2015-11-11 07:26:40\",\n                                \"updated_at\": \"2015-11-11 17:43:27\"\n                            }\n                        ]\n                    }\n                ],\n               \"advanced\": [\n                    {\n                        \"id\": \"1\",\n                        \"name\": \"Jumping Pullups\",\n                        \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                        \"category\": \"1\",\n                        \"type\": \"1\",\n                        \"rewards\": \"6.00\",\n                        \"repititions\": \"10\",\n                        \"duration\": \"1.00\",\n                        \"equipment\": \"\",\n                        \"created_at\": \"2015-11-17 13:30:19\",\n                        \"updated_at\": \"2015-11-17 13:30:19\",\n                        \"video\": [\n                            {\n                                \"id\": \"1\",\n                                \"user_id\": \"1\",\n                                \"path\": \"Now1.mp4\",\n                                \"description\": \"Test Description\",\n                                \"parent_type\": \"1\",\n                                \"type\": \"1\",\n                                \"parent_id\": \"1\",\n                                \"created_at\": \"2015-11-11 07:26:40\",\n                                \"updated_at\": \"2015-11-11 17:43:27\"\n                            }\n                        ]\n                    }\n                ],\n                \"professional\": [\n                    {\n                        \"id\": \"1\",\n                        \"name\": \"Jumping Pullups\",\n                        \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                        \"category\": \"1\",\n                        \"type\": \"1\",\n                        \"rewards\": \"6.00\",\n                        \"repititions\": \"10\",\n                        \"duration\": \"1.00\",\n                        \"equipment\": \"\",\n                        \"created_at\": \"2015-11-17 13:30:19\",\n                        \"updated_at\": \"2015-11-17 13:30:19\",\n                        \"video\": [\n                            {\n                                \"id\": \"1\",\n                                \"user_id\": \"1\",\n                                \"path\": \"Now1.mp4\",\n                                \"description\": \"Test Description\",\n                                \"parent_type\": \"1\",\n                                \"type\": \"1\",\n                                \"parent_id\": \"1\",\n                                \"created_at\": \"2015-11-11 07:26:40\",\n                                \"updated_at\": \"2015-11-11 17:43:27\"\n                            }\n                        ]\n                    }\n                ]\n            }\n      \n        }",
           "type": "json"
         }
       ]
@@ -143,7 +225,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\" : 1,\n      \"success\": \"feed_created_successfully\",\n      \"feed\": [\n      {\n      \"id\": \"42\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:18:06\",\n      \"updated_at\": \"2015-11-16 06:18:06\",\n      \"comment_count\": 0,\n      \"clap_count\": 0,\n      \"user\": {\n      \"id\": \"15\",\n      \"email\": \"dibin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\",\n      \"profile\": {\n      \"id\": \"9\",\n      \"user_id\": \"15\",\n      \"first_name\": \"Dibu\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\"\n      }\n      },\n      \"image\": [],\n      \"comments\": [],\n      \"claps\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n {\n      \"status\": 1,\n      \"success\": \"feed_created_successfully\"\n      }",
           "type": "json"
         }
       ]
@@ -567,7 +649,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n   {\n   \"status\": 1,\n   \"feed\": [\n   {\n   \"id\": \"16\",\n   \"user_id\": \"11\",\n   \"item_type\": \"workout\",\n   \"item_id\": \"1\",\n   \"feed_text\": \"testttttttttt\",\n   \"created_at\": \"2015-11-11 03:58:36\",\n   \"updated_at\": \"2015-11-11 03:58:36\",\n   \"comment_count\": 0,\n   \"clap_count\": 1,\n   \"comments\": [],\n   \"image\": [],\n   \"claps\": [\n   {\n   \"id\": \"2\",\n   \"user_id\": \"15\",\n   \"item_type\": \"feed\",\n   \"item_id\": \"16\",\n   \"created_at\": \"2015-11-16 04:54:59\",\n   \"updated_at\": \"2015-11-16 04:54:59\"\n   }\n   ]\n   }\n   ],\n   \"urls\": {\n   \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n   \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n   \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n   \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n   \"video\": \"http://ykings.me/uploads/videos\",\n   \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n   \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n   \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n   \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n   }\n   }",
+          "content": "HTTP/1.1 200 OK\n   {\n   \"status\": 1,\n   \"success\": \"clap added\"\n   }",
           "type": "json"
         }
       ]
@@ -875,7 +957,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK{\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"8\",\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:23:56\",\n                        \"updated_at\": \"2015-11-11 06:23:56\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n      {\n        \"status\": 1,\n        \"comments\": [\n            {\n                \"id\": \"1\",\n                \"user_id\": \"14\",\n                \"parent_type\": \"feed\",\n                \"parent_id\": \"15\",\n                \"comment_text\": \"This is a sample comment\",\n                \"created_at\": \"2015-11-16 13:53:47\",\n                \"updated_at\": \"2015-11-17 13:01:09\",\n                \"profile\": {\n                    \"user_id\": \"14\",\n                    \"first_name\": \"sachii\",\n                    \"last_name\": \"k\",\n                    \"image\": null\n                }\n            },\n            {\n                \"id\": \"2\",\n                \"user_id\": \"11\",\n                \"parent_type\": \"feed\",\n                \"parent_id\": \"15\",\n                \"comment_text\": \"This is another comment\",\n                \"created_at\": \"2015-11-16 13:55:14\",\n                \"updated_at\": \"2015-11-17 13:02:38\",\n                \"profile\": {\n                    \"user_id\": \"11\",\n                    \"first_name\": \"ansa\",\n                    \"last_name\": \"v\",\n                    \"image\": \"11_1447237788.jpg\"\n                }\n            }\n        ],\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n        }\n    }",
           "type": "json"
         }
       ]
@@ -975,7 +1057,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n   {\n   \"success\": \"unclaped\",\n   \"feed\": [\n   {\n   \"id\": \"16\",\n   \"user_id\": \"11\",\n   \"item_type\": \"workout\",\n   \"item_id\": \"1\",\n   \"feed_text\": \"testttttttttt\",\n   \"created_at\": \"2015-11-11 03:58:36\",\n   \"updated_at\": \"2015-11-11 03:58:36\",\n   \"comment_count\": 0,\n   \"clap_count\": 0,\n   \"comments\": [],\n   \"claps\": [],\n   \"image\": []\n   }\n   ],\n   \"urls\": {\n   \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n   \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n   \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n   \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n   \"video\": \"http://ykings.me/uploads/videos\",\n   \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n   \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n   \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n   \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n   }\n   }",
+          "content": "HTTP/1.1 200 OK\n   {\n   \"success\": \"unclaped\"\n   }",
           "type": "json"
         }
       ]
@@ -1080,7 +1162,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n  \"status\": 1,\n  \"success\": \"successfully_followed\",\n  \"user\": {\n  \"id\": \"5\",\n  \"email\": \"ykings3@yopmail.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:49:55\",\n  \"updated_at\": \"2015-11-12 08:49:55\",\n  \"profile\": {\n  \"id\": \"5\",\n  \"user_id\": \"5\",\n  \"first_name\": \"Ykings\",\n  \"last_name\": \"test3\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"2\",\n  \"goal\": \"2\",\n  \"image\": \"5_1447318201.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:50:01\",\n  \"updated_at\": \"2015-11-12 08:50:01\"\n  },\n  \"followers\": [],\n  \"followings\": [\n  {\n  \"id\": \"3\",\n  \"user_id\": \"5\",\n  \"follow_id\": \"2\",\n  \"created_at\": \"2015-11-12 11:43:59\",\n  \"updated_at\": \"2015-11-12 11:43:59\",\n  \"follow_profile\": {\n  \"id\": \"2\",\n  \"email\": \"aneeshk@cubettech.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:44:54\",\n  \"updated_at\": \"2015-11-12 08:44:54\",\n  \"profile\": {\n  \"id\": \"2\",\n  \"user_id\": \"2\",\n  \"first_name\": \"Aneesh\",\n  \"last_name\": \"Kallikkattil\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"3\",\n  \"goal\": \"3\",\n  \"image\": \"2_1447317902.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:45:02\",\n  \"updated_at\": \"2015-11-12 08:45:02\"\n  }\n  }\n  }\n  ]\n  },\n  \"urls\": {\n  \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n  \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n  \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n  \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n  \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n  \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n  \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n  \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n  \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n  }\n  }",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\": 1,\n          \"success\": \"successfully_followed\",\n          \"user\": {\n              \"id\": \"5\",\n              \"email\": \"ykings3@yopmail.com\",\n              \"confirmation_code\": \"\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-12 08:49:55\",\n              \"updated_at\": \"2015-11-12 08:49:55\",\n              \"profile\": {\n                  \"id\": \"5\",\n                  \"user_id\": \"5\",\n                  \"first_name\": \"Ykings\",\n                  \"last_name\": \"test3\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"2\",\n                  \"goal\": \"2\",\n                  \"image\": \"5_1447318201.jpg\",\n                  \"city\": \"Kochi\",\n                  \"state\": \"Kerala\",\n                  \"country\": \"India\",\n                  \"quote\": \"I need to get strong!!!!\",\n                  \"created_at\": \"2015-11-12 08:50:01\",\n                  \"updated_at\": \"2015-11-12 08:50:01\"\n              }\n          },\n          \"followers\": [],\n          \"followings\": [{\n                  \"id\": \"3\",\n                  \"user_id\": \"5\",\n                  \"follow_id\": \"2\",\n                  \"created_at\": \"2015-11-12 11:43:59\",\n                  \"updated_at\": \"2015-11-12 11:43:59\",\n                  \"follow_profile\": {\n                      \"id\": \"2\",\n                      \"email\": \"aneeshk@cubettech.com\",\n                      \"confirmation_code\": \"\",\n                      \"status\": \"1\",\n                      \"created_at\": \"2015-11-12 08:44:54\",\n                      \"updated_at\": \"2015-11-12 08:44:54\",\n                      \"profile\": {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"first_name\": \"Aneesh\",\n                      \"last_name\": \"Kallikkattil\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"3\",\n                      \"goal\": \"3\",\n                      \"image\": \"2_1447317902.jpg\",\n                      \"city\": \"Kochi\",\n                      \"state\": \"Kerala\",\n                      \"country\": \"India\",\n                      \"quote\": \"I need to get strong!!!!\",\n                      \"created_at\": \"2015-11-12 08:45:02\",\n                      \"updated_at\": \"2015-11-12 08:45:02\"\n                  }\n              }\n          }]\n      },\n      \"urls\": {\n              \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n              \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n              \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n              \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n              \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n              \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n              \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n              \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n              \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n          }\n      }",
           "type": "json"
         }
       ]
@@ -1192,7 +1274,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n  \"status\": 1,\n  \"success\": \"user_followers\",\n  \"user\": {\n  \"id\": \"2\",\n  \"email\": \"aneeshk@cubettech.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:44:54\",\n  \"updated_at\": \"2015-11-12 08:44:54\",\n  \"profile\": {\n  \"id\": \"2\",\n  \"user_id\": \"2\",\n  \"first_name\": \"Aneesh\",\n  \"last_name\": \"Kallikkattil\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"3\",\n  \"goal\": \"3\",\n  \"image\": \"2_1447317902.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:45:02\",\n  \"updated_at\": \"2015-11-12 08:45:02\"\n  },\n  \"followers\": [\n  {\n  \"id\": \"1\",\n  \"user_id\": \"3\",\n  \"follow_id\": \"2\",\n  \"created_at\": \"2015-11-12 09:34:27\",\n  \"updated_at\": \"2015-11-12 15:05:55\",\n  \"following_profile\": {\n  \"id\": \"3\",\n  \"email\": \"ykings1@yopmail.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:47:37\",\n  \"updated_at\": \"2015-11-12 08:47:37\",\n  \"profile\": {\n  \"id\": \"3\",\n  \"user_id\": \"3\",\n  \"first_name\": \"Ykings\",\n  \"last_name\": \"test1\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"1\",\n  \"goal\": \"3\",\n  \"image\": \"3_1447318063.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:47:43\",\n  \"updated_at\": \"2015-11-12 08:47:43\"\n  }\n  }\n  },\n  {\n  \"id\": \"3\",\n  \"user_id\": \"5\",\n  \"follow_id\": \"2\",\n  \"created_at\": \"2015-11-12 11:43:59\",\n  \"updated_at\": \"2015-11-12 11:43:59\",\n  \"following_profile\": {\n  \"id\": \"5\",\n  \"email\": \"ykings3@yopmail.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:49:55\",\n  \"updated_at\": \"2015-11-12 08:49:55\",\n  \"profile\": {\n  \"id\": \"5\",\n  \"user_id\": \"5\",\n  \"first_name\": \"Ykings\",\n  \"last_name\": \"test3\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"2\",\n  \"goal\": \"2\",\n  \"image\": \"5_1447318201.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:50:01\",\n  \"updated_at\": \"2015-11-12 08:50:01\"\n  }\n  }\n  }\n  ]\n  },\n  \"urls\": {\n  \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n  \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n  \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n  \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n  \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n  \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n  \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n  \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n  \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n  }\n  }",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\": 1,\n          \"success\": \"user_followers\",\n          \"user\": {\n              \"id\": \"2\",\n              \"email\": \"aneeshk@cubettech.com\",\n              \"confirmation_code\": \"\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-12 08:44:54\",\n              \"updated_at\": \"2015-11-12 08:44:54\",\n              \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"3\",\n                  \"goal\": \"3\",\n                  \"image\": \"2_1447317902.jpg\",\n                  \"city\": \"Kochi\",\n                  \"state\": \"Kerala\",\n                  \"country\": \"India\",\n                  \"quote\": \"I need to get strong!!!!\",\n                  \"created_at\": \"2015-11-12 08:45:02\",\n                  \"updated_at\": \"2015-11-12 08:45:02\"\n               }\n          },\n          \"followers\": [{\n              \"id\": \"1\",\n              \"user_id\": \"3\",\n              \"follow_id\": \"2\",\n              \"created_at\": \"2015-11-12 09:34:27\",\n              \"updated_at\": \"2015-11-12 15:05:55\",\n              \"following_profile\": {\n                  \"id\": \"3\",\n                  \"email\": \"ykings1@yopmail.com\",\n                  \"confirmation_code\": \"\",\n                  \"status\": \"1\",\n                  \"created_at\": \"2015-11-12 08:47:37\",\n                  \"updated_at\": \"2015-11-12 08:47:37\",\n                  \"profile\": {\n                      \"id\": \"3\",\n                      \"user_id\": \"3\",\n                      \"first_name\": \"Ykings\",\n                      \"last_name\": \"test1\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"1\",\n                      \"goal\": \"3\",\n                      \"image\": \"3_1447318063.jpg\",\n                      \"city\": \"Kochi\",\n                      \"state\": \"Kerala\",\n                      \"country\": \"India\",\n                      \"quote\": \"I need to get strong!!!!\",\n                      \"created_at\": \"2015-11-12 08:47:43\",\n                      \"updated_at\": \"2015-11-12 08:47:43\"\n                  }\n              }\n              },\n              {\n              \"id\": \"3\",\n              \"user_id\": \"5\",\n              \"follow_id\": \"2\",\n              \"created_at\": \"2015-11-12 11:43:59\",\n              \"updated_at\": \"2015-11-12 11:43:59\",\n              \"following_profile\": {\n                  \"id\": \"5\",\n                  \"email\": \"ykings3@yopmail.com\",\n                  \"confirmation_code\": \"\",\n                  \"status\": \"1\",\n                  \"created_at\": \"2015-11-12 08:49:55\",\n                  \"updated_at\": \"2015-11-12 08:49:55\",\n                  \"profile\": {\n                      \"id\": \"5\",\n                      \"user_id\": \"5\",\n                      \"first_name\": \"Ykings\",\n                      \"last_name\": \"test3\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"2\",\n                      \"goal\": \"2\",\n                      \"image\": \"5_1447318201.jpg\",\n                      \"city\": \"Kochi\",\n                      \"state\": \"Kerala\",\n                      \"country\": \"India\",\n                      \"quote\": \"I need to get strong!!!!\",\n                      \"created_at\": \"2015-11-12 08:50:01\",\n                      \"updated_at\": \"2015-11-12 08:50:01\"\n                  }\n              }\n          }]\n      },\n      \"urls\": {\n          \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n          \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n          \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n          \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n          \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n          \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n          \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n          \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n          \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1383,7 +1465,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n  \"status\": 1,\n  \"success\": \"successfully_unfollowed\",\n  \"user\": {\n  \"id\": \"5\",\n  \"email\": \"ykings3@yopmail.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:49:55\",\n  \"updated_at\": \"2015-11-12 08:49:55\",\n  \"profile\": {\n  \"id\": \"5\",\n  \"user_id\": \"5\",\n  \"first_name\": \"Ykings\",\n  \"last_name\": \"test3\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"2\",\n  \"goal\": \"2\",\n  \"image\": \"5_1447318201.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:50:01\",\n  \"updated_at\": \"2015-11-12 08:50:01\"\n  },\n  \"followers\": [],\n  \"followings\": [\n  {\n  \"id\": \"3\",\n  \"user_id\": \"5\",\n  \"follow_id\": \"2\",\n  \"created_at\": \"2015-11-12 11:43:59\",\n  \"updated_at\": \"2015-11-12 11:43:59\",\n  \"follow_profile\": {\n  \"id\": \"2\",\n  \"email\": \"aneeshk@cubettech.com\",\n  \"confirmation_code\": \"\",\n  \"status\": \"1\",\n  \"created_at\": \"2015-11-12 08:44:54\",\n  \"updated_at\": \"2015-11-12 08:44:54\",\n  \"profile\": {\n  \"id\": \"2\",\n  \"user_id\": \"2\",\n  \"first_name\": \"Aneesh\",\n  \"last_name\": \"Kallikkattil\",\n  \"gender\": \"0\",\n  \"fitness_status\": \"3\",\n  \"goal\": \"3\",\n  \"image\": \"2_1447317902.jpg\",\n  \"city\": \"Kochi\",\n  \"state\": \"Kerala\",\n  \"country\": \"India\",\n  \"quote\": \"I need to get strong!!!!\",\n  \"created_at\": \"2015-11-12 08:45:02\",\n  \"updated_at\": \"2015-11-12 08:45:02\"\n  }\n  }\n  }\n  ]\n  },\n  \"urls\": {\n  \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n  \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n  \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n  \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n  \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n  \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n  \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n  \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n  \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n  }\n  }",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\": 1,\n          \"success\": \"successfully_unfollowed\",\n          \"user\": {\n              \"id\": \"5\",\n              \"email\": \"ykings3@yopmail.com\",\n              \"confirmation_code\": \"\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-12 08:49:55\",\n              \"updated_at\": \"2015-11-12 08:49:55\",\n              \"profile\": {\n                  \"id\": \"5\",\n                  \"user_id\": \"5\",\n                  \"first_name\": \"Ykings\",\n                  \"last_name\": \"test3\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"2\",\n                  \"goal\": \"2\",\n                  \"image\": \"5_1447318201.jpg\",\n                  \"city\": \"Kochi\",\n                  \"state\": \"Kerala\",\n                  \"country\": \"India\",\n                  \"quote\": \"I need to get strong!!!!\",\n                  \"created_at\": \"2015-11-12 08:50:01\",\n                  \"updated_at\": \"2015-11-12 08:50:01\"\n               }\n          },\n          \"followers\": [],\n          \"followings\": [{\n              \"id\": \"3\",\n              \"user_id\": \"5\",\n              \"follow_id\": \"2\",\n              \"created_at\": \"2015-11-12 11:43:59\",\n              \"updated_at\": \"2015-11-12 11:43:59\",\n              \"follow_profile\": {\n                  \"id\": \"2\",\n                  \"email\": \"aneeshk@cubettech.com\",\n                  \"confirmation_code\": \"\",\n                  \"status\": \"1\",\n                  \"created_at\": \"2015-11-12 08:44:54\",\n                  \"updated_at\": \"2015-11-12 08:44:54\",\n                  \"profile\": {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"first_name\": \"Aneesh\",\n                      \"last_name\": \"Kallikkattil\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"3\",\n                      \"goal\": \"3\",\n                      \"image\": \"2_1447317902.jpg\",\n                      \"city\": \"Kochi\",\n                      \"state\": \"Kerala\",\n                      \"country\": \"India\",\n                      \"quote\": \"I need to get strong!!!!\",\n                      \"created_at\": \"2015-11-12 08:45:02\",\n                      \"updated_at\": \"2015-11-12 08:45:02\"\n                  }\n              }\n          }]\n      },\n      \"urls\": {\n          \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n          \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n          \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n          \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n          \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n          \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n          \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n          \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n          \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n        }\n    }",
           "type": "json"
         }
       ]
@@ -1893,6 +1975,167 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
+  },
+  {
+    "type": "post",
+    "url": "/subscription/update",
+    "title": "updateSubscription",
+    "name": "updateSubscription",
+    "group": "Subscription",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "amount",
+            "description": "<p>amount of subscription *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "currency",
+            "description": "<p>currency of payment *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Date</p> ",
+            "optional": false,
+            "field": "process_time",
+            "description": "<p>time payment processed in UTC *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "transaction_id",
+            "description": "<p>id of payment transaction *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "details",
+            "description": "<p>details of transaction device, os, versio etc as json array *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "inapp_id",
+            "description": "<p>id of subscription id created with Inapp *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status of payment  0-failure, 1-success *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n      {\n            \"status\": 1,\n            \"message\": \"Subscription Updated\"\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The amount field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The currency field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The process_time field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The transaction_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The inapp_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The status field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
+    "groupTitle": "Subscription"
   },
   {
     "type": "post",

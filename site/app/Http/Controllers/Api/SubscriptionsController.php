@@ -34,7 +34,7 @@ class SubscriptionsController extends Controller
 
 
     /**
-     * @api {post} /subscription/update
+     * @api {post} /subscription/update updateSubscription
      * @apiName updateSubscription
      * @apiGroup Subscription
      * @apiParam {Number} user_id Id of user *required

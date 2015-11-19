@@ -21,6 +21,8 @@ class Feeds extends Model
         'item_id',
         'feed_text'
     ];
+    
+    
     protected $appends = array('comment_count', 'clap_count');
 
     /**

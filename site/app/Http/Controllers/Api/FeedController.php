@@ -448,7 +448,7 @@ class FeedController extends Controller
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
 
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feeds->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
