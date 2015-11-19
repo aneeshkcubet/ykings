@@ -330,10 +330,10 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['image', 'profile']);
-                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
-                    $feedQuery->skip($request->input('offset'));
-                    $feedQuery->take($request->input('limit'));
+                $feedQuery->with(['image', 'profile','workout','exercise']);
+                 if ($request->offset != null && $request->limit != null) {
+                    $feedQuery->skip($request->input('limit'));
+                    $feedQuery->take($request->input('offset'));
                 }
                 $feeds = $feedQuery->get();
                 if ($feeds) {
@@ -493,9 +493,9 @@ class FeedController extends Controller
 
                 $feedQuery->with(['image', 'profile' ,'workout','exercise']);
 
-                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
-                    $feedQuery->skip($request->input('offset'));
-                    $feedQuery->take($request->input('limit'));
+                 if ($request->offset != null && $request->limit != null) {
+                    $feedQuery->skip($request->input('limit'));
+                    $feedQuery->take($request->input('offset'));
                 }
 
                 $feedQuery->orderBy('created_at', 'DESC');

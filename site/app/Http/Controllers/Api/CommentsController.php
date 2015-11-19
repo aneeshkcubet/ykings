@@ -37,7 +37,7 @@ class CommentsController extends Controller
      * {
       "status": 1,
       "success": "commented_on_feed_successfully"
-      
+
       }
      * 
      * @apiError error Message token_invalid.
@@ -252,9 +252,10 @@ class CommentsController extends Controller
                 $commentQuery = Comment::where('parent_id', '=', $request->input('feed_id'))
                     ->where('parent_type', 'feed')
                     ->with(['profile']);
-                if (!null === ($request->input('offset')) && !null === ($request->input('limit'))) {
-                    $commentQuery->skip($request->input('offset'));
-                    $commentQuery->take($request->input('limit'));
+               
+                if ($request->offset != null && $request->limit != null) {
+                    $commentQuery->skip($request->input('limit'));
+                    $commentQuery->take($request->input('offset'));
                 }
                 $comments = $commentQuery->get();
                 return response()->json(['status' => 1, 'comments' => $comments->toArray(), 'urls' => config('urls.urls')], 200);
