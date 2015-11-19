@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 		rules: {
 		  author: {
 			required: true,
-			minlength: 2
+			minlength: 3
 		  },		 
 		  email: {
 			required: true,
