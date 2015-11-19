@@ -165,9 +165,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/exercise/list",
-    "title": "loadExercises",
-    "name": "loadExercises",
+    "url": "/workout/list",
+    "title": "loadWorkouts",
+    "name": "loadWorkouts",
     "group": "Exercise",
     "parameter": {
       "fields": {
@@ -242,7 +242,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -278,6 +278,13 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "<p>String</p> ",
+            "optional": true,
+            "field": "time_taken",
+            "description": "<p>time in seconds</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "text",
             "description": "<p>*required</p> "
@@ -285,9 +292,9 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "<p>file</p> ",
-            "optional": false,
+            "optional": true,
             "field": "image",
-            "description": "<p>*optional</p> "
+            "description": ""
           }
         ]
       }
@@ -423,7 +430,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"42\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:18:06\",\n      \"updated_at\": \"2015-11-16 06:18:06\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": []\n      },\n      {\n      \"id\": \"41\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:17:52\",\n      \"updated_at\": \"2015-11-16 06:17:52\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ]\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -525,7 +532,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"42\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:18:06\",\n      \"updated_at\": \"2015-11-16 06:18:06\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": []\n      },\n      {\n      \"id\": \"41\",\n      \"user_id\": \"15\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"sdggs\",\n      \"created_at\": \"2015-11-16 06:17:52\",\n      \"updated_at\": \"2015-11-16 06:17:52\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ]\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -925,7 +932,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"16\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 03:58:36\",\n      \"updated_at\": \"2015-11-11 03:58:36\",\n      \"comment_count\": 0,\n      \"clap_count\": 1,\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\",\n      \"profile\": {\n      \"id\": \"7\",\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"11_1447237788.jpg\",\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-12 09:05:16\"\n      }\n      },\n      \"comments\": [],\n      \"claps\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"15\",\n      \"item_type\": \"feed\",\n      \"item_id\": \"16\",\n      \"created_at\": \"2015-11-16 04:54:59\",\n      \"updated_at\": \"2015-11-16 04:54:59\"\n      }\n      ]\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"Details\",\n      \"feed_details\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"profile\": {\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"image\": null\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -3033,6 +3040,88 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/workout/list",
+    "title": "loadWorkouts",
+    "name": "loadWorkouts",
+    "group": "Workouts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"exercises\": {\n      \"beginer\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 13:30:19\",\n      \"updated_at\": \"2015-11-17 13:30:19\",\n      \"video\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"1\",\n      \"path\": \"Now1.mp4\",\n      \"description\": \"Test Description\",\n      \"parent_type\": \"1\",\n      \"type\": \"1\",\n      \"parent_id\": \"1\",\n      \"created_at\": \"2015-11-11 07:26:40\",\n      \"updated_at\": \"2015-11-11 17:43:27\"\n      }\n      ]\n      }\n      ],\n      \"advanced\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 13:30:19\",\n      \"updated_at\": \"2015-11-17 13:30:19\",\n      \"video\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"1\",\n      \"path\": \"Now1.mp4\",\n      \"description\": \"Test Description\",\n      \"parent_type\": \"1\",\n      \"type\": \"1\",\n      \"parent_id\": \"1\",\n      \"created_at\": \"2015-11-11 07:26:40\",\n      \"updated_at\": \"2015-11-11 17:43:27\"\n      }\n      ]\n      }\n      ],\n      \"professional\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 13:30:19\",\n      \"updated_at\": \"2015-11-17 13:30:19\",\n      \"video\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"1\",\n      \"path\": \"Now1.mp4\",\n      \"description\": \"Test Description\",\n      \"parent_type\": \"1\",\n      \"type\": \"1\",\n      \"parent_id\": \"1\",\n      \"created_at\": \"2015-11-11 07:26:40\",\n      \"updated_at\": \"2015-11-11 17:43:27\"\n      }\n      ]\n      }\n      ]\n      }\n\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "groupTitle": "Workouts"
   },
   {
     "type": "post",
