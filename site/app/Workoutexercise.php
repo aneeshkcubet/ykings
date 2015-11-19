@@ -24,5 +24,15 @@ class Workoutexercise extends Model
         'round' 
     ];
     
+    /**
+     * Relation with video table.
+     * @author <aneesh@cubettech.com>
+     * @since 11th November 2015
+     */
+    public function video()
+    {
+        return $this->hasMany('App\Video', 'parent_id', 'exercise_id')->where('parent_type', '=', 1);
+    }
+    
     
 }

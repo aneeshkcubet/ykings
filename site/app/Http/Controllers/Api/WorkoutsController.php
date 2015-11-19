@@ -176,25 +176,190 @@ class WorkoutsController extends Controller
      *     }
      * 
      */
-    public function loadExercises(Request $request)
+    public function loadWorkouts(Request $request)
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                if ($user->is_subscribed == 1) {
-                    $leanExercises = Exercise::where('category', '=', 1)->with(['video'])->get();
-                    $athleticExercises = Exercise::where('category', '=', 2)->with(['video'])->get();
-                    $strongExercises = Exercise::where('category', '=', 3)->with(['video'])->get();
-                } else {
-                    $leanExercises = Exercise::where('category', '=', 1)->where('type', '=', 1)->with(['video'])->get();
-                    $athleticExercises = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
-                    $strongExercises = Exercise::where('category', '=', 3)->where('type', '=', 3)->with(['video'])->get();
-                }
-                return response()->json(['status' => 1, 'exercises' => ['beginer' => $leanExercises, 'advanced' => $athleticExercises, 'professional' => $strongExercises], 'urls' => config('urls.urls')], 200);
+
+                $workouts = Workout::all();
+
+                return response()->json([
+                        'status' => 1,
+                        'is_subscribed' => $user->is_subscribed,
+                        'workouts' => $workouts], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /workout/getlevels getWorkoutWithLevels
+     * @apiName getWorkoutWithLevels
+     * @apiGroup Workout
+     * @apiParam {Number} workout_id Id of workout 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message workout_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The exercise_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 workout_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "workout_not_exists"
+     *     }
+     * 
+     */
+    public function getWorkoutWithLevels(Request $request)
+    {
+        if (!isset($request->workout_id) || ($request->workout_id == null)) {
+            return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
+        } else {
+            $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
+            if (!is_null($workout)) {
+                $workoutArray = $workout->toArray();
+                $leanWorkoutUsers = WorkoutUser::where('category', '=', 1)
+                    ->where('workout_id', '=', $request->workout_id)
+                    ->where('status', '=', 1)
+                    ->with(['profile'])
+                    ->get();
+                $athleteWorkoutUsers = WorkoutUser::where('category', '=', 2)
+                    ->where('workout_id', '=', $request->workout_id)
+                    ->where('status', '=', 1)
+                    ->with(['profile'])
+                    ->get();
+                $strengthWorkoutUsers = WorkoutUser::where('category', '=', 3)
+                    ->where('workout_id', '=', $request->workout_id)
+                    ->where('status', '=', 1)
+                    ->with(['profile'])
+                    ->get();
+                
+                $workoutArray['beginer'] = $leanWorkoutUsers->toArray();
+                $workoutArray['advanced'] = $athleteWorkoutUsers->toArray();
+                $workoutArray['professional'] = $strengthWorkoutUsers->toArray();
+
+                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
+            }
+        }
+    }
+    
+    /**
+     * @api {post} /workout/getexercises getWorkoutWithExercises
+     * @apiName getWorkoutWithExercises
+     * @apiGroup Workout
+     * @apiParam {Number} workout_id Id of workout 
+     * @apiParam {Number} category of workout 1-beginer, 2-advanced, 3-professional
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message Validation error
+     * @apiError error Message workout_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The exercise_id field is required"
+     *     }
+     * 
+     *  @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The category field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 workout_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "workout_not_exists"
+     *     }
+     * 
+     */
+    public function getWorkoutWithExercises(Request $request)
+    {
+        if (!isset($request->workout_id) || ($request->workout_id == null)) {
+            return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
+        } elseif (!isset($request->category) || ($request->category == null)) {
+            return response()->json(["status" => "0", "error" => "The category field is required"]);
+        } else {
+            $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
+            if (!is_null($workout)) {
+                $workoutArray = $workout->toArray();
+                
+                $workoutExercises = Workoutexercise::where('category', '=', $request->category)->get();
+                
+                $workoutArray['exercises'] = $workoutExercises->toArray();
+                
+                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
             }
         }
     }

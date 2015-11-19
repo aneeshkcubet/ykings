@@ -194,8 +194,80 @@ class ExercisesController extends Controller
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
-    }
+    }    
 
+    /**
+     * @api {post} /exercise/getwithusers getExerciseWithUsers
+     * @apiName getExerciseWithUsers
+     * @apiGroup Exercise
+     * @apiParam {Number} exercise_id Id of exercise 
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message exercise_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The exercise_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 exercise_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "exercise_not_exists"
+     *     }
+     * 
+     */
+    public function getExerciseWithUsers(Request $request)
+    {
+        if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
+            return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
+        } else {
+            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->first();            
+            
+            if (!is_null($exercise)) {
+                $exerciseArray = $exercise->toArray();
+                $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
+                    ->where('status', '=', 1)
+                    ->with(['profile'])
+                    ->get();
+                $exerciseArray['users'] = $exerciseUsers->toArray();
+                return response()->json(['status' => 1, 'exercise' => $exerciseArray, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'exercise_not_exists'], 500);
+            }
+        }
+    }
+    
     /**
      * @api {post} /exercise/get getExercise
      * @apiName getExercise
@@ -252,78 +324,9 @@ class ExercisesController extends Controller
         if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
             return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
         } else {
-            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->with(['video', 'users'])->first();
+            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->with(['video'])->first();
             if (!is_null($exercise)) {
                 return response()->json(['status' => 1, 'exercise' => $exercise, 'urls' => config('urls.urls')], 200);
-            } else {
-                return response()->json(['status' => 0, 'error' => 'exercise_not_exists'], 500);
-            }
-        }
-    }
-
-    /**
-     * @api {post} /exercise/getUsers getExerciseUsers
-     * @apiName getExerciseUsers
-     * @apiGroup Exercise
-     * @apiParam {Number} exercise_id Id of exercise 
-     * @apiSuccess {String} success.
-     * @apiSuccessExample Success-Response:
-     * HTTP/1.1 200 OK
-     * 
-     * 
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
-     * @apiError error Message Validation error
-     * @apiError error Message exercise_not_exists
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status":"0",
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status":"0",
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "status":"0",
-     *       "error": "token_not_provided"
-     *     }
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The exercise_id field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 500 exercise_not_exists
-     *     {
-     *       "status" : 0,
-     *       "error": "exercise_not_exists"
-     *     }
-     * 
-     */
-    public function getExerciseUsers(Request $request)
-    {
-        if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
-            return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
-        } else {
-            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->first();
-            if (!is_null($exercise)) {
-                $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
-                    ->where('status', '=', 1)
-                    ->with(['profile'])
-                    ->get();
-                return response()->json(['status' => 1, 'users' => $exerciseUsers, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'exercise_not_exists'], 500);
             }

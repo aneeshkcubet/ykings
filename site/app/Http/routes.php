@@ -154,7 +154,28 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('exercise/get', [
         'as' => 'exercise.get',
         'uses' => 'Api\ExercisesController@getExercise'
-    ]); 
+    ]);
+    
+    Route::post('exercise/getwithusers', [
+        'as' => 'exercise.get',
+        'uses' => 'Api\ExercisesController@getExerciseWithUsers'
+    ]);
+    
+    Route::post('workout/list', [
+        'as' => 'workout.list',
+        'uses' => 'Api\WorkoutsController@loadWorkouts'
+    ]);
+    
+    Route::post('workout/getlevels', [
+        'as' => 'workout.getlevels',
+        'uses' => 'Api\WorkoutsController@getWorkoutWithLevels'
+    ]);
+    
+    Route::post('workout/getexercises', [
+        'as' => 'workout.getexercises',
+        'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
+    ]);
+
     
 });
 

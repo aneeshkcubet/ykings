@@ -29,7 +29,7 @@ class Exerciseuser extends Model
      */
     public function profile()
     {
-        return $this->belongsTo('App\Profile', 'user_id', 'user_id');
+        return $this->hasOne('App\Profile', 'user_id', 'user_id');
     }
     
     

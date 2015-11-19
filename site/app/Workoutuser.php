@@ -4,7 +4,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class Workout extends Model
+class WorkoutUser extends Model
 {
 
     /**
@@ -19,8 +19,19 @@ class Workout extends Model
         'workout_id',
         'user_id',
         'status',
-        'time'
+        'time',
+        'category'
     ];
+    
+    /**
+     * Define the relationship for the author
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id', 'user_id');
+    }
     
     
 }
