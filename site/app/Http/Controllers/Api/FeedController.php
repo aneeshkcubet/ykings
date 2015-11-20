@@ -396,7 +396,7 @@ class FeedController extends Controller
                     $feedQuery->take($request->input('offset'));
                 }
                 $feeds = $feedQuery->get();
-                if ($feeds) {
+                if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
@@ -560,7 +560,7 @@ class FeedController extends Controller
 
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
-                if ($feeds) {
+                if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);

@@ -56,11 +56,6 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
     ]);
-    
-    Route::post('user/getsettings', [
-        'as' => 'user.getsettings',
-        'uses' => 'Api\UserSettingsController@getUserSettings'
-    ]);
 
     Route::post('user/feedlist', [
         'as' => 'feeds.list',
@@ -85,6 +80,11 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
+    ]);
+    
+     Route::post('social/facebookUpdate', [
+        'as' => 'facebook.update',
+        'uses' => 'Api\SocialController@facebookUpdate'
     ]);
     //Feed
     Route::post('feeds/create', [
@@ -179,11 +179,6 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('workout/getexercises', [
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
-    ]);
-    
-    Route::post('workout/addstar', [
-        'as' => 'workout.addstar',
-        'uses' => 'Api\WorkoutsController@addStar'
     ]);
 
     

@@ -26,7 +26,7 @@ class SocialController extends Controller
      */
 
     /**
-     * @api {post} /social/facebookLogin facebookLogin
+     * @api {post} /social/facebookLogin?token= facebookLogin
      * @apiName Facebook Login
      * @apiGroup Social
      *
@@ -47,83 +47,83 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "status": 1,
-    "comments": [
-        {
-            "id": "1",
-            "user_id": "14",
-            "parent_type": "feed",
-            "parent_id": "15",
-            "comment_text": "This is a sample comment",
-            "created_at": "2015-11-16 13:53:47",
-            "updated_at": "2015-11-17 13:01:09",
-            "user": {
-                "id": "14",
-                "email": "sachin@cubettech.com",
-                "profile": [
-                    {
-                        "id": "8",
-                        "user_id": "14",
-                        "first_name": "sachii",
-                        "last_name": "k",
-                        "gender": "0",
-                        "fitness_status": "0",
-                        "goal": "0",
-                        "image": null,
-                        "city": null,
-                        "state": null,
-                        "country": null,
-                        "quote": "",
-                        "created_at": "2015-11-11 06:23:56",
-                        "updated_at": "2015-11-11 06:23:56"
-                    }
-                ]
-            }
-        },
-        {
-            "id": "2",
-            "user_id": "11",
-            "parent_type": "feed",
-            "parent_id": "15",
-            "comment_text": "This is another comment",
-            "created_at": "2015-11-16 13:55:14",
-            "updated_at": "2015-11-17 13:02:38",
-            "user": {
-                "id": "11",
-                "email": "ansa@cubettech.com",
-                "profile": [
-                    {
-                        "id": "7",
-                        "user_id": "11",
-                        "first_name": "ansa",
-                        "last_name": "v",
-                        "gender": "0",
-                        "fitness_status": "0",
-                        "goal": "0",
-                        "image": "11_1447237788.jpg",
-                        "city": null,
-                        "state": null,
-                        "country": null,
-                        "quote": "",
-                        "created_at": "2015-11-09 12:40:07",
-                        "updated_at": "2015-11-12 09:05:16"
-                    }
-                ]
-            }
-        }
-    ],
-    "urls": {
-        "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-        "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-        "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-        "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-        "video": "http://ykings.me/uploads/videos",
-        "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-        "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-        "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-        "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-    }
-}
+      "status": 1,
+      "comments": [
+      {
+      "id": "1",
+      "user_id": "14",
+      "parent_type": "feed",
+      "parent_id": "15",
+      "comment_text": "This is a sample comment",
+      "created_at": "2015-11-16 13:53:47",
+      "updated_at": "2015-11-17 13:01:09",
+      "user": {
+      "id": "14",
+      "email": "sachin@cubettech.com",
+      "profile": [
+      {
+      "id": "8",
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": null,
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56"
+      }
+      ]
+      }
+      },
+      {
+      "id": "2",
+      "user_id": "11",
+      "parent_type": "feed",
+      "parent_id": "15",
+      "comment_text": "This is another comment",
+      "created_at": "2015-11-16 13:55:14",
+      "updated_at": "2015-11-17 13:02:38",
+      "user": {
+      "id": "11",
+      "email": "ansa@cubettech.com",
+      "profile": [
+      {
+      "id": "7",
+      "user_id": "11",
+      "first_name": "ansa",
+      "last_name": "v",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": "11_1447237788.jpg",
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-12 09:05:16"
+      }
+      ]
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
@@ -152,20 +152,16 @@ class SocialController extends Controller
      *       "error": "could_not_create_user"
      *     }
      *  @apiErrorExample Error-Response:
-     * {
-      "status": 0,
-      "error": {
-      "email": [
-      "The email field is required."
-      ],
-      "provider_id": [
-      "The provider id field is required."
-      ],
-      "provider": [
-      "The provider field is required."
-      ]
-      }
-      }
+     *      HTTP/1.1 422 Validation error
+            {
+               "status": 0,
+               "error": "The email field is required."
+            }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "error": "could_not_create_user"
+     *     }
      */
     public function facebookLogin(Request $request)
     {
@@ -178,7 +174,11 @@ class SocialController extends Controller
             return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
 
-            if ($this->create($request->all())) {
+            if ($status = $this->create($request->all())) {
+                
+                if (is_array($status)) {
+                    return response()->json(["status" => "0", "message" => "confirmation_required"]);
+                }
 
                 $user = User::where('email', '=', $request->input('email'))
                         ->with(['profile', 'social'])->first();
@@ -218,11 +218,32 @@ class SocialController extends Controller
      * @author ansa@cubettech.com
      * @return json
      */
-    public function create(array $data)
+    protected function create(array $data)
     {
         $user_exist = User::where('email', '=', $data['email'])->first();
         if (!is_null($user_exist)) {
-            return true;
+            $social = Social::where('user_id', '=', $user_exist->id)
+                ->where('provider', '=', 'facebook')
+                ->where('provider_uid', '!=', '')
+                ->first();
+
+            $facebook_link = 0;
+            if (!is_null($social)) {
+                //to do update profile details with new details
+                $profile = Profile::where('user_id', $user_exist->id);
+                $profile->update([
+                    'first_name' => isset($data['first_name']) ? $data['first_name'] : '',
+                    'last_name' => isset($data['last_name']) ? $data['last_name'] : '',
+                    'gender' => isset($data['gender']) ? $data['gender'] : '',
+                    'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : '',
+                    'goal' => isset($data['goal']) ? $data['goal'] : '',
+                    'quote' => isset($data['quote']) ? $data['quote'] : ''
+                ]);
+                return true;
+            } else {
+                return $response = array('facebook_link' => 0, 'status' => true);
+            }
+            
         } else {
             //user table
             $user = User::create(['email' => $data['email'], 'status' => 1]);
@@ -280,4 +301,224 @@ class SocialController extends Controller
             }
         }
     }
+    /**
+     * @api {post} /social/facebookUpdate facebookUpdate
+     * @apiName facebookUpdate
+     * @apiGroup Social
+     *
+     * @apiParam {string} first_name Firstname of user *optional
+     * @apiParam {string} last_name Firstname of user *optional
+     * @apiParam {string} email email address of user *readonly *required 
+     * @apiParam {number} gender gender of the user 1-Male, 2-Female *optional
+     * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
+     * @apiParam {file} image user avatar image *optional *accepted formats JPEG, PNG, and GIF
+     * @apiParam {number} goal user's goal *optional
+     * @apiParam {string} city user's city *optional
+     * @apiParam {string} state user's state *optional
+     * @apiParam {string} country user's country *optional
+     * @apiParam {string} quote Quote added by user *optional
+     * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
+     *
+     * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     *       {
+     *           "status" : 1,
+     *           "success": "successfully_updated_user_profile",
+     *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
+     *           "user": {
+     *               "id": "2",
+     *               "email": "aneeshk@cubettech.com",
+     *               "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
+     *               "status": "1",
+     *               "created_at": "2015-11-11 11:40:04",
+     *               "updated_at": "2015-11-11 11:40:04",
+     *               "profile": {
+     *                   "id": "2",
+     *                   "user_id": "2",
+     *                   "first_name": "Aneesh",
+     *                   "last_name": "Kallikkattil",
+     *                   "gender": "0",
+     *                   "fitness_status": "0",
+     *                   "goal": "0",
+     *                   "image": "2_1447242011.jpg",
+     *                   "city": "",
+     *                   "state": "",
+     *                   "country": "",
+     *                   "quote": "",
+     *                   "created_at": "2015-11-11 11:40:10",
+     *                   "updated_at": "2015-11-11 11:40:11"
+     *               },
+     *               "videos": [
+     *                   {
+     *                       "id": "2",
+     *                       "user_id": "2",
+     *                       "video_id": "1",
+     *                       "created_at": "2015-11-11 11:40:05",
+     *                       "updated_at": "2015-11-11 11:40:05",
+     *                       "video": {
+     *                           "id": "1",
+     *                           "user_id": "1",
+     *                           "path": "Now1.mp4",
+     *                           "description": "Test Description",
+     *                           "parent_type": "1",
+     *                           "type": "1",
+     *                           "parent_id": "1",
+     *                           "created_at": "2015-11-11 07:26:40",
+     *                           "updated_at": "2015-11-11 17:43:27"
+     *                       }
+     *                   }
+     *               ]
+     *           },
+     *           "urls": {
+     *               "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+     *               "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+     *               "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+     *               "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+     *               "video": "http://sandbox.ykings.com/uploads/videos",
+     *               "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+     *               "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+     *               "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+     *               "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+     *           }
+     *       }
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Validation error.
+     * @apiError error Message could_not_update_user_profile User error.
+     * @apiError error Message user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status" : 0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 could_not_create_user
+     *     {
+     *       "status" : 0,
+     *       "error": "could_not_create_user"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
+     *     {
+     *       "error": "user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
+     *     }
+     */
+    public function facebookUpdate(Request $request)
+    {
+        $data = $request->all();
+
+        if (!isset($request->email) || ($request->email == NULL)) {
+            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+        }
+
+        $profData = [];
+
+        if (isset($data['first_name'])) {
+            $profData['first_name'] = $data['first_name'];
+        }
+
+        if (isset($data['last_name'])) {
+            $profData['last_name'] = $data['last_name'];
+        }
+
+        if (isset($data['gender'])) {
+            $profData['gender'] = $data['gender'];
+        }
+
+        if (isset($data['fitness_status'])) {
+            $profData['fitness_status'] = $data['fitness_status'];
+        }
+
+        if (isset($data['quote'])) {
+            $profData['quote'] = $data['quote'];
+        }
+
+        if (isset($data['city'])) {
+            $profData ['city'] = $data['city'];
+        }
+
+        if (isset($data['state'])) {
+            $profData['state'] = $data['state'];
+        }
+        if (isset($data['country'])) {
+            $profData['country'] = $data['country'];
+        }
+
+
+        if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
+
+            $user->profile()->update($profData);
+
+            $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
+
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
+                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                }
+
+                $image = Image::make($_FILES['image']['tmp_name']);
+
+                $image->encode('jpeg');
+
+                $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(400, 400);
+
+                $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(150, 150);
+
+                $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(65, 65);
+
+                $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
+
+                $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+            }
+
+            $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
+
+            if (isset($data['subscription'])) {
+                Settings::where('user_id', '=', $user->id)
+                    ->where('key', '=', 'subscription')
+                    ->update(['value' => $data['subscription']]);
+            }
+
+            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+        } else {
+            return response()->json(['status' => 0, 'error' => 'could_not_update_user'], 500);
+        }
+    }
+
 }
