@@ -43,6 +43,7 @@ class ExercisesController extends Controller
      * HTTP/1.1 200 OK
      * {
           "status": 1,
+          "is_subscribed" : 1,
           "exercises": {
             "beginer": {
               "free": [
@@ -241,7 +242,11 @@ class ExercisesController extends Controller
                 $exercises['advanced'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
                 $exercises['professional'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
                 
-                return response()->json(['status' => 1, 'exercises' => $exercises, 'urls' => config('urls.urls')], 200);
+                return response()->json([
+                    'status' => 1, 
+                    'exercises' => $exercises,
+                    'is_subscribed' => $user->is_subscribed,
+                    'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

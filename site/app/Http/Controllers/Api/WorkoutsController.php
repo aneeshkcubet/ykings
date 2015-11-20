@@ -46,6 +46,7 @@ class WorkoutsController extends Controller
      * HTTP/1.1 200 OK
      * {
       "status": 1,
+      "is_subscribed: 1,
       "exercises": {
       "beginer": [
       {
@@ -317,23 +318,49 @@ class WorkoutsController extends Controller
                     ->where('workout_id', '=', $request->workout_id)
                     ->where('status', '=', 1)
                     ->with(['profile'])
+                    ->groupBy('user_id')
+                    ->orderBy('time', 'ASC')
                     ->get();
                 $athleteWorkoutUsers = WorkoutUser::where('category', '=', 2)
                     ->where('workout_id', '=', $request->workout_id)
                     ->where('status', '=', 1)
                     ->with(['profile'])
+                    ->groupBy('user_id')
+                    ->orderBy('time', 'ASC')
                     ->get();
                 $strengthWorkoutUsers = WorkoutUser::where('category', '=', 3)
                     ->where('workout_id', '=', $request->workout_id)
                     ->where('status', '=', 1)
                     ->with(['profile'])
+                    ->groupBy('user_id')
+                    ->orderBy('time', 'ASC')
                     ->get();
+                
+                $time = time();
+                $subscription = DB::table('subscriptions')
+                    ->select('*')
+                    ->where('user_id', '=', $userId)
+                    ->orderBy('id', 'DESC')
+                    ->first();
+                if(is_null($subscription)){
+                    $isSubscribed = 0;
+                }        
+
+                if($subscription->end_time <= $time){
+                    $isSubscribed = 0;
+                } else {
+                    $isSubscribed = 1;
+                }
+                
+                $workoutArray['beginer'] = [];
+                $workoutArray['advanced'] = [];
+                $workoutArray['professional'] =[];
 
                 $workoutArray['beginer'] = $leanWorkoutUsers->toArray();
                 $workoutArray['advanced'] = $athleteWorkoutUsers->toArray();
                 $workoutArray['professional'] = $strengthWorkoutUsers->toArray();
 
-                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'is_subscribed' => $isSubscribed, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
             }
