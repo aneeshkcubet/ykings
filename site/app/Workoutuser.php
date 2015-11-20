@@ -4,13 +4,13 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class WorkoutUser extends Model
+class Workoutuser extends Model
 {
 
     /**
      * Set the database specific table name
      */
-    protected $table = 'exercises';
+    protected $table = 'workout_users';
 
     /**
      * Set the fillable fields within the model

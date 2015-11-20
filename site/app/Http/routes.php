@@ -175,6 +175,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
     ]);
+    
+    Route::post('workout/addstar', [
+        'as' => 'workout.addstar',
+        'uses' => 'Api\WorkoutsController@addStar'
+    ]);
 
     
 });

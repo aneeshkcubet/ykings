@@ -45,75 +45,7 @@ class UserFollowsController extends Controller
      * HTTP/1.1 200 OK
       {
           "status": 1,
-          "success": "successfully_followed",
-          "user": {
-              "id": "5",
-              "email": "ykings3@yopmail.com",
-              "confirmation_code": "",
-              "status": "1",
-              "created_at": "2015-11-12 08:49:55",
-              "updated_at": "2015-11-12 08:49:55",
-              "profile": {
-                  "id": "5",
-                  "user_id": "5",
-                  "first_name": "Ykings",
-                  "last_name": "test3",
-                  "gender": "0",
-                  "fitness_status": "2",
-                  "goal": "2",
-                  "image": "5_1447318201.jpg",
-                  "city": "Kochi",
-                  "state": "Kerala",
-                  "country": "India",
-                  "quote": "I need to get strong!!!!",
-                  "created_at": "2015-11-12 08:50:01",
-                  "updated_at": "2015-11-12 08:50:01"
-              }
-          },
-          "followers": [],
-          "followings": [{
-                  "id": "3",
-                  "user_id": "5",
-                  "follow_id": "2",
-                  "created_at": "2015-11-12 11:43:59",
-                  "updated_at": "2015-11-12 11:43:59",
-                  "follow_profile": {
-                      "id": "2",
-                      "email": "aneeshk@cubettech.com",
-                      "confirmation_code": "",
-                      "status": "1",
-                      "created_at": "2015-11-12 08:44:54",
-                      "updated_at": "2015-11-12 08:44:54",
-                      "profile": {
-                      "id": "2",
-                      "user_id": "2",
-                      "first_name": "Aneesh",
-                      "last_name": "Kallikkattil",
-                      "gender": "0",
-                      "fitness_status": "3",
-                      "goal": "3",
-                      "image": "2_1447317902.jpg",
-                      "city": "Kochi",
-                      "state": "Kerala",
-                      "country": "India",
-                      "quote": "I need to get strong!!!!",
-                      "created_at": "2015-11-12 08:45:02",
-                      "updated_at": "2015-11-12 08:45:02"
-                  }
-              }
-          }]
-      },
-      "urls": {
-              "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-              "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-              "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-              "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-              "video": "http://sandbox.ykings.com/uploads/videos",
-              "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-              "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-              "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-              "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-          }
+          "success": "successfully_followed"          
       }
      *
      * @apiError error Message token_invalid.
@@ -251,7 +183,7 @@ class UserFollowsController extends Controller
             if (!is_null($follow)) {
                 $user = User::where('id', '=', $follower->id)
                         ->with(['profile', 'followers', 'followings'])->first();
-                return response()->json(['status' => 1, 'success' => 'successfully_followed', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'successfully_followed'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_able_to_follow'], 500);
             }
@@ -271,76 +203,8 @@ class UserFollowsController extends Controller
      * HTTP/1.1 200 OK
       {
           "status": 1,
-          "success": "successfully_unfollowed",
-          "user": {
-              "id": "5",
-              "email": "ykings3@yopmail.com",
-              "confirmation_code": "",
-              "status": "1",
-              "created_at": "2015-11-12 08:49:55",
-              "updated_at": "2015-11-12 08:49:55",
-              "profile": {
-                  "id": "5",
-                  "user_id": "5",
-                  "first_name": "Ykings",
-                  "last_name": "test3",
-                  "gender": "0",
-                  "fitness_status": "2",
-                  "goal": "2",
-                  "image": "5_1447318201.jpg",
-                  "city": "Kochi",
-                  "state": "Kerala",
-                  "country": "India",
-                  "quote": "I need to get strong!!!!",
-                  "created_at": "2015-11-12 08:50:01",
-                  "updated_at": "2015-11-12 08:50:01"
-               }
-          },
-          "followers": [],
-          "followings": [{
-              "id": "3",
-              "user_id": "5",
-              "follow_id": "2",
-              "created_at": "2015-11-12 11:43:59",
-              "updated_at": "2015-11-12 11:43:59",
-              "follow_profile": {
-                  "id": "2",
-                  "email": "aneeshk@cubettech.com",
-                  "confirmation_code": "",
-                  "status": "1",
-                  "created_at": "2015-11-12 08:44:54",
-                  "updated_at": "2015-11-12 08:44:54",
-                  "profile": {
-                      "id": "2",
-                      "user_id": "2",
-                      "first_name": "Aneesh",
-                      "last_name": "Kallikkattil",
-                      "gender": "0",
-                      "fitness_status": "3",
-                      "goal": "3",
-                      "image": "2_1447317902.jpg",
-                      "city": "Kochi",
-                      "state": "Kerala",
-                      "country": "India",
-                      "quote": "I need to get strong!!!!",
-                      "created_at": "2015-11-12 08:45:02",
-                      "updated_at": "2015-11-12 08:45:02"
-                  }
-              }
-          }]
-      },
-      "urls": {
-          "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-          "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-          "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-          "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-          "video": "http://sandbox.ykings.com/uploads/videos",
-          "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-          "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-          "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-          "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-        }
-    }
+          "success": "successfully_unfollowed"          
+       }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -529,7 +393,6 @@ class UserFollowsController extends Controller
                   "created_at": "2015-11-12 08:45:02",
                   "updated_at": "2015-11-12 08:45:02"
                }
-          },
           "followers": [{
               "id": "1",
               "user_id": "3",
@@ -559,38 +422,7 @@ class UserFollowsController extends Controller
                       "created_at": "2015-11-12 08:47:43",
                       "updated_at": "2015-11-12 08:47:43"
                   }
-              }
-              },
-              {
-              "id": "3",
-              "user_id": "5",
-              "follow_id": "2",
-              "created_at": "2015-11-12 11:43:59",
-              "updated_at": "2015-11-12 11:43:59",
-              "following_profile": {
-                  "id": "5",
-                  "email": "ykings3@yopmail.com",
-                  "confirmation_code": "",
-                  "status": "1",
-                  "created_at": "2015-11-12 08:49:55",
-                  "updated_at": "2015-11-12 08:49:55",
-                  "profile": {
-                      "id": "5",
-                      "user_id": "5",
-                      "first_name": "Ykings",
-                      "last_name": "test3",
-                      "gender": "0",
-                      "fitness_status": "2",
-                      "goal": "2",
-                      "image": "5_1447318201.jpg",
-                      "city": "Kochi",
-                      "state": "Kerala",
-                      "country": "India",
-                      "quote": "I need to get strong!!!!",
-                      "created_at": "2015-11-12 08:50:01",
-                      "updated_at": "2015-11-12 08:50:01"
-                  }
-              }
+              }              
           }]
       },
       "urls": {
@@ -603,9 +435,8 @@ class UserFollowsController extends Controller
           "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
           "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
           "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+          }
       }
-      }
-     *
      * @apiError error Message token_invalid
      * @apiError error Message token_expired
      * @apiError error Message token_not_provided
@@ -703,109 +534,77 @@ class UserFollowsController extends Controller
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
+     * HTTP/1.1 200 OK
       {
       "status": 1,
       "success": "user_followings",
       "user": {
-      "id": "2",
-      "email": "aneeshk@cubettech.com",
-      "confirmation_code": "",
-      "status": "1",
-      "created_at": "2015-11-12 08:44:54",
-      "updated_at": "2015-11-12 08:44:54",
-      "profile": {
-      "id": "2",
-      "user_id": "2",
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "gender": "0",
-      "fitness_status": "3",
-      "goal": "3",
-      "image": "2_1447317902.jpg",
-      "city": "Kochi",
-      "state": "Kerala",
-      "country": "India",
-      "quote": "I need to get strong!!!!",
-      "created_at": "2015-11-12 08:45:02",
-      "updated_at": "2015-11-12 08:45:02"
-      },
-      "followers": [
-      {
-      "id": "1",
-      "user_id": "3",
-      "follow_id": "2",
-      "created_at": "2015-11-12 09:34:27",
-      "updated_at": "2015-11-12 15:05:55",
-      "following_profile": {
-      "id": "3",
-      "email": "ykings1@yopmail.com",
-      "confirmation_code": "",
-      "status": "1",
-      "created_at": "2015-11-12 08:47:37",
-      "updated_at": "2015-11-12 08:47:37",
-      "profile": {
-      "id": "3",
-      "user_id": "3",
-      "first_name": "Ykings",
-      "last_name": "test1",
-      "gender": "0",
-      "fitness_status": "1",
-      "goal": "3",
-      "image": "3_1447318063.jpg",
-      "city": "Kochi",
-      "state": "Kerala",
-      "country": "India",
-      "quote": "I need to get strong!!!!",
-      "created_at": "2015-11-12 08:47:43",
-      "updated_at": "2015-11-12 08:47:43"
-      }
-      }
-      },
-      {
-      "id": "3",
-      "user_id": "5",
-      "follow_id": "2",
-      "created_at": "2015-11-12 11:43:59",
-      "updated_at": "2015-11-12 11:43:59",
-      "following_profile": {
-      "id": "5",
-      "email": "ykings3@yopmail.com",
-      "confirmation_code": "",
-      "status": "1",
-      "created_at": "2015-11-12 08:49:55",
-      "updated_at": "2015-11-12 08:49:55",
-      "profile": {
-      "id": "5",
-      "user_id": "5",
-      "first_name": "Ykings",
-      "last_name": "test3",
-      "gender": "0",
-      "fitness_status": "2",
-      "goal": "2",
-      "image": "5_1447318201.jpg",
-      "city": "Kochi",
-      "state": "Kerala",
-      "country": "India",
-      "quote": "I need to get strong!!!!",
-      "created_at": "2015-11-12 08:50:01",
-      "updated_at": "2015-11-12 08:50:01"
-      }
-      }
-      }
-      ]
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-      }
+          "id": "2",
+          "email": "aneeshk@cubettech.com",
+          "confirmation_code": "",
+          "status": "1",
+          "created_at": "2015-11-12 08:44:54",
+          "updated_at": "2015-11-12 08:44:54",
+          "profile": {
+                  "id": "2",
+                  "user_id": "2",
+                  "first_name": "Aneesh",
+                  "last_name": "Kallikkattil",
+                  "gender": "0",
+                  "fitness_status": "3",
+                  "goal": "3",
+                  "image": "2_1447317902.jpg",
+                  "city": "Kochi",
+                  "state": "Kerala",
+                  "country": "India",
+                  "quote": "I need to get strong!!!!",
+                  "created_at": "2015-11-12 08:45:02",
+                  "updated_at": "2015-11-12 08:45:02"
+              },
+          "followers": [
+                  {
+                      "id": "1",
+                      "user_id": "3",
+                      "follow_id": "2",
+                      "created_at": "2015-11-12 09:34:27",
+                      "updated_at": "2015-11-12 15:05:55",
+                      "following_profile": {
+                      "id": "3",
+                      "email": "ykings1@yopmail.com",
+                      "confirmation_code": "",
+                      "status": "1",
+                      "created_at": "2015-11-12 08:47:37",
+                      "updated_at": "2015-11-12 08:47:37",
+                      "profile": {
+                          "id": "3",
+                          "user_id": "3",
+                          "first_name": "Ykings",
+                          "last_name": "test1",
+                          "gender": "0",
+                          "fitness_status": "1",
+                          "goal": "3",
+                          "image": "3_1447318063.jpg",
+                          "city": "Kochi",
+                          "state": "Kerala",
+                          "country": "India",
+                          "quote": "I need to get strong!!!!",
+                          "created_at": "2015-11-12 08:47:43",
+                          "updated_at": "2015-11-12 08:47:43"
+                      }
+                 }
+              ]
+          },
+          "urls": {
+              "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+              "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+              "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+              "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+              "video": "http://sandbox.ykings.com/uploads/videos",
+              "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+              "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+              "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+              "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+           }      
       }
      *
      * @apiError error Message token_invalid

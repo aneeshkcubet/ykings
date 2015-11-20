@@ -3,13 +3,13 @@
 use Auth,
     Image,
     Validator,
-    DB,
-    Carbon;
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Carbon\Carbon;
 use App\Settings;
 use App\User;
 use App\Profile;
@@ -18,7 +18,7 @@ use App\Images;
 use App\Clap;
 use App\Comment;
 use App\Exerciseuser;
-use App\WorkoutUser;
+use App\Workoutuser;
 
 
 
@@ -168,15 +168,17 @@ class FeedController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 } elseif ($request->item_type == 'workout') {
-
-                    WorkoutUser::create([
+                    
+                    $data = [
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
                         'time' => $request->time_taken,
                         'category' => $request->category,
                         'is_starred' => 0
-                    ]);
+                    ];
+                    
+                    WorkoutUser::create($data);
 
                     $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
                         ->where('workout_id', $request->item_id)
@@ -822,9 +824,9 @@ class FeedController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
-      {
-      "success": "unclaped"
-      }
+          {
+          "success": "unclaped"
+          }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError user_not_exists User error.

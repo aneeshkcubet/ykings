@@ -13,7 +13,7 @@ use App\Exercise;
 use App\Exerciseuser;
 use App\Workout;
 use App\Workoutexercise;
-use App\WorkoutUser;
+use App\Workoutuser;
 
 class WorkoutsController extends Controller
 {
@@ -204,7 +204,65 @@ class WorkoutsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     *  {
+        "status": 1,
+        "workout": {
+          "id": "2",
+          "name": "Borr",
+          "description": "Borr Borr Borr",
+          "rounds": "3",
+          "category": "2",
+          "type": "1",
+          "rewards": "330",
+          "duration": "19.00",
+          "equipments": "BAR",
+          "created_at": "2015-11-18 18:30:00",
+          "updated_at": "2015-11-19 11:13:13",
+          "beginer": [],
+          "advanced": [
+            {
+              "id": "1",
+              "workout_id": "2",
+              "user_id": "2",
+              "status": "1",
+              "time": "33",
+              "is_starred": "0",
+              "created_at": "2015-11-20 05:04:13",
+              "updated_at": "2015-11-20 05:04:13",
+              "category": "2",
+              "profile": {
+                "id": "2",
+                "user_id": "2",
+                "first_name": "Aneesh",
+                "last_name": "Kallikkattil",
+                "gender": "1",
+                "fitness_status": "3",
+                "goal": "3",
+                "image": "",
+                "city": "",
+                "state": "",
+                "country": "",
+                "quote": "I want to get Strong",
+                "created_at": "2015-11-09 09:14:02",
+                "updated_at": "2015-11-09 10:16:07"
+              }
+            }
+          ],
+          "professional": []
+        },
+        "urls": {
+          "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+          "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+          "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+          "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+          "video": "http://sandbox.ykings.com/uploads/videos",
+          "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+          "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+          "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+          "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+          "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+        }
+    }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -291,7 +349,47 @@ class WorkoutsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     *  {
+        "status": 1,
+        "workout": {
+          "id": "2",
+          "name": "Borr",
+          "description": "Borr Borr Borr",
+          "rounds": "3",
+          "category": "2",
+          "type": "1",
+          "rewards": "330",
+          "duration": "19.00",
+          "equipments": "BAR",
+          "created_at": "2015-11-18 18:30:00",
+          "updated_at": "2015-11-19 11:13:13",
+          "exercises": [
+            {
+              "id": "16",
+              "workout_id": "1",
+              "category": "2",
+              "repititions": "50",
+              "exercise_id": "32",
+              "unit": "",
+              "round": "1",
+              "created_at": "2015-11-18 18:30:00",
+              "updated_at": "2015-11-19 10:00:00"
+            }
+           ]
+        },
+        "urls": {
+          "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+          "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+          "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+          "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+          "video": "http://sandbox.ykings.com/uploads/videos",
+          "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+          "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+          "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+          "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+          "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+        }
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -374,6 +472,10 @@ class WorkoutsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
+     *  {
+          "status": 1,
+          "success": "Successfully stared."
+        }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -464,7 +566,7 @@ class WorkoutsController extends Controller
                     return response()->json(['status' => 0, 'error' => 'You need to complete this workout to star.'], 422);                    
                 }
                 
-                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'Successfully stared.'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
             }
