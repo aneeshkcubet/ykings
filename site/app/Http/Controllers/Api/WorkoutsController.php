@@ -46,7 +46,7 @@ class WorkoutsController extends Controller
      * HTTP/1.1 200 OK
      * {
       "status": 1,
-      "is_subscribed: 1,
+      "is_subscribed": 1,
       "exercises": {
       "beginer": [
       {
