@@ -21,7 +21,17 @@ class Workoutexercise extends Model
         'repititions',
         'exercise_id',
         'equipments',
-        'round' 
+        'round',
+        'unit'
+    ];
+    
+    protected $hidden = [
+        'workout_id',
+        'category',
+        'repititions',
+        'round',
+        'updated_at',
+        'created_at'
     ];
     
     /**
@@ -31,7 +41,17 @@ class Workoutexercise extends Model
      */
     public function video()
     {
-        return $this->hasMany('App\Video', 'parent_id', 'exercise_id')->where('parent_type', '=', 1);
+        return $this->hasOne('App\Video', 'parent_id', 'exercise_id')->where('parent_type', '=', 1);
+    }
+    
+    /**
+     * Relation with video table.
+     * @author <aneesh@cubettech.com>
+     * @since 20th November 2015
+     */
+    public function exercise()
+    {
+        return $this->belongsTo('App\Exercise', 'exercise_id', 'id')->select(array('id', 'name', 'description'));
     }
     
     

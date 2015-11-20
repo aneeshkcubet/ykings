@@ -26,7 +26,7 @@ class SocialController extends Controller
      */
 
     /**
-     * @api {post} /social/facebookLogin?token= facebookLogin
+     * @api {post} /social/facebookLogin facebookLogin
      * @apiName Facebook Login
      * @apiGroup Social
      *

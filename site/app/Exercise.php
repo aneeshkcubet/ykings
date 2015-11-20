@@ -26,6 +26,11 @@ class Exercise extends Model
         'equipment'
     ];
     
+    protected $hidden = [
+        'updated_at',
+        'created_at'
+    ];
+    
     /**
      * Relation with video table.
      * @author <aneesh@cubettech.com>
@@ -34,6 +39,16 @@ class Exercise extends Model
     public function video()
     {
         return $this->hasMany('App\Video', 'parent_id', 'id')->where('parent_type', '=', 1);
+    }
+    
+    /**
+     * Relation with video table.
+     * @author <aneesh@cubettech.com>
+     * @since 11th November 2015
+     */
+    public function workoutexercises()
+    {
+        return $this->hasMany('App\Workoutexercise', 'exercise_id', 'id');
     }
     
     

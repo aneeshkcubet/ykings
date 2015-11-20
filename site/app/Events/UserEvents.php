@@ -3,6 +3,7 @@
 use App\User;
 use App\Uservideo;
 use App\Video;
+use App\Settings;
 use DB;
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
@@ -45,6 +46,18 @@ class UserEvents extends Event
                 ]);
             }
         }
+
+        Settings::create([
+            'user_id' => $user->id,
+            'key' => 'subscription',
+            'value' => 1
+        ]);
+        
+        Settings::create([
+            'user_id' => $user->id,
+            'key' => 'notification',
+            'value' => '[{"comments":"1"},{"claps":"1"},{"follow":"1"},{"my_performance":"1"},{"motivation_knowledge":"1"}]'
+        ]);
     }
 
     public function userDeleted(User $user)

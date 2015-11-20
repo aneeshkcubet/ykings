@@ -5,7 +5,8 @@ use Validator,
     Mail,
     Auth,
     Image,
-    Redirect;
+    Redirect,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ use App\Exceptions\InvalidConfirmationCodeException;
 use App\User;
 use App\Profile;
 use App\Settings;
+use App\Follow;
 
 class UsersController extends Controller
 {
@@ -543,67 +545,55 @@ class UsersController extends Controller
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *       {
-     *           "status" : 1
-     *           "success": "successfully_logged_in",
-     *           "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ",
-     *           "user": {
-     *               "id": "2",
-     *               "email": "aneeshk@cubettech.com",
-     *               "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
-     *               "status": "1",
-     *               "created_at": "2015-11-11 11:40:04",
-     *               "updated_at": "2015-11-11 11:40:04",
-     *               "profile": {
-     *                   "id": "2",
-     *                   "user_id": "2",
-     *                   "first_name": "Aneesh",
-     *                   "last_name": "Kallikkattil",
-     *                   "gender": "0",
-     *                   "fitness_status": "0",
-     *                   "goal": "0",
-     *                   "image": "2_1447242011.jpg",
-     *                   "city": "",
-     *                   "state": "",
-     *                   "country": "",
-     *                   "quote": "",
-     *                   "created_at": "2015-11-11 11:40:10",
-     *                   "updated_at": "2015-11-11 11:40:11"
-     *               },
-     *               "videos": [
-     *                   {
-     *                       "id": "2",
-     *                       "user_id": "2",
-     *                       "video_id": "1",
-     *                       "created_at": "2015-11-11 11:40:05",
-     *                       "updated_at": "2015-11-11 11:40:05",
-     *                       "video": {
-     *                           "id": "1",
-     *                           "user_id": "1",
-     *                           "path": "Now1.mp4",
-     *                           "description": "Test Description",
-     *                           "parent_type": "1",
-     *                           "type": "1",
-     *                           "parent_id": "1",
-     *                           "created_at": "2015-11-11 07:26:40",
-     *                           "updated_at": "2015-11-11 17:43:27"
-     *                       }
-     *                   }
-     *               ]
-     *           },
-     *           "urls": {
-     *               "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-     *               "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-     *               "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-     *               "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-     *               "video": "http://sandbox.ykings.com/uploads/videos",
-     *               "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-     *               "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-     *               "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-     *               "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-     *           }
-     *       }
+     * HTTP/1.1 200 OK
+     * {
+          "status": 1,
+          "success": "successfully_logged_in",
+          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU",
+          "user": {
+            "id": "2",
+            "email": "aneeshk@cubettech.com",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-11-09 09:14:02",
+            "updated_at": "2015-11-16 06:45:17",
+            "is_subscribed": 0,
+            "profile": [
+              {
+                "id": "2",
+                "user_id": "2",
+                "first_name": "Aneesh",
+                "last_name": "Kallikkattil",
+                "gender": "1",
+                "fitness_status": "3",
+                "goal": "3",
+                "image": "",
+                "city": "",
+                "state": "",
+                "country": "",
+                "quote": "I want to get Strong",
+                "created_at": "2015-11-09 09:14:02",
+                "updated_at": "2015-11-09 10:16:07"
+              }
+            ],
+            "follower_count": 0,
+            "workout_count": 4,
+            "points": 330,
+            "level": 3
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+          }
+        }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -682,7 +672,8 @@ class UsersController extends Controller
             // Authentication passed...
 
             if (Auth::user()->status == 1) {
-                $user = User::where('id', '=', Auth::user()->id)->with(['profile', 'videos'])->first();
+                $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
+                
                 try {
                     // verify the credentials and create a token for the user
                     if (!$token = JWTAuth::fromUser($user)) {
@@ -692,9 +683,33 @@ class UsersController extends Controller
                     // something went wrong
                     return response()->json([ 'status' => 0, 'error' => 'could_not_create_token'], 500);
                 }
+                
+                $userArray = $user->toArray();
+                
+                $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
+                
+                $userArray['workout_count'] = DB::table('workout_users')
+                    ->where('user_id', '=', $user['id'])
+                    ->where('status', '=', 1)
+                    ->count();
+                
+                $points = DB::table('points')
+                    ->where('user_id', '=', $user['id'])
+                    ->sum('points');
+                
+                $userArray['points'] = (int)$points;
+                
+                if($userArray['points']>0){
+                    $level = (sqrt(625+(100*$userArray['points']))-25)/50;
+                    
+                    $userArray['level'] = (int)$level;
+                    
+                } else {
+                    $userArray['level'] = 1;
+                }
 
                 // if no errors are encountered we can return a JWT
-                return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
             }
@@ -713,67 +728,54 @@ class UsersController extends Controller
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     *     {
-     *       "status" : 1,
-     *       "success": "user_details",
-     *       "user": {
-     *           "id": "2",
-     *           "email": "aneeshk@ykings.com",
-     *           "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
-     *           "status": "0",
-     *           "created_at": "2015-11-11 11:40:04",
-     *           "updated_at": "2015-11-11 11:40:04",
-     *           "profile": {
-     *               "id": "2",
-     *               "user_id": "2",
-     *               "first_name": "Aneesh",
-     *               "last_name": "Kallikkattil",
-     *               "gender": "0",
-     *               "fitness_status": "0",
-     *               "goal": "0",
-     *               "image": "2_1447242011.jpg",
-     *               "city": "",
-     *               "state": "",
-     *               "country": "",
-     *               "quote": "",
-     *               "created_at": "2015-11-11 11:40:10",
-     *               "updated_at": "2015-11-11 11:40:11"
-     *           },
-     *           "videos": [
-     *               {
-     *                   "id": "2",
-     *                   "user_id": "2",
-     *                   "video_id": "1",
-     *                   "created_at": "2015-11-11 11:40:05",
-     *                   "updated_at": "2015-11-11 11:40:05",
-     *                   "video": {
-     *                       "id": "1",
-     *                       "user_id": "1",
-     *                       "path": "Now1.mp4",
-     *                       "description": "Test Description",
-     *                       "parent_type": "1",
-     *                       "type": "1",
-     *                       "parent_id": "1",
-     *                      "created_at": "2015-11-11 07:26:40",
-     *                       "updated_at": "2015-11-11 17:43:27"
-     *                   }     
-     *                }
-     *
-     *           ]
-     *       },
-     *       "urls": {
-     *           "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-     *           "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-     *           "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-     *           "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-     *           "video": "http://sandbox.ykings.com/uploads/videos",
-     *           "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-     *           "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-     *           "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-     *           "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-     *       }
-     *   }
+     * HTTP/1.1 200 OK
+     * {
+          "status": 1,
+          "success": "user_details",
+          "user": {
+            "id": "2",
+            "email": "aneeshk@cubettech.com",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-11-09 09:14:02",
+            "updated_at": "2015-11-16 06:45:17",
+            "is_subscribed": 0,
+            "profile": [
+              {
+                "id": "2",
+                "user_id": "2",
+                "first_name": "Aneesh",
+                "last_name": "Kallikkattil",
+                "gender": "1",
+                "fitness_status": "3",
+                "goal": "3",
+                "image": "",
+                "city": "",
+                "state": "",
+                "country": "",
+                "quote": "I want to get Strong",
+                "created_at": "2015-11-09 09:14:02",
+                "updated_at": "2015-11-09 10:16:07"
+              }
+            ],
+            "follower_count": 0,
+            "workout_count": 4,
+            "points": 330,
+            "level": 3
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+          }
+        }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -833,9 +835,33 @@ class UsersController extends Controller
         }
 
         if (Auth::user()->status == 1) {
-            $user = User::where('id', '=', $data['user_id'])->with(['profile', 'videos'])->first();
+            $user = User::where('id', '=', $data['user_id'])->with(['profile'])->first();
+            
+            $userArray = $user->toArray();
+                
+            $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
 
-            return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            $userArray['workout_count'] = DB::table('workout_users')
+                ->where('user_id', '=', $user['id'])
+                ->where('status', '=', 1)
+                ->count();
+
+            $points = DB::table('points')
+                ->where('user_id', '=', $user['id'])
+                ->sum('points');
+
+            $userArray['points'] = (int)$points;
+
+            if($userArray['points']>0){
+                $level = (sqrt(625+(100*$userArray['points']))-25)/50;
+
+                $userArray['level'] = (int)$level;
+
+            } else {
+                $userArray['level'] = 1;
+            }
+
+            return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
         }

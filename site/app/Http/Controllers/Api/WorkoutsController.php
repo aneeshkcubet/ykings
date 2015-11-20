@@ -205,64 +205,64 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      *  {
-        "status": 1,
-        "workout": {
-          "id": "2",
-          "name": "Borr",
-          "description": "Borr Borr Borr",
-          "rounds": "3",
-          "category": "2",
-          "type": "1",
-          "rewards": "330",
-          "duration": "19.00",
-          "equipments": "BAR",
-          "created_at": "2015-11-18 18:30:00",
-          "updated_at": "2015-11-19 11:13:13",
-          "beginer": [],
-          "advanced": [
-            {
-              "id": "1",
-              "workout_id": "2",
-              "user_id": "2",
-              "status": "1",
-              "time": "33",
-              "is_starred": "0",
-              "created_at": "2015-11-20 05:04:13",
-              "updated_at": "2015-11-20 05:04:13",
-              "category": "2",
-              "profile": {
-                "id": "2",
-                "user_id": "2",
-                "first_name": "Aneesh",
-                "last_name": "Kallikkattil",
-                "gender": "1",
-                "fitness_status": "3",
-                "goal": "3",
-                "image": "",
-                "city": "",
-                "state": "",
-                "country": "",
-                "quote": "I want to get Strong",
-                "created_at": "2015-11-09 09:14:02",
-                "updated_at": "2015-11-09 10:16:07"
-              }
-            }
-          ],
-          "professional": []
-        },
-        "urls": {
-          "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-          "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-          "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-          "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-          "video": "http://sandbox.ykings.com/uploads/videos",
-          "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-          "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-          "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-          "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-          "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-        }
-    }
+      "status": 1,
+      "workout": {
+      "id": "2",
+      "name": "Borr",
+      "description": "Borr Borr Borr",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "330",
+      "duration": "19.00",
+      "equipments": "BAR",
+      "created_at": "2015-11-18 18:30:00",
+      "updated_at": "2015-11-19 11:13:13",
+      "beginer": [],
+      "advanced": [
+      {
+      "id": "1",
+      "workout_id": "2",
+      "user_id": "2",
+      "status": "1",
+      "time": "33",
+      "is_starred": "0",
+      "created_at": "2015-11-20 05:04:13",
+      "updated_at": "2015-11-20 05:04:13",
+      "category": "2",
+      "profile": {
+      "id": "2",
+      "user_id": "2",
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "3",
+      "image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "quote": "I want to get Strong",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-09 10:16:07"
+      }
+      }
+      ],
+      "professional": []
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+      }
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -328,7 +328,7 @@ class WorkoutsController extends Controller
                     ->where('status', '=', 1)
                     ->with(['profile'])
                     ->get();
-                
+
                 $workoutArray['beginer'] = $leanWorkoutUsers->toArray();
                 $workoutArray['advanced'] = $athleteWorkoutUsers->toArray();
                 $workoutArray['professional'] = $strengthWorkoutUsers->toArray();
@@ -339,7 +339,7 @@ class WorkoutsController extends Controller
             }
         }
     }
-    
+
     /**
      * @api {post} /workout/getexercises getWorkoutWithExercises
      * @apiName getWorkoutWithExercises
@@ -349,47 +349,376 @@ class WorkoutsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     *  {
-        "status": 1,
-        "workout": {
-          "id": "2",
-          "name": "Borr",
-          "description": "Borr Borr Borr",
-          "rounds": "3",
-          "category": "2",
-          "type": "1",
-          "rewards": "330",
-          "duration": "19.00",
-          "equipments": "BAR",
-          "created_at": "2015-11-18 18:30:00",
-          "updated_at": "2015-11-19 11:13:13",
-          "exercises": [
-            {
-              "id": "16",
-              "workout_id": "1",
-              "category": "2",
-              "repititions": "50",
-              "exercise_id": "32",
-              "unit": "",
-              "round": "1",
-              "created_at": "2015-11-18 18:30:00",
-              "updated_at": "2015-11-19 10:00:00"
+     * {
+          "status": 1,
+          "workout": {
+            "id": "2",
+            "name": "Borr",
+            "description": "Borr Borr Borr",
+            "rounds": "3",
+            "category": "2",
+            "type": "1",
+            "rewards": "330",
+            "duration": "19.00",
+            "equipments": "BAR",
+            "exercises": {
+              "round1": [
+                {
+                  "id": "31",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "32",
+                  "exercise_id": "85",
+                  "unit": "",
+                  "video": {
+                    "id": "85",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "85",
+                    "name": "Atztec Pushups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "33",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "70",
+                  "exercise_id": "72",
+                  "unit": "",
+                  "video": {
+                    "id": "72",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "72",
+                    "name": "Burpee Squat Jumps",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "71",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "72",
+                  "exercise_id": "75",
+                  "unit": "",
+                  "video": {
+                    "id": "75",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "75",
+                    "name": "Jacknives",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "73",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                }
+              ],
+              "round2": [
+                {
+                  "id": "34",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "35",
+                  "exercise_id": "85",
+                  "unit": "",
+                  "video": {
+                    "id": "85",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "85",
+                    "name": "Atztec Pushups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "36",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "74",
+                  "exercise_id": "72",
+                  "unit": "",
+                  "video": {
+                    "id": "72",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "72",
+                    "name": "Burpee Squat Jumps",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "75",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "76",
+                  "exercise_id": "75",
+                  "unit": "",
+                  "video": {
+                    "id": "75",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "75",
+                    "name": "Jacknives",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "77",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                }
+              ],
+              "round3": [
+                {
+                  "id": "37",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "38",
+                  "exercise_id": "85",
+                  "unit": "",
+                  "video": {
+                    "id": "85",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "85",
+                    "name": "Atztec Pushups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "39",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "78",
+                  "exercise_id": "72",
+                  "unit": "",
+                  "video": {
+                    "id": "72",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "72",
+                    "name": "Burpee Squat Jumps",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "79",
+                  "exercise_id": "69",
+                  "unit": "",
+                  "video": {
+                    "id": "69",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "69",
+                    "name": "Muscleups",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "80",
+                  "exercise_id": "75",
+                  "unit": "",
+                  "video": {
+                    "id": "75",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "75",
+                    "name": "Jacknives",
+                    "description": ""
+                  }
+                },
+                {
+                  "id": "81",
+                  "exercise_id": "70",
+                  "unit": "",
+                  "video": {
+                    "id": "70",
+                    "path": "Now1.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  },
+                  "exercise": {
+                    "id": "70",
+                    "name": "Dips",
+                    "description": ""
+                  }
+                }
+              ]
             }
-           ]
-        },
-        "urls": {
-          "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-          "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-          "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-          "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-          "video": "http://sandbox.ykings.com/uploads/videos",
-          "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-          "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-          "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-          "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-          "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+          }
         }
-      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -449,127 +778,139 @@ class WorkoutsController extends Controller
         } else {
             $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
             if (!is_null($workout)) {
-                $workoutArray = $workout->toArray();
-                
-                $workoutExercises = Workoutexercise::where('category', '=', $request->category)->get();
-                
-                $workoutArray['exercises'] = $workoutExercises->toArray();
-                
-                return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+                $rounds = $workout->rounds;
+                $count = 1;
+                $exercises = [];
+                do {
+                    $roundExercises = Workoutexercise::where('category', '=', $request->category)
+                        ->where('round', '=', $count)
+                        ->with(['video', 'exercise'])->get();                        
+
+                        $exercises['round' . $count] = $roundExercises->toArray();
+
+                        $count++;
+                    } while ($count <= $rounds);
+
+
+                    $workoutArray = $workout->toArray();
+
+                    $workoutArray['exercises'] = $exercises;
+
+                    return response()->json(['status' => 1, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
+                }
+            }
+        }
+
+        /**
+         * @api {post} /workout/addstar addStar
+         * @apiName addStar
+         * @apiGroup Workout
+         * @apiParam {Number} workout_id Id of workout *required
+         * @apiParam {Number} category of workout *required 1-beginer, 2-advanced, 3-professional
+         * @apiParam {Number} user_id of workout *required
+         * @apiSuccess {String} success.
+         * @apiSuccessExample Success-Response:
+         * HTTP/1.1 200 OK
+         *  {
+          "status": 1,
+          "success": "Successfully stared."
+          }
+         * 
+         * 
+         * @apiError error Message token_invalid.
+         * @apiError error Message token_expired.
+         * @apiError error Message token_not_provided.
+         * @apiError error Message Validation error
+         * @apiError error Message Validation error
+         * @apiError error Message workout_not_exists
+         * @apiError error Message You need to complete this workout to star.
+         *
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 400 Invalid Request
+         *     {
+         *       "status":"0",
+         *       "error": "token_invalid"
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 401 Unauthorised
+         *     {
+         *       "status":"0",
+         *       "error": "token_expired"
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 400 Bad Request
+         *     {
+         *       "status":"0",
+         *       "error": "token_not_provided"
+         *     }
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 422 Validation error
+         *     {
+         *       "status" : 0,
+         *       "error": "The exercise_id field is required"
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 422 Validation error
+         *     {
+         *       "status" : 0,
+         *       "error": "The category field is required"
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 422 Validation error
+         *     {
+         *       "status" : 0,
+         *       "error": "The user_id field is required"
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 422 You need to complete this workout to star.
+         *     {
+         *       "status" : 0,
+         *       "error": "You need to complete this workout to star."
+         *     }
+         * 
+         * @apiErrorExample Error-Response:
+         *     HTTP/1.1 500 workout_not_exists
+         *     {
+         *       "status" : 0,
+         *       "error": "workout_not_exists"
+         *     }
+         * 
+         */
+        public function addStar(Request $request)
+        {
+            if (!isset($request->workout_id) || ($request->workout_id == null)) {
+                return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
+            } elseif (!isset($request->category) || ($request->category == null)) {
+                return response()->json(["status" => "0", "error" => "The category field is required"]);
+            } elseif (!isset($request->user_id) || ($request->user_id == null)) {
+                return response()->json(["status" => "0", "error" => "The user_id field is required"]);
             } else {
-                return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
+                $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
+                if (!is_null($workout)) {
+
+                    $workoutUser = WorkoutUser::where('workout_id', $workout->id)
+                        ->where('user_id', $request->user_id)
+                        ->where('category', $request->category)
+                        ->first();
+
+                    if (!is_null($workoutUser)) {
+                        $workoutUser->update(['is_stared' => 1]);
+                    } else {
+                        return response()->json(['status' => 0, 'error' => 'You need to complete this workout to star.'], 422);
+                    }
+
+                    return response()->json(['status' => 1, 'success' => 'Successfully stared.'], 200);
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
+                }
             }
         }
     }
     
-    /**
-     * @api {post} /workout/addstar addStar
-     * @apiName addStar
-     * @apiGroup Workout
-     * @apiParam {Number} workout_id Id of workout *required
-     * @apiParam {Number} category of workout *required 1-beginer, 2-advanced, 3-professional
-     * @apiParam {Number} user_id of workout *required
-     * @apiSuccess {String} success.
-     * @apiSuccessExample Success-Response:
-     * HTTP/1.1 200 OK
-     *  {
-          "status": 1,
-          "success": "Successfully stared."
-        }
-     * 
-     * 
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
-     * @apiError error Message Validation error
-     * @apiError error Message Validation error
-     * @apiError error Message workout_not_exists
-     * @apiError error Message You need to complete this workout to star.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status":"0",
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status":"0",
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "status":"0",
-     *       "error": "token_not_provided"
-     *     }
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The exercise_id field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The category field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The user_id field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 You need to complete this workout to star.
-     *     {
-     *       "status" : 0,
-     *       "error": "You need to complete this workout to star."
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 500 workout_not_exists
-     *     {
-     *       "status" : 0,
-     *       "error": "workout_not_exists"
-     *     }
-     * 
-     */
-    public function addStar(Request $request)
-    {
-        if (!isset($request->workout_id) || ($request->workout_id == null)) {
-            return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
-        } elseif (!isset($request->category) || ($request->category == null)) {
-            return response()->json(["status" => "0", "error" => "The category field is required"]);
-        } elseif (!isset($request->user_id) || ($request->user_id == null)) {
-            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else {
-            $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
-            if (!is_null($workout)) {
-                
-                $workoutUser = WorkoutUser::where('workout_id', $workout->id)
-                    ->where('user_id', $request->user_id)
-                    ->where('category', $request->category)
-                    ->first();
-                
-                if(!is_null($workoutUser)){
-                    $workoutUser->update(['is_stared' => 1]);
-                    
-                } else {
-                    return response()->json(['status' => 0, 'error' => 'You need to complete this workout to star.'], 422);                    
-                }
-                
-                return response()->json(['status' => 1, 'success' => 'Successfully stared.'], 200);
-            } else {
-                return response()->json(['status' => 0, 'error' => 'workout_not_exists'], 500);
-            }
-        }
-    }
-}

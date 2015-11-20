@@ -15,7 +15,8 @@ class Settings extends Model {
     /**
      * Set the fillable fields within the model
      */
-    protected $fillable = ['user_id',
+    protected $fillable = [
+        'user_id',
         'key',
         'value'
     ];

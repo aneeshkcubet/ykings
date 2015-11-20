@@ -561,7 +561,7 @@ class UserFollowsController extends Controller
                   "created_at": "2015-11-12 08:45:02",
                   "updated_at": "2015-11-12 08:45:02"
               },
-          "followers": [
+          "followings": [
                   {
                       "id": "1",
                       "user_id": "3",

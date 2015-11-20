@@ -36,7 +36,17 @@ class Video extends Model
         'path',
         'videothumbnail',
         'parent_type',
-        'parent_id'
+        'parent_id',
+        'type'
+    ];
+    
+    protected $hidden = [
+        'user_id',
+        'parent_type',
+        'parent_id',
+        'updated_at',
+        'created_at',
+        'type'
     ];
 
     /**

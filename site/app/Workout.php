@@ -26,5 +26,10 @@ class Workout extends Model
         'duration',
         'equipments'
     ];
+    
+    protected $hidden = [
+        'updated_at',
+        'created_at'
+    ];
 
 }

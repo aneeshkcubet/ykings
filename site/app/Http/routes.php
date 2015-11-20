@@ -56,6 +56,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
     ]);
+    
+    Route::post('user/getsettings', [
+        'as' => 'user.getsettings',
+        'uses' => 'Api\UserSettingsController@getUserSettings'
+    ]);
 
     Route::post('user/feedlist', [
         'as' => 'feeds.list',
