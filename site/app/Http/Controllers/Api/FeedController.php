@@ -259,45 +259,45 @@ class FeedController extends Controller
      *  @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-        "status": 1,
-        "success": "List",
-        "follower_count": 2,
-        "level_count": 0,
-        "workout_count": 0,
-        "feed_list": [
-            {
-                "id": "21",
-                "user_id": "14",
-                "item_type": "excercise",
-                "item_id": "1",
-                "feed_text": "testttttttttt",
-                "created_at": "2015-11-11 06:27:51",
-                "updated_at": "2015-11-11 06:27:51",
-                "clap_count": 0,
-                "comment_count": 0,
-                "is_commented": 0,
-                "is_claped": 0,
-                "image": [],
-                "workout": [],
-                "exercise": []
-            },
-            {
-                "id": "22",
-                "user_id": "14",
-                "item_type": "excercise",
-                "item_id": "1",
-                "feed_text": "afassdfsd",
-                "created_at": "2015-11-11 06:49:38",
-                "updated_at": "2015-11-11 06:49:38",
-                "clap_count": 0,
-                "comment_count": 0,
-                "is_commented": 0,
-                "is_claped": 0,
-                "image": [],
-                "workout": [],
-                "exercise": []
-            }
-          ],
+      "status": 1,
+      "success": "List",
+      "follower_count": 2,
+      "level_count": 0,
+      "workout_count": 0,
+      "feed_list": [
+      {
+      "id": "21",
+      "user_id": "14",
+      "item_type": "excercise",
+      "item_id": "1",
+      "feed_text": "testttttttttt",
+      "created_at": "2015-11-11 06:27:51",
+      "updated_at": "2015-11-11 06:27:51",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "workout": [],
+      "exercise": []
+      },
+      {
+      "id": "22",
+      "user_id": "14",
+      "item_type": "excercise",
+      "item_id": "1",
+      "feed_text": "afassdfsd",
+      "created_at": "2015-11-11 06:49:38",
+      "updated_at": "2015-11-11 06:49:38",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "workout": [],
+      "exercise": []
+      }
+      ],
       "urls": {
       "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
       "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
@@ -367,6 +367,7 @@ class FeedController extends Controller
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
                 }
+                $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);

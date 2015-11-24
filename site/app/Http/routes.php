@@ -10,8 +10,6 @@
   |
  */
 
-
-
 Route::group(['prefix' => 'api'], function() {
     Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
     Route::get('authenticate', 'Api\AuthenticateController@authenticate');
