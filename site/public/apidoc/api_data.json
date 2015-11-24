@@ -78,7 +78,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -160,7 +160,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -242,7 +242,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -393,7 +393,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -495,7 +495,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -546,7 +546,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"List\",\n        \"follower_count\": 2,\n        \"level_count\": 0,\n        \"workout_count\": 0,\n        \"feed_list\": [\n            {\n                \"id\": \"21\",\n                \"user_id\": \"14\",\n                \"item_type\": \"excercise\",\n                \"item_id\": \"1\",\n                \"feed_text\": \"testttttttttt\",\n                \"created_at\": \"2015-11-11 06:27:51\",\n                \"updated_at\": \"2015-11-11 06:27:51\",\n                \"clap_count\": 0,\n                \"comment_count\": 0,\n                \"is_commented\": 0,\n                \"is_claped\": 0,\n                \"image\": [],\n                \"workout\": [],\n                \"exercise\": []\n            },\n            {\n                \"id\": \"22\",\n                \"user_id\": \"14\",\n                \"item_type\": \"excercise\",\n                \"item_id\": \"1\",\n                \"feed_text\": \"afassdfsd\",\n                \"created_at\": \"2015-11-11 06:49:38\",\n                \"updated_at\": \"2015-11-11 06:49:38\",\n                \"clap_count\": 0,\n                \"comment_count\": 0,\n                \"is_commented\": 0,\n                \"is_claped\": 0,\n                \"image\": [],\n                \"workout\": [],\n                \"exercise\": []\n            }\n          ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -597,7 +597,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -708,7 +708,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -808,7 +808,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -902,7 +902,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1002,7 +1002,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1116,7 +1116,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1160,7 +1160,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n       {\n       \"success\": \"unclaped\"\n       }",
+          "content": "HTTP/1.1 200 OK\n   {\n   \"success\": \"unclaped\"\n   }",
           "type": "json"
         }
       ]
@@ -1221,7 +1221,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1340,7 +1340,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1432,7 +1432,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1524,7 +1524,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1648,7 +1648,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1708,8 +1708,179 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/AuthenticateController.php",
+    "filename": "./app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
+  },
+  {
+    "type": "post",
+    "url": "/search/searchUser",
+    "title": "searchUser",
+    "name": "searchUser",
+    "group": "Search",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "search_key",
+            "description": "<p>search key</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"search_result\": [\n      {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansaaaaa\",\n      \"last_name\": \"\",\n      \"image\": \"11_1447237788.jpg\",\n      \"quote\": \"\",\n      \"level\": 1\n      },\n      {\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"image\": null,\n      \"quote\": \"\",\n      \"level\": 1\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The search_key field is required.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "groupTitle": "Search"
+  },
+  {
+    "type": "post",
+    "url": "/user/getsettings",
+    "title": "getUserSettings",
+    "name": "getUserSettings",
+    "group": "Settings",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "groupTitle": "Settings"
   },
   {
     "type": "post",
@@ -1790,7 +1961,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -1891,114 +2062,12 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
     "type": "post",
-    "url": "/connect/connectFriends",
-    "title": "",
-    "name": "Connect_Friends",
-    "group": "Social",
-    "description": "<p>API for connecting facebook/phone book.</p> ",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>string</p> ",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>User Id of user</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>string</p> ",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Email Ids from contact,json array</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>string</p> ",
-            "optional": false,
-            "field": "type",
-            "description": "<p>facebook/phonebook</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "success.",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n        \"status\": 1,\n        \"registered_emails\": [\n            {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"confirmation_code\": null,\n                \"status\": \"1\",\n                \"created_at\": \"2015-11-09 12:40:07\",\n                \"updated_at\": \"2015-11-09 12:40:07\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ],\n                \"image\": []\n            },\n            {\n                \"id\": \"15\",\n                \"email\": \"dibin@cubettech.com\",\n                \"confirmation_code\": null,\n                \"status\": \"1\",\n                \"created_at\": \"2015-11-11 06:25:34\",\n                \"updated_at\": \"2015-11-11 06:25:34\",\n                \"profile\": [\n                    {\n                        \"id\": \"9\",\n                        \"user_id\": \"15\",\n                        \"first_name\": \"Dibu\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:25:34\",\n                        \"updated_at\": \"2015-11-11 06:25:34\"\n                    }\n                ],\n                \"image\": []\n            }\n        ],\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n        },\n        \"type\": \"phonebook\"\n        }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The type field is required\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
-    "groupTitle": "Social"
-  },
-  {
-    "type": "post",
-    "url": "/social/facebookLogin",
+    "url": "/social/facebookLogin?token=",
     "title": "facebookLogin",
     "name": "Facebook_Login",
     "group": "Social",
@@ -2107,7 +2176,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"status\": 1,\n    \"comments\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"14\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is a sample comment\",\n            \"created_at\": \"2015-11-16 13:53:47\",\n            \"updated_at\": \"2015-11-17 13:01:09\",\n            \"user\": {\n                \"id\": \"14\",\n                \"email\": \"sachin@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"8\",\n                        \"user_id\": \"14\",\n                        \"first_name\": \"sachii\",\n                        \"last_name\": \"k\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": null,\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-11 06:23:56\",\n                        \"updated_at\": \"2015-11-11 06:23:56\"\n                    }\n                ]\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"11\",\n            \"parent_type\": \"feed\",\n            \"parent_id\": \"15\",\n            \"comment_text\": \"This is another comment\",\n            \"created_at\": \"2015-11-16 13:55:14\",\n            \"updated_at\": \"2015-11-17 13:02:38\",\n            \"user\": {\n                \"id\": \"11\",\n                \"email\": \"ansa@cubettech.com\",\n                \"profile\": [\n                    {\n                        \"id\": \"7\",\n                        \"user_id\": \"11\",\n                        \"first_name\": \"ansa\",\n                        \"last_name\": \"v\",\n                        \"gender\": \"0\",\n                        \"fitness_status\": \"0\",\n                        \"goal\": \"0\",\n                        \"image\": \"11_1447237788.jpg\",\n                        \"city\": null,\n                        \"state\": null,\n                        \"country\": null,\n                        \"quote\": \"\",\n                        \"created_at\": \"2015-11-09 12:40:07\",\n                        \"updated_at\": \"2015-11-12 09:05:16\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n    }\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"comments\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"14\",\n      \"parent_type\": \"feed\",\n      \"parent_id\": \"15\",\n      \"comment_text\": \"This is a sample comment\",\n      \"created_at\": \"2015-11-16 13:53:47\",\n      \"updated_at\": \"2015-11-17 13:01:09\",\n      \"user\": {\n      \"id\": \"14\",\n      \"email\": \"sachin@cubettech.com\",\n      \"profile\": [\n      {\n      \"id\": \"8\",\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:23:56\",\n      \"updated_at\": \"2015-11-11 06:23:56\"\n      }\n      ]\n      }\n      },\n      {\n      \"id\": \"2\",\n      \"user_id\": \"11\",\n      \"parent_type\": \"feed\",\n      \"parent_id\": \"15\",\n      \"comment_text\": \"This is another comment\",\n      \"created_at\": \"2015-11-16 13:55:14\",\n      \"updated_at\": \"2015-11-17 13:02:38\",\n      \"user\": {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"profile\": [\n      {\n      \"id\": \"7\",\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"11_1447237788.jpg\",\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-12 09:05:16\"\n      }\n      ]\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2152,13 +2221,374 @@
         },
         {
           "title": "Error-Response:",
-          "content": "{\n      \"status\": 0,\n      \"error\": {\n      \"email\": [\n      \"The email field is required.\"\n      ],\n      \"provider_id\": [\n      \"The provider id field is required.\"\n      ],\n      \"provider\": [\n      \"The provider field is required.\"\n      ]\n      }\n      }",
+          "content": "HTTP/1.1 422 Validation error\n       {\n          \"status\": 0,\n          \"error\": \"The email field is required.\"\n       }",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"error\": \"could_not_create_user\"\n}",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SocialController.php",
+    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "groupTitle": "Social"
+  },
+  {
+    "type": "post",
+    "url": "/connect/connectFriends",
+    "title": "",
+    "name": "connectFriends",
+    "group": "Social",
+    "description": "<p>API for connecting facebook/phone book.</p> ",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email Ids from contact,json array</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>facebook/phonebook</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"registered_emails\": [\n      {\n      \"id\": \"11\",\n      \"email\": \"ansa@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-09 12:40:07\",\n      \"profile\": [\n      {\n      \"id\": \"7\",\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"11_1447237788.jpg\",\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-09 12:40:07\",\n      \"updated_at\": \"2015-11-12 09:05:16\"\n      }\n      ],\n      \"image\": []\n      },\n      {\n      \"id\": \"15\",\n      \"email\": \"dibin@cubettech.com\",\n      \"confirmation_code\": null,\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\",\n      \"profile\": [\n      {\n      \"id\": \"9\",\n      \"user_id\": \"15\",\n      \"first_name\": \"Dibu\",\n      \"last_name\": \"k\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"quote\": \"\",\n      \"created_at\": \"2015-11-11 06:25:34\",\n      \"updated_at\": \"2015-11-11 06:25:34\"\n      }\n      ],\n      \"image\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\"\n      },\n      \"type\": \"phonebook\"\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The type field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
+    "groupTitle": "Social"
+  },
+  {
+    "type": "post",
+    "url": "/social/facebookUpdate",
+    "title": "facebookUpdate",
+    "name": "facebookUpdate",
+    "group": "Social",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>Firstname of user *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>Firstname of user *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email address of user *readonly *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>number</p> ",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>gender of the user 1-Male, 2-Female *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>number</p> ",
+            "optional": false,
+            "field": "fitness_status",
+            "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>file</p> ",
+            "optional": false,
+            "field": "image",
+            "description": "<p>user avatar image *optional *accepted formats JPEG, PNG, and GIF</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>number</p> ",
+            "optional": false,
+            "field": "goal",
+            "description": "<p>user's goal *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "city",
+            "description": "<p>user's city *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "state",
+            "description": "<p>user's state *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "country",
+            "description": "<p>user's country *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "quote",
+            "description": "<p>Quote added by user *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>number</p> ",
+            "optional": false,
+            "field": "subscription",
+            "description": "<p>Whether Newsletter subscription selected by user *optional</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\" : 1,\n          \"success\": \"successfully_updated_user_profile\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ\",\n          \"user\": {\n              \"id\": \"2\",\n              \"email\": \"aneeshk@cubettech.com\",\n              \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-11 11:40:04\",\n              \"updated_at\": \"2015-11-11 11:40:04\",\n              \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"0\",\n                  \"goal\": \"0\",\n                  \"image\": \"2_1447242011.jpg\",\n                  \"city\": \"\",\n                  \"state\": \"\",\n                  \"country\": \"\",\n                  \"quote\": \"\",\n                  \"created_at\": \"2015-11-11 11:40:10\",\n                  \"updated_at\": \"2015-11-11 11:40:11\"\n              },\n              \"videos\": [\n                  {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"video_id\": \"1\",\n                      \"created_at\": \"2015-11-11 11:40:05\",\n                      \"updated_at\": \"2015-11-11 11:40:05\",\n                      \"video\": {\n                          \"id\": \"1\",\n                          \"user_id\": \"1\",\n                          \"path\": \"Now1.mp4\",\n                          \"description\": \"Test Description\",\n                          \"parent_type\": \"1\",\n                          \"type\": \"1\",\n                          \"parent_id\": \"1\",\n                          \"created_at\": \"2015-11-11 07:26:40\",\n                          \"updated_at\": \"2015-11-11 17:43:27\"\n                      }\n                  }\n              ]\n          },\n          \"urls\": {\n              \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n              \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n              \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n              \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n              \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n              \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n              \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n              \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n              \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n          }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 could_not_create_user\n{\n  \"status\" : 0,\n  \"error\": \"could_not_create_user\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images\n{\n  \"error\": \"user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "groupTitle": "Social"
+  },
+  {
+    "type": "post",
+    "url": "connect/inviteFriends",
+    "title": "inviteFriends",
+    "name": "inviteFriends",
+    "group": "Social",
+    "description": "<p>API for inviteFriends.</p> ",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email Ids from contact,json array</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"success\": \"Invitation sent\"\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Social"
   },
   {
@@ -2319,7 +2749,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
+    "filename": "./app/Http/Controllers/Api/SubscriptionsController.php",
     "groupTitle": "Subscription"
   },
   {
@@ -2516,7 +2946,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -2532,8 +2962,15 @@
             "group": "Parameter",
             "type": "<p>integer</p> ",
             "optional": false,
-            "field": "id",
-            "description": "<p>id of user *required</p> "
+            "field": "user_id",
+            "description": "<p>id of loggedin user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "profile_id",
+            "description": "<p>id of other user *required</p> "
           }
         ]
       }
@@ -2553,7 +2990,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"success\": \"user_details\",\n          \"user\": {\n            \"id\": \"2\",\n            \"email\": \"aneeshk@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-09 09:14:02\",\n            \"updated_at\": \"2015-11-16 06:45:17\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"first_name\": \"Aneesh\",\n                \"last_name\": \"Kallikkattil\",\n                \"gender\": \"1\",\n                \"fitness_status\": \"3\",\n                \"goal\": \"3\",\n                \"image\": \"\",\n                \"city\": \"\",\n                \"state\": \"\",\n                \"country\": \"\",\n                \"quote\": \"I want to get Strong\",\n                \"created_at\": \"2015-11-09 09:14:02\",\n                \"updated_at\": \"2015-11-09 10:16:07\"\n              }\n            ],\n            \"follower_count\": 0,\n            \"workout_count\": 4,\n            \"points\": 330,\n            \"level\": 3\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"user_details\",\n      \"user\": {\n      \"id\": \"2\",\n      \"email\": \"aneeshk@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-16 06:45:17\",\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"quote\": \"I want to get Strong\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-09 10:16:07\"\n      }\n      ],\n      \"is_following\": 0,\n      \"follower_count\": 0,\n      \"workout_count\": 4,\n      \"points\": 330,\n      \"level\": 3\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2603,7 +3040,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -2685,7 +3122,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -2729,7 +3166,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"success\": \"successfully_logged_in\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU\",\n          \"user\": {\n            \"id\": \"2\",\n            \"email\": \"aneeshk@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-09 09:14:02\",\n            \"updated_at\": \"2015-11-16 06:45:17\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"first_name\": \"Aneesh\",\n                \"last_name\": \"Kallikkattil\",\n                \"gender\": \"1\",\n                \"fitness_status\": \"3\",\n                \"goal\": \"3\",\n                \"image\": \"\",\n                \"city\": \"\",\n                \"state\": \"\",\n                \"country\": \"\",\n                \"quote\": \"I want to get Strong\",\n                \"created_at\": \"2015-11-09 09:14:02\",\n                \"updated_at\": \"2015-11-09 10:16:07\"\n              }\n            ],\n            \"follower_count\": 0,\n            \"workout_count\": 4,\n            \"points\": 330,\n            \"level\": 3\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"successfully_logged_in\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU\",\n      \"user\": {\n      \"id\": \"2\",\n      \"email\": \"aneeshk@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-16 06:45:17\",\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"quote\": \"I want to get Strong\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-09 10:16:07\"\n      }\n      ],\n      \"follower_count\": 0,\n      \"workout_count\": 4,\n      \"points\": 330,\n      \"level\": 3\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2789,7 +3226,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -2876,7 +3313,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3040,7 +3477,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3134,7 +3571,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3245,7 +3682,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3339,7 +3776,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3421,7 +3858,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3503,8 +3940,36 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p> "
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./public/apidoc/main.js",
+    "group": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "groupTitle": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "name": ""
   },
   {
     "type": "post",
@@ -3591,7 +4056,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/PasswordController.php",
+    "filename": "./app/Http/Controllers/Api/PasswordController.php",
     "groupTitle": "password"
   }
 ]

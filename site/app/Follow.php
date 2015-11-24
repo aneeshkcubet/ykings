@@ -73,4 +73,24 @@ class Follow extends Model
             ->count();
         return $followerCount;
     }
+
+    /**
+     * Function to check if userId follows given profileId.
+     * @author <ansa@cubettech.com>
+     * @since 24-11-2015
+     */
+    public static function isFollowing($userId, $profileId)
+    {
+        $following = DB::table('follows')
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->where('follow_id', '=', $profileId)
+            ->count();
+
+        if ($following <= 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }

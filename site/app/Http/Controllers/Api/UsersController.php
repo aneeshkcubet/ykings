@@ -17,6 +17,7 @@ use App\User;
 use App\Profile;
 use App\Settings;
 use App\Follow;
+use App\Point;
 
 class UsersController extends Controller
 {
@@ -214,10 +215,10 @@ class UsersController extends Controller
         } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
             return response()->json([ "status" => "0", "error" => "The last_name field is required"]);
         } else {
-            
+
             $user = User::where('email', '=', $request->email)->first();
-            
-            if(!is_null($user)){
+
+            if (!is_null($user)) {
                 return response()->json([ "status" => "0", "error" => "This email already signed up with us."], 422);
             }
 
@@ -547,53 +548,53 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "success": "successfully_logged_in",
-          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU",
-          "user": {
-            "id": "2",
-            "email": "aneeshk@cubettech.com",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-11-09 09:14:02",
-            "updated_at": "2015-11-16 06:45:17",
-            "is_subscribed": 0,
-            "profile": [
-              {
-                "id": "2",
-                "user_id": "2",
-                "first_name": "Aneesh",
-                "last_name": "Kallikkattil",
-                "gender": "1",
-                "fitness_status": "3",
-                "goal": "3",
-                "image": "",
-                "city": "",
-                "state": "",
-                "country": "",
-                "quote": "I want to get Strong",
-                "created_at": "2015-11-09 09:14:02",
-                "updated_at": "2015-11-09 10:16:07"
-              }
-            ],
-            "follower_count": 0,
-            "workout_count": 4,
-            "points": 330,
-            "level": 3
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-          }
-        }
+      "status": 1,
+      "success": "successfully_logged_in",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU",
+      "user": {
+      "id": "2",
+      "email": "aneeshk@cubettech.com",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-16 06:45:17",
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "2",
+      "user_id": "2",
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "3",
+      "image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "quote": "I want to get Strong",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-09 10:16:07"
+      }
+      ],
+      "follower_count": 0,
+      "workout_count": 4,
+      "points": 330,
+      "level": 3
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+      }
+      }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -673,7 +674,7 @@ class UsersController extends Controller
 
             if (Auth::user()->status == 1) {
                 $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
-                
+
                 try {
                     // verify the credentials and create a token for the user
                     if (!$token = JWTAuth::fromUser($user)) {
@@ -683,27 +684,26 @@ class UsersController extends Controller
                     // something went wrong
                     return response()->json([ 'status' => 0, 'error' => 'could_not_create_token'], 500);
                 }
-                
+
                 $userArray = $user->toArray();
-                
+
                 $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
-                
+
                 $userArray['workout_count'] = DB::table('workout_users')
                     ->where('user_id', '=', $user['id'])
                     ->where('status', '=', 1)
                     ->count();
-                
+
                 $points = DB::table('points')
                     ->where('user_id', '=', $user['id'])
                     ->sum('points');
-                
-                $userArray['points'] = (int)$points;
-                
-                if($userArray['points']>0){
-                    $level = (sqrt(625+(100*$userArray['points']))-25)/50;
-                    
-                    $userArray['level'] = (int)$level;
-                    
+
+                $userArray['points'] = (int) $points;
+
+                if ($userArray['points'] > 0) {
+                    $level = (sqrt(625 + (100 * $userArray['points'])) - 25) / 50;
+
+                    $userArray['level'] = (int) $level;
                 } else {
                     $userArray['level'] = 1;
                 }
@@ -723,59 +723,60 @@ class UsersController extends Controller
      * @apiName GetUserDetails
      * @apiGroup User
      *
-     * @apiParam {integer} id id of user *required
-     *
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} profile_id id of other user *required
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "success": "user_details",
-          "user": {
-            "id": "2",
-            "email": "aneeshk@cubettech.com",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-11-09 09:14:02",
-            "updated_at": "2015-11-16 06:45:17",
-            "is_subscribed": 0,
-            "profile": [
-              {
-                "id": "2",
-                "user_id": "2",
-                "first_name": "Aneesh",
-                "last_name": "Kallikkattil",
-                "gender": "1",
-                "fitness_status": "3",
-                "goal": "3",
-                "image": "",
-                "city": "",
-                "state": "",
-                "country": "",
-                "quote": "I want to get Strong",
-                "created_at": "2015-11-09 09:14:02",
-                "updated_at": "2015-11-09 10:16:07"
-              }
-            ],
-            "follower_count": 0,
-            "workout_count": 4,
-            "points": 330,
-            "level": 3
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-          }
-        }
+      "status": 1,
+      "success": "user_details",
+      "user": {
+      "id": "2",
+      "email": "aneeshk@cubettech.com",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-16 06:45:17",
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "2",
+      "user_id": "2",
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "3",
+      "image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "quote": "I want to get Strong",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-09 10:16:07"
+      }
+      ],
+      "is_following": 0,
+      "follower_count": 0,
+      "workout_count": 4,
+      "points": 330,
+      "level": 3
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+      }
+      }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -833,12 +834,18 @@ class UsersController extends Controller
         if (!isset($data['user_id'])) {
             return response()->json(['status' => 0, 'error' => 'user_id required'], 422);
         }
-
+        if (!isset($data['profile_id'])) {
+            return response()->json(['status' => 0, 'error' => 'profile_id required'], 422);
+        }
         if (Auth::user()->status == 1) {
-            $user = User::where('id', '=', $data['user_id'])->with(['profile'])->first();
-            
+            $user = User::where('id', '=', $data['profile_id'])->with(['profile'])->first();
+
             $userArray = $user->toArray();
-                
+
+            $userArray['is_following'] = 0;
+            if ($data['user_id'] != $data['profile_id'])
+                $userArray['is_following'] = Follow::isFollowing($data['user_id'], $data['profile_id']);
+
             $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
 
             $userArray['workout_count'] = DB::table('workout_users')
@@ -846,27 +853,15 @@ class UsersController extends Controller
                 ->where('status', '=', 1)
                 ->count();
 
-            $points = DB::table('points')
-                ->where('user_id', '=', $user['id'])
-                ->sum('points');
-
-            $userArray['points'] = (int)$points;
-
-            if($userArray['points']>0){
-                $level = (sqrt(625+(100*$userArray['points']))-25)/50;
-
-                $userArray['level'] = (int)$level;
-
-            } else {
-                $userArray['level'] = 1;
-            }
-
+            $userArray['points'] = Point::userPoints($user['id']);
+            $userArray['level'] = Point::userLevel($user['id']);
+            
             return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
         }
     }
-    
+
     /**
      * @api {post} user/resendverify ResendVerificationEmail
      * @apiName ResendVerificationEmail
@@ -940,16 +935,16 @@ class UsersController extends Controller
         if (!isset($request->email)) {
             return response()->json(['status' => 0, 'error' => 'email field is required'], 422);
         }
-        
-        
+
+
         $user = User::where(['email' => $request->email])->with(['profile'])->first();
-        
-        if(is_null($user)){
-            return response()->json(['status' => 0, 'error' => 'email not registered with us'], 422);            
+
+        if (is_null($user)) {
+            return response()->json(['status' => 0, 'error' => 'email not registered with us'], 422);
         }
-        
-        if($user->status == 1){
-            return response()->json(['status' => 0, 'error' => 'email already verified'], 422);            
+
+        if ($user->status == 1) {
+            return response()->json(['status' => 0, 'error' => 'email already verified'], 422);
         }
 
         Mail::send('email.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user, $request) {

@@ -259,72 +259,45 @@ class FeedController extends Controller
      *  @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "List",
-      "feed_list": [
-      {
-      "id": "38",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 11:53:35",
-      "updated_at": "2015-11-11 11:53:35",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [
-      {
-      "id": "6",
-      "user_id": "11",
-      "path": "11_1447242815.jpg",
-      "description": "testttttttttt",
-      "parent_type": "2",
-      "parent_id": "38",
-      "created_at": "2015-11-11 11:53:35",
-      "updated_at": "2015-11-11 11:53:35"
-      }
-      ],
-      "profile": {
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "image": "11_1447237788.jpg"
-      }
-      },
-      {
-      "id": "37",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 11:46:28",
-      "updated_at": "2015-11-11 11:46:28",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [
-      {
-      "id": "5",
-      "user_id": "11",
-      "path": "11_1447242388.jpg",
-      "description": "testttttttttt",
-      "parent_type": "2",
-      "parent_id": "37",
-      "created_at": "2015-11-11 11:46:28",
-      "updated_at": "2015-11-11 11:46:28"
-      }
-      ],
-      "profile": {
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "image": "11_1447237788.jpg"
-      }
-      }
-      ],
+        "status": 1,
+        "success": "List",
+        "follower_count": 2,
+        "level_count": 0,
+        "workout_count": 0,
+        "feed_list": [
+            {
+                "id": "21",
+                "user_id": "14",
+                "item_type": "excercise",
+                "item_id": "1",
+                "feed_text": "testttttttttt",
+                "created_at": "2015-11-11 06:27:51",
+                "updated_at": "2015-11-11 06:27:51",
+                "clap_count": 0,
+                "comment_count": 0,
+                "is_commented": 0,
+                "is_claped": 0,
+                "image": [],
+                "workout": [],
+                "exercise": []
+            },
+            {
+                "id": "22",
+                "user_id": "14",
+                "item_type": "excercise",
+                "item_id": "1",
+                "feed_text": "afassdfsd",
+                "created_at": "2015-11-11 06:49:38",
+                "updated_at": "2015-11-11 06:49:38",
+                "clap_count": 0,
+                "comment_count": 0,
+                "is_commented": 0,
+                "is_claped": 0,
+                "image": [],
+                "workout": [],
+                "exercise": []
+            }
+          ],
       "urls": {
       "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
       "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
@@ -389,7 +362,7 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
 
             if ($user) {
-                $feedQuery->with(['image', 'profile', 'workout', 'exercise']);
+                $feedQuery->with(['image', 'workout', 'exercise']);
                 if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
@@ -406,7 +379,6 @@ class FeedController extends Controller
                         'follower_count' => $followerCount,
                         'level_count' => 0,
                         'workout_count' => $workoutCount,
-                        'motivation_text' => '',
                         'feed_list' => $feedsResponse,
                         'urls' => config('urls.urls')], 200);
             } else {

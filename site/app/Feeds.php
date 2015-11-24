@@ -41,7 +41,7 @@ class Feeds extends Model
      */
     public function profile()
     {
-        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image'));
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image' ,'quote'));
     }
 
     /**

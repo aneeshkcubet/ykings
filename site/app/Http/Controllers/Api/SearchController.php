@@ -8,6 +8,8 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Profile;
+use App\Point;
+use DB;
 
 class SearchController extends Controller
 {
@@ -23,16 +25,49 @@ class SearchController extends Controller
     }
 
     /**
-     * @api {post} /user/search search
-     * @apiName search
-     * @apiGroup Settings
+     * @api {post} /search/searchUser searchUser
+     * @apiName searchUser
+     * @apiGroup Search
      * @apiParam {Number} user_id Id of user 
      * @apiParam {String} search_key search key
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
-     * 
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "List",
+      "search_result": [
+      {
+      "user_id": "11",
+      "first_name": "ansaaaaa",
+      "last_name": "",
+      "image": "11_1447237788.jpg",
+      "quote": "",
+      "level": 1
+      },
+      {
+      "user_id": "14",
+      "first_name": "sachii",
+      "last_name": "k",
+      "image": null,
+      "quote": "",
+      "level": 1
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      }
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -68,32 +103,38 @@ class SearchController extends Controller
      *       "status" : 0,
      *       "error": "The user_id field is required"
      *     }
-     * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
      *     {
      *       "status" : 0,
-     *       "error": "The settings_key field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The status field is required."
+     *       "error": "The search_key field is required."
      *     } 
      *  
      */
     public function userSearch(Request $request)
     {
+        $searchResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } elseif (!isset($request->search_key) || ($request->search_key == null)) {
             return response()->json(["status" => "0", "error" => "The search_key field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            if ($user) {
-                
+            if (!is_null($user)) {
+                $searchUsers = Profile::where('first_name', 'LIKE', '%' . $request->search_key . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $request->search_key . '%')
+                    ->select('user_id', 'first_name', 'last_name', 'image', 'quote')
+                    ->get();
+                if (!is_null($searchUsers)) {
+                    foreach ($searchUsers as $usersList) {
+                        $usersList['level'] = Point::userLevel($usersList->user_id);
+                        $searchResponse[] = $usersList;
+                        unset($usersList);
+                    }
+                }
+                return response()->json(['status' => 1, 'success' => 'List',
+                        'search_result' => $searchResponse,
+                        'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }

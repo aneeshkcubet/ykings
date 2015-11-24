@@ -171,10 +171,14 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'workout.getlevels',
         'uses' => 'Api\WorkoutsController@getWorkoutWithLevels'
     ]);
-
     Route::post('workout/getexercises', [
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
+    ]);
+    //SearchController
+    Route::post('/search/searchUser', [
+        'as' => 'user.search',
+        'uses' => 'Api\SearchController@userSearch'
     ]);
 });
 
