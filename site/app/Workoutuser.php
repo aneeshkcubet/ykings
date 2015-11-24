@@ -37,4 +37,17 @@ class Workoutuser extends Model
     {
         
     }
+
+    /**
+     * Function to get workout count.
+     * @author <ansa@cubettech.com>
+     * @since 23-11-2015
+     */
+    public static function workoutCount($userId)
+    {
+        $workoutCount = DB::table('workout_users')
+            ->where('user_id', $userId)
+            ->count();
+        return $workoutCount;
+    }
 }

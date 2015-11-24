@@ -19,8 +19,7 @@ use App\Clap;
 use App\Comment;
 use App\Exerciseuser;
 use App\Workoutuser;
-
-
+use App\Follow;
 
 class FeedController extends Controller
 {
@@ -143,7 +142,7 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                
+
                 $itemId = $request->input('item_id');
 
                 if ($request->item_type == 'exercise') {
@@ -168,7 +167,7 @@ class FeedController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 } elseif ($request->item_type == 'workout') {
-                    
+
                     $data = [
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
@@ -177,7 +176,7 @@ class FeedController extends Controller
                         'category' => $request->category,
                         'is_starred' => 0
                     ];
-                    
+
                     WorkoutUser::create($data);
 
                     $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
@@ -399,7 +398,17 @@ class FeedController extends Controller
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
+                //follower count
+                $followerCount = Follow::followerCount($request->user_id);
+                //workout count
+                $workoutCount = Workoutuser::workoutCount($request->user_id);
+                return response()->json(['status' => 1, 'success' => 'List',
+                        'follower_count' => $followerCount,
+                        'level_count' => 0,
+                        'workout_count' => $workoutCount,
+                        'motivation_text' => '',
+                        'feed_list' => $feedsResponse,
+                        'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -550,7 +559,7 @@ class FeedController extends Controller
                     });
 
                 $feedQuery->orWhere('user_id', 1);
-
+                $feedQuery->orWhere('user_id', $request->user_id);
                 $feedQuery->with(['image', 'profile', 'workout', 'exercise']);
 
                 if ($request->offset != null && $request->limit != null) {
@@ -580,13 +589,10 @@ class FeedController extends Controller
     {
         foreach ($feeds as $feedsArray) {
             //Clap count
-            $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
-                ->where('item_type', '=', 'feed')
-                ->count();
+            $feedsArray['clap_count'] = Clap::clapCount($feedsArray['id'], 'feed');
+
             //comments count
-            $feedsArray['comment_count'] = Comment::where('parent_id', $feedsArray['id'])
-                ->where('parent_type', '=', 'feed')
-                ->count();
+            $feedsArray['comment_count'] = Comment::commentCount($feedsArray['id'], 'feed');
 
             //is_commented
             $feedsArray['is_commented'] = Comment::isCommented($userId, $feedsArray['id'], 'feed');
@@ -824,9 +830,9 @@ class FeedController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
-          {
-          "success": "unclaped"
-          }
+      {
+      "success": "unclaped"
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError user_not_exists User error.

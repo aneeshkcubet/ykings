@@ -16,92 +16,82 @@ Route::group(['prefix' => 'api'], function() {
     Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
     Route::get('authenticate', 'Api\AuthenticateController@authenticate');
     Route::get('users', 'Api\AuthenticateController@index');
-
+    //UsersController
     Route::post('user/get', [
         'as' => 'user.get',
         'uses' => 'Api\UsersController@getUser'
     ]);
-
     Route::post('user/login', [
         'as' => 'user.login',
         'uses' => 'Api\UsersController@login'
     ]);
-
     Route::post('user/update', [
         'as' => 'user.update',
         'uses' => 'Api\UsersController@update'
     ]);
-
-    Route::post('user/videos', [
-        'as' => 'user.videos',
-        'uses' => 'Api\UserVideosController@GetUserVideos'
-    ]);
-
-    Route::post('user/video/delete', [
-        'as' => 'user.video.delete',
-        'uses' => 'Api\UserVideosController@deleteUserVideo'
-    ]);
-
     Route::post('user/logout', [
         'as' => 'user.logout',
         'uses' => 'Api\UsersController@logout'
     ]);
-
     Route::post('user/resendverify', [
         'as' => 'user.resendverify',
         'uses' => 'Api\UsersController@resendVerifyEmail'
     ]);
-
+    //UserVideosController
+    Route::post('user/videos', [
+        'as' => 'user.videos',
+        'uses' => 'Api\UserVideosController@GetUserVideos'
+    ]);
+    Route::post('user/video/delete', [
+        'as' => 'user.video.delete',
+        'uses' => 'Api\UserVideosController@deleteUserVideo'
+    ]);
+    //UserSettingsController
     Route::post('user/settings', [
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
     ]);
-
-    Route::post('user/feedlist', [
-        'as' => 'feeds.list',
-        'uses' => 'Api\FeedController@userFeeds'
-    ]);
-
+    //UsersController
     Route::post('user', [
         'as' => 'user.signup',
         'uses' => 'Api\UsersController@postRegister'
     ]);
-
     Route::get('verify', [
         'as' => 'confirmation_path',
         'uses' => 'Api\UsersController@confirm'
     ]);
-
+    //PasswordController
     Route::post('password/email', [
         'as' => 'password.email',
         'uses' => 'Api\PasswordController@postEmail'
     ]);
-
+    //SocialController
     Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
     ]);
-    
-     Route::post('social/facebookUpdate', [
+
+    Route::post('social/facebookUpdate', [
         'as' => 'facebook.update',
         'uses' => 'Api\SocialController@facebookUpdate'
     ]);
-    //Feed
+    //FeedController
     Route::post('feeds/create', [
         'as' => 'feeds.create',
         'uses' => 'Api\FeedController@createFeeds'
     ]);
-
+    Route::post('user/feedlist', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@userFeeds'
+    ]);
     Route::post('feeds/list', [
         'as' => 'feeds.list',
         'uses' => 'Api\FeedController@listFeeds'
     ]);
-
     Route::post('feeds/feedDetails', [
         'as' => 'feeds.details',
         'uses' => 'Api\FeedController@feedsDetails'
     ]);
-
     Route::post('feeds/clap', [
         'as' => 'feeds.clap',
         'uses' => 'Api\FeedController@clapFeed'
@@ -110,6 +100,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.unclap',
         'uses' => 'Api\FeedController@unclapFeed'
     ]);
+    //CommentsController
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@loadComments'
@@ -123,16 +114,15 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@deleteComment'
     ]);
+    //UserFollowsController
     Route::post('follow/add', [
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'
     ]);
-
     Route::post('follow/unfollow', [
         'as' => 'follow.unfollow',
         'uses' => 'Api\UserFollowsController@unFollow'
     ]);
-
     Route::post('follow/get', [
         'as' => 'follow.get',
         'uses' => 'Api\UserFollowsController@getFollowers'
@@ -142,46 +132,50 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'follow.follows',
         'uses' => 'Api\UserFollowsController@getMyFollowings'
     ]);
+    //UserFriendsController
     Route::post('connect/connectFriends', [
         'as' => 'connect.phone',
         'uses' => 'Api\UserFriendsController@connectFriends'
     ]);
+    Route::post('connect/inviteFriends', [
+        'as' => 'connect.invite',
+        'uses' => 'Api\UserFriendsController@inviteFriends'
+    ]);
+    //SubscriptionsController
     Route::post('subscription/update', [
         'as' => 'subscription.update',
         'uses' => 'Api\SubscriptionsController@updateSubscription'
     ]);
-    
+    //ExercisesController
     Route::post('exercise/list', [
         'as' => 'exercise.list',
         'uses' => 'Api\ExercisesController@loadExercises'
     ]);
-    
+
     Route::post('exercise/get', [
         'as' => 'exercise.get',
         'uses' => 'Api\ExercisesController@getExercise'
     ]);
-    
+
     Route::post('exercise/getwithusers', [
         'as' => 'exercise.get',
         'uses' => 'Api\ExercisesController@getExerciseWithUsers'
     ]);
-    
+    //WorkoutsController
     Route::post('workout/list', [
         'as' => 'workout.list',
         'uses' => 'Api\WorkoutsController@loadWorkouts'
     ]);
-    
+
     Route::post('workout/getlevels', [
         'as' => 'workout.getlevels',
         'uses' => 'Api\WorkoutsController@getWorkoutWithLevels'
     ]);
-    
+
     Route::post('workout/getexercises', [
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
     ]);
-
-    
 });
 
 // Authentication routes...

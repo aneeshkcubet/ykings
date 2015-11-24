@@ -3,6 +3,7 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+
 class Clap extends Model
 {
 
@@ -30,7 +31,7 @@ class Clap extends Model
     }
 
     /**
-     * Function to check user commented this feed.
+     * Function to check user claped this feed.
      * @author <ansa@cubettech.com>
      * @since 19-11-2015
      */
@@ -48,5 +49,18 @@ class Clap extends Model
         } else {
             return 1;
         }
+    }
+
+    /**
+     * Function to get total clap count of a feed.
+     * @author <ansa@cubettech.com>
+     * @since 23-11-2015
+     */
+    public static function clapCount($itemId, $itemType)
+    {
+        $clapCount = DB::table('claps')->where('item_id', $itemId)
+            ->where('item_type', '=', $itemType)
+            ->count();
+        return $clapCount;
     }
 }
