@@ -25,14 +25,14 @@ class Workoutexercise extends Model
         'unit'
     ];
     
-    protected $hidden = [
-        'workout_id',
-        'category',
-        'repititions',
-        'round',
-        'updated_at',
-        'created_at'
-    ];
+//    protected $hidden = [
+//        'workout_id',
+//        'category',
+//        'repititions',
+//        'round',
+//        'updated_at',
+//        'created_at'
+//    ];
     
     /**
      * Relation with video table.
@@ -52,6 +52,18 @@ class Workoutexercise extends Model
     public function exercise()
     {
         return $this->belongsTo('App\Exercise', 'exercise_id', 'id')->select(array('id', 'name', 'description'));
+    }
+    /**
+     * Function to get follower count.
+     * @author <ansa@cubettech.com>
+     * @since 23-11-2015
+     */
+    public static function followerCount($userId)
+    {
+        $followerCount = DB::table('follows')
+            ->where('follow_id', $userId)
+            ->count();
+        return $followerCount;
     }
     
     

@@ -1,11 +1,10 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-
-class Social extends Model {
+use DB;
+class Social extends Model
+{
 
     /**
      * Set the database specific table name
@@ -19,7 +18,8 @@ class Social extends Model {
         'provider',
         'provider_uid'
     ];
- /**
+
+    /**
      * Define the relationship for the author
      *
      * @return \Illuminate\Database\Query\Builder
@@ -28,5 +28,23 @@ class Social extends Model {
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
     }
-   
+
+    /**
+     * Function to check if user connected with facebbok.
+     * @author <ansa@cubettech.com>
+     * @since 27-11-2015
+     */
+    public static function isFacebookConnect($userId)
+    {
+        $social = DB::table('user_social_accounts')
+            ->where('user_id', '=', $userId)
+            ->where('provider', '=', 'facebook')
+            ->where('provider_uid', '!=', '')
+            ->count();
+        if ($social <= 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }

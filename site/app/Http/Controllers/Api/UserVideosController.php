@@ -151,7 +151,7 @@ class UserVideosController extends Controller
         }
 
         // Authentication passed...
-        $userVideos = Uservideo::where('user_id', '=', $userId)->with(['video', 'user'])->get();
+        $userVideos = Uservideo::where('user_id', '=', $data['user_id'])->with(['video', 'user'])->get();
 
         if (!is_null($userVideos)) {
             return response()->json(['status' => 1, 'success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);

@@ -18,6 +18,7 @@ use App\Profile;
 use App\Settings;
 use App\Follow;
 use App\Point;
+use App\Social;
 
 class UsersController extends Controller
 {
@@ -559,6 +560,7 @@ class UsersController extends Controller
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-16 06:45:17",
       "is_subscribed": 0,
+      "facebook_connect": 1,
       "profile": [
       {
       "id": "2",
@@ -698,16 +700,12 @@ class UsersController extends Controller
                     ->where('user_id', '=', $user['id'])
                     ->sum('points');
 
-                $userArray['points'] = (int) $points;
+                $userArray['points'] = Point::userPoints($user['id']);
+                $userArray['level'] = Point::userLevel($user['id']);
 
-                if ($userArray['points'] > 0) {
-                    $level = (sqrt(625 + (100 * $userArray['points'])) - 25) / 50;
-
-                    $userArray['level'] = (int) $level;
-                } else {
-                    $userArray['level'] = 1;
-                }
-
+                //Code to check facebook connected for user.
+                //Added by ansa@cubettech.com on 27-11-2015
+                $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
                 // if no errors are encountered we can return a JWT
                 return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -740,6 +738,7 @@ class UsersController extends Controller
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-16 06:45:17",
       "is_subscribed": 0,
+      "facebook_connect": 1,
       "profile": [
       {
       "id": "2",
@@ -855,7 +854,11 @@ class UsersController extends Controller
 
             $userArray['points'] = Point::userPoints($user['id']);
             $userArray['level'] = Point::userLevel($user['id']);
-            
+            //Code to check facebook connected for user.
+            //Added by ansa@cubettech.com on 27-11-2015
+            $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+
+
             return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);

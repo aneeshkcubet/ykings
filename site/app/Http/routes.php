@@ -178,6 +178,15 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.search',
         'uses' => 'Api\SearchController@userSearch'
     ]);
+    //UserSettingsController
+    Route::post('/user/getsettings', [
+        'as' => 'user.getsettings',
+        'uses' => 'Api\UserSettingsController@getUserSettings'
+    ]);
+    Route::post('/user/getsettings', [
+        'as' => 'user.getsettings',
+        'uses' => 'Api\UserSettingsController@getUserSettings'
+    ]);
 });
 
 // Authentication routes...
