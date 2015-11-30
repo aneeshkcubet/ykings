@@ -675,7 +675,7 @@ class UsersController extends Controller
             // Authentication passed...
 
             if (Auth::user()->status == 1) {
-                $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
+                $user = User::where('id', '=', Auth::user()->id)->with(['profile', 'settings'])->first();
 
                 try {
                     // verify the credentials and create a token for the user
@@ -837,8 +837,15 @@ class UsersController extends Controller
             return response()->json(['status' => 0, 'error' => 'profile_id required'], 422);
         }
         if (Auth::user()->status == 1) {
-            $user = User::where('id', '=', $data['profile_id'])->with(['profile'])->first();
 
+            $getUserQuery = User::where('id', '=', $data['profile_id']);
+            $getUserQuery->with(['profile']);
+            //Need settings array if user views own profile
+            //Added by ansa@cubettech.com on 27-11-2015
+            if ($data['user_id'] == $data['profile_id'])
+                $getUserQuery->with(['settings']);
+
+            $user = $getUserQuery->first();
             $userArray = $user->toArray();
 
             $userArray['is_following'] = 0;

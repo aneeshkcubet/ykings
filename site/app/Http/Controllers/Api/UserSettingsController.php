@@ -9,7 +9,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Settings;
 use App\User;
 use App\Profile;
-
+use App\Social;
 class UserSettingsController extends Controller
 {
 
@@ -159,6 +159,7 @@ class UserSettingsController extends Controller
                 }
                 $user = User::where('id', '=', $request->input('user_id'))
                         ->with(['profile', 'social', 'settings'])->first();
+                
                 return response()->json(['status' => 1, 'success' => 'successfully_updated', 'user' => $user->toArray()], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
@@ -210,7 +211,8 @@ class UserSettingsController extends Controller
               "created_at": "2015-11-20 00:00:00",
               "updated_at": "2015-11-20 06:33:27"
             }
-          ]
+          ],
+          "facebook_connect": 0
         }
      * 
      * @apiError error Message token_invalid.
@@ -271,7 +273,8 @@ class UserSettingsController extends Controller
                 foreach($userSettings as $sKey => $userSetting ){
                     $userSetting->value = json_decode($userSetting->value, true);
                 }
-                return response()->json(['status' => 1, 'settings' => $userSettings], 200);
+                 $is_facebook_connect = Social::isFacebookConnect($user->id);
+                return response()->json(['status' => 1, 'settings' => $userSettings,'facebook_connect'=>$is_facebook_connect], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }
