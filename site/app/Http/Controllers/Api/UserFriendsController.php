@@ -9,12 +9,14 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Social;
+use App\Follow;
 
 class UserFriendsController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Social Controller
+      | Connect Controller
       |--------------------------------------------------------------------------
       |
       | This controller handles the registration and login from social media.
@@ -24,70 +26,47 @@ class UserFriendsController extends Controller
     /**
      * @api {post} /connect/connectFriends
      * @apiName connectFriends
-     * @apiGroup Social
+     * @apiGroup Connect
      * @apiDescription API for connecting facebook/phone book.
      * @apiParam {string} user_id User Id of user 
-     * @apiParam {string} email Email Ids from contact,json array  
+     * @apiParam {string} friends_list email/facebook id ,json array  
      * @apiParam {string} type facebook/phonebook   
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
+      type:phone
+
       {
       "status": 1,
       "registered_emails": [
       {
-      "id": "11",
-      "email": "ansa@cubettech.com",
+      "id": "14",
+      "email": "sachin@cubettech.com",
       "confirmation_code": null,
       "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07",
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56",
+      "is_subscribed": 0,
+      "is_following": 0,
       "profile": [
       {
-      "id": "7",
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": "11_1447237788.jpg",
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-12 09:05:16"
-      }
-      ],
-      "image": []
-      },
-      {
-      "id": "15",
-      "email": "dibin@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-11 06:25:34",
-      "updated_at": "2015-11-11 06:25:34",
-      "profile": [
-      {
-      "id": "9",
-      "user_id": "15",
-      "first_name": "Dibu",
+      "id": "8",
+      "user_id": "14",
+      "first_name": "sachii",
       "last_name": "k",
       "gender": "0",
       "fitness_status": "0",
       "goal": "0",
       "image": null,
+      "cover_image": "",
       "city": null,
       "state": null,
       "country": null,
       "quote": "",
-      "created_at": "2015-11-11 06:25:34",
-      "updated_at": "2015-11-11 06:25:34"
+      "created_at": "2015-11-11 06:23:56",
+      "updated_at": "2015-11-11 06:23:56"
       }
-      ],
-      "image": []
+      ]
       }
       ],
       "urls": {
@@ -96,12 +75,68 @@ class UserFriendsController extends Controller
       "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
       "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
       "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
       "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
       "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
       "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
       },
-      "type": "phonebook"
+      "type": "phone"
+      }
+
+      type:facebook
+      {
+      "status": 1,
+      "registered_emails": [
+      {
+      "id": "3",
+      "user_id": "15",
+      "provider": "facebook",
+      "provider_uid": "100789521",
+      "access_token": "",
+      "created_at": "2015-11-11 06:25:34",
+      "updated_at": "2015-11-11 06:25:34",
+      "is_following": 0,
+      "profile": {
+      "id": "9",
+      "user_id": "15",
+      "first_name": "Dibu",
+      "last_name": "k",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": null,
+      "cover_image": "",
+      "city": null,
+      "state": null,
+      "country": null,
+      "quote": "",
+      "created_at": "2015-11-11 06:25:34",
+      "updated_at": "2015-11-11 06:25:34"
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      },
+      "type": "facebook"
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -144,24 +179,34 @@ class UserFriendsController extends Controller
      */
     public function connectFriends(Request $request)
     {
-        $registeredEmail = array();
+        $registeredUsers = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } else if (!isset($request->email) || (count(json_decode($request->email)) == 0 )) {
-            return response()->json(["status" => "0", "error" => "The email field is required"]);
         } else if (!isset($request->type) || ($request->type == null)) {
             return response()->json(["status" => "0", "error" => "The Type field is required"]);
+        } else if (!isset($request->friends_list) || (count(json_decode($request->friends_list)) == 0)) {
+            return response()->json(["status" => "0", "error" => "The friends_list field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
-                $emailArray = json_decode($request->email, true);
-                foreach ($emailArray as $email) {
-                    $emailExists = User::where('email', '=', $email)->with(['profile', 'image'])->first();
-                    if (!is_null($emailExists)) {
-                        $registeredEmail[] = $emailExists;
+                $friendsArray = json_decode($request->friends_list, true);
+                foreach ($friendsArray as $friends) {
+                    if ($request->type == 'phonebook') {
+                        $emailExists = User::where('email', '=', $friends)->with(['profile'])->first();
+                        if (!is_null($emailExists)) {
+                            $emailExists['is_following'] = Follow::isFollowing($request->input('user_id'), $emailExists['id']);
+                            $registeredUsers[] = $emailExists;
+                        }
+                    } else {
+                        $facebookExists = Social::where('provider_uid', '=', $friends)->with(['profile'])->first();
+                        if (!is_null($facebookExists)) {
+                            $facebookExists['is_following'] = Follow::isFollowing($request->input('user_id'), $facebookExists['id']);
+                            $registeredUsers[] = $facebookExists;
+                        }
                     }
                 }
-                return response()->json(['status' => 1, 'registered_emails' => $registeredEmail, 'urls' => config('urls.urls'), 'type' => $request->type], 200);
+
+                return response()->json(['status' => 1, 'registered_emails' => $registeredUsers, 'urls' => config('urls.urls'), 'type' => $request->type], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }

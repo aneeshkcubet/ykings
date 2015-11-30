@@ -522,6 +522,34 @@ class UsersController extends Controller
                 $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
             }
 
+            if (isset($_FILES['cover_image']) && $_FILES['cover_image']['error'] == UPLOAD_ERR_OK) {
+
+                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+                if (!in_array($_FILES ['cover_image'] ['type'], $accepableTypes)) {
+                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+                }
+
+                $image = Image::make($_FILES['cover_image']['tmp_name']);
+
+                $image->encode('jpeg');
+
+                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(400, 400);
+
+                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(150, 150);
+
+                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $image->fit(65, 65);
+
+                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+                $user->profile()->update(['cover_image' => $user->id . '_' . time() . '.jpg']);
+            }
             $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
 
             if (isset($data['subscription'])) {
