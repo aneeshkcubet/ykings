@@ -200,7 +200,9 @@ class UserFriendsController extends Controller
                     } else {
                         $facebookExists = Social::where('provider_uid', '=', $friends)->with(['profile'])->first();
                         if (!is_null($facebookExists)) {
-                            $facebookExists['is_following'] = Follow::isFollowing($request->input('user_id'), $facebookExists['id']);
+                            $email = User::where('id', $facebookExists['user_id'])->select('email')->first();
+                            $facebookExists['email'] = $email->email;
+                            $facebookExists['is_following'] = Follow::isFollowing($request->input('user_id'), $facebookExists['user_id']);
                             $registeredUsers[] = $facebookExists;
                         }
                     }

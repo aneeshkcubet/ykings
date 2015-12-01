@@ -201,7 +201,7 @@ class SocialController extends Controller
     {
         $user_exist = User::where('email', '=', $data['email'])->first();
         if (!is_null($user_exist)) {
-            $social = Social::where('user_id', '=', $user_exist->id)
+         $social = Social::where('user_id', '=', $user_exist->id)
                 ->where('provider', '=', 'facebook')
                 ->where('provider_uid', '!=', '')
                 ->first();
