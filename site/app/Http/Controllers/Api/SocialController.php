@@ -265,7 +265,7 @@ class SocialController extends Controller
             }
             //user social account table
             $social = new Social([
-                'provider' => isset($data['access_token']) ? $data['access_token'] : '',
+                'provider' => isset($data['provider']) ? $data['provider'] : '',
                 'provider_uid' => $data['provider_id'],
                 'access_token' => isset($data['access_token']) ? $data['access_token'] : '',
             ]);

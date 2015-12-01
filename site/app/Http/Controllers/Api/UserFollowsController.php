@@ -9,6 +9,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Exceptions\InvalidConfirmationCodeException;
 use App\Follow;
 use App\User;
+use App\Point;
 
 class UserFollowsController extends Controller
 {
@@ -400,6 +401,7 @@ class UserFollowsController extends Controller
       "follow_id": "2",
       "created_at": "2015-11-12 09:34:27",
       "updated_at": "2015-11-12 15:05:55",
+      "level": 3,
       "following_profile": {
       "id": "3",
       "email": "ykings1@yopmail.com",
@@ -502,7 +504,7 @@ class UserFollowsController extends Controller
     {
         $data = $request->all();
 
-
+        $followersList = array();
         if (!isset($data['user_id'])) {
             return response()->json(['status' => 0, 'error' => 'user_id_required'], 422);
         }
@@ -513,6 +515,16 @@ class UserFollowsController extends Controller
 
         $user = User::where('id', '=', $data['user_id'])
                 ->with(['profile', 'followers'])->first();
+
+        //To add followers level in response.
+        if (count($user->followers) > 0) {
+            foreach ($user->followers as $followers) {
+                $followers['level'] = Point::userLevel($followers->id);
+                $followersList[] = $followers;
+                unset($followers);
+            }
+        }
+        $user['followers'] = $followersList;
 
         if (is_null($user)) {
             return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 422);
@@ -569,6 +581,7 @@ class UserFollowsController extends Controller
       "follow_id": "2",
       "created_at": "2015-11-12 09:34:27",
       "updated_at": "2015-11-12 15:05:55",
+      "level": 3,
       "following_profile": {
       "id": "3",
       "email": "ykings1@yopmail.com",
@@ -671,7 +684,7 @@ class UserFollowsController extends Controller
     public function getMyFollowings(Request $request)
     {
         $data = $request->all();
-
+        $followingsList = array();
         if (!isset($data['user_id'])) {
             return response()->json(['status' => 0, 'error' => 'user_id_required'], 422);
         }
@@ -690,7 +703,15 @@ class UserFollowsController extends Controller
         if ($user->status == 0) {
             return response()->json(['status' => 0, 'error' => 'user_not_verified_email'], 422);
         }
-
+        //To add followings level in response.
+        if (count($user->followings) > 0) {
+            foreach ($user->followings as $followings) {
+                $followings['level'] = Point::userLevel($followings->id);
+                $followingsList[] = $followings;
+                unset($followings);
+            }
+        }
+        $user['followings'] = $followingsList;
         return response()->json(['status' => 1, 'success' => 'user_followings', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
     }
 }

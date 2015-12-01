@@ -10,6 +10,7 @@ use App\User;
 use App\Profile;
 use App\Point;
 use DB;
+use App\Follow;
 
 class SearchController extends Controller
 {
@@ -44,7 +45,9 @@ class SearchController extends Controller
       "last_name": "",
       "image": "11_1447237788.jpg",
       "quote": "",
-      "level": 1
+      "level": 1,
+      "is_following": 0
+
       },
       {
       "user_id": "14",
@@ -52,7 +55,8 @@ class SearchController extends Controller
       "last_name": "k",
       "image": null,
       "quote": "",
-      "level": 1
+      "level": 1,
+      "is_following": 0
       }
       ],
       "urls": {
@@ -121,13 +125,13 @@ class SearchController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                $searchUsers = Profile::where('first_name', 'LIKE', '%' . $request->search_key . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $request->search_key . '%')
-                    ->select('user_id', 'first_name', 'last_name', 'image', 'quote')
+                $searchUsers = Profile::select('user_id', 'first_name', 'last_name', 'image', 'quote')
+                    ->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"')
                     ->get();
                 if (!is_null($searchUsers)) {
                     foreach ($searchUsers as $usersList) {
                         $usersList['level'] = Point::userLevel($usersList->user_id);
+                        $usersList['is_following'] = Follow::isFollowing($request->user_id, $usersList->user_id);
                         $searchResponse[] = $usersList;
                         unset($usersList);
                     }
