@@ -402,6 +402,7 @@ class UserFollowsController extends Controller
       "created_at": "2015-11-12 09:34:27",
       "updated_at": "2015-11-12 15:05:55",
       "level": 3,
+      "is_following":0,
       "following_profile": {
       "id": "3",
       "email": "ykings1@yopmail.com",
@@ -520,6 +521,7 @@ class UserFollowsController extends Controller
         if (count($user->followers) > 0) {
             foreach ($user->followers as $followers) {
                 $followers['level'] = Point::userLevel($followers->id);
+                $followers['is_following'] = Follow::isFollowing($data['user_id'], $followers->id);
                 $followersList[] = $followers;
                 unset($followers);
             }
@@ -582,6 +584,7 @@ class UserFollowsController extends Controller
       "created_at": "2015-11-12 09:34:27",
       "updated_at": "2015-11-12 15:05:55",
       "level": 3,
+      "is_following":0,
       "following_profile": {
       "id": "3",
       "email": "ykings1@yopmail.com",
@@ -707,6 +710,7 @@ class UserFollowsController extends Controller
         if (count($user->followings) > 0) {
             foreach ($user->followings as $followings) {
                 $followings['level'] = Point::userLevel($followings->id);
+                $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->id);
                 $followingsList[] = $followings;
                 unset($followings);
             }
