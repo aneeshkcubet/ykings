@@ -100,6 +100,7 @@ class UserFriendsController extends Controller
       "access_token": "",
       "created_at": "2015-11-11 06:25:34",
       "updated_at": "2015-11-11 06:25:34",
+      "email": "ansa@cubettech.com",
       "is_following": 0,
       "profile": {
       "id": "9",
