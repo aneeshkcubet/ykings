@@ -520,8 +520,8 @@ class UserFollowsController extends Controller
         //To add followers level in response.
         if (count($user->followers) > 0) {
             foreach ($user->followers as $followers) {
-                $followers['level'] = Point::userLevel($followers->id);
-                $followers['is_following'] = Follow::isFollowing($data['user_id'], $followers->id);
+                $followers['level'] = Point::userLevel($followers->follow_id);
+                $followers['is_following'] = Follow::isFollowing($data['user_id'], $followers->follow_id);
                 $followersList[] = $followers;
                 unset($followers);
             }
@@ -709,8 +709,8 @@ class UserFollowsController extends Controller
         //To add followings level in response.
         if (count($user->followings) > 0) {
             foreach ($user->followings as $followings) {
-                $followings['level'] = Point::userLevel($followings->id);
-                $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->id);
+                $followings['level'] = Point::userLevel($followings->follow_id);
+                $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->follow_id);
                 $followingsList[] = $followings;
                 unset($followings);
             }
