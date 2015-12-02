@@ -228,11 +228,11 @@ class UsersController extends Controller
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                    if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
-                        return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                    }
+//                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+//
+//                    if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
+//                        return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+//                    }
 
                     $image = Image::make($_FILES['image']['tmp_name']);
 
@@ -495,11 +495,10 @@ class UsersController extends Controller
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
-                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                }
+                //$accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+//                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
+//                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
+//                }
 
                 $image = Image::make($_FILES['image']['tmp_name']);
 
