@@ -538,15 +538,15 @@ class UsersController extends Controller
 
                 $image->fit(400, 400);
 
-                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+                $image->save(config('image.coverLargePath') . $user->id . '_' . time() . '.jpg');
 
                 $image->fit(150, 150);
 
-                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+                $image->save(config('image.coverMediumPath') . $user->id . '_' . time() . '.jpg');
 
                 $image->fit(65, 65);
 
-                $image->save(config('image.coverOriginalPath') . $user->id . '_' . time() . '.jpg');
+                $image->save(config('image.coverSmallPath') . $user->id . '_' . time() . '.jpg');
 
                 $user->profile()->update(['cover_image' => $user->id . '_' . time() . '.jpg']);
             }

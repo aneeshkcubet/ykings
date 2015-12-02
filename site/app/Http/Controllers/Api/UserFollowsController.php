@@ -363,8 +363,8 @@ class UserFollowsController extends Controller
      * @api {post} /follow/get getFollowers
      * @apiName getFollowers
      * @apiGroup Follow
-     * @apiParam {integer} user_id id of targetting user  *required
-     *
+     * @apiParam {integer} user_id id of loggedin user  *required
+     * @apiParam {integer} profile_id id of targetting user  *required
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
@@ -514,14 +514,26 @@ class UserFollowsController extends Controller
             return response()->json(['status' => 0, 'error' => 'invalid_user_id'], 422);
         }
 
-        $user = User::where('id', '=', $data['user_id'])
+        if (!isset($data['profile_id'])) {
+            return response()->json(['status' => 0, 'error' => 'profile_id_required'], 422);
+        }
+
+        if (!is_int((int) $data['profile_id'])) {
+            return response()->json(['status' => 0, 'error' => 'invalid_profile_id'], 422);
+        }
+        $user = User::where('id', '=', $data['profile_id'])
                 ->with(['profile', 'followers'])->first();
 
         //To add followers level in response.
+        //code added by ansa@cubettech.com on 1-12-2015
         if (count($user->followers) > 0) {
             foreach ($user->followers as $followers) {
-                $followers['level'] = Point::userLevel($followers->follow_id);
-                $followers['is_following'] = Follow::isFollowing($data['user_id'], $followers->follow_id);
+                $followers['level'] = Point::userLevel($followers->user_id);
+
+                $followers['is_following'] = 0;
+                if ($data['user_id'] != $followers->user_id)
+                    $followers['is_following'] = Follow::isFollowing($data['user_id'], $followers->user_id);
+
                 $followersList[] = $followers;
                 unset($followers);
             }
@@ -545,7 +557,7 @@ class UserFollowsController extends Controller
      * @apiGroup Follow
      *
      * @apiParam {integer} user_id id of targetting user  *required
-     *
+     * @apiParam {integer} profile_id id of targetting user  *required
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
@@ -696,7 +708,14 @@ class UserFollowsController extends Controller
             return response()->json(['status' => 0, 'error' => 'invalid_user_id'], 422);
         }
 
-        $user = User::where('id', '=', $data['user_id'])
+        if (!isset($data['profile_id'])) {
+            return response()->json(['status' => 0, 'error' => 'profile_id_required'], 422);
+        }
+
+        if (!is_int((int) $data['profile_id'])) {
+            return response()->json(['status' => 0, 'error' => 'invalid_profile_id'], 422);
+        }
+        $user = User::where('id', '=', $data['profile_id'])
                 ->with(['profile', 'followings'])->first();
 
         if (is_null($user)) {
@@ -707,10 +726,15 @@ class UserFollowsController extends Controller
             return response()->json(['status' => 0, 'error' => 'user_not_verified_email'], 422);
         }
         //To add followings level in response.
+        //code added by ansa@cubettech.com on 1-12-2015
         if (count($user->followings) > 0) {
             foreach ($user->followings as $followings) {
                 $followings['level'] = Point::userLevel($followings->follow_id);
-                $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->follow_id);
+
+                $followings['is_following'] = 0;
+                if ($data['user_id'] != $followings->follow_id)
+                    $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->follow_id);
+
                 $followingsList[] = $followings;
                 unset($followings);
             }

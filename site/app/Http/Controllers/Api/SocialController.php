@@ -206,22 +206,22 @@ class SocialController extends Controller
                 ->where('provider_uid', '!=', '')
                 ->first();
 
-            $facebook_link = 0;
-            if (!is_null($social)) {
-                //to do update profile details with new details
-                $profile = Profile::where('user_id', $user_exist->id);
-                $profile->update([
-                    'first_name' => isset($data['first_name']) ? $data['first_name'] : '',
-                    'last_name' => isset($data['last_name']) ? $data['last_name'] : '',
-                    'gender' => isset($data['gender']) ? $data['gender'] : '',
-                    'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : '',
-                    'goal' => isset($data['goal']) ? $data['goal'] : '',
-                    'quote' => isset($data['quote']) ? $data['quote'] : ''
-                ]);
+//            $facebook_link = 0;
+//            if (!is_null($social)) {
+//                //to do update profile details with new details
+//                $profile = Profile::where('user_id', $user_exist->id);
+//                $profile->update([
+//                    'first_name' => isset($data['first_name']) ? $data['first_name'] : '',
+//                    'last_name' => isset($data['last_name']) ? $data['last_name'] : '',
+//                    'gender' => isset($data['gender']) ? $data['gender'] : '',
+//                    'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : '',
+//                    'goal' => isset($data['goal']) ? $data['goal'] : '',
+//                    'quote' => isset($data['quote']) ? $data['quote'] : ''
+//                ]);
                 return true;
-            } else {
-                return $response = array('facebook_link' => 0, 'status' => true);
-            }
+//            } else {
+//                return $response = array('facebook_link' => 0, 'status' => true);
+//            }
         } else {
             //user table
             $user = User::create(['email' => $data['email'], 'status' => 1]);

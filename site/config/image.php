@@ -24,5 +24,9 @@ return array(
     'feedSmallPath' => public_path('uploads/images/feed/small/'),
     'feedMediumPath' => public_path('uploads/images/feed/medium/'),
     'feedLargePath' => public_path('uploads/images/feed/large/'),
+    'coverOriginalPath' => public_path('uploads/images/cover_image/original/'),
+    'coverSmallPath' => public_path('uploads/images/cover_image/small/'),
+    'coverMediumPath' => public_path('uploads/images/cover_image/medium/'),
+    'coverLargePath' => public_path('uploads/images/cover_image/large/'),
 
 );
