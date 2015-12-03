@@ -90,17 +90,21 @@ class SocialController extends Controller
                 ]
             },
             "urls": {
-                "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-                "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-                "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-                "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-                "video": "http://ykings.me/uploads/videos",
-                "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-                "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-                "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-                "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-                "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-            }
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -351,16 +355,21 @@ class SocialController extends Controller
      *               ]
      *           },
      *           "urls": {
-     *               "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-     *               "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-     *               "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-     *               "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-     *               "video": "http://sandbox.ykings.com/uploads/videos",
-     *               "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-     *               "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-     *               "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-     *               "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-     *           }
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
      *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.

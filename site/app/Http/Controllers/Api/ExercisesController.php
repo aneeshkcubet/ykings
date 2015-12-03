@@ -177,7 +177,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 
@@ -288,7 +292,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 
@@ -393,7 +401,7 @@ class ExercisesController extends Controller
               }
             ]
           },
-          "urls": {
+           "urls": {
             "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
             "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
             "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
@@ -403,7 +411,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 

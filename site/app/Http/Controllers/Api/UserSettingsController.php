@@ -29,58 +29,42 @@ class UserSettingsController extends Controller
      * @apiGroup Settings
      * @apiParam {Number} user_id Id of user 
      * @apiParam {String} settings_key notification/subscription
-     * @apiParam {String} status json array of [{"comments":"1"},{"claps":"0"},{"follow":"0"},{"my_performance":"1"},{"motivation_knowledge":"1"}]
+     * @apiParam {String} status json array of {"comments":"1","claps":"0","follow":"0","my_performance":"1","motivation_knowledge":"1"}
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
+     * HTTP/1.1 200 OK
      * {
-     * "status" : 1,
-      "success": "successfully_updated",
-      "user": {
-      "id": "1",
-      "email": "admin@ykings.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-06 12:14:48",
-      "updated_at": "2015-11-06 12:15:04",
-      "profile": {
-      "id": "1",
-      "user_id": "1",
-      "first_name": "Ykings",
-      "last_name": "Administrator",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "3",
-      "image": null,
-      "city": null,
-      "state": null,
-      "country": null,
-      "quote": "I am Simple",
-      "created_at": "2015-11-06 12:14:48",
-      "updated_at": "2015-11-06 12:14:48"
-      },
-      "social": null,
-      "settings": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "key": "notification",
-      "value": "1",
-      "created_at": "2015-11-10 06:18:29",
-      "updated_at": "2015-11-10 12:02:08"
-      },
-      {
-      "id": "2",
-      "user_id": "1",
-      "key": "subscription",
-      "value": "0",
-      "created_at": "2015-11-10 06:32:20",
-      "updated_at": "2015-11-10 12:10:43"
-      }
-      ]
-      }
-      }
+        "status": 1,
+        "success": "successfully_updated",
+        "user": {
+            "id": "41",
+            "email": "arun@ileafsolutions.net",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-11-16 09:54:09",
+            "updated_at": "2015-11-16 11:02:47",
+            "is_subscribed": 0,
+            "settings": [
+                {
+                    "id": "22",
+                    "user_id": "41",
+                    "key": "subscription",
+                    "value": "1",
+                    "created_at": "2015-12-03 04:22:37",
+                    "updated_at": "2015-12-03 06:24:07"
+                },
+                {
+                    "id": "23",
+                    "user_id": "41",
+                    "key": "notification",
+                    "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
+                    "created_at": "2015-12-03 04:22:37",
+                    "updated_at": "2015-12-03 06:13:52"
+                }
+            ]
+        }
+}
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -158,7 +142,7 @@ class UserSettingsController extends Controller
                     $user->settings()->save($settings);
                 }
                 $user = User::where('id', '=', $request->input('user_id'))
-                        ->with(['profile', 'social', 'settings'])->first();
+                        ->with(['settings'])->first();
                 
                 return response()->json(['status' => 1, 'success' => 'successfully_updated', 'user' => $user->toArray()], 200);
             } else {
@@ -177,42 +161,32 @@ class UserSettingsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "settings": [
+        "status": 1,
+        "settings": [
             {
-              "id": "2",
-              "user_id": "2",
-              "key": "notification",
-              "value": [
-                {
-                  "comments": "1"
-                },
-                {
-                  "claps": "0"
-                },
-                {
-                  "follow": "0"
-                },
-                {
-                  "my_performance": "1"
-                },
-                {
-                  "motivation_knowledge": "1"
-                }
-              ],
-              "created_at": "2015-11-20 00:00:00",
-              "updated_at": "2015-11-20 06:33:00"
+                "id": "22",
+                "user_id": "41",
+                "key": "subscription",
+                "value": 1,
+                "created_at": "2015-12-03 04:22:37",
+                "updated_at": "2015-12-03 04:28:18"
             },
             {
-              "id": "3",
-              "user_id": "2",
-              "key": "subscription",
-              "value": 1,
-              "created_at": "2015-11-20 00:00:00",
-              "updated_at": "2015-11-20 06:33:27"
+                "id": "23",
+                "user_id": "41",
+                "key": "notification",
+                "value": {
+                    "comments": "1",
+                    "claps": "0",
+                    "follow": "0",
+                    "my_performance": "1",
+                    "motivation_knowledge": "1"
+                },
+                "created_at": "2015-12-03 04:22:37",
+                "updated_at": "2015-12-03 06:13:52"
             }
-          ],
-          "facebook_connect": 0
+        ],
+        "facebook_connect": 0
         }
      * 
      * @apiError error Message token_invalid.

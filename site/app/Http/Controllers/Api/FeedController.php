@@ -61,7 +61,6 @@ class FeedController extends Controller
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error Validation error.
-     * @apiError error feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
      * @apiError error user_does_not_exists
      *
      * @apiErrorExample Error-Response:
@@ -112,13 +111,7 @@ class FeedController extends Controller
      *       "status" : 0,
      *       "error": "The text field is required"
      *     }
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
-     *     } 
-     * 
+
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 user_does_not_exists
      *     {
@@ -206,11 +199,6 @@ class FeedController extends Controller
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-//                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-//
-//                    if (!in_array($_FILES['image']['type'], $accepableTypes)) {
-//                        return response()->json(['error' => 'feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-//                    }
 
                     $image = Image::make($_FILES['image']['tmp_name']);
 
@@ -299,16 +287,21 @@ class FeedController extends Controller
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
       }
      * 
      * 
@@ -465,17 +458,22 @@ class FeedController extends Controller
       }
       }
       ],
-      "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+       "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
       }
      * 
      * 
@@ -612,17 +610,21 @@ class FeedController extends Controller
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
       }
      * 
      * 
