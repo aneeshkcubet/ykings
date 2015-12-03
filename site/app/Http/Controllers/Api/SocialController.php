@@ -47,65 +47,65 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-            "status": 1,
-            "success": "successfully_logged_in",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ4NjE2ODM3IiwiZXhwIjoiMTQ1MjIxNjgzNyIsIm5iZiI6IjE0NDg2MTY4MzciLCJqdGkiOiI5NGMyOWM4YzdlM2I0MWM3ODA0M2U5MjZkN2Y0MzM2YyJ9.pi1yBYNrszaS5mN1VT6du6nqenVu9Bga51T8WmxNn5w",
-            "user": {
-                "id": "11",
-                "email": "ansa@cubettech.com",
-                "confirmation_code": null,
-                "status": "1",
-                "created_at": "2015-11-09 12:40:07",
-                "updated_at": "2015-11-09 12:40:07",
-                "facebook_connect": 1,
-                "is_subscribed": 0,
-                "profile": [
-                    {
-                        "id": "7",
-                        "user_id": "11",
-                        "first_name": "",
-                        "last_name": "",
-                        "gender": "0",
-                        "fitness_status": "0",
-                        "goal": "0",
-                        "image": "11_1447237788.jpg",
-                        "city": null,
-                        "state": null,
-                        "country": null,
-                        "spot": "",
-                        "quote": "",
-                        "created_at": "2015-11-09 12:40:07",
-                        "updated_at": "2015-11-27 09:33:57"
-                    }
-                ],
-                "social": [
-                    {
-                        "id": "2",
-                        "user_id": "11",
-                        "provider": "facebook",
-                        "provider_uid": "123456789",
-                        "access_token": "",
-                        "created_at": "2015-11-09 12:40:07",
-                        "updated_at": "2015-11-09 12:40:07"
-                    }
-                ]
-            },
-            "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "status": 1,
+      "success": "successfully_logged_in",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ4NjE2ODM3IiwiZXhwIjoiMTQ1MjIxNjgzNyIsIm5iZiI6IjE0NDg2MTY4MzciLCJqdGkiOiI5NGMyOWM4YzdlM2I0MWM3ODA0M2U5MjZkN2Y0MzM2YyJ9.pi1yBYNrszaS5mN1VT6du6nqenVu9Bga51T8WmxNn5w",
+      "user": {
+      "id": "11",
+      "email": "ansa@cubettech.com",
+      "confirmation_code": null,
+      "status": "1",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-09 12:40:07",
+      "facebook_connect": 1,
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "7",
+      "user_id": "11",
+      "first_name": "",
+      "last_name": "",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": "11_1447237788.jpg",
+      "city": null,
+      "state": null,
+      "country": null,
+      "spot": "",
+      "quote": "",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-27 09:33:57"
+      }
+      ],
+      "social": [
+      {
+      "id": "2",
+      "user_id": "11",
+      "provider": "facebook",
+      "provider_uid": "123456789",
+      "access_token": "",
+      "created_at": "2015-11-09 12:40:07",
+      "updated_at": "2015-11-09 12:40:07"
+      }
+      ]
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -206,7 +206,7 @@ class SocialController extends Controller
     {
         $user_exist = User::where('email', '=', $data['email'])->first();
         if (!is_null($user_exist)) {
-         $social = Social::where('user_id', '=', $user_exist->id)
+            $social = Social::where('user_id', '=', $user_exist->id)
                 ->where('provider', '=', 'facebook')
                 ->where('provider_uid', '!=', '')
                 ->first();
@@ -223,7 +223,7 @@ class SocialController extends Controller
 //                    'goal' => isset($data['goal']) ? $data['goal'] : '',
 //                    'quote' => isset($data['quote']) ? $data['quote'] : ''
 //                ]);
-                return true;
+            return true;
 //            } else {
 //                return $response = array('facebook_link' => 0, 'status' => true);
 //            }
@@ -290,18 +290,19 @@ class SocialController extends Controller
      * @apiName facebookUpdate
      * @apiGroup Social
      *
-     * @apiParam {string} first_name Firstname of user *optional
-     * @apiParam {string} last_name Firstname of user *optional
+     * @apiParam {string} [first_name] Firstname of user *optional
+     * @apiParam {string} [last_name] Firstname of user *optional
      * @apiParam {string} email email address of user *readonly *required 
-     * @apiParam {number} gender gender of the user 1-Male, 2-Female *optional
+     * @apiParam {number} [gender] gender of the user 1-Male, 2-Female 
      * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
-     * @apiParam {file} image user avatar image *optional *accepted formats JPEG, PNG, and GIF
-     * @apiParam {number} goal user's goal *optional
-     * @apiParam {string} city user's city *optional
-     * @apiParam {string} state user's state *optional
-     * @apiParam {string} country user's country *optional
-     * @apiParam {string} quote Quote added by user *optional
-     * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
+     * @apiParam {file} [image] user avatar image  *accepted formats JPEG, PNG, and GIF
+     * @apiParam {number} [goal] user's goal
+     * @apiParam {string} [city] user's city
+     * @apiParam {string} [state] user's state 
+     * @apiParam {string} [country] user's country 
+     * @apiParam {string} [spot] spot
+     * @apiParam {string} [quote] Quote added by user 
+     * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
      *
      * @apiSuccess {String} success.
      * 
@@ -357,27 +358,26 @@ class SocialController extends Controller
      *               ]
      *           },
      *           "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
      *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError error Validation error.
      * @apiError error Message could_not_update_user_profile User error.
-     * @apiError error Message user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images User error.
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
@@ -414,11 +414,7 @@ class SocialController extends Controller
      *       "error": "could_not_create_user"
      *     }
      * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 500 user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
-     *     {
-     *       "error": "user_updated_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
-     *     }
+    
      */
     public function facebookUpdate(Request $request)
     {
@@ -461,6 +457,9 @@ class SocialController extends Controller
             $profData['country'] = $data['country'];
         }
 
+        if (isset($data['spot'])) {
+            $profData['spot'] = $data['spot'];
+        }
 
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
 
@@ -470,11 +469,6 @@ class SocialController extends Controller
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-                $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
-                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                }
 
                 $image = Image::make($_FILES['image']['tmp_name']);
 
