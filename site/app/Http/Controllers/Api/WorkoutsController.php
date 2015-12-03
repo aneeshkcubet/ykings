@@ -258,6 +258,7 @@ class WorkoutsController extends Controller
       "city": "",
       "state": "",
       "country": "",
+      "spot": "",
       "quote": "I want to get Strong",
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-09 10:16:07"

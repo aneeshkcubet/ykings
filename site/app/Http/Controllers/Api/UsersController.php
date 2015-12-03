@@ -58,6 +58,7 @@ class UsersController extends Controller
      * @apiParam {string} city user's city *optional
      * @apiParam {string} state user's state *optional
      * @apiParam {string} country user's country *optional
+     * @apiParam {string} [spot] spot
      * @apiParam {string} quote Quote added by user *optional
      * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
      * @apiSuccess {String} success.
@@ -87,6 +88,7 @@ class UsersController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
+                         "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -296,6 +298,7 @@ class UsersController extends Controller
             'city' => isset($data['city']) ? $data['city'] : '',
             'state' => isset($data['state']) ? $data['state'] : '',
             'country' => isset($data['country']) ? $data['country'] : '',
+            'spot' => isset($data['spot']) ? $data['spot'] : '',
             'quote' => isset($data['quote']) ? $data['quote'] : '']);
 
 
@@ -332,6 +335,7 @@ class UsersController extends Controller
      * @apiParam {string} [city] user's city
      * @apiParam {string} [state] user's state 
      * @apiParam {string} [country] user's country 
+     * @apiParam {string} [spot] spot
      * @apiParam {string} [quote] Quote added by user 
      * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
      *
@@ -363,6 +367,7 @@ class UsersController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
+     *                   "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -389,27 +394,27 @@ class UsersController extends Controller
      *               ]
      *           },
      *            "urls": {
-                            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-                            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-                            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-                            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-                            "video": "http://sandbox.ykings.com/uploads/videos",
-                            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-                            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-                            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-                            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-                            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-                            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-                            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-                            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-                            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-                           }
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
      *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError error Validation error.
      * @apiError error Message could_not_update_user_profile User error.
-   
+
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
@@ -493,6 +498,9 @@ class UsersController extends Controller
             $profData['country'] = $data['country'];
         }
 
+        if (isset($data['spot'])) {
+            $profData['spot'] = $data['spot'];
+        }
 
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
 
@@ -602,6 +610,7 @@ class UsersController extends Controller
       "city": "",
       "state": "",
       "country": "",
+      "spot": "",
       "quote": "I want to get Strong",
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-09 10:16:07"
@@ -611,23 +620,23 @@ class UsersController extends Controller
       "workout_count": 4,
       "points": 330,
       "level": 3
-       },
-           "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      *
      * @apiError error Message token_invalid.
@@ -784,6 +793,7 @@ class UsersController extends Controller
       "city": "",
       "state": "",
       "country": "",
+      "spot": "",
       "quote": "I want to get Strong",
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-09 10:16:07"
@@ -795,22 +805,22 @@ class UsersController extends Controller
       "points": 330,
       "level": 3
       },
-       "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      *
      * @apiError error Message token_invalid.

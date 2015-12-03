@@ -81,6 +81,7 @@ class UserVideosController extends Controller
      *                           "city": "",
      *                           "state": "",
      *                           "country": "",
+     *                           "spot": "",
      *                           "quote": "",
      *                           "created_at": "2015-11-11 11:40:10",
      *                           "updated_at": "2015-11-11 11:40:11"
@@ -217,6 +218,7 @@ class UserVideosController extends Controller
      *                           "city": "",
      *                           "state": "",
      *                           "country": "",
+     *                           "spot": "",
      *                           "quote": "",
      *                           "created_at": "2015-11-11 11:40:10",
      *                           "updated_at": "2015-11-11 11:40:11"

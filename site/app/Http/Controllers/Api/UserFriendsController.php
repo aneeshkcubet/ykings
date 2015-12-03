@@ -62,6 +62,7 @@ class UserFriendsController extends Controller
       "city": null,
       "state": null,
       "country": null,
+      "spot": "",
       "quote": "",
       "created_at": "2015-11-11 06:23:56",
       "updated_at": "2015-11-11 06:23:56"
@@ -115,6 +116,7 @@ class UserFriendsController extends Controller
       "city": null,
       "state": null,
       "country": null,
+      "spot": "",
       "quote": "",
       "created_at": "2015-11-11 06:25:34",
       "updated_at": "2015-11-11 06:25:34"

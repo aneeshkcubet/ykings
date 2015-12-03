@@ -391,6 +391,7 @@ class UserFollowsController extends Controller
       "city": "Kochi",
       "state": "Kerala",
       "country": "India",
+      "spot": "",
       "quote": "I need to get strong!!!!",
       "created_at": "2015-11-12 08:45:02",
       "updated_at": "2015-11-12 08:45:02"
@@ -589,6 +590,7 @@ class UserFollowsController extends Controller
       "city": "Kochi",
       "state": "Kerala",
       "country": "India",
+      "spot": "",
       "quote": "I need to get strong!!!!",
       "created_at": "2015-11-12 08:45:02",
       "updated_at": "2015-11-12 08:45:02"

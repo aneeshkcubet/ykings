@@ -72,6 +72,7 @@ class SocialController extends Controller
                         "city": null,
                         "state": null,
                         "country": null,
+                        "spot": "",
                         "quote": "",
                         "created_at": "2015-11-09 12:40:07",
                         "updated_at": "2015-11-27 09:33:57"
@@ -329,6 +330,7 @@ class SocialController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
+     *                   "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
