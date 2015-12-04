@@ -64,11 +64,15 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\PasswordController@postEmail'
     ]);
     //SocialController
+    Route::post('/social/facebookSignUp', [
+        'as' => 'facebook.signup',
+        'uses' => 'Api\SocialController@facebookSignUp'
+    ]);
+
     Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
     ]);
-
     Route::post('social/facebookUpdate', [
         'as' => 'facebook.update',
         'uses' => 'Api\SocialController@facebookUpdate'
