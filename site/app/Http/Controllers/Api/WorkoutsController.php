@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    Validator;
+    Validator,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -195,10 +196,10 @@ class WorkoutsController extends Controller
                             ->get(['exercise_id', 'unit', 'repititions', 'round']);
                         $workoutArray['athletic'] = Workoutexercise::where('workout_id', $workoutArray['id'])
                             ->where('category', 2)
-                            -> get(['exercise_id', 'unit', 'repititions', 'round']);
+                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
                         $workoutArray['strength'] = Workoutexercise::where('workout_id', $workoutArray['id'])
-                            ->where('category', 3) 
-                            -> get(['exercise_id', 'unit', 'repititions', 'round']);
+                            ->where('category', 3)
+                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
                         unset($workoutArray);
                     }
                 }
@@ -267,22 +268,22 @@ class WorkoutsController extends Controller
       ],
       "professional": []
       },
-       "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      * 
      * @apiError error Message token_invalid.
@@ -357,19 +358,20 @@ class WorkoutsController extends Controller
                     ->get();
 
                 $time = time();
-                $subscription = DB::table('subscriptions')
-                    ->select('*')
-                    ->where('user_id', '=', $userId)
-                    ->orderBy('id', 'DESC')
-                    ->first();
-                if (is_null($subscription)) {
-                    $isSubscribed = 0;
-                }
 
-                if ($subscription->end_time <= $time) {
-                    $isSubscribed = 0;
-                } else {
-                    $isSubscribed = 1;
+                $isSubscribed = 0;
+
+                if (isset($request->user_id)) {
+
+                    $subscription = DB::table('subscriptions')
+                        ->select('*')
+                        ->where('user_id', '=', $request->user_id)
+                        ->orderBy('id', 'DESC')
+                        ->first();
+
+                    if (!is_null($subscription) && $subscription->end_time > $time) {
+                        $isSubscribed = 1;
+                    }
                 }
 
                 $workoutArray['beginer'] = [];
@@ -753,22 +755,22 @@ class WorkoutsController extends Controller
       ]
       }
       },
-       "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      * 
      * @apiError error Message token_invalid.
@@ -835,6 +837,7 @@ class WorkoutsController extends Controller
                 do {
                     $roundExercises = Workoutexercise::where('category', '=', $request->category)
                             ->where('round', '=', $count)
+                            ->where('workout_id', '=', $request->input('workout_id'))
                             ->with(['video', 'exercise'])->get();
 
                     $exercises['round' . $count] = $roundExercises->toArray();
