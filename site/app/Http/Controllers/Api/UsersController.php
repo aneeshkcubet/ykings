@@ -88,7 +88,7 @@ class UsersController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
-                         "spot": "",
+      "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -336,6 +336,9 @@ class UsersController extends Controller
      * @apiParam {string} [state] user's state 
      * @apiParam {string} [country] user's country 
      * @apiParam {string} [spot] spot
+     * @apiParam {string} [twitter] twitter
+     * @apiParam {string} [facebook] facebook
+     * @apiParam {string} [instagram] instagram
      * @apiParam {string} [quote] Quote added by user 
      * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
      *
@@ -368,6 +371,9 @@ class UsersController extends Controller
      *                   "state": "",
      *                   "country": "",
      *                   "spot": "",
+     *                   "twitter": "0",
+     *                   "facebook": "1",
+     *                   "instagram": "0",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -394,21 +400,21 @@ class UsersController extends Controller
      *               ]
      *           },
      *            "urls": {
-                      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-                      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-                      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-                      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-                      "video": "http://sandbox.ykings.com/uploads/videos",
-                      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-                      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-                      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-                      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-                      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-                      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-                      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-                      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-                      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-              }
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
      *       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -502,6 +508,18 @@ class UsersController extends Controller
             $profData['spot'] = $data['spot'];
         }
 
+        if (isset($data['twitter'])) {
+            $profData['twitter'] = $data['twitter'];
+        }
+        
+        if (isset($data['facebook'])) {
+            $profData['facebook'] = $data['facebook'];
+        }
+        
+        if (isset($data['instagram'])) {
+            $profData['instagram'] = $data['instagram'];
+        }
+
         if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
 
             $user->profile()->update($profData);
@@ -509,11 +527,6 @@ class UsersController extends Controller
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-
-                //$accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-//                if (!in_array($_FILES ['image'] ['type'], $accepableTypes)) {
-//                    return response()->json(['error' => 'user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-//                }
 
                 $image = Image::make($_FILES['image']['tmp_name']);
 
@@ -611,6 +624,9 @@ class UsersController extends Controller
       "state": "",
       "country": "",
       "spot": "",
+      "twitter": "0",
+      "facebook": "1",
+      "instagram": "0",
       "quote": "I want to get Strong",
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-09 10:16:07"
@@ -794,6 +810,9 @@ class UsersController extends Controller
       "state": "",
       "country": "",
       "spot": "",
+      "twitter": "0",
+      "facebook": "1",
+      "instagram": "0",
       "quote": "I want to get Strong",
       "created_at": "2015-11-09 09:14:02",
       "updated_at": "2015-11-09 10:16:07"

@@ -390,7 +390,6 @@ class SocialController extends Controller
      */
     public function facebookLogin(Request $request)
     {
-
         if (!isset($request->email) || ($request->email == null)) {
             return response()->json(["status" => "0", "error" => "The email field is required"]);
         } elseif (!isset($request->provider_id) || ($request->provider_id == null)) {
