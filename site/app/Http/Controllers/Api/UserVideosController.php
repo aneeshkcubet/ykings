@@ -83,9 +83,9 @@ class UserVideosController extends Controller
      *                           "country": "",
      *                           "spot": "",
      *                           "quote": "",
-     *                           "twitter": "0",
-     *                           "facebook": "1",
-     *                           "instagram": "0",
+     *                           "twitter": "",
+     *                           "facebook": "",
+     *                           "instagram": "",
      *                           "created_at": "2015-11-11 11:40:10",
      *                           "updated_at": "2015-11-11 11:40:11"
      *                       }
@@ -223,9 +223,9 @@ class UserVideosController extends Controller
      *                           "country": "",
      *                           "spot": "",
      *                           "quote": "",
-     *                           "twitter": "0",
-     *                           "facebook": "1",
-     *                           "instagram": "0",
+     *                           "twitter": "",
+     *                           "facebook": "",
+     *                           "instagram": "",
      *                           "created_at": "2015-11-11 11:40:10",
      *                           "updated_at": "2015-11-11 11:40:11"
      *                       }
