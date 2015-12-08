@@ -75,6 +75,9 @@ class SocialController extends Controller
       "country": null,
       "spot": "",
       "quote": "",
+      "twitter": "",
+      "facebook": "",
+      "instagram": "",
       "created_at": "2015-11-09 12:40:07",
       "updated_at": "2015-11-27 09:33:57"
       }
@@ -316,6 +319,9 @@ class SocialController extends Controller
       "country": null,
       "spot": "",
       "quote": "",
+      "twitter": "",
+      "facebook": "",
+      "instagram": "",
       "created_at": "2015-11-09 12:40:07",
       "updated_at": "2015-11-27 09:33:57"
       }
@@ -390,7 +396,6 @@ class SocialController extends Controller
      */
     public function facebookLogin(Request $request)
     {
-
         if (!isset($request->email) || ($request->email == null)) {
             return response()->json(["status" => "0", "error" => "The email field is required"]);
         } elseif (!isset($request->provider_id) || ($request->provider_id == null)) {
