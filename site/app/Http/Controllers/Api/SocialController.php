@@ -13,6 +13,7 @@ use App\Profile;
 use App\Social;
 use App\Settings;
 use App\Images;
+use App\Follow;
 
 class SocialController extends Controller
 {
@@ -298,6 +299,7 @@ class SocialController extends Controller
       "created_at": "2015-11-09 12:40:07",
       "updated_at": "2015-11-09 12:40:07",
       "facebook_connect": 1,
+      "follower_count": 1,
       "is_subscribed": 0,
       "profile": [
       {
@@ -414,6 +416,8 @@ class SocialController extends Controller
                             return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                         }
                         $user['facebook_connect'] = Social::isFacebookConnect($user->id);
+                        //follower count
+                        $user['follower_count'] = Follow::followerCount($user->id);
                         // if no errors are encountered we can return a JWT
                         return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
                     } else {
@@ -569,5 +573,4 @@ class SocialController extends Controller
             }
         }
     }
-
 }

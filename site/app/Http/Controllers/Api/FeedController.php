@@ -268,6 +268,7 @@ class FeedController extends Controller
       "is_commented": 0,
       "is_claped": 0,
       "category": "Strength",
+      "item_name": "Baldur",
       "image": [],
       "workout": [],
       "exercise": []
@@ -285,6 +286,7 @@ class FeedController extends Controller
       "is_commented": 0,
       "is_claped": 0,
       "category": "Strength",
+      "item_name": "Baldur",
       "image": [],
       "workout": [],
       "exercise": []
@@ -411,7 +413,8 @@ class FeedController extends Controller
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-     "category": "Strength",
+      "category": "Strength",
+      "item_name": "Baldur",
       "image": [
       {
       "id": "6",
@@ -444,6 +447,7 @@ class FeedController extends Controller
       "is_commented": 0,
       "is_claped": 0,
       "category": "Strength",
+      "item_name": "Baldur",
       "image": [
       {
       "id": "5",
@@ -575,7 +579,7 @@ class FeedController extends Controller
             $feedsArray['is_commented'] = Comment::isCommented($userId, $feedsArray['id'], 'feed');
             //is claped
             $feedsArray['is_claped'] = Clap::isClaped($userId, $feedsArray['id'], 'feed');
-
+            //To get Category
             if ($feedsArray['item_type'] == 'workout') {
                 $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
                 if (!is_null($workout)) {
@@ -587,6 +591,7 @@ class FeedController extends Controller
                 } else {
                     $feedsArray['category'] = "";
                 }
+                $feedsArray['item_name'] = $workout->name;
             } elseif ($feedsArray['item_type'] == 'excercise') {
                 $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
                 if (!is_null($exercise)) {
@@ -600,8 +605,10 @@ class FeedController extends Controller
                 } else {
                     $feedsArray['category'] = "";
                 }
+                $feedsArray['item_name'] = $exercise->name;
             } else {
                 $feedsArray['category'] = "";
+                $feedsArray['item_name'] = "";
             }
 
             $feedsResponse[] = $feedsArray;
