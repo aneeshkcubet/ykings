@@ -270,7 +270,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -352,7 +352,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -434,7 +434,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -580,7 +580,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -631,7 +631,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n       \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n     \"category\": \"Strength\",\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -682,7 +682,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -733,7 +733,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 0,\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      }\n      ],\n      \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 0,\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -784,7 +784,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -895,7 +895,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -995,7 +995,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1089,7 +1089,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1133,7 +1133,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"Details\",\n      \"feed_details\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"profile\": {\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"image\": null\n      }\n      }\n      ],\n      \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"Details\",\n      \"feed_details\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"profile\": {\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"image\": null\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1189,7 +1189,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1303,7 +1303,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1408,7 +1408,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1527,7 +1527,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1626,7 +1626,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1725,7 +1725,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1849,7 +1849,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1909,7 +1909,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/AuthenticateController.php",
+    "filename": "./app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
   },
   {
@@ -1998,7 +1998,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SearchController.php",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Search"
   },
   {
@@ -2035,7 +2035,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"settings\": [\n            {\n                \"id\": \"22\",\n                \"user_id\": \"41\",\n                \"key\": \"subscription\",\n                \"value\": 1,\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 04:28:18\"\n            },\n            {\n                \"id\": \"23\",\n                \"user_id\": \"41\",\n                \"key\": \"notification\",\n                \"value\": {\n                    \"comments\": \"1\",\n                    \"claps\": \"0\",\n                    \"follow\": \"0\",\n                    \"my_performance\": \"1\",\n                    \"motivation_knowledge\": \"1\"\n                },\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 06:13:52\"\n            }\n        ],\n        \"facebook_connect\": 0\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
           "type": "json"
         }
       ]
@@ -2080,7 +2080,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2162,7 +2162,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SearchController.php",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2263,7 +2263,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2764,7 +2764,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
+    "filename": "./app/Http/Controllers/Api/SubscriptionsController.php",
     "groupTitle": "Subscription"
   },
   {
@@ -2968,7 +2968,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3062,7 +3062,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3144,7 +3144,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3248,7 +3248,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3335,7 +3335,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3513,7 +3513,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3607,7 +3607,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3718,7 +3718,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3812,7 +3812,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3851,7 +3851,8 @@ define({ "api": [
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n {\n      \"status\": 1,\n      \"workout\": {\n      \"id\": \"2\",\n      \"name\": \"Borr\",\n      \"description\": \"Borr Borr Borr\",\n      \"rounds\": \"3\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"330\",\n      \"duration\": \"19.00\",\n      \"equipments\": \"BAR\",\n      \"created_at\": \"2015-11-18 18:30:00\",\n      \"updated_at\": \"2015-11-19 11:13:13\",\n      \"beginer\": [],\n      \"advanced\": [\n      {\n      \"id\": \"1\",\n      \"workout_id\": \"2\",\n      \"user_id\": \"2\",\n      \"status\": \"1\",\n      \"time\": \"33\",\n      \"is_starred\": \"0\",\n      \"created_at\": \"2015-11-20 05:04:13\",\n      \"updated_at\": \"2015-11-20 05:04:13\",\n      \"category\": \"2\",\n      \"profile\": {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"I want to get Strong\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-09 10:16:07\"\n      }\n      }\n      ],\n      \"professional\": []\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
-        }      ]
+        }
+      ]
     },
     "error": {
       "fields": {
@@ -3893,7 +3894,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3975,8 +3976,36 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p> "
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./public/apidoc/main.js",
+    "group": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "groupTitle": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "name": ""
   },
   {
     "type": "post",
@@ -4063,7 +4092,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/PasswordController.php",
+    "filename": "./app/Http/Controllers/Api/PasswordController.php",
     "groupTitle": "password"
   }
 ] });
