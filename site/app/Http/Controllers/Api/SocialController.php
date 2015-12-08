@@ -26,7 +26,7 @@ class SocialController extends Controller
      */
 
     /**
-     * @api {post} /social/facebookSignUp
+     * @api {post} /social/facebookSignUp facebookSignUp
      * @apiName facebookSignUp
      * @apiGroup Social
      *
@@ -266,7 +266,7 @@ class SocialController extends Controller
     }
 
     /**
-     * @api {post} /social/facebookLogin
+     * @api {post} /social/facebookLogin facebookLogin
      * @apiName facebookLogin
      * @apiGroup Social
      *
