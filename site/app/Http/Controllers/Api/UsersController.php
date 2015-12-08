@@ -785,62 +785,86 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "user_details",
-      "user": {
-      "id": "2",
-      "email": "aneeshk@cubettech.com",
-      "confirmation_code": "",
-      "status": "1",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-16 06:45:17",
-      "is_subscribed": 0,
-      "facebook_connect": 1,
-      "profile": [
-      {
-      "id": "2",
-      "user_id": "2",
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "gender": "1",
-      "fitness_status": "3",
-      "goal": "3",
-      "image": "",
-      "city": "",
-      "state": "",
-      "country": "",
-      "spot": "",
-      "twitter": "",
-      "facebook": "",
-      "instagram": "",
-      "quote": "I want to get Strong",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-09 10:16:07"
-      }
-      ],
-      "is_following": 0,
-      "follower_count": 0,
-      "workout_count": 4,
-      "points": 330,
-      "level": 3
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+          "status": 1,
+          "success": "user_details",
+          "user": {
+            "id": "2",
+            "email": "aneeshk@cubettech.com",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-11-09 09:14:02",
+            "updated_at": "2015-11-16 06:45:17",
+            "is_subscribed": 0,
+            "profile": [
+              {
+                "id": "2",
+                "user_id": "2",
+                "first_name": "Aneesh",
+                "last_name": "Kallikkattil",
+                "gender": "1",
+                "fitness_status": "3",
+                "goal": "3",
+                "image": "",
+                "cover_image": "",
+                "city": "",
+                "state": "",
+                "country": "",
+                "spot": "",
+                "quote": "I want to get Strong",
+                "facebook": "0",
+                "twitter": "0",
+                "instagram": "0",
+                "created_at": "2015-11-09 09:14:02",
+                "updated_at": "2015-11-09 10:16:07",
+                "level": 3
+              }
+            ],
+            "settings": [
+              {
+                "id": "2",
+                "user_id": "2",
+                "key": "notification",
+                "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
+                "created_at": "2015-11-20 00:00:00",
+                "updated_at": "2015-12-03 06:35:31"
+              },
+              {
+                "id": "3",
+                "user_id": "2",
+                "key": "subscription",
+                "value": "1",
+                "created_at": "2015-11-20 00:00:00",
+                "updated_at": "2015-11-20 06:33:27"
+              }
+            ],
+            "is_following": 0,
+            "follower_count": 0,
+            "workout_count": 4,
+            "level": 3,
+            "points": 330,
+            "points_to_next_level": 170,
+            "total_skills": 6,
+            "user_skills_count": 2,
+            "athlete_since": "2015-11-09 09:14:02",
+            "facebook_connected": 0
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
+        }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -945,13 +969,7 @@ class UsersController extends Controller
             $userArray['total_skills'] = 6;
             $userArray['user_skills_count'] = 2;
 
-            $userArray['athlete_since'] = $userArray['created_at'];
-            if (isset($userArray['profile']['city'])) {
-                $userArray['trains_in'] = $userArray['profile']['city'];
-            } else {
-                $userArray['trains_in'] = "";
-            }
-
+            $userArray['athlete_since'] = $userArray['created_at'];            
             //Code to check facebook connected for user.
             //Added by ansa@cubettech.com on 27-11-2015
             $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);

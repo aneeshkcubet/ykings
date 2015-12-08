@@ -46,96 +46,621 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "is_subscribed": 1,
-      "exercises": {
-      "lean": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ],
-      "athletic": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ],
-      "strength": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ]
-      }
-
-      }
+          "status": 1,
+          "is_subscribed": 0,
+          "workouts": {
+            "free": [
+              {
+                "id": "2",
+                "name": "Borr",
+                "description": "Borr Borr Borr",
+                "rounds": "3",
+                "category": "2",
+                "type": "1",
+                "rewards": "330",
+                "duration": "19.00",
+                "equipments": "BAR",
+                "lean": [
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "16",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "16",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "16",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  }
+                ],
+                "athletic": [
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "47",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "47",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "47",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  }
+                ],
+                "strength": [
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "75",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "75",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "75",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  }
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Bragi",
+                "description": "Bragi",
+                "rounds": "5",
+                "category": "2",
+                "type": "1",
+                "rewards": "200",
+                "duration": "14.00",
+                "equipments": "Low Bar",
+                "lean": [
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "2",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "2",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "2",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "2",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "12",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "11",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "2",
+                    "unit": "times"
+                  }
+                ],
+                "athletic": [
+                  {
+                    "exercise_id": "43",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "33",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "43",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "33",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "43",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "33",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "43",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "33",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "43",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "42",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "33",
+                    "unit": "times"
+                  }
+                ],
+                "strength": [
+                  {
+                    "exercise_id": "73",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "77",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "73",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "77",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "73",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "77",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "73",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "77",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "90",
+                    "unit": "seconds"
+                  },
+                  {
+                    "exercise_id": "73",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "72",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "77",
+                    "unit": "times"
+                  }
+                ]
+              }],
+            "paid": [
+              {
+                "id": "1",
+                "name": "Baldur",
+                "description": "Baldur Baldur",
+                "rounds": "5",
+                "category": "1",
+                "type": "2",
+                "rewards": "330",
+                "duration": "15.00",
+                "equipments": "",
+                "lean": [
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "53",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "53",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "53",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "53",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "1",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "53",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "5",
+                    "unit": "times"
+                  }
+                ],
+                "athletic": [
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "46",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "46",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "46",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "46",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "32",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "46",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "36",
+                    "unit": "times"
+                  }
+                ],
+                "strength": [
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "85",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "85",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "85",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "85",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "69",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "85",
+                    "unit": "times"
+                  },
+                  {
+                    "exercise_id": "70",
+                    "unit": "times"
+                  }
+                ]
+              }
+            ]
+          }
+        }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -187,10 +712,10 @@ class WorkoutsController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
 
-                $workouts = Workout::all();
-                if (!is_null($workouts)) {
-                    foreach ($workouts as $workoutArray) {
-                        $workoutResponse[] = $workoutArray;
+                $freeWorkouts = Workout::where('type', '=', 1)->get();
+                $paidWorkouts = Workout::where('type', '=', 2)->get();
+                if (!is_null($freeWorkouts)) {
+                    foreach ($freeWorkouts as $workoutArray) {
                         $workoutArray['lean'] = Workoutexercise::where('workout_id', $workoutArray['id'])
                             ->where('category', 1)
                             ->get(['exercise_id', 'unit', 'repititions', 'round']);
@@ -200,6 +725,26 @@ class WorkoutsController extends Controller
                         $workoutArray['strength'] = Workoutexercise::where('workout_id', $workoutArray['id'])
                             ->where('category', 3)
                             ->get(['exercise_id', 'unit', 'repititions', 'round']);
+                        
+                        $workoutResponse['free'][] = $workoutArray;
+                        
+                        unset($workoutArray);
+                    }
+                }
+                if (!is_null($paidWorkouts)) {
+                    foreach ($paidWorkouts as $workoutArray) {
+                        $workoutArray['lean'] = Workoutexercise::where('workout_id', $workoutArray['id'])
+                            ->where('category', 1)
+                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
+                        $workoutArray['athletic'] = Workoutexercise::where('workout_id', $workoutArray['id'])
+                            ->where('category', 2)
+                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
+                        $workoutArray['strength'] = Workoutexercise::where('workout_id', $workoutArray['id'])
+                            ->where('category', 3)
+                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
+                        
+                        $workoutResponse['paid'][] = $workoutArray;
+                        
                         unset($workoutArray);
                     }
                 }
