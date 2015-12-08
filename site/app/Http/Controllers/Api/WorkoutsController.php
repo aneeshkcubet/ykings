@@ -49,7 +49,7 @@ class WorkoutsController extends Controller
       "status": 1,
       "is_subscribed": 1,
       "exercises": {
-      "beginer": [
+      "lean": [
       {
       "id": "1",
       "name": "Jumping Pullups",
@@ -77,7 +77,7 @@ class WorkoutsController extends Controller
       ]
       }
       ],
-      "advanced": [
+      "athletic": [
       {
       "id": "1",
       "name": "Jumping Pullups",
@@ -105,7 +105,7 @@ class WorkoutsController extends Controller
       ]
       }
       ],
-      "professional": [
+      "strength": [
       {
       "id": "1",
       "name": "Jumping Pullups",
@@ -235,8 +235,8 @@ class WorkoutsController extends Controller
       "equipments": "BAR",
       "created_at": "2015-11-18 18:30:00",
       "updated_at": "2015-11-19 11:13:13",
-      "beginer": [],
-      "advanced": [
+      "lean": [],
+      "athletic": [
       {
       "id": "1",
       "workout_id": "2",
@@ -266,7 +266,7 @@ class WorkoutsController extends Controller
       }
       }
       ],
-      "professional": []
+      "strength": []
       },
       "urls": {
       "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -374,13 +374,13 @@ class WorkoutsController extends Controller
                     }
                 }
 
-                $workoutArray['beginer'] = [];
-                $workoutArray['advanced'] = [];
-                $workoutArray['professional'] = [];
+                $workoutArray['lean'] = [];
+                $workoutArray['athletic'] = [];
+                $workoutArray['strength'] = [];
 
-                $workoutArray['beginer'] = $leanWorkoutUsers->toArray();
-                $workoutArray['advanced'] = $athleteWorkoutUsers->toArray();
-                $workoutArray['professional'] = $strengthWorkoutUsers->toArray();
+                $workoutArray['lean'] = $leanWorkoutUsers->toArray();
+                $workoutArray['athletic'] = $athleteWorkoutUsers->toArray();
+                $workoutArray['strength'] = $strengthWorkoutUsers->toArray();
 
                 return response()->json(['status' => 1, 'is_subscribed' => $isSubscribed, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -394,7 +394,7 @@ class WorkoutsController extends Controller
      * @apiName getWorkoutWithExercises
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout 
-     * @apiParam {Number} category of workout 1-beginer, 2-advanced, 3-professional
+     * @apiParam {Number} category of workout 1-lean, 2-athletic, 3-strength
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -862,7 +862,7 @@ class WorkoutsController extends Controller
      * @apiName addStar
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout *required
-     * @apiParam {Number} category of workout *required 1-beginer, 2-advanced, 3-professional
+     * @apiParam {Number} category of workout *required 1-lean, 2-athletic, 3-strength
      * @apiParam {Number} user_id of workout *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:

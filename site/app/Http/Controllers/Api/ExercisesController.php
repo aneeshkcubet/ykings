@@ -45,7 +45,7 @@ class ExercisesController extends Controller
           "status": 1,
           "is_subscribed" : 1,
           "exercises": {
-            "beginer": {
+            "lean": {
               "free": [
                 {
                   "id": "1",
@@ -94,7 +94,7 @@ class ExercisesController extends Controller
                 }
               ]
             },
-            "advanced": {
+            "athletic": {
               "free": [
                 {
                   "id": "32",
@@ -130,7 +130,7 @@ class ExercisesController extends Controller
                 }
               ]
             },
-            "professional": {
+            "strength": {
               "free": [
                 {
                   "id": "69",
@@ -242,9 +242,9 @@ class ExercisesController extends Controller
                 $athleticExercisesPaid = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
                 $strongExercisesPaid = Exercise::where('category', '=', 3)->where('type', '=', 2)->with(['video'])->get();
 
-                $exercises['beginer'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
-                $exercises['advanced'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
-                $exercises['professional'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
+                $exercises['lean'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
+                $exercises['athletic'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
+                $exercises['strength'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
                 
                 return response()->json([
                     'status' => 1, 
