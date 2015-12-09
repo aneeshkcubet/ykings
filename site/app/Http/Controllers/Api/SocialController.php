@@ -14,6 +14,8 @@ use App\Social;
 use App\Settings;
 use App\Images;
 use App\Follow;
+use App\Workout;
+use App\Point;
 
 class SocialController extends Controller
 {
@@ -48,69 +50,83 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "successfully_created_user",
-      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ4NjE2ODM3IiwiZXhwIjoiMTQ1MjIxNjgzNyIsIm5iZiI6IjE0NDg2MTY4MzciLCJqdGkiOiI5NGMyOWM4YzdlM2I0MWM3ODA0M2U5MjZkN2Y0MzM2YyJ9.pi1yBYNrszaS5mN1VT6du6nqenVu9Bga51T8WmxNn5w",
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07",
-      "facebook_connect": 1,
-      "is_subscribed": 0,
-      "profile": [
-      {
-      "id": "7",
-      "user_id": "11",
-      "first_name": "",
-      "last_name": "",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": "11_1447237788.jpg",
-      "city": null,
-      "state": null,
-      "country": null,
-      "spot": "",
-      "quote": "",
-      "twitter": "",
-      "facebook": "",
-      "instagram": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-27 09:33:57"
-      }
-      ],
-      "social": [
-      {
-      "id": "2",
-      "user_id": "11",
-      "provider": "facebook",
-      "provider_uid": "123456789",
-      "access_token": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
-      }
-      ]
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+        "status": 1,
+        "success": "successfully_created_user",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NyIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rU2lnblVwIiwiaWF0IjoiMTQ0OTY2Mjk1NCIsImV4cCI6IjE0NTMyNjI5NTQiLCJuYmYiOiIxNDQ5NjYyOTU0IiwianRpIjoiMzU4MGY2NTM4YTE1Y2QzZWE5YzMxMDcxOTg4M2VhN2UifQ.2atfPXavOuhdFhUet3DA6qX5PV22q-irT400XRe1hoA",
+        "user": {
+            "id": "77",
+            "email": "kiranlm1@cubettech.com",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-12-09 12:09:08",
+            "updated_at": "2015-12-09 12:09:08",
+            "workout_count": 0,
+            "points": 0,
+            "level": 1,
+            "facebook_connect": 1,
+            "follower_count": 0,
+            "is_subscribed": 0,
+            "profile": [
+                {
+                    "id": "61",
+                    "user_id": "77",
+                    "first_name": "kiran",
+                    "last_name": "lm",
+                    "gender": "0",
+                    "fitness_status": "0",
+                    "goal": "0",
+                    "image": "77_1449662953.jpg",
+                    "cover_image": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "spot": "",
+                    "quote": "",
+                    "instagram": "",
+                    "twitter": "",
+                    "facebook": "",
+                    "fb": "0",
+                    "created_at": "2015-12-09 12:09:12",
+                    "updated_at": "2015-12-09 12:09:13",
+                    "level": 1
+                }
+            ],
+            "settings": [
+                {
+                    "id": "34",
+                    "user_id": "77",
+                    "key": "subscription",
+                    "value": "1",
+                    "created_at": "2015-12-09 12:09:12",
+                    "updated_at": "2015-12-09 12:09:12"
+                },
+                {
+                    "id": "35",
+                    "user_id": "77",
+                    "key": "notification",
+                    "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
+                    "created_at": "2015-12-09 12:09:12",
+                    "updated_at": "2015-12-09 12:09:12"
+                }
+            ]
+        },
+        "urls": {
+            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+            "video": "http://ykings.me/uploads/videos",
+            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+        }
+    }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
@@ -167,7 +183,7 @@ class SocialController extends Controller
                 }
 
                 $user = User::where('email', '=', $request->input('email'))
-                        ->with(['profile', 'social'])->first();
+                        ->with(['profile', 'settings'])->first();
 
 
                 if (Auth::loginUsingId($user->id)) {
@@ -183,9 +199,15 @@ class SocialController extends Controller
                             // something went wrong
                             return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                         }
+
+                        $user['workout_count'] = Workout::workoutCount($user->id);
+                        $user['points'] = Point::userPoints($user->id);
+                        $user['level'] = Point::userLevel($user->id);
                         $user['facebook_connect'] = Social::isFacebookConnect($user->id);
+                        //follower count
+                        $user['follower_count'] = Follow::followerCount($user->id);
                         // if no errors are encountered we can return a JWT
-                        return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                        return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
                     } else {
                         return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
                     }
@@ -291,70 +313,83 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "successfully_logged_in",
-      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ4NjE2ODM3IiwiZXhwIjoiMTQ1MjIxNjgzNyIsIm5iZiI6IjE0NDg2MTY4MzciLCJqdGkiOiI5NGMyOWM4YzdlM2I0MWM3ODA0M2U5MjZkN2Y0MzM2YyJ9.pi1yBYNrszaS5mN1VT6du6nqenVu9Bga51T8WmxNn5w",
-      "user": {
-      "id": "11",
-      "email": "ansa@cubettech.com",
-      "confirmation_code": null,
-      "status": "1",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07",
-      "facebook_connect": 1,
-      "follower_count": 1,
-      "is_subscribed": 0,
-      "profile": [
-      {
-      "id": "7",
-      "user_id": "11",
-      "first_name": "",
-      "last_name": "",
-      "gender": "0",
-      "fitness_status": "0",
-      "goal": "0",
-      "image": "11_1447237788.jpg",
-      "city": null,
-      "state": null,
-      "country": null,
-      "spot": "",
-      "quote": "",
-      "twitter": "",
-      "facebook": "",
-      "instagram": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-27 09:33:57"
-      }
-      ],
-      "social": [
-      {
-      "id": "2",
-      "user_id": "11",
-      "provider": "facebook",
-      "provider_uid": "123456789",
-      "access_token": "",
-      "created_at": "2015-11-09 12:40:07",
-      "updated_at": "2015-11-09 12:40:07"
-      }
-      ]
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+        "status": 1,
+        "success": "successfully_logged_in",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ5NjYyODMyIiwiZXhwIjoiMTQ1MzI2MjgzMiIsIm5iZiI6IjE0NDk2NjI4MzIiLCJqdGkiOiI4Zjc1ZjliMmJjMzFmMmQ5OWIzZGUzYmI3OWMyM2QxYiJ9.DlOJuP45ticT3wHRVMLp3mgXFQCbbPUetHYK2ucjIJA",
+        "user": {
+            "id": "75",
+            "email": "kiran.lm@cubettech.com",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-12-04 10:24:06",
+            "updated_at": "2015-12-04 10:24:06",
+            "workout_count": 0,
+            "points": 0,
+            "level": 1,
+            "facebook_connect": 1,
+            "follower_count": 0,
+            "is_subscribed": 0,
+            "profile": [
+                {
+                    "id": "59",
+                    "user_id": "75",
+                    "first_name": "kiran",
+                    "last_name": "",
+                    "gender": "0",
+                    "fitness_status": "0",
+                    "goal": "0",
+                    "image": "75_1449224652.jpg",
+                    "cover_image": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "spot": "",
+                    "quote": "",
+                    "instagram": "0",
+                    "twitter": "0",
+                    "facebook": "0",
+                    "fb": "0",
+                    "created_at": "2015-12-04 10:24:11",
+                    "updated_at": "2015-12-04 16:58:53",
+                    "level": 1
+                }
+            ],
+            "settings": [
+                {
+                    "id": "30",
+                    "user_id": "75",
+                    "key": "subscription",
+                    "value": "1",
+                    "created_at": "2015-12-04 10:24:11",
+                    "updated_at": "2015-12-04 10:24:11"
+                },
+                {
+                    "id": "31",
+                    "user_id": "75",
+                    "key": "notification",
+                    "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
+                    "created_at": "2015-12-04 10:24:11",
+                    "updated_at": "2015-12-04 10:24:11"
+                }
+            ]
+        },
+        "urls": {
+            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+            "video": "http://ykings.me/uploads/videos",
+            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+        }
+    }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
@@ -405,7 +440,7 @@ class SocialController extends Controller
         } else {
             if ($this->login($request->all())) {
                 $user = User::where('email', '=', $request->input('email'))
-                        ->with(['profile', 'social'])->first();
+                        ->with(['profile', 'settings'])->first();
 
                 if (Auth::loginUsingId($user->id)) {
                     // Authentication passed...
@@ -420,6 +455,9 @@ class SocialController extends Controller
                             // something went wrong
                             return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                         }
+                        $user['workout_count'] = Workout::workoutCount($user->id);
+                        $user['points'] = Point::userPoints($user->id);
+                        $user['level'] = Point::userLevel($user->id);
                         $user['facebook_connect'] = Social::isFacebookConnect($user->id);
                         //follower count
                         $user['follower_count'] = Follow::followerCount($user->id);
