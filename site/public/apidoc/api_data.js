@@ -98,7 +98,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -188,7 +188,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -270,7 +270,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -352,7 +352,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -434,7 +434,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -580,7 +580,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -682,7 +682,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -784,7 +784,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -895,7 +895,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -995,7 +995,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1089,7 +1089,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1189,7 +1189,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1303,7 +1303,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1408,7 +1408,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1452,7 +1452,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"success\": \"successfully_followed\"\n      }",
+          "content": "HTTP/1.1 200 OK\n          {\n              \"status\": 1,\n              \"success\": \"successfully_followed\"\n          }",
           "type": "json"
         }
       ]
@@ -1471,63 +1471,63 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n    {\n      \"error\": \"token_invalid\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\": 0,\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n    {\n      \"status\": 0,\n      \"error\": \"token_expired\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\": 0,\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n    {\n      \"status\": 0,\n      \"error\": \"token_not_provided\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 validation_errors\n{\n  \"status\": 0,\n  \"error\":  \"The follower_id field is required.\"        \n}",
+          "content": "HTTP/1.1 422 validation_errors\n    {\n      \"status\": 0,\n      \"error\":  \"The follower_id field is required.\"        \n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 validation_errors\n{\n  \"status\": 0,\n  \"error\":  \"The following_id field is required.\"        \n}",
+          "content": "HTTP/1.1 422 validation_errors\n    {\n      \"status\": 0,\n      \"error\":  \"The following_id field is required.\"        \n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 follower_user_does_not_exists\n{\n      \"status\": 0,\n      \"error\": \"follower_user_does_not_exists\"\n}",
+          "content": "HTTP/1.1 422 follower_user_does_not_exists\n    {\n          \"status\": 0,\n          \"error\": \"follower_user_does_not_exists\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 following_user_does_not_exists\n{\n      \"status\": 0,\n      \"error\": \"following_user_does_not_exists\"\n}",
+          "content": "HTTP/1.1 422 following_user_does_not_exists\n    {\n          \"status\": 0,\n          \"error\": \"following_user_does_not_exists\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 follower_user_not_verified_email\n{\n      \"status\": 0,\n      \"error\": \"follower_user_not_verified_email\"\n}",
+          "content": "HTTP/1.1 422 follower_user_not_verified_email\n    {\n          \"status\": 0,\n          \"error\": \"follower_user_not_verified_email\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 following_user_not_verified_email\n{\n      \"status\": 0,\n      \"error\": \"following_user_not_verified_email\"\n}",
+          "content": "HTTP/1.1 422 following_user_not_verified_email\n    {\n          \"status\": 0,\n          \"error\": \"following_user_not_verified_email\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 you_are_already_followed\n{\n      \"status\": 0,\n      \"error\": \"you_are_already_followed\"\n}",
+          "content": "HTTP/1.1 422 you_are_already_followed\n    {\n          \"status\": 0,\n          \"error\": \"you_are_already_followed\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 could_not_able_to_follow\n{\n      \"status\": 0,\n      \"error\": \"could_not_able_to_follow\"\n}",
+          "content": "HTTP/1.1 422 could_not_able_to_follow\n    {\n          \"status\": 0,\n          \"error\": \"could_not_able_to_follow\"\n    }",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1571,7 +1571,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"success\": \"user_followers\",\n      \"user\": {\n      \"id\": \"2\",\n      \"email\": \"aneeshk@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-12 08:44:54\",\n      \"updated_at\": \"2015-11-12 08:44:54\",\n      \"profile\": {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"2_1447317902.jpg\",\n      \"city\": \"Kochi\",\n      \"state\": \"Kerala\",\n      \"country\": \"India\",\n      \"spot\": \"\",\n      \"quote\": \"I need to get strong!!!!\",\n      \"created_at\": \"2015-11-12 08:45:02\",\n      \"updated_at\": \"2015-11-12 08:45:02\"\n      }\n      \"followers\": [{\n      \"id\": \"1\",\n      \"user_id\": \"3\",\n      \"follow_id\": \"2\",\n      \"created_at\": \"2015-11-12 09:34:27\",\n      \"updated_at\": \"2015-11-12 15:05:55\",\n      \"level\": 3,\n      \"is_following\":0,\n      \"following_profile\": {\n      \"id\": \"3\",\n      \"email\": \"ykings1@yopmail.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-12 08:47:37\",\n      \"updated_at\": \"2015-11-12 08:47:37\",\n      \"profile\": {\n      \"id\": \"3\",\n      \"user_id\": \"3\",\n      \"first_name\": \"Ykings\",\n      \"last_name\": \"test1\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"1\",\n      \"goal\": \"3\",\n      \"image\": \"3_1447318063.jpg\",\n      \"city\": \"Kochi\",\n      \"state\": \"Kerala\",\n      \"country\": \"India\",\n      \"quote\": \"I need to get strong!!!!\",\n      \"created_at\": \"2015-11-12 08:47:43\",\n      \"updated_at\": \"2015-11-12 08:47:43\"\n      }\n      }\n      }]\n      },\n       \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n      }",
+          "content": "HTTP/1.1 200 OK\n          {\n              \"status\": 1,\n              \"success\": \"user_followers\",\n              \"user\": {\n                  \"id\": \"2\",\n                  \"email\": \"aneeshk@cubettech.com\",\n                  \"confirmation_code\": \"\",\n                  \"status\": \"1\",\n                  \"created_at\": \"2015-11-12 08:44:54\",\n                  \"updated_at\": \"2015-11-12 08:44:54\",\n                  \"profile\": {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"first_name\": \"Aneesh\",\n                      \"last_name\": \"Kallikkattil\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"3\",\n                      \"goal\": \"3\",\n                      \"image\": \"2_1447317902.jpg\",\n                      \"city\": \"Kochi\",\n                      \"state\": \"Kerala\",\n                      \"country\": \"India\",\n                      \"spot\": \"\",\n                      \"quote\": \"I need to get strong!!!!\",\n                      \"created_at\": \"2015-11-12 08:45:02\",\n                      \"updated_at\": \"2015-11-12 08:45:02\"\n                  }\n              },\n              \"followers\": [{\n                  \"id\": \"1\",\n                  \"user_id\": \"3\",\n                  \"follow_id\": \"2\",\n                  \"created_at\": \"2015-11-12 09:34:27\",\n                  \"updated_at\": \"2015-11-12 15:05:55\",\n                  \"level\": 3,\n                  \"is_following\":0,\n                  \"following_profile\": {\n                      \"id\": \"3\",\n                      \"email\": \"ykings1@yopmail.com\",\n                      \"confirmation_code\": \"\",\n                      \"status\": \"1\",\n                      \"created_at\": \"2015-11-12 08:47:37\",\n                      \"updated_at\": \"2015-11-12 08:47:37\",\n                      \"profile\": {\n                          \"id\": \"3\",\n                          \"user_id\": \"3\",\n                          \"first_name\": \"Ykings\",\n                          \"last_name\": \"test1\",\n                          \"gender\": \"0\",\n                          \"fitness_status\": \"1\",\n                          \"goal\": \"3\",\n                          \"image\": \"3_1447318063.jpg\",\n                          \"city\": \"Kochi\",\n                          \"state\": \"Kerala\",\n                          \"country\": \"India\",\n                          \"quote\": \"I need to get strong!!!!\",\n                          \"created_at\": \"2015-11-12 08:47:43\",\n                          \"updated_at\": \"2015-11-12 08:47:43\"\n                      }\n                  }\n              }],\n              \"urls\": {\n                    \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n                    \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n                    \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n                    \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n                    \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n                    \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n                    \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n                    \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n                    \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n                    \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n                    \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n                    \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n                    \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n                    \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n              }\n          }",
           "type": "json"
         }
       ]
@@ -1626,7 +1626,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1670,7 +1670,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"success\": \"user_followings\",\n      \"user\": {\n      \"id\": \"2\",\n      \"email\": \"aneeshk@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-12 08:44:54\",\n      \"updated_at\": \"2015-11-12 08:44:54\",\n      \"profile\": {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"2_1447317902.jpg\",\n      \"city\": \"Kochi\",\n      \"state\": \"Kerala\",\n      \"country\": \"India\",\n      \"spot\": \"\",\n      \"quote\": \"I need to get strong!!!!\",\n      \"created_at\": \"2015-11-12 08:45:02\",\n      \"updated_at\": \"2015-11-12 08:45:02\"\n      },\n      \"followings\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"3\",\n      \"follow_id\": \"2\",\n      \"created_at\": \"2015-11-12 09:34:27\",\n      \"updated_at\": \"2015-11-12 15:05:55\",\n      \"level\": 3,\n      \"is_following\":0,\n      \"following_profile\": {\n      \"id\": \"3\",\n      \"email\": \"ykings1@yopmail.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-12 08:47:37\",\n      \"updated_at\": \"2015-11-12 08:47:37\",\n      \"profile\": {\n      \"id\": \"3\",\n      \"user_id\": \"3\",\n      \"first_name\": \"Ykings\",\n      \"last_name\": \"test1\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"1\",\n      \"goal\": \"3\",\n      \"image\": \"3_1447318063.jpg\",\n      \"city\": \"Kochi\",\n      \"state\": \"Kerala\",\n      \"country\": \"India\",\n      \"quote\": \"I need to get strong!!!!\",\n      \"created_at\": \"2015-11-12 08:47:43\",\n      \"updated_at\": \"2015-11-12 08:47:43\"\n      }\n      }\n      ]\n      },\n       \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n      }",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\": 1,\n          \"success\": \"user_followings\",\n          \"user\": {\n              \"id\": \"2\",\n              \"email\": \"aneeshk@cubettech.com\",\n              \"confirmation_code\": \"\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-12 08:44:54\",\n              \"updated_at\": \"2015-11-12 08:44:54\",\n              \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"3\",\n                  \"goal\": \"3\",\n                  \"image\": \"2_1447317902.jpg\",\n                  \"city\": \"Kochi\",\n                  \"state\": \"Kerala\",\n                  \"country\": \"India\",\n                  \"spot\": \"\",\n                  \"quote\": \"I need to get strong!!!!\",\n                  \"created_at\": \"2015-11-12 08:45:02\",\n                  \"updated_at\": \"2015-11-12 08:45:02\"\n              }\n         },\n        \"followings\": [\n            {\n                  \"id\": \"1\",\n                  \"user_id\": \"3\",\n                  \"follow_id\": \"2\",\n                  \"created_at\": \"2015-11-12 09:34:27\",\n                  \"updated_at\": \"2015-11-12 15:05:55\",\n                  \"level\": 3,\n                  \"is_following\":0,\n                  \"following_profile\": {\n                      \"id\": \"3\",\n                      \"email\": \"ykings1@yopmail.com\",\n                      \"confirmation_code\": \"\",\n                      \"status\": \"1\",\n                      \"created_at\": \"2015-11-12 08:47:37\",\n                      \"updated_at\": \"2015-11-12 08:47:37\",\n                      \"profile\": {\n                          \"id\": \"3\",\n                          \"user_id\": \"3\",\n                          \"first_name\": \"Ykings\",\n                          \"last_name\": \"test1\",\n                          \"gender\": \"0\",\n                          \"fitness_status\": \"1\",\n                          \"goal\": \"3\",\n                          \"image\": \"3_1447318063.jpg\",\n                          \"city\": \"Kochi\",\n                          \"state\": \"Kerala\",\n                          \"country\": \"India\",\n                          \"quote\": \"I need to get strong!!!!\",\n                          \"created_at\": \"2015-11-12 08:47:43\",\n                          \"updated_at\": \"2015-11-12 08:47:43\"\n                      }\n                  }\n             }\n        ],\n        \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n        }\n      }",
           "type": "json"
         }
       ]
@@ -1725,7 +1725,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1769,7 +1769,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n      \"status\": 1,\n      \"success\": \"successfully_unfollowed\"\n      }",
+          "content": "HTTP/1.1 200 OK\n          {\n              \"status\": 1,\n              \"success\": \"successfully_unfollowed\"\n          }",
           "type": "json"
         }
       ]
@@ -1788,68 +1788,68 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{ \n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n    { \n      \"status\" : 0,\n      \"error\": \"token_invalid\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n    {\n      \"status\" : 0,\n      \"error\": \"token_expired\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n    {\n      \"status\" : 0,\n      \"error\": \"token_not_provided\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 follower_user_does_not_exists\n{\n      \"status\": 0,\n      \"error\": \"follower_user_does_not_exists\"\n}",
+          "content": "HTTP/1.1 422 follower_user_does_not_exists\n    {\n          \"status\": 0,\n          \"error\": \"follower_user_does_not_exists\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 following_user_does_not_exists\n{\n      \"status\": 0,\n      \"error\": \"following_user_does_not_exists\"\n}",
+          "content": "HTTP/1.1 422 following_user_does_not_exists\n    {\n          \"status\": 0,\n          \"error\": \"following_user_does_not_exists\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 validation_errors\n{\n  \"status\": 0,\n  \"error\":  \"The follower_id field is required.\"        \n}",
+          "content": "HTTP/1.1 422 validation_errors\n    {\n      \"status\": 0,\n      \"error\":  \"The follower_id field is required.\"        \n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 validation_errors\n{\n  \"status\": 0,\n  \"error\":  \"The following_id field is required.\"        \n}",
+          "content": "HTTP/1.1 422 validation_errors\n    {\n      \"status\": 0,\n      \"error\":  \"The following_id field is required.\"        \n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 follower_user_does_not_exists\n{\n      \"status\": 0,\n      \"error\": \"follower_user_does_not_exists\"\n}",
+          "content": "HTTP/1.1 422 follower_user_does_not_exists\n    {\n          \"status\": 0,\n          \"error\": \"follower_user_does_not_exists\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 follower_user_not_verified_email\n{\n      \"status\": 0,\n      \"error\": \"follower_user_not_verified_email\"\n}",
+          "content": "HTTP/1.1 422 follower_user_not_verified_email\n    {\n          \"status\": 0,\n          \"error\": \"follower_user_not_verified_email\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 following_user_not_verified_email\n{\n      \"status\": 0,\n      \"error\": \"following_user_not_verified_email\"\n}",
+          "content": "HTTP/1.1 422 following_user_not_verified_email\n    {\n          \"status\": 0,\n          \"error\": \"following_user_not_verified_email\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 you_are_already_followed\n{\n      \"status\": 0,\n      \"error\": \"you_are_already_unfollowed\"\n}",
+          "content": "HTTP/1.1 422 you_are_already_followed\n    {\n          \"status\": 0,\n          \"error\": \"you_are_already_unfollowed\"\n    }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 500 could_not_able_to_follow\n{\n      \"status\": 0,\n      \"error\": \"could_not_able_to_unfollow\"\n}",
+          "content": "HTTP/1.1 500 could_not_able_to_follow\n    {\n          \"status\": 0,\n          \"error\": \"could_not_able_to_unfollow\"\n    }",
           "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1909,7 +1909,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/AuthenticateController.php",
+    "filename": "app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
   },
   {
@@ -1998,90 +1998,8 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "filename": "app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Search"
-  },
-  {
-    "type": "post",
-    "url": "/user/getsettings",
-    "title": "getUserSettings",
-    "name": "getUserSettings",
-    "group": "Settings",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Id of user *required</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "success.",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SearchController.php",
-    "groupTitle": "Settings"
   },
   {
     "type": "post",
@@ -2162,7 +2080,89 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/user/getsettings",
+    "title": "getUserSettings",
+    "name": "getUserSettings",
+    "group": "Settings",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2263,7 +2263,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2433,7 +2433,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "filename": "app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2603,7 +2603,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "filename": "app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2764,7 +2764,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SubscriptionsController.php",
+    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
     "groupTitle": "Subscription"
   },
   {
@@ -2968,7 +2968,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3062,7 +3062,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3144,7 +3144,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3248,7 +3248,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3335,7 +3335,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3534,7 +3534,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3628,7 +3628,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3739,7 +3739,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3833,7 +3833,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3915,7 +3915,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3952,7 +3952,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"is_subscribed\": 0,\n          \"workouts\": {\n            \"free\": [\n              {\n                \"id\": \"2\",\n                \"name\": \"Borr\",\n                \"description\": \"Borr Borr Borr\",\n                \"rounds\": \"3\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"330\",\n                \"duration\": \"19.00\",\n                \"equipments\": \"BAR\",\n                \"lean\": [\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"16\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"16\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"16\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"athletic\": [\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"47\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"47\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"47\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"strength\": [\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"75\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"75\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"75\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  }\n                ]\n              },\n              {\n                \"id\": \"3\",\n                \"name\": \"Bragi\",\n                \"description\": \"Bragi\",\n                \"rounds\": \"5\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"200\",\n                \"duration\": \"14.00\",\n                \"equipments\": \"Low Bar\",\n                \"lean\": [\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"2\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"2\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"2\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"2\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"12\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"11\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"2\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"athletic\": [\n                  {\n                    \"exercise_id\": \"43\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"33\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"43\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"33\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"43\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"33\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"43\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"33\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"43\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"42\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"33\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"strength\": [\n                  {\n                    \"exercise_id\": \"73\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"77\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"73\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"77\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"73\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"77\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"73\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"77\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"90\",\n                    \"unit\": \"seconds\"\n                  },\n                  {\n                    \"exercise_id\": \"73\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"72\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"77\",\n                    \"unit\": \"times\"\n                  }\n                ]\n              }],\n            \"paid\": [\n              {\n                \"id\": \"1\",\n                \"name\": \"Baldur\",\n                \"description\": \"Baldur Baldur\",\n                \"rounds\": \"5\",\n                \"category\": \"1\",\n                \"type\": \"2\",\n                \"rewards\": \"330\",\n                \"duration\": \"15.00\",\n                \"equipments\": \"\",\n                \"lean\": [\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"53\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"53\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"53\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"53\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"1\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"53\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"5\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"athletic\": [\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"46\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"46\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"46\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"46\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"32\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"46\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"36\",\n                    \"unit\": \"times\"\n                  }\n                ],\n                \"strength\": [\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"85\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"85\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"85\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"85\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"69\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"85\",\n                    \"unit\": \"times\"\n                  },\n                  {\n                    \"exercise_id\": \"70\",\n                    \"unit\": \"times\"\n                  }\n                ]\n              }\n            ]\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"is_subscribed\": 0,\n          \"workouts\": {\n          \"free\": [{\n                      \"id\": \"2\",\n                      \"name\": \"Borr\",\n                      \"description\": \"Borr Borr Borr\",\n                      \"rounds\": \"3\",\n                      \"category\": \"2\",\n                      \"type\": \"1\",\n                      \"rewards\": \"330\",\n                      \"duration\": \"19.00\",\n                      \"equipments\": \"BAR\",      \n                  },\n                  {\n                      \"id\": \"3\",\n                      \"name\": \"Bragi\",\n                      \"description\": \"Bragi\",\n                      \"rounds\": \"5\",\n                      \"category\": \"2\",\n                      \"type\": \"1\",\n                      \"rewards\": \"200\",\n                      \"duration\": \"14.00\",\n                      \"equipments\": \"Low Bar\"      \n                  }],\n          \"paid\": [{\n                      \"id\": \"1\",\n                      \"name\": \"Baldur\",\n                      \"description\": \"Baldur Baldur\",\n                      \"rounds\": \"5\",\n                      \"category\": \"1\",\n                      \"type\": \"2\",\n                      \"rewards\": \"330\",\n                      \"duration\": \"15.00\",\n                      \"equipments\": \"\"\n                  }]\n          }\n      }",
           "type": "json"
         }
       ]
@@ -3997,36 +3997,8 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
-  },
-  {
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "varname1",
-            "description": "<p>No type.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "varname2",
-            "description": "<p>With type.</p> "
-          }
-        ]
-      }
-    },
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "./public/apidoc/main.js",
-    "group": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
-    "groupTitle": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
-    "name": ""
   },
   {
     "type": "post",
@@ -4113,7 +4085,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/PasswordController.php",
+    "filename": "app/Http/Controllers/Api/PasswordController.php",
     "groupTitle": "password"
   }
 ] });
