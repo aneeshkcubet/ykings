@@ -19,6 +19,7 @@ use App\Settings;
 use App\Follow;
 use App\Point;
 use App\Social;
+use App\Workout;
 
 class UsersController extends Controller
 {
@@ -88,7 +89,7 @@ class UsersController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
-                         "spot": "",
+      "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -511,11 +512,11 @@ class UsersController extends Controller
         if (isset($data['twitter'])) {
             $profData['twitter'] = $data['twitter'];
         }
-        
+
         if (isset($data['facebook'])) {
             $profData['facebook'] = $data['facebook'];
         }
-        
+
         if (isset($data['instagram'])) {
             $profData['instagram'] = $data['instagram'];
         }
@@ -598,62 +599,83 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "successfully_logged_in",
-      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL3VzZXJcL2xvZ2luIiwiaWF0IjoiMTQ0ODAwMzYyMiIsImV4cCI6IjE0NDgzNjM2MjIiLCJuYmYiOiIxNDQ4MDAzNjIyIiwianRpIjoiMTkxODY1Njc3ZTg5ZWJhNTE2ZGU4ZTYzOTkzMTAxM2IifQ.vtj_8T3AugYFrHayk7JuWP9RGltax4XYS4AaMa63OeU",
-      "user": {
-      "id": "2",
-      "email": "aneeshk@cubettech.com",
-      "confirmation_code": "",
-      "status": "1",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-16 06:45:17",
-      "is_subscribed": 0,
-      "facebook_connect": 1,
-      "profile": [
-      {
-      "id": "2",
-      "user_id": "2",
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "gender": "1",
-      "fitness_status": "3",
-      "goal": "3",
-      "image": "",
-      "city": "",
-      "state": "",
-      "country": "",
-      "spot": "",
-      "twitter": "",
-      "facebook": "",
-      "instagram": "",
-      "quote": "I want to get Strong",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-09 10:16:07"
-      }
-      ],
-      "follower_count": 0,
-      "workout_count": 4,
-      "points": 330,
-      "level": 3
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+        "status": 1,
+        "success": "successfully_logged_in",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c",
+        "user": {
+            "id": "41",
+            "email": "arun@ileafsolutions.net",
+            "confirmation_code": "",
+            "status": "1",
+            "created_at": "2015-11-16 15:24:09",
+            "updated_at": "2015-11-16 16:32:47",
+            "is_subscribed": 0,
+            "profile": [
+                {
+                    "id": "31",
+                    "user_id": "41",
+                    "first_name": "arun",
+                    "last_name": "mg",
+                    "gender": "1",
+                    "fitness_status": "3",
+                    "goal": "1",
+                    "image": "41_1449060497.jpg",
+                    "cover_image": "",
+                    "city": "",
+                    "state": "",
+                    "country": "",
+                    "spot": "",
+                    "quote": "",
+                    "instagram": "0",
+                    "twitter": "0",
+                    "facebook": "0",
+                    "fb": "0",
+                    "created_at": "2015-11-16 15:24:09",
+                    "updated_at": "2015-12-02 18:18:17",
+                    "level": 1
+                }
+            ],
+            "settings": [
+                {
+                    "id": "22",
+                    "user_id": "41",
+                    "key": "subscription",
+                    "value": "1",
+                    "created_at": "2015-12-03 09:52:37",
+                    "updated_at": "2015-12-03 11:54:07"
+                },
+                {
+                    "id": "23",
+                    "user_id": "41",
+                    "key": "notification",
+                    "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
+                    "created_at": "2015-12-03 09:52:37",
+                    "updated_at": "2015-12-03 12:05:31"
+                }
+            ],
+            "follower_count": 3,
+            "workout_count": 0,
+            "points": 0,
+            "level": 1,
+            "facebook_connected": 0
+        },
+        "urls": {
+            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+            "video": "http://ykings.me/uploads/videos",
+            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+        }
+    }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -747,16 +769,7 @@ class UsersController extends Controller
                 $userArray = $user->toArray();
 
                 $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
-
-                $userArray['workout_count'] = DB::table('workout_users')
-                    ->where('user_id', '=', $user['id'])
-                    ->where('status', '=', 1)
-                    ->count();
-
-                $points = DB::table('points')
-                    ->where('user_id', '=', $user['id'])
-                    ->sum('points');
-
+                $userArray['workout_count'] = Workout::workoutCount($user['id']);
                 $userArray['points'] = Point::userPoints($user['id']);
                 $userArray['level'] = Point::userLevel($user['id']);
 
