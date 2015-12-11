@@ -242,7 +242,8 @@ class FeedController extends Controller
      * @api {post} /user/feedlist UserFeeds
      * @apiName UserFeeds
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} profile_id id of other user *required
      * @apiParam {Number} [offset] offset
      * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
@@ -348,17 +349,24 @@ class FeedController extends Controller
      *       "status" : 0,
      *       "error": "The user_id field is required"
      *     }
-     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The profile_id field is required"
+     *     }
      */
     public function userFeeds(Request $request)
     {
         $feedsResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        }else if (!isset($request->profile_id)|| ($request->profile_id == null)) {
+            return response()->json(['status' => 0, 'error' => 'profile_id required']);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
+            $feedQuery = Feeds::where('user_id', '=', $request->input('profile_id'));
 
             if ($user) {
                 $feedQuery->with(['image', 'workout', 'exercise']);
@@ -372,9 +380,9 @@ class FeedController extends Controller
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 //follower count
-                $followerCount = Follow::followerCount($request->user_id);
+                $followerCount = Follow::followerCount($request->profile_id);
                 //workout count
-                $workoutCount = Workoutuser::workoutCount($request->user_id);
+                $workoutCount = Workoutuser::workoutCount($request->profile_id);
                 return response()->json(['status' => 1, 'success' => 'List',
                         'follower_count' => $followerCount,
                         'level_count' => 0,

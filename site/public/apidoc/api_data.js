@@ -98,7 +98,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -188,7 +188,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -270,7 +270,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -352,7 +352,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -434,7 +434,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -580,7 +580,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -682,7 +682,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -696,10 +696,17 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "<p>Number</p> ",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user</p> "
+            "description": "<p>id of loggedin user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "profile_id",
+            "description": "<p>id of other user *required</p> "
           },
           {
             "group": "Parameter",
@@ -780,11 +787,16 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The profile_id field is required\"\n}",
+          "type": "json"
         }
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -895,7 +907,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -995,7 +1007,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1089,7 +1101,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1189,7 +1201,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1303,7 +1315,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/CommentsController.php",
+    "filename": "./app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1408,7 +1420,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/FeedController.php",
+    "filename": "./app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1527,7 +1539,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1626,7 +1638,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1725,7 +1737,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1849,7 +1861,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1909,7 +1921,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/AuthenticateController.php",
+    "filename": "./app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
   },
   {
@@ -1998,90 +2010,8 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SearchController.php",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Search"
-  },
-  {
-    "type": "post",
-    "url": "/user/getsettings",
-    "title": "getUserSettings",
-    "name": "getUserSettings",
-    "group": "Settings",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Id of user *required</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "success.",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"settings\": [\n            {\n                \"id\": \"22\",\n                \"user_id\": \"41\",\n                \"key\": \"subscription\",\n                \"value\": 1,\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 04:28:18\"\n            },\n            {\n                \"id\": \"23\",\n                \"user_id\": \"41\",\n                \"key\": \"notification\",\n                \"value\": {\n                    \"comments\": \"1\",\n                    \"claps\": \"0\",\n                    \"follow\": \"0\",\n                    \"my_performance\": \"1\",\n                    \"motivation_knowledge\": \"1\"\n                },\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 06:13:52\"\n            }\n        ],\n        \"facebook_connect\": 0\n        }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
-    "groupTitle": "Settings"
   },
   {
     "type": "post",
@@ -2162,7 +2092,89 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SearchController.php",
+    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/user/getsettings",
+    "title": "getUserSettings",
+    "name": "getUserSettings",
+    "group": "Settings",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"settings\": [\n            {\n                \"id\": \"22\",\n                \"user_id\": \"41\",\n                \"key\": \"subscription\",\n                \"value\": 1,\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 04:28:18\"\n            },\n            {\n                \"id\": \"23\",\n                \"user_id\": \"41\",\n                \"key\": \"notification\",\n                \"value\": {\n                    \"comments\": \"1\",\n                    \"claps\": \"0\",\n                    \"follow\": \"0\",\n                    \"my_performance\": \"1\",\n                    \"motivation_knowledge\": \"1\"\n                },\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 06:13:52\"\n            }\n        ],\n        \"facebook_connect\": 0\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2263,7 +2275,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2433,7 +2445,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SocialController.php",
+    "filename": "./app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2603,7 +2615,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SocialController.php",
+    "filename": "./app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2764,7 +2776,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
+    "filename": "./app/Http/Controllers/Api/SubscriptionsController.php",
     "groupTitle": "Subscription"
   },
   {
@@ -2968,7 +2980,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3062,7 +3074,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3144,7 +3156,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3248,7 +3260,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3335,7 +3347,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3534,7 +3546,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "filename": "./app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3628,7 +3640,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3739,7 +3751,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3833,7 +3845,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3915,7 +3927,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3997,8 +4009,36 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p> "
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./public/apidoc/main.js",
+    "group": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "groupTitle": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
+    "name": ""
   },
   {
     "type": "post",
@@ -4085,7 +4125,7 @@ define({ "api": [
       ]
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/PasswordController.php",
+    "filename": "./app/Http/Controllers/Api/PasswordController.php",
     "groupTitle": "password"
   }
 ] });
