@@ -354,6 +354,8 @@ class ExercisesController extends Controller
                 $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
                     ->where('status', '=', 1)
                     ->with(['profile'])
+                    ->groupBy('user_id')
+                    ->orderBy('time', 'ASC')
                     ->get();
                 $exerciseArray['users'] = $exerciseUsers->toArray();
                 return response()->json(['status' => 1, 'exercise' => $exerciseArray, 'urls' => config('urls.urls')], 200);

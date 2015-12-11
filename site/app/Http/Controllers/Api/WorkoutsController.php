@@ -165,69 +165,77 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      *  {
-      "status": 1,
-      "workout": {
-      "id": "2",
-      "name": "Borr",
-      "description": "Borr Borr Borr",
-      "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "330",
-      "duration": "19.00",
-      "equipments": "BAR",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 11:13:13",
-      "lean": [],
-      "athletic": [
-      {
-      "id": "1",
-      "workout_id": "2",
-      "user_id": "2",
-      "status": "1",
-      "time": "33",
-      "is_starred": "0",
-      "created_at": "2015-11-20 05:04:13",
-      "updated_at": "2015-11-20 05:04:13",
-      "category": "2",
-      "profile": {
-      "id": "2",
-      "user_id": "2",
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "gender": "1",
-      "fitness_status": "3",
-      "goal": "3",
-      "image": "",
-      "city": "",
-      "state": "",
-      "country": "",
-      "spot": "",
-      "quote": "I want to get Strong",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-09 10:16:07"
-      }
-      }
-      ],
-      "strength": []
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+          "status": 1,
+          "is_subscribed": 0,
+          "workout": {
+            "id": "2",
+            "name": "Borr",
+            "description": "Borr Borr Borr",
+            "rounds": "3",
+            "category": "2",
+            "type": "1",
+            "rewards": {
+              "lean": 330,
+              "athletic": 440,
+              "strength": 550
+            },
+            "duration": "19.00",
+            "equipments": "BAR",
+            "lean": [],
+            "athletic": [
+              {
+                "id": "1",
+                "workout_id": "2",
+                "user_id": "2",
+                "status": "1",
+                "time": "1200",
+                "is_starred": "0",
+                "created_at": "2015-11-20 05:04:13",
+                "updated_at": "2015-12-08 10:38:24",
+                "category": "2",
+                "profile": {
+                  "id": "2",
+                  "user_id": "2",
+                  "first_name": "Aneesh",
+                  "last_name": "Kallikkattil",
+                  "gender": "1",
+                  "fitness_status": "3",
+                  "goal": "3",
+                  "image": "",
+                  "cover_image": "",
+                  "city": "",
+                  "state": "",
+                  "country": "",
+                  "spot": "",
+                  "quote": "I want to get Strong",
+                  "facebook": "",
+                  "twitter": "",
+                  "instagram": "",
+                  "created_at": "2015-11-09 09:14:02",
+                  "updated_at": "2015-12-09 09:07:21",
+                  "level": 3
+                }
+              }
+            ],
+            "strength": []
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
+        }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -272,12 +280,21 @@ class WorkoutsController extends Controller
      */
     public function getWorkoutWithLevels(Request $request)
     {
+//        $rewards = [
+//            'lean' => 330,
+//            'athletic' => 440,
+//            'strength' => 550
+//        ];
+//        
+//        echo json_encode($rewards);
+//        die;
         if (!isset($request->workout_id) || ($request->workout_id == null)) {
             return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
         } else {
             $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
             if (!is_null($workout)) {
                 $workoutArray = $workout->toArray();
+                $workoutArray['rewards'] = json_decode($workoutArray['rewards'], true);
                 $leanWorkoutUsers = WorkoutUser::where('category', '=', 1)
                     ->where('workout_id', '=', $request->workout_id)
                     ->where('status', '=', 1)
