@@ -541,9 +541,9 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
                 $feedQuery = Feeds::whereIn('user_id', function($query) use ($request) {
-                        $query->select('user_id')
+                        $query->select('follow_id')
                             ->from('follows')
-                            ->where('follow_id', $request->user_id);
+                            ->where('user_id', $request->user_id);
                     });
 
                 $feedQuery->orWhere('user_id', 1);

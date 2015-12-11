@@ -1080,7 +1080,7 @@ class UsersController extends Controller
         }
 
         Mail::send('email.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user, $request) {
-            $message->to($request->email, $user->profile->first_name . ' ' . $user->profile->last_name)
+            $message->to($request->email, $user->profile[0]['first_name'] . ' ' . $user->profile[0]['last_name'])
                 ->subject('Verify your email address');
         });
 
