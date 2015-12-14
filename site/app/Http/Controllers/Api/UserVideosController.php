@@ -61,54 +61,26 @@ class UserVideosController extends Controller
      *                       "parent_id": "1",
      *                       "created_at": "2015-11-11 07:26:40",
      *                       "updated_at": "2015-11-11 17:43:27"
-     *                   },
-     *                   "user": {
-     *                       "id": "2",
-     *                       "email": "aneeshk@ykings.com",
-     *                       "confirmation_code": "d6grRYINWtcDH18bXc358M9ZDDFExd",
-     *                       "status": "0",
-     *                       "created_at": "2015-11-11 11:40:04",
-     *                       "updated_at": "2015-11-11 11:40:04",
-     *                       "profile": {
-     *                           "id": "2",
-     *                           "user_id": "2",
-     *                           "first_name": "Aneesh",
-     *                           "last_name": "Kallikkattil",
-     *                           "gender": "0",
-     *                           "fitness_status": "0",
-     *                           "goal": "0",
-     *                           "image": "2_1447242011.jpg",
-     *                           "city": "",
-     *                           "state": "",
-     *                           "country": "",
-     *                           "spot": "",
-     *                           "quote": "",
-     *                           "twitter": "",
-     *                           "facebook": "",
-     *                           "instagram": "",
-     *                           "created_at": "2015-11-11 11:40:10",
-     *                           "updated_at": "2015-11-11 11:40:11"
-     *                       }
      *                   }
      *               }
      *           ],
      *           "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-     *       }
+                    "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+                    "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+                    "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+                    "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+                    "video": "http://sandbox.ykings.com/uploads/videos",
+                    "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+                    "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+                    "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+                    "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+                    "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+                    "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+                    "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+                    "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+                    "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+              }
+     *}
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -160,7 +132,7 @@ class UserVideosController extends Controller
         }
 
         // Authentication passed...
-        $userVideos = Uservideo::where('user_id', '=', $data['user_id'])->with(['video', 'user'])->get();
+        $userVideos = Uservideo::where('user_id', '=', $data['user_id'])->with(['video'])->get();
 
         if (!is_null($userVideos)) {
             return response()->json(['status' => 1, 'success' => 'user_videos', 'videos' => $userVideos->toArray(), 'urls' => config('urls.urls')], 200);
