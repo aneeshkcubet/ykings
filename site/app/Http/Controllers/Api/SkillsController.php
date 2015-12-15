@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
-use App\Feeds;
 use App\Exercise;
 use App\Exerciseuser;
+use App\Skill;
+use App\Progression;
 
 class SkillsController extends Controller
 {
@@ -40,149 +41,7 @@ class SkillsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-          "status": 1,
-          "is_subscribed" : 1,
-          "exercises": {
-            "lean": {
-              "free": [
-                {
-                  "id": "1",
-                  "name": "Jumping Pullups",
-                  "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-                  "category": "1",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:00:19",
-                  "updated_at": "2015-11-20 04:20:50",
-                  "video": [
-                    {
-                      "id": "1",
-                      "user_id": "1",
-                      "path": "Now1.mp4",
-                      "videothumbnail": "",
-                      "description": "Test Description",
-                      "parent_type": "1",
-                      "type": "1",
-                      "parent_id": "1",
-                      "created_at": "2015-11-11 01:56:40",
-                      "updated_at": "2015-11-11 12:13:27"
-                    }
-                  ]
-                }
-              ],
-              "paid": [
-                {
-                  "id": "2",
-                  "name": "Australian Pullups",
-                  "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
-                  "category": "1",
-                  "type": "2",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:00:20",
-                  "updated_at": "2015-11-20 04:20:01",
-                  "video": []
-                }
-              ]
-            },
-            "athletic": {
-              "free": [
-                {
-                  "id": "32",
-                  "name": "Pull ups / Chin ups",
-                  "description": "",
-                  "category": "2",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:01:02",
-                  "updated_at": "2015-11-20 04:21:42",
-                  "video": []
-                }
-              ],
-              "paid": [
-                {
-                  "id": "33",
-                  "name": "One Leg Front Lever",
-                  "description": "",
-                  "category": "2",
-                  "type": "2",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:01:02",
-                  "updated_at": "2015-11-20 04:20:01",
-                  "video": []
-                }
-              ]
-            },
-            "strength": {
-              "free": [
-                {
-                  "id": "69",
-                  "name": "Muscleups",
-                  "description": "",
-                  "category": "3",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:03:53",
-                  "updated_at": "2015-11-20 04:22:21",
-                  "video": []
-                }
-              ],
-              "paid": [
-                {
-                  "id": "77",
-                  "name": "Front Lever",
-                  "description": "",
-                  "category": "3",
-                  "type": "2",
-                  "rewards": "10.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:10:32",
-                  "updated_at": "2015-11-17 08:10:32",
-                  "video": []
-                }
-              ]
-            }
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+     * 
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -225,35 +84,92 @@ class SkillsController extends Controller
      *     }
      * 
      */
-    public function loadExercises(Request $request)
+    public function loadSkills(Request $request)
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                $exercises = [];
+                $skills = [];
 
-                $leanExercisesFree = Exercise::where('category', '=', 1)->where('type', '=', 1)->with(['video'])->get();
-                $athleticExercisesFree = Exercise::where('category', '=', 2)->where('type', '=', 1)->with(['video'])->get();
-                $strongExercisesFree = Exercise::where('category', '=', 3)->where('type', '=', 1)->with(['video'])->get();
-                $leanExercisesPaid = Exercise::where('category', '=', 1)->where('type', '=', 2)->with(['video'])->get();
-                $athleticExercisesPaid = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
-                $strongExercisesPaid = Exercise::where('category', '=', 3)->where('type', '=', 2)->with(['video'])->get();
+                //need to find how many rows in each progression and need to find the exercise to be unlocked by the user in that row.
+                //Get pull progression row count.
 
-                $exercises['lean'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
-                $exercises['athletic'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
-                $exercises['strength'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
+                $pullRowCount = Skill::where('progression_id', 1)->groupBy('row')->count();
+
+                $dipRowCount = Skill::where('progression_id', 2)->groupBy('row')->count();
+
+                $fullBodyRowCount = Skill::where('progression_id', 3)->groupBy('row')->count();
+
+                $pushRowCount = Skill::where('progression_id', 4)->groupBy('row')->count();
+
+                $coreRowCount = Skill::where('progression_id', 5)->groupBy('row')->count();
+
+                $i = 1;
+
+                do {
+                    $skills[] = DB::table('skills')
+                        ->select('skills.*')
+                        ->leftJoin('exercise_users', function($join) {
+                            $join->on('skills.exercise_id', '=', 'exercise_users.exercise_id');
+                        })
+                        ->leftJoin('exercises', function($join) {
+                            $join->on('skills.exercise_id', '=', 'exercises.id');
+                        })
+                        ->where('skills.level', $i)
+                        ->where('exercise_users.user_id', $request->input('user_id'))
+                            ->orderBy('exercise_users.id', 'DESC')
+                            ->first();
+                    //Get next exercise that user need to unlock in that level.
+
+                    $i++;
+                } while ($i <= $pullRowCount);
                 
+                print_r($skill);
+                
+                die;
+
+                $i = 1;
+
+                do {
+                    //Get next exercise that user need to unlock in that level.
+
+                    $i++;
+                } while ($i <= $dipRowCount);
+
+                $i = 1;
+
+                do {
+                    //Get next exercise that user need to unlock in that level.
+
+                    $i++;
+                } while ($i <= $fullBodyRowCount);
+
+                $i = 1;
+
+                do {
+                    //Get next exercise that user need to unlock in that level.
+
+                    $i++;
+                } while ($i <= $pushRowCount);
+
+                $i = 1;
+
+                do {
+                    //Get next exercise that user need to unlock in that level.
+
+                    $i++;
+                } while ($i <= $coreRowCount);
+
                 return response()->json([
-                    'status' => 1, 
-                    'exercises' => $exercises,
-                    'is_subscribed' => $user->is_subscribed,
-                    'urls' => config('urls.urls')], 200);
+                        'status' => 1,
+                        'skills' => $skills,
+                        'is_subscribed' => $user->is_subscribed,
+                        'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
-    }    
-
+    }
 }

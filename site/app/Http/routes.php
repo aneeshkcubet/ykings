@@ -197,6 +197,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.getsettings',
         'uses' => 'Api\UserSettingsController@getUserSettings'
     ]);
+    
+    Route::post('/skills/list', [
+        'as' => 'skill.list',
+        'uses' => 'Api\SkillsController@loadSkills'
+    ]);
 });
 
 // Authentication routes...
