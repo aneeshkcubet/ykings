@@ -98,7 +98,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -188,7 +188,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFriendsController.php",
+    "filename": "app/Http/Controllers/Api/UserFriendsController.php",
     "groupTitle": "Connect"
   },
   {
@@ -270,7 +270,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -352,7 +352,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -434,7 +434,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/ExercisesController.php",
+    "filename": "app/Http/Controllers/Api/ExercisesController.php",
     "groupTitle": "Exercise"
   },
   {
@@ -580,7 +580,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -682,7 +682,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -796,7 +796,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -907,7 +907,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1007,7 +1007,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1101,7 +1101,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1201,7 +1201,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1315,7 +1315,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/CommentsController.php",
+    "filename": "app/Http/Controllers/Api/CommentsController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1420,7 +1420,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/FeedController.php",
+    "filename": "app/Http/Controllers/Api/FeedController.php",
     "groupTitle": "Feeds"
   },
   {
@@ -1539,7 +1539,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1638,7 +1638,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1737,7 +1737,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1861,7 +1861,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserFollowsController.php",
+    "filename": "app/Http/Controllers/Api/UserFollowsController.php",
     "groupTitle": "Follow"
   },
   {
@@ -1921,7 +1921,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/AuthenticateController.php",
+    "filename": "app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
   },
   {
@@ -2010,7 +2010,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "filename": "app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Search"
   },
   {
@@ -2092,7 +2092,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SearchController.php",
+    "filename": "app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2174,7 +2174,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
   },
   {
@@ -2275,8 +2275,184 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserSettingsController.php",
+    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
     "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/skills/getlevelskills",
+    "title": "getLevelSkills",
+    "name": "getLevelSkills",
+    "group": "Skill",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "skill_id",
+            "description": "<p>Id of skill</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"skills\": [\n            {\n              \"id\": \"1\",\n              \"progression_id\": \"1\",\n              \"level\": \"1\",\n              \"row\": \"1\",\n              \"substitute\": \"21\",\n              \"exercise_id\": \"1\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"1\",\n                \"name\": \"Jumping Pullups\",\n                \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                \"category\": \"1\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"2\",\n              \"progression_id\": \"1\",\n              \"level\": \"2\",\n              \"row\": \"1\",\n              \"substitute\": \"1\",\n              \"exercise_id\": \"21\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"21\",\n                \"name\": \"Supported Pullups\",\n                \"description\": \"\",\n                \"category\": \"1\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"3\",\n              \"progression_id\": \"1\",\n              \"level\": \"3\",\n              \"row\": \"1\",\n              \"substitute\": \"53\",\n              \"exercise_id\": \"32\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 1,\n              \"exercise\": {\n                \"id\": \"32\",\n                \"name\": \"Pull ups / Chin ups\",\n                \"description\": \"\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"4\",\n              \"progression_id\": \"1\",\n              \"level\": \"4\",\n              \"row\": \"1\",\n              \"substitute\": \"32\",\n              \"exercise_id\": \"53\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"53\",\n                \"name\": \"Explosive Pull ups\",\n                \"description\": \"\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"5\",\n              \"progression_id\": \"1\",\n              \"level\": \"5\",\n              \"row\": \"1\",\n              \"substitute\": \"0\",\n              \"exercise_id\": \"69\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"69\",\n                \"name\": \"Muscleups\",\n                \"description\": \"\",\n                \"category\": \"3\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            }\n          ],\n          \"is_subscribed\": 0,\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The skill_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SkillsController.php",
+    "groupTitle": "Skill"
+  },
+  {
+    "type": "post",
+    "url": "/skills/list",
+    "title": "loadSkills",
+    "name": "loadSkills",
+    "group": "Skill",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"skills\": {\n      \"pull\": [\n      {\n      \"id\": \"3\",\n      \"progression_id\": \"1\",\n      \"level\": \"3\",\n      \"row\": \"1\",\n      \"substitute\": \"53\",\n      \"exercise_id\": \"32\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"32\",\n      \"name\": \"Pull ups / Chin ups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"6\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"22\",\n      \"exercise_id\": \"2\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"2\",\n      \"name\": \"Australian Pullups\",\n      \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"11\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"16\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"24\",\n      \"exercise_id\": \"4\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"4\",\n      \"name\": \"Skin the cat\",\n      \"description\": \"A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"dip\": [\n      {\n      \"id\": \"22\",\n      \"progression_id\": \"2\",\n      \"level\": \"2\",\n      \"row\": \"1\",\n      \"substitute\": \"57\",\n      \"exercise_id\": \"36\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"36\",\n      \"name\": \"Dips (Bench)\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"25\",\n      \"progression_id\": \"2\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"6\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"6\",\n      \"name\": \"Trizeps Extension\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"full_body\": [\n      {\n      \"id\": \"29\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"7\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"7\",\n      \"name\": \"Wall Sits\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"33\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"8\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"8\",\n      \"name\": \"Single Leg Deadlift\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"36\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"9\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"9\",\n      \"name\": \"Climbers\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"39\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"10\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"10\",\n      \"name\": \"High Jumps\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"43\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"5\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"11\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"11\",\n      \"name\": \"Sprawl\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"push\": [\n      {\n      \"id\": \"46\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"25\",\n      \"exercise_id\": \"12\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"12\",\n      \"name\": \"Incline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"66\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"26\",\n      \"exercise_id\": \"13\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"13\",\n      \"name\": \"Military Press\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"71\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"14\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"14\",\n      \"name\": \"Decline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"74\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"15\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"15\",\n      \"name\": \"Explosive Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"core\": [\n      {\n      \"id\": \"78\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"27\",\n      \"exercise_id\": \"16\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"16\",\n      \"name\": \"Crunches\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"107\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"17\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"17\",\n      \"name\": \"Plank\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"111\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"116\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"29\",\n      \"exercise_id\": \"18\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"18\",\n      \"name\": \"Tucked Human Flag\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"122\",\n      \"progression_id\": \"5\",\n      \"level\": \"3\",\n      \"row\": \"5\",\n      \"substitute\": \"67\",\n      \"exercise_id\": \"51\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"51\",\n      \"name\": \"One Leg Dragon Flag\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"125\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"6\",\n      \"substitute\": \"31\",\n      \"exercise_id\": \"20\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"20\",\n      \"name\": \"Tuck Planche\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ]\n      },\n      \"is_subscribed\": 0,\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SkillsController.php",
+    "groupTitle": "Skill"
   },
   {
     "type": "post",
@@ -2445,7 +2621,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "filename": "app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2615,7 +2791,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SocialController.php",
+    "filename": "app/Http/Controllers/Api/SocialController.php",
     "groupTitle": "Social"
   },
   {
@@ -2776,7 +2952,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/SubscriptionsController.php",
+    "filename": "app/Http/Controllers/Api/SubscriptionsController.php",
     "groupTitle": "Subscription"
   },
   {
@@ -2980,7 +3156,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3074,7 +3250,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3111,7 +3287,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n      \"status\" : 1,\n      \"success\": \"user_videos\",\n      \"videos\": [\n          {\n              \"id\": \"2\",\n              \"user_id\": \"2\",\n              \"video_id\": \"1\",\n              \"created_at\": \"2015-11-11 11:40:05\",\n              \"updated_at\": \"2015-11-11 11:40:05\",\n              \"video\": {\n                  \"id\": \"1\",\n                  \"user_id\": \"1\",\n                  \"path\": \"Now1.mp4\",\n                  \"description\": \"Test Description\",\n                  \"parent_type\": \"1\",\n                  \"type\": \"1\",\n                  \"parent_id\": \"1\",\n                  \"created_at\": \"2015-11-11 07:26:40\",\n                  \"updated_at\": \"2015-11-11 17:43:27\"\n              },\n              \"user\": {\n                  \"id\": \"2\",\n                  \"email\": \"aneeshk@ykings.com\",\n                  \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n                  \"status\": \"0\",\n                  \"created_at\": \"2015-11-11 11:40:04\",\n                  \"updated_at\": \"2015-11-11 11:40:04\",\n                  \"profile\": {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"first_name\": \"Aneesh\",\n                      \"last_name\": \"Kallikkattil\",\n                      \"gender\": \"0\",\n                      \"fitness_status\": \"0\",\n                      \"goal\": \"0\",\n                      \"image\": \"2_1447242011.jpg\",\n                      \"city\": \"\",\n                      \"state\": \"\",\n                      \"country\": \"\",\n                      \"spot\": \"\",\n                      \"quote\": \"\",\n                      \"twitter\": \"\",\n                      \"facebook\": \"\",\n                      \"instagram\": \"\",\n                      \"created_at\": \"2015-11-11 11:40:10\",\n                      \"updated_at\": \"2015-11-11 11:40:11\"\n                  }\n              }\n          }\n      ],\n      \"urls\": {\n        \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n        \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n        \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n        \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n        \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n        \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n        \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n        \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n  }",
+          "content": "    HTTP/1.1 200 OK\n      {\n          \"status\" : 1,\n          \"success\": \"user_videos\",\n          \"videos\": [\n              {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"video_id\": \"1\",\n                  \"created_at\": \"2015-11-11 11:40:05\",\n                  \"updated_at\": \"2015-11-11 11:40:05\",\n                  \"video\": {\n                      \"id\": \"1\",\n                      \"user_id\": \"1\",\n                      \"path\": \"Now1.mp4\",\n                      \"description\": \"Test Description\",\n                      \"parent_type\": \"1\",\n                      \"type\": \"1\",\n                      \"parent_id\": \"1\",\n                      \"created_at\": \"2015-11-11 07:26:40\",\n                      \"updated_at\": \"2015-11-11 17:43:27\"\n                  }\n              }\n          ],\n          \"urls\": {\n                    \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n                    \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n                    \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n                    \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n                    \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n                    \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n                    \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n                    \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n                    \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n                    \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n                    \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n                    \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n                    \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n                    \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n              }\n}",
           "type": "json"
         }
       ]
@@ -3156,7 +3332,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3260,7 +3436,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3347,7 +3523,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3546,7 +3722,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UsersController.php",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
     "groupTitle": "User"
   },
   {
@@ -3640,7 +3816,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/UserVideosController.php",
+    "filename": "app/Http/Controllers/Api/UserVideosController.php",
     "groupTitle": "User"
   },
   {
@@ -3751,7 +3927,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3845,7 +4021,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -3927,7 +4103,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
   },
   {
@@ -4009,36 +4185,8 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/WorkoutsController.php",
+    "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
-  },
-  {
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "varname1",
-            "description": "<p>No type.</p> "
-          },
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "varname2",
-            "description": "<p>With type.</p> "
-          }
-        ]
-      }
-    },
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "./public/apidoc/main.js",
-    "group": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
-    "groupTitle": "_home_dev230_projects_ykings_site_public_apidoc_main_js",
-    "name": ""
   },
   {
     "type": "post",
@@ -4125,7 +4273,7 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./app/Http/Controllers/Api/PasswordController.php",
+    "filename": "app/Http/Controllers/Api/PasswordController.php",
     "groupTitle": "password"
   }
 ]
