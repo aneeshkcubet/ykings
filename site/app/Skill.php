@@ -21,5 +21,15 @@ class Skill extends Model
         'row',
         'exercise_id'
     ]; 
+    
+    /**
+     * Define the relationship for the author
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function exercise()
+    {
+        return $this->hasOne('App\Exercise', 'id', 'exercise_id');
+    }
 
 }

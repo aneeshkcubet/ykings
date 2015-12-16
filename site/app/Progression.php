@@ -19,8 +19,4 @@ class Progression extends Model
         'description'
     ];
 
-    public function getUserProgressionExercise($progressionId, $userId)
-    {
-        
-    }
 }
