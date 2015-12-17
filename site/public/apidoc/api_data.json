@@ -458,7 +458,7 @@
             "type": "<p>String</p> ",
             "optional": false,
             "field": "item_type",
-            "description": "<p>'excercise','workout','motivation','announcement' *required</p> "
+            "description": "<p>'excercise','workout','motivation','announcement', 'hiit' *required</p> "
           },
           {
             "group": "Parameter",
@@ -486,7 +486,7 @@
             "type": "<p>String</p> ",
             "optional": false,
             "field": "category",
-            "description": "<p>in case of workout completion</p> "
+            "description": "<p>in case of workout completion 1-Strength, 2-Cardio Strength</p> "
           },
           {
             "group": "Parameter",
@@ -2047,6 +2047,88 @@
       "examples": [
         {
           "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"22\",\n      \"user_id\": \"41\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 04:28:18\"\n      },\n      {\n      \"id\": \"23\",\n      \"user_id\": \"41\",\n      \"key\": \"notification\",\n      \"value\": {\n      \"comments\": \"1\",\n      \"claps\": \"0\",\n      \"follow\": \"0\",\n      \"my_performance\": \"1\",\n      \"motivation_knowledge\": \"1\"\n      },\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 06:13:52\"\n      }\n      ],\n      \"facebook_connect\": 0\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/user/getsettings",
+    "title": "getUserSettings",
+    "name": "getUserSettings",
+    "group": "Settings",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
           "type": "json"
         }
@@ -2097,9 +2179,9 @@
   },
   {
     "type": "post",
-    "url": "/user/getsettings",
-    "title": "getUserSettings",
-    "name": "getUserSettings",
+    "url": "/user/updateDeviceToken",
+    "title": "updateDeviceToken",
+    "name": "updateDeviceToken",
     "group": "Settings",
     "parameter": {
       "fields": {
@@ -2109,7 +2191,21 @@
             "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p> "
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "device_token",
+            "description": "<p>device_token of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>device type (ios/android)</p> "
           }
         ]
       }
@@ -2129,7 +2225,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"settings\": [\n            {\n                \"id\": \"22\",\n                \"user_id\": \"41\",\n                \"key\": \"subscription\",\n                \"value\": 1,\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 04:28:18\"\n            },\n            {\n                \"id\": \"23\",\n                \"user_id\": \"41\",\n                \"key\": \"notification\",\n                \"value\": {\n                    \"comments\": \"1\",\n                    \"claps\": \"0\",\n                    \"follow\": \"0\",\n                    \"my_performance\": \"1\",\n                    \"motivation_knowledge\": \"1\"\n                },\n                \"created_at\": \"2015-12-03 04:22:37\",\n                \"updated_at\": \"2015-12-03 06:13:52\"\n            }\n        ],\n        \"facebook_connect\": 0\n        }",
+          "content": "HTTP/1.1 200 OK",
           "type": "json"
         }
       ]
@@ -2225,7 +2321,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_updated\",\n        \"user\": {\n            \"id\": \"41\",\n            \"email\": \"arun@ileafsolutions.net\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-16 09:54:09\",\n            \"updated_at\": \"2015-11-16 11:02:47\",\n            \"is_subscribed\": 0,\n            \"settings\": [\n                {\n                    \"id\": \"22\",\n                    \"user_id\": \"41\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-03 04:22:37\",\n                    \"updated_at\": \"2015-12-03 06:24:07\"\n                },\n                {\n                    \"id\": \"23\",\n                    \"user_id\": \"41\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n                    \"created_at\": \"2015-12-03 04:22:37\",\n                    \"updated_at\": \"2015-12-03 06:13:52\"\n                }\n            ]\n        }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"successfully_updated\",\n      \"user\": {\n      \"id\": \"41\",\n      \"email\": \"arun@ileafsolutions.net\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-16 09:54:09\",\n      \"updated_at\": \"2015-11-16 11:02:47\",\n      \"is_subscribed\": 0,\n      \"settings\": [\n      {\n      \"id\": \"22\",\n      \"user_id\": \"41\",\n      \"key\": \"subscription\",\n      \"value\": \"1\",\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 06:24:07\"\n      },\n      {\n      \"id\": \"23\",\n      \"user_id\": \"41\",\n      \"key\": \"notification\",\n      \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 06:13:52\"\n      }\n      ]\n      }\n      }",
           "type": "json"
         }
       ]

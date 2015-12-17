@@ -22,7 +22,8 @@ use App\Workoutuser;
 use App\Follow;
 use App\Workout;
 use App\Exercise;
-
+use App\Hiit;
+use App\Hiituser;
 class FeedController extends Controller
 {
     /*
@@ -39,11 +40,11 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
+     * @apiParam {String} item_type 'excercise','workout','motivation','announcement', 'hiit' *required
      * @apiParam {String} item_id id of the targetting item *required
      * @apiParam {String} time_taken time in seconds
      * @apiParam {String} rewards points earned by doing activity
-     * @apiParam {String} category in case of workout completion
+     * @apiParam {String} category in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * 
@@ -185,6 +186,30 @@ class FeedController extends Controller
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'activity' => 'workout_completed',
+                        'points' => $request->rewards,
+                        'created_at' => Carbon::now()
+                    ]);
+                } elseif ($request->item_type == 'hiit') {
+
+                    $data = [
+                        'hiit_id' => $request->item_id,
+                        'user_id' => $request->user_id,
+                        'status' => 1,
+                        'time' => $request->time_taken
+                    ];
+
+                    Hiituser::create($data);
+
+                    $exerciseDetails = Hiituser::where('user_id', $request->user_id)
+                        ->where('hiit_id', $request->item_id)
+                        ->where('status', 1)
+                        ->first();
+
+                    $itemId = $exerciseDetails->id;
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'activity' => 'hiit_completed',
                         'points' => $request->rewards,
                         'created_at' => Carbon::now()
                     ]);
