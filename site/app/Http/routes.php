@@ -203,6 +203,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'skill.getlevelskills',
         'uses' => 'Api\SkillsController@getLevelSkills'
     ]);
+    
+    Route::post('/hiit/list', [
+        'as' => 'hiit.list',
+        'uses' => 'Api\HiitController@loadHiit'
+    ]);
 });
 
 // Authentication routes...
