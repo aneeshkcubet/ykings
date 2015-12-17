@@ -44,11 +44,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.video.delete',
         'uses' => 'Api\UserVideosController@deleteUserVideo'
     ]);
-    //UserSettingsController
-    Route::post('user/settings', [
-        'as' => 'user.settings',
-        'uses' => 'Api\UserSettingsController@userSettings'
-    ]);
+
     //UsersController
     Route::post('user', [
         'as' => 'user.signup',
@@ -177,27 +173,27 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
     ]);
-    
+
     Route::post('workout/addstar', [
         'as' => 'workout.addstar',
         'uses' => 'Api\WorkoutsController@addStar'
     ]);
-        
+
     //SearchController
     Route::post('/search/searchUser', [
         'as' => 'user.search',
         'uses' => 'Api\SearchController@userSearch'
     ]);
     //UserSettingsController
-    Route::post('/user/getsettings', [
-        'as' => 'user.getsettings',
-        'uses' => 'Api\UserSettingsController@getUserSettings'
+    Route::post('user/settings', [
+        'as' => 'user.settings',
+        'uses' => 'Api\UserSettingsController@userSettings'
     ]);
     Route::post('/user/getsettings', [
         'as' => 'user.getsettings',
         'uses' => 'Api\UserSettingsController@getUserSettings'
     ]);
-    
+
     Route::post('/skills/list', [
         'as' => 'skill.list',
         'uses' => 'Api\SkillsController@loadSkills'
@@ -231,4 +227,11 @@ Route::get('/admin', ['middleware' => 'auth', function () {
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/login', [
+        'as' => 'admin.login',
+        'uses' => 'Admin\AdminUsersController@index'
+    ]);
 });
