@@ -10,6 +10,7 @@ use App\User;
 use App\Profile;
 use App\Point;
 use DB;
+use App\Follow;
 
 class SearchController extends Controller
 {
@@ -44,7 +45,9 @@ class SearchController extends Controller
       "last_name": "",
       "image": "11_1447237788.jpg",
       "quote": "",
-      "level": 1
+      "level": 1,
+      "is_following": 0
+
       },
       {
       "user_id": "14",
@@ -52,21 +55,26 @@ class SearchController extends Controller
       "last_name": "k",
       "image": null,
       "quote": "",
-      "level": 1
+      "level": 1,
+      "is_following": 0
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
-      }
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
       }
      * 
      * @apiError error Message token_invalid.
@@ -121,13 +129,13 @@ class SearchController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                $searchUsers = Profile::where('first_name', 'LIKE', '%' . $request->search_key . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $request->search_key . '%')
-                    ->select('user_id', 'first_name', 'last_name', 'image', 'quote')
+                $searchUsers = Profile::select('user_id', 'first_name', 'last_name', 'image', 'quote')
+                    ->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"')
                     ->get();
                 if (!is_null($searchUsers)) {
                     foreach ($searchUsers as $usersList) {
                         $usersList['level'] = Point::userLevel($usersList->user_id);
+                        $usersList['is_following'] = Follow::isFollowing($request->user_id, $usersList->user_id);
                         $searchResponse[] = $usersList;
                         unset($usersList);
                     }

@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Point;
+
 class Profile extends Model
 {
     /**
@@ -27,6 +29,9 @@ class Profile extends Model
         'country',
         'quote'
     ];
+    
+    
+    protected $appends = array('level');
 
     
     
@@ -38,6 +43,20 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
+    }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function getLevelAttribute() {
+        
+        return $this->attributes['level'] = $this->getLevel($this->user_id);
+    }
+    
+    public function getLevel($userId)
+    {
+        return Point::userLevel($userId);
     }
 
 }

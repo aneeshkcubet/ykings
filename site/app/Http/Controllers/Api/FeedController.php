@@ -20,7 +20,10 @@ use App\Comment;
 use App\Exerciseuser;
 use App\Workoutuser;
 use App\Follow;
-
+use App\Workout;
+use App\Exercise;
+use App\Hiit;
+use App\Hiituser;
 class FeedController extends Controller
 {
     /*
@@ -37,11 +40,11 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'excercise','workout','motivation','announcement' *required
+     * @apiParam {String} item_type 'excercise','workout','motivation','announcement', 'hiit' *required
      * @apiParam {String} item_id id of the targetting item *required
      * @apiParam {String} time_taken time in seconds
      * @apiParam {String} rewards points earned by doing activity
-     * @apiParam {String} category in case of workout completion
+     * @apiParam {String} category in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * 
@@ -61,7 +64,6 @@ class FeedController extends Controller
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error Validation error.
-     * @apiError error feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images
      * @apiError error user_does_not_exists
      *
      * @apiErrorExample Error-Response:
@@ -112,13 +114,7 @@ class FeedController extends Controller
      *       "status" : 0,
      *       "error": "The text field is required"
      *     }
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images"
-     *     } 
-     * 
+
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 user_does_not_exists
      *     {
@@ -193,6 +189,30 @@ class FeedController extends Controller
                         'points' => $request->rewards,
                         'created_at' => Carbon::now()
                     ]);
+                } elseif ($request->item_type == 'hiit') {
+
+                    $data = [
+                        'hiit_id' => $request->item_id,
+                        'user_id' => $request->user_id,
+                        'status' => 1,
+                        'time' => $request->time_taken
+                    ];
+
+                    Hiituser::create($data);
+
+                    $exerciseDetails = Hiituser::where('user_id', $request->user_id)
+                        ->where('hiit_id', $request->item_id)
+                        ->where('status', 1)
+                        ->first();
+
+                    $itemId = $exerciseDetails->id;
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'activity' => 'hiit_completed',
+                        'points' => $request->rewards,
+                        'created_at' => Carbon::now()
+                    ]);
                 }
 
                 $feeds = new Feeds([
@@ -206,11 +226,6 @@ class FeedController extends Controller
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-                    $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
-
-                    if (!in_array($_FILES['image']['type'], $accepableTypes)) {
-                        return response()->json(['error' => 'feed_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images'], 500);
-                    }
 
                     $image = Image::make($_FILES['image']['tmp_name']);
 
@@ -252,7 +267,8 @@ class FeedController extends Controller
      * @api {post} /user/feedlist UserFeeds
      * @apiName UserFeeds
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} profile_id id of other user *required
      * @apiParam {Number} [offset] offset
      * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
@@ -277,6 +293,8 @@ class FeedController extends Controller
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
+      "category": "Strength",
+      "item_name": "Baldur",
       "image": [],
       "workout": [],
       "exercise": []
@@ -293,21 +311,28 @@ class FeedController extends Controller
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
+      "category": "Strength",
+      "item_name": "Baldur",
       "image": [],
       "workout": [],
       "exercise": []
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 
@@ -349,17 +374,24 @@ class FeedController extends Controller
      *       "status" : 0,
      *       "error": "The user_id field is required"
      *     }
-     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The profile_id field is required"
+     *     }
      */
     public function userFeeds(Request $request)
     {
         $feedsResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        }else if (!isset($request->profile_id)|| ($request->profile_id == null)) {
+            return response()->json(['status' => 0, 'error' => 'profile_id required']);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $feedQuery = Feeds::where('user_id', '=', $request->input('user_id'));
+            $feedQuery = Feeds::where('user_id', '=', $request->input('profile_id'));
 
             if ($user) {
                 $feedQuery->with(['image', 'workout', 'exercise']);
@@ -373,9 +405,9 @@ class FeedController extends Controller
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 //follower count
-                $followerCount = Follow::followerCount($request->user_id);
+                $followerCount = Follow::followerCount($request->profile_id);
                 //workout count
-                $workoutCount = Workoutuser::workoutCount($request->user_id);
+                $workoutCount = Workoutuser::workoutCount($request->profile_id);
                 return response()->json(['status' => 1, 'success' => 'List',
                         'follower_count' => $followerCount,
                         'level_count' => 0,
@@ -414,6 +446,8 @@ class FeedController extends Controller
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
+      "category": "Strength",
+      "item_name": "Baldur",
       "image": [
       {
       "id": "6",
@@ -445,6 +479,8 @@ class FeedController extends Controller
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
+      "category": "Strength",
+      "item_name": "Baldur",
       "image": [
       {
       "id": "5",
@@ -466,15 +502,20 @@ class FeedController extends Controller
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 
@@ -524,11 +565,10 @@ class FeedController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
-
                 $feedQuery = Feeds::whereIn('user_id', function($query) use ($request) {
-                        $query->select('user_id')
+                        $query->select('follow_id')
                             ->from('follows')
-                            ->where('follow_id', $request->user_id);
+                            ->where('user_id', $request->user_id);
                     });
 
                 $feedQuery->orWhere('user_id', 1);
@@ -571,6 +611,37 @@ class FeedController extends Controller
             $feedsArray['is_commented'] = Comment::isCommented($userId, $feedsArray['id'], 'feed');
             //is claped
             $feedsArray['is_claped'] = Clap::isClaped($userId, $feedsArray['id'], 'feed');
+            //To get Category
+            if ($feedsArray['item_type'] == 'workout') {
+                $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
+                if (!is_null($workout)) {
+                    if ($workout->category == 1) {
+                        $feedsArray['category'] = "Strength";
+                    } elseif ($workout->category == 2) {
+                        $feedsArray['category'] = "Cardio-strength";
+                    }
+                } else {
+                    $feedsArray['category'] = "";
+                }
+                $feedsArray['item_name'] = $workout->name;
+            } elseif ($feedsArray['item_type'] == 'excercise') {
+                $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
+                if (!is_null($exercise)) {
+                    if ($exercise->category == 1) {
+                        $feedsArray['category'] = "Lean";
+                    } elseif ($exercise->category == 2) {
+                        $feedsArray['category'] = "Athletic";
+                    } elseif ($exercise->category == 3) {
+                        $feedsArray['category'] = "Strength";
+                    }
+                } else {
+                    $feedsArray['category'] = "";
+                }
+                $feedsArray['item_name'] = $exercise->name;
+            } else {
+                $feedsArray['category'] = "";
+                $feedsArray['item_name'] = "";
+            }
 
             $feedsResponse[] = $feedsArray;
             unset($feedsArray);
@@ -612,16 +683,20 @@ class FeedController extends Controller
       }
       ],
       "urls": {
-      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-      "video": "http://ykings.me/uploads/videos",
-      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original"
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 

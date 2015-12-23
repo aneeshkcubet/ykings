@@ -56,7 +56,7 @@ class UserEvents extends Event
         Settings::create([
             'user_id' => $user->id,
             'key' => 'notification',
-            'value' => '[{"comments":"1"},{"claps":"1"},{"follow":"1"},{"my_performance":"1"},{"motivation_knowledge":"1"}]'
+            'value' => '{"comments":"1","claps":"0","follow":"0","my_performance":"1","motivation_knowledge":"1"}'
         ]);
     }
 

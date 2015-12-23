@@ -3,6 +3,7 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+
 class Social extends Model
 {
 
@@ -46,5 +47,25 @@ class Social extends Model
         } else {
             return 1;
         }
+    }
+
+    /**
+     * Relation with profile table.
+     * @author <ansa@cubettech.com>
+     * @since 30-11-2015
+     */
+    public function profile()
+    {
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id');
+    }
+
+    /**
+     * Relation with settings table.
+     * @author <ansa@cubettech.com>
+     * @since 09-12-2015
+     */
+    public function settings()
+    {
+        return $this->hasMany('App\Settings', 'user_id', 'user_id');
     }
 }

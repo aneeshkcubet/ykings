@@ -11,6 +11,10 @@ return [
         'feedImageMedium' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/feed/medium' : asset('uploads/images/feed/medium'),
         'feedImageLarge' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/feed/large' : asset('uploads/images/feed/large'),
         'feedImageOriginal' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/feed/original' : asset('uploads/images/feed/original'),
+        'coverImageSmall' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/cover_image/small' : asset('uploads/images/cover_image/small'),
+        'coverImageMedium' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/cover_image/medium' : asset('uploads/images/cover_image/medium'),
+        'coverImageLarge' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/cover_image/large' : asset('uploads/images/cover_image/large'),
+        'coverImageOriginal' => (PHP_SAPI === 'cli') ? 'http://localhost:8000/uploads/images/cover_image/original' : asset('uploads/images/cover_image/original'),
     ]
 ];
 

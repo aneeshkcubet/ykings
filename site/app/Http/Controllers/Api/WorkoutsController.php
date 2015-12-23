@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    Validator;
+    Validator,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -45,95 +46,43 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "is_subscribed": 1,
-      "exercises": {
-      "beginer": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ],
-      "advanced": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ],
-      "professional": [
-      {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "equipment": "",
-      "created_at": "2015-11-17 13:30:19",
-      "updated_at": "2015-11-17 13:30:19",
-      "video": [
-      {
-      "id": "1",
-      "user_id": "1",
-      "path": "Now1.mp4",
-      "description": "Test Description",
-      "parent_type": "1",
-      "type": "1",
-      "parent_id": "1",
-      "created_at": "2015-11-11 07:26:40",
-      "updated_at": "2015-11-11 17:43:27"
-      }
-      ]
-      }
-      ]
-      }
-
+          "status": 1,
+          "is_subscribed": 0,
+          "workouts": {
+          "free": [{
+                      "id": "2",
+                      "name": "Borr",
+                      "description": "Borr Borr Borr",
+                      "rounds": "3",
+                      "category": "2",
+                      "type": "1",
+                      "rewards": "330",
+                      "duration": "19.00",
+                      "equipments": "BAR",      
+                  },
+                  {
+                      "id": "3",
+                      "name": "Bragi",
+                      "description": "Bragi",
+                      "rounds": "5",
+                      "category": "2",
+                      "type": "1",
+                      "rewards": "200",
+                      "duration": "14.00",
+                      "equipments": "Low Bar"      
+                  }],
+          "paid": [{
+                      "id": "1",
+                      "name": "Baldur",
+                      "description": "Baldur Baldur",
+                      "rounds": "5",
+                      "category": "1",
+                      "type": "2",
+                      "rewards": "330",
+                      "duration": "15.00",
+                      "equipments": ""
+                  }]
+          }
       }
      * 
      * @apiError error Message token_invalid.
@@ -179,33 +128,28 @@ class WorkoutsController extends Controller
      */
     public function loadWorkouts(Request $request)
     {
-        $workoutResponse = array();
+        $workoutResponse = [];
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
+                $workoutResponse['free'] = [];
+                $workoutResponse['paid'] = [];
 
-                $workouts = Workout::all();
-                if (!is_null($workouts)) {
-                    foreach ($workouts as $workoutArray) {
-                        $workoutResponse[] = $workoutArray;
-                        $workoutArray['lean'] = Workoutexercise::where('workout_id', $workoutArray['id'])
-                            ->where('category', 1)
-                            ->get(['exercise_id', 'unit', 'repititions', 'round']);
-                        $workoutArray['athletic'] = Workoutexercise::where('workout_id', $workoutArray['id'])
-                            ->where('category', 2)
-                            -> get(['exercise_id', 'unit', 'repititions', 'round']);
-                        $workoutArray['strength'] = Workoutexercise::where('workout_id', $workoutArray['id'])
-                            ->where('category', 3) 
-                            -> get(['exercise_id', 'unit', 'repititions', 'round']);
-                        unset($workoutArray);
-                    }
+                $freeWorkouts = Workout::where('type', '=', 1)->get();
+                $paidWorkouts = Workout::where('type', '=', 2)->get();
+                if (!is_null($freeWorkouts)) {
+                    $workoutResponse['free'] = $freeWorkouts;
+                }
+                if (!is_null($paidWorkouts)) {
+                    $workoutResponse['paid'] = $paidWorkouts;
                 }
                 return response()->json([
                         'status' => 1,
                         'is_subscribed' => $user->is_subscribed,
-                        'workouts' => $workoutResponse], 200);
+                        'workouts' => $workoutResponse
+                        ], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -221,64 +165,77 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      *  {
-      "status": 1,
-      "workout": {
-      "id": "2",
-      "name": "Borr",
-      "description": "Borr Borr Borr",
-      "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "330",
-      "duration": "19.00",
-      "equipments": "BAR",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 11:13:13",
-      "beginer": [],
-      "advanced": [
-      {
-      "id": "1",
-      "workout_id": "2",
-      "user_id": "2",
-      "status": "1",
-      "time": "33",
-      "is_starred": "0",
-      "created_at": "2015-11-20 05:04:13",
-      "updated_at": "2015-11-20 05:04:13",
-      "category": "2",
-      "profile": {
-      "id": "2",
-      "user_id": "2",
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "gender": "1",
-      "fitness_status": "3",
-      "goal": "3",
-      "image": "",
-      "city": "",
-      "state": "",
-      "country": "",
-      "quote": "I want to get Strong",
-      "created_at": "2015-11-09 09:14:02",
-      "updated_at": "2015-11-09 10:16:07"
-      }
-      }
-      ],
-      "professional": []
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
-      }
-      }
+          "status": 1,
+          "is_subscribed": 0,
+          "workout": {
+            "id": "2",
+            "name": "Borr",
+            "description": "Borr Borr Borr",
+            "rounds": "3",
+            "category": "2",
+            "type": "1",
+            "rewards": {
+              "lean": 330,
+              "athletic": 440,
+              "strength": 550
+            },
+            "duration": "19.00",
+            "equipments": "BAR",
+            "lean": [],
+            "athletic": [
+              {
+                "id": "1",
+                "workout_id": "2",
+                "user_id": "2",
+                "status": "1",
+                "time": "1200",
+                "is_starred": "0",
+                "created_at": "2015-11-20 05:04:13",
+                "updated_at": "2015-12-08 10:38:24",
+                "category": "2",
+                "profile": {
+                  "id": "2",
+                  "user_id": "2",
+                  "first_name": "Aneesh",
+                  "last_name": "Kallikkattil",
+                  "gender": "1",
+                  "fitness_status": "3",
+                  "goal": "3",
+                  "image": "",
+                  "cover_image": "",
+                  "city": "",
+                  "state": "",
+                  "country": "",
+                  "spot": "",
+                  "quote": "I want to get Strong",
+                  "facebook": "",
+                  "twitter": "",
+                  "instagram": "",
+                  "created_at": "2015-11-09 09:14:02",
+                  "updated_at": "2015-12-09 09:07:21",
+                  "level": 3
+                }
+              }
+            ],
+            "strength": []
+          },
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
+        }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -323,12 +280,21 @@ class WorkoutsController extends Controller
      */
     public function getWorkoutWithLevels(Request $request)
     {
+//        $rewards = [
+//            'lean' => 330,
+//            'athletic' => 440,
+//            'strength' => 550
+//        ];
+//        
+//        echo json_encode($rewards);
+//        die;
         if (!isset($request->workout_id) || ($request->workout_id == null)) {
             return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
         } else {
             $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
             if (!is_null($workout)) {
                 $workoutArray = $workout->toArray();
+                $workoutArray['rewards'] = json_decode($workoutArray['rewards'], true);
                 $leanWorkoutUsers = WorkoutUser::where('category', '=', 1)
                     ->where('workout_id', '=', $request->workout_id)
                     ->where('status', '=', 1)
@@ -352,28 +318,29 @@ class WorkoutsController extends Controller
                     ->get();
 
                 $time = time();
-                $subscription = DB::table('subscriptions')
-                    ->select('*')
-                    ->where('user_id', '=', $userId)
-                    ->orderBy('id', 'DESC')
-                    ->first();
-                if (is_null($subscription)) {
-                    $isSubscribed = 0;
+
+                $isSubscribed = 0;
+
+                if (isset($request->user_id)) {
+
+                    $subscription = DB::table('subscriptions')
+                        ->select('*')
+                        ->where('user_id', '=', $request->user_id)
+                        ->orderBy('id', 'DESC')
+                        ->first();
+
+                    if (!is_null($subscription) && $subscription->end_time > $time) {
+                        $isSubscribed = 1;
+                    }
                 }
 
-                if ($subscription->end_time <= $time) {
-                    $isSubscribed = 0;
-                } else {
-                    $isSubscribed = 1;
-                }
+                $workoutArray['lean'] = [];
+                $workoutArray['athletic'] = [];
+                $workoutArray['strength'] = [];
 
-                $workoutArray['beginer'] = [];
-                $workoutArray['advanced'] = [];
-                $workoutArray['professional'] = [];
-
-                $workoutArray['beginer'] = $leanWorkoutUsers->toArray();
-                $workoutArray['advanced'] = $athleteWorkoutUsers->toArray();
-                $workoutArray['professional'] = $strengthWorkoutUsers->toArray();
+                $workoutArray['lean'] = $leanWorkoutUsers->toArray();
+                $workoutArray['athletic'] = $athleteWorkoutUsers->toArray();
+                $workoutArray['strength'] = $strengthWorkoutUsers->toArray();
 
                 return response()->json(['status' => 1, 'is_subscribed' => $isSubscribed, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -387,7 +354,7 @@ class WorkoutsController extends Controller
      * @apiName getWorkoutWithExercises
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout 
-     * @apiParam {Number} category of workout 1-beginer, 2-advanced, 3-professional
+     * @apiParam {Number} category of workout 1-lean, 2-athletic, 3-strength
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -758,7 +725,11 @@ class WorkoutsController extends Controller
       "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
       "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
       "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 
@@ -826,6 +797,7 @@ class WorkoutsController extends Controller
                 do {
                     $roundExercises = Workoutexercise::where('category', '=', $request->category)
                             ->where('round', '=', $count)
+                            ->where('workout_id', '=', $request->input('workout_id'))
                             ->with(['video', 'exercise'])->get();
 
                     $exercises['round' . $count] = $roundExercises->toArray();
@@ -850,7 +822,7 @@ class WorkoutsController extends Controller
      * @apiName addStar
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout *required
-     * @apiParam {Number} category of workout *required 1-beginer, 2-advanced, 3-professional
+     * @apiParam {Number} category of workout *required 1-lean, 2-athletic, 3-strength
      * @apiParam {Number} user_id of workout *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:

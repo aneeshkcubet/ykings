@@ -45,7 +45,7 @@ class ExercisesController extends Controller
           "status": 1,
           "is_subscribed" : 1,
           "exercises": {
-            "beginer": {
+            "lean": {
               "free": [
                 {
                   "id": "1",
@@ -94,7 +94,7 @@ class ExercisesController extends Controller
                 }
               ]
             },
-            "advanced": {
+            "athletic": {
               "free": [
                 {
                   "id": "32",
@@ -130,7 +130,7 @@ class ExercisesController extends Controller
                 }
               ]
             },
-            "professional": {
+            "strength": {
               "free": [
                 {
                   "id": "69",
@@ -177,7 +177,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 
@@ -238,9 +242,9 @@ class ExercisesController extends Controller
                 $athleticExercisesPaid = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
                 $strongExercisesPaid = Exercise::where('category', '=', 3)->where('type', '=', 2)->with(['video'])->get();
 
-                $exercises['beginer'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
-                $exercises['advanced'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
-                $exercises['professional'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
+                $exercises['lean'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
+                $exercises['athletic'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
+                $exercises['strength'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
                 
                 return response()->json([
                     'status' => 1, 
@@ -288,7 +292,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 
@@ -346,6 +354,8 @@ class ExercisesController extends Controller
                 $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
                     ->where('status', '=', 1)
                     ->with(['profile'])
+                    ->groupBy('user_id')
+                    ->orderBy('time', 'ASC')
                     ->get();
                 $exerciseArray['users'] = $exerciseUsers->toArray();
                 return response()->json(['status' => 1, 'exercise' => $exerciseArray, 'urls' => config('urls.urls')], 200);
@@ -393,7 +403,7 @@ class ExercisesController extends Controller
               }
             ]
           },
-          "urls": {
+           "urls": {
             "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
             "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
             "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
@@ -403,7 +413,11 @@ class ExercisesController extends Controller
             "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
             "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
             "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original"
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
           }
         }
      * 

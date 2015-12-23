@@ -56,4 +56,22 @@ class Point extends Model
         return $userPoints = (int) $points;
        
     }
+    
+    /**
+     * Function to find user points.
+     * @author <aneeshk@cubettech.com>
+     * @since 8-12-2015
+     */
+    public static function userPontToNextLevel($userId)
+    {
+        $points = Point::userPoints($userId);
+        $level = Point::userLevel($userId);
+        $nextLevel = $level + 1;
+        
+        $pointsTonextLevel = ((pow(((50*$nextLevel)+25), 2) - 625)/100) - $points;
+        
+        return $pointsTonextLevel;
+        
+       
+}
 }

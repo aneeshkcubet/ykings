@@ -44,11 +44,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.video.delete',
         'uses' => 'Api\UserVideosController@deleteUserVideo'
     ]);
-    //UserSettingsController
-    Route::post('user/settings', [
-        'as' => 'user.settings',
-        'uses' => 'Api\UserSettingsController@userSettings'
-    ]);
+
     //UsersController
     Route::post('user', [
         'as' => 'user.signup',
@@ -64,11 +60,15 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\PasswordController@postEmail'
     ]);
     //SocialController
+    Route::post('/social/facebookSignUp', [
+        'as' => 'facebook.signup',
+        'uses' => 'Api\SocialController@facebookSignUp'
+    ]);
+
     Route::post('social/facebookLogin', [
         'as' => 'facebook.login',
         'uses' => 'Api\SocialController@facebookLogin'
     ]);
-
     Route::post('social/facebookUpdate', [
         'as' => 'facebook.update',
         'uses' => 'Api\SocialController@facebookUpdate'
@@ -173,20 +173,36 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'workout.getexercises',
         'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
     ]);
+
+    Route::post('workout/addstar', [
+        'as' => 'workout.addstar',
+        'uses' => 'Api\WorkoutsController@addStar'
+    ]);
+
     //SearchController
     Route::post('/search/searchUser', [
         'as' => 'user.search',
         'uses' => 'Api\SearchController@userSearch'
     ]);
     //UserSettingsController
-    Route::post('/user/getsettings', [
-        'as' => 'user.getsettings',
-        'uses' => 'Api\UserSettingsController@getUserSettings'
+    Route::post('user/settings', [
+        'as' => 'user.settings',
+        'uses' => 'Api\UserSettingsController@userSettings'
     ]);
     Route::post('/user/getsettings', [
         'as' => 'user.getsettings',
         'uses' => 'Api\UserSettingsController@getUserSettings'
     ]);
+
+    Route::post('/skills/list', [
+        'as' => 'skill.list',
+        'uses' => 'Api\SkillsController@loadSkills'
+    ]);
+    
+    Route::post('/skills/getlevelskills', [
+        'as' => 'skill.getlevelskills',
+        'uses' => 'Api\SkillsController@getLevelSkills'
+    ]);    
 });
 
 // Authentication routes...
@@ -216,4 +232,11 @@ Route::get('/admin', ['middleware' => 'auth', function () {
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/login', [
+        'as' => 'admin.login',
+        'uses' => 'Admin\AdminUsersController@index'
+    ]);
 });
