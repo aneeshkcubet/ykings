@@ -32,7 +32,7 @@ class TFuse_Recent_Posts extends WP_Widget {
 
             <?php endforeach; ?>
         </ul>
-        <a href="<?php echo tfuse_options('feedburner_url');?>" class="btn btn-full"><span><?php _e('subscribe to rss feed','tfuse');?></span></a>
+<!--        <a href="<?php echo tfuse_options('feedburner_url');?>" class="btn btn-full"><span><?php _e('subscribe to rss feed','tfuse');?></span></a>-->
     </div>
 
     <?php
