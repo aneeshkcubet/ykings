@@ -162,6 +162,9 @@ Template: inshape-parent
     width: 100%;
     position: absolute;  
 }
+.entry-content p {
+    color:#333;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
