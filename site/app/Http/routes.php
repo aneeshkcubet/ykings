@@ -198,11 +198,16 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'skill.list',
         'uses' => 'Api\SkillsController@loadSkills'
     ]);
-    
+
     Route::post('/skills/getlevelskills', [
         'as' => 'skill.getlevelskills',
         'uses' => 'Api\SkillsController@getLevelSkills'
-    ]);    
+    ]);
+
+    Route::post('/coach/getfundumentals', [
+        'as' => 'coach.getfundumentals',
+        'uses' => 'Api\CoachesController@getFundumentals'
+    ]);
 });
 
 // Authentication routes...

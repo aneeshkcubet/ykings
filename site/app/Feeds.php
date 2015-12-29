@@ -73,29 +73,5 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
-
-    /**
-     * Relation with workout table.
-     * @author <ansa@cubettech.com>
-     * @since 19-11-2015
-     */
-    public function workout()
-    {
-        return $this->hasMany('App\Workout', 'category', 'feed');
-    }
-
-    /**
-     * Relation with exercise table.
-     * @author <ansa@cubettech.com>
-     * @since 19-11-2015
-     */
-    public function exercise()
-    {
-        return $this->hasMany('App\Exercise', 'category', 'feed');
-    }
     
-    public function hiit()
-    {
-        return $this->hasMany('App\Hiit', 'category', 'feed');
-    }
 }

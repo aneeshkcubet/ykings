@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    Validator;
+    Validator,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -42,148 +43,148 @@ class ExercisesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "is_subscribed" : 1,
-          "exercises": {
-            "lean": {
-              "free": [
-                {
-                  "id": "1",
-                  "name": "Jumping Pullups",
-                  "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-                  "category": "1",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:00:19",
-                  "updated_at": "2015-11-20 04:20:50",
-                  "video": [
-                    {
-                      "id": "1",
-                      "user_id": "1",
-                      "path": "Now1.mp4",
-                      "videothumbnail": "",
-                      "description": "Test Description",
-                      "parent_type": "1",
-                      "type": "1",
-                      "parent_id": "1",
-                      "created_at": "2015-11-11 01:56:40",
-                      "updated_at": "2015-11-11 12:13:27"
-                    }
-                  ]
-                }
-              ],
-              "paid": [
-                {
-                  "id": "2",
-                  "name": "Australian Pullups",
-                  "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
-                  "category": "1",
-                  "type": "2",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:00:20",
-                  "updated_at": "2015-11-20 04:20:01",
-                  "video": []
-                }
-              ]
-            },
-            "athletic": {
-              "free": [
-                {
-                  "id": "32",
-                  "name": "Pull ups / Chin ups",
-                  "description": "",
-                  "category": "2",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:01:02",
-                  "updated_at": "2015-11-20 04:21:42",
-                  "video": []
-                }
-              ],
-              "paid": [
-                {
-                  "id": "33",
-                  "name": "One Leg Front Lever",
-                  "description": "",
-                  "category": "2",
-                  "type": "2",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:01:02",
-                  "updated_at": "2015-11-20 04:20:01",
-                  "video": []
-                }
-              ]
-            },
-            "strength": {
-              "free": [
-                {
-                  "id": "69",
-                  "name": "Muscleups",
-                  "description": "",
-                  "category": "3",
-                  "type": "1",
-                  "rewards": "6.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:03:53",
-                  "updated_at": "2015-11-20 04:22:21",
-                  "video": []
-                }
-              ],
-              "paid": [
-                {
-                  "id": "77",
-                  "name": "Front Lever",
-                  "description": "",
-                  "category": "3",
-                  "type": "2",
-                  "rewards": "10.00",
-                  "repititions": "10",
-                  "duration": "1.00",
-                  "unit": "times",
-                  "equipment": "",
-                  "created_at": "2015-11-17 08:10:32",
-                  "updated_at": "2015-11-17 08:10:32",
-                  "video": []
-                }
-              ]
-            }
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+      "status": 1,
+      "is_subscribed" : 1,
+      "exercises": {
+      "lean": {
+      "free": [
+      {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:00:19",
+      "updated_at": "2015-11-20 04:20:50",
+      "video": [
+      {
+      "id": "1",
+      "user_id": "1",
+      "path": "Now1.mp4",
+      "videothumbnail": "",
+      "description": "Test Description",
+      "parent_type": "1",
+      "type": "1",
+      "parent_id": "1",
+      "created_at": "2015-11-11 01:56:40",
+      "updated_at": "2015-11-11 12:13:27"
+      }
+      ]
+      }
+      ],
+      "paid": [
+      {
+      "id": "2",
+      "name": "Australian Pullups",
+      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:00:20",
+      "updated_at": "2015-11-20 04:20:01",
+      "video": []
+      }
+      ]
+      },
+      "athletic": {
+      "free": [
+      {
+      "id": "32",
+      "name": "Pull ups / Chin ups",
+      "description": "",
+      "category": "2",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:01:02",
+      "updated_at": "2015-11-20 04:21:42",
+      "video": []
+      }
+      ],
+      "paid": [
+      {
+      "id": "33",
+      "name": "One Leg Front Lever",
+      "description": "",
+      "category": "2",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:01:02",
+      "updated_at": "2015-11-20 04:20:01",
+      "video": []
+      }
+      ]
+      },
+      "strength": {
+      "free": [
+      {
+      "id": "69",
+      "name": "Muscleups",
+      "description": "",
+      "category": "3",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:03:53",
+      "updated_at": "2015-11-20 04:22:21",
+      "video": []
+      }
+      ],
+      "paid": [
+      {
+      "id": "77",
+      "name": "Front Lever",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:10:32",
+      "updated_at": "2015-11-17 08:10:32",
+      "video": []
+      }
+      ]
+      }
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -233,29 +234,51 @@ class ExercisesController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
+
+                $unlockedSkillsQuery = DB::table('unlocked_skills')
+                    ->select('exercise_id')
+                    ->whereRaw('user_id = '. $request->user_id)
+                    ->toSql();
+                
+
                 $exercises = [];
 
-                $leanExercisesFree = Exercise::where('category', '=', 1)->where('type', '=', 1)->with(['video'])->get();
-                $athleticExercisesFree = Exercise::where('category', '=', 2)->where('type', '=', 1)->with(['video'])->get();
-                $strongExercisesFree = Exercise::where('category', '=', 3)->where('type', '=', 1)->with(['video'])->get();
-                $leanExercisesPaid = Exercise::where('category', '=', 1)->where('type', '=', 2)->with(['video'])->get();
-                $athleticExercisesPaid = Exercise::where('category', '=', 2)->where('type', '=', 2)->with(['video'])->get();
-                $strongExercisesPaid = Exercise::where('category', '=', 3)->where('type', '=', 2)->with(['video'])->get();
+                $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
+                $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
+                $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
+
+
+                $leanExercisesPaid = Exercise::where('category', '=', 1)
+                    ->whereRaw('category = 1 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
+                $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
+                $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->with(['video'])
+                    ->get();
 
                 $exercises['lean'] = ['free' => $leanExercisesFree, 'paid' => $leanExercisesPaid];
                 $exercises['athletic'] = ['free' => $athleticExercisesFree, 'paid' => $athleticExercisesPaid];
                 $exercises['strength'] = ['free' => $strongExercisesFree, 'paid' => $strongExercisesPaid];
-                
+
                 return response()->json([
-                    'status' => 1, 
-                    'exercises' => $exercises,
-                    'is_subscribed' => $user->is_subscribed,
-                    'urls' => config('urls.urls')], 200);
+                        'status' => 1,
+                        'exercises' => $exercises,
+                        'is_subscribed' => $user->is_subscribed,
+                        'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
-    }    
+    }
 
     /**
      * @api {post} /exercise/getwithusers getExerciseWithUsers
@@ -266,39 +289,39 @@ class ExercisesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "exercise": {
-            "id": "1",
-            "name": "Jumping Pullups",
-            "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-            "category": "1",
-            "type": "1",
-            "rewards": "6.00",
-            "repititions": "10",
-            "duration": "1.00",
-            "unit": "times",
-            "equipment": "",
-            "created_at": "2015-11-17 08:00:19",
-            "updated_at": "2015-11-20 04:20:50",
-            "users": []
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+      "status": 1,
+      "exercise": {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:00:19",
+      "updated_at": "2015-11-20 04:20:50",
+      "users": []
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -347,8 +370,8 @@ class ExercisesController extends Controller
         if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
             return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
         } else {
-            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->first();            
-            
+            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->first();
+
             if (!is_null($exercise)) {
                 $exerciseArray = $exercise->toArray();
                 $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
@@ -364,7 +387,7 @@ class ExercisesController extends Controller
             }
         }
     }
-    
+
     /**
      * @api {post} /exercise/get getExercise
      * @apiName getExercise
@@ -374,52 +397,52 @@ class ExercisesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "exercise": {
-            "id": "1",
-            "name": "Jumping Pullups",
-            "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-            "category": "1",
-            "type": "1",
-            "rewards": "6.00",
-            "repititions": "10",
-            "duration": "1.00",
-            "unit": "times",
-            "equipment": "",
-            "created_at": "2015-11-17 08:00:19",
-            "updated_at": "2015-11-20 04:20:50",
-            "video": [
-              {
-                "id": "1",
-                "user_id": "1",
-                "path": "Now1.mp4",
-                "videothumbnail": "",
-                "description": "Test Description",
-                "parent_type": "1",
-                "type": "1",
-                "parent_id": "1",
-                "created_at": "2015-11-11 01:56:40",
-                "updated_at": "2015-11-11 12:13:27"
-              }
-            ]
-          },
-           "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+      "status": 1,
+      "exercise": {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": "",
+      "created_at": "2015-11-17 08:00:19",
+      "updated_at": "2015-11-20 04:20:50",
+      "video": [
+      {
+      "id": "1",
+      "user_id": "1",
+      "path": "Now1.mp4",
+      "videothumbnail": "",
+      "description": "Test Description",
+      "parent_type": "1",
+      "type": "1",
+      "parent_id": "1",
+      "created_at": "2015-11-11 01:56:40",
+      "updated_at": "2015-11-11 12:13:27"
+      }
+      ]
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * @apiError error Message token_invalid.
