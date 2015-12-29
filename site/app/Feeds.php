@@ -93,4 +93,9 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Exercise', 'category', 'feed');
     }
+    
+    public function hiit()
+    {
+        return $this->hasMany('App\Hiit', 'category', 'feed');
+    }
 }
