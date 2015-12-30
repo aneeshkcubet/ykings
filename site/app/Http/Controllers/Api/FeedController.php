@@ -164,6 +164,8 @@ class FeedController extends Controller
                     ]);
                 } elseif ($request->item_type == 'workout') {
 
+                    //Code added by <ansa@cubettech.com> on 30-12-2015
+                    //To add star on workout user 
                     $data = [
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,

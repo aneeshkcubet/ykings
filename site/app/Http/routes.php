@@ -255,8 +255,12 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/login', [
-        'as' => 'admin.login',
+    Route::get('/admin', [
+        'as' => 'admin.admin',
         'uses' => 'Admin\AdminUsersController@index'
+    ]);
+     Route::post('/login', [
+        'as' => 'admin.login',
+        'uses' => 'Admin\AdminUsersController@login'
     ]);
 });
