@@ -203,10 +203,25 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'skill.getlevelskills',
         'uses' => 'Api\SkillsController@getLevelSkills'
     ]);
+    
+    Route::post('/skills/lockskill', [
+        'as' => 'skill.lockskill',
+        'uses' => 'Api\SkillsController@lockSkill'
+    ]);
+    
+    Route::post('/skills/unlockskill', [
+        'as' => 'skill.unlockskill',
+        'uses' => 'Api\SkillsController@unlockSkill'
+    ]);
 
     Route::post('/coach/getfundumentals', [
         'as' => 'coach.getfundumentals',
         'uses' => 'Api\CoachesController@getFundumentals'
+    ]);
+    
+    Route::post('/coach/getdescription', [
+        'as' => 'coach.getdescription',
+        'uses' => 'Api\CoachesController@getDescription'
     ]);
 });
 

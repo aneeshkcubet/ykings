@@ -1,6 +1,252 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/coach/get",
+    "title": "getCoach",
+    "name": "getCoach",
+    "group": "Coach",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/CoachesController.php",
+    "groupTitle": "Coach"
+  },
+  {
+    "type": "post",
+    "url": "/coach/getdescription",
+    "title": "getDescription",
+    "name": "getDescription",
+    "group": "Coach",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *mandatory</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"descriptions\": {\n            \"1\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in faucibus orci. Nunc et lorem libero. Nulla facilisi. Nunc dictum, sapien ut tincidunt ultrices, dui nunc auctor velit, ac porta lacus turpis non massa. Quisque nec vestibulum risus, quis consequat lectus. Curabitur dignissim risus ac velit tincidunt dignissim. Mauris nec risus eget felis mollis tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In suscipit blandit bibendum. Nulla venenatis sed libero at ornare. Interdum et malesuada fames ac ante ipsum primis in faucibus. \",\n            \"2\": \"Vestibulum rutrum efficitur vulputate. Mauris quam turpis, pellentesque sed mauris eget, imperdiet scelerisque libero. Sed vitae leo id massa consectetur vestibulum ut ac tellus. Nam luctus nisl at leo sagittis condimentum. Duis malesuada, nisl sit amet tincidunt sollicitudin, turpis leo aliquam eros, eu aliquam felis massa id urna. Suspendisse potenti. Curabitur sodales accumsan varius. Aenean nulla sem, consectetur sed ex sed, vestibulum iaculis felis. Suspendisse neque eros, sagittis quis pulvinar a, porta id est. Curabitur diam massa, semper et pretium vitae, commodo ut ligula. Sed venenatis imperdiet suscipit. Nam egestas ante vitae augue sodales consectetur. Ut vel molestie dolor. Nam lorem nibh, maximus vitae urna eget, interdum aliquam libero. Suspendisse ut metus justo. Mauris hendrerit pulvinar orci, at efficitur odio porta ut. \",\n            \"3\": \"Nullam sit amet eros nec nibh feugiat scelerisque vitae in ante. Mauris eu hendrerit eros. In et risus vel purus pharetra mollis quis sed tellus. Sed ut libero posuere risus aliquam consectetur non ac dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lobortis nulla ut elementum. Aliquam vel accumsan leo. In sagittis enim scelerisque dolor dictum tristique. Donec mattis ut turpis id finibus. Nullam ac imperdiet nisi. In accumsan massa id magna imperdiet eleifend. Donec tempor blandit lacinia. Nulla vitae ligula sit amet est luctus vehicula. \"\n          }\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/CoachesController.php",
+    "groupTitle": "Coach"
+  },
+  {
+    "type": "post",
+    "url": "/coach/getFundumentals",
+    "title": "getFundumentals",
+    "name": "getFundumentals",
+    "group": "Coach",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *mandatory</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"tests\": {\n      \"1\": [\n      {\n      \"exercise_id\": 43,\n      \"duration\": 10,\n      \"exercise\": {\n      \"id\": \"43\",\n      \"name\": \"Pushups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"43\",\n      \"path\": \"Now43.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      },\n      {\n      \"exercise_id\": 2,\n      \"duration\": 10,\n      \"exercise\": {\n      \"id\": \"2\",\n      \"name\": \"Australian Pullups\",\n      \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"2\",\n      \"path\": \"Now2.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      },\n      {\n      \"exercise_id\": 40,\n      \"duration\": 15,\n      \"exercise\": {\n      \"id\": \"40\",\n      \"name\": \"Lunge\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"40\",\n      \"path\": \"Now40.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      },\n      {\n      \"exercise_id\": 17,\n      \"duration\": 15,\n      \"exercise\": {\n      \"id\": \"17\",\n      \"name\": \"Plank\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"17\",\n      \"path\": \"Now17.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      }\n      ],\n      \"2\": [\n      {\n      \"exercise_id\": 43,\n      \"duration\": 30,\n      \"exercise\": {\n      \"id\": \"43\",\n      \"name\": \"Pushups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"43\",\n      \"path\": \"Now43.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      },\n      {\n      \"exercise_id\": 32,\n      \"duration\": 10,\n      \"exercise\": {\n      \"id\": \"32\",\n      \"name\": \"Pull ups / Chin ups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"32\",\n      \"path\": \"Now32.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      },\n      {\n      \"exercise_id\": 38,\n      \"duration\": 25,\n      \"exercise\": {\n      \"id\": \"38\",\n      \"name\": \"Squats\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"video\": [\n      {\n      \"id\": \"38\",\n      \"path\": \"Now38.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      }\n      }\n      ]\n      },\n      \"is_subscribed\": 0,\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/CoachesController.php",
+    "groupTitle": "Coach"
+  },
+  {
+    "type": "post",
     "url": "/connect/connectFriends",
     "title": "connectFriends",
     "name": "connectFriends",
@@ -225,7 +471,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"exercise\": {\n            \"id\": \"1\",\n            \"name\": \"Jumping Pullups\",\n            \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n            \"category\": \"1\",\n            \"type\": \"1\",\n            \"rewards\": \"6.00\",\n            \"repititions\": \"10\",\n            \"duration\": \"1.00\",\n            \"unit\": \"times\",\n            \"equipment\": \"\",\n            \"created_at\": \"2015-11-17 08:00:19\",\n            \"updated_at\": \"2015-11-20 04:20:50\",\n            \"video\": [\n              {\n                \"id\": \"1\",\n                \"user_id\": \"1\",\n                \"path\": \"Now1.mp4\",\n                \"videothumbnail\": \"\",\n                \"description\": \"Test Description\",\n                \"parent_type\": \"1\",\n                \"type\": \"1\",\n                \"parent_id\": \"1\",\n                \"created_at\": \"2015-11-11 01:56:40\",\n                \"updated_at\": \"2015-11-11 12:13:27\"\n              }\n            ]\n          },\n           \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"exercise\": {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:00:19\",\n      \"updated_at\": \"2015-11-20 04:20:50\",\n      \"video\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"1\",\n      \"path\": \"Now1.mp4\",\n      \"videothumbnail\": \"\",\n      \"description\": \"Test Description\",\n      \"parent_type\": \"1\",\n      \"type\": \"1\",\n      \"parent_id\": \"1\",\n      \"created_at\": \"2015-11-11 01:56:40\",\n      \"updated_at\": \"2015-11-11 12:13:27\"\n      }\n      ]\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -307,7 +553,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"exercise\": {\n            \"id\": \"1\",\n            \"name\": \"Jumping Pullups\",\n            \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n            \"category\": \"1\",\n            \"type\": \"1\",\n            \"rewards\": \"6.00\",\n            \"repititions\": \"10\",\n            \"duration\": \"1.00\",\n            \"unit\": \"times\",\n            \"equipment\": \"\",\n            \"created_at\": \"2015-11-17 08:00:19\",\n            \"updated_at\": \"2015-11-20 04:20:50\",\n            \"users\": []\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"exercise\": {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:00:19\",\n      \"updated_at\": \"2015-11-20 04:20:50\",\n      \"users\": []\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -389,7 +635,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"is_subscribed\" : 1,\n          \"exercises\": {\n            \"lean\": {\n              \"free\": [\n                {\n                  \"id\": \"1\",\n                  \"name\": \"Jumping Pullups\",\n                  \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                  \"category\": \"1\",\n                  \"type\": \"1\",\n                  \"rewards\": \"6.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:00:19\",\n                  \"updated_at\": \"2015-11-20 04:20:50\",\n                  \"video\": [\n                    {\n                      \"id\": \"1\",\n                      \"user_id\": \"1\",\n                      \"path\": \"Now1.mp4\",\n                      \"videothumbnail\": \"\",\n                      \"description\": \"Test Description\",\n                      \"parent_type\": \"1\",\n                      \"type\": \"1\",\n                      \"parent_id\": \"1\",\n                      \"created_at\": \"2015-11-11 01:56:40\",\n                      \"updated_at\": \"2015-11-11 12:13:27\"\n                    }\n                  ]\n                }\n              ],\n              \"paid\": [\n                {\n                  \"id\": \"2\",\n                  \"name\": \"Australian Pullups\",\n                  \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n                  \"category\": \"1\",\n                  \"type\": \"2\",\n                  \"rewards\": \"6.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:00:20\",\n                  \"updated_at\": \"2015-11-20 04:20:01\",\n                  \"video\": []\n                }\n              ]\n            },\n            \"athletic\": {\n              \"free\": [\n                {\n                  \"id\": \"32\",\n                  \"name\": \"Pull ups / Chin ups\",\n                  \"description\": \"\",\n                  \"category\": \"2\",\n                  \"type\": \"1\",\n                  \"rewards\": \"6.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:01:02\",\n                  \"updated_at\": \"2015-11-20 04:21:42\",\n                  \"video\": []\n                }\n              ],\n              \"paid\": [\n                {\n                  \"id\": \"33\",\n                  \"name\": \"One Leg Front Lever\",\n                  \"description\": \"\",\n                  \"category\": \"2\",\n                  \"type\": \"2\",\n                  \"rewards\": \"6.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:01:02\",\n                  \"updated_at\": \"2015-11-20 04:20:01\",\n                  \"video\": []\n                }\n              ]\n            },\n            \"strength\": {\n              \"free\": [\n                {\n                  \"id\": \"69\",\n                  \"name\": \"Muscleups\",\n                  \"description\": \"\",\n                  \"category\": \"3\",\n                  \"type\": \"1\",\n                  \"rewards\": \"6.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:03:53\",\n                  \"updated_at\": \"2015-11-20 04:22:21\",\n                  \"video\": []\n                }\n              ],\n              \"paid\": [\n                {\n                  \"id\": \"77\",\n                  \"name\": \"Front Lever\",\n                  \"description\": \"\",\n                  \"category\": \"3\",\n                  \"type\": \"2\",\n                  \"rewards\": \"10.00\",\n                  \"repititions\": \"10\",\n                  \"duration\": \"1.00\",\n                  \"unit\": \"times\",\n                  \"equipment\": \"\",\n                  \"created_at\": \"2015-11-17 08:10:32\",\n                  \"updated_at\": \"2015-11-17 08:10:32\",\n                  \"video\": []\n                }\n              ]\n            }\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"is_subscribed\" : 1,\n      \"exercises\": {\n      \"lean\": {\n      \"free\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:00:19\",\n      \"updated_at\": \"2015-11-20 04:20:50\",\n      \"video\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"1\",\n      \"path\": \"Now1.mp4\",\n      \"videothumbnail\": \"\",\n      \"description\": \"Test Description\",\n      \"parent_type\": \"1\",\n      \"type\": \"1\",\n      \"parent_id\": \"1\",\n      \"created_at\": \"2015-11-11 01:56:40\",\n      \"updated_at\": \"2015-11-11 12:13:27\"\n      }\n      ]\n      }\n      ],\n      \"paid\": [\n      {\n      \"id\": \"2\",\n      \"name\": \"Australian Pullups\",\n      \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:00:20\",\n      \"updated_at\": \"2015-11-20 04:20:01\",\n      \"video\": []\n      }\n      ]\n      },\n      \"athletic\": {\n      \"free\": [\n      {\n      \"id\": \"32\",\n      \"name\": \"Pull ups / Chin ups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:01:02\",\n      \"updated_at\": \"2015-11-20 04:21:42\",\n      \"video\": []\n      }\n      ],\n      \"paid\": [\n      {\n      \"id\": \"33\",\n      \"name\": \"One Leg Front Lever\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:01:02\",\n      \"updated_at\": \"2015-11-20 04:20:01\",\n      \"video\": []\n      }\n      ]\n      },\n      \"strength\": {\n      \"free\": [\n      {\n      \"id\": \"69\",\n      \"name\": \"Muscleups\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:03:53\",\n      \"updated_at\": \"2015-11-20 04:22:21\",\n      \"video\": []\n      }\n      ],\n      \"paid\": [\n      {\n      \"id\": \"77\",\n      \"name\": \"Front Lever\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:10:32\",\n      \"updated_at\": \"2015-11-17 08:10:32\",\n      \"video\": []\n      }\n      ]\n      }\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2415,7 +2661,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"skills\": [\n            {\n              \"id\": \"1\",\n              \"progression_id\": \"1\",\n              \"level\": \"1\",\n              \"row\": \"1\",\n              \"substitute\": \"21\",\n              \"exercise_id\": \"1\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"1\",\n                \"name\": \"Jumping Pullups\",\n                \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n                \"category\": \"1\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"2\",\n              \"progression_id\": \"1\",\n              \"level\": \"2\",\n              \"row\": \"1\",\n              \"substitute\": \"1\",\n              \"exercise_id\": \"21\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"21\",\n                \"name\": \"Supported Pullups\",\n                \"description\": \"\",\n                \"category\": \"1\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"3\",\n              \"progression_id\": \"1\",\n              \"level\": \"3\",\n              \"row\": \"1\",\n              \"substitute\": \"53\",\n              \"exercise_id\": \"32\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 1,\n              \"exercise\": {\n                \"id\": \"32\",\n                \"name\": \"Pull ups / Chin ups\",\n                \"description\": \"\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"4\",\n              \"progression_id\": \"1\",\n              \"level\": \"4\",\n              \"row\": \"1\",\n              \"substitute\": \"32\",\n              \"exercise_id\": \"53\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"53\",\n                \"name\": \"Explosive Pull ups\",\n                \"description\": \"\",\n                \"category\": \"2\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            },\n            {\n              \"id\": \"5\",\n              \"progression_id\": \"1\",\n              \"level\": \"5\",\n              \"row\": \"1\",\n              \"substitute\": \"0\",\n              \"exercise_id\": \"69\",\n              \"created_at\": \"2015-12-14 03:04:45\",\n              \"updated_at\": \"2015-12-15 05:48:46\",\n              \"need_to_unlock\": 0,\n              \"exercise\": {\n                \"id\": \"69\",\n                \"name\": \"Muscleups\",\n                \"description\": \"\",\n                \"category\": \"3\",\n                \"type\": \"1\",\n                \"rewards\": \"6.00\",\n                \"repititions\": \"10\",\n                \"duration\": \"1.00\",\n                \"unit\": \"times\",\n                \"equipment\": \"\"\n              }\n            }\n          ],\n          \"is_subscribed\": 0,\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"skills\": [\n      {\n      \"id\": \"21\",\n      \"progression_id\": \"2\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"5\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"isLocked\": 0,\n      \"isLockable\": 0,\n      \"isUnlockable\": 1,\n      \"exercise\": {\n      \"id\": \"5\",\n      \"name\": \"Side Trizeps\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"30.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"22\",\n      \"progression_id\": \"2\",\n      \"level\": \"2\",\n      \"row\": \"1\",\n      \"substitute\": \"57\",\n      \"exercise_id\": \"36\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"isLocked\": 1,\n      \"isLockable\": 0,\n      \"isUnlockable\": 1,\n      \"exercise\": {\n      \"id\": \"36\",\n      \"name\": \"Dips (Bench)\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"23\",\n      \"progression_id\": \"2\",\n      \"level\": \"3\",\n      \"row\": \"1\",\n      \"substitute\": \"36\",\n      \"exercise_id\": \"57\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"isLocked\": 1,\n      \"isLockable\": 0,\n      \"isUnlockable\": 1,\n      \"exercise\": {\n      \"id\": \"57\",\n      \"name\": \"Elevated Dips\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"24\",\n      \"progression_id\": \"2\",\n      \"level\": \"4\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"70\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"isLocked\": 1,\n      \"isLockable\": 0,\n      \"isUnlockable\": 0,\n      \"exercise\": {\n      \"id\": \"70\",\n      \"name\": \"Dips\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"is_subscribed\": 0,\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2434,17 +2680,17 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":0,\n  \"error\": \"token_invalid\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":0,\n  \"error\": \"token_expired\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":0,\n  \"error\": \"token_not_provided\"\n}",
           "type": "json"
         },
         {
@@ -2502,7 +2748,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"skills\": {\n      \"pull\": [\n      {\n      \"id\": \"3\",\n      \"progression_id\": \"1\",\n      \"level\": \"3\",\n      \"row\": \"1\",\n      \"substitute\": \"53\",\n      \"exercise_id\": \"32\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"32\",\n      \"name\": \"Pull ups / Chin ups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"6\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"22\",\n      \"exercise_id\": \"2\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"2\",\n      \"name\": \"Australian Pullups\",\n      \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"11\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"16\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"24\",\n      \"exercise_id\": \"4\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"4\",\n      \"name\": \"Skin the cat\",\n      \"description\": \"A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"dip\": [\n      {\n      \"id\": \"22\",\n      \"progression_id\": \"2\",\n      \"level\": \"2\",\n      \"row\": \"1\",\n      \"substitute\": \"57\",\n      \"exercise_id\": \"36\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"36\",\n      \"name\": \"Dips (Bench)\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"25\",\n      \"progression_id\": \"2\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"6\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"6\",\n      \"name\": \"Trizeps Extension\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"full_body\": [\n      {\n      \"id\": \"29\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"7\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"7\",\n      \"name\": \"Wall Sits\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"33\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"8\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"8\",\n      \"name\": \"Single Leg Deadlift\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"36\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"9\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"9\",\n      \"name\": \"Climbers\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"39\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"10\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"10\",\n      \"name\": \"High Jumps\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"43\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"5\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"11\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"11\",\n      \"name\": \"Sprawl\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"push\": [\n      {\n      \"id\": \"46\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"25\",\n      \"exercise_id\": \"12\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"12\",\n      \"name\": \"Incline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"66\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"26\",\n      \"exercise_id\": \"13\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"13\",\n      \"name\": \"Military Press\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"71\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"14\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"14\",\n      \"name\": \"Decline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"74\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"15\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"15\",\n      \"name\": \"Explosive Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"core\": [\n      {\n      \"id\": \"78\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"27\",\n      \"exercise_id\": \"16\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"16\",\n      \"name\": \"Crunches\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"107\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"17\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"17\",\n      \"name\": \"Plank\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"111\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"116\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"29\",\n      \"exercise_id\": \"18\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"18\",\n      \"name\": \"Tucked Human Flag\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"122\",\n      \"progression_id\": \"5\",\n      \"level\": \"3\",\n      \"row\": \"5\",\n      \"substitute\": \"67\",\n      \"exercise_id\": \"51\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"51\",\n      \"name\": \"One Leg Dragon Flag\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"125\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"6\",\n      \"substitute\": \"31\",\n      \"exercise_id\": \"20\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"20\",\n      \"name\": \"Tuck Planche\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ]\n      },\n      \"is_subscribed\": 0,\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"skills\": {\n      \"pull\": [\n      {\n      \"id\": \"3\",\n      \"progression_id\": \"1\",\n      \"level\": \"3\",\n      \"row\": \"1\",\n      \"substitute\": \"53\",\n      \"exercise_id\": \"32\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"32\",\n      \"name\": \"Pull ups / Chin ups\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"6\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"22\",\n      \"exercise_id\": \"2\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"2\",\n      \"name\": \"Australian Pullups\",\n      \"description\": \"Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"11\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"16\",\n      \"progression_id\": \"1\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"24\",\n      \"exercise_id\": \"4\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"4\",\n      \"name\": \"Skin the cat\",\n      \"description\": \"A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"dip\": [\n      {\n      \"id\": \"22\",\n      \"progression_id\": \"2\",\n      \"level\": \"2\",\n      \"row\": \"1\",\n      \"substitute\": \"57\",\n      \"exercise_id\": \"36\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"36\",\n      \"name\": \"Dips (Bench)\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"25\",\n      \"progression_id\": \"2\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": 0,\n      \"exercise_id\": \"6\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"6\",\n      \"name\": \"Trizeps Extension\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"full_body\": [\n      {\n      \"id\": \"29\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": 0,\n      \"exercise_id\": \"7\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"7\",\n      \"name\": \"Wall Sits\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"33\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": 0,\n      \"exercise_id\": \"8\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"8\",\n      \"name\": \"Single Leg Deadlift\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"36\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": 0,\n      \"exercise_id\": \"9\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"9\",\n      \"name\": \"Climbers\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"39\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": 0,\n      \"exercise_id\": \"10\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"10\",\n      \"name\": \"High Jumps\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"43\",\n      \"progression_id\": \"3\",\n      \"level\": \"1\",\n      \"row\": \"5\",\n      \"substitute\": 0,\n      \"exercise_id\": \"11\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"11\",\n      \"name\": \"Sprawl\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"push\": [\n      {\n      \"id\": \"46\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"25\",\n      \"exercise_id\": \"12\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"12\",\n      \"name\": \"Incline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"66\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": \"26\",\n      \"exercise_id\": \"13\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"13\",\n      \"name\": \"Military Press\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"71\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": 0,\n      \"exercise_id\": \"14\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"14\",\n      \"name\": \"Decline Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"74\",\n      \"progression_id\": \"4\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": 0,\n      \"exercise_id\": \"15\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"15\",\n      \"name\": \"Explosive Pushups\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ],\n      \"core\": [\n      {\n      \"id\": \"78\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"1\",\n      \"substitute\": \"27\",\n      \"exercise_id\": \"16\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"16\",\n      \"name\": \"Crunches\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"107\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"2\",\n      \"substitute\": 0,\n      \"exercise_id\": \"17\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"17\",\n      \"name\": \"Plank\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"111\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"3\",\n      \"substitute\": \"23\",\n      \"exercise_id\": \"3\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"3\",\n      \"name\": \"Knee Raises\",\n      \"description\": \"Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"116\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"4\",\n      \"substitute\": \"29\",\n      \"exercise_id\": \"18\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"18\",\n      \"name\": \"Tucked Human Flag\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"122\",\n      \"progression_id\": \"5\",\n      \"level\": \"3\",\n      \"row\": \"5\",\n      \"substitute\": \"67\",\n      \"exercise_id\": \"51\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"51\",\n      \"name\": \"One Leg Dragon Flag\",\n      \"description\": \"\",\n      \"category\": \"2\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      },\n      {\n      \"id\": \"125\",\n      \"progression_id\": \"5\",\n      \"level\": \"1\",\n      \"row\": \"6\",\n      \"substitute\": \"31\",\n      \"exercise_id\": \"20\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"20\",\n      \"name\": \"Tuck Planche\",\n      \"description\": \"\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\"\n      }\n      }\n      ]\n      },\n      \"is_subscribed\": 0,\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2521,17 +2767,17 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":0,\n  \"error\": \"token_invalid\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":0,\n  \"error\": \"token_expired\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":0,\n  \"error\": \"token_not_provided\"\n}",
           "type": "json"
         },
         {
@@ -2542,6 +2788,204 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SkillsController.php",
+    "groupTitle": "Skill"
+  },
+  {
+    "type": "post",
+    "url": "/skills/lockskill",
+    "title": "lockSkill",
+    "name": "lockSkill",
+    "group": "Skill",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "skill_id",
+            "description": "<p>Id of skill</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"message\": \"successfully unlocked the skill\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The skill_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 already locked the skill\n{\n  \"status\" : 0,\n  \"error\": \"already locked the skill\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SkillsController.php",
+    "groupTitle": "Skill"
+  },
+  {
+    "type": "post",
+    "url": "/skills/unlockskill",
+    "title": "unlockSkill",
+    "name": "unlockSkill",
+    "group": "Skill",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "skill_id",
+            "description": "<p>Id of skill</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"message\": \"successfully unlocked the skill\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The skill_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 already unlocked the skill\n{\n  \"status\" : 0,\n  \"error\": \"already unlocked the skill\"\n}",
           "type": "json"
         }
       ]
@@ -3176,7 +3620,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n      \"status\" : 1,\n      \"success\": \"successfully_updated_user_profile\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ\",\n      \"user\": {\n          \"id\": \"2\",\n          \"email\": \"aneeshk@cubettech.com\",\n          \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n          \"status\": \"1\",\n          \"created_at\": \"2015-11-11 11:40:04\",\n          \"updated_at\": \"2015-11-11 11:40:04\",\n          \"profile\": {\n              \"id\": \"2\",\n              \"user_id\": \"2\",\n              \"first_name\": \"Aneesh\",\n              \"last_name\": \"Kallikkattil\",\n              \"gender\": \"0\",\n              \"fitness_status\": \"0\",\n              \"goal\": \"0\",\n              \"image\": \"2_1447242011.jpg\",\n              \"city\": \"\",\n              \"state\": \"\",\n              \"country\": \"\",\n  \"spot\": \"\",\n              \"quote\": \"\",\n              \"created_at\": \"2015-11-11 11:40:10\",\n              \"updated_at\": \"2015-11-11 11:40:11\"\n          },\n          \"videos\": [\n              {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"video_id\": \"1\",\n                  \"created_at\": \"2015-11-11 11:40:05\",\n                  \"updated_at\": \"2015-11-11 11:40:05\",\n                  \"video\": {\n                      \"id\": \"1\",\n                      \"user_id\": \"1\",\n                      \"path\": \"Now1.mp4\",\n                      \"description\": \"Test Description\",\n                      \"parent_type\": \"1\",\n                      \"type\": \"1\",\n                      \"parent_id\": \"1\",\n                      \"created_at\": \"2015-11-11 07:26:40\",\n                      \"updated_at\": \"2015-11-11 17:43:27\"\n                  }\n              }\n          ]\n      },\n      \"urls\": {\n          \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n          \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n          \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n          \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n          \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n          \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n          \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n          \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n          \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n  }",
+          "content": "HTTP/1.1 200 OK\n  {\n      \"status\" : 1,\n      \"success\": \"successfully_updated_user_profile\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ\",\n      \"user\": {\n          \"id\": \"2\",\n          \"email\": \"aneeshk@cubettech.com\",\n          \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n          \"status\": \"1\",\n          \"created_at\": \"2015-11-11 11:40:04\",\n          \"updated_at\": \"2015-11-11 11:40:04\",\n          \"profile\": {\n              \"id\": \"2\",\n              \"user_id\": \"2\",\n              \"first_name\": \"Aneesh\",\n              \"last_name\": \"Kallikkattil\",\n              \"gender\": 0,\n              \"fitness_status\": 0,\n              \"goal\": 0,\n              \"image\": \"2_1447242011.jpg\",\n              \"city\": \"\",\n              \"state\": \"\",\n              \"country\": \"\",\n  \"spot\": \"\",\n              \"quote\": \"\",\n              \"created_at\": \"2015-11-11 11:40:10\",\n              \"updated_at\": \"2015-11-11 11:40:11\"\n          },\n          \"videos\": [\n              {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"video_id\": \"1\",\n                  \"created_at\": \"2015-11-11 11:40:05\",\n                  \"updated_at\": \"2015-11-11 11:40:05\",\n                  \"video\": {\n                      \"id\": \"1\",\n                      \"user_id\": \"1\",\n                      \"path\": \"Now1.mp4\",\n                      \"description\": \"Test Description\",\n                      \"parent_type\": \"1\",\n                      \"type\": \"1\",\n                      \"parent_id\": \"1\",\n                      \"created_at\": \"2015-11-11 07:26:40\",\n                      \"updated_at\": \"2015-11-11 17:43:27\"\n                  }\n              }\n          ]\n      },\n      \"urls\": {\n          \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n          \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n          \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n          \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n          \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n          \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n          \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n          \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n          \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\"\n      }\n  }",
           "type": "json"
         }
       ]
@@ -3296,7 +3740,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"success\": \"user_details\",\n          \"user\": {\n            \"id\": \"2\",\n            \"email\": \"aneeshk@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-09 09:14:02\",\n            \"updated_at\": \"2015-11-16 06:45:17\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"first_name\": \"Aneesh\",\n                \"last_name\": \"Kallikkattil\",\n                \"gender\": \"1\",\n                \"fitness_status\": \"3\",\n                \"goal\": \"3\",\n                \"image\": \"\",\n                \"cover_image\": \"\",\n                \"city\": \"\",\n                \"state\": \"\",\n                \"country\": \"\",\n                \"spot\": \"\",\n                \"quote\": \"I want to get Strong\",\n                \"facebook\": \"0\",\n                \"twitter\": \"0\",\n                \"instagram\": \"0\",\n                \"created_at\": \"2015-11-09 09:14:02\",\n                \"updated_at\": \"2015-11-09 10:16:07\",\n                \"level\": 3\n              }\n            ],\n            \"settings\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"key\": \"notification\",\n                \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-12-03 06:35:31\"\n              },\n              {\n                \"id\": \"3\",\n                \"user_id\": \"2\",\n                \"key\": \"subscription\",\n                \"value\": \"1\",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-11-20 06:33:27\"\n              }\n            ],\n            \"is_following\": 0,\n            \"follower_count\": 0,\n            \"workout_count\": 4,\n            \"level\": 3,\n            \"points\": 330,\n            \"points_to_next_level\": 170,\n            \"total_skills\": 6,\n            \"user_skills_count\": 2,\n            \"athlete_since\": \"2015-11-09 09:14:02\",\n            \"facebook_connected\": 0\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"success\": \"user_details\",\n          \"user\": {\n            \"id\": \"2\",\n            \"email\": \"aneeshk@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-09 09:14:02\",\n            \"updated_at\": \"2015-11-16 06:45:17\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"first_name\": \"Aneesh\",\n                \"last_name\": \"Kallikkattil\",\n                \"gender\": \"1\",\n                \"fitness_status\": \"3\",\n                \"goal\": \"3\",\n                \"image\": \"\",\n                \"cover_image\": \"\",\n                \"city\": \"\",\n                \"state\": \"\",\n                \"country\": \"\",\n                \"spot\": \"\",\n                \"quote\": \"I want to get Strong\",\n                \"facebook\": 0,\n                \"twitter\": 0,\n                \"instagram\": 0,\n                \"created_at\": \"2015-11-09 09:14:02\",\n                \"updated_at\": \"2015-11-09 10:16:07\",\n                \"level\": 3\n              }\n            ],\n            \"settings\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"key\": \"notification\",\n                \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-12-03 06:35:31\"\n              },\n              {\n                \"id\": \"3\",\n                \"user_id\": \"2\",\n                \"key\": \"subscription\",\n                \"value\": \"1\",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-11-20 06:33:27\"\n              }\n            ],\n            \"is_following\": 0,\n            \"follower_count\": 0,\n            \"workout_count\": 4,\n            \"level\": 3,\n            \"points\": 330,\n            \"points_to_next_level\": 170,\n            \"total_skills\": 6,\n            \"user_skills_count\": 2,\n            \"athlete_since\": \"2015-11-09 09:14:02\",\n            \"facebook_connected\": 0\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
           "type": "json"
         }
       ]
@@ -3472,7 +3916,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_logged_in\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c\",\n        \"user\": {\n            \"id\": \"41\",\n            \"email\": \"arun@ileafsolutions.net\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-16 15:24:09\",\n            \"updated_at\": \"2015-11-16 16:32:47\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n                {\n                    \"id\": \"31\",\n                    \"user_id\": \"41\",\n                    \"first_name\": \"arun\",\n                    \"last_name\": \"mg\",\n                    \"gender\": \"1\",\n                    \"fitness_status\": \"3\",\n                    \"goal\": \"1\",\n                    \"image\": \"41_1449060497.jpg\",\n                    \"cover_image\": \"\",\n                    \"city\": \"\",\n                    \"state\": \"\",\n                    \"country\": \"\",\n                    \"spot\": \"\",\n                    \"quote\": \"\",\n                    \"instagram\": \"0\",\n                    \"twitter\": \"0\",\n                    \"facebook\": \"0\",\n                    \"fb\": \"0\",\n                    \"created_at\": \"2015-11-16 15:24:09\",\n                    \"updated_at\": \"2015-12-02 18:18:17\",\n                    \"level\": 1\n                }\n            ],\n            \"settings\": [\n                {\n                    \"id\": \"22\",\n                    \"user_id\": \"41\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 11:54:07\"\n                },\n                {\n                    \"id\": \"23\",\n                    \"user_id\": \"41\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 12:05:31\"\n                }\n            ],\n            \"follower_count\": 3,\n            \"workout_count\": 0,\n            \"points\": 0,\n            \"level\": 1,\n            \"facebook_connected\": 0\n        },\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
+          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_logged_in\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c\",\n        \"user\": {\n            \"id\": \"41\",\n            \"email\": \"arun@ileafsolutions.net\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-16 15:24:09\",\n            \"updated_at\": \"2015-11-16 16:32:47\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n                {\n                    \"id\": \"31\",\n                    \"user_id\": \"41\",\n                    \"first_name\": \"arun\",\n                    \"last_name\": \"mg\",\n                    \"gender\": \"1\",\n                    \"fitness_status\": \"3\",\n                    \"goal\": \"1\",\n                    \"image\": \"41_1449060497.jpg\",\n                    \"cover_image\": \"\",\n                    \"city\": \"\",\n                    \"state\": \"\",\n                    \"country\": \"\",\n                    \"spot\": \"\",\n                    \"quote\": \"\",\n                    \"instagram\": 0,\n                    \"twitter\": 0,\n                    \"facebook\": 0,\n                    \"fb\": 0,\n                    \"created_at\": \"2015-11-16 15:24:09\",\n                    \"updated_at\": \"2015-12-02 18:18:17\",\n                    \"level\": 1\n                }\n            ],\n            \"settings\": [\n                {\n                    \"id\": \"22\",\n                    \"user_id\": \"41\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 11:54:07\"\n                },\n                {\n                    \"id\": \"23\",\n                    \"user_id\": \"41\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 12:05:31\"\n                }\n            ],\n            \"follower_count\": 3,\n            \"workout_count\": 0,\n            \"points\": 0,\n            \"level\": 1,\n            \"facebook_connected\": 0\n        },\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
           "type": "json"
         }
       ]
@@ -3768,7 +4212,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n      {\n          \"status\" : 1,\n          \"success\": \"successfully_updated_user_profile\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ\",\n          \"user\": {\n              \"id\": \"2\",\n              \"email\": \"aneeshk@cubettech.com\",\n              \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-11 11:40:04\",\n              \"updated_at\": \"2015-11-11 11:40:04\",\n              \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": \"0\",\n                  \"fitness_status\": \"0\",\n                  \"goal\": \"0\",\n                  \"image\": \"2_1447242011.jpg\",\n                  \"cover_image\": \"\",\n                  \"city\": \"\",\n                  \"state\": \"\",\n                  \"country\": \"\",\n                  \"spot\": \"\",\n                  \"twitter\": \"\",\n                  \"facebook\": \"\",\n                  \"instagram\": \"\",\n                  \"quote\": \"\",\n                  \"created_at\": \"2015-11-11 11:40:10\",\n                  \"updated_at\": \"2015-11-11 11:40:11\"\n              },\n              \"videos\": [\n                  {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"video_id\": \"1\",\n                      \"created_at\": \"2015-11-11 11:40:05\",\n                      \"updated_at\": \"2015-11-11 11:40:05\",\n                      \"video\": {\n                          \"id\": \"1\",\n                          \"user_id\": \"1\",\n                          \"path\": \"Now1.mp4\",\n                          \"description\": \"Test Description\",\n                          \"parent_type\": \"1\",\n                          \"type\": \"1\",\n                          \"parent_id\": \"1\",\n                          \"created_at\": \"2015-11-11 07:26:40\",\n                          \"updated_at\": \"2015-11-11 17:43:27\"\n                      }\n                  }\n              ]\n          },\n           \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n      {\n          \"status\" : 1,\n          \"success\": \"successfully_updated_user_profile\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2FwaVwvdXNlclwvbG9naW4iLCJpYXQiOiIxNDQ3MjQ2NTc1IiwiZXhwIjoiMTQ0NzYwNjU3NSIsIm5iZiI6IjE0NDcyNDY1NzUiLCJqdGkiOiI2ZTBlN2JlMDI5YTJjZTVkODM4MzkwY2EyZmE0MGNkMSJ9.lFwueZXytFQhLcfX6GZ1fwp5wmtPT1GenTZpx3p2jKQ\",\n          \"user\": {\n              \"id\": \"2\",\n              \"email\": \"aneeshk@cubettech.com\",\n              \"confirmation_code\": \"d6grRYINWtcDH18bXc358M9ZDDFExd\",\n              \"status\": \"1\",\n              \"created_at\": \"2015-11-11 11:40:04\",\n              \"updated_at\": \"2015-11-11 11:40:04\",\n              \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": 0,\n                  \"fitness_status\": 0,\n                  \"goal\": 0,\n                  \"image\": \"2_1447242011.jpg\",\n                  \"cover_image\": \"\",\n                  \"city\": \"\",\n                  \"state\": \"\",\n                  \"country\": \"\",\n                  \"spot\": \"\",\n                  \"twitter\": \"\",\n                  \"facebook\": \"\",\n                  \"instagram\": \"\",\n                  \"quote\": \"\",\n                  \"created_at\": \"2015-11-11 11:40:10\",\n                  \"updated_at\": \"2015-11-11 11:40:11\"\n              },\n              \"videos\": [\n                  {\n                      \"id\": \"2\",\n                      \"user_id\": \"2\",\n                      \"video_id\": \"1\",\n                      \"created_at\": \"2015-11-11 11:40:05\",\n                      \"updated_at\": \"2015-11-11 11:40:05\",\n                      \"video\": {\n                          \"id\": \"1\",\n                          \"user_id\": \"1\",\n                          \"path\": \"Now1.mp4\",\n                          \"description\": \"Test Description\",\n                          \"parent_type\": \"1\",\n                          \"type\": \"1\",\n                          \"parent_id\": \"1\",\n                          \"created_at\": \"2015-11-11 07:26:40\",\n                          \"updated_at\": \"2015-11-11 17:43:27\"\n                      }\n                  }\n              ]\n          },\n           \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]

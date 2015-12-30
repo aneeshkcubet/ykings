@@ -12,6 +12,7 @@ use App\Exercise;
 use App\Exerciseuser;
 use App\Skill;
 use App\Progression;
+use App\Unlockedexercise;
 
 class SkillsController extends Controller
 {
@@ -787,43 +788,47 @@ class SkillsController extends Controller
       "status": 1,
       "skills": [
       {
-      "id": "1",
-      "progression_id": "1",
+      "id": "21",
+      "progression_id": "2",
       "level": "1",
       "row": "1",
-      "substitute": "21",
-      "exercise_id": "1",
+      "substitute": "0",
+      "exercise_id": "5",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
-      "need_to_unlock": 0,
+      "isLocked": 0,
+      "isLockable": 0,
+      "isUnlockable": 1,
       "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "id": "5",
+      "name": "Side Trizeps",
+      "description": "",
       "category": "1",
       "type": "1",
       "rewards": "6.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "30.00",
       "unit": "times",
       "equipment": ""
       }
       },
       {
-      "id": "2",
-      "progression_id": "1",
+      "id": "22",
+      "progression_id": "2",
       "level": "2",
       "row": "1",
-      "substitute": "1",
-      "exercise_id": "21",
+      "substitute": "57",
+      "exercise_id": "36",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
-      "need_to_unlock": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
       "exercise": {
-      "id": "21",
-      "name": "Supported Pullups",
+      "id": "36",
+      "name": "Dips (Bench)",
       "description": "",
-      "category": "1",
+      "category": "2",
       "type": "1",
       "rewards": "6.00",
       "repititions": "10",
@@ -833,18 +838,20 @@ class SkillsController extends Controller
       }
       },
       {
-      "id": "3",
-      "progression_id": "1",
+      "id": "23",
+      "progression_id": "2",
       "level": "3",
       "row": "1",
-      "substitute": "53",
-      "exercise_id": "32",
+      "substitute": "36",
+      "exercise_id": "57",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
-      "need_to_unlock": 1,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
       "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
+      "id": "57",
+      "name": "Elevated Dips",
       "description": "",
       "category": "2",
       "type": "1",
@@ -856,41 +863,20 @@ class SkillsController extends Controller
       }
       },
       {
-      "id": "4",
-      "progression_id": "1",
+      "id": "24",
+      "progression_id": "2",
       "level": "4",
       "row": "1",
-      "substitute": "32",
-      "exercise_id": "53",
+      "substitute": "0",
+      "exercise_id": "70",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
-      "need_to_unlock": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 0,
       "exercise": {
-      "id": "53",
-      "name": "Explosive Pull ups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "5",
-      "progression_id": "1",
-      "level": "5",
-      "row": "1",
-      "substitute": 0,
-      "exercise_id": "69",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "need_to_unlock": 0,
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
+      "id": "70",
+      "name": "Dips",
       "description": "",
       "category": "3",
       "type": "1",
@@ -985,14 +971,11 @@ class SkillsController extends Controller
                 $skill = Skill::where('id', $request->skill_id)->first();
 
                 $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->get();
-
-
                 foreach ($skills as $sKey => $sValue) {
                     $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                     $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
                     $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
                 }
-                
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1006,7 +989,7 @@ class SkillsController extends Controller
     }
 
     public function isLocked($skill, $userId)
-    {                
+    {
         $unLockCount = DB::table('unlocked_skills')
             ->select('exercise_id')
             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
@@ -1015,7 +998,7 @@ class SkillsController extends Controller
         if ($unLockCount > 0) {
             return 0;
         }
-        
+
         return 1;
     }
 
@@ -1038,47 +1021,299 @@ class SkillsController extends Controller
 
     public function isUnlockable($skill, $userId)
     {
-        if ($skill->level > 2) {
-            $prevLevelSkill = DB::table('skills')
-                ->where('row', '=', $skill->row)
-                ->where('progression_id', '=', $skill->progression_id)
-                ->where('level', '=', ($skill->level - 1))
-                ->first();
-            
-            if ($prevLevelSkill->substitute > 0) {
-                $prevUnlocked = DB::table('unlocked_skills')
+        if ($skill->level <= 2) {
+            return 1;
+        } else {
+            $unLockCount = DB::table('unlocked_skills')
+                ->select('exercise_id')
+                ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
+                ->count();
+            if ($unLockCount > 0) {
+                return 0;
+            }
+            if ($skill->substitute > 0) {
+                $subSkill = Skill::where('exercise_id', $skill->substitute)
+                    ->where('progression_id', $skill->progression_id)
+                    ->where('row', $skill->row)
+                    ->first();
+
+                if ($subSkill->level > $skill->level) {
+
+                    $prevSkill = Skill::where('level', ($skill->level - 1))
+                        ->where('progression_id', $skill->progression_id)
+                        ->where('row', $skill->row)
+                        ->first();
+                }
+                if ($subSkill->level < $skill->level) {
+
+                    $prevSkill = Skill::where('level', ($subSkill->level - 1))
+                        ->where('progression_id', $skill->progression_id)
+                        ->where('row', $skill->row)
+                        ->first();
+                }
+
+                $unLockCount = DB::table('unlocked_skills')
                     ->select('exercise_id')
-                    ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevLevelSkill->id)
+                    ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
                     ->count();
 
-                if ($prevUnlocked > 0) {
+                if ($unLockCount > 0) {
                     return 1;
-                } else {
-                    $substtituteUnlocked = DB::table('unlocked_skills')
+                }
+
+                if ($prevSkill->substitute > 0) {
+                    $prevSubSkill = Skill::where('exercise_id', $prevSkill->substitute)
+                        ->where('progression_id', $skill->progression_id)
+                        ->where('row', $skill->row)
+                        ->first();
+                    $unLockCount = DB::table('unlocked_skills')
                         ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $prevLevelSkill->substitute)
+                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSubSkill->id)
                         ->count();
-                    //if user unlocked substitute
-                    if ($substtituteUnlocked > 0) {
+
+                    if ($unLockCount > 0) {
                         return 1;
-                    } else {
-                        return 0;
+                    }
+                } else {
+                    $unLockCount = DB::table('unlocked_skills')
+                        ->select('exercise_id')
+                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
+                        ->count();
+
+                    if ($unLockCount > 0) {
+                        return 1;
                     }
                 }
             } else {
-                $prevUnlocked = DB::table('unlocked_skills')
-                    ->select('exercise_id')
-                    ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevLevelSkill->id)
-                    ->count();
 
-                if ($prevUnlocked > 0) {
-                    return 1;
+                $prevSkill = Skill::where('level', ($skill->level - 1))
+                    ->where('progression_id', $skill->progression_id)
+                    ->where('row', $skill->row)
+                    ->first();
+                if ($prevSkill->substitute > 0) {
+                    $prevSubSkill = Skill::where('exercise_id', $prevSkill->substitute)
+                        ->where('progression_id', $skill->progression_id)
+                        ->where('row', $skill->row)
+                        ->first();
+                    $unLockCount = DB::table('unlocked_skills')
+                        ->select('exercise_id')
+                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSubSkill->id)
+                        ->count();
+
+                    if ($unLockCount > 0) {
+                        return 1;
+                    }
                 } else {
-                    return 0;
+                    $unLockCount = DB::table('unlocked_skills')
+                        ->select('exercise_id')
+                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
+                        ->count();
+
+                    if ($unLockCount > 0) {
+                        return 1;
+                    }
                 }
             }
         }
-
         return 0;
+    }
+
+    /**
+     * @api {post} /skills/unlockskill unlockSkill
+     * @apiName unlockSkill
+     * @apiGroup Skill
+     * @apiParam {Number} user_id Id of user
+     * @apiParam {Number} skill_id Id of skill
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+          "status": 1,
+          "message": "successfully unlocked the skill"
+        }
+     * 
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message Validation error
+     * @apiError error Message user_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":0,
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The skill_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "user_not_exists"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 already unlocked the skill
+     *     {
+     *       "status" : 0,
+     *       "error": "already unlocked the skill"
+     *     }
+     * 
+     */
+    public function unlockSkill(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => 0, "error" => "The user_id field is required"]);
+        } elseif (!isset($request->skill_id) || ($request->skill_id == null)) {
+            return response()->json(["status" => 0, "error" => "The skill_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+            if (!is_null($user)) {
+                $isUnlocked = Unlockedexercise::where('skill_id', $request->skill_id)->where('user_id', $request->user_id)->count();
+                if ($isUnlocked > 1) {
+                    return response()->json(['status' => 0, 'error' => 'already unlocked the skill'], 500);
+                } else {
+                    $unlockedSkill = Skill::where('id', $request->skill_id)->first();
+                    Unlockedexercise::create([
+                        'skill_id' => $unlockedSkill->id,
+                        'exercise_id' => $unlockedSkill->exercise_id,
+                        'user_id' => $request->user_id
+                    ]);
+                    return response()->json(['status' => 1, 'message' => 'successfully unlocked the skill'], 500);
+                }
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /skills/lockskill lockSkill
+     * @apiName lockSkill
+     * @apiGroup Skill
+     * @apiParam {Number} user_id Id of user
+     * @apiParam {Number} skill_id Id of skill
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+          "status": 1,
+          "message": "successfully unlocked the skill"
+        }
+     * 
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Message Validation error
+     * @apiError error Message Validation error
+     * @apiError error Message user_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":0,
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The skill_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 user_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "user_not_exists"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 already locked the skill
+     *     {
+     *       "status" : 0,
+     *       "error": "already locked the skill"
+     *     }
+     * 
+     */
+    public function lockSkill(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => 0, "error" => "The user_id field is required"]);
+        } elseif (!isset($request->skill_id) || ($request->skill_id == null)) {
+            return response()->json(["status" => 0, "error" => "The skill_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+            if (!is_null($user)) {
+                $isUnlocked = Unlockedexercise::where('skill_id', $request->skill_id)->where('user_id', $request->user_id)->count();
+                if ($isUnlocked > 0) {
+                    
+                    $unlockedSkill = Skill::where('id', $request->skill_id)->first();
+                    
+                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= '. $unlockedSkill->level)->toSql();
+                    
+                    Unlockedexercise::whereRaw('skill_id IN ('.$higherLevelSkills.') AND user_id = '. $request->user_id)->delete();
+                    
+                    return response()->json(['status' => 1, 'message' => 'successfully locked the skill'], 500);
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'already locked the skill'], 500);
+                }
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
+            }
+        }
     }
 }
