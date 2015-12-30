@@ -394,7 +394,7 @@ class FeedController extends Controller
             $feedQuery = Feeds::where('user_id', '=', $request->input('profile_id'));
 
             if ($user) {
-                $feedQuery->with(['image', 'workout', 'exercise', 'hiit']);
+                $feedQuery->with(['image']);
                 if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
@@ -573,7 +573,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
                 $feedQuery->orWhere('user_id', $request->user_id);
-                $feedQuery->with(['image', 'profile', 'workout', 'exercise', 'hiit']);
+                $feedQuery->with(['image', 'profile']);
 
                 if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
@@ -624,6 +624,14 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $workout->name;
+                $duration = DB::table('workout_users')->where('user_id', $userId)->where('workout_id', $feedsArray['item_id'])->pluck('time');
+                if(!is_null($duration)){
+                    $feedsArray['duration'] = $duration;
+                    
+                } else {
+                    $feedsArray['duration'] = 0;
+                }
+                
             } elseif ($feedsArray['item_type'] == 'excercise') {
                 $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
                 if (!is_null($exercise)) {
@@ -638,6 +646,23 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $exercise->name;
+                $duration = DB::table('exercise_users')->where('user_id', $userId)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
+                if(!is_null($duration)){
+                    $feedsArray['duration'] = $duration;
+                    
+                } else {
+                    $feedsArray['duration'] = 0;
+                }
+            } elseif ($feedsArray['item_type'] == 'hiit') {
+                $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
+                $feedsArray['item_name'] = $hiit->name;
+                $duration = DB::table('hiit_users')->where('user_id', $userId)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
+                if(!is_null($duration)){
+                    $feedsArray['duration'] = $duration;
+                    
+                } else {
+                    $feedsArray['duration'] = 0;
+                }
             } else {
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "";

@@ -4,6 +4,8 @@ use App\User;
 use App\Uservideo;
 use App\Video;
 use App\Settings;
+use App\Skill;
+use App\Unlockedexercise;
 use DB;
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
@@ -58,6 +60,16 @@ class UserEvents extends Event
             'key' => 'notification',
             'value' => '{"comments":"1","claps":"0","follow":"0","my_performance":"1","motivation_knowledge":"1"}'
         ]);
+        
+        $unlockedSkills = Skill::where('level', 1)->get();
+        
+        foreach($unlockedSkills as $sKey => $unlockedSkill){
+            Unlockedexercise::create([
+                'user_id' => $user->id,
+                'skill_id' => $unlockedSkill->id,
+                'exercise_id' => $unlockedSkill->exercise_id
+            ]);            
+        }
     }
 
     public function userDeleted(User $user)
