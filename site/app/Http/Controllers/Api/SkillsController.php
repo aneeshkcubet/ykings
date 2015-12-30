@@ -163,7 +163,7 @@ class SkillsController extends Controller
       "progression_id": "2",
       "level": "1",
       "row": "2",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "6",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -187,7 +187,7 @@ class SkillsController extends Controller
       "progression_id": "3",
       "level": "1",
       "row": "1",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "7",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -209,7 +209,7 @@ class SkillsController extends Controller
       "progression_id": "3",
       "level": "1",
       "row": "2",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "8",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -231,7 +231,7 @@ class SkillsController extends Controller
       "progression_id": "3",
       "level": "1",
       "row": "3",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "9",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -253,7 +253,7 @@ class SkillsController extends Controller
       "progression_id": "3",
       "level": "1",
       "row": "4",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "10",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -275,7 +275,7 @@ class SkillsController extends Controller
       "progression_id": "3",
       "level": "1",
       "row": "5",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "11",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -343,7 +343,7 @@ class SkillsController extends Controller
       "progression_id": "4",
       "level": "1",
       "row": "3",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "14",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -365,7 +365,7 @@ class SkillsController extends Controller
       "progression_id": "4",
       "level": "1",
       "row": "4",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "15",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -411,7 +411,7 @@ class SkillsController extends Controller
       "progression_id": "5",
       "level": "1",
       "row": "2",
-      "substitute": "0",
+      "substitute": 0,
       "exercise_id": "17",
       "created_at": "2015-12-14 03:04:45",
       "updated_at": "2015-12-15 05:48:46",
@@ -547,21 +547,21 @@ class SkillsController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_not_provided"
      *     }
      * @apiErrorExample Error-Response:
@@ -582,14 +582,15 @@ class SkillsController extends Controller
     public function loadSkills(Request $request)
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
-            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+            return response()->json(["status" => 0, "error" => "The user_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
                 $skills = [];
 
-                $userCompletedIds = DB::table('exercise_users')->select('exercise_id')
-                    ->whereRaw('user_id =' . $request->input('user_id'))
+                $unlockedSkillsQuery = DB::table('unlocked_skills')
+                    ->select('exercise_id')
+                    ->whereRaw('user_id = ' . $request->user_id)
                     ->toSql();
 
                 //need to find how many rows in each progression and need to find the exercise to be unlocked 
@@ -607,8 +608,8 @@ class SkillsController extends Controller
                         ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
                         ->whereRaw('skills.row = ' . $i)
                         ->whereRaw('skills.progression_id = ' . 1)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
+                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
+                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
                         ->orderBy('skills.id', 'ASC')
                         ->first();
 
@@ -640,8 +641,8 @@ class SkillsController extends Controller
                         ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
                         ->whereRaw('skills.row = ' . $i)
                         ->whereRaw('skills.progression_id = ' . 2)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
+                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
+                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
                         ->orderBy('skills.id', 'ASC')
                         ->first();
 
@@ -673,8 +674,8 @@ class SkillsController extends Controller
                         ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
                         ->whereRaw('skills.row = ' . $i)
                         ->whereRaw('skills.progression_id = ' . 3)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
+                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
+                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
                         ->orderBy('skills.id', 'ASC')
                         ->first();
 
@@ -706,8 +707,8 @@ class SkillsController extends Controller
                         ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
                         ->whereRaw('skills.row = ' . $i)
                         ->whereRaw('skills.progression_id = ' . 4)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
+                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
+                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
                         ->orderBy('skills.id', 'ASC')
                         ->first();
 
@@ -739,8 +740,8 @@ class SkillsController extends Controller
                         ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
                         ->whereRaw('skills.row = ' . $i)
                         ->whereRaw('skills.progression_id = ' . 5)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
+                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
+                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
                         ->orderBy('skills.id', 'ASC')
                         ->first();
 
@@ -783,142 +784,142 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "skills": [
-            {
-              "id": "1",
-              "progression_id": "1",
-              "level": "1",
-              "row": "1",
-              "substitute": "21",
-              "exercise_id": "1",
-              "created_at": "2015-12-14 03:04:45",
-              "updated_at": "2015-12-15 05:48:46",
-              "need_to_unlock": 0,
-              "exercise": {
-                "id": "1",
-                "name": "Jumping Pullups",
-                "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-                "category": "1",
-                "type": "1",
-                "rewards": "6.00",
-                "repititions": "10",
-                "duration": "1.00",
-                "unit": "times",
-                "equipment": ""
-              }
-            },
-            {
-              "id": "2",
-              "progression_id": "1",
-              "level": "2",
-              "row": "1",
-              "substitute": "1",
-              "exercise_id": "21",
-              "created_at": "2015-12-14 03:04:45",
-              "updated_at": "2015-12-15 05:48:46",
-              "need_to_unlock": 0,
-              "exercise": {
-                "id": "21",
-                "name": "Supported Pullups",
-                "description": "",
-                "category": "1",
-                "type": "1",
-                "rewards": "6.00",
-                "repititions": "10",
-                "duration": "1.00",
-                "unit": "times",
-                "equipment": ""
-              }
-            },
-            {
-              "id": "3",
-              "progression_id": "1",
-              "level": "3",
-              "row": "1",
-              "substitute": "53",
-              "exercise_id": "32",
-              "created_at": "2015-12-14 03:04:45",
-              "updated_at": "2015-12-15 05:48:46",
-              "need_to_unlock": 1,
-              "exercise": {
-                "id": "32",
-                "name": "Pull ups / Chin ups",
-                "description": "",
-                "category": "2",
-                "type": "1",
-                "rewards": "6.00",
-                "repititions": "10",
-                "duration": "1.00",
-                "unit": "times",
-                "equipment": ""
-              }
-            },
-            {
-              "id": "4",
-              "progression_id": "1",
-              "level": "4",
-              "row": "1",
-              "substitute": "32",
-              "exercise_id": "53",
-              "created_at": "2015-12-14 03:04:45",
-              "updated_at": "2015-12-15 05:48:46",
-              "need_to_unlock": 0,
-              "exercise": {
-                "id": "53",
-                "name": "Explosive Pull ups",
-                "description": "",
-                "category": "2",
-                "type": "1",
-                "rewards": "6.00",
-                "repititions": "10",
-                "duration": "1.00",
-                "unit": "times",
-                "equipment": ""
-              }
-            },
-            {
-              "id": "5",
-              "progression_id": "1",
-              "level": "5",
-              "row": "1",
-              "substitute": "0",
-              "exercise_id": "69",
-              "created_at": "2015-12-14 03:04:45",
-              "updated_at": "2015-12-15 05:48:46",
-              "need_to_unlock": 0,
-              "exercise": {
-                "id": "69",
-                "name": "Muscleups",
-                "description": "",
-                "category": "3",
-                "type": "1",
-                "rewards": "6.00",
-                "repititions": "10",
-                "duration": "1.00",
-                "unit": "times",
-                "equipment": ""
-              }
-            }
-          ],
-          "is_subscribed": 0,
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+      "status": 1,
+      "skills": [
+      {
+      "id": "1",
+      "progression_id": "1",
+      "level": "1",
+      "row": "1",
+      "substitute": "21",
+      "exercise_id": "1",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "need_to_unlock": 0,
+      "exercise": {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": ""
+      }
+      },
+      {
+      "id": "2",
+      "progression_id": "1",
+      "level": "2",
+      "row": "1",
+      "substitute": "1",
+      "exercise_id": "21",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "need_to_unlock": 0,
+      "exercise": {
+      "id": "21",
+      "name": "Supported Pullups",
+      "description": "",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": ""
+      }
+      },
+      {
+      "id": "3",
+      "progression_id": "1",
+      "level": "3",
+      "row": "1",
+      "substitute": "53",
+      "exercise_id": "32",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "need_to_unlock": 1,
+      "exercise": {
+      "id": "32",
+      "name": "Pull ups / Chin ups",
+      "description": "",
+      "category": "2",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": ""
+      }
+      },
+      {
+      "id": "4",
+      "progression_id": "1",
+      "level": "4",
+      "row": "1",
+      "substitute": "32",
+      "exercise_id": "53",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "need_to_unlock": 0,
+      "exercise": {
+      "id": "53",
+      "name": "Explosive Pull ups",
+      "description": "",
+      "category": "2",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": ""
+      }
+      },
+      {
+      "id": "5",
+      "progression_id": "1",
+      "level": "5",
+      "row": "1",
+      "substitute": 0,
+      "exercise_id": "69",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "need_to_unlock": 0,
+      "exercise": {
+      "id": "69",
+      "name": "Muscleups",
+      "description": "",
+      "category": "3",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1.00",
+      "unit": "times",
+      "equipment": ""
+      }
+      }
+      ],
+      "is_subscribed": 0,
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * 
@@ -932,21 +933,21 @@ class SkillsController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Invalid Request
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_invalid"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 401 Unauthorised
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_expired"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
-     *       "status":"0",
+     *       "status":0,
      *       "error": "token_not_provided"
      *     }
      * @apiErrorExample Error-Response:
@@ -974,9 +975,9 @@ class SkillsController extends Controller
     public function getLevelSkills(Request $request)
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
-            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+            return response()->json(["status" => 0, "error" => "The user_id field is required"]);
         } elseif (!isset($request->skill_id) || ($request->skill_id == null)) {
-            return response()->json(["status" => "0", "error" => "The skill_id field is required"]);
+            return response()->json(["status" => 0, "error" => "The skill_id field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
@@ -985,38 +986,13 @@ class SkillsController extends Controller
 
                 $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->get();
 
-                $userCompletedIds = DB::table('exercise_users')->select('exercise_id')
-                    ->whereRaw('user_id =' . $request->input('user_id'))
-                    ->toSql();
-
-                $skillRaw = DB::table('skills')
-                    ->select('skills.*')
-                    ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                    ->whereRaw('skills.row = ' . $skill->row)
-                    ->whereRaw('skills.progression_id = ' . $skill->progression_id)
-                    ->whereRaw('skills.exercise_id NOT IN (' . $userCompletedIds . ')')
-                    ->whereRaw('skills.substitute NOT IN (' . $userCompletedIds . ')')
-                    ->orderBy('skills.id', 'ASC')
-                    ->first();
-                
-                $i = 0;
 
                 foreach ($skills as $sKey => $sValue) {
-                    $i++;
-                    if (!is_null($skillRaw)) {
-                        if ($sValue->id == $skillRaw->id) {
-                            $skills[$sKey]->need_to_unlock = 1;
-                        } else {
-                            $skills[$sKey]->need_to_unlock = 0;
-                        }
-                    } else {
-                        if ($i == count($skills)) {
-                            $skills[$sKey]->need_to_unlock = 1;
-                        } else {
-                            $skills[$sKey]->need_to_unlock = 0;
-                        }
-                    }
+                    $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
+                    $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
+                    $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
                 }
+                
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1027,5 +1003,82 @@ class SkillsController extends Controller
                     'is_subscribed' => $user->is_subscribed,
                     'urls' => config('urls.urls')], 200);
         }
+    }
+
+    public function isLocked($skill, $userId)
+    {                
+        $unLockCount = DB::table('unlocked_skills')
+            ->select('exercise_id')
+            ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
+            ->count();
+
+        if ($unLockCount > 0) {
+            return 0;
+        }
+        
+        return 1;
+    }
+
+    public function isLockable($skill, $userId)
+    {
+        if ($skill->level < 2) {
+            return 0;
+        }
+        $unLockCount = DB::table('unlocked_skills')
+            ->select('exercise_id')
+            ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
+            ->count();
+
+        if ($unLockCount > 0) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    public function isUnlockable($skill, $userId)
+    {
+        if ($skill->level > 2) {
+            $prevLevelSkill = DB::table('skills')
+                ->where('row', '=', $skill->row)
+                ->where('progression_id', '=', $skill->progression_id)
+                ->where('level', '=', ($skill->level - 1))
+                ->first();
+            
+            if ($prevLevelSkill->substitute > 0) {
+                $prevUnlocked = DB::table('unlocked_skills')
+                    ->select('exercise_id')
+                    ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevLevelSkill->id)
+                    ->count();
+
+                if ($prevUnlocked > 0) {
+                    return 1;
+                } else {
+                    $substtituteUnlocked = DB::table('unlocked_skills')
+                        ->select('exercise_id')
+                        ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $prevLevelSkill->substitute)
+                        ->count();
+                    //if user unlocked substitute
+                    if ($substtituteUnlocked > 0) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+            } else {
+                $prevUnlocked = DB::table('unlocked_skills')
+                    ->select('exercise_id')
+                    ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevLevelSkill->id)
+                    ->count();
+
+                if ($prevUnlocked > 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        return 0;
     }
 }

@@ -82,9 +82,9 @@ class UsersController extends Controller
      *                   "user_id": "2",
      *                   "first_name": "Aneesh",
      *                   "last_name": "Kallikkattil",
-     *                   "gender": "0",
-     *                   "fitness_status": "0",
-     *                   "goal": "0",
+     *                   "gender": 0,
+     *                   "fitness_status": 0,
+     *                   "goal": 0,
      *                   "image": "2_1447242011.jpg",
      *                   "city": "",
      *                   "state": "",
@@ -211,19 +211,19 @@ class UsersController extends Controller
     public function postRegister(Request $request)
     {
         if (!isset($request->email) || ($request->email == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+            return response()->json([ "status" => 0, "error" => "The email field is required."]);
         } elseif (!isset($request->password) || ($request->password == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The password field is required."]);
+            return response()->json([ "status" => 0, "error" => "The password field is required."]);
         } elseif (!isset($request->first_name) || ($request->first_name == NULL)) {
-            return response()->json(["status" => "0", "error" => "The first_name field is required"]);
+            return response()->json(["status" => 0, "error" => "The first_name field is required"]);
         } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The last_name field is required"]);
+            return response()->json([ "status" => 0, "error" => "The last_name field is required"]);
         } else {
 
             $user = User::where('email', '=', $request->email)->first();
 
             if (!is_null($user)) {
-                return response()->json([ "status" => "0", "error" => "This email already signed up with us."], 422);
+                return response()->json([ "status" => 0, "error" => "This email already signed up with us."], 422);
             }
 
             if ($this->create($request->all())) {
@@ -259,7 +259,17 @@ class UsersController extends Controller
                 }
                 $user = User::where('email', '=', $request->input('email'))->with([ 'profile',
                         'videos'])->first();
-                return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                $userArray = $user->toArray();
+
+                $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
+                $userArray['workout_count'] = Workout::workoutCount($user['id']);
+                $userArray['points'] = Point::userPoints($user['id']);
+                $userArray['level'] = Point::userLevel($user['id']);
+
+                //Code to check facebook connected for user.
+                //Added by ansa@cubettech.com on 27-11-2015
+                $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
             }
@@ -363,9 +373,9 @@ class UsersController extends Controller
      *                   "user_id": "2",
      *                   "first_name": "Aneesh",
      *                   "last_name": "Kallikkattil",
-     *                   "gender": "0",
-     *                   "fitness_status": "0",
-     *                   "goal": "0",
+     *                   "gender": 0,
+     *                   "fitness_status": 0,
+     *                   "goal": 0,
      *                   "image": "2_1447242011.jpg",
      *                   "cover_image": "",
      *                   "city": "",
@@ -469,7 +479,7 @@ class UsersController extends Controller
         $data = $request->all();
 
         if (!isset($request->email) || ($request->email == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+            return response()->json([ "status" => 0, "error" => "The email field is required."]);
         }
 
         $profData = [];
@@ -579,8 +589,19 @@ class UsersController extends Controller
                     ->where('key', '=', 'subscription')
                     ->update(['value' => $data['subscription']]);
             }
+            
+            $userArray = $user->toArray();
 
-            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+            $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
+            $userArray['workout_count'] = Workout::workoutCount($user['id']);
+            $userArray['points'] = Point::userPoints($user['id']);
+            $userArray['level'] = Point::userLevel($user['id']);
+
+            //Code to check facebook connected for user.
+            //Added by ansa@cubettech.com on 27-11-2015
+            $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+
+            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'could_not_update_user'], 500);
         }
@@ -626,10 +647,10 @@ class UsersController extends Controller
                     "country": "",
                     "spot": "",
                     "quote": "",
-                    "instagram": "0",
-                    "twitter": "0",
-                    "facebook": "0",
-                    "fb": "0",
+                    "instagram": 0,
+                    "twitter": 0,
+                    "facebook": 0,
+                    "fb": 0,
                     "created_at": "2015-11-16 15:24:09",
                     "updated_at": "2015-12-02 18:18:17",
                     "level": 1
@@ -745,9 +766,9 @@ class UsersController extends Controller
         $data = $request->all();
 
         if (!isset($request->email) || ($request->email == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The email field is required."]);
+            return response()->json([ "status" => 0, "error" => "The email field is required."]);
         } elseif (!isset($request->password) || ($request->password == NULL)) {
-            return response()->json([ "status" => "0", "error" => "The password field is required."]);
+            return response()->json([ "status" => 0, "error" => "The password field is required."]);
         }
 
         if (Auth::attempt([ 'email' => $data['email'], 'password' => $data['password']])) {
@@ -824,9 +845,9 @@ class UsersController extends Controller
                 "country": "",
                 "spot": "",
                 "quote": "I want to get Strong",
-                "facebook": "0",
-                "twitter": "0",
-                "instagram": "0",
+                "facebook": 0,
+                "twitter": 0,
+                "instagram": 0,
                 "created_at": "2015-11-09 09:14:02",
                 "updated_at": "2015-11-09 10:16:07",
                 "level": 3
