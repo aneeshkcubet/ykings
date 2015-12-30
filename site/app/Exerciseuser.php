@@ -19,7 +19,8 @@ class Exerciseuser extends Model
         'user_id',
         'exercise_id',
         'status',
-        'time'
+        'time',
+        'is_starred'
     ];
 
     /**

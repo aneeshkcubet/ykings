@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
+    PushNotification,
     Image,
     Validator,
     DB;
@@ -24,6 +25,8 @@ use App\Workout;
 use App\Exercise;
 use App\Hiit;
 use App\Hiituser;
+//use App\CommonFunctions\PushNotificationFunction;
+use Sly\NotificationPusher\PushManager;
 class FeedController extends Controller
 {
     /*
@@ -31,7 +34,7 @@ class FeedController extends Controller
       | Workout Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles feeds,workout,excercise.
+      | This controller handles feeds,workout,exercise.
       |
      */
 
@@ -40,14 +43,14 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'excercise','workout','motivation','announcement', 'hiit' *required
+     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit' *required
      * @apiParam {String} item_id id of the targetting item *required
      * @apiParam {String} time_taken time in seconds
      * @apiParam {String} rewards points earned by doing activity
      * @apiParam {String} category in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
-     * 
+     * @apiParam {String} [starred] 0/1
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -139,6 +142,12 @@ class FeedController extends Controller
 
             if ($user) {
 
+                //Code added by <ansa@cubettech.com> on 30-12-2015
+                //To add star for feed
+                $addStar = 0;
+                if (isset($request->starred) && ($request->starred != null))
+                    $addStar = intval($request->starred);
+
                 $itemId = $request->input('item_id');
 
                 if ($request->item_type == 'exercise') {
@@ -147,6 +156,7 @@ class FeedController extends Controller
                         'exercise_id' => $request->item_id,
                         'status' => 1,
                         'time' => $request->time_taken,
+                        'is_starred' => $addStar
                     ]);
 
                     $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
@@ -164,15 +174,13 @@ class FeedController extends Controller
                     ]);
                 } elseif ($request->item_type == 'workout') {
 
-                    //Code added by <ansa@cubettech.com> on 30-12-2015
-                    //To add star on workout user 
                     $data = [
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
                         'time' => $request->time_taken,
                         'category' => $request->category,
-                        'is_starred' => 0
+                        'is_starred' => $addStar
                     ];
 
                     WorkoutUser::create($data);
@@ -197,7 +205,8 @@ class FeedController extends Controller
                         'hiit_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
-                        'time' => $request->time_taken
+                        'time' => $request->time_taken,
+                        'is_starred' => $addStar
                     ];
 
                     Hiituser::create($data);
@@ -286,7 +295,7 @@ class FeedController extends Controller
       {
       "id": "21",
       "user_id": "14",
-      "item_type": "excercise",
+      "item_type": "exercise",
       "item_id": "1",
       "feed_text": "testttttttttt",
       "created_at": "2015-11-11 06:27:51",
@@ -304,7 +313,7 @@ class FeedController extends Controller
       {
       "id": "22",
       "user_id": "14",
-      "item_type": "excercise",
+      "item_type": "exercise",
       "item_id": "1",
       "feed_text": "afassdfsd",
       "created_at": "2015-11-11 06:49:38",
@@ -388,7 +397,7 @@ class FeedController extends Controller
         $feedsResponse = array();
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        }else if (!isset($request->profile_id)|| ($request->profile_id == null)) {
+        } else if (!isset($request->profile_id) || ($request->profile_id == null)) {
             return response()->json(['status' => 0, 'error' => 'profile_id required']);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
@@ -627,14 +636,12 @@ class FeedController extends Controller
                 }
                 $feedsArray['item_name'] = $workout->name;
                 $duration = DB::table('workout_users')->where('user_id', $userId)->where('workout_id', $feedsArray['item_id'])->pluck('time');
-                if(!is_null($duration)){
+                if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
-                    
                 } else {
                     $feedsArray['duration'] = 0;
                 }
-                
-            } elseif ($feedsArray['item_type'] == 'excercise') {
+            } elseif ($feedsArray['item_type'] == 'exercise') {
                 $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
                 if (!is_null($exercise)) {
                     if ($exercise->category == 1) {
@@ -649,9 +656,8 @@ class FeedController extends Controller
                 }
                 $feedsArray['item_name'] = $exercise->name;
                 $duration = DB::table('exercise_users')->where('user_id', $userId)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
-                if(!is_null($duration)){
+                if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
-                    
                 } else {
                     $feedsArray['duration'] = 0;
                 }
@@ -659,9 +665,8 @@ class FeedController extends Controller
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                 $feedsArray['item_name'] = $hiit->name;
                 $duration = DB::table('hiit_users')->where('user_id', $userId)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
-                if(!is_null($duration)){
+                if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
-                    
                 } else {
                     $feedsArray['duration'] = 0;
                 }
@@ -692,7 +697,7 @@ class FeedController extends Controller
       {
       "id": "21",
       "user_id": "14",
-      "item_type": "excercise",
+      "item_type": "exercise",
       "item_id": "1",
       "feed_text": "testttttttttt",
       "created_at": "2015-11-11 06:27:51",
@@ -981,5 +986,36 @@ class FeedController extends Controller
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
         }
+    }
+
+    public function notification1(Request $request)
+    {
+        PushNotificationFunction::androidNotification($request);
+    }
+    public function notification(Request $request)
+    {
+        // First, instantiate the manager.
+        // Example for production environment:
+        //$pushManager = new PushManager(PushManager::ENVIRONMENT_PROD);
+        // Development one by default (without argument).
+        $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
+
+        // Then declare an adapter.
+        $gcmAdapter = new GcmAdapter(array(
+            'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
+        ));
+
+        // Set the device(s) to push the notification to.
+        $devices = new DeviceCollection(array(
+            new Device('fqiQMABUMxI:APA91bE16Qv12rxF-iD4LPJUxfaX6dFalUTlmfeS-VybUIDmMmPCJJEtymQ0cYrz8hGbbuuy-o0bCtskdlL8WHepLdLYz-PJzNJLwOsu4lOeSaVGSl-tBIp9s_TNfpiXrEZWWVBbwc6o'),
+        ));
+
+        // Then, create the push skel.
+        $message = new Message('This is an example.');
+
+        // Finally, create and add the push to the manager, and push it!
+        $push = new Push($gcmAdapter, $devices, $message);
+        $pushManager->add($push);
+        $pushManager->push(); // Returns a collection of notified devices
     }
 }

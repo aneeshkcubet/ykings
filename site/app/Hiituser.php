@@ -19,7 +19,8 @@ class Hiituser extends Model
         'user_id',
         'hiit_id',
         'status',
-        'time'
+        'time',
+        'is_starred'
     ];
 
     /**

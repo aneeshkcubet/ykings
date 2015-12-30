@@ -98,6 +98,10 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.unclap',
         'uses' => 'Api\FeedController@unclapFeed'
     ]);
+     Route::post('feeds/notification', [
+        'as' => 'feeds.notification',
+        'uses' => 'Api\FeedController@notification'
+    ]);
     //CommentsController
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
@@ -112,6 +116,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@deleteComment'
     ]);
+   
     //UserFollowsController
     Route::post('follow/add', [
         'as' => 'follow.add',
