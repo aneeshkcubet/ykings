@@ -178,6 +178,14 @@ Template: inshape-parent
 .subscr-btn{
 
     }
+
+.newsletter_subscription_message_success {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.modal-dialog{
+    margin : 160px auto;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
