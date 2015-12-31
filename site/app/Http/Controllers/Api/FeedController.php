@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    PushNotification,
     Image,
     Validator,
     DB;
@@ -25,8 +24,8 @@ use App\Workout;
 use App\Exercise;
 use App\Hiit;
 use App\Hiituser;
-//use App\CommonFunctions\PushNotificationFunction;
-use Sly\NotificationPusher\PushManager;
+use App\CommonFunctions\PushNotificationFunction;
+
 class FeedController extends Controller
 {
     /*
@@ -988,11 +987,13 @@ class FeedController extends Controller
         }
     }
 
-    public function notification1(Request $request)
+    public function notification(Request $request)
     {
         PushNotificationFunction::androidNotification($request);
+        PushNotificationFunction::iosNotification($request);
     }
-    public function notification(Request $request)
+
+    public function notification1(Request $request)
     {
         // First, instantiate the manager.
         // Example for production environment:

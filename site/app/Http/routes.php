@@ -228,6 +228,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.getdescription',
         'uses' => 'Api\CoachesController@getDescription'
     ]);
+     //MessageController
+    Route::post('/user/listNotifications', [
+        'as' => 'user.listNotifications',
+        'uses' => 'Api\MessageController@listNotifications'
+    ]);
 });
 
 // Authentication routes...
