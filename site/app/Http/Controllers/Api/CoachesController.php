@@ -537,19 +537,20 @@ class CoachesController extends Controller
                     'days' => $request->days,
                     'exercises' => ''
                 ];
-                
+
                 Coach::create($data);
-                
+
                 $coachId = DB::table('coaches')->where('user_id', $request->user_id)->pluck('id');
-                
+
                 $data['test1'] = $request->test1;
-                
+
                 $data['test2'] = $request->test2;
-                
+
                 $coach = Coach::prepareCoachExercises($coachId, $data);
-                
+
+                DB::table('coaches')->where('id', $coachId)->update(['exercises' => json_encode($coach)]);
+
                 return response()->json(['status' => 1, 'coach' => $coach, 'urls' => config('urls.urls')], 200);
-                
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

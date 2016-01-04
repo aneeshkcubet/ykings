@@ -727,53 +727,55 @@ class Coach extends Model
                 $fundArray[] = $jVal['exercise_id'];
             }
 
+            $userCompletedExercisesQuery = DB::table('exercise_users')
+                ->select('exercise_id')
+                ->where('user_id', $data['user_id'])
+                ->toSql();
+
             $additionalFunda = DB::table('exercises')
                 ->select('exercises.*')
-                ->leftJoin('exercise_users', 'exercises.id', '=', 'exercise_users.exercise_id')
-                ->whereRaw('exercise_users.user_id = ' . $data['user_id'] . ' AND exercise_users.time > exercises.duration' . ' AND exercises.id NOT IN(' . implode(',', $fundArray) . ')')
-                ->orderBy('exercise_users.time', 'DESC')
+                ->whereRaw('exercises.id NOT IN(' . implode(',', $fundArray) . ') AND exercises.id NOT IN(' . $userCompletedExercisesQuery . ')')
+                ->orderBy('exercises.id', 'ASC')
                 ->first();
 
             if (is_null($additionalFunda)) {
-                $additionalFunda = DB::table('unlocked_skills')
+                $additionalFunda = DB::table('exercises')
                     ->select('exercises.*')
-                    ->leftJoin('skills', 'unlocked_skills.skill_id', '=', 'skills.id')
-                    ->leftJoin('exercises', 'unlocked_skills.exercise_id', '=', 'exercises.id')
-                    ->whereRaw('unlocked_skills.user_id = ' . $data['user_id'] . ' AND unlocked_skills.exercise_id NOT IN(' . implode(',', $fundArray) . ') AND skills.substitute NOT IN(' . implode(',', $fundArray) . ')')
-                    ->orderBy('unlocked_skills.skill_id', 'ASC')
-                    ->groupBy('exercises.id')
+                    ->leftJoin('exercise_users', 'exercises.id', '=', 'exercise_users.exercise_id')
+                    ->whereRaw('exercise_users.user_id = ' . $data['user_id'] . ' AND exercises.id NOT IN(' . implode(',', $fundArray) . ') AND exercises.id IN(' . $userCompletedExercisesQuery . ')')
+                    ->orderBy('exercises.id', 'DESC')
                     ->first();
             }
-            
+
             $fundaExercise = Exercise::where('id', $additionalFunda->id)->with(['video'])->first();
-            
+
             $fundumentals[]['exercise'] = $fundaExercise->toArray();
 
+            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
+
+            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id);
+
+            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id);
+
+            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id);
+
+            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id);
+
+            $csWorkout6 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][5]->id);
+
+            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id);
+
+            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id);
+
+            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id);
+
+            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id);
+
+            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id);
+
+            $sWorkout6 = self::getWorkoutWithExercises($userWorkouts['strength'][5]->id);
+
             if ($focus = 1) {
-
-                $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
-
-                $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id);
-
-                $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id);
-
-                $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id);
-
-                $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id);
-
-                $csWorkout6 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][5]->id);
-
-                $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id);
-
-                $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id);
-
-                $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id);
-
-                $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id);
-
-                $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id);
-
-                $sWorkout6 = self::getWorkoutWithExercises($userWorkouts['strength'][5]->id);
 
                 if ($data['days'] == 2) {
 
@@ -781,13 +783,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day1']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
@@ -796,13 +800,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -810,20 +816,23 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -831,7 +840,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -839,6 +849,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [1];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
@@ -847,13 +858,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -861,7 +874,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -869,6 +883,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [3];
                     $coach['day4']['stretching'] = $stretches;
 
@@ -876,7 +891,8 @@ class Coach extends Model
                     $coach['day5']['warmup'] = $warmup;
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 2);
+                    $coach['day5']['workout_intensity'] = 2;
                     $coach['day5']['hiit'] = [1];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
@@ -885,13 +901,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1, 3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -899,14 +917,16 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
                     $coach['day4']['warmup'] = $warmup;
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day4']['workout'] = self::intensifyWorkout($csWorkout4);
+                    $coach['day4']['workout'] = self::intensifyWorkout($csWorkout4, 2);
+                    $coach['day4']['workout_intensity'] = 2;
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
@@ -914,6 +934,7 @@ class Coach extends Model
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout1;
+                    $coach['day5']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = [3];
                     $coach['day5']['stretching'] = $stretches;
 
@@ -921,34 +942,11 @@ class Coach extends Model
                     $coach['day6']['warmup'] = $warmup;
                     $coach['day6']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout2, 2);
+                    $coach['day6']['workout_intensity'] = 2;
                     $coach['day6']['stretching'] = $stretches;
                 }
             } elseif ($focus = 2) {
-
-                $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
-
-                $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id);
-
-                $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id);
-
-                $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id);
-
-                $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id);
-
-                $csWorkout6 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][5]->id);
-
-                $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id);
-
-                $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id);
-
-                $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id);
-
-                $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id);
-
-                $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id);
-
-                $sWorkout6 = self::getWorkoutWithExercises($userWorkouts['strength'][5]->id);
 
                 if ($data['days'] == 2) {
 
@@ -956,13 +954,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
@@ -971,13 +971,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -985,20 +987,23 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1006,7 +1011,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -1014,6 +1020,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout2;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [1];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
@@ -1022,13 +1029,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1036,7 +1045,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -1044,6 +1054,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [3];
                     $coach['day4']['stretching'] = $stretches;
 
@@ -1051,7 +1062,7 @@ class Coach extends Model
                     $coach['day5']['warmup'] = $warmup;
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 2);
                     $coach['day5']['hiit'] = [1];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
@@ -1060,13 +1071,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1, 3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1074,14 +1087,16 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
                     $coach['day4']['warmup'] = $warmup;
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day4']['workout_intensity'] = 2;
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
@@ -1089,6 +1104,7 @@ class Coach extends Model
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout2;
+                    $coach['day5']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = [3];
                     $coach['day5']['stretching'] = $stretches;
 
@@ -1096,33 +1112,11 @@ class Coach extends Model
                     $coach['day6']['warmup'] = $warmup;
                     $coach['day6']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout3);
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout3, 2);
+                    $coach['day6']['workout_intensity'] = 2;
                     $coach['day6']['stretching'] = $stretches;
                 }
             } elseif ($focus = 3) {
-                $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
-
-                $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id);
-
-                $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id);
-
-                $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id);
-
-                $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id);
-
-                $csWorkout6 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][5]->id);
-
-                $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id);
-
-                $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id);
-
-                $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id);
-
-                $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id);
-
-                $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id);
-
-                $sWorkout6 = self::getWorkoutWithExercises($userWorkouts['strength'][5]->id);
 
                 if ($data['days'] == 2) {
 
@@ -1130,13 +1124,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
@@ -1145,13 +1141,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1159,20 +1157,23 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1180,7 +1181,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -1188,6 +1190,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout4;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [1];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
@@ -1196,13 +1199,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1210,7 +1215,8 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
@@ -1218,6 +1224,7 @@ class Coach extends Model
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout3;
+                    $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [3];
                     $coach['day4']['stretching'] = $stretches;
 
@@ -1225,7 +1232,8 @@ class Coach extends Model
                     $coach['day5']['warmup'] = $warmup;
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout4);
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout4, 2);
+                    $coach['day5']['workout_intensity'] = 2;
                     $coach['day5']['hiit'] = [1];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
@@ -1234,13 +1242,15 @@ class Coach extends Model
                     $coach['day1']['warmup'] = $warmup;
                     $coach['day1']['fundumentals'] = $fundumentals;
                     //intensify csWorkout1
-                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1);
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 2);
+                    $coach['day1']['workout_intensity'] = 2;
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
                     $coach['day2']['warmup'] = $warmup;
                     $coach['day2']['fundumentals'] = $fundumentals;
                     $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [1, 3];
                     $coach['day2']['stretching'] = $stretches;
 
@@ -1248,14 +1258,16 @@ class Coach extends Model
                     $coach['day3']['warmup'] = $warmup;
                     $coach['day3']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2);
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 2);
+                    $coach['day3']['workout_intensity'] = 2;
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
                     $coach['day4']['warmup'] = $warmup;
                     $coach['day4']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
-                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout3);
+                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout3, 2);
+                    $coach['day4']['workout_intensity'] = 2;
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
@@ -1263,19 +1275,593 @@ class Coach extends Model
                     $coach['day5']['fundumentals'] = $fundumentals;
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout4;
+                    $coach['day6']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = [3];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
                     $coach['day6']['warmup'] = $warmup;
                     $coach['day6']['fundumentals'] = $fundumentals;
-                    //intensify sWorkout2
-                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout5);
+                    //intensify sWorkout5
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout5, 2);
+                    $coach['day6']['workout_intensity'] = 2;
                     $coach['day6']['stretching'] = $stretches;
                 }
             }
         } elseif ($userLevel == 'professional') {
-            
+            $fundArray = [];
+
+            foreach ($fundumentals as $jKey => $jVal) {
+                $fundArray[] = $jVal['exercise_id'];
+            }
+
+            $userCompletedExercisesQuery = DB::table('exercise_users')
+                ->select('exercise_id')
+                ->where('user_id', $data['user_id'])
+                ->toSql();
+
+            $additionalFundas = DB::table('exercises')
+                ->select('exercises.*')
+                ->whereRaw('exercises.id NOT IN(' . implode(',', $fundArray) . ') AND exercises.id NOT IN(' . $userCompletedExercisesQuery . ')')
+                ->orderBy('exercises.id', 'ASC')
+                ->take(3)
+                ->get();
+
+            if (is_null($additionalFunda)) {
+                $additionalFundas = DB::table('exercises')
+                    ->select('exercises.*')
+                    ->leftJoin('exercise_users', 'exercises.id', '=', 'exercise_users.exercise_id')
+                    ->whereRaw('exercise_users.user_id = ' . $data['user_id'] . ' AND exercises.id NOT IN(' . implode(',', $fundArray) . ') AND exercises.id IN(' . $userCompletedExercisesQuery . ')')
+                    ->orderBy('exercises.id', 'DESC')
+                    ->take(3)
+                    ->get();
+            }
+
+            foreach ($additionalFundas as $aKey => $additionalFunda) {
+                
+                $fundaExercise = Exercise::where('id', $additionalFunda->id)->with(['video'])->first();
+
+                $fundumentals[]['exercise'] = $fundaExercise->toArray();
+            }
+
+            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
+
+            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id);
+
+            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id);
+
+            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id);
+
+            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id);
+
+            $csWorkout6 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][5]->id);
+
+            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id);
+
+            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id);
+
+            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id);
+
+            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id);
+
+            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id);
+
+            $sWorkout6 = self::getWorkoutWithExercises($userWorkouts['strength'][5]->id);
+
+            if ($focus = 1) {
+
+                if ($data['days'] == 2) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day1']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+                } elseif ($data['days'] == 3) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+                } elseif ($data['days'] == 4) {
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+                } elseif ($data['days'] == 5) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [3];                    
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day5']['workout_intensity'] = 3;
+                    $coach['day5']['hiit'] = [1];
+                    $coach['day5']['stretching'] = $stretches;
+                } elseif ($data['days'] == 6) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1, 3];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = self::intensifyWorkout($csWorkout4, 3);
+                    $coach['day4']['workout_intensity'] = 3;
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = $sWorkout1;
+                    $coach['day5']['workout_intensity'] = 1;
+                    $coach['day5']['hiit'] = [2];
+                    $coach['day5']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day6']['workout_intensity'] = 3;
+                    $coach['day6']['stretching'] = $stretches;
+                }
+            } elseif ($focus = 2) {
+
+                if ($data['days'] == 2) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+                } elseif ($data['days'] == 3) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+                } elseif ($data['days'] == 4) {
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout2;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+                } elseif ($data['days'] == 5) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [3];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day5']['workout_intensity'] = 3;
+                    $coach['day5']['hiit'] = [1];                    
+                    $coach['day5']['stretching'] = $stretches;
+                } elseif ($data['days'] == 6) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 2;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $csWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1, 3];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($csWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day4']['workout_intensity'] = 3;
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = $sWorkout2;
+                    $coach['day5']['workout_intensity'] = 1;
+                    $coach['day5']['hiit'] = [2];
+                    $coach['day5']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout3, 3);
+                    $coach['day6']['workout_intensity'] = 3;
+                    $coach['day6']['stretching'] = $stretches;
+                }
+            } elseif ($focus = 3) {
+
+                if ($data['days'] == 2) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+                } elseif ($data['days'] == 3) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [2];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+                } elseif ($data['days'] == 4) {
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($sWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout2;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout3, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout4;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+                } elseif ($data['days'] == 5) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [3];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = $sWorkout3;
+                    $coach['day4']['workout_intensity'] = 1;
+                    $coach['day4']['hiit'] = [2];
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = self::intensifyWorkout($sWorkout4, 3);
+                    $coach['day5']['workout_intensity'] = 3;
+                    $coach['day5']['hiit'] = [1];
+                    $coach['day5']['stretching'] = $stretches;
+                } elseif ($data['days'] == 6) {
+
+                    //Day1 exercise set
+                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['fundumentals'] = $fundumentals;
+                    //intensify csWorkout1
+                    $coach['day1']['workout'] = self::intensifyWorkout($csWorkout1, 3);
+                    $coach['day1']['workout_intensity'] = 3;
+                    $coach['day1']['stretching'] = $stretches;
+
+                    //Day2 Exercise set
+                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['fundumentals'] = $fundumentals;
+                    $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout_intensity'] = 1;
+                    $coach['day2']['hiit'] = [1, 3];
+                    $coach['day2']['stretching'] = $stretches;
+
+                    //Day3 Exercise set
+                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day3']['workout'] = self::intensifyWorkout($sWorkout2, 3);
+                    $coach['day3']['workout_intensity'] = 3;
+                    $coach['day3']['stretching'] = $stretches;
+
+                    //Day4 Exercise set
+                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day4']['workout'] = self::intensifyWorkout($sWorkout3, 3);
+                    $coach['day4']['workout_intensity'] = 3;
+                    $coach['day4']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout2
+                    $coach['day5']['workout'] = $sWorkout4;
+                    $coach['day5']['workout_intensity'] = 1;
+                    $coach['day5']['hiit'] = [2];
+                    $coach['day5']['stretching'] = $stretches;
+
+                    //Day5 Exercise set
+                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['fundumentals'] = $fundumentals;
+                    //intensify sWorkout5
+                    $coach['day6']['workout'] = self::intensifyWorkout($sWorkout5, 3);
+                    $coach['day6']['workout_intensity'] = 3;
+                    $coach['day6']['stretching'] = $stretches;
+                }
+            }
         }
 
         return $coach;
@@ -1293,7 +1879,7 @@ class Coach extends Model
                     ->where('workout_id', '=', $workoutId)
                     ->with(['video', 'exercise'])->get();
 
-            $exercises['round' . $count] = $roundExercises->toArray();
+            $exercises[$count] = $roundExercises->toArray();
 
             $count++;
         } while ($count <= $rounds);
