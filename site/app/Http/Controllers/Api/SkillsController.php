@@ -604,32 +604,12 @@ class SkillsController extends Controller
                 $i = 1;
 
                 do {
-                    $skillRaw = DB::table('skills')
-                        ->select('skills.*')
-                        ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                        ->whereRaw('skills.row = ' . $i)
-                        ->whereRaw('skills.progression_id = ' . 1)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->orderBy('skills.id', 'ASC')
-                        ->first();
 
-                    $pullLevelCount = DB::table('skills')->where('progression_id', 1)->where('row', $i)->count();
-
-                    if (!is_null($skillRaw)) {
-
-                        $skill = Skill::where('id', $skillRaw->id)->with(['exercise'])->first();
-                    } else {
-                        $skill = Skill::where('level', $pullLevelCount)
-                            ->where('row', $i)
-                            ->where('progression_id', 1)
-                            ->with(['exercise'])
-                            ->first();
-                    }
+                    $skill = Skill::where('row', $i)->where('progression_id', 1)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
 
                     $skills['pull'][] = $skill->toArray();
+
                     $i++;
-                    unset($skill);
                 } while ($i <= $pullRowCount);
 
                 $i = 1;
@@ -637,28 +617,7 @@ class SkillsController extends Controller
                 $dipRowCount = count(Skill::where('progression_id', 2)->groupBy('row')->get());
 
                 do {
-                    $skillRaw = DB::table('skills')
-                        ->select('skills.*')
-                        ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                        ->whereRaw('skills.row = ' . $i)
-                        ->whereRaw('skills.progression_id = ' . 2)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->orderBy('skills.id', 'ASC')
-                        ->first();
-
-                    $dipLevelCount = Skill::where('progression_id', 2)->where('row', $i)->count();
-
-                    if (!is_null($skillRaw)) {
-
-                        $skill = Skill::where('id', $skillRaw->id)->with(['exercise'])->first();
-                    } else {
-                        $skill = Skill::where('level', $dipLevelCount)
-                            ->where('row', $i)
-                            ->where('progression_id', 2)
-                            ->with(['exercise'])
-                            ->first();
-                    }
+                    $skill = Skill::where('row', $i)->where('progression_id', 2)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
 
                     $skills['dip'][] = $skill->toArray();
                     $i++;
@@ -670,28 +629,8 @@ class SkillsController extends Controller
                 $fullBodyRowCount = count(Skill::where('progression_id', 3)->groupBy('row')->get());
 
                 do {
-                    $skillRaw = DB::table('skills')
-                        ->select('skills.*')
-                        ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                        ->whereRaw('skills.row = ' . $i)
-                        ->whereRaw('skills.progression_id = ' . 3)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->orderBy('skills.id', 'ASC')
-                        ->first();
 
-                    $fullBodyLevelCount = Skill::where('progression_id', 3)->where('row', $i)->count();
-
-                    if (!is_null($skillRaw)) {
-
-                        $skill = Skill::where('id', $skillRaw->id)->with(['exercise'])->first();
-                    } else {
-                        $skill = Skill::where('level', $fullBodyLevelCount)
-                            ->where('row', $i)
-                            ->where('progression_id', 3)
-                            ->with(['exercise'])
-                            ->first();
-                    }
+                    $skill = Skill::where('row', $i)->where('progression_id', 3)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
 
                     $skills['full_body'][] = $skill->toArray();
                     $i++;
@@ -703,28 +642,9 @@ class SkillsController extends Controller
                 $pushRowCount = count(Skill::where('progression_id', 4)->groupBy('row')->get());
 
                 do {
-                    $skillRaw = DB::table('skills')
-                        ->select('skills.*')
-                        ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                        ->whereRaw('skills.row = ' . $i)
-                        ->whereRaw('skills.progression_id = ' . 4)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->orderBy('skills.id', 'ASC')
-                        ->first();
 
-                    $pushLevelCount = Skill::where('progression_id', 4)->where('row', $i)->groupBy('level')->count();
 
-                    if (!is_null($skillRaw)) {
-
-                        $skill = Skill::where('id', $skillRaw->id)->with(['exercise'])->first();
-                    } else {
-                        $skill = Skill::where('level', $pushLevelCount)
-                            ->where('row', $i)
-                            ->where('progression_id', 4)
-                            ->with(['exercise'])
-                            ->first();
-                    }
+                    $skill = Skill::where('row', $i)->where('progression_id', 4)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
 
                     $skills['push'][] = $skill->toArray();
                     $i++;
@@ -736,28 +656,8 @@ class SkillsController extends Controller
                 $coreRowCount = count(Skill::where('progression_id', 5)->groupBy('row')->get());
 
                 do {
-                    $skillRaw = DB::table('skills')
-                        ->select('skills.*')
-                        ->leftJoin('exercise_users', 'skills.exercise_id', '=', 'exercise_users.exercise_id')
-                        ->whereRaw('skills.row = ' . $i)
-                        ->whereRaw('skills.progression_id = ' . 5)
-                        ->whereRaw('skills.exercise_id NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->whereRaw('skills.substitute NOT IN (' . $unlockedSkillsQuery . ')')
-                        ->orderBy('skills.id', 'ASC')
-                        ->first();
 
-                    $coreLevelCount = Skill::where('progression_id', 5)->where('row', $i)->groupBy('level')->count();
-
-                    if (!is_null($skillRaw)) {
-
-                        $skill = Skill::where('id', $skillRaw->id)->with(['exercise'])->first();
-                    } else {
-                        $skill = Skill::where('level', $pushLevelCount)
-                            ->where('row', $i)
-                            ->where('progression_id', 5)
-                            ->with(['exercise'])
-                            ->first();
-                    }
+                    $skill = Skill::where('row', $i)->where('progression_id', 5)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
 
                     $skills['core'][] = $skill->toArray();
                     $i++;
@@ -1021,97 +921,31 @@ class SkillsController extends Controller
 
     public function isUnlockable($skill, $userId)
     {
-        if ($skill->level <= 2) {
-            return 1;
-        } else {
+        if ($skill->level >= 2) {
+            //check whether the skill already unlocked
             $unLockCount = DB::table('unlocked_skills')
                 ->select('exercise_id')
                 ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
                 ->count();
             if ($unLockCount > 0) {
                 return 0;
-            }
-            if ($skill->substitute > 0) {
-                $subSkill = Skill::where('exercise_id', $skill->substitute)
+            } else {
+                //check whether previous level skills unlocked or not
+                //get previous level skill
+
+                $skill = Skill::where('id', $skill->id)->first();
+
+                $prevSkill = Skill::where('row', $skill->row)
                     ->where('progression_id', $skill->progression_id)
-                    ->where('row', $skill->row)
+                    ->where('level', ($skill->level - 1))
                     ->first();
-
-                if ($subSkill->level > $skill->level) {
-
-                    $prevSkill = Skill::where('level', ($skill->level - 1))
-                        ->where('progression_id', $skill->progression_id)
-                        ->where('row', $skill->row)
-                        ->first();
-                }
-                if ($subSkill->level < $skill->level) {
-
-                    $prevSkill = Skill::where('level', ($subSkill->level - 1))
-                        ->where('progression_id', $skill->progression_id)
-                        ->where('row', $skill->row)
-                        ->first();
-                }
 
                 $unLockCount = DB::table('unlocked_skills')
                     ->select('exercise_id')
                     ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
                     ->count();
-
                 if ($unLockCount > 0) {
                     return 1;
-                }
-
-                if ($prevSkill->substitute > 0) {
-                    $prevSubSkill = Skill::where('exercise_id', $prevSkill->substitute)
-                        ->where('progression_id', $skill->progression_id)
-                        ->where('row', $skill->row)
-                        ->first();
-                    $unLockCount = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSubSkill->id)
-                        ->count();
-
-                    if ($unLockCount > 0) {
-                        return 1;
-                    }
-                } else {
-                    $unLockCount = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
-                        ->count();
-
-                    if ($unLockCount > 0) {
-                        return 1;
-                    }
-                }
-            } else {
-
-                $prevSkill = Skill::where('level', ($skill->level - 1))
-                    ->where('progression_id', $skill->progression_id)
-                    ->where('row', $skill->row)
-                    ->first();
-                if ($prevSkill->substitute > 0) {
-                    $prevSubSkill = Skill::where('exercise_id', $prevSkill->substitute)
-                        ->where('progression_id', $skill->progression_id)
-                        ->where('row', $skill->row)
-                        ->first();
-                    $unLockCount = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSubSkill->id)
-                        ->count();
-
-                    if ($unLockCount > 0) {
-                        return 1;
-                    }
-                } else {
-                    $unLockCount = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
-                        ->count();
-
-                    if ($unLockCount > 0) {
-                        return 1;
-                    }
                 }
             }
         }
@@ -1128,9 +962,9 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "message": "successfully unlocked the skill"
-        }
+      "status": 1,
+      "message": "successfully unlocked the skill"
+      }
      * 
      * 
      * 
@@ -1227,9 +1061,9 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "message": "successfully unlocked the skill"
-        }
+      "status": 1,
+      "message": "successfully unlocked the skill"
+      }
      * 
      * 
      * 
@@ -1300,13 +1134,13 @@ class SkillsController extends Controller
             if (!is_null($user)) {
                 $isUnlocked = Unlockedexercise::where('skill_id', $request->skill_id)->where('user_id', $request->user_id)->count();
                 if ($isUnlocked > 0) {
-                    
+
                     $unlockedSkill = Skill::where('id', $request->skill_id)->first();
-                    
-                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= '. $unlockedSkill->level)->toSql();
-                    
-                    Unlockedexercise::whereRaw('skill_id IN ('.$higherLevelSkills.') AND user_id = '. $request->user_id)->delete();
-                    
+
+                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= ' . $unlockedSkill->level)->toSql();
+
+                    Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
+
                     return response()->json(['status' => 1, 'message' => 'successfully locked the skill'], 500);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'already locked the skill'], 500);

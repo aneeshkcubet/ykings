@@ -223,6 +223,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.getdescription',
         'uses' => 'Api\CoachesController@getDescription'
     ]);
+    
+    Route::post('/coach/preparecoach', [
+        'as' => 'coach.preparecoach',
+        'uses' => 'Api\CoachesController@prepareCoach'
+    ]);
 });
 
 // Authentication routes...
