@@ -329,7 +329,7 @@ class UserSettingsController extends Controller
                             'device_token' => $request->device_token
                     ]);
                    
-                } else {return $request->device_token;
+                } else {
                     $userDeviceToken->device_token = $request->device_token;
                     $userDeviceToken->update();
                 }

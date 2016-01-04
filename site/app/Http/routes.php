@@ -98,6 +98,10 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.unclap',
         'uses' => 'Api\FeedController@unclapFeed'
     ]);
+    Route::post('feeds/notification', [
+        'as' => 'feeds.notification',
+        'uses' => 'Api\FeedController@notification'
+    ]);
     //CommentsController
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
@@ -112,6 +116,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@deleteComment'
     ]);
+
     //UserFollowsController
     Route::post('follow/add', [
         'as' => 'follow.add',
@@ -203,12 +208,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'skill.getlevelskills',
         'uses' => 'Api\SkillsController@getLevelSkills'
     ]);
-    
+
     Route::post('/skills/lockskill', [
         'as' => 'skill.lockskill',
         'uses' => 'Api\SkillsController@lockSkill'
     ]);
-    
+
     Route::post('/skills/unlockskill', [
         'as' => 'skill.unlockskill',
         'uses' => 'Api\SkillsController@unlockSkill'
@@ -218,15 +223,21 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.getfundumentals',
         'uses' => 'Api\CoachesController@getFundumentals'
     ]);
-    
+
     Route::post('/coach/getdescription', [
         'as' => 'coach.getdescription',
         'uses' => 'Api\CoachesController@getDescription'
     ]);
-    
+
     Route::post('/coach/preparecoach', [
         'as' => 'coach.preparecoach',
         'uses' => 'Api\CoachesController@prepareCoach'
+    ]);
+
+    //MessageController
+    Route::post('/user/listNotifications', [
+        'as' => 'user.listNotifications',
+        'uses' => 'Api\MessageController@listNotifications'
     ]);
 });
 
@@ -264,7 +275,7 @@ Route::group(['prefix' => 'admin'], function() {
         'as' => 'admin.admin',
         'uses' => 'Admin\AdminUsersController@index'
     ]);
-     Route::post('/login', [
+    Route::post('/login', [
         'as' => 'admin.login',
         'uses' => 'Admin\AdminUsersController@login'
     ]);

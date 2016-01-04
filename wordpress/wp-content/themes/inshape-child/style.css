@@ -160,7 +160,8 @@ Template: inshape-parent
     text-align: center;  
     top: 40%;  
     width: 100%;
-    position: absolute;  
+    position: absolute; 
+    text-shadow: 2px 1px 3px #000; 
 }
 .entry-content p {
     color:#333;
@@ -176,7 +177,7 @@ Template: inshape-parent
         top:0
     }
 .subscr-btn{
-
+    margin:20px auto;
     }
 
 .newsletter_subscription_message_success {
