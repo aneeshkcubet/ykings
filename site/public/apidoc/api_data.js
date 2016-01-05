@@ -260,6 +260,55 @@ define({ "api": [
             "optional": false,
             "field": "user_id",
             "description": "<p>Id of user *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "test1",
+            "description": "<p>status of test1 0-failed 1-passed *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "test2",
+            "description": "<p>status of test2 0-failed 1-passed *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "focus",
+            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "days",
+            "description": "<p>number of workout days per week *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "progression",
+            "description": "<p>progression which user focus on 1-Pull, 2-Dip, 3-Full Body, 4-Push, 5-Core  *mandatory</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "height",
+            "description": "<p>user height in centimeters *optional</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "weight",
+            "description": "<p>user weight in lbs *optional</p> "
           }
         ]
       }
@@ -279,7 +328,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"descriptions\": {\n      \"1\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in faucibus orci. Nunc et lorem libero. Nulla facilisi. Nunc dictum, sapien ut tincidunt ultrices, dui nunc auctor velit, ac porta lacus turpis non massa. Quisque nec vestibulum risus, quis consequat lectus. Curabitur dignissim risus ac velit tincidunt dignissim. Mauris nec risus eget felis mollis tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In suscipit blandit bibendum. Nulla venenatis sed libero at ornare. Interdum et malesuada fames ac ante ipsum primis in faucibus. \",\n      \"2\": \"Vestibulum rutrum efficitur vulputate. Mauris quam turpis, pellentesque sed mauris eget, imperdiet scelerisque libero. Sed vitae leo id massa consectetur vestibulum ut ac tellus. Nam luctus nisl at leo sagittis condimentum. Duis malesuada, nisl sit amet tincidunt sollicitudin, turpis leo aliquam eros, eu aliquam felis massa id urna. Suspendisse potenti. Curabitur sodales accumsan varius. Aenean nulla sem, consectetur sed ex sed, vestibulum iaculis felis. Suspendisse neque eros, sagittis quis pulvinar a, porta id est. Curabitur diam massa, semper et pretium vitae, commodo ut ligula. Sed venenatis imperdiet suscipit. Nam egestas ante vitae augue sodales consectetur. Ut vel molestie dolor. Nam lorem nibh, maximus vitae urna eget, interdum aliquam libero. Suspendisse ut metus justo. Mauris hendrerit pulvinar orci, at efficitur odio porta ut. \",\n      \"3\": \"Nullam sit amet eros nec nibh feugiat scelerisque vitae in ante. Mauris eu hendrerit eros. In et risus vel purus pharetra mollis quis sed tellus. Sed ut libero posuere risus aliquam consectetur non ac dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lobortis nulla ut elementum. Aliquam vel accumsan leo. In sagittis enim scelerisque dolor dictum tristique. Donec mattis ut turpis id finibus. Nullam ac imperdiet nisi. In accumsan massa id magna imperdiet eleifend. Donec tempor blandit lacinia. Nulla vitae ligula sit amet est luctus vehicula. \"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK",
           "type": "json"
         }
       ]
@@ -2293,7 +2342,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"status\": 1,\n    \"notifications\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"41\",\n            \"friend_id\": \"28\",\n            \"message_type\": \"clap\",\n            \"type_id\": \"1\",\n            \"message\": \"claped feed\",\n            \"read\": \"0\",\n            \"created_at\": \"2015-12-31 00:00:00\",\n            \"updated_at\": \"2016-01-01 11:02:43\",\n            \"image\": \"28_1448283791.jpg\"\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"41\",\n            \"friend_id\": \"2\",\n            \"message_type\": \"clap\",\n            \"type_id\": \"1\",\n            \"message\": \"claped feed\",\n            \"read\": \"0\",\n            \"created_at\": \"2015-12-31 00:00:00\",\n            \"updated_at\": \"2016-01-01 11:02:45\",\n            \"image\": \"\"\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n        \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n        \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n        \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n        \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"notifications\": [\n      {\n      \"id\": \"1\",\n      \"user_id\": \"41\",\n      \"friend_id\": \"28\",\n      \"message_type\": \"clap\",\n      \"type_id\": \"1\",\n      \"message\": \"claped feed\",\n      \"read\": \"0\",\n      \"created_at\": \"2015-12-31 00:00:00\",\n      \"updated_at\": \"2016-01-01 11:02:43\",\n      \"image\": \"28_1448283791.jpg\"\n      },\n      {\n      \"id\": \"2\",\n      \"user_id\": \"41\",\n      \"friend_id\": \"2\",\n      \"message_type\": \"clap\",\n      \"type_id\": \"1\",\n      \"message\": \"claped feed\",\n      \"read\": \"0\",\n      \"created_at\": \"2015-12-31 00:00:00\",\n      \"updated_at\": \"2016-01-01 11:02:45\",\n      \"image\": \"\"\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2333,6 +2382,194 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/MessageController.php",
+    "groupTitle": "Message"
+  },
+  {
+    "type": "post",
+    "url": "/social/facebookDisconnect",
+    "title": "facebookLogin",
+    "name": "updateReadStatus",
+    "group": "Message",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>message of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n {\n            \"status\": 1,\n            \"success\": \"Facebook Disconnected\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n {\n    \"status\": 0,\n    \"error\": \"message_not_exists\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SocialController.php",
+    "groupTitle": "Message"
+  },
+  {
+    "type": "post",
+    "url": "/message/updateReadStatus",
+    "title": "updateReadStatus",
+    "name": "updateReadStatus",
+    "group": "Message",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>message of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n     {\n                \"status\": 1,\n                \"success\": \"Successfully Updated\"\n            }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n {\n             \"status\": 0,\n             \"error\": \"message_not_exists\"\n         }",
           "type": "json"
         }
       ]
@@ -3008,7 +3245,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"message\": \"successfully unlocked the skill\"\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"message\": \"successfully unlocked the skill\"\n      }",
           "type": "json"
         }
       ]
@@ -3107,7 +3344,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"message\": \"successfully unlocked the skill\"\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"message\": \"successfully unlocked the skill\"\n      }",
           "type": "json"
         }
       ]
@@ -3276,7 +3513,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_logged_in\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ5NjYyODMyIiwiZXhwIjoiMTQ1MzI2MjgzMiIsIm5iZiI6IjE0NDk2NjI4MzIiLCJqdGkiOiI4Zjc1ZjliMmJjMzFmMmQ5OWIzZGUzYmI3OWMyM2QxYiJ9.DlOJuP45ticT3wHRVMLp3mgXFQCbbPUetHYK2ucjIJA\",\n        \"user\": {\n            \"id\": \"75\",\n            \"email\": \"kiran.lm@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-12-04 10:24:06\",\n            \"updated_at\": \"2015-12-04 10:24:06\",\n            \"workout_count\": 0,\n            \"points\": 0,\n            \"level\": 1,\n            \"facebook_connect\": 1,\n            \"follower_count\": 0,\n            \"is_subscribed\": 0,\n            \"profile\": [\n                {\n                    \"id\": \"59\",\n                    \"user_id\": \"75\",\n                    \"first_name\": \"kiran\",\n                    \"last_name\": \"\",\n                    \"gender\": \"0\",\n                    \"fitness_status\": \"0\",\n                    \"goal\": \"0\",\n                    \"image\": \"75_1449224652.jpg\",\n                    \"cover_image\": \"\",\n                    \"city\": \"\",\n                    \"state\": \"\",\n                    \"country\": \"\",\n                    \"spot\": \"\",\n                    \"quote\": \"\",\n                    \"instagram\": \"0\",\n                    \"twitter\": \"0\",\n                    \"facebook\": \"0\",\n                    \"fb\": \"0\",\n                    \"created_at\": \"2015-12-04 10:24:11\",\n                    \"updated_at\": \"2015-12-04 16:58:53\",\n                    \"level\": 1\n                }\n            ],\n            \"settings\": [\n                {\n                    \"id\": \"30\",\n                    \"user_id\": \"75\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-04 10:24:11\",\n                    \"updated_at\": \"2015-12-04 10:24:11\"\n                },\n                {\n                    \"id\": \"31\",\n                    \"user_id\": \"75\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n                    \"created_at\": \"2015-12-04 10:24:11\",\n                    \"updated_at\": \"2015-12-04 10:24:11\"\n                }\n            ]\n        },\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"successfully_logged_in\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ5NjYyODMyIiwiZXhwIjoiMTQ1MzI2MjgzMiIsIm5iZiI6IjE0NDk2NjI4MzIiLCJqdGkiOiI4Zjc1ZjliMmJjMzFmMmQ5OWIzZGUzYmI3OWMyM2QxYiJ9.DlOJuP45ticT3wHRVMLp3mgXFQCbbPUetHYK2ucjIJA\",\n      \"user\": {\n      \"id\": \"75\",\n      \"email\": \"kiran.lm@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-12-04 10:24:06\",\n      \"updated_at\": \"2015-12-04 10:24:06\",\n      \"workout_count\": 0,\n      \"points\": 0,\n      \"level\": 1,\n      \"facebook_connect\": 1,\n      \"follower_count\": 0,\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"59\",\n      \"user_id\": \"75\",\n      \"first_name\": \"kiran\",\n      \"last_name\": \"\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"75_1449224652.jpg\",\n      \"cover_image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"\",\n      \"instagram\": \"0\",\n      \"twitter\": \"0\",\n      \"facebook\": \"0\",\n      \"fb\": \"0\",\n      \"created_at\": \"2015-12-04 10:24:11\",\n      \"updated_at\": \"2015-12-04 16:58:53\",\n      \"level\": 1\n      }\n      ],\n      \"settings\": [\n      {\n      \"id\": \"30\",\n      \"user_id\": \"75\",\n      \"key\": \"subscription\",\n      \"value\": \"1\",\n      \"created_at\": \"2015-12-04 10:24:11\",\n      \"updated_at\": \"2015-12-04 10:24:11\"\n      },\n      {\n      \"id\": \"31\",\n      \"user_id\": \"75\",\n      \"key\": \"notification\",\n      \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n      \"created_at\": \"2015-12-04 10:24:11\",\n      \"updated_at\": \"2015-12-04 10:24:11\"\n      }\n      ]\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -3446,7 +3683,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_created_user\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NyIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rU2lnblVwIiwiaWF0IjoiMTQ0OTY2Mjk1NCIsImV4cCI6IjE0NTMyNjI5NTQiLCJuYmYiOiIxNDQ5NjYyOTU0IiwianRpIjoiMzU4MGY2NTM4YTE1Y2QzZWE5YzMxMDcxOTg4M2VhN2UifQ.2atfPXavOuhdFhUet3DA6qX5PV22q-irT400XRe1hoA\",\n        \"user\": {\n            \"id\": \"77\",\n            \"email\": \"kiranlm1@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-12-09 12:09:08\",\n            \"updated_at\": \"2015-12-09 12:09:08\",\n            \"workout_count\": 0,\n            \"points\": 0,\n            \"level\": 1,\n            \"facebook_connect\": 1,\n            \"follower_count\": 0,\n            \"is_subscribed\": 0,\n            \"profile\": [\n                {\n                    \"id\": \"61\",\n                    \"user_id\": \"77\",\n                    \"first_name\": \"kiran\",\n                    \"last_name\": \"lm\",\n                    \"gender\": \"0\",\n                    \"fitness_status\": \"0\",\n                    \"goal\": \"0\",\n                    \"image\": \"77_1449662953.jpg\",\n                    \"cover_image\": \"\",\n                    \"city\": \"\",\n                    \"state\": \"\",\n                    \"country\": \"\",\n                    \"spot\": \"\",\n                    \"quote\": \"\",\n                    \"instagram\": \"\",\n                    \"twitter\": \"\",\n                    \"facebook\": \"\",\n                    \"fb\": \"0\",\n                    \"created_at\": \"2015-12-09 12:09:12\",\n                    \"updated_at\": \"2015-12-09 12:09:13\",\n                    \"level\": 1\n                }\n            ],\n            \"settings\": [\n                {\n                    \"id\": \"34\",\n                    \"user_id\": \"77\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-09 12:09:12\",\n                    \"updated_at\": \"2015-12-09 12:09:12\"\n                },\n                {\n                    \"id\": \"35\",\n                    \"user_id\": \"77\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n                    \"created_at\": \"2015-12-09 12:09:12\",\n                    \"updated_at\": \"2015-12-09 12:09:12\"\n                }\n            ]\n        },\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"successfully_created_user\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NyIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rU2lnblVwIiwiaWF0IjoiMTQ0OTY2Mjk1NCIsImV4cCI6IjE0NTMyNjI5NTQiLCJuYmYiOiIxNDQ5NjYyOTU0IiwianRpIjoiMzU4MGY2NTM4YTE1Y2QzZWE5YzMxMDcxOTg4M2VhN2UifQ.2atfPXavOuhdFhUet3DA6qX5PV22q-irT400XRe1hoA\",\n      \"user\": {\n      \"id\": \"77\",\n      \"email\": \"kiranlm1@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-12-09 12:09:08\",\n      \"updated_at\": \"2015-12-09 12:09:08\",\n      \"workout_count\": 0,\n      \"points\": 0,\n      \"level\": 1,\n      \"facebook_connect\": 1,\n      \"follower_count\": 0,\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"61\",\n      \"user_id\": \"77\",\n      \"first_name\": \"kiran\",\n      \"last_name\": \"lm\",\n      \"gender\": \"0\",\n      \"fitness_status\": \"0\",\n      \"goal\": \"0\",\n      \"image\": \"77_1449662953.jpg\",\n      \"cover_image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"\",\n      \"instagram\": \"\",\n      \"twitter\": \"\",\n      \"facebook\": \"\",\n      \"fb\": \"0\",\n      \"created_at\": \"2015-12-09 12:09:12\",\n      \"updated_at\": \"2015-12-09 12:09:13\",\n      \"level\": 1\n      }\n      ],\n      \"settings\": [\n      {\n      \"id\": \"34\",\n      \"user_id\": \"77\",\n      \"key\": \"subscription\",\n      \"value\": \"1\",\n      \"created_at\": \"2015-12-09 12:09:12\",\n      \"updated_at\": \"2015-12-09 12:09:12\"\n      },\n      {\n      \"id\": \"35\",\n      \"user_id\": \"77\",\n      \"key\": \"notification\",\n      \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"0\\\",\\\"follow\\\":\\\"0\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"}\",\n      \"created_at\": \"2015-12-09 12:09:12\",\n      \"updated_at\": \"2015-12-09 12:09:12\"\n      }\n      ]\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]

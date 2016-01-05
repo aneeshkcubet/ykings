@@ -73,6 +73,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'facebook.update',
         'uses' => 'Api\SocialController@facebookUpdate'
     ]);
+    
+     Route::post('social/facebookDisconnect', [
+        'as' => 'facebook.disconnect',
+        'uses' => 'Api\SocialController@facebookDisconnect'
+    ]);
     //FeedController
     Route::post('feeds/create', [
         'as' => 'feeds.create',

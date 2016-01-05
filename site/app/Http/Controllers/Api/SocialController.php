@@ -50,83 +50,83 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-        "status": 1,
-        "success": "successfully_created_user",
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NyIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rU2lnblVwIiwiaWF0IjoiMTQ0OTY2Mjk1NCIsImV4cCI6IjE0NTMyNjI5NTQiLCJuYmYiOiIxNDQ5NjYyOTU0IiwianRpIjoiMzU4MGY2NTM4YTE1Y2QzZWE5YzMxMDcxOTg4M2VhN2UifQ.2atfPXavOuhdFhUet3DA6qX5PV22q-irT400XRe1hoA",
-        "user": {
-            "id": "77",
-            "email": "kiranlm1@cubettech.com",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-12-09 12:09:08",
-            "updated_at": "2015-12-09 12:09:08",
-            "workout_count": 0,
-            "points": 0,
-            "level": 1,
-            "facebook_connect": 1,
-            "follower_count": 0,
-            "is_subscribed": 0,
-            "profile": [
-                {
-                    "id": "61",
-                    "user_id": "77",
-                    "first_name": "kiran",
-                    "last_name": "lm",
-                    "gender": "0",
-                    "fitness_status": "0",
-                    "goal": "0",
-                    "image": "77_1449662953.jpg",
-                    "cover_image": "",
-                    "city": "",
-                    "state": "",
-                    "country": "",
-                    "spot": "",
-                    "quote": "",
-                    "instagram": "",
-                    "twitter": "",
-                    "facebook": "",
-                    "fb": "0",
-                    "created_at": "2015-12-09 12:09:12",
-                    "updated_at": "2015-12-09 12:09:13",
-                    "level": 1
-                }
-            ],
-            "settings": [
-                {
-                    "id": "34",
-                    "user_id": "77",
-                    "key": "subscription",
-                    "value": "1",
-                    "created_at": "2015-12-09 12:09:12",
-                    "updated_at": "2015-12-09 12:09:12"
-                },
-                {
-                    "id": "35",
-                    "user_id": "77",
-                    "key": "notification",
-                    "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
-                    "created_at": "2015-12-09 12:09:12",
-                    "updated_at": "2015-12-09 12:09:12"
-                }
-            ]
-        },
-        "urls": {
-            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-            "video": "http://ykings.me/uploads/videos",
-            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
-            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
-            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
-        }
-    }
+      "status": 1,
+      "success": "successfully_created_user",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NyIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rU2lnblVwIiwiaWF0IjoiMTQ0OTY2Mjk1NCIsImV4cCI6IjE0NTMyNjI5NTQiLCJuYmYiOiIxNDQ5NjYyOTU0IiwianRpIjoiMzU4MGY2NTM4YTE1Y2QzZWE5YzMxMDcxOTg4M2VhN2UifQ.2atfPXavOuhdFhUet3DA6qX5PV22q-irT400XRe1hoA",
+      "user": {
+      "id": "77",
+      "email": "kiranlm1@cubettech.com",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-12-09 12:09:08",
+      "updated_at": "2015-12-09 12:09:08",
+      "workout_count": 0,
+      "points": 0,
+      "level": 1,
+      "facebook_connect": 1,
+      "follower_count": 0,
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "61",
+      "user_id": "77",
+      "first_name": "kiran",
+      "last_name": "lm",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": "77_1449662953.jpg",
+      "cover_image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "spot": "",
+      "quote": "",
+      "instagram": "",
+      "twitter": "",
+      "facebook": "",
+      "fb": "0",
+      "created_at": "2015-12-09 12:09:12",
+      "updated_at": "2015-12-09 12:09:13",
+      "level": 1
+      }
+      ],
+      "settings": [
+      {
+      "id": "34",
+      "user_id": "77",
+      "key": "subscription",
+      "value": "1",
+      "created_at": "2015-12-09 12:09:12",
+      "updated_at": "2015-12-09 12:09:12"
+      },
+      {
+      "id": "35",
+      "user_id": "77",
+      "key": "notification",
+      "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
+      "created_at": "2015-12-09 12:09:12",
+      "updated_at": "2015-12-09 12:09:12"
+      }
+      ]
+      },
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      }
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
@@ -313,83 +313,83 @@ class SocialController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-        "status": 1,
-        "success": "successfully_logged_in",
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ5NjYyODMyIiwiZXhwIjoiMTQ1MzI2MjgzMiIsIm5iZiI6IjE0NDk2NjI4MzIiLCJqdGkiOiI4Zjc1ZjliMmJjMzFmMmQ5OWIzZGUzYmI3OWMyM2QxYiJ9.DlOJuP45ticT3wHRVMLp3mgXFQCbbPUetHYK2ucjIJA",
-        "user": {
-            "id": "75",
-            "email": "kiran.lm@cubettech.com",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-12-04 10:24:06",
-            "updated_at": "2015-12-04 10:24:06",
-            "workout_count": 0,
-            "points": 0,
-            "level": 1,
-            "facebook_connect": 1,
-            "follower_count": 0,
-            "is_subscribed": 0,
-            "profile": [
-                {
-                    "id": "59",
-                    "user_id": "75",
-                    "first_name": "kiran",
-                    "last_name": "",
-                    "gender": "0",
-                    "fitness_status": "0",
-                    "goal": "0",
-                    "image": "75_1449224652.jpg",
-                    "cover_image": "",
-                    "city": "",
-                    "state": "",
-                    "country": "",
-                    "spot": "",
-                    "quote": "",
-                    "instagram": "0",
-                    "twitter": "0",
-                    "facebook": "0",
-                    "fb": "0",
-                    "created_at": "2015-12-04 10:24:11",
-                    "updated_at": "2015-12-04 16:58:53",
-                    "level": 1
-                }
-            ],
-            "settings": [
-                {
-                    "id": "30",
-                    "user_id": "75",
-                    "key": "subscription",
-                    "value": "1",
-                    "created_at": "2015-12-04 10:24:11",
-                    "updated_at": "2015-12-04 10:24:11"
-                },
-                {
-                    "id": "31",
-                    "user_id": "75",
-                    "key": "notification",
-                    "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
-                    "created_at": "2015-12-04 10:24:11",
-                    "updated_at": "2015-12-04 10:24:11"
-                }
-            ]
-        },
-        "urls": {
-            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-            "video": "http://ykings.me/uploads/videos",
-            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
-            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
-            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
-        }
-    }
+      "status": 1,
+      "success": "successfully_logged_in",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3NSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC9zb2NpYWxcL2ZhY2Vib29rTG9naW4iLCJpYXQiOiIxNDQ5NjYyODMyIiwiZXhwIjoiMTQ1MzI2MjgzMiIsIm5iZiI6IjE0NDk2NjI4MzIiLCJqdGkiOiI4Zjc1ZjliMmJjMzFmMmQ5OWIzZGUzYmI3OWMyM2QxYiJ9.DlOJuP45ticT3wHRVMLp3mgXFQCbbPUetHYK2ucjIJA",
+      "user": {
+      "id": "75",
+      "email": "kiran.lm@cubettech.com",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-12-04 10:24:06",
+      "updated_at": "2015-12-04 10:24:06",
+      "workout_count": 0,
+      "points": 0,
+      "level": 1,
+      "facebook_connect": 1,
+      "follower_count": 0,
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "59",
+      "user_id": "75",
+      "first_name": "kiran",
+      "last_name": "",
+      "gender": "0",
+      "fitness_status": "0",
+      "goal": "0",
+      "image": "75_1449224652.jpg",
+      "cover_image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "spot": "",
+      "quote": "",
+      "instagram": "0",
+      "twitter": "0",
+      "facebook": "0",
+      "fb": "0",
+      "created_at": "2015-12-04 10:24:11",
+      "updated_at": "2015-12-04 16:58:53",
+      "level": 1
+      }
+      ],
+      "settings": [
+      {
+      "id": "30",
+      "user_id": "75",
+      "key": "subscription",
+      "value": "1",
+      "created_at": "2015-12-04 10:24:11",
+      "updated_at": "2015-12-04 10:24:11"
+      },
+      {
+      "id": "31",
+      "user_id": "75",
+      "key": "notification",
+      "value": "{\"comments\":\"1\",\"claps\":\"0\",\"follow\":\"0\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"}",
+      "created_at": "2015-12-04 10:24:11",
+      "updated_at": "2015-12-04 10:24:11"
+      }
+      ]
+      },
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      }
+      }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
@@ -613,6 +613,90 @@ class SocialController extends Controller
                 return true;
             } else {
                 return false;
+            }
+        }
+    }
+
+    /**
+     * @api {post} /social/facebookDisconnect facebookLogin
+     * @apiName updateReadStatus
+     * @apiGroup Message
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} message_id message of user *required
+     * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+            "status": 1,
+            "success": "Facebook Disconnected"
+        }
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error user_not_exists
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status" : 0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 user_not_exists
+     *     {
+     *       "status" : 0,
+     *       "error": "user_not_exists"
+     *     }  
+     * @apiErrorExample Error-Response:
+     *   HTTP/1.1 400 user_not_exists
+     *    {
+      "status": 0,
+      "error": "message_not_exists"
+      }
+     */
+    public function facebookDisconnect(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+            if ($user) {
+                $social = Social::where('user_id', '=', $request->user_id)
+                    ->where('provider', '=', 'facebook')
+                    ->where('provider_uid', '!=', '')
+                    ->first();
+
+                if (!is_null($social)) {
+                    $social->delete();
+                    return response()->json(['status' => 1, 'success' => 'Facebook Disconnected'], 200);
+                }
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }
         }
     }

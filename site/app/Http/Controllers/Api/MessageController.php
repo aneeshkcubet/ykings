@@ -148,7 +148,10 @@ class MessageController extends Controller
      * 
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     *      {
+                "status": 1,
+                "success": "Successfully Updated"
+            }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -190,7 +193,12 @@ class MessageController extends Controller
      *       "status" : 0,
      *       "error": "user_not_exists"
      *     }  
-     *  
+     * @apiErrorExample Error-Response:
+     *   HTTP/1.1 400 user_not_exists
+     *    {
+               "status": 0,
+               "error": "message_not_exists"
+           }
      */
     public function updateReadStatus(Request $request)
     {
