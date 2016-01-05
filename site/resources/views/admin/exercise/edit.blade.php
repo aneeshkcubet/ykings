@@ -36,7 +36,7 @@ Edit User
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> <i class="livicon" data-name="users" data-size="16" data-c="#fff" data-hc="#fff" data-loop="true"></i>
-                        Editing user : {{{  $tUser['profile'][0]['first_name']}}} {{{ $tUser['profile'][0]['last_name']}}}
+                        Editing Exercise : {{{  $exercise-> name }}} 
                     </h3>
                     <span class="pull-right clickable">
                         <i class="glyphicon glyphicon-chevron-up"></i>
@@ -44,130 +44,81 @@ Edit User
                 </div>
                 <div class="panel-body">
 
-                    <!-- errors -->
-                    <div class="has-error">
-                        {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('group', '<span class="help-block">:message</span>') !!}
-                        {!! $errors->first('pic', '<span class="help-block">:message</span>') !!}
-                    </div>
-
                     <!--main content-->
                     <div class="row">
-
                         <div class="col-md-12">
-
                             <!-- BEGIN FORM WIZARD WITH VALIDATION -->
                             <form class="form-wizard form-horizontal" action="" method="POST" id="wizard" enctype="multipart/form-data">
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
                                 <!-- first tab -->
-                                <h1>User Profile</h1>
+                                <h1>Exercise</h1>
                                 <section>
                                     <div class="form-group">
-                                        <label for="first_name" class="col-sm-2 control-label">First Name *</label>
+                                        <label for="name" class="col-sm-2 control-label">Name *</label>
                                         <div class="col-sm-10">
-                                            <input id="first_name" name="first_name" type="text" placeholder="First Name" class="form-control required" value="{{{ Input::old('first_name',$tUser['profile'][0]['first_name']) }}}" />
+                                            <input id="name" name="name" type="text" placeholder="Name" class="form-control required" value="{{{ Input::old('name', $exercise->name) }}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="col-sm-2 control-label">Description *</label>
+                                        <div class="col-sm-10">
+                                            <input id="description" name="description" type="text" placeholder="Description" class="form-control required" value="{{{ Input::old('description', $exercise->description) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="last_name" class="col-sm-2 control-label">Last Name *</label>
+                                        <label for="category" class="col-sm-2 control-label">Category *</label>
                                         <div class="col-sm-10">
-                                            <input id="last_name" name="last_name" type="text" placeholder="Last Name" class="form-control required" value="{{{ Input::old('last_name', $tUser['profile'][0]['last_name']) }}}" />
+                                            <input id="category" name="category" placeholder="Category" type="text" class="form-control required " value="{{{ Input::old('category' , $exercise->category) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Email *</label>
+                                        <label for="type" class="col-sm-2 control-label">Type *</label>
                                         <div class="col-sm-10">
-                                            <input id="email" name="email" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email', $tUser->email) }}}" />
-                                        </div>
-                                    </div>
-
-<!--                                    <div class="form-group">
-                                        <p class="text-warning">If you don't want to change password... please leave them empty</p>
-                                        <label for="password" class="col-sm-2 control-label">Password *</label>
-                                        <div class="col-sm-10">
-                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="{{{ Input::old('password' , $tUser->password) }}}" />
+                                            <input id="type" name="type" type="text" placeholder="Type" class="form-control required" value="{{{ Input::old('type' , $exercise->type) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password_confirm" class="col-sm-2 control-label">Confirm Password *</label>
+                                        <label for="rewards" class="col-sm-2 control-label">Rewards *</label>
                                         <div class="col-sm-10">
-                                            <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirm Password " class="form-control" value="{{{ Input::old('password_confirm') }}}" />
+                                            <input id="rewards" name="rewards" type="text" placeholder="Rewards" class="form-control required" value="{{{ Input::old('rewards' , $exercise->rewards) }}}" />
                                         </div>
-                                    </div>-->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="repititions" class="col-sm-2 control-label">Repititions *</label>
+                                        <div class="col-sm-10">
+                                            <input id="repititions" name="repititions" type="text" placeholder="Repititions" class="form-control required" value="{{{ Input::old('repititions' , $exercise->repititions) }}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="duration" class="col-sm-2 control-label">Duration *</label>
+                                        <div class="col-sm-10">
+                                            <input id="duration" name="duration" type="text" placeholder="Duration" class="form-control required" value="{{{ Input::old('duration' , $exercise->duration) }}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="unit" class="col-sm-2 control-label">Unit *</label>
+                                        <div class="col-sm-10">
+                                            <input id="duration" name="unit" type="text" placeholder="Unit" class="form-control required" value="{{{ Input::old('unit' , $exercise->unit) }}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="equipment" class="col-sm-2 control-label">Equipment *</label>
+                                        <div class="col-sm-10">
+                                            <input id="equipment" name="equipment" type="text" placeholder="Equipment" class="form-control" value="{{{ Input::old('equipment' , $exercise->equipment) }}}" />
+                                        </div>
+                                    </div>
 
                                     <p>(*) Mandatory</p>
                                 </section>
-                                <!-- second tab -->
-                                <h1>Bio</h1>
-                                <section>
-                                    <div class="form-group">
-                                        <label for="pic" class="col-sm-2 control-label">Profile picture</label>
-                                        <div class="col-sm-10">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
-                                                    @if($tUser['profile'][0]['image'] )
-                                                    <img src="{{{ url('/').'/uploads/users/'.$tUser['profile'][0]['image'] }}}" alt="profile pic">
-                                                    @else
-                                                    <img src="http://placehold.it/200x200" alt="profile pic">
-                                                    @endif
-                                                </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"></div>
-                                                <div>
-                                                    <span class="btn btn-default btn-file">
-                                                        <span class="fileinput-new">Select image</span>
-                                                        <span class="fileinput-exists">Change</span>
-                                                        <input id="pic" name="pic" type="file" class="form-control" />
-                                                    </span>
-                                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <!-- third tab -->
-                                <h1>Address</h1>
-                                <section>
-                                    <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Gender</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" title="Select Gender..." name="gender">
-                                                <option value="">Select</option>
-                                                <option value="male" @if($tUser['profile'][0]['gender'] === '1') selected="selected" @endif >MALE</option>
-                                                <option value="female" @if($tUser['profile'][0]['gender'] === '2') selected="selected" @endif >FEMALE</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="country" class="col-sm-2 control-label">Country</label>
-                                        <div class="col-sm-10">
-                                            <input id="state" name="country" type="text" class="form-control" value="{{{ Input::old('country',   $tUser['profile'][0]['country']) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="state" class="col-sm-2 control-label">State</label>
-                                        <div class="col-sm-10">
-                                            <input id="state" name="state" type="text" class="form-control" value="{{{ Input::old('state',  $tUser['profile'][0]['state']) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="city" class="col-sm-2 control-label">City</label>
-                                        <div class="col-sm-10">
-                                            <input id="city" name="city" type="text" class="form-control" value="{{{ Input::old('city', $tUser['profile'][0]['city']) }}}" />
-                                        </div>
-                                    </div>
-                                </section>
-
                             </form>
                             <!-- END FORM WIZARD WITH VALIDATION --> 
                         </div>

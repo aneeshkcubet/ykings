@@ -334,10 +334,22 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/', array('as' => 'exercise', 'uses' => 'Admin\ExerciseController@getIndex'));
         Route::get('create', array('as' => 'create.exercise', 'uses' => 'Admin\ExerciseController@getCreate'));
         Route::post('create', 'Admin\ExerciseController@postCreate');
-        Route::get('{userId}/edit', array('as' => 'users.update', 'uses' => 'Admin\ExerciseController@getEdit'));
+        Route::get('{userId}/edit', array('as' => 'exercise.update', 'uses' => 'Admin\ExerciseController@getEdit'));
         Route::post('{userId}/edit', 'Admin\ExerciseController@postEdit');
-        Route::get('{userId}', array('as' => 'users.show', 'uses' => 'Admin\ExerciseController@show'));
+        Route::get('{userId}', array('as' => 'exercise.show', 'uses' => 'Admin\ExerciseController@show'));
         Route::get('{userId}/delete', array('as' => 'delete.user', 'uses' => 'Admin\ExerciseController@getDelete'));
         Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Admin\ExerciseController@getModalDelete'));
+    });
+    
+    # Workout Management
+    Route::group(array('prefix' => 'workout'), function () {
+        Route::get('/', array('as' => 'workout', 'uses' => 'Admin\WorkoutController@getIndex'));
+        Route::get('create', array('as' => 'create.exercise', 'uses' => 'Admin\WorkoutController@getCreate'));
+        Route::post('create', 'Admin\WorkoutController@postCreate');
+        Route::get('{userId}/edit', array('as' => 'users.update', 'uses' => 'Admin\WorkoutController@getEdit'));
+        Route::post('{userId}/edit', 'Admin\WorkoutController@postEdit');
+        Route::get('{userId}', array('as' => 'users.show', 'uses' => 'Admin\WorkoutController@show'));
+        Route::get('{userId}/delete', array('as' => 'delete.user', 'uses' => 'Admin\WorkoutController@getDelete'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Admin\WorkoutController@getModalDelete'));
     });
 });

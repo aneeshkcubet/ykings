@@ -54,62 +54,24 @@ class ExerciseController extends Controller
      */
     public function postCreate()
     {
-        // Declare the rules for the form validation
-        $rules = array(
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|between:3,32',
-            'password_confirm' => 'required|same:password',
-            'pic' => 'mimes:jpg,jpeg,bmp,png|max:10000'
-        );
-
-        // Create a new validator instance from our validation rules
-        //$validator = Validator::make(Input::all(), $rules);
-        // If validation fails, we'll exit the operation now.
-        // if ($validator->fails()) {
-        // Ooops.. something went wrong
-        //   return Redirect::back()->withInput()->withErrors($validator);
-        // }
-//        //upload image
-//        if ($file = Input::file('pic')) {
-//            $fileName = $file->getClientOriginalName();
-//            $extension = $file->getClientOriginalExtension() ? : 'png';
-//            $folderName = '/uploads/images/profile/original';
-//            $destinationPath = public_path() . $folderName;
-//            $safeName = str_random(10) . '.' . $extension;
-//            $file->move($destinationPath, $safeName);
-//        }
-        //check whether use should be activated by default or not
-        //  $activate = Input::get('activate') ? true : false;
-
         try {
 
-            $confirmation_code = str_random(30);
-            $user = User::create([
-                    'email' => Input::get('email'),
-                    'password' => Hash::make(Input::get('password')),
-                    'confirmation_code' => $confirmation_code,
-                    'status' => 0
+            // Register the user
+            Exercise::create([
+                'name' => Input::get('name'),
+                'description' => Input::get('description'),
+                'category' => Input::get('category'),
+                'type' => Input::get('type'),
+                'rewards' => Input::get('rewards'),
+                'repetitions' => Input::get('repetitions'),
+                'duration' => Input::get('duration'),
+                'unit' => Input::get('unit'),
+                'equipment' => Input::get('equipment')
             ]);
 
-            // Register the user
-            $profile = new Profile(array(
-                'first_name' => Input::get('first_name'),
-                'last_name' => Input::get('last_name'),
-                'password' => Input::get('password'),
-                //  'image' => isset($safeName) ? $safeName : '',
-                'gender' => Input::get('gender'),
-                'country' => Input::get('country'),
-                'state' => Input::get('state'),
-                'city' => Input::get('city'),
-                'spot' => Input::get('spot'),
-                'quote' => Input::get('quote')
-            ));
-            $userProfile = $user->profile()->save($profile);
             //check for activation and send activation mail if not activated by default
             // Redirect to the home page with success menu
-            return Redirect::route("users")->with('success', Lang::get('Successfully created'));
+            return Redirect::route("exercise")->with('success', Lang::get('Successfully created'));
         } catch (LoginRequiredException $e) {
             $error = Lang::get('admin/users/message.user_login_required');
         } catch (PasswordRequiredException $e) {
@@ -137,12 +99,7 @@ class ExerciseController extends Controller
             $exercise = Exercise::where('id', $id)->first();
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
             $usersList = '';
-//         $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
-//                    ->where('status', '=', 1)
-//                    ->with(['profile'])
-//                    ->groupBy('user_id')
-//                    ->orderBy('time', 'ASC')
-//                    ->get();
+//        
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = Lang::get('users/message.user_not_found', compact('id'));
@@ -163,7 +120,7 @@ class ExerciseController extends Controller
     public function getEdit($id = null)
     {
         // Get the user information
-        if ($tUser = User::where('id', $id)->with(['profile', 'settings'])->first()) {
+        if ($exercise = Exercise::where('id', $id)->first()) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         } else {
             // Prepare the error message
@@ -174,7 +131,7 @@ class ExerciseController extends Controller
         }
 
         // Show the page
-        return View('admin/users/edit', compact('user', 'tUser'));
+        return View('admin.exercise.edit', compact('user', 'exercise'));
     }
 
     /**
@@ -186,57 +143,20 @@ class ExerciseController extends Controller
     public function postEdit($id = null)
     {
         try {
-            // Get the user information
-            $user = User::where('id', $id)->first();
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
-
-            // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
-        }
-
-        //
-        $this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
-
-        // Do we want to update the user password?
-        if (!$password = Input::get('password')) {
-            unset($this->validationRules['password']);
-            unset($this->validationRules['password_confirm']);
-        }
-
-        // Create a new validator instance from our validation rules
-        $validator = Validator::make(Input::all(), $this->validationRules);
-
-        // If validation fails, we'll exit the operation now.
-        if ($validator->fails()) {
-            // Ooops.. something went wrong
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
-
-        try {
-
-            $userProfile = Profile::where('user_id', $id)->first();
+            $exercise = Exercise::where('id', $id)->first();
             // Update the user
-            $userProfile->first_name = Input::get('first_name');
-            $userProfile->last_name = Input::get('last_name');
-            $userProfile->gender = Input::get('gender');
-            $userProfile->country = Input::get('country');
-            $userProfile->state = Input::get('state');
-            $userProfile->city = Input::get('city');
-            $userProfile->spot = Input::get('spot');
-            $userProfile->quote = Input::get('quote');
-            $userProfile->save();
+            $exercise->name = Input::get('name');
+            $exercise->description = Input::get('description');
+            $exercise->category = Input::get('category');
+            $exercise->type = Input::get('type');
+            $exercise->rewards = Input::get('rewards');
+            $exercise->repititions = Input::get('repititions');
+            $exercise->duration = Input::get('duration');
+            $exercise->unit = Input::get('unit');
+            $exercise->equipment = Input::get('equipment');
+            $exercise->save();
 
-            // Was the user updated?
-            if ($user->save()) {
-                // Prepare the success message
-                $success = Lang::get('users/message.success.update');
-                // Redirect to the user page
-                return Redirect::route('users.update', $id)->with('success', $success);
-            }
-            // Prepare the error message
-            $error = Lang::get('users/message.error.update');
+            return Redirect::route('exercise.update', $id)->with('success', 'Updated successfully');
         } catch (LoginRequiredException $e) {
             $error = Lang::get('users/message.user_login_required');
         }

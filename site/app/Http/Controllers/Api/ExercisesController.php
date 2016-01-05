@@ -234,9 +234,7 @@ class ExercisesController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-
-
-                
+             
 
                 $exercises = [];
 

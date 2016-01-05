@@ -288,11 +288,10 @@
                                 </ul>
                             </li>
                             <!-- END USER MENU -->
-                            
-                             <!-- BEGIN EXERCISE MENU -->
+
+                            <!-- BEGIN EXERCISE MENU -->
                             <li>
-                                <a href="{{ route('exercise') }}">
-                                    <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                <a href="{{ route('exercise') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Exercises</span>
                                     <span class="fa arrow"></span>
                                 </a>
@@ -312,6 +311,30 @@
                                 </ul>
                             </li>
                             <!-- END EXERCISE MENU -->
+
+                            <!-- BEGIN WORKOUT MENU -->
+                            <li>
+                                <a href="{{ route('workout') }}">
+
+                                    <span class="title">Workouts</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.users') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ URL::to('admin/exercise') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Workouts
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.users.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ URL::to('admin/exercise/create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Workout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END WORKOUT MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

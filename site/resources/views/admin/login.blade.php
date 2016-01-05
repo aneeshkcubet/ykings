@@ -28,7 +28,7 @@
                         <div id="login" class="animate form">
                             <form action="{{ route('admin.postlogin') }}" autocomplete="on" method="post" role="form">
                                 <h3 class="black_bg">
-                                    <img src="{{ asset('assets/img/logo.png') }}" alt="josh logo">
+                                    <img width="150" src="{{ asset('assets/img/logo.png') }}" alt="josh logo">
                                     <br>Log in</h3>
                                     <!-- CSRF Token -->
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
