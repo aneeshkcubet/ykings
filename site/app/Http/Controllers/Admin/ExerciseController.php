@@ -30,7 +30,7 @@ class ExerciseController extends Controller
         $exercise = Exercise::get();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
-        return View('admin.exercise.index', compact('exercise','user'));
+        return View('admin.exercise.index', compact('exercise', 'user'));
     }
 
     /**
@@ -43,7 +43,7 @@ class ExerciseController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
-        return View('admin.users.create', compact('user'));
+        return View('admin.exercise.create', compact('user'));
     }
 
     /**
@@ -130,10 +130,19 @@ class ExerciseController extends Controller
      */
     public function show($id)
     {
+
         try {
+            //echo Auth::user()->id;die;
             // Get the user information
             $exercise = Exercise::where('id', $id)->first();
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+            $usersList = '';
+//         $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
+//                    ->where('status', '=', 1)
+//                    ->with(['profile'])
+//                    ->groupBy('user_id')
+//                    ->orderBy('time', 'ASC')
+//                    ->get();
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = Lang::get('users/message.user_not_found', compact('id'));
@@ -142,7 +151,7 @@ class ExerciseController extends Controller
             return Redirect::route('users')->with('error', $error);
         }
         // Show the page
-        return View('admin.exercise.show', compact('exercise', 'user'));
+        return View('admin.exercise.show', compact('exercise', 'user', 'usersList'));
     }
 
     /**

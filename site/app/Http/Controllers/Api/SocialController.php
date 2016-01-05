@@ -618,19 +618,18 @@ class SocialController extends Controller
     }
 
     /**
-     * @api {post} /social/facebookDisconnect facebookLogin
-     * @apiName updateReadStatus
-     * @apiGroup Message
+     * @api {post} /social/facebookDisconnect facebookDisconnect
+     * @apiName facebookDisconnect
+     * @apiGroup Social
      * @apiParam {Number} user_id Id of user *required
-     * @apiParam {Number} message_id message of user *required
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      *  {
-            "status": 1,
-            "success": "Facebook Disconnected"
-        }
+      "status": 1,
+      "success": "Facebook Disconnected"
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -672,12 +671,7 @@ class SocialController extends Controller
      *       "status" : 0,
      *       "error": "user_not_exists"
      *     }  
-     * @apiErrorExample Error-Response:
-     *   HTTP/1.1 400 user_not_exists
-     *    {
-      "status": 0,
-      "error": "message_not_exists"
-      }
+    
      */
     public function facebookDisconnect(Request $request)
     {

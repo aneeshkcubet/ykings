@@ -73,8 +73,8 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'facebook.update',
         'uses' => 'Api\SocialController@facebookUpdate'
     ]);
-    
-     Route::post('social/facebookDisconnect', [
+
+    Route::post('social/facebookDisconnect', [
         'as' => 'facebook.disconnect',
         'uses' => 'Api\SocialController@facebookDisconnect'
     ]);
@@ -203,7 +203,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.getsettings',
         'uses' => 'Api\UserSettingsController@getUserSettings'
     ]);
-
+    Route::post('/user/updateDeviceToken', [
+        'as' => 'user.updateDeviceToken',
+        'uses' => 'Api\UserSettingsController@updateDeviceToken'
+    ]);
+    //SkillsController
     Route::post('/skills/list', [
         'as' => 'skill.list',
         'uses' => 'Api\SkillsController@loadSkills'
@@ -279,7 +283,7 @@ Route::get('/admin', ['middleware' => 'auth', function () {
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Admin Routes
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/', [
         'as' => 'admin.index',
@@ -293,18 +297,10 @@ Route::group(['prefix' => 'admin'], function() {
         'as' => 'admin.postlogin',
         'uses' => 'Admin\AdminController@postLogin'
     ]);
-
-    Route::post('/login', [
-        'as' => 'admin.login',
-        'uses' => 'Admin\AdminUsersController@login'
-    ]);
-
     Route::get('/logout', [
         'as' => 'admin.logout',
         'uses' => 'Admin\AdminController@logout'
     ]);
-
-
 
     # User Management
     Route::group(array('prefix' => 'users'), function () {
