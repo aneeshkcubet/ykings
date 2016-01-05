@@ -243,6 +243,21 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.preparecoach',
         'uses' => 'Api\CoachesController@prepareCoach'
     ]);
+    
+    Route::post('/coach/get', [
+        'as' => 'coach.get',
+        'uses' => 'Api\CoachesController@getCoach'
+    ]);
+    
+    Route::post('/coach/finishday', [
+        'as' => 'coach.finishday',
+        'uses' => 'Api\CoachesController@finishCoachDayWorkouts'
+    ]);
+    
+    Route::post('/coach/update', [
+        'as' => 'coach.update',
+        'uses' => 'Api\CoachesController@updateCoach'
+    ]);
 
     //MessageController
     Route::post('/user/listNotifications', [

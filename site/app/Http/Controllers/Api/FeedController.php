@@ -43,13 +43,14 @@ class FeedController extends Controller
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit' *required
-     * @apiParam {String} item_id id of the targetting item *required
-     * @apiParam {String} time_taken time in seconds
-     * @apiParam {String} rewards points earned by doing activity
-     * @apiParam {String} category in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} item_id id of the targetting item *required
+     * @apiParam {Number} time_taken time in seconds
+     * @apiParam {Number} rewards points earned by doing activity
+     * @apiParam {Number} category in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
+     * @apiParam {Number} volume volume of exercise/workout/hiit
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -155,20 +156,27 @@ class FeedController extends Controller
                         'exercise_id' => $request->item_id,
                         'status' => 1,
                         'time' => $request->time_taken,
-                        'is_starred' => $addStar
+                        'is_starred' => $addStar,
+                        'volume' => $request->volume
                     ]);
 
                     $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
                         ->where('exercise_id', $request->item_id)
                         ->where('status', 1)
                         ->first();
+                    if($exerciseDetails->unit == 'times'){                        
+                        $pointForSingle = ($exerciseDetails->rewards)/$exerciseDetails->repititions;
+                        $pointsEarned = $pointForSingle * $request->volume;                        
+                    } else {
+                        $pointsEarned = $exerciseDetails->rewards * $request->volume;                        
+                    }
 
                     $itemId = $exerciseDetails->id;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'activity' => 'exercise_completed',
-                        'points' => $request->rewards,
+                        'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
                 } elseif ($request->item_type == 'workout') {
@@ -179,7 +187,8 @@ class FeedController extends Controller
                         'status' => 1,
                         'time' => $request->time_taken,
                         'category' => $request->category,
-                        'is_starred' => $addStar
+                        'is_starred' => $addStar,
+                        'volume' => $request->volume
                     ];
 
                     WorkoutUser::create($data);
@@ -191,6 +200,8 @@ class FeedController extends Controller
                         ->first();
 
                     $itemId = $exerciseDetails->id;
+                    
+                    $pointsEarned = $exerciseDetails->rewards * $request->volume;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -205,7 +216,8 @@ class FeedController extends Controller
                         'user_id' => $request->user_id,
                         'status' => 1,
                         'time' => $request->time_taken,
-                        'is_starred' => $addStar
+                        'is_starred' => $addStar,
+                        'volume' => $request->volume
                     ];
 
                     Hiituser::create($data);
@@ -216,11 +228,13 @@ class FeedController extends Controller
                         ->first();
 
                     $itemId = $exerciseDetails->id;
+                    
+                    $pointsEarned = $exerciseDetails->rewards * $request->volume;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'activity' => 'hiit_completed',
-                        'points' => $request->rewards,
+                        'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
                 }

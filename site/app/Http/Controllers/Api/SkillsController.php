@@ -962,9 +962,153 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "message": "successfully unlocked the skill"
-      }
+          "status": 1,
+          "message": "successfully unlocked the skill",
+          "skills": [
+            {
+              "id": "11",
+              "progression_id": "1",
+              "level": "1",
+              "row": "3",
+              "substitute": "23",
+              "exercise_id": "3",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 0,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "3",
+                "name": "Knee Raises",
+                "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+                "category": "1",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "12",
+              "progression_id": "1",
+              "level": "2",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "23",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2016-01-04 10:24:35",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 1,
+              "exercise": {
+                "id": "23",
+                "name": "Leg Raises",
+                "description": "",
+                "category": "1",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "13",
+              "progression_id": "1",
+              "level": "3",
+              "row": "3",
+              "substitute": "55",
+              "exercise_id": "34",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "34",
+                "name": "L-Sit",
+                "description": "",
+                "category": "2",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "14",
+              "progression_id": "1",
+              "level": "4",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "55",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2016-01-04 10:24:44",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "55",
+                "name": "L-Sit Pullup",
+                "description": "",
+                "category": "2",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "15",
+              "progression_id": "1",
+              "level": "5",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "78",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 0,
+              "isLockable": 1,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "78",
+                "name": "Pullover",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            }
+          ],
+          "is_subscribed": 0,
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
+        }
      * 
      * 
      * 
@@ -1042,8 +1186,21 @@ class SkillsController extends Controller
                         'skill_id' => $unlockedSkill->id,
                         'exercise_id' => $unlockedSkill->exercise_id,
                         'user_id' => $request->user_id
-                    ]);
-                    return response()->json(['status' => 1, 'message' => 'successfully unlocked the skill'], 500);
+                    ]);                    
+
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->get();
+                    foreach ($skills as $sKey => $sValue) {
+                        $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
+                        $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
+                        $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
+                    }
+
+                    return response()->json([
+                            'status' => 1,
+                            'message' => 'successfully unlocked the skill',
+                            'skills' => $skills,
+                            'is_subscribed' => $user->is_subscribed,
+                            'urls' => config('urls.urls')], 200);
                 }
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
@@ -1061,9 +1218,153 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "message": "successfully unlocked the skill"
-      }
+          "status": 1,
+          "message": "successfully locked the skill",
+          "skills": [
+            {
+              "id": "11",
+              "progression_id": "1",
+              "level": "1",
+              "row": "3",
+              "substitute": "23",
+              "exercise_id": "3",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 0,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "3",
+                "name": "Knee Raises",
+                "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+                "category": "1",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "12",
+              "progression_id": "1",
+              "level": "2",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "23",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2016-01-04 10:24:35",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 1,
+              "exercise": {
+                "id": "23",
+                "name": "Leg Raises",
+                "description": "",
+                "category": "1",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "13",
+              "progression_id": "1",
+              "level": "3",
+              "row": "3",
+              "substitute": "55",
+              "exercise_id": "34",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "34",
+                "name": "L-Sit",
+                "description": "",
+                "category": "2",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "14",
+              "progression_id": "1",
+              "level": "4",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "55",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2016-01-04 10:24:44",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "55",
+                "name": "L-Sit Pullup",
+                "description": "",
+                "category": "2",
+                "type": "2",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            },
+            {
+              "id": "15",
+              "progression_id": "1",
+              "level": "5",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "78",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "isLocked": 1,
+              "isLockable": 0,
+              "isUnlockable": 0,
+              "exercise": {
+                "id": "78",
+                "name": "Pullover",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "1.00",
+                "unit": "times",
+                "equipment": ""
+              }
+            }
+          ],
+          "is_subscribed": 0,
+          "urls": {
+            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+            "video": "http://sandbox.ykings.com/uploads/videos",
+            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+          }
+        }
      * 
      * 
      * 
@@ -1141,7 +1442,19 @@ class SkillsController extends Controller
 
                     Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
 
-                    return response()->json(['status' => 1, 'message' => 'successfully locked the skill'], 500);
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->get();
+                    foreach ($skills as $sKey => $sValue) {
+                        $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
+                        $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
+                        $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
+                    }
+
+                    return response()->json([
+                            'status' => 1,
+                            'message' => 'successfully locked the skill',
+                            'skills' => $skills,
+                            'is_subscribed' => $user->is_subscribed,
+                            'urls' => config('urls.urls')], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'already locked the skill'], 500);
                 }

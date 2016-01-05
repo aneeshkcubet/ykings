@@ -20,7 +20,8 @@ class Hiituser extends Model
         'hiit_id',
         'status',
         'time',
-        'is_starred'
+        'is_starred',
+        'volume'
     ];
 
     /**
