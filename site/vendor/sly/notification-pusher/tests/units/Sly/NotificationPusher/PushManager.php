@@ -17,7 +17,7 @@ use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
  */
 class PushManager extends Units\Test
 {
-    const APNS_TOKEN_EXAMPLE = 'APA91bE16Qv12rxF-iD4LPJUxfaX6dFalUTlmfeS-VybUIDmMmPCJJEtymQ0cYrz8hGbbuuy-o0bCtskdlL8WHepLdLYz-PJzNJLwOsu4lOeSaVGSl-tBIp9s_TNfpiXrEZWWVBbwc6o';
+    const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
 
     public function testConstruct()
     {

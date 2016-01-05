@@ -29,7 +29,7 @@ $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
 
 // Then declare an adapter.
 $gcmAdapter = new GcmAdapter(array(
-    'apiKey' => 'AIzaSyDGxMlESogfleJspVGNLL8gXbepeXVOxw8',
+    'apiKey' => 'YourApiKey',
 ));
 
 // Set the device(s) to push the notification to.

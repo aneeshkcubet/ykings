@@ -681,7 +681,7 @@ class FeedController extends Controller
     }
 
     /**
-     * @api {post} /feeds/feedDetails
+     * @api {post} /feeds/feedDetails feedDetails
      * @apiName feedDetails
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user 
@@ -689,47 +689,53 @@ class FeedController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-      "status": 1,
-      "success": "Details",
-      "feed_details": [
-      {
-      "id": "21",
-      "user_id": "14",
-      "item_type": "exercise",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 06:27:51",
-      "updated_at": "2015-11-11 06:27:51",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "profile": {
-      "user_id": "14",
-      "first_name": "sachii",
-      "last_name": "k",
-      "image": null
-      }
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+     *{
+        "status": 1,
+        "success": "Details",
+        "feed_details": [
+            {
+                "id": "1",
+                "user_id": "1",
+                "item_type": "workout",
+                "item_id": "1",
+                "feed_text": "Testing",
+                "created_at": "2015-11-01 05:30:00",
+                "updated_at": "2015-11-23 10:14:16",
+                "clap_count": 1,
+                "comment_count": 3,
+                "is_commented": 1,
+                "is_claped": 0,
+                "category": "Strength",
+                "item_name": "Baldur",
+                "duration": 0,
+                "image": [],
+                "profile": {
+                    "user_id": "1",
+                    "first_name": "Ykings",
+                    "last_name": "Administrator",
+                    "image": "53_1447764255.jpg",
+                    "quote": "I am Simple",
+                    "level": 1
+                }
+            }
+        ],
+        "urls": {
+            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+            "video": "http://ykings.me/uploads/videos",
+            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+        }
+    }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -787,7 +793,7 @@ class FeedController extends Controller
 
             if ($user) {
                 $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))
-                        ->with(['profile'])->first();
+                        ->with(['image','profile'])->first();
                 if ($feedsArray) {
                     $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
                         ->where('item_type', '=', 'feed')
@@ -802,6 +808,58 @@ class FeedController extends Controller
                     //is claped
                     $feedsArray['is_claped'] = Clap::isClaped($request->user_id, $feedsArray['id'], 'feed');
 
+                    //To get Category
+                    if ($feedsArray['item_type'] == 'workout') {
+                        $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
+                        if (!is_null($workout)) {
+                            if ($workout->category == 1) {
+                                $feedsArray['category'] = "Strength";
+                            } elseif ($workout->category == 2) {
+                                $feedsArray['category'] = "Cardio-strength";
+                            }
+                        } else {
+                            $feedsArray['category'] = "";
+                        }
+                        $feedsArray['item_name'] = $workout->name;
+                        $duration = DB::table('workout_users')->where('user_id', $request->user_id)->where('workout_id', $feedsArray['item_id'])->pluck('time');
+                        if (!is_null($duration)) {
+                            $feedsArray['duration'] = $duration;
+                        } else {
+                            $feedsArray['duration'] = 0;
+                        }
+                    } elseif ($feedsArray['item_type'] == 'exercise') {
+                        $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
+                        if (!is_null($exercise)) {
+                            if ($exercise->category == 1) {
+                                $feedsArray['category'] = "Lean";
+                            } elseif ($exercise->category == 2) {
+                                $feedsArray['category'] = "Athletic";
+                            } elseif ($exercise->category == 3) {
+                                $feedsArray['category'] = "Strength";
+                            }
+                        } else {
+                            $feedsArray['category'] = "";
+                        }
+                        $feedsArray['item_name'] = $exercise->name;
+                        $duration = DB::table('exercise_users')->where('user_id', $request->user_id)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
+                        if (!is_null($duration)) {
+                            $feedsArray['duration'] = $duration;
+                        } else {
+                            $feedsArray['duration'] = 0;
+                        }
+                    } elseif ($feedsArray['item_type'] == 'hiit') {
+                        $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
+                        $feedsArray['item_name'] = $hiit->name;
+                        $duration = DB::table('hiit_users')->where('user_id', $request->user_id)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
+                        if (!is_null($duration)) {
+                            $feedsArray['duration'] = $duration;
+                        } else {
+                            $feedsArray['duration'] = 0;
+                        }
+                    } else {
+                        $feedsArray['category'] = "";
+                        $feedsArray['item_name'] = "";
+                    }
                     $feedsResponse[] = $feedsArray;
                 }
                 return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $feedsResponse, 'urls' => config('urls.urls')], 200);
@@ -989,34 +1047,6 @@ class FeedController extends Controller
 
     public function notification(Request $request)
     {
-        PushNotificationFunction::androidNotification($request);
-        PushNotificationFunction::iosNotification($request);
-    }
-
-    public function notification1(Request $request)
-    {
-        // First, instantiate the manager.
-        // Example for production environment:
-        //$pushManager = new PushManager(PushManager::ENVIRONMENT_PROD);
-        // Development one by default (without argument).
-        $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
-
-        // Then declare an adapter.
-        $gcmAdapter = new GcmAdapter(array(
-            'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
-        ));
-
-        // Set the device(s) to push the notification to.
-        $devices = new DeviceCollection(array(
-            new Device('fqiQMABUMxI:APA91bE16Qv12rxF-iD4LPJUxfaX6dFalUTlmfeS-VybUIDmMmPCJJEtymQ0cYrz8hGbbuuy-o0bCtskdlL8WHepLdLYz-PJzNJLwOsu4lOeSaVGSl-tBIp9s_TNfpiXrEZWWVBbwc6o'),
-        ));
-
-        // Then, create the push skel.
-        $message = new Message('This is an example.');
-
-        // Finally, create and add the push to the manager, and push it!
-        $push = new Push($gcmAdapter, $devices, $message);
-        $pushManager->add($push);
-        $pushManager->push(); // Returns a collection of notified devices
+        PushNotificationFunction::pushNotification($request);
     }
 }

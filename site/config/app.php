@@ -129,7 +129,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider::class
     ],
     /*
       |--------------------------------------------------------------------------
@@ -179,6 +180,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'PushNotification' => Davibennun\LaravelPushNotification\Facades\PushNotification::class
         
     ],
 ];

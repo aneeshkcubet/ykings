@@ -25,12 +25,17 @@ class AdminLTETemplateServiceProvider extends ServiceProvider
     private function registerRoutes()
     {
 
-        Route::controllers([
-            'auth' => $this->getAppNamespace() . 'Http\Controllers\Auth\AuthController',
-            'password' => $this->getAppNamespace() . 'Http\Controllers\Auth\PasswordController',
-        ]);
+        Route::controller(
+            'auth', $this->getAppNamespace() . 'Http\Controllers\Auth\AuthController' ,
+            [ 'getLogin' => 'auth.login',
+              'getLogout' => 'auth.logout',
+              'getRegister' => 'auth.register'
+            ]);
+        Route::controller(
+            'password' , $this->getAppNamespace() . 'Http\Controllers\Auth\PasswordController',
+            [ 'getReset' => 'auth.reset',] );
 
-        Route::get('/home', ['middleware' => 'auth', function () {
+        Route::get('/home', ['as' => 'home','middleware' => 'auth', function () {
             return view('home');
         }]);
 
@@ -103,6 +108,7 @@ class AdminLTETemplateServiceProvider extends ServiceProvider
             dirname(__FILE__) . '/../../public/css' => public_path('css'),
             dirname(__FILE__) . '/../../public/js'  => public_path('js'),
             dirname(__FILE__) . '/../../public/plugins'  => public_path('plugins'),
+            dirname(__FILE__) . '/../../public/fonts'  => public_path('fonts'),
         ], 'assets');
     }
 }

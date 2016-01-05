@@ -26,20 +26,46 @@ class PushNotificationFunction
 {
 
     /**
+     * PushNotification function.
+     * @since 31/12/2015
+     * @author ansa@cubettech.com
+     * @return json
+     */
+    public static function pushNotification($request)
+    {
+        if ($request['type'] == 'clap') {
+            $message = '';
+        } elseif ($request['type'] == 'comment') {
+            $message = '';
+        } elseif ($request['type'] == 'following') {
+            $message = '';
+        } else {
+            $message = '';
+        }
+        $deviceToken = PushNotification::where('user_id', $request['user_id'])->get();
+        $details = array('deviceToken' => '', 'message' => '');
+        PushNotificationFunction::androidNotification($details);
+        PushNotificationFunction::iosNotification($details);
+    }
+
+    /**
      * PushNotification ANDROID.
      * @since 30/12/2015
      * @author ansa@cubettech.com
      * @return json
      */
-    public static function androidNotification($request)
+    public static function androidNotification($details)
     {
         // First, instantiate the manager.
         // Example for production environment:
         //$pushManager = new PushManager(PushManager::ENVIRONMENT_PROD);
         // Development one by default (without argument).
         $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
-//print_r($pushManager);die;
+
         // Then declare an adapter.
+        $gcmAdapter = new GcmAdapter(array(
+            'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
+        ));
         $gcmAdapter = new GcmAdapter(array(
             'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
         ));
@@ -64,10 +90,9 @@ class PushNotificationFunction
      * @author ansa@cubettech.com
      * @return json
      */
-    public static function iosNotification($request)
+    public static function iosNotification($details)
     {
         // First, instantiate the manager.
-
         // Example for production environment:
         // $pushManager = new PushManager(PushManager::ENVIRONMENT_PROD);
         //

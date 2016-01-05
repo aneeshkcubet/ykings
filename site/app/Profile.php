@@ -27,7 +27,8 @@ class Profile extends Model
         'city',
         'state',
         'country',
-        'quote'
+        'quote',
+        'spot'        
     ];
     
     

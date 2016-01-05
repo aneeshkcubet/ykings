@@ -7,7 +7,6 @@
 ### Basic notification push example
 
 ``` php
-
 <?php
 
 require_once '/path/to/vendor/autoload.php';
