@@ -902,7 +902,16 @@ class Coach extends Model
 
             $fundaExercise = Exercise::where('id', $additionalFunda->id)->with(['video'])->first();
 
-            $fundumentals[]['exercise'] = $fundaExercise->toArray();
+            $funduArray = ['exercise' => $fundaExercise->toArray()];
+
+
+            if ($fundaExercise->unit == 'times') {
+                $funduArray['duration'] = $fundaExercise->repititions;
+            } else {
+                $funduArray['duration'] = $fundaExercise->duration;
+            }
+
+            $fundumentals[] = $funduArray;
 
             $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
 
@@ -1565,7 +1574,16 @@ class Coach extends Model
 
                 $fundaExercise = Exercise::where('id', $additionalFunda->id)->with(['video'])->first();
 
-                $fundumentals[]['exercise'] = $fundaExercise->toArray();
+                $funduArray = ['exercise' => $fundaExercise->toArray()];
+
+
+                if ($fundaExercise->unit == 'times') {
+                    $funduArray['duration'] = $fundaExercise->repititions;
+                } else {
+                    $funduArray['duration'] = $fundaExercise->duration;
+                }
+
+                $fundumentals[] = $funduArray;
             }
 
             $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id);
@@ -2239,5 +2257,142 @@ class Coach extends Model
         }
 
         return $workout;
+    }
+
+    public static function updateCoach($exercises, $assessment)
+    {
+        if ($assessment != 3) {
+            foreach ($exercises as $eKey => $dayExercise) {
+                $exercises[$eKey] = self::updateDayExercises($dayExercise, $assessment);
+            }
+        }
+
+        return $exercises;
+    }
+
+    public static function updateDayExercises($dayExercise, $assessment)
+    {
+
+        if ($assessment == 1) {
+            if (isset($dayExercise['warmup'])) {
+                $dayExercise['warmup']['duration'] = $dayExercise['warmup']['duration'] + ($dayExercise['warmup']['duration'] * 5 / 100);
+            }
+
+            if (isset($dayExercise['fundumentals'])) {
+                foreach ($dayExercise['fundumentals'] as $fKey => $fundumental) {
+                    if (isset($fundumental['duration'])) {
+                        if ($fundumental['exercise']['unit'] == 'times') {
+
+                            if ($fundumental['duration'] < 25) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 25;
+                            } elseif ($fundumental['duration'] >= 25 && $fundumental['duration'] < 50) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 50;
+                            } elseif ($fundumental['duration'] >= 50 && $fundumental['duration'] < 100) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 100;
+                            } elseif ($fundumental['duration'] >= 250 && $fundumental['duration'] < 500) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 500;
+                            } elseif ($fundumental['duration'] >= 500 && $fundumental['duration'] < 750) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 750;
+                            } elseif ($fundumental['duration'] >= 750 && $fundumental['duration'] <= 1000) {
+                                $dayExercise['fundumentals'][$fKey]['duration'] = 1000;
+                            }
+                        } else {
+                            $dayExercise['fundumentals'][$fKey]['duration'] = round($fundumental['duration'] + ($fundumental['duration'] * 5 / 100));
+                        }
+                    }
+                }
+            }
+
+            if (isset($dayExercise['exercises'])) {
+                foreach ($dayExercise['exercises'] as $fKey => $fundumental) {
+                    if ($fundumental['exercise']['unit'] == 'times') {
+                        if ($fundumental['duration'] < 25) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 25;
+                        } elseif ($fundumental['duration'] >= 25 && $fundumental['duration'] < 50) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 50;
+                        } elseif ($fundumental['duration'] >= 50 && $fundumental['duration'] < 100) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 100;
+                        } elseif ($fundumental['duration'] >= 250 && $fundumental['duration'] < 500) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 500;
+                        } elseif ($fundumental['duration'] >= 500 && $fundumental['duration'] < 750) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 750;
+                        } elseif ($fundumental['duration'] >= 750 && $fundumental['duration'] <= 1000) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 1000;
+                        }
+                    } else {
+                        $dayExercise['exercises'][$fKey]['duration'] = round($fundumental['duration'] + ($fundumental['duration'] * 5 / 100));
+                    }
+                }
+            }
+
+            if (isset($dayExercise['workout'])) {
+                $workoutRounds = $dayExercise['workout']['rounds'];
+
+                $workoutExerciseRoundCount = count($dayExercise['workout']['exercises']);
+
+                $roundCount = 1;
+
+                for ($i = $workoutExerciseRoundCount + 1; $i <= ($workoutRounds + $workoutExerciseRoundCount); $i++) {
+                    $dayExercise['workout']['exercises']['round' . ($workoutExerciseRoundCount + $roundCount)] = $dayExercise['workout']['exercises']['round' . $roundCount];
+                    $roundCount++;
+                }
+            }
+
+            if (isset($dayExercise['hiit'])) {
+                if (!empty($dayExercise['hiit'])) {                    
+
+                    foreach($dayExercise['hiit'] as $hiit){
+                        $dayExercise['hiit'][] = $hiit;
+                    }
+                }
+            }
+            
+            if (isset($dayExercise['workout_intensity'])) {
+                $dayExercise['workout_intensity'] += $dayExercise['workout_intensity'];
+            }
+            
+        } elseif ($assessment == 2) {
+            if (isset($dayExercise['exercises'])) {
+                foreach ($dayExercise['exercises'] as $fKey => $fundumental) {
+                    if ($fundumental['exercise']['unit'] == 'times') {
+                        if ($fundumental['duration'] < 25) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 25;
+                        } elseif ($fundumental['duration'] >= 25 && $fundumental['duration'] < 50) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 50;
+                        } elseif ($fundumental['duration'] >= 50 && $fundumental['duration'] < 100) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 100;
+                        } elseif ($fundumental['duration'] >= 250 && $fundumental['duration'] < 500) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 500;
+                        } elseif ($fundumental['duration'] >= 500 && $fundumental['duration'] < 750) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 750;
+                        } elseif ($fundumental['duration'] >= 750 && $fundumental['duration'] <= 1000) {
+                            $dayExercise['exercises'][$fKey]['duration'] = 1000;
+                        }
+                    } else {
+                        $dayExercise['exercises'][$fKey]['duration'] = round($fundumental['duration'] + ($fundumental['duration'] * 5 / 100));
+                    }
+                }
+            }
+
+            if (isset($dayExercise['workout'])) {
+                $workoutRounds = $dayExercise['workout']['rounds'];
+
+                $workoutExerciseRoundCount = count($dayExercise['workout']['exercises']);
+
+                $roundCount = 1;
+
+                for ($i = $workoutExerciseRoundCount + 1; $i <= ($workoutRounds + $workoutExerciseRoundCount); $i++) {
+                    $dayExercise['workout']['exercises']['round' . ($workoutExerciseRoundCount + $roundCount)] = $dayExercise['workout']['exercises']['round' . $roundCount];
+                    $roundCount++;
+                }
+            }
+            
+            if (isset($dayExercise['workout_intensity'])) {
+                $dayExercise['workout_intensity'] += $dayExercise['workout_intensity'];
+            }
+            
+        }
+        
+        return $dayExercise;
     }
 }

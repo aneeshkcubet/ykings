@@ -157,18 +157,23 @@ class FeedController extends Controller
                         'status' => 1,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
-                        'volume' => $request->volume
+                        'volume' => isset($request->volume) ? $request->volume : ''
                     ]);
 
                     $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
                         ->where('exercise_id', $request->item_id)
                         ->where('status', 1)
                         ->first();
-                    if($exerciseDetails->unit == 'times'){                        
-                        $pointForSingle = ($exerciseDetails->rewards)/$exerciseDetails->repititions;
-                        $pointsEarned = $pointForSingle * $request->volume;                        
+                    if ($exerciseDetails->unit == 'times') {
+                        $pointForSingle = ($exerciseDetails->rewards) / $exerciseDetails->repititions;
+
+                        $pointsEarned = 0;
+                        if (isset($request->volume))
+                            $pointsEarned = $pointForSingle * $request->volume;
                     } else {
-                        $pointsEarned = $exerciseDetails->rewards * $request->volume;                        
+                        $pointsEarned = 0;
+                        if (isset($request->volume))
+                            $pointsEarned = $exerciseDetails->rewards * $request->volume;
                     }
 
                     $itemId = $exerciseDetails->id;
@@ -188,7 +193,7 @@ class FeedController extends Controller
                         'time' => $request->time_taken,
                         'category' => $request->category,
                         'is_starred' => $addStar,
-                        'volume' => $request->volume
+                        'volume' => isset($request->volume) ? $request->volume : ''
                     ];
 
                     WorkoutUser::create($data);
@@ -200,8 +205,10 @@ class FeedController extends Controller
                         ->first();
 
                     $itemId = $exerciseDetails->id;
-                    
-                    $pointsEarned = $exerciseDetails->rewards * $request->volume;
+
+                    $pointsEarned = 0;
+                    if (isset($request->volume))
+                        $pointsEarned = $exerciseDetails->rewards * $request->volume;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -217,7 +224,7 @@ class FeedController extends Controller
                         'status' => 1,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
-                        'volume' => $request->volume
+                        'volume' => isset($request->volume) ? $request->volume : ''
                     ];
 
                     Hiituser::create($data);
@@ -228,8 +235,10 @@ class FeedController extends Controller
                         ->first();
 
                     $itemId = $exerciseDetails->id;
-                    
-                    $pointsEarned = $exerciseDetails->rewards * $request->volume;
+
+                    $pointsEarned = 0;
+                    if (isset($request->volume))
+                        $pointsEarned = $exerciseDetails->rewards * $request->volume;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -703,53 +712,53 @@ class FeedController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     *{
-        "status": 1,
-        "success": "Details",
-        "feed_details": [
-            {
-                "id": "1",
-                "user_id": "1",
-                "item_type": "workout",
-                "item_id": "1",
-                "feed_text": "Testing",
-                "created_at": "2015-11-01 05:30:00",
-                "updated_at": "2015-11-23 10:14:16",
-                "clap_count": 1,
-                "comment_count": 3,
-                "is_commented": 1,
-                "is_claped": 0,
-                "category": "Strength",
-                "item_name": "Baldur",
-                "duration": 0,
-                "image": [],
-                "profile": {
-                    "user_id": "1",
-                    "first_name": "Ykings",
-                    "last_name": "Administrator",
-                    "image": "53_1447764255.jpg",
-                    "quote": "I am Simple",
-                    "level": 1
-                }
-            }
-        ],
-        "urls": {
-            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-            "video": "http://ykings.me/uploads/videos",
-            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
-            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
-            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
-        }
-    }
+     * {
+      "status": 1,
+      "success": "Details",
+      "feed_details": [
+      {
+      "id": "1",
+      "user_id": "1",
+      "item_type": "workout",
+      "item_id": "1",
+      "feed_text": "Testing",
+      "created_at": "2015-11-01 05:30:00",
+      "updated_at": "2015-11-23 10:14:16",
+      "clap_count": 1,
+      "comment_count": 3,
+      "is_commented": 1,
+      "is_claped": 0,
+      "category": "Strength",
+      "item_name": "Baldur",
+      "duration": 0,
+      "image": [],
+      "profile": {
+      "user_id": "1",
+      "first_name": "Ykings",
+      "last_name": "Administrator",
+      "image": "53_1447764255.jpg",
+      "quote": "I am Simple",
+      "level": 1
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -807,7 +816,7 @@ class FeedController extends Controller
 
             if ($user) {
                 $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))
-                        ->with(['image','profile'])->first();
+                        ->with(['image', 'profile'])->first();
                 if ($feedsArray) {
                     $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
                         ->where('item_type', '=', 'feed')
