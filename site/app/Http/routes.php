@@ -240,6 +240,10 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.listNotifications',
         'uses' => 'Api\MessageController@listNotifications'
     ]);
+    Route::post('/message/updateReadStatus', [
+        'as' => 'message.updateReadStatus',
+        'uses' => 'Api\MessageController@updateReadStatus'
+    ]);
 });
 
 // Authentication routes...
