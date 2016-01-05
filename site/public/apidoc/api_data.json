@@ -635,7 +635,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"exercise\": {\n      \"id\": \"1\",\n      \"name\": \"Jumping Pullups\",\n      \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n      \"category\": \"1\",\n      \"type\": \"1\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1.00\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"created_at\": \"2015-11-17 08:00:19\",\n      \"updated_at\": \"2015-11-20 04:20:50\",\n      \"users\": []\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n    \"status\": 1,\n    \"exercise\": {\n        \"id\": \"1\",\n        \"name\": \"Jumping Pullups\",\n        \"description\": \"The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.\",\n        \"category\": \"1\",\n        \"type\": \"1\",\n        \"rewards\": \"6.00\",\n        \"repititions\": \"10\",\n        \"duration\": \"1.00\",\n        \"unit\": \"times\",\n        \"equipment\": \"\",\n        \"video\": [\n            {\n                \"id\": \"1\",\n                \"path\": \"Now1.mp4\",\n                \"videothumbnail\": \"thumbnail3.jpg\",\n                \"description\": \"Test Description\"\n            }\n        ],\n        \"users\": []\n    },\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n        \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n        \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n        \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n        \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n    }\n}",
           "type": "json"
         }
       ]
@@ -786,7 +786,7 @@
             "type": "<p>String</p> ",
             "optional": false,
             "field": "item_type",
-            "description": "<p>'excercise','workout','motivation','announcement', 'hiit' *required</p> "
+            "description": "<p>'exercise','workout','motivation','announcement', 'hiit' *required</p> "
           },
           {
             "group": "Parameter",
@@ -829,6 +829,13 @@
             "optional": true,
             "field": "image",
             "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "starred",
+            "description": "<p>0/1</p> "
           }
         ]
       }
@@ -1068,7 +1075,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 0,\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 0,\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1435,7 +1442,7 @@
   {
     "type": "post",
     "url": "/feeds/feedDetails",
-    "title": "",
+    "title": "feedDetails",
     "name": "feedDetails",
     "group": "Feeds",
     "parameter": {
@@ -1473,7 +1480,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"Details\",\n      \"feed_details\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"excercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"profile\": {\n      \"user_id\": \"14\",\n      \"first_name\": \"sachii\",\n      \"last_name\": \"k\",\n      \"image\": null\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"Details\",\n        \"feed_details\": [\n            {\n                \"id\": \"1\",\n                \"user_id\": \"1\",\n                \"item_type\": \"workout\",\n                \"item_id\": \"1\",\n                \"feed_text\": \"Testing\",\n                \"created_at\": \"2015-11-01 05:30:00\",\n                \"updated_at\": \"2015-11-23 10:14:16\",\n                \"clap_count\": 1,\n                \"comment_count\": 3,\n                \"is_commented\": 1,\n                \"is_claped\": 0,\n                \"category\": \"Strength\",\n                \"item_name\": \"Baldur\",\n                \"duration\": 0,\n                \"image\": [],\n                \"profile\": {\n                    \"user_id\": \"1\",\n                    \"first_name\": \"Ykings\",\n                    \"last_name\": \"Administrator\",\n                    \"image\": \"53_1447764255.jpg\",\n                    \"quote\": \"I am Simple\",\n                    \"level\": 1\n                }\n            }\n        ],\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
           "type": "json"
         }
       ]
@@ -2251,6 +2258,88 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/AuthenticateController.php",
     "groupTitle": "General"
+  },
+  {
+    "type": "post",
+    "url": "/user/listNotifications",
+    "title": "ListNotifications",
+    "name": "ListNotifications",
+    "group": "Message",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"status\": 1,\n    \"notifications\": [\n        {\n            \"id\": \"1\",\n            \"user_id\": \"41\",\n            \"friend_id\": \"28\",\n            \"message_type\": \"clap\",\n            \"type_id\": \"1\",\n            \"message\": \"claped feed\",\n            \"read\": \"0\",\n            \"created_at\": \"2015-12-31 00:00:00\",\n            \"updated_at\": \"2016-01-01 11:02:43\",\n            \"image\": \"28_1448283791.jpg\"\n        },\n        {\n            \"id\": \"2\",\n            \"user_id\": \"41\",\n            \"friend_id\": \"2\",\n            \"message_type\": \"clap\",\n            \"type_id\": \"1\",\n            \"message\": \"claped feed\",\n            \"read\": \"0\",\n            \"created_at\": \"2015-12-31 00:00:00\",\n            \"updated_at\": \"2016-01-01 11:02:45\",\n            \"image\": \"\"\n        }\n    ],\n    \"urls\": {\n        \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n        \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n        \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n        \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n        \"video\": \"http://ykings.me/uploads/videos\",\n        \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n        \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n        \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n        \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n        \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n        \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n        \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n        \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n        \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/MessageController.php",
+    "groupTitle": "Message"
   },
   {
     "type": "post",
@@ -3617,51 +3706,51 @@
           {
             "group": "Parameter",
             "type": "<p>file</p> ",
-            "optional": false,
+            "optional": true,
             "field": "image",
-            "description": "<p>user avatar image *optional *accepted formats JPEG, PNG, and GIF</p> "
+            "description": "<p>user avatar image *accepted formats JPEG, PNG, and GIF</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "gender",
-            "description": "<p>user id of the user 1-Male, 2-Female *optional</p> "
+            "description": "<p>user id of the user 1-Male, 2-Female</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "fitness_status",
             "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "goal",
-            "description": "<p>user's goal *optional 1-Get Lean, 2-Get Fit, 3-Get Strong</p> "
+            "description": "<p>user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>string</p> ",
-            "optional": false,
+            "optional": true,
             "field": "city",
-            "description": "<p>user's city *optional</p> "
+            "description": "<p>user's city</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>string</p> ",
-            "optional": false,
+            "optional": true,
             "field": "state",
-            "description": "<p>user's state *optional</p> "
+            "description": "<p>user's state</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>string</p> ",
-            "optional": false,
+            "optional": true,
             "field": "country",
-            "description": "<p>user's country *optional</p> "
+            "description": "<p>user's country</p> "
           },
           {
             "group": "Parameter",
@@ -3673,16 +3762,30 @@
           {
             "group": "Parameter",
             "type": "<p>string</p> ",
-            "optional": false,
+            "optional": true,
+            "field": "device_token",
+            "description": "<p>Device Token</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": true,
+            "field": "device_type",
+            "description": "<p>Device Type(android/ios)</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": true,
             "field": "quote",
-            "description": "<p>Quote added by user *optional</p> "
+            "description": "<p>Quote added by user</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>number</p> ",
-            "optional": false,
+            "optional": true,
             "field": "subscription",
-            "description": "<p>Whether Newsletter subscription selected by user *optional</p> "
+            "description": "<p>Whether Newsletter subscription selected by user</p> "
           }
         ]
       }
@@ -3822,7 +3925,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"success\": \"user_details\",\n          \"user\": {\n            \"id\": \"2\",\n            \"email\": \"aneeshk@cubettech.com\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-09 09:14:02\",\n            \"updated_at\": \"2015-11-16 06:45:17\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"first_name\": \"Aneesh\",\n                \"last_name\": \"Kallikkattil\",\n                \"gender\": \"1\",\n                \"fitness_status\": \"3\",\n                \"goal\": \"3\",\n                \"image\": \"\",\n                \"cover_image\": \"\",\n                \"city\": \"\",\n                \"state\": \"\",\n                \"country\": \"\",\n                \"spot\": \"\",\n                \"quote\": \"I want to get Strong\",\n                \"facebook\": 0,\n                \"twitter\": 0,\n                \"instagram\": 0,\n                \"created_at\": \"2015-11-09 09:14:02\",\n                \"updated_at\": \"2015-11-09 10:16:07\",\n                \"level\": 3\n              }\n            ],\n            \"settings\": [\n              {\n                \"id\": \"2\",\n                \"user_id\": \"2\",\n                \"key\": \"notification\",\n                \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-12-03 06:35:31\"\n              },\n              {\n                \"id\": \"3\",\n                \"user_id\": \"2\",\n                \"key\": \"subscription\",\n                \"value\": \"1\",\n                \"created_at\": \"2015-11-20 00:00:00\",\n                \"updated_at\": \"2015-11-20 06:33:27\"\n              }\n            ],\n            \"is_following\": 0,\n            \"follower_count\": 0,\n            \"workout_count\": 4,\n            \"level\": 3,\n            \"points\": 330,\n            \"points_to_next_level\": 170,\n            \"total_skills\": 6,\n            \"user_skills_count\": 2,\n            \"athlete_since\": \"2015-11-09 09:14:02\",\n            \"facebook_connected\": 0\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"user_details\",\n      \"user\": {\n      \"id\": \"2\",\n      \"email\": \"aneeshk@cubettech.com\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-16 06:45:17\",\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"\",\n      \"cover_image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"I want to get Strong\",\n      \"facebook\": 0,\n      \"twitter\": 0,\n      \"instagram\": 0,\n      \"created_at\": \"2015-11-09 09:14:02\",\n      \"updated_at\": \"2015-11-09 10:16:07\",\n      \"level\": 3\n      }\n      ],\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-12-03 06:35:31\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": \"1\",\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ],\n      \"is_following\": 0,\n      \"follower_count\": 0,\n      \"workout_count\": 4,\n      \"level\": 3,\n      \"points\": 330,\n      \"points_to_next_level\": 170,\n      \"total_skills\": 6,\n      \"user_skills_count\": 2,\n      \"athlete_since\": \"2015-11-09 09:14:02\",\n      \"facebook_connected\": 0\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -3979,6 +4082,20 @@
             "optional": false,
             "field": "password",
             "description": "<p>password added by user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": true,
+            "field": "device_token",
+            "description": "<p>Device Token</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>string</p> ",
+            "optional": true,
+            "field": "device_type",
+            "description": "<p>Device Type(android/ios)</p> "
           }
         ]
       }
@@ -3998,7 +4115,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n        \"status\": 1,\n        \"success\": \"successfully_logged_in\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c\",\n        \"user\": {\n            \"id\": \"41\",\n            \"email\": \"arun@ileafsolutions.net\",\n            \"confirmation_code\": \"\",\n            \"status\": \"1\",\n            \"created_at\": \"2015-11-16 15:24:09\",\n            \"updated_at\": \"2015-11-16 16:32:47\",\n            \"is_subscribed\": 0,\n            \"profile\": [\n                {\n                    \"id\": \"31\",\n                    \"user_id\": \"41\",\n                    \"first_name\": \"arun\",\n                    \"last_name\": \"mg\",\n                    \"gender\": \"1\",\n                    \"fitness_status\": \"3\",\n                    \"goal\": \"1\",\n                    \"image\": \"41_1449060497.jpg\",\n                    \"cover_image\": \"\",\n                    \"city\": \"\",\n                    \"state\": \"\",\n                    \"country\": \"\",\n                    \"spot\": \"\",\n                    \"quote\": \"\",\n                    \"instagram\": 0,\n                    \"twitter\": 0,\n                    \"facebook\": 0,\n                    \"fb\": 0,\n                    \"created_at\": \"2015-11-16 15:24:09\",\n                    \"updated_at\": \"2015-12-02 18:18:17\",\n                    \"level\": 1\n                }\n            ],\n            \"settings\": [\n                {\n                    \"id\": \"22\",\n                    \"user_id\": \"41\",\n                    \"key\": \"subscription\",\n                    \"value\": \"1\",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 11:54:07\"\n                },\n                {\n                    \"id\": \"23\",\n                    \"user_id\": \"41\",\n                    \"key\": \"notification\",\n                    \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n                    \"created_at\": \"2015-12-03 09:52:37\",\n                    \"updated_at\": \"2015-12-03 12:05:31\"\n                }\n            ],\n            \"follower_count\": 3,\n            \"workout_count\": 0,\n            \"points\": 0,\n            \"level\": 1,\n            \"facebook_connected\": 0\n        },\n        \"urls\": {\n            \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n            \"video\": \"http://ykings.me/uploads/videos\",\n            \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n        }\n    }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"successfully_logged_in\",\n      \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c\",\n      \"user\": {\n      \"id\": \"41\",\n      \"email\": \"arun@ileafsolutions.net\",\n      \"confirmation_code\": \"\",\n      \"status\": \"1\",\n      \"created_at\": \"2015-11-16 15:24:09\",\n      \"updated_at\": \"2015-11-16 16:32:47\",\n      \"is_subscribed\": 0,\n      \"profile\": [\n      {\n      \"id\": \"31\",\n      \"user_id\": \"41\",\n      \"first_name\": \"arun\",\n      \"last_name\": \"mg\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"1\",\n      \"image\": \"41_1449060497.jpg\",\n      \"cover_image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"\",\n      \"instagram\": 0,\n      \"twitter\": 0,\n      \"facebook\": 0,\n      \"fb\": 0,\n      \"created_at\": \"2015-11-16 15:24:09\",\n      \"updated_at\": \"2015-12-02 18:18:17\",\n      \"level\": 1\n      }\n      ],\n      \"settings\": [\n      {\n      \"id\": \"22\",\n      \"user_id\": \"41\",\n      \"key\": \"subscription\",\n      \"value\": \"1\",\n      \"created_at\": \"2015-12-03 09:52:37\",\n      \"updated_at\": \"2015-12-03 11:54:07\"\n      },\n      {\n      \"id\": \"23\",\n      \"user_id\": \"41\",\n      \"key\": \"notification\",\n      \"value\": \"{\\\"comments\\\":\\\"1\\\",\\\"claps\\\":\\\"1\\\",\\\"follow\\\":\\\"1\\\",\\\"my_performance\\\":\\\"1\\\",\\\"motivation_knowledge\\\":\\\"1\\\"} \",\n      \"created_at\": \"2015-12-03 09:52:37\",\n      \"updated_at\": \"2015-12-03 12:05:31\"\n      }\n      ],\n      \"follower_count\": 3,\n      \"workout_count\": 0,\n      \"points\": 0,\n      \"level\": 1,\n      \"facebook_connected\": 0\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -4063,7 +4180,7 @@
   },
   {
     "type": "post",
-    "url": "user/resendverify",
+    "url": "/user/resendverify",
     "title": "ResendVerificationEmail",
     "name": "ResendVerificationEmail",
     "group": "User",
@@ -4442,9 +4559,6 @@
     "groupTitle": "User"
   },
   {
-    "type": "post",
-    "url": "/workout/addstar",
-    "title": "addStar",
     "name": "addStar",
     "group": "Workout",
     "parameter": {
@@ -4548,6 +4662,8 @@
         }
       ]
     },
+    "type": "",
+    "url": "",
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/WorkoutsController.php",
     "groupTitle": "Workout"
@@ -4680,7 +4796,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n {\n          \"status\": 1,\n          \"is_subscribed\": 0,\n          \"workout\": {\n            \"id\": \"2\",\n            \"name\": \"Borr\",\n            \"description\": \"Borr Borr Borr\",\n            \"rounds\": \"3\",\n            \"category\": \"2\",\n            \"type\": \"1\",\n            \"rewards\": {\n              \"lean\": 330,\n              \"athletic\": 440,\n              \"strength\": 550\n            },\n            \"duration\": \"19.00\",\n            \"equipments\": \"BAR\",\n            \"lean\": [],\n            \"athletic\": [\n              {\n                \"id\": \"1\",\n                \"workout_id\": \"2\",\n                \"user_id\": \"2\",\n                \"status\": \"1\",\n                \"time\": \"1200\",\n                \"is_starred\": \"0\",\n                \"created_at\": \"2015-11-20 05:04:13\",\n                \"updated_at\": \"2015-12-08 10:38:24\",\n                \"category\": \"2\",\n                \"profile\": {\n                  \"id\": \"2\",\n                  \"user_id\": \"2\",\n                  \"first_name\": \"Aneesh\",\n                  \"last_name\": \"Kallikkattil\",\n                  \"gender\": \"1\",\n                  \"fitness_status\": \"3\",\n                  \"goal\": \"3\",\n                  \"image\": \"\",\n                  \"cover_image\": \"\",\n                  \"city\": \"\",\n                  \"state\": \"\",\n                  \"country\": \"\",\n                  \"spot\": \"\",\n                  \"quote\": \"I want to get Strong\",\n                  \"facebook\": \"\",\n                  \"twitter\": \"\",\n                  \"instagram\": \"\",\n                  \"created_at\": \"2015-11-09 09:14:02\",\n                  \"updated_at\": \"2015-12-09 09:07:21\",\n                  \"level\": 3\n                }\n              }\n            ],\n            \"strength\": []\n          },\n          \"urls\": {\n            \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n            \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n            \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n            \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n            \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n            \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n            \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n            \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n            \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n            \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n            \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n            \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n            \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n            \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n          }\n        }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"is_subscribed\": 0,\n      \"workout\": {\n      \"id\": \"2\",\n      \"name\": \"Borr\",\n      \"description\": \"Borr Borr Borr\",\n      \"rounds\": \"3\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": 330,\n      \"duration\": \"19.00\",\n      \"equipments\": \"BAR\",\n      \"lean\": {\n      \"featured\": [],\n      \"following\": []\n      },\n      \"athletic\": {\n      \"featured\": [\n      {\n      \"id\": \"1\",\n      \"workout_id\": \"2\",\n      \"user_id\": \"2\",\n      \"status\": \"1\",\n      \"time\": \"33\",\n      \"is_starred\": \"0\",\n      \"created_at\": \"2015-11-20 10:34:13\",\n      \"updated_at\": \"2015-11-20 10:34:13\",\n      \"category\": \"2\",\n      \"profile\": {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"Kallikkattil\",\n      \"gender\": \"1\",\n      \"fitness_status\": \"3\",\n      \"goal\": \"3\",\n      \"image\": \"\",\n      \"cover_image\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"country\": \"\",\n      \"spot\": \"\",\n      \"quote\": \"I want to get Strong\",\n      \"instagram\": \"0\",\n      \"twitter\": \"0\",\n      \"facebook\": \"0\",\n      \"fb\": \"0\",\n      \"created_at\": \"2015-11-09 14:44:02\",\n      \"updated_at\": \"2015-12-03 07:26:43\",\n      \"level\": 3\n      }\n      }\n      ],\n      \"following\": []\n      },\n      \"strength\": {\n      \"featured\": [],\n      \"following\": []\n      }\n      },\n      \"urls\": {\n      \"profileImageSmall\": \"http://ykings.me/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://ykings.me/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://ykings.me/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://ykings.me/uploads/images/profile/original\",\n      \"video\": \"http://ykings.me/uploads/videos\",\n      \"videothumbnail\": \"http://ykings.me/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://ykings.me/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://ykings.me/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://ykings.me/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://ykings.me/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://ykings.me/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://ykings.me/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://ykings.me/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://ykings.me/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -4762,7 +4878,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n          \"status\": 1,\n          \"is_subscribed\": 0,\n          \"workouts\": {\n          \"free\": [{\n                      \"id\": \"2\",\n                      \"name\": \"Borr\",\n                      \"description\": \"Borr Borr Borr\",\n                      \"rounds\": \"3\",\n                      \"category\": \"2\",\n                      \"type\": \"1\",\n                      \"rewards\": \"330\",\n                      \"duration\": \"19.00\",\n                      \"equipments\": \"BAR\",      \n                  },\n                  {\n                      \"id\": \"3\",\n                      \"name\": \"Bragi\",\n                      \"description\": \"Bragi\",\n                      \"rounds\": \"5\",\n                      \"category\": \"2\",\n                      \"type\": \"1\",\n                      \"rewards\": \"200\",\n                      \"duration\": \"14.00\",\n                      \"equipments\": \"Low Bar\"      \n                  }],\n          \"paid\": [{\n                      \"id\": \"1\",\n                      \"name\": \"Baldur\",\n                      \"description\": \"Baldur Baldur\",\n                      \"rounds\": \"5\",\n                      \"category\": \"1\",\n                      \"type\": \"2\",\n                      \"rewards\": \"330\",\n                      \"duration\": \"15.00\",\n                      \"equipments\": \"\"\n                  }]\n          }\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"is_subscribed\": 0,\n      \"workouts\": {\n      \"free\": [{\n      \"id\": \"2\",\n      \"name\": \"Borr\",\n      \"description\": \"Borr Borr Borr\",\n      \"rounds\": \"3\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"330\",\n      \"duration\": \"19.00\",\n      \"equipments\": \"BAR\",\n      },\n      {\n      \"id\": \"3\",\n      \"name\": \"Bragi\",\n      \"description\": \"Bragi\",\n      \"rounds\": \"5\",\n      \"category\": \"2\",\n      \"type\": \"1\",\n      \"rewards\": \"200\",\n      \"duration\": \"14.00\",\n      \"equipments\": \"Low Bar\"\n      }],\n      \"paid\": [{\n      \"id\": \"1\",\n      \"name\": \"Baldur\",\n      \"description\": \"Baldur Baldur\",\n      \"rounds\": \"5\",\n      \"category\": \"1\",\n      \"type\": \"2\",\n      \"rewards\": \"330\",\n      \"duration\": \"15.00\",\n      \"equipments\": \"\"\n      }]\n      }\n      }",
           "type": "json"
         }
       ]
@@ -4812,7 +4928,7 @@
   },
   {
     "type": "post",
-    "url": "password/email",
+    "url": "/password/email",
     "title": "RequestPassword",
     "name": "RequestPassword",
     "group": "password",

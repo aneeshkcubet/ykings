@@ -46,43 +46,43 @@ class WorkoutsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "is_subscribed": 0,
-          "workouts": {
-          "free": [{
-                      "id": "2",
-                      "name": "Borr",
-                      "description": "Borr Borr Borr",
-                      "rounds": "3",
-                      "category": "2",
-                      "type": "1",
-                      "rewards": "330",
-                      "duration": "19.00",
-                      "equipments": "BAR",      
-                  },
-                  {
-                      "id": "3",
-                      "name": "Bragi",
-                      "description": "Bragi",
-                      "rounds": "5",
-                      "category": "2",
-                      "type": "1",
-                      "rewards": "200",
-                      "duration": "14.00",
-                      "equipments": "Low Bar"      
-                  }],
-          "paid": [{
-                      "id": "1",
-                      "name": "Baldur",
-                      "description": "Baldur Baldur",
-                      "rounds": "5",
-                      "category": "1",
-                      "type": "2",
-                      "rewards": "330",
-                      "duration": "15.00",
-                      "equipments": ""
-                  }]
-          }
+      "status": 1,
+      "is_subscribed": 0,
+      "workouts": {
+      "free": [{
+      "id": "2",
+      "name": "Borr",
+      "description": "Borr Borr Borr",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "330",
+      "duration": "19.00",
+      "equipments": "BAR",
+      },
+      {
+      "id": "3",
+      "name": "Bragi",
+      "description": "Bragi",
+      "rounds": "5",
+      "category": "2",
+      "type": "1",
+      "rewards": "200",
+      "duration": "14.00",
+      "equipments": "Low Bar"
+      }],
+      "paid": [{
+      "id": "1",
+      "name": "Baldur",
+      "description": "Baldur Baldur",
+      "rounds": "5",
+      "category": "1",
+      "type": "2",
+      "rewards": "330",
+      "duration": "15.00",
+      "equipments": ""
+      }]
+      }
       }
      * 
      * @apiError error Message token_invalid.
@@ -164,78 +164,84 @@ class WorkoutsController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     *  {
-          "status": 1,
-          "is_subscribed": 0,
-          "workout": {
-            "id": "2",
-            "name": "Borr",
-            "description": "Borr Borr Borr",
-            "rounds": "3",
-            "category": "2",
-            "type": "1",
-            "rewards": {
-              "lean": 330,
-              "athletic": 440,
-              "strength": 550
-            },
-            "duration": "19.00",
-            "equipments": "BAR",
-            "lean": [],
-            "athletic": [
-              {
-                "id": "1",
-                "workout_id": "2",
-                "user_id": "2",
-                "status": "1",
-                "time": "1200",
-                "is_starred": "0",
-                "created_at": "2015-11-20 05:04:13",
-                "updated_at": "2015-12-08 10:38:24",
-                "category": "2",
-                "profile": {
-                  "id": "2",
-                  "user_id": "2",
-                  "first_name": "Aneesh",
-                  "last_name": "Kallikkattil",
-                  "gender": "1",
-                  "fitness_status": "3",
-                  "goal": "3",
-                  "image": "",
-                  "cover_image": "",
-                  "city": "",
-                  "state": "",
-                  "country": "",
-                  "spot": "",
-                  "quote": "I want to get Strong",
-                  "facebook": "",
-                  "twitter": "",
-                  "instagram": "",
-                  "created_at": "2015-11-09 09:14:02",
-                  "updated_at": "2015-12-09 09:07:21",
-                  "level": 3
-                }
-              }
-            ],
-            "strength": []
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+     * {
+      "status": 1,
+      "is_subscribed": 0,
+      "workout": {
+      "id": "2",
+      "name": "Borr",
+      "description": "Borr Borr Borr",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": 330,
+      "duration": "19.00",
+      "equipments": "BAR",
+      "lean": {
+      "featured": [],
+      "following": []
+      },
+      "athletic": {
+      "featured": [
+      {
+      "id": "1",
+      "workout_id": "2",
+      "user_id": "2",
+      "status": "1",
+      "time": "33",
+      "is_starred": "0",
+      "created_at": "2015-11-20 10:34:13",
+      "updated_at": "2015-11-20 10:34:13",
+      "category": "2",
+      "profile": {
+      "id": "2",
+      "user_id": "2",
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "3",
+      "image": "",
+      "cover_image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "spot": "",
+      "quote": "I want to get Strong",
+      "instagram": "0",
+      "twitter": "0",
+      "facebook": "0",
+      "fb": "0",
+      "created_at": "2015-11-09 14:44:02",
+      "updated_at": "2015-12-03 07:26:43",
+      "level": 3
+      }
+      }
+      ],
+      "following": []
+      },
+      "strength": {
+      "featured": [],
+      "following": []
+      }
+      },
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      }
+      }
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -280,14 +286,10 @@ class WorkoutsController extends Controller
      */
     public function getWorkoutWithLevels(Request $request)
     {
-//        $rewards = [
-//            'lean' => 330,
-//            'athletic' => 440,
-//            'strength' => 550
-//        ];
-//        
-//        echo json_encode($rewards);
-//        die;
+        $followingLeanWorkout = [];
+        $followingAthleteWorkout = [];
+        $followingStrengthWorkout = [];
+
         if (!isset($request->workout_id) || ($request->workout_id == null)) {
             return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
         } else {
@@ -317,12 +319,12 @@ class WorkoutsController extends Controller
                     ->orderBy('time', 'ASC')
                     ->get();
 
+
                 $time = time();
 
                 $isSubscribed = 0;
 
                 if (isset($request->user_id)) {
-
                     $subscription = DB::table('subscriptions')
                         ->select('*')
                         ->where('user_id', '=', $request->user_id)
@@ -332,15 +334,33 @@ class WorkoutsController extends Controller
                     if (!is_null($subscription) && $subscription->end_time > $time) {
                         $isSubscribed = 1;
                     }
+
+                    //code added by ansa@cubettech.com on 31-12-2015.
+                    //list data with Featured & Following
+                    $following = WorkoutUser::whereIn('user_id', function($query) use ($request) {
+                            $query->select('follow_id')
+                                ->from('follows')
+                                ->where('user_id', $request->user_id);
+                        });
+
+                    $following->where('workout_id', '=', $request->workout_id)
+                        ->where('status', '=', 1)
+                        ->with(['profile'])
+                        ->groupBy('user_id')
+                        ->orderBy('time', 'ASC');
+
+                    $followingLeanWorkout = $following->where('category', '=', 1)->get();
+                    $followingAthleteWorkout = $following->where('category', '=', 2)->get();
+                    $followingStrengthWorkout = $following->where('category', '=', 3)->get();
                 }
 
                 $workoutArray['lean'] = [];
                 $workoutArray['athletic'] = [];
                 $workoutArray['strength'] = [];
 
-                $workoutArray['lean'] = $leanWorkoutUsers->toArray();
-                $workoutArray['athletic'] = $athleteWorkoutUsers->toArray();
-                $workoutArray['strength'] = $strengthWorkoutUsers->toArray();
+                $workoutArray['lean'] = array("featured" => $leanWorkoutUsers, "following" => $followingLeanWorkout);
+                $workoutArray['athletic'] = array("featured" => $athleteWorkoutUsers, "following" => $followingAthleteWorkout);
+                $workoutArray['strength'] = array("featured" => $strengthWorkoutUsers, "following" => $followingStrengthWorkout);
 
                 return response()->json(['status' => 1, 'is_subscribed' => $isSubscribed, 'workout' => $workoutArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -818,7 +838,7 @@ class WorkoutsController extends Controller
     }
 
     /**
-     * @api {post} /workout/addstar addStar
+
      * @apiName addStar
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout *required

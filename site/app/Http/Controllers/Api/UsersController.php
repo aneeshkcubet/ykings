@@ -20,6 +20,7 @@ use App\Follow;
 use App\Point;
 use App\Social;
 use App\Workout;
+use App\PushNotification;
 
 class UsersController extends Controller
 {
@@ -52,16 +53,18 @@ class UsersController extends Controller
      * @apiParam {string} last_name Firstname of user *required
      * @apiParam {string} email email address of user *required
      * @apiParam {string} password password added by user *required
-     * @apiParam {file} image user avatar image *optional *accepted formats JPEG, PNG, and GIF
-     * @apiParam {number} gender user id of the user 1-Male, 2-Female *optional
-     * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
-     * @apiParam {number} goal user's goal *optional 1-Get Lean, 2-Get Fit, 3-Get Strong 
-     * @apiParam {string} city user's city *optional
-     * @apiParam {string} state user's state *optional
-     * @apiParam {string} country user's country *optional
+     * @apiParam {file} [image] user avatar image *accepted formats JPEG, PNG, and GIF
+     * @apiParam {number} [gender] user id of the user 1-Male, 2-Female 
+     * @apiParam {number} [fitness_status] user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
+     * @apiParam {number} [goal] user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong 
+     * @apiParam {string} [city] user's city 
+     * @apiParam {string} [state] user's state 
+     * @apiParam {string} [country] user's country 
      * @apiParam {string} [spot] spot
-     * @apiParam {string} quote Quote added by user *optional
-     * @apiParam {number} subscription Whether Newsletter subscription selected by user *optional
+     * @apiParam {string} [device_token] Device Token
+     * @apiParam {string} [device_type] Device Type(android/ios)
+     * @apiParam {string} [quote] Quote added by user
+     * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -320,6 +323,15 @@ class UsersController extends Controller
         if (isset($data['subscription'])) {
             Settings::create(['user_id' => $user->id,
                 'key' => 'subscription', 'value' => $data['subscription']
+            ]);
+        }
+
+        //Code added by <ansa@cubettech.com> on 31-12-2015
+        //To save device token
+        if (isset($request->device_token) && (isset($request->device_type))) {
+            $deviceToken = PushNotification::create(['user_id' => $user->id,
+                    'type' => $request->device_token,
+                    'device_token' => $request->device_token
             ]);
         }
 
@@ -589,7 +601,7 @@ class UsersController extends Controller
                     ->where('key', '=', 'subscription')
                     ->update(['value' => $data['subscription']]);
             }
-            
+
             $userArray = $user->toArray();
 
             $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
@@ -614,89 +626,90 @@ class UsersController extends Controller
      *
      * @apiParam {string} email email address of user *required
      * @apiParam {string} password password added by user *required
-     *
+     * @apiParam {string} [device_token] Device Token
+     * @apiParam {string} [device_type] Device Type(android/ios)
      * @apiSuccess {String} success.
      *
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-        "status": 1,
-        "success": "successfully_logged_in",
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c",
-        "user": {
-            "id": "41",
-            "email": "arun@ileafsolutions.net",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-11-16 15:24:09",
-            "updated_at": "2015-11-16 16:32:47",
-            "is_subscribed": 0,
-            "profile": [
-                {
-                    "id": "31",
-                    "user_id": "41",
-                    "first_name": "arun",
-                    "last_name": "mg",
-                    "gender": "1",
-                    "fitness_status": "3",
-                    "goal": "1",
-                    "image": "41_1449060497.jpg",
-                    "cover_image": "",
-                    "city": "",
-                    "state": "",
-                    "country": "",
-                    "spot": "",
-                    "quote": "",
-                    "instagram": 0,
-                    "twitter": 0,
-                    "facebook": 0,
-                    "fb": 0,
-                    "created_at": "2015-11-16 15:24:09",
-                    "updated_at": "2015-12-02 18:18:17",
-                    "level": 1
-                }
-            ],
-            "settings": [
-                {
-                    "id": "22",
-                    "user_id": "41",
-                    "key": "subscription",
-                    "value": "1",
-                    "created_at": "2015-12-03 09:52:37",
-                    "updated_at": "2015-12-03 11:54:07"
-                },
-                {
-                    "id": "23",
-                    "user_id": "41",
-                    "key": "notification",
-                    "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
-                    "created_at": "2015-12-03 09:52:37",
-                    "updated_at": "2015-12-03 12:05:31"
-                }
-            ],
-            "follower_count": 3,
-            "workout_count": 0,
-            "points": 0,
-            "level": 1,
-            "facebook_connected": 0
-        },
-        "urls": {
-            "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
-            "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
-            "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
-            "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
-            "video": "http://ykings.me/uploads/videos",
-            "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
-            "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
-            "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
-            "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
-            "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
-            "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
-            "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
-        }
-    }
+      "status": 1,
+      "success": "successfully_logged_in",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MSIsImlzcyI6Imh0dHA6XC9cL3lraW5ncy5tZVwvYXBpXC91c2VyXC9sb2dpbiIsImlhdCI6IjE0NDk2NjMwMTMiLCJleHAiOiIxNDUzMjYzMDEzIiwibmJmIjoiMTQ0OTY2MzAxMyIsImp0aSI6IjlmYmZhNDE1ODMzZGEzMDkyNzdkMDg3MWMyMmQ1NWQyIn0.pcjqabawygOzEvd3TliSIIAwWAG5gDJstABHWK_0D2c",
+      "user": {
+      "id": "41",
+      "email": "arun@ileafsolutions.net",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-11-16 15:24:09",
+      "updated_at": "2015-11-16 16:32:47",
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "31",
+      "user_id": "41",
+      "first_name": "arun",
+      "last_name": "mg",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "1",
+      "image": "41_1449060497.jpg",
+      "cover_image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "spot": "",
+      "quote": "",
+      "instagram": 0,
+      "twitter": 0,
+      "facebook": 0,
+      "fb": 0,
+      "created_at": "2015-11-16 15:24:09",
+      "updated_at": "2015-12-02 18:18:17",
+      "level": 1
+      }
+      ],
+      "settings": [
+      {
+      "id": "22",
+      "user_id": "41",
+      "key": "subscription",
+      "value": "1",
+      "created_at": "2015-12-03 09:52:37",
+      "updated_at": "2015-12-03 11:54:07"
+      },
+      {
+      "id": "23",
+      "user_id": "41",
+      "key": "notification",
+      "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
+      "created_at": "2015-12-03 09:52:37",
+      "updated_at": "2015-12-03 12:05:31"
+      }
+      ],
+      "follower_count": 3,
+      "workout_count": 0,
+      "points": 0,
+      "level": 1,
+      "facebook_connected": 0
+      },
+      "urls": {
+      "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+      "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+      "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+      "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+      "video": "http://ykings.me/uploads/videos",
+      "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+      "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+      "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+      "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+      "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+      "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+      "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+      }
+      }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -787,6 +800,23 @@ class UsersController extends Controller
                     return response()->json([ 'status' => 0, 'error' => 'could_not_create_token'], 500);
                 }
 
+                //Code added by <ansa@cubettech.com> on 31-12-2015
+                //To save device token
+                if (isset($request->device_token) && (isset($request->device_type))) {
+                    $userDeviceToken = PushNotification::where('user_id', '=', Auth::user()->id)
+                        ->where('type', '=', $request->device_type)
+                        ->first();
+                    if (is_null($userDeviceToken)) {
+                        $deviceToken = PushNotification::create(['user_id' => Auth::user()->id,
+                                'type' => $request->device_type,
+                                'device_token' => $request->device_token
+                        ]);
+                    } else {
+                        $userDeviceToken->device_token = $request->device_token;
+                        $userDeviceToken->update();
+                    }
+                }
+
                 $userArray = $user->toArray();
 
                 $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
@@ -819,86 +849,86 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-          "status": 1,
-          "success": "user_details",
-          "user": {
-            "id": "2",
-            "email": "aneeshk@cubettech.com",
-            "confirmation_code": "",
-            "status": "1",
-            "created_at": "2015-11-09 09:14:02",
-            "updated_at": "2015-11-16 06:45:17",
-            "is_subscribed": 0,
-            "profile": [
-              {
-                "id": "2",
-                "user_id": "2",
-                "first_name": "Aneesh",
-                "last_name": "Kallikkattil",
-                "gender": "1",
-                "fitness_status": "3",
-                "goal": "3",
-                "image": "",
-                "cover_image": "",
-                "city": "",
-                "state": "",
-                "country": "",
-                "spot": "",
-                "quote": "I want to get Strong",
-                "facebook": 0,
-                "twitter": 0,
-                "instagram": 0,
-                "created_at": "2015-11-09 09:14:02",
-                "updated_at": "2015-11-09 10:16:07",
-                "level": 3
-              }
-            ],
-            "settings": [
-              {
-                "id": "2",
-                "user_id": "2",
-                "key": "notification",
-                "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
-                "created_at": "2015-11-20 00:00:00",
-                "updated_at": "2015-12-03 06:35:31"
-              },
-              {
-                "id": "3",
-                "user_id": "2",
-                "key": "subscription",
-                "value": "1",
-                "created_at": "2015-11-20 00:00:00",
-                "updated_at": "2015-11-20 06:33:27"
-              }
-            ],
-            "is_following": 0,
-            "follower_count": 0,
-            "workout_count": 4,
-            "level": 3,
-            "points": 330,
-            "points_to_next_level": 170,
-            "total_skills": 6,
-            "user_skills_count": 2,
-            "athlete_since": "2015-11-09 09:14:02",
-            "facebook_connected": 0
-          },
-          "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
-        }
+      "status": 1,
+      "success": "user_details",
+      "user": {
+      "id": "2",
+      "email": "aneeshk@cubettech.com",
+      "confirmation_code": "",
+      "status": "1",
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-16 06:45:17",
+      "is_subscribed": 0,
+      "profile": [
+      {
+      "id": "2",
+      "user_id": "2",
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "gender": "1",
+      "fitness_status": "3",
+      "goal": "3",
+      "image": "",
+      "cover_image": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "spot": "",
+      "quote": "I want to get Strong",
+      "facebook": 0,
+      "twitter": 0,
+      "instagram": 0,
+      "created_at": "2015-11-09 09:14:02",
+      "updated_at": "2015-11-09 10:16:07",
+      "level": 3
+      }
+      ],
+      "settings": [
+      {
+      "id": "2",
+      "user_id": "2",
+      "key": "notification",
+      "value": "{\"comments\":\"1\",\"claps\":\"1\",\"follow\":\"1\",\"my_performance\":\"1\",\"motivation_knowledge\":\"1\"} ",
+      "created_at": "2015-11-20 00:00:00",
+      "updated_at": "2015-12-03 06:35:31"
+      },
+      {
+      "id": "3",
+      "user_id": "2",
+      "key": "subscription",
+      "value": "1",
+      "created_at": "2015-11-20 00:00:00",
+      "updated_at": "2015-11-20 06:33:27"
+      }
+      ],
+      "is_following": 0,
+      "follower_count": 0,
+      "workout_count": 4,
+      "level": 3,
+      "points": 330,
+      "points_to_next_level": 170,
+      "total_skills": 6,
+      "user_skills_count": 2,
+      "athlete_since": "2015-11-09 09:14:02",
+      "facebook_connected": 0
+      },
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      *
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -1003,7 +1033,7 @@ class UsersController extends Controller
             $userArray['total_skills'] = 6;
             $userArray['user_skills_count'] = 2;
 
-            $userArray['athlete_since'] = $userArray['created_at'];            
+            $userArray['athlete_since'] = $userArray['created_at'];
             //Code to check facebook connected for user.
             //Added by ansa@cubettech.com on 27-11-2015
             $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
@@ -1016,7 +1046,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @api {post} user/resendverify ResendVerificationEmail
+     * @api {post} /user/resendverify ResendVerificationEmail
      * @apiName ResendVerificationEmail
      * @apiGroup User
      *

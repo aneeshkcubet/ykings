@@ -455,24 +455,23 @@ class CoachesController extends Controller
             }
         }
     }
-    
+
     /**
      * @api {post} /coach/preparecoach prepareCoach
      * @apiName prepareCoach
      * @apiGroup Coach
      * @apiParam {Number} user_id Id of user *mandatory
-     * @apiParam {Number} user_id Id of user *mandatory
+     * @apiParam {Number} test1 status of test1 0-failed 1-passed *mandatory
+     * @apiParam {Number} test2 status of test2 0-failed 1-passed *mandatory
+     * @apiParam {Number} focus user focus 1-Lean, 2-Athletic, 3-Strength *mandatory
+     * @apiParam {Number} days number of workout days per week *mandatory
+     * @apiParam {Number} progression progression which user focus on 1-Pull, 2-Dip, 3-Full Body, 4-Push, 5-Core  *mandatory
+     * @apiParam {Number} height user height in centimeters *optional
+     * @apiParam {Number} weight user weight in lbs *optional
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-      "status": 1,
-      "descriptions": {
-      "1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in faucibus orci. Nunc et lorem libero. Nulla facilisi. Nunc dictum, sapien ut tincidunt ultrices, dui nunc auctor velit, ac porta lacus turpis non massa. Quisque nec vestibulum risus, quis consequat lectus. Curabitur dignissim risus ac velit tincidunt dignissim. Mauris nec risus eget felis mollis tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In suscipit blandit bibendum. Nulla venenatis sed libero at ornare. Interdum et malesuada fames ac ante ipsum primis in faucibus. ",
-      "2": "Vestibulum rutrum efficitur vulputate. Mauris quam turpis, pellentesque sed mauris eget, imperdiet scelerisque libero. Sed vitae leo id massa consectetur vestibulum ut ac tellus. Nam luctus nisl at leo sagittis condimentum. Duis malesuada, nisl sit amet tincidunt sollicitudin, turpis leo aliquam eros, eu aliquam felis massa id urna. Suspendisse potenti. Curabitur sodales accumsan varius. Aenean nulla sem, consectetur sed ex sed, vestibulum iaculis felis. Suspendisse neque eros, sagittis quis pulvinar a, porta id est. Curabitur diam massa, semper et pretium vitae, commodo ut ligula. Sed venenatis imperdiet suscipit. Nam egestas ante vitae augue sodales consectetur. Ut vel molestie dolor. Nam lorem nibh, maximus vitae urna eget, interdum aliquam libero. Suspendisse ut metus justo. Mauris hendrerit pulvinar orci, at efficitur odio porta ut. ",
-      "3": "Nullam sit amet eros nec nibh feugiat scelerisque vitae in ante. Mauris eu hendrerit eros. In et risus vel purus pharetra mollis quis sed tellus. Sed ut libero posuere risus aliquam consectetur non ac dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lobortis nulla ut elementum. Aliquam vel accumsan leo. In sagittis enim scelerisque dolor dictum tristique. Donec mattis ut turpis id finibus. Nullam ac imperdiet nisi. In accumsan massa id magna imperdiet eleifend. Donec tempor blandit lacinia. Nulla vitae ligula sit amet est luctus vehicula. "
-      }
-      }
+     * 
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -519,14 +518,42 @@ class CoachesController extends Controller
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->test1) || ($request->test1 == null)) {
+            return response()->json(["status" => "0", "error" => "The test1 field is required"]);
+        } elseif (!isset($request->test2) || ($request->test2 == null)) {
+            return response()->json(["status" => "0", "error" => "The test2 field is required"]);
+        } elseif (!isset($request->focus) || ($request->focus == null)) {
+            return response()->json(["status" => "0", "error" => "The focus field is required"]);
+        } elseif (!isset($request->days) || ($request->days == null)) {
+            return response()->json(["status" => "0", "error" => "The days field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                
+                $data = [
+                    'user_id' => $request->user_id,
+                    'focus' => $request->focus,
+                    'height' => $request->height,
+                    'weight' => $request->weight,
+                    'days' => $request->days,
+                    'exercises' => ''
+                ];
+
+                Coach::create($data);
+
+                $coachId = DB::table('coaches')->where('user_id', $request->user_id)->pluck('id');
+
+                $data['test1'] = $request->test1;
+
+                $data['test2'] = $request->test2;
+
+                $coach = Coach::prepareCoachExercises($coachId, $data);
+
+                DB::table('coaches')->where('id', $coachId)->update(['exercises' => json_encode($coach)]);
+
+                return response()->json(['status' => 1, 'coach' => $coach, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
-        
     }
 }

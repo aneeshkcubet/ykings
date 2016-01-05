@@ -98,7 +98,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.unclap',
         'uses' => 'Api\FeedController@unclapFeed'
     ]);
-     Route::post('feeds/notification', [
+    Route::post('feeds/notification', [
         'as' => 'feeds.notification',
         'uses' => 'Api\FeedController@notification'
     ]);
@@ -116,7 +116,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@deleteComment'
     ]);
-   
+
     //UserFollowsController
     Route::post('follow/add', [
         'as' => 'follow.add',
@@ -208,12 +208,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'skill.getlevelskills',
         'uses' => 'Api\SkillsController@getLevelSkills'
     ]);
-    
+
     Route::post('/skills/lockskill', [
         'as' => 'skill.lockskill',
         'uses' => 'Api\SkillsController@lockSkill'
     ]);
-    
+
     Route::post('/skills/unlockskill', [
         'as' => 'skill.unlockskill',
         'uses' => 'Api\SkillsController@unlockSkill'
@@ -223,10 +223,26 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.getfundumentals',
         'uses' => 'Api\CoachesController@getFundumentals'
     ]);
-    
+
     Route::post('/coach/getdescription', [
         'as' => 'coach.getdescription',
         'uses' => 'Api\CoachesController@getDescription'
+    ]);
+
+
+    Route::post('/coach/preparecoach', [
+        'as' => 'coach.preparecoach',
+        'uses' => 'Api\CoachesController@prepareCoach'
+    ]);
+
+    //MessageController
+    Route::post('/user/listNotifications', [
+        'as' => 'user.listNotifications',
+        'uses' => 'Api\MessageController@listNotifications'
+    ]);
+    Route::post('/message/updateReadStatus', [
+        'as' => 'message.updateReadStatus',
+        'uses' => 'Api\MessageController@updateReadStatus'
     ]);
 });
 
@@ -260,12 +276,52 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/admin', [
-        'as' => 'admin.admin',
-        'uses' => 'Admin\AdminUsersController@index'
+    Route::get('/', [
+        'as' => 'admin.index',
+        'uses' => 'Admin\AdminController@index'
     ]);
-     Route::post('/login', [
+    Route::get('/login', [
+        'as' => 'admin.getlogin',
+        'uses' => 'Admin\AdminController@getLogin'
+    ]);
+    Route::post('/login', [
+        'as' => 'admin.postlogin',
+        'uses' => 'Admin\AdminController@postLogin'
+    ]);
+
+    Route::post('/login', [
         'as' => 'admin.login',
         'uses' => 'Admin\AdminUsersController@login'
     ]);
+
+    Route::get('/logout', [
+        'as' => 'admin.logout',
+        'uses' => 'Admin\AdminController@logout'
+    ]);
+
+
+
+    # User Management
+    Route::group(array('prefix' => 'users'), function () {
+        Route::get('/', array('as' => 'users', 'uses' => 'Admin\UsersController@getIndex'));
+        Route::get('create', array('as' => 'create.user', 'uses' => 'Admin\UsersController@getCreate'));
+        Route::post('create', 'Admin\UsersController@postCreate');
+        Route::get('{userId}/edit', array('as' => 'users.update', 'uses' => 'Admin\UsersController@getEdit'));
+        Route::post('{userId}/edit', 'Admin\UsersController@postEdit');
+        Route::get('{userId}', array('as' => 'users.show', 'uses' => 'Admin\UsersController@show'));
+        Route::get('{userId}/delete', array('as' => 'delete.user', 'uses' => 'Admin\UsersController@getDelete'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Admin\UsersController@getModalDelete'));
+    });
+
+    # Exercise Management
+    Route::group(array('prefix' => 'exercise'), function () {
+        Route::get('/', array('as' => 'exercise', 'uses' => 'Admin\ExerciseController@getIndex'));
+        Route::get('create', array('as' => 'create.exercise', 'uses' => 'Admin\ExerciseController@getCreate'));
+        Route::post('create', 'Admin\ExerciseController@postCreate');
+        Route::get('{userId}/edit', array('as' => 'users.update', 'uses' => 'Admin\ExerciseController@getEdit'));
+        Route::post('{userId}/edit', 'Admin\ExerciseController@postEdit');
+        Route::get('{userId}', array('as' => 'users.show', 'uses' => 'Admin\ExerciseController@show'));
+        Route::get('{userId}/delete', array('as' => 'delete.user', 'uses' => 'Admin\ExerciseController@getDelete'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Admin\ExerciseController@getModalDelete'));
+    });
 });

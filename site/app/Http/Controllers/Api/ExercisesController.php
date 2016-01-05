@@ -235,33 +235,30 @@ class ExercisesController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
 
-                $unlockedSkillsQuery = DB::table('unlocked_skills')
-                    ->select('exercise_id')
-                    ->whereRaw('user_id = '. $request->user_id)
-                    ->toSql();
+
                 
 
                 $exercises = [];
 
-                $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1')
                     ->with(['video'])
                     ->get();
-                $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1')
                     ->with(['video'])
                     ->get();
-                $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1 AND id IN (' . $unlockedSkillsQuery . ')')
+                $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1')
                     ->with(['video'])
                     ->get();
 
 
                 $leanExercisesPaid = Exercise::where('category', '=', 1)
-                    ->whereRaw('category = 1 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                    ->whereRaw('category = 1 AND type = 2')
                     ->with(['video'])
                     ->get();
-                $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2')
                     ->with(['video'])
                     ->get();
-                $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2 AND id IN (' . $unlockedSkillsQuery . ')')
+                $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2')
                     ->with(['video'])
                     ->get();
 
@@ -289,39 +286,45 @@ class ExercisesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "created_at": "2015-11-17 08:00:19",
-      "updated_at": "2015-11-20 04:20:50",
-      "users": []
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+    "status": 1,
+    "exercise": {
+        "id": "1",
+        "name": "Jumping Pullups",
+        "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+        "category": "1",
+        "type": "1",
+        "rewards": "6.00",
+        "repititions": "10",
+        "duration": "1.00",
+        "unit": "times",
+        "equipment": "",
+        "video": [
+            {
+                "id": "1",
+                "path": "Now1.mp4",
+                "videothumbnail": "thumbnail3.jpg",
+                "description": "Test Description"
+            }
+        ],
+        "users": []
+    },
+    "urls": {
+        "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
+        "profileImageMedium": "http://ykings.me/uploads/images/profile/medium",
+        "profileImageLarge": "http://ykings.me/uploads/images/profile/large",
+        "profileImageOriginal": "http://ykings.me/uploads/images/profile/original",
+        "video": "http://ykings.me/uploads/videos",
+        "videothumbnail": "http://ykings.me/uploads/images/videothumbnails",
+        "feedImageSmall": "http://ykings.me/uploads/images/feed/small",
+        "feedImageMedium": "http://ykings.me/uploads/images/feed/medium",
+        "feedImageLarge": "http://ykings.me/uploads/images/feed/large",
+        "feedImageOriginal": "http://ykings.me/uploads/images/feed/original",
+        "coverImageSmall": "http://ykings.me/uploads/images/cover_image/small",
+        "coverImageMedium": "http://ykings.me/uploads/images/cover_image/medium",
+        "coverImageLarge": "http://ykings.me/uploads/images/cover_image/large",
+        "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
+    }
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -370,7 +373,9 @@ class ExercisesController extends Controller
         if (!isset($request->exercise_id) || ($request->exercise_id == null)) {
             return response()->json(["status" => "0", "error" => "The exercise_id field is required"]);
         } else {
-            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->first();
+            //code added by ansa@cubettech.com on 31-12-2015
+            //Added video in response
+            $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->with(['video'])->first();
 
             if (!is_null($exercise)) {
                 $exerciseArray = $exercise->toArray();
