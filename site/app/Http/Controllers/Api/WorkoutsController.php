@@ -297,23 +297,22 @@ class WorkoutsController extends Controller
             if (!is_null($workout)) {
                 $workoutArray = $workout->toArray();
                 $workoutArray['rewards'] = json_decode($workoutArray['rewards'], true);
-                $leanWorkoutUsers = WorkoutUser::where('category', '=', 1)
-                    ->where('workout_id', '=', $request->workout_id)
-                    ->where('status', '=', 1)
+                
+                $featuredUserQuery = DB::table('users')->select('id')->whereRaw('status = 1 AND is_featured = 1')->toSql();
+                
+                $leanWorkoutUsers = WorkoutUser::whereRaw('category = 1 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')
                     ->get();
-                $athleteWorkoutUsers = WorkoutUser::where('category', '=', 2)
-                    ->where('workout_id', '=', $request->workout_id)
-                    ->where('status', '=', 1)
+                
+                $athleteWorkoutUsers = WorkoutUser::whereRaw('category = 2 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')
                     ->get();
-                $strengthWorkoutUsers = WorkoutUser::where('category', '=', 3)
-                    ->where('workout_id', '=', $request->workout_id)
-                    ->where('status', '=', 1)
+                
+                $strengthWorkoutUsers = WorkoutUser::whereRaw('category = 3 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')

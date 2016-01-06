@@ -37,11 +37,18 @@ class Point extends Model
         if ($userPoints > 0) {
             $level = (sqrt(625 + (100 * $userPoints)) - 25) / 50;
 
-            return $userLevel = (int) $level;
+            $userLevel = (int) $level;
+
+            if ($userLevel > 0) {
+                return $userLevel;
+            } else {
+                return $userLevel = 1;
+            }
         } else {
             return $userLevel = 1;
         }
     }
+
     /**
      * Function to find user points.
      * @author <ansa@cubettech.com>
@@ -54,9 +61,8 @@ class Point extends Model
             ->sum('points');
 
         return $userPoints = (int) $points;
-       
     }
-    
+
     /**
      * Function to find user points.
      * @author <aneeshk@cubettech.com>
@@ -67,11 +73,9 @@ class Point extends Model
         $points = Point::userPoints($userId);
         $level = Point::userLevel($userId);
         $nextLevel = $level + 1;
-        
-        $pointsTonextLevel = ((pow(((50*$nextLevel)+25), 2) - 625)/100) - $points;
-        
+
+        $pointsTonextLevel = ((pow(((50 * $nextLevel) + 25), 2) - 625) / 100) - $points;
+
         return $pointsTonextLevel;
-        
-       
-}
+    }
 }
