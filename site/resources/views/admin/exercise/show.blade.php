@@ -35,7 +35,7 @@ View Exercise Details
         <div class="col-lg-12">
             <ul class="nav  nav-tabs ">
                 <li class="active">
-                    <a href="#tab1" data-toggle="tab"> <i class="livicon" data-name="user" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i>
+                    <a href="#tab1" data-toggle="tab"> 
                         Exercise Page
                     </a>
                 </li>
@@ -47,7 +47,7 @@ View Exercise Details
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="col-md-4">
-                                        <h4 class="text-primary"> Image</h4>
+                                        <h4 class="text-primary"> </h4>
                                         <div class="img-file"> 
                                             @if($user['profile'][0]['image'])
                                             <img src="{{{ url('/').'/uploads/images/profile/original/'.$tUser['profile'][0]['image'] }}}" alt="profile pic" class="img-max">

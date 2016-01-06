@@ -971,9 +971,13 @@ class FeedController extends Controller
                     ]);
 
                     $feed->claps()->save($clap_details);
+                    //Push Notification
+                    return $request = ['type' => 'clap',
+                        'user_id' => $request->user_id,
+                        'friend_id' => $feed->user_id];
+                    PushNotificationFunction::pushNotification($request);
                 }
 
-                $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
                 return response()->json(['status' => 1, 'success' => 'clap added'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
@@ -1057,7 +1061,7 @@ class FeedController extends Controller
                     ->first();
                 if (!is_null($clap)) {
                     $clap->delete();
-                    $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
+                    // $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
@@ -1070,6 +1074,7 @@ class FeedController extends Controller
 
     public function notification(Request $request)
     {
+        $request = ["type" => "clap", "user_id" => "41", "friend_id" => "1"];
         PushNotificationFunction::pushNotification($request);
     }
 }

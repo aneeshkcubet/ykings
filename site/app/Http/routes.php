@@ -337,8 +337,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{userId}/edit', array('as' => 'exercise.update', 'uses' => 'Admin\ExerciseController@getEdit'));
         Route::post('{userId}/edit', 'Admin\ExerciseController@postEdit');
         Route::get('{userId}', array('as' => 'exercise.show', 'uses' => 'Admin\ExerciseController@show'));
-        Route::get('{userId}/delete', array('as' => 'delete.user', 'uses' => 'Admin\ExerciseController@getDelete'));
-        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Admin\ExerciseController@getModalDelete'));
+        Route::get('{userId}/delete', array('as' => 'delete.exercise', 'uses' => 'Admin\ExerciseController@getDelete'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
     });
     
     # Workout Management

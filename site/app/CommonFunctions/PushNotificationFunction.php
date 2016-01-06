@@ -7,6 +7,8 @@ use Sly\NotificationPusher\PushManager,
     Sly\NotificationPusher\Model\Device,
     Sly\NotificationPusher\Model\Message,
     Sly\NotificationPusher\Model\Push;
+use Illuminate\Http\Request;
+use App\Message;
 
 /**
  * Push notification
@@ -34,18 +36,42 @@ class PushNotificationFunction
     public static function pushNotification($request)
     {
         if ($request['type'] == 'clap') {
-            $message = '';
+            $notfyMessage = 'Clapped the feed';
         } elseif ($request['type'] == 'comment') {
-            $message = '';
+            $notfyMessage = 'Commented the feed';
         } elseif ($request['type'] == 'following') {
-            $message = '';
+            $notfyMessage = 'You are following';
         } else {
-            $message = '';
+            $notfyMessage = 'You have a new message';
         }
-        $deviceToken = PushNotification::where('user_id', $request['user_id'])->get();
-        $details = array('deviceToken' => '', 'message' => '');
-        PushNotificationFunction::androidNotification($details);
-        PushNotificationFunction::iosNotification($details);
+        //  echo $message;die;
+        //To save notifications on pushnotification
+        Message::create(['user_id' => $request['user_id'],
+            'friend_id' => $request['friend_id'],
+            'message_type' => $request['type'],
+            'type_id' => $request['type_id'],
+            'message' => $notfyMessage,
+            'read' => 0
+        ]);
+        //Android Push
+        $androidDevicetoken = PushNotification::where('user_id', $request['user_id'])
+            ->where('type', 'android')
+            ->first();
+
+        if (!is_null($androidDevicetoken)) {
+            $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => $notfyMessage);
+            PushNotificationFunction::androidNotification($androidArray);
+        }
+
+        //IOS Push
+        $iosDevicetoken = PushNotification::where('user_id', $request['user_id'])
+            ->where('type', 'ios')
+            ->first();
+
+        if (!is_null($androidDevicetoken)) {
+            $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => $notfyMessage);
+            PushNotificationFunction::iosNotification($iosArray);
+        }
     }
 
     /**
@@ -66,17 +92,17 @@ class PushNotificationFunction
         $gcmAdapter = new GcmAdapter(array(
             'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
         ));
-        $gcmAdapter = new GcmAdapter(array(
-            'apiKey' => 'AIzaSyBxVm0RrhkZeRLdkZKo1-hyTHTn2RSRTkY',
-        ));
 
         // Set the device(s) to push the notification to.
+//        $devices = new DeviceCollection(array(
+//            new Device('fqiQMABUMxI:APA91bE16Qv12rxF-iD4LPJUxfaX6dFalUTlmfeS-VybUIDmMmPCJJEtymQ0cYrz8hGbbuuy-o0bCtskdlL8WHepLdLYz-PJzNJLwOsu4lOeSaVGSl-tBIp9s_TNfpiXrEZWWVBbwc6o'),
+//        ));
         $devices = new DeviceCollection(array(
-            new Device('fqiQMABUMxI:APA91bE16Qv12rxF-iD4LPJUxfaX6dFalUTlmfeS-VybUIDmMmPCJJEtymQ0cYrz8hGbbuuy-o0bCtskdlL8WHepLdLYz-PJzNJLwOsu4lOeSaVGSl-tBIp9s_TNfpiXrEZWWVBbwc6o'),
+            new Device($details['deviceToken']),
         ));
 
         // Then, create the push skel.
-        $message = new Message('This is an example.');
+        $message = new Message($details['message']);
 
         // Finally, create and add the push to the manager, and push it!
         $push = new Push($gcmAdapter, $devices, $message);
@@ -105,13 +131,17 @@ class PushNotificationFunction
         ));
 
         // Set the device(s) to push the notification to.
+//        $devices = new DeviceCollection(array(
+//            new Device('181547fd1b9d0ff4da8ef9008229a173c9a640b239385aae0de578489033fba0'),
+//            // ...
+//        ));
         $devices = new DeviceCollection(array(
-            new Device('181547fd1b9d0ff4da8ef9008229a173c9a640b239385aae0de578489033fba0'),
+            new Device($details['deviceToken']),
             // ...
         ));
 
 // Then, create the push skel.
-        $message = new Message('This is a basic example of push.');
+        $message = new Message($details['message']);
 
 // Finally, create and add the push to the manager, and push it!
         $push = new Push($apnsAdapter, $devices, $message);

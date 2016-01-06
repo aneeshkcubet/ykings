@@ -88,12 +88,12 @@ Exercises
                             <td>
                                 <a href="{{ route('exercise.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
                                 <a href="{{ route('exercise.update', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>
-                                @if ($list->id != 1)	
+                               	
                                 <a href="{{ route('confirm-delete/user', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
                                     <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
                                     </i>
                                 </a>
-                                @endif
+                               
                             </td>
                         </tr>
                         @endforeach
