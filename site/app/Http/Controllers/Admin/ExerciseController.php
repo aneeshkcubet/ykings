@@ -94,12 +94,9 @@ class ExerciseController extends Controller
     {
 
         try {
-            //echo Auth::user()->id;die;
             // Get the user information
             $exercise = Exercise::where('id', $id)->first();
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            $usersList = '';
-//        
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = Lang::get('users/message.user_not_found', compact('id'));
@@ -108,7 +105,7 @@ class ExerciseController extends Controller
             return Redirect::route('users')->with('error', $error);
         }
         // Show the page
-        return View('admin.exercise.show', compact('exercise', 'user', 'usersList'));
+        return View('admin.exercise.show', compact('exercise', 'user'));
     }
 
     /**
@@ -171,13 +168,13 @@ class ExerciseController extends Controller
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getDeletedUsers()
+    public function getDelete()
     {
         // Grab deleted users
         $users = User::onlyTrashed()->get();
 
         // Show the page
-        return View('admin/deleted_users', compact('users'));
+        return View('admin.exercise', compact('users'));
     }
 
     /**
@@ -188,9 +185,9 @@ class ExerciseController extends Controller
      */
     public function getModalDelete($id = null)
     {
-        $model = 'users';
+        $model = 'exercise';
         $confirm_route = $error = null;
-        try { //echo 'hiii';die;
+        try { 
             // Get user information
             // $user = User::where('id', $id)->first();
             // Check if we are not trying to delete ourselves
@@ -204,7 +201,7 @@ class ExerciseController extends Controller
             $error = Lang::get('users/message.user_not_found', compact('id'));
             return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
         }
-        $confirm_route = route('delete/user', ['id' => $user->id]);
+        $confirm_route = route('delete.exercise', ['id' => $id]);
         return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
     }
 }

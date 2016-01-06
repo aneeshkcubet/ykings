@@ -972,10 +972,10 @@ class FeedController extends Controller
 
                     $feed->claps()->save($clap_details);
                     //Push Notification
-                    return $request = ['type' => 'clap',
-                        'user_id' => $request->user_id,
-                        'friend_id' => $feed->user_id];
-                    PushNotificationFunction::pushNotification($request);
+                        return $request = ['type' => 'clap',
+                            'user_id' => $request->user_id,
+                            'friend_id' => $feed->user_id];
+                        PushNotificationFunction::pushNotification($request);
                 }
 
                 return response()->json(['status' => 1, 'success' => 'clap added'], 200);
