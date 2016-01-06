@@ -195,7 +195,10 @@ class UserFriendsController extends Controller
                 $friendsArray = json_decode($request->friends_list, true);
                 foreach ($friendsArray as $friends) {
                     if ($request->type == 'phonebook') {
-                        $emailExists = User::where('email', '=', $friends)->with(['profile'])->first();
+                        $emailExists = User::where('email', '=', $friends)
+                            ->where('status', 1)
+                            ->with(['profile'])
+                            ->first();
                         if (!is_null($emailExists)) {
                             $emailExists['is_following'] = Follow::isFollowing($request->input('user_id'), $emailExists['id']);
                             $registeredUsers[] = $emailExists;

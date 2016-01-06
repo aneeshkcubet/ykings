@@ -134,7 +134,12 @@ class CommentsController extends Controller
                     'parent_id' => $data['feed_id'],
                     'comment_text' => $request->text
             ]);
-
+            //Push Notification
+            $request = ['type' => 'comment',
+                'type_id' => $data['feed_id'],
+                'user_id' => $data['user_id'],
+                'friend_id' => $feed->user_id];
+            PushNotificationFunction::pushNotification($request);
             return response()->json(['status' => 1, 'success' => 'commented_on_feed_successfully'], 200);
         }
     }
@@ -184,22 +189,22 @@ class CommentsController extends Controller
       }
       }
       ],
-       "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -257,12 +262,12 @@ class CommentsController extends Controller
                 $commentQuery = Comment::where('parent_id', '=', $request->input('feed_id'))
                     ->where('parent_type', 'feed')
                     ->with(['profile']);
-               
+
                 if ($request->offset != null && $request->limit != null) {
                     $commentQuery->skip($request->input('limit'));
                     $commentQuery->take($request->input('offset'));
                 }
-                  $commentQuery->orderBy('created_at', 'DESC');
+                $commentQuery->orderBy('created_at', 'DESC');
                 $comments = $commentQuery->get();
                 return response()->json(['status' => 1, 'comments' => $comments->toArray(), 'urls' => config('urls.urls')], 200);
             } else {

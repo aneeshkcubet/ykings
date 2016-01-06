@@ -972,10 +972,11 @@ class FeedController extends Controller
 
                     $feed->claps()->save($clap_details);
                     //Push Notification
-                        return $request = ['type' => 'clap',
-                            'user_id' => $request->user_id,
-                            'friend_id' => $feed->user_id];
-                        PushNotificationFunction::pushNotification($request);
+                    $request = ['type' => 'clap',
+                        'type_id' => $request->input('feed_id'),
+                        'user_id' => $request->user_id,
+                        'friend_id' => $feed->user_id];
+                    PushNotificationFunction::pushNotification($request);
                 }
 
                 return response()->json(['status' => 1, 'success' => 'clap added'], 200);
@@ -1061,7 +1062,12 @@ class FeedController extends Controller
                     ->first();
                 if (!is_null($clap)) {
                     $clap->delete();
-                    // $feeds = Feeds::where('id', '=', $request->input('feed_id'))->with(['comments', 'claps', 'image'])->get();
+                    //Push Notification
+                    $request = ['type' => 'unclap',
+                        'type_id' => $request->input('feed_id'),
+                        'user_id' => $request->user_id,
+                        'friend_id' => $feed->user_id];
+                    PushNotificationFunction::pushNotification($request);
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
@@ -1070,11 +1076,5 @@ class FeedController extends Controller
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
         }
-    }
-
-    public function notification(Request $request)
-    {
-        $request = ["type" => "clap", "user_id" => "41", "friend_id" => "1"];
-        PushNotificationFunction::pushNotification($request);
     }
 }

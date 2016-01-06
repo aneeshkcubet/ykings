@@ -19,7 +19,8 @@ class Message extends Model
         'friend_id',
         'message_type',
         'type_id',
-        'read'
+        'read',
+        'message'
     ];
 
  

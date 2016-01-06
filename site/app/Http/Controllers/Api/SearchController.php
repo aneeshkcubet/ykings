@@ -60,21 +60,21 @@ class SearchController extends Controller
       }
       ],
       "urls": {
-            "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-            "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-            "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-            "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-            "video": "http://sandbox.ykings.com/uploads/videos",
-            "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-            "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-            "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-            "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-            "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-            "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-            "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-            "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-            "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-          }
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
       }
      * 
      * @apiError error Message token_invalid.
@@ -129,9 +129,18 @@ class SearchController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                $searchUsers = Profile::select('user_id', 'first_name', 'last_name', 'image', 'quote')
-                    ->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"')
-                    ->get();
+//                    $searchUsers = Profile::select('user_id', 'first_name', 'last_name', 'image', 'quote')
+//                        ->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"')
+//                        ->get();
+
+                $search = Profile::whereIn('user_id', function($query) use ($request) {
+                        $query->select('id')
+                            ->from('users')
+                            ->where('status', 1);
+                    });
+                $search->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"');
+                $searchUsers = $search->get();
+
                 if (!is_null($searchUsers)) {
                     foreach ($searchUsers as $usersList) {
                         $usersList['level'] = Point::userLevel($usersList->user_id);

@@ -8,7 +8,8 @@ use Sly\NotificationPusher\PushManager,
     Sly\NotificationPusher\Model\Message,
     Sly\NotificationPusher\Model\Push;
 use Illuminate\Http\Request;
-use App\Message;
+use App\Message as Notification;
+use App\PushNotification;
 
 /**
  * Push notification
@@ -37,6 +38,8 @@ class PushNotificationFunction
     {
         if ($request['type'] == 'clap') {
             $notfyMessage = 'Clapped the feed';
+        } elseif ($request['type'] == 'unclap') {
+            $notfyMessage = 'Unclapped the feed';
         } elseif ($request['type'] == 'comment') {
             $notfyMessage = 'Commented the feed';
         } elseif ($request['type'] == 'following') {
@@ -44,9 +47,9 @@ class PushNotificationFunction
         } else {
             $notfyMessage = 'You have a new message';
         }
-        //  echo $message;die;
-        //To save notifications on pushnotification
-        Message::create(['user_id' => $request['user_id'],
+        // echo $notfyMessage;die;
+        //To save notifications on pushnotification to Message table
+        Notification::create(['user_id' => $request['user_id'],
             'friend_id' => $request['friend_id'],
             'message_type' => $request['type'],
             'type_id' => $request['type_id'],
@@ -54,7 +57,7 @@ class PushNotificationFunction
             'read' => 0
         ]);
         //Android Push
-        $androidDevicetoken = PushNotification::where('user_id', $request['user_id'])
+        $androidDevicetoken = PushNotification::where('user_id', $request['friend_id'])
             ->where('type', 'android')
             ->first();
 
@@ -64,11 +67,11 @@ class PushNotificationFunction
         }
 
         //IOS Push
-        $iosDevicetoken = PushNotification::where('user_id', $request['user_id'])
+        $iosDevicetoken = PushNotification::where('user_id', $request['friend_id'])
             ->where('type', 'ios')
             ->first();
 
-        if (!is_null($androidDevicetoken)) {
+        if (!is_null($iosDevicetoken)) {
             $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => $notfyMessage);
             PushNotificationFunction::iosNotification($iosArray);
         }
