@@ -37,48 +37,52 @@ class PushNotificationFunction
      */
     public static function pushNotification($request)
     {
-        $senderName = Profile::where('user_id', $request['user_id'])
-            ->pluck('first_name');
-       
-        if ($request['type'] == 'clap') {
-            $notfyMessage = $senderName.' clapped your feed';
-        } elseif ($request['type'] == 'unclap') {
-            $notfyMessage = $senderName.' unclapped the feed';
-        } elseif ($request['type'] == 'comment') {
-            $notfyMessage = $senderName.' commented the feed';
-        } elseif ($request['type'] == 'following') {
-            $notfyMessage = $senderName.' you are following';
-        } else {
-            $notfyMessage = 'You have a new message';
-        }
-        // echo $notfyMessage;die;
-        //To save notifications on pushnotification to Message table
-        Notification::create(['user_id' => $request['user_id'],
-            'friend_id' => $request['friend_id'],
-            'message_type' => $request['type'],
-            'type_id' => $request['type_id'],
-            'message' => $notfyMessage,
-            'read' => 0
-        ]);
-        //Android Push
-        $androidDevicetoken = PushNotification::where('user_id', $request['friend_id'])
-            ->where('type', 'android')
-            ->first();
+        
+        if ($request['user_id'] != $request['friend_id']) {
+            //To get sender info
+            $senderName = Profile::where('user_id', $request['user_id'])
+                ->pluck('first_name');
 
-        if (!is_null($androidDevicetoken)) {
-            $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => $notfyMessage);
-           // mail('ansa@cubettech.com', $androidDevicetoken->device_token, $androidDevicetoken->device_token);
-            PushNotificationFunction::androidNotification($androidArray);
-        }
+            if ($request['type'] == 'clap') {
+                $notfyMessage = $senderName . ' clapped your feed';
+            } elseif ($request['type'] == 'unclap') {
+                $notfyMessage = $senderName . ' unclapped the feed';
+            } elseif ($request['type'] == 'comment') {
+                $notfyMessage = $senderName . ' commented the feed';
+            } elseif ($request['type'] == 'following') {
+                $notfyMessage = $senderName . ' you are following';
+            } else {
+                $notfyMessage = 'You have a new message';
+            }
+            // echo $notfyMessage;die;
+            //To save notifications on pushnotification to Message table
+            Notification::create(['user_id' => $request['user_id'],
+                'friend_id' => $request['friend_id'],
+                'message_type' => $request['type'],
+                'type_id' => $request['type_id'],
+                'message' => $notfyMessage,
+                'read' => 0
+            ]);
+            //Android Push
+            $androidDevicetoken = PushNotification::where('user_id', $request['friend_id'])
+                ->where('type', 'android')
+                ->first();
 
-        //IOS Push
-        $iosDevicetoken = PushNotification::where('user_id', $request['friend_id'])
-            ->where('type', 'ios')
-            ->first();
+            if (!is_null($androidDevicetoken)) {
+                $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => $notfyMessage);
+                // mail('ansa@cubettech.com', $androidDevicetoken->device_token, $androidDevicetoken->device_token);
+                PushNotificationFunction::androidNotification($androidArray);
+            }
 
-        if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
-            $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => $notfyMessage);
-            PushNotificationFunction::iosNotification($iosArray);
+            //IOS Push
+            $iosDevicetoken = PushNotification::where('user_id', $request['friend_id'])
+                ->where('type', 'ios')
+                ->first();
+
+            if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
+                $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => $notfyMessage);
+                PushNotificationFunction::iosNotification($iosArray);
+            }
         }
     }
 

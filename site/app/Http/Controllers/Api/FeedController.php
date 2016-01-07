@@ -158,7 +158,7 @@ class FeedController extends Controller
                 ]);
 
                 $feed = $user->feeds()->save($feeds);
-               // return $feed->id;
+                // return $feed->id;
                 if ($request->item_type == 'exercise') {
                     Exerciseuser::create([
                         'user_id' => $request->user_id,
@@ -172,7 +172,6 @@ class FeedController extends Controller
 
                     $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
                         ->where('exercise_id', $request->item_id)
-                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->first();
                     if ($exerciseDetails->unit == 'times') {
@@ -212,7 +211,6 @@ class FeedController extends Controller
 
                     $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
                         ->where('workout_id', $request->item_id)
-                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->where('category', $request->category)
                         ->first();
@@ -245,7 +243,6 @@ class FeedController extends Controller
 
                     $exerciseDetails = Hiituser::where('user_id', $request->user_id)
                         ->where('hiit_id', $request->item_id)
-                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->first();
 
@@ -663,7 +660,11 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $workout->name;
-                $duration = DB::table('workout_users')->where('user_id', $userId)->where('workout_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('workout_users')
+                    ->where('user_id', $userId)
+                    ->where('workout_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -683,7 +684,10 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $exercise->name;
-                $duration = DB::table('exercise_users')->where('user_id', $userId)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('exercise_users')->where('user_id', $userId)
+                    ->where('exercise_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -692,7 +696,11 @@ class FeedController extends Controller
             } elseif ($feedsArray['item_type'] == 'hiit') {
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                 $feedsArray['item_name'] = $hiit->name;
-                $duration = DB::table('hiit_users')->where('user_id', $userId)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('hiit_users')
+                    ->where('user_id', $userId)
+                    ->where('hiit_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
