@@ -71,7 +71,7 @@ class PushNotificationFunction
             ->where('type', 'ios')
             ->first();
 
-        if (!is_null($iosDevicetoken)) {
+        if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
             $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => $notfyMessage);
             PushNotificationFunction::iosNotification($iosArray);
         }

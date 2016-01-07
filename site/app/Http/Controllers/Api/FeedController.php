@@ -150,11 +150,20 @@ class FeedController extends Controller
 
                 $itemId = $request->input('item_id');
 
+                $feeds = new Feeds([
+                    'user_id' => $request->input('user_id'),
+                    'item_type' => $request->input('item_type'),
+                    'item_id' => $request->input('item_id'),
+                    'feed_text' => $request->input('text')
+                ]);
+
+                $feed = $user->feeds()->save($feeds);
                 if ($request->item_type == 'exercise') {
                     Exerciseuser::create([
                         'user_id' => $request->user_id,
                         'exercise_id' => $request->item_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : ''
@@ -162,6 +171,7 @@ class FeedController extends Controller
 
                     $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
                         ->where('exercise_id', $request->item_id)
+                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->first();
                     if ($exerciseDetails->unit == 'times') {
@@ -190,6 +200,7 @@ class FeedController extends Controller
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'category' => $request->category,
                         'is_starred' => $addStar,
@@ -200,6 +211,7 @@ class FeedController extends Controller
 
                     $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
                         ->where('workout_id', $request->item_id)
+                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->where('category', $request->category)
                         ->first();
@@ -222,6 +234,7 @@ class FeedController extends Controller
                         'hiit_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : ''
@@ -231,6 +244,7 @@ class FeedController extends Controller
 
                     $exerciseDetails = Hiituser::where('user_id', $request->user_id)
                         ->where('hiit_id', $request->item_id)
+                        ->where('feed_id', $feed->id)
                         ->where('status', 1)
                         ->first();
 
@@ -247,15 +261,6 @@ class FeedController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 }
-
-                $feeds = new Feeds([
-                    'user_id' => $request->input('user_id'),
-                    'item_type' => $request->input('item_type'),
-                    'item_id' => $request->input('item_id'),
-                    'feed_text' => $request->input('text')
-                ]);
-
-                $feed = $user->feeds()->save($feeds);
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
@@ -1067,7 +1072,7 @@ class FeedController extends Controller
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
                         'friend_id' => $feed->user_id];
-                    
+
                     PushNotificationFunction::pushNotification($request);
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {
