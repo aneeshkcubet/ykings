@@ -1067,6 +1067,7 @@ class FeedController extends Controller
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
                         'friend_id' => $feed->user_id];
+                    
                     PushNotificationFunction::pushNotification($request);
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {

@@ -129,9 +129,6 @@ class SearchController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-//                    $searchUsers = Profile::select('user_id', 'first_name', 'last_name', 'image', 'quote')
-//                        ->whereRaw('(first_name LIKE "%' . $request->search_key . '%" OR last_name LIKE "%' . $request->search_key . '%") AND user_id != "' . $request->user_id . '"')
-//                        ->get();
 
                 $search = Profile::whereIn('user_id', function($query) use ($request) {
                         $query->select('id')
