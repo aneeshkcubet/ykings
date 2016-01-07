@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Feeds;
 use App\Comment;
+use App\CommonFunctions\PushNotificationFunction;
 
 class CommentsController extends Controller
 {
@@ -135,10 +136,12 @@ class CommentsController extends Controller
                     'comment_text' => $request->text
             ]);
             //Push Notification
-            $request = ['type' => 'comment',
+            $request = [
+                'type' => 'comment',
                 'type_id' => $data['feed_id'],
                 'user_id' => $data['user_id'],
-                'friend_id' => $feed->user_id];
+                'friend_id' => $feed->user_id
+            ];
             PushNotificationFunction::pushNotification($request);
             return response()->json(['status' => 1, 'success' => 'commented_on_feed_successfully'], 200);
         }

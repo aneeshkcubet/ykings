@@ -158,9 +158,9 @@ class FeedController extends Controller
                 ]);
 
                 $feed = $user->feeds()->save($feeds);
-                // return $feed->id;
+
                 if ($request->item_type == 'exercise') {
-                    Exerciseuser::create([
+                    $exerciseUser = Exerciseuser::create([
                         'user_id' => $request->user_id,
                         'exercise_id' => $request->item_id,
                         'status' => 1,
@@ -170,10 +170,8 @@ class FeedController extends Controller
                         'volume' => isset($request->volume) ? $request->volume : ''
                     ]);
 
-                    $exerciseDetails = Exerciseuser::where('user_id', $request->user_id)
-                        ->where('exercise_id', $request->item_id)
-                        ->where('status', 1)
-                        ->first();
+                    $exerciseDetails = Exercise::where('id', $request->item_id)->first();                    
+                    
                     if ($exerciseDetails->unit == 'times') {
                         $pointForSingle = ($exerciseDetails->rewards) / $exerciseDetails->repititions;
 
@@ -184,12 +182,11 @@ class FeedController extends Controller
                         $pointsEarned = 0;
                         if (isset($request->volume))
                             $pointsEarned = $exerciseDetails->rewards * $request->volume;
-                    }
-
-                    $itemId = $exerciseDetails->id;
+                    }                    
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
+                        'item_id' => $exerciseUser->id,
                         'activity' => 'exercise_completed',
                         'points' => $pointsEarned,
                         'created_at' => Carbon::now()
@@ -207,15 +204,10 @@ class FeedController extends Controller
                         'volume' => isset($request->volume) ? $request->volume : ''
                     ];
 
-                    WorkoutUser::create($data);
+                    $workoutUser = WorkoutUser::create($data);
 
-                    $exerciseDetails = WorkoutUser::where('user_id', $request->user_id)
-                        ->where('workout_id', $request->item_id)
-                        ->where('status', 1)
-                        ->where('category', $request->category)
-                        ->first();
+                    $exerciseDetails = WorkoutUser::where('id', $request->item_id)->first();
 
-                    $itemId = $exerciseDetails->id;
 
                     $pointsEarned = 0;
                     if (isset($request->volume))
@@ -223,6 +215,7 @@ class FeedController extends Controller
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
+                        'item_id' => $workoutUser->id,
                         'activity' => 'workout_completed',
                         'points' => $request->rewards,
                         'created_at' => Carbon::now()
@@ -239,14 +232,9 @@ class FeedController extends Controller
                         'volume' => isset($request->volume) ? $request->volume : ''
                     ];
 
-                    Hiituser::create($data);
+                    $hiitUser = Hiituser::create($data);
 
-                    $exerciseDetails = Hiituser::where('user_id', $request->user_id)
-                        ->where('hiit_id', $request->item_id)
-                        ->where('status', 1)
-                        ->first();
-
-                    $itemId = $exerciseDetails->id;
+                    $exerciseDetails = Hiituser::where('id', $request->item_id)->first();
 
                     $pointsEarned = 0;
                     if (isset($request->volume))
@@ -254,6 +242,7 @@ class FeedController extends Controller
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
+                        'item_id' => $hiitUser->id,
                         'activity' => 'hiit_completed',
                         'points' => $pointsEarned,
                         'created_at' => Carbon::now()
@@ -660,11 +649,11 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $workout->name;
+
                 $duration = DB::table('workout_users')
-                    ->where('user_id', $userId)
-                    ->where('workout_id', $feedsArray['item_id'])
                     ->where('feed_id', $feedsArray['id'])
                     ->pluck('time');
+
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -684,10 +673,11 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $exercise->name;
-                $duration = DB::table('exercise_users')->where('user_id', $userId)
-                    ->where('exercise_id', $feedsArray['item_id'])
+
+                $duration = DB::table('exercise_users')
                     ->where('feed_id', $feedsArray['id'])
                     ->pluck('time');
+
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -696,11 +686,11 @@ class FeedController extends Controller
             } elseif ($feedsArray['item_type'] == 'hiit') {
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                 $feedsArray['item_name'] = $hiit->name;
+
                 $duration = DB::table('hiit_users')
-                    ->where('user_id', $userId)
-                    ->where('hiit_id', $feedsArray['item_id'])
                     ->where('feed_id', $feedsArray['id'])
                     ->pluck('time');
+
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -985,11 +975,14 @@ class FeedController extends Controller
                     ]);
 
                     $feed->claps()->save($clap_details);
+
                     //Push Notification
-                    $request = ['type' => 'clap',
+                    $request = [
+                        'type' => 'clap',
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
-                        'friend_id' => $feed->user_id];
+                        'friend_id' => $feed->user_id
+                    ];
                     PushNotificationFunction::pushNotification($request);
                 }
 
@@ -1077,12 +1070,12 @@ class FeedController extends Controller
                 if (!is_null($clap)) {
                     $clap->delete();
                     //Push Notification
-                    $request = ['type' => 'unclap',
+                    $request = [
+                        'type' => 'unclap',
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
-                        'friend_id' => $feed->user_id];
-
-                    PushNotificationFunction::pushNotification($request);
+                        'friend_id' => $feed->user_id
+                    ];
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'not_yet_claped'], 422);
