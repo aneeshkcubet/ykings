@@ -44,13 +44,13 @@ class FeedController extends Controller
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit' *required
      * @apiParam {Number} item_id id of the targetting item *required
-     * @apiParam {Number} time_taken time in seconds
-     * @apiParam {Number} rewards points earned by doing activity
-     * @apiParam {Number} category in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} [time_taken] time in seconds
+     * @apiParam {Number} [rewards] points earned by doing activity
+     * @apiParam {Number} [category[ in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
-     * @apiParam {Number} volume volume of exercise/workout/hiit
+     * @apiParam {Number} [volume] volume of exercise/workout/hiit
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -150,11 +150,21 @@ class FeedController extends Controller
 
                 $itemId = $request->input('item_id');
 
+                $feeds = new Feeds([
+                    'user_id' => $request->input('user_id'),
+                    'item_type' => $request->input('item_type'),
+                    'item_id' => $request->input('item_id'),
+                    'feed_text' => $request->input('text')
+                ]);
+
+                $feed = $user->feeds()->save($feeds);
+                // return $feed->id;
                 if ($request->item_type == 'exercise') {
                     Exerciseuser::create([
                         'user_id' => $request->user_id,
                         'exercise_id' => $request->item_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : ''
@@ -190,6 +200,7 @@ class FeedController extends Controller
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'category' => $request->category,
                         'is_starred' => $addStar,
@@ -222,6 +233,7 @@ class FeedController extends Controller
                         'hiit_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
+                        'feed_id' => $feed->id,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : ''
@@ -247,15 +259,6 @@ class FeedController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 }
-
-                $feeds = new Feeds([
-                    'user_id' => $request->input('user_id'),
-                    'item_type' => $request->input('item_type'),
-                    'item_id' => $request->input('item_id'),
-                    'feed_text' => $request->input('text')
-                ]);
-
-                $feed = $user->feeds()->save($feeds);
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
@@ -457,7 +460,7 @@ class FeedController extends Controller
      * @api {post} /feeds/list ListFeeds
      * @apiName ListFeeds
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required
      * @apiParam {Number} [offset] offset 
      * @apiParam {Number} [limit] limit
      * @apiSuccess {String} success.
@@ -657,7 +660,11 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $workout->name;
-                $duration = DB::table('workout_users')->where('user_id', $userId)->where('workout_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('workout_users')
+                    ->where('user_id', $userId)
+                    ->where('workout_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -677,7 +684,10 @@ class FeedController extends Controller
                     $feedsArray['category'] = "";
                 }
                 $feedsArray['item_name'] = $exercise->name;
-                $duration = DB::table('exercise_users')->where('user_id', $userId)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('exercise_users')->where('user_id', $userId)
+                    ->where('exercise_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -686,7 +696,11 @@ class FeedController extends Controller
             } elseif ($feedsArray['item_type'] == 'hiit') {
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                 $feedsArray['item_name'] = $hiit->name;
-                $duration = DB::table('hiit_users')->where('user_id', $userId)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
+                $duration = DB::table('hiit_users')
+                    ->where('user_id', $userId)
+                    ->where('hiit_id', $feedsArray['item_id'])
+                    ->where('feed_id', $feedsArray['id'])
+                    ->pluck('time');
                 if (!is_null($duration)) {
                     $feedsArray['duration'] = $duration;
                 } else {
@@ -707,8 +721,8 @@ class FeedController extends Controller
      * @api {post} /feeds/feedDetails feedDetails
      * @apiName feedDetails
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -896,8 +910,8 @@ class FeedController extends Controller
      * @api {post} /feeds/clap clapFeed
      * @apiName clapFeed
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required 
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
@@ -990,8 +1004,8 @@ class FeedController extends Controller
      * @api {post} /feeds/unclap unclapFeed
      * @apiName unclapFeed
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
@@ -1067,7 +1081,7 @@ class FeedController extends Controller
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
                         'friend_id' => $feed->user_id];
-                    
+
                     PushNotificationFunction::pushNotification($request);
                     return response()->json(['status' => 1, 'success' => 'unclaped'], 200);
                 } else {

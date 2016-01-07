@@ -351,7 +351,7 @@ class UsersController extends Controller
      * @apiParam {string} [last_name] Firstname of user *optional
      * @apiParam {string} email email address of user *readonly *required 
      * @apiParam {number} [gender] gender of the user 1-Male, 2-Female 
-     * @apiParam {number} fitness_status user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
+     * @apiParam {number} [fitness_status] user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
      * @apiParam {file} [image] user avatar image  *accepted formats JPEG, PNG, and GIF
      * @apiParam {file} [cover_image] user cover_image
      * @apiParam {number} [goal] user's goal

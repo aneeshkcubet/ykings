@@ -37,9 +37,9 @@ class SocialController extends Controller
      * @apiParam {string} [last_name] LastName of user 
      * @apiParam {string} [image_url] Facebook Profile Image Url of user 
      * @apiParam {string} [access_token] Access Token 
-     * @apiParam {string} email email address of user *required
+     * @apiParam {string} email email address of user *required 
      * @apiParam {string} provider_id Facebook id of user *required
-     * @apiParam {string} provider Provider,eg:facebook
+     * @apiParam {string} provider Provider,eg:facebook *required
      * @apiParam {string} [subscription] Permission flag 0/1
      * @apiParam {string} [gender] gender 
      * @apiParam {string} [fitness_status] fitness_status
@@ -302,7 +302,7 @@ class SocialController extends Controller
      * @apiParam {string} [access_token] Access Token 
      * @apiParam {string} email email address of user *required
      * @apiParam {string} provider_id Facebook id of user *required
-     * @apiParam {string} provider Provider,eg:facebook
+     * @apiParam {string} provider Provider,eg:facebook *required
      * @apiParam {string} [subscription] Permission flag 0/1
      * @apiParam {string} [gender] gender 
      * @apiParam {string} [fitness_status] fitness_status

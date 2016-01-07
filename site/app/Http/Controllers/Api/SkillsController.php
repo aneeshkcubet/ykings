@@ -39,7 +39,7 @@ class SkillsController extends Controller
      * @api {post} /skills/list loadSkills
      * @apiName loadSkills
      * @apiGroup Skill
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -679,8 +679,8 @@ class SkillsController extends Controller
      * @api {post} /skills/getlevelskills getLevelSkills
      * @apiName getLevelSkills
      * @apiGroup Skill
-     * @apiParam {Number} user_id Id of user
-     * @apiParam {Number} skill_id Id of skill
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} skill_id Id of skill *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -956,8 +956,8 @@ class SkillsController extends Controller
      * @api {post} /skills/unlockskill unlockSkill
      * @apiName unlockSkill
      * @apiGroup Skill
-     * @apiParam {Number} user_id Id of user
-     * @apiParam {Number} skill_id Id of skill
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} skill_id Id of skill *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -1212,8 +1212,8 @@ class SkillsController extends Controller
      * @api {post} /skills/lockskill lockSkill
      * @apiName lockSkill
      * @apiGroup Skill
-     * @apiParam {Number} user_id Id of user
-     * @apiParam {Number} skill_id Id of skill
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} skill_id Id of skill *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK

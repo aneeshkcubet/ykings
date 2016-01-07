@@ -41,7 +41,7 @@ class WorkoutsController extends Controller
      * @api {post} /workout/list loadWorkouts
      * @apiName loadWorkouts
      * @apiGroup Workout
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -160,7 +160,7 @@ class WorkoutsController extends Controller
      * @api {post} /workout/getlevels getWorkoutWithLevels
      * @apiName getWorkoutWithLevels
      * @apiGroup Workout
-     * @apiParam {Number} workout_id Id of workout 
+     * @apiParam {Number} workout_id Id of workout *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -372,8 +372,8 @@ class WorkoutsController extends Controller
      * @api {post} /workout/getexercises getWorkoutWithExercises
      * @apiName getWorkoutWithExercises
      * @apiGroup Workout
-     * @apiParam {Number} workout_id Id of workout 
-     * @apiParam {Number} category of workout 1-lean, 2-athletic, 3-strength
+     * @apiParam {Number} workout_id Id of workout *required
+     * @apiParam {Number} category of workout 1-lean, 2-athletic, 3-strength *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK

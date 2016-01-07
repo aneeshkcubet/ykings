@@ -21,7 +21,8 @@ class Exerciseuser extends Model
         'status',
         'time',
         'is_starred',
-        'volume'
+        'volume',
+        'feed_id'
     ];
 
     /**

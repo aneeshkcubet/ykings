@@ -29,8 +29,8 @@ class UserSettingsController extends Controller
      * @api {post} /user/settings updateUserSettings
      * @apiName updateUserSettings
      * @apiGroup Settings
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {String} settings_key notification/subscription
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {String} settings_key notification/subscription *required
      * @apiParam {String} status json array of {"comments":"1","claps":"0","follow":"0","my_performance":"1","motivation_knowledge":"1"}
      * @apiSuccess {String} success.
      * 
@@ -259,9 +259,9 @@ class UserSettingsController extends Controller
      * @api {post} /user/updateDeviceToken updateDeviceToken
      * @apiName updateDeviceToken
      * @apiGroup Settings
-     * @apiParam {Number} user_id Id of user
-     * @apiParam {String} device_token device_token of user 
-     * @apiParam {String} type device type (ios/android)
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {String} device_token device_token of user *required
+     * @apiParam {String} type device type (ios/android) *required
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:

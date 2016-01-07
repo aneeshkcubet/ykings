@@ -29,8 +29,8 @@ class SearchController extends Controller
      * @api {post} /search/searchUser searchUser
      * @apiName searchUser
      * @apiGroup Search
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {String} search_key search key
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {String} search_key search key *required
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
