@@ -213,6 +213,10 @@ Template: inshape-parent
 .modal-dialog{
     margin : 160px auto;
 }
+----------------------------------------------------
+.page-title{
+    text-shadow: 2px 1px 3px #000;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
