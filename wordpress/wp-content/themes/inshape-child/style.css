@@ -175,6 +175,7 @@ Template: inshape-parent
 .app-left{
     float:left;
      width:50%; 
+     margin-bottom: 50px;
 }
 
 .app-left-text {
@@ -216,6 +217,9 @@ Template: inshape-parent
 
 .page-title{
     text-shadow: 2px 1px 3px #000;
+}
+.post-thumbnail{
+
 }
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{

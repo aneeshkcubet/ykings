@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><?php
-    // if(tfuse_options('disable_tfuse_seo_tab')) {
-    //     wp_title( '|', false, 'right' );
-    //     bloginfo( 'name' );
-    //     $site_description = get_bloginfo( 'description', 'display' );
-    //     if ( $site_description && ( is_home() || is_front_page() ) )
-    //         echo " | $site_description";
-    // } else
-    //     wp_title('');
-    the_title('YKings ');?>
+    if(tfuse_options('disable_tfuse_seo_tab')) {
+        wp_title( '|', false, 'right' );
+        bloginfo( 'name' );
+        $site_description = get_bloginfo( 'description', 'display' );
+        if ( $site_description && ( is_home() || is_front_page() ) )
+            echo " | $site_description";
+    } else
+        wp_title('');
+    //the_title('YKings ');?>
     </title>
     <?php tfuse_meta(); ?>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
