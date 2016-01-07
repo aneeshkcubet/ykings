@@ -38,7 +38,7 @@ class ExercisesController extends Controller
      * @api {post} /exercise/list loadExercises
      * @apiName loadExercises
      * @apiGroup Exercise
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -279,7 +279,7 @@ class ExercisesController extends Controller
      * @api {post} /exercise/getwithusers getExerciseWithUsers
      * @apiName getExerciseWithUsers
      * @apiGroup Exercise
-     * @apiParam {Number} exercise_id Id of exercise 
+     * @apiParam {Number} exercise_id Id of exercise *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -395,7 +395,7 @@ class ExercisesController extends Controller
      * @api {post} /exercise/get getExercise
      * @apiName getExercise
      * @apiGroup Exercise
-     * @apiParam {Number} exercise_id Id of exercise 
+     * @apiParam {Number} exercise_id Id of exercise *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK

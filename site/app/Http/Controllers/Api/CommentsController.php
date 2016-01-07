@@ -148,8 +148,8 @@ class CommentsController extends Controller
      * @api {post} /feeds/comments loadComments
      * @apiName loadComments
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} feed_id feed_id *required
      * @apiParam {Number} [offset] offset 
      * @apiParam {Number} [limit] limit 
      * @apiSuccess {String} success.
@@ -280,8 +280,8 @@ class CommentsController extends Controller
      * @api {post} /feeds/deleteComment deleteComment
      * @apiName deleteComment
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} comment_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} comment_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK{

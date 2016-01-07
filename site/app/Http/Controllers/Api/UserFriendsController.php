@@ -28,9 +28,9 @@ class UserFriendsController extends Controller
      * @apiName connectFriends
      * @apiGroup Connect
      * @apiDescription API for connecting facebook/phone book.
-     * @apiParam {string} user_id User Id of user 
-     * @apiParam {string} friends_list email/facebook id ,json array  
-     * @apiParam {string} type facebook/phonebook   
+     * @apiParam {string} user_id User Id of user *required
+     * @apiParam {string} friends_list email/facebook id ,json array *required  
+     * @apiParam {string} type facebook/phonebook *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -226,8 +226,8 @@ class UserFriendsController extends Controller
      * @apiName inviteFriends
      * @apiGroup Connect
      * @apiDescription API for inviteFriends.
-     * @apiParam {string} user_id User Id of user 
-     * @apiParam {string} email Email Ids from contact,json array  
+     * @apiParam {string} user_id User Id of user *required
+     * @apiParam {string} email Email Ids from contact,json array  *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK

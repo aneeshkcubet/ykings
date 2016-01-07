@@ -38,7 +38,7 @@ class CoachesController extends Controller
      * @api {post} /coach/get getCoach
      * @apiName getCoach
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -3447,7 +3447,7 @@ class CoachesController extends Controller
      * @api {post} /coach/getFundumentals getFundumentals
      * @apiName getFundumentals
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user *mandatory
+     * @apiParam {Number} user_id Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -3725,8 +3725,8 @@ class CoachesController extends Controller
      * @api {post} /coach/finishday finishCoachDayWorkouts
      * @apiName finishCoachDayWorkouts
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user *mandatory
-     * @apiParam {Number} day Id of user *mandatory
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} day Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -3809,7 +3809,7 @@ class CoachesController extends Controller
      * @api {post} /coach/getdescription getDescription
      * @apiName getDescription
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user *mandatory
+     * @apiParam {Number} user_id Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -3884,14 +3884,13 @@ class CoachesController extends Controller
      * @api {post} /coach/preparecoach prepareCoach
      * @apiName prepareCoach
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user *mandatory
-     * @apiParam {Number} test1 status of test1 0-failed 1-passed *mandatory
-     * @apiParam {Number} test2 status of test2 0-failed 1-passed *mandatory
-     * @apiParam {Number} focus user focus 1-Lean, 2-Athletic, 3-Strength *mandatory
-     * @apiParam {Number} days number of workout days per week *mandatory
-     * @apiParam {Number} progression progression which user focus on 1-Pull, 2-Dip, 3-Full Body, 4-Push, 5-Core  *mandatory
-     * @apiParam {Number} height user height in centimeters *optional
-     * @apiParam {Number} weight user weight in lbs *optional
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} test1 status of test1 0-failed 1-passed *required
+     * @apiParam {Number} test2 status of test2 0-failed 1-passed *required
+     * @apiParam {Number} focus user focus 1-Lean, 2-Athletic, 3-Strength *required
+     * @apiParam {Number} days number of workout days per week *required
+     * @apiParam {Number} [height] user height in centimeters
+     * @apiParam {Number} [weight] user weight in lbs
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -7266,8 +7265,8 @@ class CoachesController extends Controller
      * @api {post} /coach/update updateCoach
      * @apiName updateCoach
      * @apiGroup Coach
-     * @apiParam {Number} user_id Id of user *mandatory
-     * @apiParam {Number} assesment 1- I can do way more, 2 - I can do more, 3 - It was ok *mandatory
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} assesment 1- I can do way more, 2 - I can do more, 3 - It was ok *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK

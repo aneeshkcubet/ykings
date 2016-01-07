@@ -44,13 +44,13 @@ class FeedController extends Controller
      * @apiParam {Number} user_id Id of user *required 
      * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit' *required
      * @apiParam {Number} item_id id of the targetting item *required
-     * @apiParam {Number} time_taken time in seconds
-     * @apiParam {Number} rewards points earned by doing activity
-     * @apiParam {Number} category in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} [time_taken] time in seconds
+     * @apiParam {Number} [rewards] points earned by doing activity
+     * @apiParam {Number} [category[ in case of workout completion 1-Strength, 2-Cardio Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
-     * @apiParam {Number} volume volume of exercise/workout/hiit
+     * @apiParam {Number} [volume] volume of exercise/workout/hiit
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -463,7 +463,7 @@ class FeedController extends Controller
      * @api {post} /feeds/list ListFeeds
      * @apiName ListFeeds
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
+     * @apiParam {Number} user_id Id of user *required
      * @apiParam {Number} [offset] offset 
      * @apiParam {Number} [limit] limit
      * @apiSuccess {String} success.
@@ -713,8 +713,8 @@ class FeedController extends Controller
      * @api {post} /feeds/feedDetails feedDetails
      * @apiName feedDetails
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -902,8 +902,8 @@ class FeedController extends Controller
      * @api {post} /feeds/clap clapFeed
      * @apiName clapFeed
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required 
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
@@ -996,8 +996,8 @@ class FeedController extends Controller
      * @api {post} /feeds/unclap unclapFeed
      * @apiName unclapFeed
      * @apiGroup Feeds
-     * @apiParam {Number} user_id Id of user 
-     * @apiParam {Number} feed_id feed_id 
+     * @apiParam {Number} user_id Id of user *required
+     * @apiParam {Number} feed_id feed_id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      *    HTTP/1.1 200 OK
