@@ -21,7 +21,8 @@ class Workoutuser extends Model
         'status',
         'time',
         'category',
-        'volume'
+        'volume',
+        'feed_id'
     ];
 
     /**

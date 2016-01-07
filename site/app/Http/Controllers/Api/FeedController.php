@@ -158,6 +158,7 @@ class FeedController extends Controller
                 ]);
 
                 $feed = $user->feeds()->save($feeds);
+               // return $feed->id;
                 if ($request->item_type == 'exercise') {
                     Exerciseuser::create([
                         'user_id' => $request->user_id,

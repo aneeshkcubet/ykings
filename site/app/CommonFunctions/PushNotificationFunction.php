@@ -10,6 +10,7 @@ use Sly\NotificationPusher\PushManager,
 use Illuminate\Http\Request;
 use App\Message as Notification;
 use App\PushNotification;
+use App\Profile;
 
 /**
  * Push notification
@@ -36,14 +37,17 @@ class PushNotificationFunction
      */
     public static function pushNotification($request)
     {
+        $senderName = Profile::where('user_id', $request['user_id'])
+            ->pluck('first_name');
+       
         if ($request['type'] == 'clap') {
-            $notfyMessage = 'Clapped the feed';
+            $notfyMessage = $senderName.' clapped your feed';
         } elseif ($request['type'] == 'unclap') {
-            $notfyMessage = 'Unclapped the feed';
+            $notfyMessage = $senderName.' unclapped the feed';
         } elseif ($request['type'] == 'comment') {
-            $notfyMessage = 'Commented the feed';
+            $notfyMessage = $senderName.' commented the feed';
         } elseif ($request['type'] == 'following') {
-            $notfyMessage = 'You are following';
+            $notfyMessage = $senderName.' you are following';
         } else {
             $notfyMessage = 'You have a new message';
         }
@@ -63,6 +67,7 @@ class PushNotificationFunction
 
         if (!is_null($androidDevicetoken)) {
             $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => $notfyMessage);
+           // mail('ansa@cubettech.com', $androidDevicetoken->device_token, $androidDevicetoken->device_token);
             PushNotificationFunction::androidNotification($androidArray);
         }
 
