@@ -221,6 +221,10 @@ Template: inshape-parent
 .post-thumbnail{
 
 }
+.postlist-3wide .post .entry-content {
+    margin-bottom: 32px;
+    min-height: 94px;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
