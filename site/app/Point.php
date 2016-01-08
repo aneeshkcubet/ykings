@@ -18,6 +18,7 @@ class Point extends Model
     protected $fillable = [
         'points',
         'user_id',
+        'item_id',
         'activity'
     ];
 
