@@ -17,10 +17,16 @@ use App\User;
 use App\Profile;
 use App\Settings;
 use App\Follow;
-use App\Point;
 use App\Social;
-use App\Workout;
 use App\PushNotification;
+use App\Feeds;
+use App\Exercise;
+use App\Workout;
+use App\Hiit;
+use App\Exerciseuser;
+use App\Workoutuser;
+use App\Hiituser;
+use App\Point;
 
 class UsersController extends Controller
 {
@@ -1136,6 +1142,878 @@ class UsersController extends Controller
         });
 
         return response()->json(['status' => 1, 'success' => 'Successfully sent email to your email address.', 'email' => $request->input('email')], 200);
+    }
+
+    /**
+     * @api {post} /user/history/recent getUserRecentHistory
+     * @apiName getUserRecentHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "history",
+      "history": [
+      {
+      "id": "25",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "35",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 05:43:32",
+      "updated_at": "2016-01-08 05:43:32",
+      "category": "Athletic",
+      "item_name": "One Leg Back Lever",
+      "duration": "100",
+      "volume": "10",
+      "points": "60.00"
+      },
+      {
+      "id": "24",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "8",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:42:12",
+      "updated_at": "2016-01-08 05:42:12",
+      "category": "Lean",
+      "item_name": "Single Leg Deadlift",
+      "duration": "100",
+      "volume": "100",
+      "points": "60.00"
+      },
+      {
+      "id": "23",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "4",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:41:35",
+      "updated_at": "2016-01-08 05:41:35",
+      "category": "Lean",
+      "item_name": "Skin the cat",
+      "duration": "30",
+      "volume": "100",
+      "points": "60.00"
+      },
+      {
+      "id": "22",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "4",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:41:06",
+      "updated_at": "2016-01-08 05:41:06",
+      "category": "Lean",
+      "item_name": "Skin the cat",
+      "duration": "30",
+      "volume": "50",
+      "points": "30.00"
+      },
+      {
+      "id": "21",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "2",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:40:20",
+      "updated_at": "2016-01-08 05:40:20",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "30",
+      "volume": "3",
+      "points": "1.80"
+      },
+      {
+      "id": "2",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "1",
+      "feed_text": "not bad",
+      "created_at": "2016-01-07 10:25:18",
+      "updated_at": "2016-01-07 10:25:18",
+      "category": "Lean",
+      "item_name": "Jumping Pullups",
+      "duration": "29",
+      "volume": "25",
+      "points": "25.00"
+      },
+      {
+      "id": "1",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "1",
+      "feed_text": "its cool",
+      "created_at": "2016-01-07 10:23:02",
+      "updated_at": "2016-01-07 10:23:02",
+      "category": "Lean",
+      "item_name": "Jumping Pullups",
+      "duration": "57",
+      "volume": "50",
+      "points": "50.00"
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserRecentHistory(Request $request)
+    {
+
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $userHistory = Feeds::where('user_id', '=', $request->user_id)
+                    ->where('item_type', '=', 'exercise')
+                    ->whereOr('item_type', '=', 'workout')
+                    ->whereOr('item_type', '=', 'hiit')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+                if (count($userHistory) > 0) {
+                    $userHistoryResponse = $this->AdditionalFeedsDetails($userHistory);
+                }
+
+                return response()->json(['status' => 1, 'success' => 'history', 'history' => $userHistoryResponse, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * Function to get additional parameters in feeds.
+     * @since 19/11/2015
+     * @author ansa@cubettech.com
+     * @return json
+     */
+    protected function AdditionalFeedsDetails($userHistory)
+    {
+        foreach ($userHistory as $history) {
+            if ($history->item_type == 'workout') {
+
+                $workout = Workout::where('id', '=', $history->item_id)->first();
+                if (!is_null($workout)) {
+                    if ($workout->category == 1) {
+                        $history->category = "Strength";
+                    } elseif ($workout->category == 2) {
+                        $history->category = "Cardio-strength";
+                    }
+                }
+
+                $history->item_name = $workout->name;
+
+                $workoutUserDet = DB::table('workout_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $workoutUserDet->time;
+                $history->volume = $workoutUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $workoutUserDet->id)->where('activity', 'workout_completed')->pluck('points');
+            } elseif ($history->item_type == 'exercise') {
+
+                $exercise = Exercise::where('id', '=', $history->item_id)->first();
+                if (!is_null($exercise)) {
+                    if ($exercise->category == 1) {
+                        $history->category = "Lean";
+                    } elseif ($exercise->category == 2) {
+                        $history->category = "Athletic";
+                    } elseif ($exercise->category == 3) {
+                        $history->category = "Strength";
+                    }
+                }
+
+                $history->item_name = $exercise->name;
+
+                $exerciseUserDet = DB::table('exercise_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $exerciseUserDet->time;
+                $history->volume = $exerciseUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $exerciseUserDet->id)->where('activity', 'exercise_completed')->pluck('points');
+            } elseif ($history->item_type == 'hiit') {
+
+                $hiit = Hiit::where('id', '=', $history->item_id)->first();
+
+
+                $history->item_name = $hiit->name;
+
+                $hiitUserDet = DB::table('hiit_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $hiitUserDet->time;
+                $history->volume = $hiitUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $hiitUserDet->id)->where('activity', 'hiit_completed')->pluck('points');
+            }
+
+            $historyResponse[] = $history;
+        }
+        return $historyResponse;
+    }
+
+    /**
+     * @api {post} /user/history/exercise getUserExerciseHistory
+     * @apiName getUserExerciseHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * {
+      "status": 1,
+      "success": "history",
+      "exercise_history": [
+      {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [
+      {
+      "id": "2",
+      "user_id": "96",
+      "exercise_id": "1",
+      "status": "1",
+      "time": "29",
+      "is_starred": "0",
+      "volume": "25",
+      "feed_id": "2",
+      "created_at": "2016-01-07 10:25:18",
+      "updated_at": "2016-01-07 10:25:18"
+      }
+      ],
+      "30": [],
+      "50": [
+      {
+      "id": "1",
+      "user_id": "96",
+      "exercise_id": "1",
+      "status": "1",
+      "time": "57",
+      "is_starred": "0",
+      "volume": "50",
+      "feed_id": "1",
+      "created_at": "2016-01-07 10:23:02",
+      "updated_at": "2016-01-07 10:23:02"
+      }
+      ],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "Australian Pullups",
+      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "Knee Raises",
+      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "4",
+      "name": "Skin the cat",
+      "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [
+      {
+      "id": "10",
+      "user_id": "96",
+      "exercise_id": "4",
+      "status": "1",
+      "time": "30",
+      "is_starred": "0",
+      "volume": "50",
+      "feed_id": "22",
+      "created_at": "2016-01-08 05:41:06",
+      "updated_at": "2016-01-08 05:41:06"
+      }
+      ],
+      "60": [],
+      "100": [
+      {
+      "id": "11",
+      "user_id": "96",
+      "exercise_id": "4",
+      "status": "1",
+      "time": "30",
+      "is_starred": "0",
+      "volume": "100",
+      "feed_id": "23",
+      "created_at": "2016-01-08 05:41:35",
+      "updated_at": "2016-01-08 05:41:35"
+      }
+      ],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "5",
+      "name": "Side Trizeps",
+      "description": "",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "30",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "6",
+      "name": "Trizeps Extension",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "7",
+      "name": "Wall Sits",
+      "description": "",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "8",
+      "name": "Single Leg Deadlift",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [
+      {
+      "id": "12",
+      "user_id": "96",
+      "exercise_id": "8",
+      "status": "1",
+      "time": "100",
+      "is_starred": "0",
+      "volume": "100",
+      "feed_id": "24",
+      "created_at": "2016-01-08 05:42:12",
+      "updated_at": "2016-01-08 05:42:12"
+      }
+      ],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "9",
+      "name": "Climbers",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserExerciseHistory(Request $request)
+    {       
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            $arr1 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+
+            if ($user) {
+                $exercises = Exercise::all();
+                foreach ($exercises as $eKey => $exercise) {
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDet[$volume1] = DB::table('exercise_users')
+                            ->where('exercise_id', $exercise->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->get();
+                    }
+
+                    $exercises[$eKey]->scores = $exerciseUserDet;
+                }
+                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exercises, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/history/workout getUserWorkoutHistory
+     * @apiName getUserWorkoutHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserWorkoutHistory(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/history/hiit getUserHiitHistory
+     * @apiName getUserHiitHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserHiitHistory(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
     }
 
     public function confirm(Request $request)

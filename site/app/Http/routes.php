@@ -50,6 +50,31 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.signup',
         'uses' => 'Api\UsersController@postRegister'
     ]);
+    
+    //UsersController
+    Route::post('user/history/recent', [
+        'as' => 'user.history.recent',
+        'uses' => 'Api\UsersController@getUserRecentHistory'
+    ]);
+    
+    //UsersController
+    Route::post('user/history/exercise', [
+        'as' => 'user.history.exercise',
+        'uses' => 'Api\UsersController@getUserExerciseHistory'
+    ]);
+    
+    //UsersController
+    Route::post('user/history/workout', [
+        'as' => 'user.history.workout',
+        'uses' => 'Api\UsersController@getUserWorkoutHistory'
+    ]);
+    
+    //UsersController
+    Route::post('user/history/hiit', [
+        'as' => 'user.history.hiit',
+        'uses' => 'Api\UsersController@getUserHiitHistory'
+    ]);
+    
     Route::get('verify', [
         'as' => 'confirmation_path',
         'uses' => 'Api\UsersController@confirm'

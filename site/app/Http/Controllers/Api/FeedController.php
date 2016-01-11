@@ -234,7 +234,7 @@ class FeedController extends Controller
 
                     $hiitUser = Hiituser::create($data);
 
-                    $exerciseDetails = Hiituser::where('id', $request->item_id)->first();
+                    $exerciseDetails = Hiit::where('id', $request->item_id)->first();
 
                     $pointsEarned = 0;
                     if (isset($request->volume))

@@ -42,3281 +42,7 @@ class CoachesController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * {
-      "status": 1,
-      "coach_day": "1",
-      "coach_week": "3",
-      "is_subscribed": 0,
-      "need_update": 0,
-      "coach": {
-      "id": "1",
-      "user_id": "82",
-      "focus": "3",
-      "height": "172.00",
-      "weight": "176.00",
-      "days": "2",
-      "exercises": {
-      "day1": {
-      "warmup": {
-      "exercise_id": "warmup",
-      "duration": 300
-      },
-      "fundumentals": [
-      {
-      "exercise_id": 43,
-      "duration": 30,
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 32,
-      "duration": 10,
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 38,
-      "duration": 25,
-      "exercise": {
-      "id": "38",
-      "name": "Squats",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "38",
-      "path": "Now38.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "2",
-      "name": "Borr",
-      "description": "Borr Borr Borr",
-      "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "19.00",
-      "equipments": "Bar",
-      "exercises": {
-      "round1": [
-      {
-      "id": "46",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "47",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "48",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "49",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "58",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "59",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "60",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "61",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "70",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "71",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "72",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "73",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round2": [
-      {
-      "id": "50",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "51",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "52",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "53",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "62",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "63",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "64",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "65",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "74",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "75",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "76",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "77",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round3": [
-      {
-      "id": "54",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "55",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "56",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "57",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "66",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "67",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "68",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "69",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "78",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "79",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "80",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "81",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round4": [
-      {
-      "id": "46",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "47",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "48",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "49",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "58",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "59",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "60",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "61",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "70",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "71",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "72",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "73",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round5": [
-      {
-      "id": "50",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "51",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "52",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "53",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "62",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "63",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "64",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "65",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "74",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "75",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "76",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "77",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round6": [
-      {
-      "id": "54",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "55",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "56",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "57",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "66",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "67",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "68",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "69",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "78",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "79",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "80",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "81",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "workout_intensity": 2,
-      "hiit": [],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 5,
-      "max": 10
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 30,
-      "max": 50
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      }
-      ]
-      },
-      "day2": {
-      "warmup": {
-      "exercise_id": "warmup",
-      "duration": 300
-      },
-      "fundumentals": [
-      {
-      "exercise_id": 43,
-      "duration": 30,
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 32,
-      "duration": 10,
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 38,
-      "duration": 25,
-      "exercise": {
-      "id": "38",
-      "name": "Squats",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "38",
-      "path": "Now38.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "3",
-      "name": "Bragi",
-      "description": "Bragi",
-      "rounds": "5",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "14.00",
-      "equipments": "Low Bar",
-      "exercises": {
-      "round1": [
-      {
-      "id": "82",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "50",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "83",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "84",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "85",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "86",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "102",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "103",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "104",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "105",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "121",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "122",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "123",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "124",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round2": [
-      {
-      "id": "87",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "88",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "89",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "90",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "106",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "107",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "108",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "109",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "125",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "126",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "127",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "128",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round3": [
-      {
-      "id": "91",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "92",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "93",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "94",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "110",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "111",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "112",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "113",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "129",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "130",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "131",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "132",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round4": [
-      {
-      "id": "95",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "96",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "97",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "98",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "114",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "115",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "116",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "117",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "133",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "134",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "135",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "136",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round5": [
-      {
-      "id": "99",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "100",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "101",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "118",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "119",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "120",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "137",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "138",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "139",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "workout_intensity": 1,
-      "hiit": [
-      1
-      ],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 5,
-      "max": 10
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 30,
-      "max": 50
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      }
-      ]
-      }
-      },
-      "created_at": "2016-01-05 09:40:54",
-      "updated_at": "2016-01-05 09:40:54"
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+     * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
      * @apiError error Message token_not_provided.
@@ -3444,7 +170,7 @@ class CoachesController extends Controller
     }
 
     /**
-     * @api {post} /coach/getFundumentals getFundumentals
+     * @api {post} /coach/getfundumentals getFundumentals
      * @apiName getFundumentals
      * @apiGroup Coach
      * @apiParam {Number} user_id Id of user *required
@@ -3895,3266 +621,1380 @@ class CoachesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "coach": {
+  "status": 1,
+  "coach_day": "1",
+  "coach_week": "1",
+  "is_subscribed": 0,
+  "need_update": "0",
+  "coach": {
+    "id": "1",
+    "user_id": "96",
+    "focus": "3",
+    "height": "172.00",
+    "weight": "176.00",
+    "days": "2",
+    "exercises": {
       "day1": {
-      "warmup": {
-      "exercise_id": "warmup",
-      "duration": 300
-      },
-      "fundumentals": [
-      {
-      "exercise_id": 43,
-      "duration": 30,
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 32,
-      "duration": 10,
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 38,
-      "duration": 25,
-      "exercise": {
-      "id": "38",
-      "name": "Squats",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "38",
-      "path": "Now38.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "2",
-      "name": "Borr",
-      "description": "Borr Borr Borr",
-      "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "19.00",
-      "equipments": "Bar",
-      "exercises": {
-      "round1": [
-      {
-      "id": "46",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "47",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "48",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "49",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "58",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "59",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "60",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "61",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "70",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "71",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "72",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "73",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round2": [
-      {
-      "id": "50",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "51",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "52",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "53",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "62",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "63",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "64",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "65",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "74",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "75",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "76",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "77",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round3": [
-      {
-      "id": "54",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "55",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "56",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "57",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "66",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "67",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "68",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "69",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "78",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "79",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "80",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "81",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round4": [
-      {
-      "id": "46",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "47",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "48",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "49",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "58",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "59",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "60",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "61",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "70",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "71",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "72",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "73",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round5": [
-      {
-      "id": "50",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "51",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "52",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "53",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "62",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "63",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "64",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "65",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "74",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "75",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "76",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "77",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round6": [
-      {
-      "id": "54",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "55",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "1",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms."
-      }
-      },
-      {
-      "id": "56",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "30",
-      "exercise_id": "16",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": ""
-      }
-      },
-      {
-      "id": "57",
-      "workout_id": "2",
-      "category": "1",
-      "repititions": "40",
-      "exercise_id": "5",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": ""
-      }
-      },
-      {
-      "id": "66",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "67",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "32",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": ""
-      }
-      },
-      {
-      "id": "68",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "30",
-      "exercise_id": "47",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "47",
-      "path": "Now47.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "47",
-      "name": "Situps",
-      "description": ""
-      }
-      },
-      {
-      "id": "69",
-      "workout_id": "2",
-      "category": "2",
-      "repititions": "40",
-      "exercise_id": "36",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": ""
-      }
-      },
-      {
-      "id": "78",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "79",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "80",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "75",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "81",
-      "workout_id": "2",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "workout_intensity": 2,
-      "hiit": [],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 5,
-      "max": 10
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 30,
-      "max": 50
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      }
-      ]
+        "warmup": [
+          {
+            "id": "1",
+            "name": "Wall Extensions",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:27:00"
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:57"
+          },
+          {
+            "id": "3",
+            "name": "Cat-camels",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:53"
+          },
+          {
+            "id": "4",
+            "name": "Scapular Shrugs",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:49"
+          },
+          {
+            "id": "5",
+            "name": "Full Body Circles",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:26:44"
+          },
+          {
+            "id": "6",
+            "name": "Front and Side Leg Swings",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:26:40"
+          },
+          {
+            "id": "7",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": 100
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:29:46"
+          },
+          {
+            "id": "8",
+            "name": "Arm Rotations",
+            "duration": {
+              "min": 120
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:29:55"
+          },
+          {
+            "id": "9",
+            "name": "High Knees",
+            "duration": {
+              "min": 50
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:30:04"
+          },
+          {
+            "id": "10",
+            "name": "Plank",
+            "duration": {
+              "min": 10,
+              "max": 60
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:28:03"
+          },
+          {
+            "id": "11",
+            "name": "Burpee",
+            "duration": {
+              "min": 10
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:30:44"
+          },
+          {
+            "id": "12",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:31:11"
+          },
+          {
+            "id": "13",
+            "name": "Squat jumps",
+            "duration": {
+              "min": 10
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:31:29"
+          }
+        ],
+        "fundumentals": [
+          {
+            "exercise_id": 4,
+            "duration": {
+              "1": {
+                "min": 7
+              },
+              "2": {
+                "min": 10
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "4",
+              "name": "Skin the cat",
+              "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "Now4.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 12,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 20
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "12",
+              "name": "Incline Pushups",
+              "description": "",
+              "category": "1",
+              "type": "1",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "12",
+                  "path": "Now12.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 36,
+            "duration": {
+              "1": {
+                "min": 20
+              },
+              "2": {
+                "min": 40
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "36",
+              "name": "Dips (Bench)",
+              "description": "",
+              "category": "2",
+              "type": "1",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "36",
+                  "path": "Now36.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 3,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 15
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "3",
+              "name": "Knee Raises",
+              "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "3",
+                  "path": "Now3.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 8,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 20
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "8",
+              "name": "Single Leg Deadlift",
+              "description": "",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "8",
+                  "path": "Now8.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "1",
+          "name": "Baldur",
+          "description": "Baldur Baldur",
+          "rounds": "5",
+          "category": "1",
+          "type": "2",
+          "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+          "duration": "1680.00",
+          "equipments": "",
+          "exercises": {
+            "round1": [
+              {
+                "id": "31",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "32",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "33",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ],
+            "round2": [
+              {
+                "id": "34",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "40",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "35",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "40",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "36",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "40",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ],
+            "round3": [
+              {
+                "id": "37",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "30",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "38",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "30",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "39",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "30",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ],
+            "round4": [
+              {
+                "id": "40",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "20",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "4",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "41",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "20",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "4",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "42",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "20",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "4",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ],
+            "round5": [
+              {
+                "id": "43",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "10",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "5",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "44",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "10",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "5",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "45",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "10",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "5",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ],
+            "round6": [
+              {
+                "id": "31",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "32",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "85",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "86",
+                  "path": "Now86.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "85",
+                  "name": "Atztec Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "33",
+                "workout_id": "1",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-12-07 10:17:23",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              }
+            ]
+          }
+        },
+        "workout_intensity": 2,
+        "hiit": [],
+        "stretching": [
+          {
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times"
+          },
+          {
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times"
+          },
+          {
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Frog stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Triceps Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          }
+        ]
       },
       "day2": {
-      "warmup": {
-      "exercise_id": "warmup",
-      "duration": 300
-      },
-      "fundumentals": [
-      {
-      "exercise_id": 43,
-      "duration": 30,
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 32,
-      "duration": 10,
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "32",
-      "path": "Now32.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 38,
-      "duration": 25,
-      "exercise": {
-      "id": "38",
-      "name": "Squats",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "38",
-      "path": "Now38.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": "",
-      "video": [
-      {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "3",
-      "name": "Bragi",
-      "description": "Bragi",
-      "rounds": "5",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "14.00",
-      "equipments": "Low Bar",
-      "exercises": {
-      "round1": [
-      {
-      "id": "82",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "50",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "83",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "84",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "85",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "86",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "102",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "103",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "104",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "105",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "121",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "122",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "123",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "124",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round2": [
-      {
-      "id": "87",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "88",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "89",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "90",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "106",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "107",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "108",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "109",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "125",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "126",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "127",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "128",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round3": [
-      {
-      "id": "91",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "92",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "93",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "94",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "110",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "111",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "112",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "113",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "129",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "130",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "131",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "132",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round4": [
-      {
-      "id": "95",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "96",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "97",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "98",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "114",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "115",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "116",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "117",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      },
-      {
-      "id": "133",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "134",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "135",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "136",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "90",
-      "unit": "seconds",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": null,
-      "exercise": {
-      "id": "90",
-      "name": "Rest",
-      "description": "Rest"
-      }
-      }
-      ],
-      "round5": [
-      {
-      "id": "99",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "12",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "100",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "25",
-      "exercise_id": "11",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "11",
-      "path": "Now11.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": ""
-      }
-      },
-      {
-      "id": "101",
-      "workout_id": "3",
-      "category": "1",
-      "repititions": "10",
-      "exercise_id": "2",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "2",
-      "path": "Now2.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout."
-      }
-      },
-      {
-      "id": "118",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "43",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "43",
-      "path": "Now43.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "43",
-      "name": "Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "119",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "25",
-      "exercise_id": "42",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "42",
-      "path": "Now42.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "42",
-      "name": "Burpee",
-      "description": ""
-      }
-      },
-      {
-      "id": "120",
-      "workout_id": "3",
-      "category": "2",
-      "repititions": "10",
-      "exercise_id": "33",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "33",
-      "path": "Now33.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "33",
-      "name": "One Leg Front Lever",
-      "description": ""
-      }
-      },
-      {
-      "id": "137",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "73",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "74",
-      "path": "Now74.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "73",
-      "name": "One Arm Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "138",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "25",
-      "exercise_id": "72",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "73",
-      "path": "Now73.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "72",
-      "name": "Burpee Squat Jumps",
-      "description": ""
-      }
-      },
-      {
-      "id": "139",
-      "workout_id": "3",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "77",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "workout_intensity": 1,
-      "hiit": [
-      1
-      ],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 5,
-      "max": 10
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 30,
-      "max": 50
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 30,
-      "max": 60
-      },
-      "unit": "seconds"
-      }
-      ]
-      }
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+        "warmup": [
+          {
+            "id": "1",
+            "name": "Wall Extensions",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:27:00"
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:57"
+          },
+          {
+            "id": "3",
+            "name": "Cat-camels",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:53"
+          },
+          {
+            "id": "4",
+            "name": "Scapular Shrugs",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:00",
+            "updated_at": "2016-01-11 08:26:49"
+          },
+          {
+            "id": "5",
+            "name": "Full Body Circles",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:26:44"
+          },
+          {
+            "id": "6",
+            "name": "Front and Side Leg Swings",
+            "duration": {
+              "min": 10,
+              "max": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:26:40"
+          },
+          {
+            "id": "7",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": 100
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:01",
+            "updated_at": "2016-01-11 08:29:46"
+          },
+          {
+            "id": "8",
+            "name": "Arm Rotations",
+            "duration": {
+              "min": 120
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:29:55"
+          },
+          {
+            "id": "9",
+            "name": "High Knees",
+            "duration": {
+              "min": 50
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:30:04"
+          },
+          {
+            "id": "10",
+            "name": "Plank",
+            "duration": {
+              "min": 10,
+              "max": 60
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-11 00:00:02",
+            "updated_at": "2016-01-11 08:28:03"
+          },
+          {
+            "id": "11",
+            "name": "Burpee",
+            "duration": {
+              "min": 10
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:30:44"
+          },
+          {
+            "id": "12",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": 20
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:31:11"
+          },
+          {
+            "id": "13",
+            "name": "Squat jumps",
+            "duration": {
+              "min": 10
+            },
+            "unit": "times",
+            "created_at": "2016-01-11 00:00:03",
+            "updated_at": "2016-01-11 08:31:29"
+          }
+        ],
+        "fundumentals": [
+          {
+            "exercise_id": 4,
+            "duration": {
+              "1": {
+                "min": 7
+              },
+              "2": {
+                "min": 10
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "4",
+              "name": "Skin the cat",
+              "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "Now4.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 12,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 20
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "12",
+              "name": "Incline Pushups",
+              "description": "",
+              "category": "1",
+              "type": "1",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "12",
+                  "path": "Now12.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 36,
+            "duration": {
+              "1": {
+                "min": 20
+              },
+              "2": {
+                "min": 40
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "36",
+              "name": "Dips (Bench)",
+              "description": "",
+              "category": "2",
+              "type": "1",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "36",
+                  "path": "Now36.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 3,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 15
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "3",
+              "name": "Knee Raises",
+              "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "3",
+                  "path": "Now3.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          },
+          {
+            "exercise_id": 8,
+            "duration": {
+              "1": {
+                "min": 10
+              },
+              "2": {
+                "min": 20
+              }
+            },
+            "unit": "times",
+            "exercise": {
+              "id": "8",
+              "name": "Single Leg Deadlift",
+              "description": "",
+              "category": "1",
+              "type": "2",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "1",
+              "unit": "times",
+              "equipment": "",
+              "video": [
+                {
+                  "id": "8",
+                  "path": "Now8.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "4",
+          "name": "Buri",
+          "description": "Buri",
+          "rounds": "1",
+          "category": "1",
+          "type": "2",
+          "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+          "duration": "1440.00",
+          "equipments": "Bar",
+          "exercises": {
+            "round1": [
+              {
+                "id": "150",
+                "workout_id": "4",
+                "category": "3",
+                "repititions": "180",
+                "exercise_id": "75",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-11-19 10:00:00",
+                "video": {
+                  "id": "76",
+                  "path": "Now76.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "75",
+                  "name": "Jacknives",
+                  "description": ""
+                }
+              },
+              {
+                "id": "151",
+                "workout_id": "4",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "69",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-11-19 10:00:00",
+                "video": {
+                  "id": "69",
+                  "path": "Now69.mp4",
+                  "videothumbnail": "thumbnail3.jpg",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "69",
+                  "name": "Muscleups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "152",
+                "workout_id": "4",
+                "category": "3",
+                "repititions": "100",
+                "exercise_id": "70",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-11-19 10:00:54",
+                "video": {
+                  "id": "70",
+                  "path": "Now70.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "70",
+                  "name": "Dips",
+                  "description": ""
+                }
+              },
+              {
+                "id": "153",
+                "workout_id": "4",
+                "category": "3",
+                "repititions": "50",
+                "exercise_id": "74",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-11-19 10:45:38",
+                "video": {
+                  "id": "75",
+                  "path": "Now75.mp4",
+                  "videothumbnail": "thumbnail2.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "74",
+                  "name": "Handstand Pushups",
+                  "description": ""
+                }
+              },
+              {
+                "id": "154",
+                "workout_id": "4",
+                "category": "3",
+                "repititions": "200",
+                "exercise_id": "82",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2015-11-18 18:30:00",
+                "updated_at": "2015-11-19 10:00:00",
+                "video": {
+                  "id": "83",
+                  "path": "Now83.mp4",
+                  "videothumbnail": "thumbnail1.png",
+                  "description": "Test Description"
+                },
+                "exercise": {
+                  "id": "82",
+                  "name": "Iron Mike",
+                  "description": ""
+                }
+              }
+            ]
+          }
+        },
+        "workout_intensity": 1,
+        "hiit": [
+          2
+        ],
+        "stretching": [
+          {
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times"
+          },
+          {
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times"
+          },
+          {
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Frog stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Triceps Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          },
+          {
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds"
+          }
+        ]
+      }
+    },
+    "created_at": "2016-01-11 12:53:11",
+    "updated_at": "2016-01-11 12:53:12"
+  },
+  "urls": {
+    "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+    "video": "http://sandbox.ykings.com/uploads/videos",
+    "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -7199,7 +2039,7 @@ class CoachesController extends Controller
      * 
      */
     public function prepareCoach(Request $request)
-    {
+    {        
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } elseif (!isset($request->test1) || ($request->test1 == null)) {
@@ -7252,7 +2092,7 @@ class CoachesController extends Controller
                         'coach_day' => $coachStatus->day,
                         'coach_week' => $coachStatus->week,
                         'is_subscribed' => $user->is_subscribed,
-                        'need_update' => $coach->need_update,
+                        'need_update' => $coachStatus->need_update,
                         'coach' => $coach,
                         'urls' => config('urls.urls')], 200);
             } else {
