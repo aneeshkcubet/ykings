@@ -951,7 +951,7 @@ class CoachesController extends Controller
             "round1": [
               {
                 "id": "31",
-                "workout_id": "1",
+                "workout_id": "1", 
                 "category": "3",
                 "repititions": "50",
                 "exercise_id": "69",
