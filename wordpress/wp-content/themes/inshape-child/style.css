@@ -133,6 +133,9 @@ Template: inshape-parent
     width: 100%;
 
 }
+.main-header-map{
+    display: none;
+}
 /*.postlist-sidebar.recent-posts li{
     height: 300px;
     height: 300px;
