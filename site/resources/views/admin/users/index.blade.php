@@ -60,13 +60,22 @@ Users
                             <td>{{{ $list->email }}}</td>
                             <td>{{{ $list->status }}}</td>
                             <td>
-                                <a href="{{ route('users.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                <a href="{{ route('users.update', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>
+                                <a href="{{ route('admin.user.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
+                                <a href="{{ route('admin.user.update', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>
                                 @if ($list->id != 1)	
-                                <a href="{{ route('confirm-delete/user', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
+                                <a href="{{ route('admin.confirm-delete.user', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
                                     <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
                                     </i>
                                 </a>
+                                @endif
+                                @if ($list->is_featured != 1)
+                                <a href="{{ route('admin.user.setfeatured', $list->id) }}" title="Set as Featured User">
+                                    <i class="livicon" data-name="thumbs-up" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Set as Featured User"></i>
+                                </a>
+                                @else
+                                <a href="{{ route('admin.user.unsetfeatured', $list->id) }}" title="Remove Featured">
+                                    <i class="livicon" data-name="thumbs-down" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Remove Featured"></i>
+                                </a>                                
                                 @endif
                             </td>
                         </tr>

@@ -33,8 +33,7 @@ $(function () {
             // Start validation; Prevent form submission if false
             return form.valid();
         },
-        onFinished: function (event, currentIndex) {
-            console.log('calling');
+        onFinished: function (event, currentIndex) {            
             var form = $(this);
             // Submit form input
             form.submit();

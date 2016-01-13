@@ -267,20 +267,20 @@
                             </li>  
                             <!-- BEGIN USER MENU -->
                             <li>
-                                <a href="{{ route('users') }}">
+                                <a href="{{ route('admin.users') }}">
                                     <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Users</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
                                     <li {!! (Request::is('admin.users') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/users') }}">
+                                        <a href="{{ route('admin.users') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Users
                                         </a>
                                     </li>
-                                    <li {!! (Request::is('admin.users.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/users/create') }}">
+                                    <li {!! (Request::is('admin.user.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.user.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New User
                                         </a>
@@ -291,19 +291,19 @@
 
                             <!-- BEGIN EXERCISE MENU -->
                             <li>
-                                <a href="{{ route('exercise') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                <a href="{{ route('admin.exercises') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Exercises</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li {!! (Request::is('admin.users') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/exercise') }}">
+                                    <li {!! (Request::is('admin.exercises') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.exercises') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Exercises
                                         </a>
                                     </li>
-                                    <li {!! (Request::is('admin.users.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/exercise/create') }}">
+                                    <li {!! (Request::is('admin.exercise.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.exercise.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Exercise
                                         </a>
@@ -314,20 +314,20 @@
 
                             <!-- BEGIN WORKOUT MENU -->
                             <li>
-                                <a href="{{ route('workout') }}">
+                                <a href="{{ route('admin.workouts') }}">
 
                                     <span class="title">Workouts</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li {!! (Request::is('admin.users') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/exercise') }}">
+                                    <li {!! (Request::is('admin.workouts') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.workouts') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Workouts
                                         </a>
                                     </li>
-                                    <li {!! (Request::is('admin.users.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin/exercise/create') }}">
+                                    <li {!! (Request::is('admin.workout.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ URL::to('admin.workout.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Workout
                                         </a>

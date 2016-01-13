@@ -1856,7 +1856,7 @@ class UsersController extends Controller
      *     }
      */
     public function getUserExerciseHistory(Request $request)
-    {       
+    {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
@@ -1879,7 +1879,7 @@ class UsersController extends Controller
 
                     $exercises[$eKey]->scores = $exerciseUserDet;
                 }
-                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exercises, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exercises], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -1894,7 +1894,883 @@ class UsersController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     * {
+      "status": 1,
+      "success": "history",
+      "workout_history": [
+      {
+      "id": "1",
+      "name": "Baldur",
+      "description": "Baldur Baldur",
+      "rounds": "5",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1680.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "Borr",
+      "description": "Borr Borr Borr",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1140.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [
+      {
+      "id": "7",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "14",
+      "created_at": "2016-01-07 13:01:07",
+      "updated_at": "2016-01-12 04:42:26",
+      "category": "1"
+      },
+      {
+      "id": "8",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "15",
+      "created_at": "2016-01-07 13:02:08",
+      "updated_at": "2016-01-12 04:42:30",
+      "category": "1"
+      },
+      {
+      "id": "9",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "16",
+      "created_at": "2016-01-07 13:02:22",
+      "updated_at": "2016-01-12 04:42:36",
+      "category": "1"
+      }
+      ],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "Bragi",
+      "description": "Bragi",
+      "rounds": "5",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "840.00",
+      "equipments": "Low Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "4",
+      "name": "Buri",
+      "description": "Buri",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1440.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "5",
+      "name": "Dagur",
+      "description": "Dagur",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1260.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "6",
+      "name": "Delling",
+      "description": "Delling",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1140.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [
+      {
+      "id": "15",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "1",
+      "feed_id": "29",
+      "created_at": "2016-01-08 05:46:46",
+      "updated_at": "2016-01-12 04:43:33",
+      "category": "1"
+      }
+      ],
+      "2": [
+      {
+      "id": "16",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "30",
+      "created_at": "2016-01-08 05:46:55",
+      "updated_at": "2016-01-12 04:43:37",
+      "category": "1"
+      }
+      ],
+      "3": [
+      {
+      "id": "17",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "3",
+      "focus": "1",
+      "feed_id": "31",
+      "created_at": "2016-01-08 05:47:00",
+      "updated_at": "2016-01-12 04:43:40",
+      "category": "1"
+      }
+      ]
+      },
+      "athletic": {
+      "1": [],
+      "2": [
+      {
+      "id": "12",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "26",
+      "created_at": "2016-01-08 05:45:46",
+      "updated_at": "2016-01-12 04:43:02",
+      "category": "2"
+      },
+      {
+      "id": "13",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "27",
+      "created_at": "2016-01-08 05:45:56",
+      "updated_at": "2016-01-12 04:43:06",
+      "category": "1"
+      },
+      {
+      "id": "14",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "28",
+      "created_at": "2016-01-08 05:46:02",
+      "updated_at": "2016-01-12 04:43:09",
+      "category": "3"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "7",
+      "name": "Eir",
+      "description": "Eir",
+      "rounds": "1",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1020.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "8",
+      "name": "Eostre",
+      "description": "Eostre",
+      "rounds": "5",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1260.00",
+      "equipments": "Ball,Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "9",
+      "name": "Elli",
+      "description": "Elli",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1380.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [
+      {
+      "id": "18",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "1",
+      "feed_id": "32",
+      "created_at": "2016-01-08 05:48:32",
+      "updated_at": "2016-01-12 04:43:44",
+      "category": "1"
+      }
+      ],
+      "2": [
+      {
+      "id": "19",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "33",
+      "created_at": "2016-01-08 05:48:45",
+      "updated_at": "2016-01-12 04:43:47",
+      "category": "1"
+      }
+      ],
+      "3": [
+      {
+      "id": "20",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "3",
+      "focus": "1",
+      "feed_id": "34",
+      "created_at": "2016-01-08 05:49:00",
+      "updated_at": "2016-01-12 04:43:51",
+      "category": "1"
+      }
+      ]
+      },
+      "athletic": {
+      "1": [
+      {
+      "id": "21",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "2",
+      "feed_id": "35",
+      "created_at": "2016-01-08 05:49:19",
+      "updated_at": "2016-01-12 04:44:06",
+      "category": "2"
+      }
+      ],
+      "2": [
+      {
+      "id": "22",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "36",
+      "created_at": "2016-01-08 05:49:27",
+      "updated_at": "2016-01-12 04:44:09",
+      "category": "2"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "10",
+      "name": "Loki",
+      "description": "Loki",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1440.00",
+      "equipments": "Bar, Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "11",
+      "name": "Hermodur",
+      "description": "Hermodur",
+      "rounds": "4",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1740.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "12",
+      "name": "Forseti",
+      "description": "Forseti",
+      "rounds": "6",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "2280.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "13",
+      "name": "Magni",
+      "description": "Magni",
+      "rounds": "4",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1380.00",
+      "equipments": "Low bar, Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "14",
+      "name": "Odin",
+      "description": "Odin",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1200.00",
+      "equipments": "Ball, Bar, Low bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "15",
+      "name": "Mimir",
+      "description": "mimir",
+      "rounds": "4",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "920.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [
+      {
+      "id": "23",
+      "workout_id": "15",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "37",
+      "created_at": "2016-01-08 05:49:36",
+      "updated_at": "2016-01-12 04:44:12",
+      "category": "2"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "16",
+      "name": "Tyr ",
+      "description": "Tyr Tyr",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1560.00",
+      "equipments": "Bar, Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "17",
+      "name": "Thor",
+      "description": "Thor Thor",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1560.00",
+      "equipments": "Bar/Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "18",
+      "name": "Sif",
+      "description": "Sif",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "19",
+      "name": "Hœnir",
+      "description": "Hœnir Hœnir",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1740.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "20",
+      "name": "Snotra",
+      "description": "Snotra Snotra",
+      "rounds": "3",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1620.00",
+      "equipments": "Ball, Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "21",
+      "name": "Váli",
+      "description": "Váli Váli",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1620.00",
+      "equipments": "Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "22",
+      "name": "Hel",
+      "description": "Hel Hel",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1080.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "23",
+      "name": "Yggdrasil",
+      "description": "Yggdrasil Yggdrasil",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "24",
+      "name": "Nerþus",
+      "description": "Nerþus Nerþus",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar, Ball, Low Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "25",
+      "name": "Jörð",
+      "description": "Jörð Jörð",
+      "rounds": "4",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1680.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      }
+      ]
+      }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -1943,8 +2819,49 @@ class UsersController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
+            $arr1 = Array(1, 2, 3);
+
             if ($user) {
-                
+                $workouts = Workout::all();
+                foreach ($workouts as $eKey => $workout) {
+
+
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetLean[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 1)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['lean']['scores'] = $exerciseUserDetLean;
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetAthletic[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 2)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['athletic']['scores'] = $exerciseUserDetAthletic;
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetStrength[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 3)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['strength']['scores'] = $exerciseUserDetStrength;
+                }
+
+                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workouts], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -1959,7 +2876,188 @@ class UsersController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     * {
+      "status": 1,
+      "success": "history",
+      "hiit_history": [
+      {
+      "id": "1",
+      "name": "30/30",
+      "description": "Interval 4 rounds to 10 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [
+      {
+      "id": "2",
+      "hiit_id": "1",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "4",
+      "feed_id": "38",
+      "created_at": "2016-01-08 06:02:50",
+      "updated_at": "2016-01-08 06:02:50"
+      }
+      ],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [
+      {
+      "id": "9",
+      "hiit_id": "1",
+      "user_id": "96",
+      "status": "1",
+      "time": "2250.00",
+      "is_starred": "0",
+      "volume": "10",
+      "feed_id": "45",
+      "created_at": "2016-01-08 06:04:32",
+      "updated_at": "2016-01-08 06:04:32"
+      }
+      ],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "20/10",
+      "description": "Interval 4 rounds to 8 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [
+      {
+      "id": "4",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "5",
+      "feed_id": "40",
+      "created_at": "2016-01-08 06:03:17",
+      "updated_at": "2016-01-08 06:03:17"
+      }
+      ],
+      "6": [],
+      "7": [
+      {
+      "id": "3",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "7",
+      "feed_id": "39",
+      "created_at": "2016-01-08 06:03:10",
+      "updated_at": "2016-01-08 06:03:10"
+      }
+      ],
+      "8": [
+      {
+      "id": "5",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "8",
+      "feed_id": "41",
+      "created_at": "2016-01-08 06:03:27",
+      "updated_at": "2016-01-08 06:03:27"
+      }
+      ],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "60/120",
+      "description": "Interval 3 to 5 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [
+      {
+      "id": "6",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "3",
+      "feed_id": "42",
+      "created_at": "2016-01-08 06:03:37",
+      "updated_at": "2016-01-08 06:03:37"
+      }
+      ],
+      "4": [
+      {
+      "id": "7",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "4",
+      "feed_id": "43",
+      "created_at": "2016-01-08 06:03:44",
+      "updated_at": "2016-01-08 06:03:44"
+      }
+      ],
+      "5": [
+      {
+      "id": "8",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "5",
+      "feed_id": "44",
+      "created_at": "2016-01-08 06:03:48",
+      "updated_at": "2016-01-08 06:03:48"
+      }
+      ],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      }
+      ]
+      }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -2008,8 +3106,22 @@ class UsersController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
+            $arr1 = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16);
+
             if ($user) {
-                
+
+                $hiits = Hiit::all();
+                foreach ($hiits as $eKey => $hiit) {
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $hiitSores[$volume1] = DB::table('hiit_users')
+                            ->where('hiit_id', $hiit->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->get();
+                    }
+                    $hiits[$eKey]['scores'] = $hiitSores;
+                }
+                return response()->json(['status' => 1, 'success' => 'history', 'hiit_history' => $hiits], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
