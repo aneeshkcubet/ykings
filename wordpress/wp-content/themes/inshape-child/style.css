@@ -284,10 +284,16 @@ Template: inshape-parent
         margin: 0 auto;
     }
     .app-left-img{
-        width: 100%;
+        width:auto;
+        display: inline-block;
+        float: none;
+        margin: 0;
     }
     .app-left-text{
         width: 100%;
+    }
+    .app-left img{
+        display: inline-block;
     }
 }
 @media only screen and (max-width: 479px) {
