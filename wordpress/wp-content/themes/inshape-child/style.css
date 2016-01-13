@@ -197,6 +197,9 @@ Template: inshape-parent
 .mid-heads{
     margin-top: 42px;
 }
+.tf_nowidget{
+    display: none;
+}
 /* newsletter */
 
 .content-popup-newsletr {
@@ -234,6 +237,7 @@ Template: inshape-parent
         margin-bottom: 20px;
         margin-left: 0px;
         min-height: 100px;
+        text-align: center;
     }
     .postlist-sidebar{
         padding-right: 20px;
@@ -244,6 +248,7 @@ Template: inshape-parent
     }
     .app-store{
         margin-bottom: 5px;
+        float: none;
     }
     .basics{
         margin-top: 50px;
@@ -267,12 +272,12 @@ Template: inshape-parent
         padding-right: 15px;
     }
     .app-mob {
-        float: right;
+        text-align: center;
         width: 100%;
         margin-left: 0;
     }
     .app-left {
-        float: left;
+        text-align: center;
         width: 100%;
     }
     .app-mob img{
