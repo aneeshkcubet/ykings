@@ -61,7 +61,7 @@ Edit User
                         <div class="col-md-12">
 
                             <!-- BEGIN FORM WIZARD WITH VALIDATION -->
-                            <form class="form-wizard form-horizontal" action="" method="POST" id="wizard" enctype="multipart/form-data">
+                            <form class="form-wizard form-horizontal" action="{{ route('admin.user.postedit', $tUser->id) }}" method="POST" id="wizard" enctype="multipart/form-data">
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
@@ -85,25 +85,9 @@ Edit User
                                     <div class="form-group">
                                         <label for="email" class="col-sm-2 control-label">Email *</label>
                                         <div class="col-sm-10">
-                                            <input id="email" name="email" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email', $tUser->email) }}}" />
+                                            <input id="email" name="email" readonly="" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email', $tUser->email) }}}" />
                                         </div>
                                     </div>
-
-<!--                                    <div class="form-group">
-                                        <p class="text-warning">If you don't want to change password... please leave them empty</p>
-                                        <label for="password" class="col-sm-2 control-label">Password *</label>
-                                        <div class="col-sm-10">
-                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="{{{ Input::old('password' , $tUser->password) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="password_confirm" class="col-sm-2 control-label">Confirm Password *</label>
-                                        <div class="col-sm-10">
-                                            <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirm Password " class="form-control" value="{{{ Input::old('password_confirm') }}}" />
-                                        </div>
-                                    </div>-->
-
                                     <p>(*) Mandatory</p>
                                 </section>
                                 <!-- second tab -->
@@ -115,7 +99,7 @@ Edit User
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
                                                     @if($tUser['profile'][0]['image'] )
-                                                    <img src="{{{ url('/').'/uploads/users/'.$tUser['profile'][0]['image'] }}}" alt="profile pic">
+                                                    <img src="{{{ url('/').'/uploads/images/profile/original/'.$tUser['profile'][0]['image'] }}}" alt="profile pic">
                                                     @else
                                                     <img src="http://placehold.it/200x200" alt="profile pic">
                                                     @endif
@@ -125,7 +109,7 @@ Edit User
                                                     <span class="btn btn-default btn-file">
                                                         <span class="fileinput-new">Select image</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input id="pic" name="pic" type="file" class="form-control" />
+                                                        <input id="pic" name="image" type="file" class="form-control" />
                                                     </span>
                                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                                 </div>
@@ -141,15 +125,19 @@ Edit User
                                         <div class="col-sm-10">
                                             <select class="form-control" title="Select Gender..." name="gender">
                                                 <option value="">Select</option>
-                                                <option value="male" @if($tUser['profile'][0]['gender'] === '1') selected="selected" @endif >MALE</option>
-                                                <option value="female" @if($tUser['profile'][0]['gender'] === '2') selected="selected" @endif >FEMALE</option>
+                                                <option value="1" @if($tUser['profile'][0]['gender'] === '1') selected="selected" @endif >Male</option>
+                                                <option value="2" @if($tUser['profile'][0]['gender'] === '2') selected="selected" @endif >Female</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="country" class="col-sm-2 control-label">Country</label>
                                         <div class="col-sm-10">
-                                            <input id="state" name="country" type="text" class="form-control" value="{{{ Input::old('country',   $tUser['profile'][0]['country']) }}}" />
+                                            <select id="country" name="country" class="form-control">
+                                                @foreach ($countries as $country => $code)
+                                                <option value="{{ $code->name }}" @if($tUser['profile'][0]['country'] == $code->name) selected="selected" @endif>{{ $code->name }}</option>
+                                                @endforeach             
+                                            </select>                                            
                                         </div>
                                     </div>
 

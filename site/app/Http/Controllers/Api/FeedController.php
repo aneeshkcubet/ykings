@@ -46,7 +46,8 @@ class FeedController extends Controller
      * @apiParam {Number} item_id id of the targetting item *required
      * @apiParam {Number} [time_taken] time in seconds
      * @apiParam {Number} [rewards] points earned by doing activity
-     * @apiParam {Number} [category[ in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} [category] in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} [focus] in case of workout completion 1-Lean, 2-Athletic 3-Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
@@ -201,7 +202,8 @@ class FeedController extends Controller
                         'time' => $request->time_taken,
                         'category' => $request->category,
                         'is_starred' => $addStar,
-                        'volume' => isset($request->volume) ? $request->volume : ''
+                        'volume' => isset($request->volume) ? $request->volume : '',
+                        'focus' => isset($request->focus) ? $request->focus : ''
                     ];
 
                     $workoutUser = WorkoutUser::create($data);
@@ -234,7 +236,7 @@ class FeedController extends Controller
 
                     $hiitUser = Hiituser::create($data);
 
-                    $exerciseDetails = Hiituser::where('id', $request->item_id)->first();
+                    $exerciseDetails = Hiit::where('id', $request->item_id)->first();
 
                     $pointsEarned = 0;
                     if (isset($request->volume))

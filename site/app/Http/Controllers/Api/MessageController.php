@@ -130,6 +130,9 @@ class MessageController extends Controller
                 $notifications = Message::where('message.friend_id', '=', $request->input('user_id'))
                     ->join('user_profiles', 'user_profiles.user_id', '=', 'message.friend_id')
                     ->select(array('message.*', 'image'))
+                    ->where('read', 0)
+                    ->orderBy('message.id', 'DESC')
+                    ->groupBy(['message_type', 'type_id'])
                     ->get();
                 return response()->json(['status' => 1, 'notifications' => $notifications, 'urls' => config('urls.urls')], 200);
             } else {

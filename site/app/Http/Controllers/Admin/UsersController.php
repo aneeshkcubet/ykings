@@ -1,18 +1,21 @@
 <?php namespace App\Http\Controllers\Admin;
 
-use Auth,
+use Validator,
     Hash,
-    DB;
+    Mail,
+    Auth,
+    Image,
+    Redirect,
+    DB,
+    Input,
+    Lang;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
-use Redirect;
-use Input;
-use Lang;
-use Validator;
 use App\User;
 use App\Profile;
+use App\Country;
 
 class UsersController extends Controller
 {
@@ -26,7 +29,8 @@ class UsersController extends Controller
     public function getIndex()
     {
         // Grab all the users
-        $usersList = User::with(['profile', 'settings'])->get();
+        $usersList = User::where('status', '!=', 2)->get();
+
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
         return View('admin.users.index', compact('usersList', 'user'));
@@ -41,84 +45,103 @@ class UsersController extends Controller
     public function getCreate()
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+        
+        $countries = Country::all();
         // Show the page
-        return View('admin.users.create', compact('user'));
+        return View('admin.users.create', compact('user', 'countries'));
     }
 
     /**
      * User create form processing.
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * @since 12/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-        // Declare the rules for the form validation
-        $rules = array(
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|between:3,32',
-            'password_confirm' => 'required|same:password',
-            'pic' => 'mimes:jpg,jpeg,bmp,png|max:10000'
-        );
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-        // Create a new validator instance from our validation rules
-        //$validator = Validator::make(Input::all(), $rules);
-        // If validation fails, we'll exit the operation now.
-        // if ($validator->fails()) {
-        // Ooops.. something went wrong
-        //   return Redirect::back()->withInput()->withErrors($validator);
-        // }
-//        //upload image
-//        if ($file = Input::file('pic')) {
-//            $fileName = $file->getClientOriginalName();
-//            $extension = $file->getClientOriginalExtension() ? : 'png';
-//            $folderName = '/uploads/images/profile/original';
-//            $destinationPath = public_path() . $folderName;
-//            $safeName = str_random(10) . '.' . $extension;
-//            $file->move($destinationPath, $safeName);
-//        }
-        //check whether use should be activated by default or not
-        //  $activate = Input::get('activate') ? true : false;
+            $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
 
-        try {
-
-            $confirmation_code = str_random(30);
-            $user = User::create([
-                    'email' => Input::get('email'),
-                    'password' => Hash::make(Input::get('password')),
-                    'confirmation_code' => $confirmation_code,
-                    'status' => 0
-            ]);
-
-            // Register the user
-            $profile = new Profile(array(
-                'first_name' => Input::get('first_name'),
-                'last_name' => Input::get('last_name'),
-                'password' => Input::get('password'),
-                //  'image' => isset($safeName) ? $safeName : '',
-                'gender' => Input::get('gender'),
-                'country' => Input::get('country'),
-                'state' => Input::get('state'),
-                'city' => Input::get('city'),
-                'spot' => Input::get('spot'),
-                'quote' => Input::get('quote')
-            ));
-            $userProfile = $user->profile()->save($profile);
-            //check for activation and send activation mail if not activated by default
-            // Redirect to the home page with success menu
-            return Redirect::route("users")->with('success', Lang::get('Successfully created'));
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_login_required');
-        } catch (PasswordRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_password_required');
-        } catch (UserExistsException $e) {
-            $error = Lang::get('admin/users/message.user_exists');
+            //Check for valid image type
+            if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                $error = 'Please upload a png or jpg or gif image.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
         }
 
-        // Redirect to the user creation page
-        return Redirect::back()->withInput()->with('error', $error);
+        $confirmation_code = str_random(30);
+
+        $isActivated = Input::get('is_activated');
+
+        $user = User::create([
+                'email' => Input::get('email'),
+                'password' => Hash::make(Input::get('password')),
+                'confirmation_code' => (isset($isActivated)) ? '' : $confirmation_code,
+                'status' => (isset($isActivated)) ? 1 : 0
+        ]);
+
+        $data['password'] = Input::get('password');
+
+        //If user verification required
+        if (!isset($isActivated)) {
+            Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
+                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
+                    ->subject('Verify your email address');
+            });
+        } else {
+            //If already activated by Administrator
+            Mail::send('email.welcome', ['password' => Input::get('password')], function($message) use ($data) {
+                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
+                    ->subject('Welcome to Ykings App');
+            });
+        }
+
+        // Register the user
+        $profile = new Profile(array(
+            'first_name' => Input::get('first_name'),
+            'last_name' => Input::get('last_name'),
+            'password' => Input::get('password'),
+            'gender' => Input::get('gender'),
+            'country' => Input::get('country'),
+            'state' => Input::get('state'),
+            'city' => Input::get('city'),
+            'spot' => Input::get('spot'),
+            'quote' => Input::get('quote')
+        ));
+
+        $userProfile = $user->profile()->save($profile);
+
+        $user = User::where('email', '=', $request->input('email'))->with(['profile', 'videos'])->first();
+
+        //If user uploaded image
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+            $image = Image::make($_FILES['image']['tmp_name']);
+
+            $image->encode('jpeg');
+
+            $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(400, 400);
+
+            $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(150, 150);
+
+            $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(65, 65);
+
+            $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
+
+            $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+        }
+
+        // Redirect to the home page with success message
+
+        return Redirect::route("admin.users")->with('success', 'Successfully created');
     }
 
     /**
@@ -129,19 +152,25 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        try {
-            // Get the user information
-            $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
-            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-        } catch (UserNotFoundException $e) {
+        // Get the user information
+        $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
+
+        if (is_null($tUser)) {
+
             // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+            $error = 'User does not exists';
 
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.users')->with('error', $error);
         }
+        
+        $countries = Country::all();
+
+
+        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
         // Show the page
-        return View('admin.users.show', compact('tUser', 'user'));
+        return View('admin.users.show', compact('tUser', 'user', 'countries'));
     }
 
     /**
@@ -152,19 +181,25 @@ class UsersController extends Controller
      */
     public function getEdit($id = null)
     {
+
         // Get the user information
-        if ($tUser = User::where('id', $id)->with(['profile', 'settings'])->first()) {
-            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-        } else {
+        $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
+
+        if (is_null($tUser)) {
+
             // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+            $error = 'User does not exists';
 
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.users')->with('error', $error);
         }
+        
+        $countries = Country::all();
+
+        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         // Show the page
-        return View('admin/users/edit', compact('user', 'tUser'));
+        return View('admin/users/edit', compact('user', 'tUser', 'countries'));
     }
 
     /**
@@ -173,21 +208,33 @@ class UsersController extends Controller
      * @author ansa@cubettech.com
      * @return json
      */
-    public function postEdit($id = null)
+    public function postEdit(Request $request, $id = null)
     {
-        try {
-            // Get the user information
-            $user = User::where('id', $id)->first();
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+//        print_r($_FILES);
+//        die;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-            // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+            //Check for valid image type
+            if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                $error = 'Please upload a png or jpg or gif image.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
         }
 
-        //
-        $this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
+        $user = User::where('id', $id)->first();
+
+        if (is_null($user)) {
+
+            $error = 'User does not exists';
+
+            // Redirect to the user management page
+            return Redirect::route('admin.users')->with('error', $error);
+        }
+
+
+        $this->validationRules['email'] = "required|email";
 
         // Do we want to update the user password?
         if (!$password = Input::get('password')) {
@@ -200,39 +247,57 @@ class UsersController extends Controller
 
         // If validation fails, we'll exit the operation now.
         if ($validator->fails()) {
-            // Ooops.. something went wrong
             return Redirect::back()->withInput()->withErrors($validator);
         }
+        
+        $userProfile = Profile::where('user_id', $id)->first();
+        // Update the user
+        $userProfile->first_name = Input::get('first_name');
+        $userProfile->last_name = Input::get('last_name');
+        $userProfile->gender = Input::get('gender');
+        $userProfile->country = Input::get('country');
+        $userProfile->state = Input::get('state');
+        $userProfile->city = Input::get('city');
+        $userProfile->spot = Input::get('spot');
+        $userProfile->quote = Input::get('quote');
+        $userProfile->update();
 
-        try {
+        //If user uploaded image
 
-            $userProfile = Profile::where('user_id', $id)->first();
-            // Update the user
-            $userProfile->first_name = Input::get('first_name');
-            $userProfile->last_name = Input::get('last_name');
-            $userProfile->gender = Input::get('gender');
-            $userProfile->country = Input::get('country');
-            $userProfile->state = Input::get('state');
-            $userProfile->city = Input::get('city');
-            $userProfile->spot = Input::get('spot');
-            $userProfile->quote = Input::get('quote');
-            $userProfile->save();
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-            // Was the user updated?
-            if ($user->save()) {
-                // Prepare the success message
-                $success = Lang::get('users/message.success.update');
-                // Redirect to the user page
-                return Redirect::route('users.update', $id)->with('success', $success);
-            }
-            // Prepare the error message
-            $error = Lang::get('users/message.error.update');
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('users/message.user_login_required');
+            $image = Image::make($_FILES['image']['tmp_name']);
+
+            $image->encode('jpeg');
+
+            $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(400, 400);
+
+            $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(150, 150);
+
+            $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
+
+            $image->crop(65, 65);
+
+            $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');            
+
+            $name = $user->id . '_' . time() . '.jpg';
+            
+            DB::table('user_profiles')->where('user_id', $user->id)->update(['image' => $name]);
+
+            
         }
+        // Prepare the success message
+        $success = 'Successfully updated the user profile.';
+        // Redirect to the user page
+        return Redirect::route('admin.users', $id)->with('success', $success);
+
 
         // Redirect to the user page
-        return Redirect::route('users.update', $id)->withInput()->with('error', $error);
+        return Redirect::route('admin.user.update', $id)->withInput()->with('error', $error);
     }
 
     /**
@@ -241,19 +306,13 @@ class UsersController extends Controller
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getDelete()
+    public function getDelete($id = null)
     {
-        // Grab deleted users
-        $users = User::onlyTrashed()->get();
-       // print_r($users);die;
-        if (!$users) {
-            $error = 'User is invalid';
-        } else {
-            $error = '';
-        }
-       // print_r($error);die;
-        // Show the page
-        return View('admin.deleted_users', compact('users', 'error'));
+        $user = User::where('id', $id)->first();
+        $user->status = 2;
+        $user->update();
+
+        return Redirect::route("admin.users")->with('success', 'Successfully deleted user.');
     }
 
     /**
@@ -265,22 +324,48 @@ class UsersController extends Controller
     public function getModalDelete($id = null)
     {
         $model = 'users';
+
         $confirm_route = $error = null;
-        try { //echo 'hiii';die;
-            // Get user information
-            // $user = User::where('id', $id)->first();
-            // Check if we are not trying to delete ourselves
-            //  if ($user->id === Sentinel::getUser()->id) {
-            // Prepare the error message
-            //  $error = Lang::get('users/message.error.delete');
-            return View('admin.layouts.modal_confirmation', compact('model', 'confirm_route'));
-            // }
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+
+        $user = User::where('id', $id)->first();
+
+        $confirm_route = route('admin.user.delete', ['id' => $user->id]);
+
+        if (is_null($user)) {
+            $error = 'User does not exists.';
             return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
         }
-        $confirm_route = route('delete/user', ['id' => $user->id]);
+
         return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+    }
+
+    /**
+     * User Delete
+     * @since 12/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function setFeatured($id = null)
+    {
+        $user = User::where('id', $id)->first();
+        $user->is_featured = 1;
+        $user->update();
+
+        return Redirect::route("admin.users")->with('success', 'Successfully set as featured user.');
+    }
+
+    /**
+     * User Delete
+     * @since 12/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function unsetFeatured($id = null)
+    {
+        $user = User::where('id', $id)->first();
+        $user->is_featured = 0;
+        $user->update();
+
+        return Redirect::route("admin.users")->with('success', 'Successfully removed featured user.');
     }
 }

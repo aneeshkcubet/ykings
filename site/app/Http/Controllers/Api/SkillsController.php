@@ -894,8 +894,9 @@ class SkillsController extends Controller
             ->select('exercise_id')
             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
             ->count();
+        
 
-        if ($unLockCount > 0) {
+        if ($unLockCount > 0 || $skill->level < 2) {
             return 0;
         }
 

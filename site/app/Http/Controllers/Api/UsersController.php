@@ -17,10 +17,16 @@ use App\User;
 use App\Profile;
 use App\Settings;
 use App\Follow;
-use App\Point;
 use App\Social;
-use App\Workout;
 use App\PushNotification;
+use App\Feeds;
+use App\Exercise;
+use App\Workout;
+use App\Hiit;
+use App\Exerciseuser;
+use App\Workoutuser;
+use App\Hiituser;
+use App\Point;
 
 class UsersController extends Controller
 {
@@ -1136,6 +1142,1990 @@ class UsersController extends Controller
         });
 
         return response()->json(['status' => 1, 'success' => 'Successfully sent email to your email address.', 'email' => $request->input('email')], 200);
+    }
+
+    /**
+     * @api {post} /user/history/recent getUserRecentHistory
+     * @apiName getUserRecentHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "history",
+      "history": [
+      {
+      "id": "25",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "35",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 05:43:32",
+      "updated_at": "2016-01-08 05:43:32",
+      "category": "Athletic",
+      "item_name": "One Leg Back Lever",
+      "duration": "100",
+      "volume": "10",
+      "points": "60.00"
+      },
+      {
+      "id": "24",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "8",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:42:12",
+      "updated_at": "2016-01-08 05:42:12",
+      "category": "Lean",
+      "item_name": "Single Leg Deadlift",
+      "duration": "100",
+      "volume": "100",
+      "points": "60.00"
+      },
+      {
+      "id": "23",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "4",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:41:35",
+      "updated_at": "2016-01-08 05:41:35",
+      "category": "Lean",
+      "item_name": "Skin the cat",
+      "duration": "30",
+      "volume": "100",
+      "points": "60.00"
+      },
+      {
+      "id": "22",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "4",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:41:06",
+      "updated_at": "2016-01-08 05:41:06",
+      "category": "Lean",
+      "item_name": "Skin the cat",
+      "duration": "30",
+      "volume": "50",
+      "points": "30.00"
+      },
+      {
+      "id": "21",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "2",
+      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
+      "created_at": "2016-01-08 05:40:20",
+      "updated_at": "2016-01-08 05:40:20",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "30",
+      "volume": "3",
+      "points": "1.80"
+      },
+      {
+      "id": "2",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "1",
+      "feed_text": "not bad",
+      "created_at": "2016-01-07 10:25:18",
+      "updated_at": "2016-01-07 10:25:18",
+      "category": "Lean",
+      "item_name": "Jumping Pullups",
+      "duration": "29",
+      "volume": "25",
+      "points": "25.00"
+      },
+      {
+      "id": "1",
+      "user_id": "96",
+      "item_type": "exercise",
+      "item_id": "1",
+      "feed_text": "its cool",
+      "created_at": "2016-01-07 10:23:02",
+      "updated_at": "2016-01-07 10:23:02",
+      "category": "Lean",
+      "item_name": "Jumping Pullups",
+      "duration": "57",
+      "volume": "50",
+      "points": "50.00"
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserRecentHistory(Request $request)
+    {
+
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $userHistory = Feeds::where('user_id', '=', $request->user_id)
+                    ->where('item_type', '=', 'exercise')
+                    ->whereOr('item_type', '=', 'workout')
+                    ->whereOr('item_type', '=', 'hiit')
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+
+                if (count($userHistory) > 0) {
+                    $userHistoryResponse = $this->AdditionalFeedsDetails($userHistory);
+                }
+
+                return response()->json(['status' => 1, 'success' => 'history', 'history' => $userHistoryResponse, 'urls' => config('urls.urls')], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * Function to get additional parameters in feeds.
+     * @since 19/11/2015
+     * @author ansa@cubettech.com
+     * @return json
+     */
+    protected function AdditionalFeedsDetails($userHistory)
+    {
+        foreach ($userHistory as $history) {
+            if ($history->item_type == 'workout') {
+
+                $workout = Workout::where('id', '=', $history->item_id)->first();
+                if (!is_null($workout)) {
+                    if ($workout->category == 1) {
+                        $history->category = "Strength";
+                    } elseif ($workout->category == 2) {
+                        $history->category = "Cardio-strength";
+                    }
+                }
+
+                $history->item_name = $workout->name;
+
+                $workoutUserDet = DB::table('workout_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $workoutUserDet->time;
+                $history->volume = $workoutUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $workoutUserDet->id)->where('activity', 'workout_completed')->pluck('points');
+            } elseif ($history->item_type == 'exercise') {
+
+                $exercise = Exercise::where('id', '=', $history->item_id)->first();
+                if (!is_null($exercise)) {
+                    if ($exercise->category == 1) {
+                        $history->category = "Lean";
+                    } elseif ($exercise->category == 2) {
+                        $history->category = "Athletic";
+                    } elseif ($exercise->category == 3) {
+                        $history->category = "Strength";
+                    }
+                }
+
+                $history->item_name = $exercise->name;
+
+                $exerciseUserDet = DB::table('exercise_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $exerciseUserDet->time;
+                $history->volume = $exerciseUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $exerciseUserDet->id)->where('activity', 'exercise_completed')->pluck('points');
+            } elseif ($history->item_type == 'hiit') {
+
+                $hiit = Hiit::where('id', '=', $history->item_id)->first();
+
+
+                $history->item_name = $hiit->name;
+
+                $hiitUserDet = DB::table('hiit_users')
+                    ->where('feed_id', $history->id)
+                    ->first();
+
+                $history->duration = $hiitUserDet->time;
+                $history->volume = $hiitUserDet->volume;
+                $history->points = DB::table('points')->where('item_id', $hiitUserDet->id)->where('activity', 'hiit_completed')->pluck('points');
+            }
+
+            $historyResponse[] = $history;
+        }
+        return $historyResponse;
+    }
+
+    /**
+     * @api {post} /user/history/exercise getUserExerciseHistory
+     * @apiName getUserExerciseHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * 
+     * {
+      "status": 1,
+      "success": "history",
+      "exercise_history": [
+      {
+      "id": "1",
+      "name": "Jumping Pullups",
+      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [
+      {
+      "id": "2",
+      "user_id": "96",
+      "exercise_id": "1",
+      "status": "1",
+      "time": "29",
+      "is_starred": "0",
+      "volume": "25",
+      "feed_id": "2",
+      "created_at": "2016-01-07 10:25:18",
+      "updated_at": "2016-01-07 10:25:18"
+      }
+      ],
+      "30": [],
+      "50": [
+      {
+      "id": "1",
+      "user_id": "96",
+      "exercise_id": "1",
+      "status": "1",
+      "time": "57",
+      "is_starred": "0",
+      "volume": "50",
+      "feed_id": "1",
+      "created_at": "2016-01-07 10:23:02",
+      "updated_at": "2016-01-07 10:23:02"
+      }
+      ],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "Australian Pullups",
+      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "Knee Raises",
+      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "4",
+      "name": "Skin the cat",
+      "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [
+      {
+      "id": "10",
+      "user_id": "96",
+      "exercise_id": "4",
+      "status": "1",
+      "time": "30",
+      "is_starred": "0",
+      "volume": "50",
+      "feed_id": "22",
+      "created_at": "2016-01-08 05:41:06",
+      "updated_at": "2016-01-08 05:41:06"
+      }
+      ],
+      "60": [],
+      "100": [
+      {
+      "id": "11",
+      "user_id": "96",
+      "exercise_id": "4",
+      "status": "1",
+      "time": "30",
+      "is_starred": "0",
+      "volume": "100",
+      "feed_id": "23",
+      "created_at": "2016-01-08 05:41:35",
+      "updated_at": "2016-01-08 05:41:35"
+      }
+      ],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "5",
+      "name": "Side Trizeps",
+      "description": "",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "30",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "6",
+      "name": "Trizeps Extension",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "7",
+      "name": "Wall Sits",
+      "description": "",
+      "category": "1",
+      "type": "1",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "8",
+      "name": "Single Leg Deadlift",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [
+      {
+      "id": "12",
+      "user_id": "96",
+      "exercise_id": "8",
+      "status": "1",
+      "time": "100",
+      "is_starred": "0",
+      "volume": "100",
+      "feed_id": "24",
+      "created_at": "2016-01-08 05:42:12",
+      "updated_at": "2016-01-08 05:42:12"
+      }
+      ],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      },
+      {
+      "id": "9",
+      "name": "Climbers",
+      "description": "",
+      "category": "1",
+      "type": "2",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "scores": {
+      "10": [],
+      "20": [],
+      "25": [],
+      "30": [],
+      "50": [],
+      "60": [],
+      "100": [],
+      "120": [],
+      "180": [],
+      "240": [],
+      "250": [],
+      "300": [],
+      "360": [],
+      "420": [],
+      "480": [],
+      "500": [],
+      "540": [],
+      "600": [],
+      "750": [],
+      "1000": []
+      }
+      }
+      ],
+      "urls": {
+      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+      "video": "http://sandbox.ykings.com/uploads/videos",
+      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserExerciseHistory(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            $arr1 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+
+            if ($user) {
+                $exercises = Exercise::all();
+                foreach ($exercises as $eKey => $exercise) {
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDet[$volume1] = DB::table('exercise_users')
+                            ->where('exercise_id', $exercise->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->get();
+                    }
+
+                    $exercises[$eKey]->scores = $exerciseUserDet;
+                }
+                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exercises], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/history/workout getUserWorkoutHistory
+     * @apiName getUserWorkoutHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "history",
+      "workout_history": [
+      {
+      "id": "1",
+      "name": "Baldur",
+      "description": "Baldur Baldur",
+      "rounds": "5",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1680.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "Borr",
+      "description": "Borr Borr Borr",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1140.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [
+      {
+      "id": "7",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "14",
+      "created_at": "2016-01-07 13:01:07",
+      "updated_at": "2016-01-12 04:42:26",
+      "category": "1"
+      },
+      {
+      "id": "8",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "15",
+      "created_at": "2016-01-07 13:02:08",
+      "updated_at": "2016-01-12 04:42:30",
+      "category": "1"
+      },
+      {
+      "id": "9",
+      "workout_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "2900",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "16",
+      "created_at": "2016-01-07 13:02:22",
+      "updated_at": "2016-01-12 04:42:36",
+      "category": "1"
+      }
+      ],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "Bragi",
+      "description": "Bragi",
+      "rounds": "5",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "840.00",
+      "equipments": "Low Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "4",
+      "name": "Buri",
+      "description": "Buri",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1440.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "5",
+      "name": "Dagur",
+      "description": "Dagur",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1260.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "6",
+      "name": "Delling",
+      "description": "Delling",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1140.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [
+      {
+      "id": "15",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "1",
+      "feed_id": "29",
+      "created_at": "2016-01-08 05:46:46",
+      "updated_at": "2016-01-12 04:43:33",
+      "category": "1"
+      }
+      ],
+      "2": [
+      {
+      "id": "16",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "30",
+      "created_at": "2016-01-08 05:46:55",
+      "updated_at": "2016-01-12 04:43:37",
+      "category": "1"
+      }
+      ],
+      "3": [
+      {
+      "id": "17",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "3",
+      "focus": "1",
+      "feed_id": "31",
+      "created_at": "2016-01-08 05:47:00",
+      "updated_at": "2016-01-12 04:43:40",
+      "category": "1"
+      }
+      ]
+      },
+      "athletic": {
+      "1": [],
+      "2": [
+      {
+      "id": "12",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "26",
+      "created_at": "2016-01-08 05:45:46",
+      "updated_at": "2016-01-12 04:43:02",
+      "category": "2"
+      },
+      {
+      "id": "13",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "27",
+      "created_at": "2016-01-08 05:45:56",
+      "updated_at": "2016-01-12 04:43:06",
+      "category": "1"
+      },
+      {
+      "id": "14",
+      "workout_id": "6",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "28",
+      "created_at": "2016-01-08 05:46:02",
+      "updated_at": "2016-01-12 04:43:09",
+      "category": "3"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "7",
+      "name": "Eir",
+      "description": "Eir",
+      "rounds": "1",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1020.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "8",
+      "name": "Eostre",
+      "description": "Eostre",
+      "rounds": "5",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1260.00",
+      "equipments": "Ball,Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "9",
+      "name": "Elli",
+      "description": "Elli",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1380.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [
+      {
+      "id": "18",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "1",
+      "feed_id": "32",
+      "created_at": "2016-01-08 05:48:32",
+      "updated_at": "2016-01-12 04:43:44",
+      "category": "1"
+      }
+      ],
+      "2": [
+      {
+      "id": "19",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "1",
+      "feed_id": "33",
+      "created_at": "2016-01-08 05:48:45",
+      "updated_at": "2016-01-12 04:43:47",
+      "category": "1"
+      }
+      ],
+      "3": [
+      {
+      "id": "20",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "3",
+      "focus": "1",
+      "feed_id": "34",
+      "created_at": "2016-01-08 05:49:00",
+      "updated_at": "2016-01-12 04:43:51",
+      "category": "1"
+      }
+      ]
+      },
+      "athletic": {
+      "1": [
+      {
+      "id": "21",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "1",
+      "focus": "2",
+      "feed_id": "35",
+      "created_at": "2016-01-08 05:49:19",
+      "updated_at": "2016-01-12 04:44:06",
+      "category": "2"
+      }
+      ],
+      "2": [
+      {
+      "id": "22",
+      "workout_id": "9",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "36",
+      "created_at": "2016-01-08 05:49:27",
+      "updated_at": "2016-01-12 04:44:09",
+      "category": "2"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "10",
+      "name": "Loki",
+      "description": "Loki",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1440.00",
+      "equipments": "Bar, Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "11",
+      "name": "Hermodur",
+      "description": "Hermodur",
+      "rounds": "4",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1740.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "12",
+      "name": "Forseti",
+      "description": "Forseti",
+      "rounds": "6",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "2280.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "13",
+      "name": "Magni",
+      "description": "Magni",
+      "rounds": "4",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1380.00",
+      "equipments": "Low bar, Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "14",
+      "name": "Odin",
+      "description": "Odin",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1200.00",
+      "equipments": "Ball, Bar, Low bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "15",
+      "name": "Mimir",
+      "description": "mimir",
+      "rounds": "4",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "920.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [
+      {
+      "id": "23",
+      "workout_id": "15",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500",
+      "is_starred": "0",
+      "volume": "2",
+      "focus": "2",
+      "feed_id": "37",
+      "created_at": "2016-01-08 05:49:36",
+      "updated_at": "2016-01-12 04:44:12",
+      "category": "2"
+      }
+      ],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "16",
+      "name": "Tyr ",
+      "description": "Tyr Tyr",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1560.00",
+      "equipments": "Bar, Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "17",
+      "name": "Thor",
+      "description": "Thor Thor",
+      "rounds": "1",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1560.00",
+      "equipments": "Bar/Bench",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "18",
+      "name": "Sif",
+      "description": "Sif",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "19",
+      "name": "Hœnir",
+      "description": "Hœnir Hœnir",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1740.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "20",
+      "name": "Snotra",
+      "description": "Snotra Snotra",
+      "rounds": "3",
+      "category": "2",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1620.00",
+      "equipments": "Ball, Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "21",
+      "name": "Váli",
+      "description": "Váli Váli",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1620.00",
+      "equipments": "Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "22",
+      "name": "Hel",
+      "description": "Hel Hel",
+      "rounds": "3",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1080.00",
+      "equipments": "Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "23",
+      "name": "Yggdrasil",
+      "description": "Yggdrasil Yggdrasil",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar, Post",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "24",
+      "name": "Nerþus",
+      "description": "Nerþus Nerþus",
+      "rounds": "3",
+      "category": "1",
+      "type": "2",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "0.00",
+      "equipments": "Bar, Ball, Low Bar",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      },
+      {
+      "id": "25",
+      "name": "Jörð",
+      "description": "Jörð Jörð",
+      "rounds": "4",
+      "category": "2",
+      "type": "1",
+      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
+      "duration": "1680.00",
+      "equipments": "",
+      "lean": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "athletic": {
+      "1": [],
+      "2": [],
+      "3": []
+      },
+      "strength": {
+      "1": [],
+      "2": [],
+      "3": []
+      }
+      }
+      ]
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserWorkoutHistory(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            $arr1 = Array(1, 2, 3);
+
+            if ($user) {
+                $workouts = Workout::all();
+                foreach ($workouts as $eKey => $workout) {
+
+
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetLean[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 1)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['lean']['scores'] = $exerciseUserDetLean;
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetAthletic[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 2)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['athletic']['scores'] = $exerciseUserDetAthletic;
+
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $exerciseUserDetStrength[$volume1] = DB::table('workout_users')
+                            ->where('workout_id', $workout->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->where('focus', 3)
+                            ->get();
+                    }
+
+                    $workouts[$eKey]['strength']['scores'] = $exerciseUserDetStrength;
+                }
+
+                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workouts], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/history/hiit getUserHiitHistory
+     * @apiName getUserHiitHistory
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "history",
+      "hiit_history": [
+      {
+      "id": "1",
+      "name": "30/30",
+      "description": "Interval 4 rounds to 10 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [
+      {
+      "id": "2",
+      "hiit_id": "1",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "4",
+      "feed_id": "38",
+      "created_at": "2016-01-08 06:02:50",
+      "updated_at": "2016-01-08 06:02:50"
+      }
+      ],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [
+      {
+      "id": "9",
+      "hiit_id": "1",
+      "user_id": "96",
+      "status": "1",
+      "time": "2250.00",
+      "is_starred": "0",
+      "volume": "10",
+      "feed_id": "45",
+      "created_at": "2016-01-08 06:04:32",
+      "updated_at": "2016-01-08 06:04:32"
+      }
+      ],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      },
+      {
+      "id": "2",
+      "name": "20/10",
+      "description": "Interval 4 rounds to 8 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [
+      {
+      "id": "4",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "5",
+      "feed_id": "40",
+      "created_at": "2016-01-08 06:03:17",
+      "updated_at": "2016-01-08 06:03:17"
+      }
+      ],
+      "6": [],
+      "7": [
+      {
+      "id": "3",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "7",
+      "feed_id": "39",
+      "created_at": "2016-01-08 06:03:10",
+      "updated_at": "2016-01-08 06:03:10"
+      }
+      ],
+      "8": [
+      {
+      "id": "5",
+      "hiit_id": "2",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "8",
+      "feed_id": "41",
+      "created_at": "2016-01-08 06:03:27",
+      "updated_at": "2016-01-08 06:03:27"
+      }
+      ],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      },
+      {
+      "id": "3",
+      "name": "60/120",
+      "description": "Interval 3 to 5 rounds",
+      "exercises": "",
+      "rewards": "330.00",
+      "scores": {
+      "1": [],
+      "2": [],
+      "3": [
+      {
+      "id": "6",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "3",
+      "feed_id": "42",
+      "created_at": "2016-01-08 06:03:37",
+      "updated_at": "2016-01-08 06:03:37"
+      }
+      ],
+      "4": [
+      {
+      "id": "7",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "4",
+      "feed_id": "43",
+      "created_at": "2016-01-08 06:03:44",
+      "updated_at": "2016-01-08 06:03:44"
+      }
+      ],
+      "5": [
+      {
+      "id": "8",
+      "hiit_id": "3",
+      "user_id": "96",
+      "status": "1",
+      "time": "1500.00",
+      "is_starred": "0",
+      "volume": "5",
+      "feed_id": "44",
+      "created_at": "2016-01-08 06:03:48",
+      "updated_at": "2016-01-08 06:03:48"
+      }
+      ],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+      "11": [],
+      "12": [],
+      "13": [],
+      "14": [],
+      "16": []
+      }
+      }
+      ]
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
+    public function getUserHiitHistory(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            $arr1 = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16);
+
+            if ($user) {
+
+                $hiits = Hiit::all();
+                foreach ($hiits as $eKey => $hiit) {
+                    foreach ($arr1 as $vKey => $volume1) {
+                        $hiitSores[$volume1] = DB::table('hiit_users')
+                            ->where('hiit_id', $hiit->id)
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $volume1)
+                            ->get();
+                    }
+                    $hiits[$eKey]['scores'] = $hiitSores;
+                }
+                return response()->json(['status' => 1, 'success' => 'history', 'hiit_history' => $hiits], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
     }
 
     public function confirm(Request $request)
