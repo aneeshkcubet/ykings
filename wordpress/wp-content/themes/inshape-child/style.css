@@ -231,6 +231,12 @@ Template: inshape-parent
     margin-bottom: 32px;
     min-height: 94px;
 }
+.postlist-sidebar.recent-posts li {
+    text-align: center;
+}
+.app-left-img img {
+    display: inline-block;
+}
 @media only screen and (max-width: 767px) {
     .postlist-sidebar.recent-posts li{
         width: 100%;
@@ -249,6 +255,7 @@ Template: inshape-parent
     .app-store{
         margin-bottom: 5px;
         float: none;
+        display: inline-block;
     }
     .basics{
         margin-top: 50px;
