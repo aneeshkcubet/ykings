@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-View User Details
+View User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['last_name'] }}
 @parent
 @stop
 
@@ -26,8 +26,8 @@ View User Details
                 Dashboard
             </a>
         </li>
-        <li>Users</li>
-        <li class="active">View User</li>
+        <li><a href="{{ route('admin.users') }}">Users</a></li>
+        <li class="active">{{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['last_name'] }}</li>
     </ol>
 </section>
 <section class="content">

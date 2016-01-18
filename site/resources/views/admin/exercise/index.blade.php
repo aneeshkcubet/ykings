@@ -22,9 +22,8 @@ Exercises
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
-        </li>
-        <li>Exercise</li>
-        <li class="active">Exercise</li>
+        </li>       
+        <li class="active">Exercises</li>
     </ol>
 </section>
 
@@ -34,7 +33,7 @@ Exercises
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Exercise List
+                    Exercises
                 </h4>
             </div>
             <br />
@@ -48,8 +47,7 @@ Exercises
                             <th>Category</th>
                             <th>Type</th>
                             <th>Rewards</th>
-                            <th>Repititions</th>
-                            <th>Duration</th>
+                            <th>Repititions/Duration</th>                            
                             <th>Unit</th>
                             <th>Equipment</th>
                             <th>Created</th>
@@ -74,26 +72,37 @@ Exercises
                             <td>
                                 @if($list->type == 1)
                                 Free
-                                @elseif($list->type == 2)
-                                paid
+                                @elseif($list->type == 2)                                
+                                Paid
                                 @else
                                 @endif
                             </td>
                             <td>{{ $list->rewards }}</td>
-                            <td>{{ $list->repititions }}</td>
-                            <td>{{ $list->duration }}</td>
-                            <td>{{ $list->unit }}</td>
+                            <td>
+                                @if($list->unit == 'times')
+                                {{ $list->repititions }}
+                                @else
+                                {{ $list->duration }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($list->unit == 'times')
+                                Repetitions
+                                @else
+                                Seconds
+                                @endif
+                            </td>
                             <td>{{ $list->equipment }}</td>
                             <td>{{ $list->created_at }}</td>
                             <td>
-                                <a href="{{ route('exercise.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                <a href="{{ route('exercise.update', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>
-                               	
-                                <a href="{{ route('confirm-delete/user', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
-                                    <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
+                                <a href="{{ route('admin.exercise.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Exercise Details"></i></a>
+                                <a href="{{ route('admin.exercise.edit', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Exercise Details"></i></a>
+
+                                <a href="{{ route('admin.confirm-delete.exercise', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="livicon" data-name="exercise-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete exercise">
                                     </i>
                                 </a>
-                               
+
                             </td>
                         </tr>
                         @endforeach

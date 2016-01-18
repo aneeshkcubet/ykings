@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\UserEvents@userDeleted',
         ],
         'video.created' => [
-            'App\Events\VideoEvents@userCreated',
+            'App\Events\VideoEvents@videoCreated',
         ],
         'video.deleted' => [
             'App\Events\VideoEvents@videoDeleted',

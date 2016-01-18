@@ -358,7 +358,7 @@ Route::group(['prefix' => 'admin'], function() {
         
         Route::get('{userId}/delete', array('as' => 'admin.user.delete', 'uses' => 'Admin\UsersController@getDelete'));
         
-        Route::get('{userId}/confirm-delete', array('as' => 'admin.confirm-delete.user', 'uses' => 'Admin\UsersController@getModalDelete'));
+        Route::get('{userId}/confirm-delete-user', array('as' => 'admin.confirm-delete.user', 'uses' => 'Admin\UsersController@getModalDelete'));
         
         Route::get('{userId}/setfeatured', array('as' => 'admin.user.setfeatured', 'uses' => 'Admin\UsersController@setFeatured'));
         
@@ -368,24 +368,52 @@ Route::group(['prefix' => 'admin'], function() {
     # Exercise Management
     Route::group(array('prefix' => 'exercise'), function () {
         Route::get('/', array('as' => 'admin.exercises', 'uses' => 'Admin\ExerciseController@getIndex'));
+        
         Route::get('create', array('as' => 'admin.exercise.create', 'uses' => 'Admin\ExerciseController@getCreate'));
-        Route::post('create', 'Admin\ExerciseController@postCreate');
-        Route::get('{exerciseId}/edit', array('as' => 'admin.exercise.update', 'uses' => 'Admin\ExerciseController@getEdit'));
-        Route::post('{exerciseId}/edit', 'Admin\ExerciseController@postEdit');
+        
+        Route::post('create', array('as' => 'admin.exercise.postcreate', 'uses' => 'Admin\ExerciseController@postCreate'));
+        
+        Route::get('{exerciseId}/edit', array('as' => 'admin.exercise.edit', 'uses' => 'Admin\ExerciseController@getEdit'));
+        
+        Route::post('{exerciseId}/edit', array('as' => 'admin.exercise.postedit', 'uses' => 'Admin\ExerciseController@postEdit'));
+        
         Route::get('{exerciseId}', array('as' => 'admin.exercise.show', 'uses' => 'Admin\ExerciseController@show'));
+        
         Route::get('{exerciseId}/delete', array('as' => 'admin.exercise.delete', 'uses' => 'Admin\ExerciseController@getDelete'));
-        Route::get('{exerciseId}/confirm-delete', array('as' => 'admin.confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
+        
+        Route::get('{exerciseId}/confirm-delete-exercise', array('as' => 'admin.confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
+        
+        
     });
     
     # Workout Management
-    Route::group(array('prefix' => 'workout'), function () {
+    Route::group(array('prefix' => 'workouts'), function () {
+        
         Route::get('/', array('as' => 'admin.workouts', 'uses' => 'Admin\WorkoutController@getIndex'));
+        
         Route::get('create', array('as' => 'admin.workout.create', 'uses' => 'Admin\WorkoutController@getCreate'));
-        Route::post('create', 'Admin\WorkoutController@postCreate');
-        Route::get('{workoutId}/edit', array('as' => 'admin.workout.update', 'uses' => 'Admin\WorkoutController@getEdit'));
-        Route::post('{workoutId}/edit', 'Admin\WorkoutController@postEdit');
-        Route::get('{workoutId}', array('as' => 'admin.workout.show', 'uses' => 'Admin\WorkoutController@show'));
-        Route::get('{workoutId}/delete', array('as' => 'admin.workout.delete', 'uses' => 'Admin\WorkoutController@getDelete'));
-        Route::get('{workoutId}/confirm-delete', array('as' => 'admin.confirm-delete.workout', 'uses' => 'Admin\WorkoutController@getModalDelete'));
+        
+        Route::post('create', array('as' => 'admin.workout.postcreate', 'uses' =>'Admin\WorkoutController@postCreate'));
+        
+        Route::get('{workoutId}/edit', array('as' => 'admin.workout.edit', 'uses' => 'Admin\WorkoutController@getEdit'))->where('workoutId', '[0-9]+');
+        
+        Route::post('{workoutId}/edit', array('as' => 'admin.workout.postedit', 'uses' =>'Admin\WorkoutController@postEdit'))->where('workoutId', '[0-9]+');
+        
+        Route::get('{workoutId}', array('as' => 'admin.workout.show', 'uses' => 'Admin\WorkoutController@show'))->where('workoutId', '[0-9]+');
+        
+        Route::get('{workoutId}/delete', array('as' => 'admin.workout.delete', 'uses' => 'Admin\WorkoutController@getDelete'))->where('workoutId', '[0-9]+');
+        
+        Route::get('{workoutId}/confirm-delete-workout', array('as' => 'admin.confirm-delete.workout', 'uses' => 'Admin\WorkoutController@getModalDelete'))->where('workoutId', '[0-9]+');
+        
+        #Workout Exercise Management        
+        Route::get('workoutexercise/create/{workoutId}', array('as' => 'admin.workout.workoutexercise.create', 'uses' => 'Admin\WorkoutController@getExerciseCreate'));
+        
+        Route::post('workoutexercise/create/{workoutId}', array('as' => 'admin.workout.workoutexercise.postcreate', 'uses' =>'Admin\WorkoutController@postExerciseCreate'));
+        
+        Route::get('workoutexercise/{workoutExerciseId}/edit', array('as' => 'admin.workout.workoutexercise.edit', 'uses' => 'Admin\WorkoutController@getExerciseEdit'));
+        
+        Route::post('workoutexercise/{workoutExerciseId}/edit', array('as' => 'admin.workout.workoutexercise.postedit', 'uses' =>'Admin\WorkoutController@postExerciseEdit'));
+
+        Route::get('workoutexercise/{workoutExerciseId}/delete', array('as' => 'admin.workout.workoutexercise.delete', 'uses' => 'Admin\WorkoutController@getExerciseDelete'));
     });
 });

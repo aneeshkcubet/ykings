@@ -324,6 +324,8 @@ class UsersController extends Controller
     public function getModalDelete($id = null)
     {
         $model = 'users';
+        
+        $entity = 'user';
 
         $confirm_route = $error = null;
 
@@ -333,10 +335,10 @@ class UsersController extends Controller
 
         if (is_null($user)) {
             $error = 'User does not exists.';
-            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
         }
 
-        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
     }
 
     /**

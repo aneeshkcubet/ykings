@@ -18,19 +18,23 @@ class Exercise extends Model
     protected $fillable = [
         'name',
         'description',
-        'difficulty',
-        'level',
+        'category',
+        'type',
         'rewards',
         'repititions',
         'duration',
-        'equipment'
+        'unit',
+        'equipment',
+        'muscle_groups',
+        'range_of_motion',
+        'video_tips',
+        'pro_tips'
     ];
-    
     protected $hidden = [
         'updated_at',
         'created_at'
     ];
-    
+
     /**
      * Relation with video table.
      * @author <aneesh@cubettech.com>
@@ -40,7 +44,7 @@ class Exercise extends Model
     {
         return $this->hasMany('App\Video', 'parent_id', 'id')->where('parent_type', '=', 1);
     }
-    
+
     /**
      * Relation with video table.
      * @author <aneesh@cubettech.com>
@@ -50,6 +54,4 @@ class Exercise extends Model
     {
         return $this->hasMany('App\Workoutexercise', 'exercise_id', 'id');
     }
-    
-    
 }

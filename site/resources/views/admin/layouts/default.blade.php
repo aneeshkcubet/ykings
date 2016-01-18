@@ -314,8 +314,7 @@
 
                             <!-- BEGIN WORKOUT MENU -->
                             <li>
-                                <a href="{{ route('admin.workouts') }}">
-
+                                <a href="{{ route('admin.workouts') }}"> <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Workouts</span>
                                     <span class="fa arrow"></span>
                                 </a>
@@ -327,7 +326,7 @@
                                         </a>
                                     </li>
                                     <li {!! (Request::is('admin.workout.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ URL::to('admin.workout.create') }}">
+                                        <a href="{{ route('admin.workout.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Workout
                                         </a>

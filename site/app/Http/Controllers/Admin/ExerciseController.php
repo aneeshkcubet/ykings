@@ -1,207 +1,310 @@
 <?php namespace App\Http\Controllers\Admin;
 
-use Auth,
+use Validator,
     Hash,
-    DB;
+    Mail,
+    Auth,
+    Image,
+    Redirect,
+    DB,
+    Input,
+    Lang;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
-use Redirect;
-use Input;
-use Lang;
-use Validator;
 use App\Exercise;
 use App\Profile;
 use App\User;
+use App\Musclegroup;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\TimeCode as TimeCode;
+use App\Video;
 
 class ExerciseController extends Controller
 {
 
     /**
      * Index page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getIndex()
     {
         // Grab all the users
         $exercise = Exercise::get();
+
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
         // Show the page
         return View('admin.exercise.index', compact('exercise', 'user'));
     }
 
     /**
-     * User create form processing.
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise create get form.
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getCreate()
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
+        $muscleGroups = Musclegroup::all();
+
         // Show the page
-        return View('admin.exercise.create', compact('user'));
+        return View('admin.exercise.create', compact('user', 'muscleGroups'));
     }
 
     /**
-     * User create form processing.
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise create form processing.
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-        try {
+        if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
 
-            // Register the user
-            Exercise::create([
+            $accepableTypes = ['video/mp4'];
+
+            //Check for valid image type
+            if (!in_array($_FILES['video']['type'], $accepableTypes)) {
+                $error = 'Please upload a mp4 video.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
+        }
+        
+        $muscleGroups = Input::get('muscle_groups');
+        $duration = Input::get('repetitions');
+        $exercise = Exercise::create([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
                 'rewards' => Input::get('rewards'),
-                'repetitions' => Input::get('repetitions'),
-                'duration' => Input::get('duration'),
+                'repititions' => Input::get('repetitions'),
+                'duration' => $duration,
                 'unit' => Input::get('unit'),
-                'equipment' => Input::get('equipment')
-            ]);
+                'equipment' => Input::get('equipment'),
+                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != ''))? implode(',', Input::get('muscle_groups')) : '' ,
+                'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
+                'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
+                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
+        ]);
 
-            //check for activation and send activation mail if not activated by default
+        if (!is_null($exercise)) {
+            if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
+
+                $filename = $exercise->id . '_' . time();
+                $extension = Input::file('video')->getClientOriginalExtension(); // getting image extension
+                $fullName = $filename . '.' . $extension; // renameing image
+                Input::file('video')->move(public_path('uploads/videos/'), $fullName);
+
+                echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.png');
+
+                Video::create([
+                    'user_id' => Auth::user()->id,
+                    'path' => $fullName,
+                    'videothumbnail' => $filename . '.png',
+                    'parent_type' => 1,
+                    'parent_id' => $exercise->id,
+                    'type' => 1
+                ]);
+            }
+
+
             // Redirect to the home page with success menu
-            return Redirect::route("exercise")->with('success', Lang::get('Successfully created'));
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_login_required');
-        } catch (PasswordRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_password_required');
-        } catch (UserExistsException $e) {
-            $error = Lang::get('admin/users/message.user_exists');
+            return Redirect::route("admin.exercises")->with('success', 'Successfully created exercise.');
         }
 
-        // Redirect to the user creation page
+        // Redirect to the exercise creation page
         return Redirect::back()->withInput()->with('error', $error);
     }
 
     /**
      * View page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function show($id)
     {
 
-        try {
-            // Get the user information
-            $exercise = Exercise::where('id', $id)->first();
+        $muscleGroups = Musclegroup::all();
+        $exercise = Exercise::where('id', $id)->with(['video'])->first();
+        $exercise->muscle_groups = explode(',', $exercise->muscle_groups);
+        // Get the user information
+        if (!is_null($exercise)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-        } catch (UserNotFoundException $e) {
+        } else {
             // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+            $error = 'Exercise not found';
 
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.exercises')->with('error', $error);
         }
         // Show the page
         return View('admin.exercise.show', compact('exercise', 'user'));
     }
 
     /**
-     * User Edit page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise Edit page
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getEdit($id = null)
     {
+
+        $muscleGroups = Musclegroup::all();
+        $exercise = Exercise::where('id', $id)->with(['video'])->first();
+        $eMgroups = explode(',', $exercise->muscle_groups);
+
+        foreach ($muscleGroups as $mgKey => $muscleGroup) {
+            if (in_array($muscleGroup->id, $eMgroups)) {
+                $muscleGroups[$mgKey]->selected = 1;
+            } else {
+                $muscleGroups[$mgKey]->selected = 0;
+            }
+        }
         // Get the user information
-        if ($exercise = Exercise::where('id', $id)->first()) {
+        if (!is_null($exercise)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         } else {
             // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+            $error = 'Exercise not found';
 
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.exercises')->with('error', $error);
         }
 
         // Show the page
-        return View('admin.exercise.edit', compact('user', 'exercise'));
+        return View('admin.exercise.edit', compact('user', 'exercise', 'muscleGroups'));
     }
 
     /**
-     * User Post Edit page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise Post Edit page
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
-    public function postEdit($id = null)
+    public function postEdit(Request $request, $id = null)
     {
-        try {
-            $exercise = Exercise::where('id', $id)->first();
-            // Update the user
-            $exercise->name = Input::get('name');
-            $exercise->description = Input::get('description');
-            $exercise->category = Input::get('category');
-            $exercise->type = Input::get('type');
-            $exercise->rewards = Input::get('rewards');
-            $exercise->repititions = Input::get('repititions');
-            $exercise->duration = Input::get('duration');
-            $exercise->unit = Input::get('unit');
-            $exercise->equipment = Input::get('equipment');
-            $exercise->save();
+        if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
 
-            return Redirect::route('exercise.update', $id)->with('success', 'Updated successfully');
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('users/message.user_login_required');
+            $accepableTypes = ['video/mp4'];
+
+            //Check for valid image type
+            if (!in_array($_FILES['video']['type'], $accepableTypes)) {
+                $error = 'Please upload a mp4 video.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
         }
+        $exercise = Exercise::where('id', $id)->first();
+        
+        $muscleGroups = Input::get('muscle_groups');
 
+        if (!is_null($exercise)) {
+
+            $duration = Input::get('repetitions');
+            Exercise::where('id', $id)->update([
+                'name' => Input::get('name'),
+                'description' => Input::get('description'),
+                'category' => Input::get('category'),
+                'type' => Input::get('type'),
+                'rewards' => Input::get('rewards'),
+                'repititions' => Input::get('repetitions'),
+                'duration' => $duration,
+                'unit' => Input::get('unit'),
+                'equipment' => Input::get('equipment'),
+                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != ''))? implode(',', Input::get('muscle_groups')) : '',
+                'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
+                'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
+                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
+            ]);
+            
+            if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
+                
+                $video = Video::where('parent_id', $exercise->id)->where('parent_type', 1)->first();
+
+                $filename = $exercise->id . '_' . time();
+                $extension = Input::file('video')->getClientOriginalExtension(); // getting image extension
+                $fullName = $filename . '.' . $extension; // renameing image
+                Input::file('video')->move(public_path('uploads/videos/'), $fullName);
+                
+                //Unlink previusly uploaded file and thumbnail
+                
+                unlink(public_path('uploads/videos/') . $video->path);
+                
+                unlink(config("image.videoThumbPath") . $video->videothumbnail);
+
+                echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.png');
+
+                Video::where('parent_id', $exercise->id)->where('parent_type', 1)->update([
+                    'user_id' => Auth::user()->id,
+                    'path' => $fullName,
+                    'videothumbnail' => $filename . '.png'
+                ]);
+            }
+            
+            return Redirect::route('admin.exercises')->with('success', 'Updated successfully');
+        } else {
+            
+            return Redirect::route('admin.exercises', $id)->withInput()->with('error', 'Exercise not found!');
+            
+        }
         // Redirect to the user page
-        return Redirect::route('users.update', $id)->withInput()->with('error', $error);
+        
     }
 
     /**
-     * User Delete
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise Delete
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getDelete()
+    public function getDelete($id = null)
     {
-        // Grab deleted users
-        $users = User::onlyTrashed()->get();
+        $exercise = Exercise::where('id', $id)->first();
+        
+        if (is_null($exercise)) {
+            
+            $error = 'Exercise does not exists.';
+            
+            Redirect::route("admin.exercises")->with('error', $error);           
+            
+        }
+        
+        Exercise::where('id', $id)->delete();
 
-        // Show the page
-        return View('admin.exercise', compact('users'));
+        return Redirect::route("admin.exercises")->with('success', 'Successfully deleted exercise.');
     }
 
     /**
-     * User Delete
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Exercise Delete
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getModalDelete($id = null)
     {
-        $model = 'exercise';
+        $model = 'exercises';
+        
         $confirm_route = $error = null;
-        try { 
-            // Get user information
-            // $user = User::where('id', $id)->first();
-            // Check if we are not trying to delete ourselves
-            //  if ($user->id === Sentinel::getUser()->id) {
-            // Prepare the error message
-            //  $error = Lang::get('users/message.error.delete');
-            return View('admin.layouts.modal_confirmation', compact('model', 'confirm_route'));
-            // }
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
-            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        
+        $entity = 'exercise';
+        
+        $exercise = Exercise::where('id', $id)->first();
+        
+        if (is_null($exercise)) {
+            $error = 'Exercise does not exists.';
+            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
         }
-        $confirm_route = route('delete.exercise', ['id' => $id]);
-        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+
+        $confirm_route = route('admin.exercise.delete', ['id' => $id]);
+        
+        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
     }
 }

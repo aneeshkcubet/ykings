@@ -44,15 +44,7 @@ class Feeds extends Model
         return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image', 'quote'));
     }
 
-    /**
-     * Relation with image table.
-     * @author <ansa@cubettech.com>
-     * @since 11-11-2015
-     */
-    public function image()
-    {
-        return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
-    }
+    
 
     /**
      * Relation with clap table.

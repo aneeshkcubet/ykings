@@ -162,17 +162,17 @@ class FeedController extends Controller
 
                 if ($request->item_type == 'exercise') {
                     $exerciseUser = Exerciseuser::create([
-                        'user_id' => $request->user_id,
-                        'exercise_id' => $request->item_id,
-                        'status' => 1,
-                        'feed_id' => $feed->id,
-                        'time' => $request->time_taken,
-                        'is_starred' => $addStar,
-                        'volume' => isset($request->volume) ? $request->volume : ''
+                            'user_id' => $request->user_id,
+                            'exercise_id' => $request->item_id,
+                            'status' => 1,
+                            'feed_id' => $feed->id,
+                            'time' => $request->time_taken,
+                            'is_starred' => $addStar,
+                            'volume' => isset($request->volume) ? $request->volume : ''
                     ]);
 
-                    $exerciseDetails = Exercise::where('id', $request->item_id)->first();                    
-                    
+                    $exerciseDetails = Exercise::where('id', $request->item_id)->first();
+
                     if ($exerciseDetails->unit == 'times') {
                         $pointForSingle = ($exerciseDetails->rewards) / $exerciseDetails->repititions;
 
@@ -183,7 +183,7 @@ class FeedController extends Controller
                         $pointsEarned = 0;
                         if (isset($request->volume))
                             $pointsEarned = $exerciseDetails->rewards * $request->volume;
-                    }                    
+                    }
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -253,28 +253,29 @@ class FeedController extends Controller
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-
                     $image = Image::make($_FILES['image']['tmp_name']);
+                    
+                    $time = time();
 
                     $image->encode('jpeg');
 
-                    $image->save(config('image.feedOriginalPath') . $user->id . '_' . time() . '.jpg');
+                    $image->save(config('image.feedOriginalPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
                     $image->crop(400, 400);
 
-                    $image->save(config('image.feedLargePath') . $user->id . '_' . time() . '.jpg');
+                    $image->save(config('image.feedLargePath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
                     $image->crop(150, 150);
 
-                    $image->save(config('image.feedMediumPath') . $user->id . '_' . time() . '.jpg');
+                    $image->save(config('image.feedMediumPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
                     $image->crop(65, 65);
 
-                    $image->save(config('image.feedSmallPath') . $user->id . '_' . time() . '.jpg');
+                    $image->save(config('image.feedSmallPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
                     $image_upload = new Images([
                         'user_id' => $request->input('user_id'),
-                        'path' => $user->id . '_' . time() . '.jpg',
+                        'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
                         'description' => $request->input('text'),
                         'parent_type' => 2,
                         'parent_id' => $feed->id
@@ -420,8 +421,7 @@ class FeedController extends Controller
 
             $feedQuery = Feeds::where('user_id', '=', $request->input('profile_id'));
 
-            if ($user) {
-                $feedQuery->with(['image']);
+            if ($user) {                
                 if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
                     $feedQuery->take($request->input('offset'));
@@ -600,7 +600,7 @@ class FeedController extends Controller
 
                 $feedQuery->orWhere('user_id', 1);
                 $feedQuery->orWhere('user_id', $request->user_id);
-                $feedQuery->with(['image', 'profile']);
+                $feedQuery->with(['profile']);
 
                 if ($request->offset != null && $request->limit != null) {
                     $feedQuery->skip($request->input('limit'));
@@ -638,6 +638,10 @@ class FeedController extends Controller
             $feedsArray['is_commented'] = Comment::isCommented($userId, $feedsArray['id'], 'feed');
             //is claped
             $feedsArray['is_claped'] = Clap::isClaped($userId, $feedsArray['id'], 'feed');
+            
+ 
+            $feedsArray['image'] = Images::where('parent_id', $feedsArray['id'])->where('parent_type', '=', 2)->get();
+
             //To get Category
             if ($feedsArray['item_type'] == 'workout') {
                 $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();

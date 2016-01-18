@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Add User
+Add New User
 @parent
 @stop
 
@@ -26,7 +26,7 @@ Add User
                 Dashboard
             </a>
         </li>
-        <li>Users</li>
+        <li><a href="{{ route('admin.users') }}">Users</a></li>
         <li class="active">Add New User</li>
     </ol>
 </section>
@@ -183,7 +183,12 @@ Add User
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <input type="checkbox" name="is_activated" class="flat-red" checked="" /> Check here to activate user.
+                                            <input type="checkbox" name="is_activated" class="flat-red" @if(Input::old('is_activated') == 'on')checked="" @endif /> Check here to activate user.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <input type="checkbox" name="is_admin" class="flat-red" @if(Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
                                         </div>
                                     </div>
                                 </section>

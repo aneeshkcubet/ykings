@@ -42,8 +42,9 @@ class SubscriptionsController extends Controller
      * @apiParam {String} currency currency of payment *required
      * @apiParam {Date} process_time time payment processed in UTC *required
      * @apiParam {String} transaction_id id of payment transaction *required
-     * @apiParam {String} details details of transaction device, os, versio etc as json array *required
-     * @apiParam {Number} inapp_id id of subscription id created with Inapp *required
+     * @apiParam {String} [details] details of transaction device, os, version etc as json array
+     * @apiParam {String} inapp_id id of subscription id created with Inapp *required
+     * @apiParam {Number} months duration of subscription *required
      * @apiParam {Number} status status of payment  0-failure, 1-success *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -170,12 +171,12 @@ class SubscriptionsController extends Controller
                     'user_id' => $data['user_id'],
                     'amount' => $data['amount'],
                     'currency' => $data['currency'],
-                    'process_time' => $data['process_time'],
+                    'process_time' => strtotime($data['process_time']),
                     'transaction_id' => $data['transaction_id'],
-                    'inapp_id' => $planId->id,
+                    'plan_id' => $planId->id,
                     'status' => $data['status'],
                     'start_time' => time($data['process_time']),
-                    'end_time' => strtotime("+".$planId->duration." month", time($data['process_time']))
+                    'end_time' => strtotime("+".$data['months']." month", time($data['process_time']))
                 ]);
 
                 return response()->json(['status' => 1, 'message' => 'Subscription Updated'], 200);

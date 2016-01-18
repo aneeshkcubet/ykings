@@ -13,6 +13,7 @@ use Lang;
 use Validator;
 use App\Workout;
 use App\Exercise;
+use App\Workoutexercise;
 use App\Profile;
 use App\User;
 
@@ -21,228 +22,405 @@ class WorkoutController extends Controller
 
     /**
      * Index page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getIndex()
     {
         // Grab all the users
-        $exercise = Exercise::get();
+        $workouts = Workout::all();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
-        return View('admin.exercise.index', compact('exercise', 'user'));
+        return View('admin.workout.index', compact('workouts', 'user'));
     }
 
     /**
-     * User create form processing.
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout create get form.
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getCreate()
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
-        return View('admin.exercise.create', compact('user'));
+        return View('admin.workout.create', compact('user'));
     }
 
     /**
-     * User create form processing.
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout create form processing.
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function postCreate()
     {
-        try {
 
-            // Register the user
-           Exercise::create([
+        $rewardsArray = [
+            'lean' => Input::get('lean-rewards'),
+            'athletic' => Input::get('athletic-rewards'),
+            'strength' => Input::get('strength-rewards')
+        ];
+
+        $workout = Workout::create([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
+                'rounds' => Input::get('rounds'),
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
-                'rewards' => Input::get('rewards'),
-                'repetitions' => Input::get('repetitions'),
+                'rewards' => json_encode($rewardsArray),
                 'duration' => Input::get('duration'),
-                'unit' => Input::get('unit'),
-                'equipment' => Input::get('equipment')
-            ]);
-       
-            //check for activation and send activation mail if not activated by default
-            // Redirect to the home page with success menu
-            return Redirect::route("exercise")->with('success', Lang::get('Successfully created'));
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_login_required');
-        } catch (PasswordRequiredException $e) {
-            $error = Lang::get('admin/users/message.user_password_required');
-        } catch (UserExistsException $e) {
-            $error = Lang::get('admin/users/message.user_exists');
-        }
+                'equipments' => Input::get('equipments')
+        ]);
 
-        // Redirect to the user creation page
-        return Redirect::back()->withInput()->with('error', $error);
+        if (!is_null($workout)) {
+
+            // Redirect to the home page with success menu
+            return Redirect::route("admin.workouts")->with('success', 'Successfully created workout.');
+        }
     }
 
     /**
-     * View page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Show Basic Workout Details
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function show($id)
     {
 
-        try {
-            //echo Auth::user()->id;die;
-            // Get the user information
-            $exercise = Exercise::where('id', $id)->first();
+        $workout = workout::where('id', $id)->first();
+        if (!is_null($workout)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            $usersList = '';
-//        
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
 
+            $rounds = $workout->rounds;
+            $count = 1;
+            $exercises = [];
+            do {
+                $exercises['lean']['round' . $count] = Workoutexercise::where('category', '=', 1)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+                $count++;
+            } while ($count <= $rounds);
+
+            $count = 1;
+
+            $category = 2;
+            do {
+                $exercises['athletic']['round' . $count] = Workoutexercise::where('category', '=', 2)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+                $count++;
+            } while ($count <= $rounds);
+
+            $count = 1;
+
+            $category = 3;
+            do {
+                $exercises['strength']['round' . $count] = Workoutexercise::where('category', '=', 3)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+
+                $count++;
+            } while ($count <= $rounds);
+        } else {
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
         }
-        // Show the page
-        return View('admin.exercise.show', compact('exercise', 'user', 'usersList'));
+
+        return View('admin.workout.show', compact('workout', 'user', 'exercises'));
     }
 
     /**
-     * User Edit page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout Edit page
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getEdit($id = null)
     {
-        // Get the user information
-        if ($tUser = User::where('id', $id)->with(['profile', 'settings'])->first()) {
+        $workout = workout::where('id', $id)->first();
+        if (!is_null($workout)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-        } else {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
 
+            $rounds = $workout->rounds;
+            $count = 1;
+            $exercises = [];
+            do {
+                $exercises['lean']['round' . $count] = Workoutexercise::where('category', '=', 1)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+                $count++;
+            } while ($count <= $rounds);
+
+            $count = 1;
+
+            $category = 2;
+            do {
+                $exercises['athletic']['round' . $count] = Workoutexercise::where('category', '=', 2)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+                $count++;
+            } while ($count <= $rounds);
+
+            $count = 1;
+
+            $category = 3;
+            do {
+                $exercises['strength']['round' . $count] = Workoutexercise::where('category', '=', 3)
+                    ->where('round', '=', $count)
+                    ->where('workout_id', '=', $workout->id)
+                    ->with(['exercise'])
+                    ->get();
+
+                $count++;
+            } while ($count <= $rounds);
+        } else {
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
+            return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
         }
 
         // Show the page
-        return View('admin/users/edit', compact('user', 'tUser'));
+        return View('admin.workout.edit', compact('workout', 'user', 'exercises'));
     }
 
     /**
-     * User Post Edit page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout Post Edit page
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function postEdit($id = null)
     {
-        try {
-            // Get the user information
-            $user = User::where('id', $id)->first();
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
+        $workout = workout::where('id', $id)->first();
+        if (!is_null($workout)) {
 
+            $rewardsArray = [
+                'lean' => Input::get('lean-rewards'),
+                'athletic' => Input::get('athletic-rewards'),
+                'strength' => Input::get('strength-rewards')
+            ];
+
+            $workout = Workout::where('id', $workout->id)->update([
+                'name' => Input::get('name'),
+                'description' => Input::get('description'),
+                'rounds' => Input::get('rounds'),
+                'category' => Input::get('category'),
+                'type' => Input::get('type'),
+                'rewards' => json_encode($rewardsArray),
+                'duration' => Input::get('duration'),
+                'equipments' => Input::get('equipments')
+            ]);
+            return Redirect::route('admin.workouts')->with('success', 'Successfully updated the workout.');
+        } else {
             // Redirect to the user management page
-            return Redirect::route('users')->with('error', $error);
-        }
-
-        //
-        $this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
-
-        // Do we want to update the user password?
-        if (!$password = Input::get('password')) {
-            unset($this->validationRules['password']);
-            unset($this->validationRules['password_confirm']);
-        }
-
-        // Create a new validator instance from our validation rules
-        $validator = Validator::make(Input::all(), $this->validationRules);
-
-        // If validation fails, we'll exit the operation now.
-        if ($validator->fails()) {
-            // Ooops.. something went wrong
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
-
-        try {
-
-            $userProfile = Profile::where('user_id', $id)->first();
-            // Update the user
-            $userProfile->first_name = Input::get('first_name');
-            $userProfile->last_name = Input::get('last_name');
-            $userProfile->gender = Input::get('gender');
-            $userProfile->country = Input::get('country');
-            $userProfile->state = Input::get('state');
-            $userProfile->city = Input::get('city');
-            $userProfile->spot = Input::get('spot');
-            $userProfile->quote = Input::get('quote');
-            $userProfile->save();
-
-            // Was the user updated?
-            if ($user->save()) {
-                // Prepare the success message
-                $success = Lang::get('users/message.success.update');
-                // Redirect to the user page
-                return Redirect::route('users.update', $id)->with('success', $success);
-            }
-            // Prepare the error message
-            $error = Lang::get('users/message.error.update');
-        } catch (LoginRequiredException $e) {
-            $error = Lang::get('users/message.user_login_required');
+            return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
         }
 
         // Redirect to the user page
-        return Redirect::route('users.update', $id)->withInput()->with('error', $error);
+        return Redirect::route('admin.workout.edit', $id)->withInput()->with('error', $error);
     }
 
     /**
-     * User Delete
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout Delete
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getDeletedUsers()
+    public function getDelete($id = null)
     {
-        // Grab deleted users
-        $users = User::onlyTrashed()->get();
+        $workout = Workout::where('id', $id)->first();
 
-        // Show the page
-        return View('admin/deleted_users', compact('users'));
+        if (is_null($workout)) {
+
+            $error = 'Workout does not exists!!';
+
+            Redirect::route("admin.workouts")->with('error', $error);
+        }
+
+        Workout::where('id', $id)->delete();
+
+        return Redirect::route("admin.workouts")->with('success', 'Successfully deleted workout.');
     }
 
     /**
-     * User Delete
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
+     * Workout Delete
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
      * @return json
      */
     public function getModalDelete($id = null)
     {
-        $model = 'users';
+        $model = 'workouts';
+
         $confirm_route = $error = null;
-        try { //echo 'hiii';die;
-            // Get user information
-            // $user = User::where('id', $id)->first();
-            // Check if we are not trying to delete ourselves
-            //  if ($user->id === Sentinel::getUser()->id) {
-            // Prepare the error message
-            //  $error = Lang::get('users/message.error.delete');
-            return View('admin.layouts.modal_confirmation', compact('model', 'confirm_route'));
-            // }
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = Lang::get('users/message.user_not_found', compact('id'));
-            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+
+        $entity = 'workout';
+
+        $workout = Workout::where('id', $id)->first();
+
+        if (is_null($workout)) {
+            $error = 'Workout does not exists!!';
+            return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
         }
-        $confirm_route = route('delete/user', ['id' => $user->id]);
-        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+
+        $confirm_route = route('admin.workout.delete', ['id' => $id]);
+
+        return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
+    }
+
+    /**
+     * Workout create get form.
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function getExerciseCreate($id = null)
+    {
+        $workout = workout::where('id', $id)->first();
+        if (!is_null($workout)) {
+
+            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
+            $exercises = Exercise::all();
+        } else {
+            // Redirect to the user management page
+            return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
+        }
+        // Show the page
+        return View('admin.workout.exercisecreate', compact('user', 'workout', 'exercises'));
+    }
+
+    /**
+     * Workout create form processing.
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function postExerciseCreate($id = null)
+    {
+        $workout = workout::where('id', $id)->first();
+        $exercise = Exercise::where('id', Input::get('exercise_id'))->first();
+        if (!is_null($workout)) {
+
+            foreach (Input::get('rounds') as $val) {
+                $workoutExercise = Workoutexercise::create([
+                        'workout_id' => Input::get('workout_id'),
+                        'category' => Input::get('category'),
+                        'repititions' => Input::get('repititions'),
+                        'exercise_id' => Input::get('exercise_id'),
+                        'unit' => $exercise->unit,
+                        'round' => $val
+                ]);
+            }
+
+            // Redirect to the home page with success menu
+            return Redirect::route("admin.workout.edit", $workout->id)->with('success', 'Successfully added exercise to workout.');
+        }
+    }
+
+    /**
+     * Workout Edit page
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function getExerciseEdit($id = null)
+    {
+        $workoutExercise = Workoutexercise::where('id', $id)->with(['exercise'])->first();
+
+        if (!is_null($workoutExercise)) {
+
+            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
+            $exercises = Exercise::all();
+
+            $workout = Workout::where('id', $workoutExercise->workout_id)->first();
+
+            $exerciseRounds = DB::table('workout_exercises')->select('round')->where('workout_id', $workoutExercise->workout_id)->where('exercise_id', $workoutExercise->exercise_id)->get();
+
+            for ($i = 1; $i <= $workout->rounds; $i++) {
+                $rounds[$i]['id'] = $i;
+                $rounds[$i]['is_on'] = 0;
+                foreach ($exerciseRounds as $exerciseRound) {
+                    if ($i == $exerciseRound->round) {
+                        $rounds[$i]['is_on'] = 1;
+                        continue;
+                    }
+                }
+            }
+
+            return View('admin.workout.exerciseedit', compact('workoutExercise', 'user', 'exercises', 'workout', 'rounds'));
+        } else {
+            // Redirect to the user management page
+            return Redirect::route('admin.workouts')->with('error', 'Workout exercise not found!!');
+        }
+
+        // Show the page
+        return View('admin.workout.edit', compact('workout', 'user', 'exercises'));
+    }
+
+    /**
+     * Workout Post Edit page
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function postExerciseEdit($id = null)
+    {
+        $workout = workout::where('id', Input::get('workout_id'))->first();
+        $exercise = Exercise::where('id', Input::get('exercise_id'))->first();
+        if (!is_null($workout)) {
+            foreach (Input::get('rounds') as $val) {
+                $workoutExercise = Workoutexercise::where('workout_id', Input::get('workout_id'))
+                    ->where('round', $val)
+                    ->where('category', Input::get('category'))
+                    ->update([
+                    'repititions' => Input::get('repititions'),
+                    'exercise_id' => Input::get('exercise_id'),
+                    'unit' => $exercise->unit
+                ]);
+            }
+            return Redirect::route("admin.workout.edit", $workout->id)->with('success', 'Successfully edited exercise in workout.');
+        } else {
+            // Redirect to the user management page
+            return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
+        }
+
+        // Redirect to the user page
+        return Redirect::route('admin.workout.edit', $id)->withInput()->with('error', $error);
+    }
+
+    /**
+     * Workout Delete
+     * @since 15/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function getExerciseDelete($id = null)
+    {
+        $workoutExercise = Workoutexercise::where('id', $id)->first();
+
+        if (is_null($workoutExercise)) {
+
+            $error = 'Exercis does not exists!!';
+
+            Redirect::route("admin.workout.edit", $workoutExercise->workout_id)->with('error', $error);
+        }
+
+        Workoutexercise::where('id', $id)->delete();
+
+        return Redirect::route("admin.workout.edit", $workoutExercise->workout_id)->with('success', 'Successfully deleted exercise in workout.');
     }
 }

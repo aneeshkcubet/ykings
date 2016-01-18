@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-View Exercise Details
+View Workout - {{ $workout->name }}
 @parent
 @stop
 
@@ -12,6 +12,13 @@ View Exercise Details
 <link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/vendors/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/pages/user_profile.css') }}" rel="stylesheet" type="text/css"/>
+<link href="http://vjs.zencdn.net/5.0.2/video-js.css" rel="stylesheet">
+<style>
+    .video-js .vjs-big-play-button{
+        top:45% !important;
+        left:43% !important;
+    }
+</style>
 <!--end of page level css-->
 @stop
 
@@ -19,15 +26,15 @@ View Exercise Details
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>View Exercise</h1>
+    <h1>View Workout</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>Exercise</li>
-        <li class="active">View Exercise</li>
+        <li><a href="{{ route('admin.workouts') }}">Workouts</a></li>
+        <li class="active">{{ $workout->name }}</li>
     </ol>
 </section>
 <section class="content">
@@ -35,8 +42,23 @@ View Exercise Details
         <div class="col-lg-12">
             <ul class="nav  nav-tabs ">
                 <li class="active">
-                    <a href="#tab1" data-toggle="tab"> <i class="livicon" data-name="user" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i>
-                        Exercise Page
+                    <a href="#tab1" data-toggle="tab"> 
+                        Basic Details
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab2" data-toggle="tab"> 
+                        Lean Exercises
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab3" data-toggle="tab"> 
+                        Athletic Exercises
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab3" data-toggle="tab"> 
+                        Strength Exercises
                     </a>
                 </li>
             </ul>
@@ -46,114 +68,197 @@ View Exercise Details
                         <div class="col-lg-12">
                             <div class="panel">
                                 <div class="panel-body">
-                                    <div class="col-md-4">
-                                        <h4 class="text-primary"> Image</h4>
-                                        <div class="img-file"> 
-                                            @if($user['profile'][0]['image'])
-                                            <img src="{{{ url('/').'/uploads/images/profile/original/'.$tUser['profile'][0]['image'] }}}" alt="profile pic" class="img-max">
-                                            @else
-                                            <img src="http://placehold.it/200x200" alt="profile pic">
-                                            @endif   
-                                        </div>
+                                    <div class="table-responsive">
+                                        <form method="post" action="#">
+                                            <table class="table table-bordered table-striped" id="users">
+                                                <thead>
+                                                <th width='20%'>Field</th>
+                                                <th>Value</th>
+                                                </thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>
+                                                        {{ $workout->name }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Description</td>
+                                                    <td>
+                                                        {{ $workout->description }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rounds</td>
+                                                    <td>
+                                                        {{ $workout->rounds }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Category</td>
+                                                    <td>
+                                                        @if($workout->category == 1)
+                                                        Strength
+                                                        @elseif($workout->category == 2)                                                        
+                                                        Cardio Strength
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Type
+                                                    </td>
+                                                    <td>
+                                                        @if($workout->type == 1)
+                                                        Free
+                                                        @elseif($workout->type == 2)
+                                                        Paid
+                                                        @else
+                                                        @endif
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rewards</td>
+                                                    <td><?php
+                                                        $rewardsArray = json_decode($workout->rewards);
+
+                                                        ?>
+                                                        Lean - {{ $rewardsArray->lean }}, Athletic - {{$rewardsArray->athletic}}, Strength - {{$rewardsArray->strength}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Duration</td>
+                                                    <td>
+                                                        {{ $workout->duration }} Seconds
+                                                    </td>
+                                                </tr>                                                
+
+                                                <tr>
+                                                    <td>Equipments</td>
+                                                    <td>
+                                                        {{ $workout->equipments }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </form>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="panel-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        @foreach ($exercises['lean'] as $eKey => $workoutExercise)
+                                        <div class="col-sm-6">
+                                            <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <form method="post" action="#">
-
-                                                    <table class="table table-bordered table-striped" id="users">
-
-                                                        <tr>
-                                                            <td>@lang('Name')</td>
-                                                            <td>
-                                                                {{ $exercise->name }}
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Description')</td>
-                                                            <td>
-                                                                {{ $exercise->description }}
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Category')</td>
-                                                            <td>
-                                                                @if($exercise->category == 1)
-                                                                Lean
-                                                                @elseif($exercise->category == 2)
-                                                                Athletic
-                                                                @else
-                                                                Strength
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                @lang('Type')
-                                                            </td>
-                                                            <td>
-                                                                @if($exercise->type == 1)
-                                                                Free
-                                                                @elseif($exercise->type == 2)
-                                                                paid
-                                                                @else
-                                                                @endif
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Rewards')</td>
-                                                            <td>
-                                                                {{ $exercise->rewards }}
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Repetitions')</td>
-                                                            <td>
-                                                                {{ $exercise->repititions }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Duration')</td>
-                                                            <td>
-                                                                {{ $exercise->duration }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Unit')</td>
-                                                            <td>
-                                                                {{ $exercise->unit }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('Equipment')</td>
-                                                            <td>
-                                                                {{ $exercise->equipment }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>@lang('')</td>
-                                                            <td>
-                                                                <a href="#tab1"> 
-                                                                    List Users
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </form>
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <thead>
+                                                    <th width='70%'>Exercices</th>
+                                                    <th>Value</th>
+                                                    </thead>
+                                                    @foreach($workoutExercise as $wKey => $exercise)
+                                                    <tr>
+                                                        <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
+                                                        <td>
+                                                            @if($exercise->unit == 'times')
+                                                                {{$exercise->repititions}} Repetitions
+                                                            @else
+                                                                {{$exercise->repititions}} Seconds
+                                                            @endif
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach 
+                                                </table>
                                             </div>
                                         </div>
+                                        @endforeach
+
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab3" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        @foreach ($exercises['athletic'] as $eKey => $workoutExercise)
+                                        <div class="col-sm-6">
+                                            <h3>{{ucfirst($eKey)}}</h3>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <thead>
+                                                    <th width='70%'>Exercices</th>
+                                                    <th>Value</th>
+                                                    </thead>
+                                                    @foreach($workoutExercise as $wKey => $exercise)
+                                                    <tr>
+                                                        <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
+                                                        <td>
+                                                            @if($exercise->unit == 'times')
+                                                                {{$exercise->repititions}} Repetitions
+                                                            @else
+                                                                {{$exercise->repititions}} Seconds
+                                                            @endif
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach 
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="exercisUsers">
-                        <div class="panel-body">
-
+                </div>
+                <div id="tab4" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        @foreach ($exercises['strength'] as $eKey => $workoutExercise)
+                                        <div class="col-sm-6">
+                                            <h3>{{ucfirst($eKey)}}</h3>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <thead>
+                                                    <th width='70%'>Exercices</th>
+                                                    <th>Value</th>
+                                                    </thead>
+                                                    @foreach($workoutExercise as $wKey => $exercise)
+                                                    <tr>
+                                                        <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
+                                                        <td>
+                                                            @if($exercise->unit == 'times')
+                                                                {{$exercise->repititions}} Repetitions
+                                                            @else
+                                                                {{$exercise->repititions}} Seconds
+                                                            @endif                                                           
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach 
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @endforeach                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,4 +273,6 @@ View Exercise Details
 @section('footer_scripts')
 <!-- Bootstrap WYSIHTML5 -->
 <script  src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
+<script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+<script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
 @stop

@@ -28,5 +28,6 @@ return array(
     'coverSmallPath' => public_path('uploads/images/cover_image/small/'),
     'coverMediumPath' => public_path('uploads/images/cover_image/medium/'),
     'coverLargePath' => public_path('uploads/images/cover_image/large/'),
+    'videoThumbPath' => public_path('uploads/images/videothumbnails/'),
 
 );

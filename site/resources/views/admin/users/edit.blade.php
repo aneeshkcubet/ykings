@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Edit User
+Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['last_name'] }}
 @parent
 @stop
 
@@ -19,15 +19,15 @@ Edit User
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Edit user</h1>
+    <h1>Edit user - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['last_name'] }}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>Users</li>
-        <li class="active">Add New User</li>
+        <li><a href="{{ route('admin.users') }}">Users</a></li>
+        <li class="active">Edit : {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['last_name'] }}</li>
     </ol>
 </section>
 <section class="content">
@@ -36,7 +36,7 @@ Edit User
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> <i class="livicon" data-name="users" data-size="16" data-c="#fff" data-hc="#fff" data-loop="true"></i>
-                        Editing user : {{{  $tUser['profile'][0]['first_name']}}} {{{ $tUser['profile'][0]['last_name']}}}
+                        Edit: {{{  $tUser['profile'][0]['first_name']}}} {{{ $tUser['profile'][0]['last_name']}}}
                     </h3>
                     <span class="pull-right clickable">
                         <i class="glyphicon glyphicon-chevron-up"></i>
@@ -135,7 +135,7 @@ Edit User
                                         <div class="col-sm-10">
                                             <select id="country" name="country" class="form-control">
                                                 @foreach ($countries as $country => $code)
-                                                <option value="{{ $code->name }}" @if($tUser['profile'][0]['country'] == $code->name) selected="selected" @endif>{{ $code->name }}</option>
+                                                <option value="{{ $code->name }}" @if($tUser['profile'][0]['country'] == $code->name || Input::old('country') === $code->name) selected="selected" @endif>{{ $code->name }}</option>
                                                 @endforeach             
                                             </select>                                            
                                         </div>
@@ -152,6 +152,11 @@ Edit User
                                         <label for="city" class="col-sm-2 control-label">City</label>
                                         <div class="col-sm-10">
                                             <input id="city" name="city" type="text" class="form-control" value="{{{ Input::old('city', $tUser['profile'][0]['city']) }}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <input type="checkbox" name="is_admin" class="flat-red" @if($tUser['isadmin'] == 1 || Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
                                         </div>
                                     </div>
                                 </section>

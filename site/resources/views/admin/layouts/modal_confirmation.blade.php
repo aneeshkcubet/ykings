@@ -6,7 +6,7 @@
     @if(isset($error))
         <div>{{ $error }}</div>
     @else
-        Are you sure to want to delete this user?
+        Are you sure to want to delete this {{$entity}}?
     @endif
 </div>
 <div class="modal-footer">
