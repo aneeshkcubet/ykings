@@ -93,81 +93,131 @@ class CoachesController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
                 //Check whether the user completed the week workouts
-                $coach = Coach::where('user_id', $request->user_id)->first();
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+
                 if (!is_null($coach)) {
+
+                    $coach->exercises = json_decode($coach->exercises, true);
+
                     $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
+
                     $currentTimestamp = time();
 
-                    $remainDays = 7 - $coach->days;
+                    $dayStatus = json_decode($coachStatus->day_status, true);
 
-                    //previous week completed
-                    if ($coachStatus->status == 1) {
-                        if ($coachStatus->need_update == 1 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp)) {
-                            return response()->json([
-                                    'status' => 1,
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 1,
-                                    'coach' => [],
-                                    'urls' => config('urls.urls')], 200);
-                        } elseif ($coachStatus->need_update == 1 && (strtotime($coachStatus->updated_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
-                            return response()->json([
-                                    'status' => 1,
-                                    'message' => 'You have already completed this week workouts.',
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 0,
-                                    'coach' => [],
-                                    'urls' => config('urls.urls')], 200);
-                        } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp)) {
-                            $coach->exercises = json_decode($coach->exercises, true);
-                            return response()->json([
-                                    'status' => 1,
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 1,
-                                    'coach' => [],
-                                    'urls' => config('urls.urls')], 200);
-                        } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
-                            $coach->exercises = json_decode($coach->exercises, true);
-                            return response()->json([
-                                    'status' => 1,
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 0,
-                                    'coach' => $coach,
-                                    'urls' => config('urls.urls')], 200);
+                    $weekStatus = json_decode($coachStatus->week_status, true);
+
+                    foreach ($coach->exercises as $ekey => $exercise) {
+                        if (in_array((int) (str_replace('day', '', $ekey)), $dayStatus) && $dayStatus[(int) (str_replace('day', '', $ekey))] == 1) {
+                            $coach->exercises[$ekey]['status'] = 'completed';
+                        } else {
+                            $coach->exercises[$ekey]['status'] = 'pending';
                         }
+                    }
+
+                    $coach->exercises = array_map(function($exercise) use ($dayStatus) {
+
+                        return $exercise;
+                    }, $coach->exercises);
+
+                    if (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp) {
+                        //User feedback required
+                        return response()->json([
+                                'status' => 1,
+                                'message' => 'user_feedback_required',
+                                'coach_day' => $coachStatus->day,
+                                'coach_week' => $coachStatus->week,
+                                'is_subscribed' => $user->is_subscribed,
+                                'need_update' => 1,
+                                'week_status' => $weekStatus,
+                                'day_status' => $dayStatus,
+                                'coach' => $coach,
+                                'urls' => config('urls.urls')], 200);
                     } else {
-                        if ((strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp)) {
-                            $coach->exercises = json_decode($coach->exercises, true);
+                        if ($coachStatus->need_update == 1) {
                             return response()->json([
                                     'status' => 1,
+                                    'message' => 'already_completed_week_workouts',
                                     'coach_day' => $coachStatus->day,
                                     'coach_week' => $coachStatus->week,
                                     'is_subscribed' => $user->is_subscribed,
                                     'need_update' => 1,
-                                    'coach' => [],
-                                    'urls' => config('urls.urls')], 200);
-                        } elseif ((strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
-                            $coach->exercises = json_decode($coach->exercises, true);
-                            return response()->json([
-                                    'status' => 1,
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 0,
+                                    'week_status' => $weekStatus,
+                                    'day_status' => $dayStatus,
                                     'coach' => $coach,
                                     'urls' => config('urls.urls')], 200);
                         }
+
+                        if ($coachStatus->need_update == 0) {
+                            if ($dayStatus[$coachStatus->day] == 1) {
+                                if (strtotime($coachStatus->updated_at . ' + 1 days') >= $currentTimestamp) {
+                                    return response()->json([
+                                            'status' => 1,
+                                            'message' => 'already_completed_day_workouts',
+                                            'coach_day' => $coachStatus->day,
+                                            'coach_week' => $coachStatus->week,
+                                            'is_subscribed' => $user->is_subscribed,
+                                            'need_update' => 0,
+                                            'week_status' => $weekStatus,
+                                            'day_status' => $dayStatus,
+                                            'coach' => $coach,
+                                            'urls' => config('urls.urls')], 200);
+                                } else {
+                                    return response()->json([
+                                            'status' => 1,
+                                            'message' => 'coach_exercises',
+                                            'coach_day' => $coachStatus->day + 1,
+                                            'coach_week' => $coachStatus->week,
+                                            'is_subscribed' => $user->is_subscribed,
+                                            'need_update' => 0,
+                                            'week_status' => $weekStatus,
+                                            'day_status' => $dayStatus,
+                                            'coach' => $coach,
+                                            'urls' => config('urls.urls')], 200);
+                                }
+                            } else {
+                                return response()->json([
+                                        'status' => 1,
+                                        'message' => 'coach_exercises',
+                                        'coach_day' => $coachStatus->day,
+                                        'coach_week' => $coachStatus->week,
+                                        'is_subscribed' => $user->is_subscribed,
+                                        'need_update' => 0,
+                                        'week_status' => $weekStatus,
+                                        'day_status' => $dayStatus,
+                                        'coach' => $coach,
+                                        'urls' => config('urls.urls')], 200);
+                            }
+                        }
+                    }
+
+                    if ($coachStatus->need_update == 1 && (strtotime($coachStatus->updated_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
+                        
+                    } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp)) {
+                        $coach->exercises = json_decode($coach->exercises, true);
+                        return response()->json([
+                                'status' => 1,
+                                'coach_day' => $coachStatus->day,
+                                'coach_week' => $coachStatus->week,
+                                'is_subscribed' => $user->is_subscribed,
+                                'need_update' => 1,
+                                'coach' => [],
+                                'urls' => config('urls.urls')], 200);
+                    } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
+                        $coach->exercises = json_decode($coach->exercises, true);
+                        return response()->json([
+                                'status' => 1,
+                                'coach_day' => $coachStatus->day,
+                                'coach_week' => $coachStatus->week,
+                                'is_subscribed' => $user->is_subscribed,
+                                'need_update' => 0,
+                                'coach' => $coach,
+                                'urls' => config('urls.urls')], 200);
                     }
                 } else {
                     return response()->json([
                             'status' => 1,
+                            'message' => 'coach_not_found',
                             'coach_day' => 0,
                             'coach_week' => 0,
                             'is_subscribed' => $user->is_subscribed,
@@ -429,14 +479,16 @@ class CoachesController extends Controller
     {
         $fundumentalArray = [
             1 => [
-                ['exercise_id' => 43, 'duration' => 10],
-                ['exercise_id' => 2, 'duration' => 10],
-                ['exercise_id' => 40, 'duration' => 15],
-                ['exercise_id' => 17, 'duration' => 15]],
+                ['exercise_id' => 43, 'duration' => 10, 'test_done' => 0],
+                ['exercise_id' => 2, 'duration' => 10, 'test_done' => 0],
+                ['exercise_id' => 40, 'duration' => 15, 'test_done' => 0],
+                ['exercise_id' => 17, 'duration' => 15, 'test_done' => 0]
+            ],
             2 => [
-                ['exercise_id' => 43, 'duration' => 30],
-                ['exercise_id' => 32, 'duration' => 10],
-                ['exercise_id' => 38, 'duration' => 25]],
+                ['exercise_id' => 43, 'duration' => 30, 'test_done' => 0],
+                ['exercise_id' => 32, 'duration' => 10, 'test_done' => 0],
+                ['exercise_id' => 38, 'duration' => 25, 'test_done' => 0]
+            ],
         ];
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
@@ -524,11 +576,22 @@ class CoachesController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
                 $coach = Coach::where('user_id', $request->user_id)->first();
-                $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
-                if ($coach->days == $request->day) {
-                    $data['status'] = 1;
+
+                $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
+
+                $statusArray = json_decode($coach->day_status, TRUE);
+
+                $data['day_status'] = json_encode($statusArray);
+
+                $data['week_status'] = json_decode($coach->week_status, TRUE);
+
+                if ($request->day == $coach->days) {
+                    $data['week_status'][$coach->week] = 1;
+                    $data['day_status'][$request->day] = 1;
+                    $data['day_status'] = json_encode($statusArray);
+                    $data['need_update'] = 1;
                 } else {
-                    $data['status'] = 0;
+                    $data['need_update'] = 0;
                 }
 
                 DB::table('coach_status')
@@ -2068,14 +2131,12 @@ class CoachesController extends Controller
                     'user_id' => $request->user_id,
                     'focus' => $request->focus,
                     'category' => ($request->test1 == 0 && $request->test2 == 0) ? 'beginer' : 'advanced',
-                    'muscle_groups' => $request->muscle_groups,
-                    'height' => $request->height,
-                    'weight' => $request->weight,
+                    'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null))? "" : $request->muscle_groups,
+                    'height' => (!isset($request->height) || ($request->height == null))? "" : $request->height,
+                    'weight' => (!isset($request->weight) || ($request->weight == null))? "" : $request->weight,
                     'days' => $request->days,
                     'exercises' => ''
                 ];
-
-
 
                 $userCoach = Coach::where('user_id', '=', $request->input('user_id'))->first();
 
@@ -2102,6 +2163,12 @@ class CoachesController extends Controller
                 DB::table('coaches')->where('id', $coachId)->update(['exercises' => json_encode($coachExercises)]);
 
                 $userCoachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coachId)->first();
+                for ($i = 1; $i <= $request->days; $i++) {
+                    $statusArray[$i] = 0;
+                }
+
+                $weekStatusArray[1] = 0;
+
 
                 if (is_null($userCoachStatus)) {
                     DB::table('coach_status')->insert([
@@ -2110,14 +2177,17 @@ class CoachesController extends Controller
                         'day' => 1,
                         'week' => 1,
                         'need_update' => 0,
-                        'status' => 0,
+                        'day_status' => json_encode($statusArray),
+                        'week_status' => json_encode($weekStatusArray),
                         'created_at' => Carbon::now()
                     ]);
                 } else {
                     DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coachId)->update([
                         'day' => 1,
+                        'week' => 1,
                         'need_update' => 0,
-                        'status' => 0
+                        'day_status' => json_encode($statusArray),
+                        'week_status' => json_encode($weekStatusArray)
                     ]);
                 }
 
@@ -2213,11 +2283,20 @@ class CoachesController extends Controller
                     ->where('coach_id', $coach->id)
                     ->first();
 
+                for ($i = 1; $i <= $coach->days; $i++) {
+                    $statusArray[$i] = 0;
+                }
+
+                $weekStatusArray = json_decode($coach->week_status, TRUE);
+
+                $weekStatusArray[$coachStatus->week + 1] = 0;
+
                 DB::table('coach_status')
                     ->where('user_id', $request->user_id)
                     ->where('coach_id', $coach->id)
                     ->update([
-                        'status' => 0,
+                        'day_status' => json_encode($statusArray),
+                        'week_status' => json_encode($weekStatusArray),
                         'need_update' => 0,
                         'day' => 1,
                         'week' => $coachStatus->week + 1
@@ -2310,7 +2389,7 @@ class CoachesController extends Controller
 
                 return response()->json([
                         'status' => 1,
-                        'tests' => $muscleGroups
+                        'muscle_groups' => $muscleGroups
                         ], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);

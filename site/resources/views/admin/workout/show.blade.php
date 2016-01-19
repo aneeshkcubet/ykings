@@ -26,7 +26,7 @@ View Workout - {{ $workout->name }}
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>View Workout</h1>
+    <h1>View Workout : {{ $workout->name }}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
@@ -57,7 +57,7 @@ View Workout - {{ $workout->name }}
                     </a>
                 </li>
                 <li>
-                    <a href="#tab3" data-toggle="tab"> 
+                    <a href="#tab4" data-toggle="tab"> 
                         Strength Exercises
                     </a>
                 </li>
@@ -192,7 +192,7 @@ View Workout - {{ $workout->name }}
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="row">
-                                        @foreach ($exercises['athletic'] as $eKey => $workoutExercise)
+                                        @foreach ($exercises['strength'] as $eKey => $workoutExercise)
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">

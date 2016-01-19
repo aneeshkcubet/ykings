@@ -73,12 +73,15 @@ class UsersController extends Controller
         $confirmation_code = str_random(30);
 
         $isActivated = Input::get('is_activated');
+        
+        $isAdmin = Input::get('is_admin');
 
         $user = User::create([
                 'email' => Input::get('email'),
                 'password' => Hash::make(Input::get('password')),
                 'confirmation_code' => (isset($isActivated)) ? '' : $confirmation_code,
-                'status' => (isset($isActivated)) ? 1 : 0
+                'status' => (isset($isActivated)) ? 1 : 0,
+                'is_admin' => (isset($isAdmin)) ? 1 : 0,
         ]);
 
         $data['password'] = Input::get('password');

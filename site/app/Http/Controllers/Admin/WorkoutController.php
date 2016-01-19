@@ -312,14 +312,18 @@ class WorkoutController extends Controller
     {
         $workout = workout::where('id', $id)->first();
         $exercise = Exercise::where('id', Input::get('exercise_id'))->first();
-        if (!is_null($workout)) {
 
+        $workoutId = Input::get('workout_id');
+        $category = Input::get('category');
+        $repetitions = Input::get('repititions');
+        $exerciseId = Input::get('exercise_id');
+        if (!is_null($workout)) {
             foreach (Input::get('rounds') as $val) {
                 $workoutExercise = Workoutexercise::create([
-                        'workout_id' => Input::get('workout_id'),
-                        'category' => Input::get('category'),
-                        'repititions' => Input::get('repititions'),
-                        'exercise_id' => Input::get('exercise_id'),
+                        'workout_id' => $workoutId,
+                        'category' => $category,
+                        'repititions' => $repetitions,
+                        'exercise_id' => $exerciseId,
                         'unit' => $exercise->unit,
                         'round' => $val
                 ]);
@@ -350,17 +354,6 @@ class WorkoutController extends Controller
 
             $exerciseRounds = DB::table('workout_exercises')->select('round')->where('workout_id', $workoutExercise->workout_id)->where('exercise_id', $workoutExercise->exercise_id)->get();
 
-            for ($i = 1; $i <= $workout->rounds; $i++) {
-                $rounds[$i]['id'] = $i;
-                $rounds[$i]['is_on'] = 0;
-                foreach ($exerciseRounds as $exerciseRound) {
-                    if ($i == $exerciseRound->round) {
-                        $rounds[$i]['is_on'] = 1;
-                        continue;
-                    }
-                }
-            }
-
             return View('admin.workout.exerciseedit', compact('workoutExercise', 'user', 'exercises', 'workout', 'rounds'));
         } else {
             // Redirect to the user management page
@@ -382,16 +375,14 @@ class WorkoutController extends Controller
         $workout = workout::where('id', Input::get('workout_id'))->first();
         $exercise = Exercise::where('id', Input::get('exercise_id'))->first();
         if (!is_null($workout)) {
-            foreach (Input::get('rounds') as $val) {
-                $workoutExercise = Workoutexercise::where('workout_id', Input::get('workout_id'))
-                    ->where('round', $val)
-                    ->where('category', Input::get('category'))
-                    ->update([
-                    'repititions' => Input::get('repititions'),
-                    'exercise_id' => Input::get('exercise_id'),
-                    'unit' => $exercise->unit
-                ]);
-            }
+            $workoutExercise = Workoutexercise::where('workout_id', Input::get('workout_id'))
+                ->where('id', $id)
+                ->update([
+                'repititions' => Input::get('repititions'),
+                'exercise_id' => Input::get('exercise_id'),
+                'unit' => $exercise->unit
+            ]);
+
             return Redirect::route("admin.workout.edit", $workout->id)->with('success', 'Successfully edited exercise in workout.');
         } else {
             // Redirect to the user management page

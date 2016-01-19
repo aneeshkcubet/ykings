@@ -33,272 +33,156 @@ class Coach extends Model
 
         $fundumentalArray = [
             1 => [
-                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds']
+                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0]
             ],
             2 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times'],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             3 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times'],
-                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds'],
-                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
+                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             4 => [
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times'],
-                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             5 => [
-                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds'],
-                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times']
+                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
+                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0]
             ],
         ];
+        
+        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
+            ->select('exercise_id')
+            ->whereRaw('user_id = ' . $data['user_id'])
+            ->toSql();
 
-        foreach ($fundumentalArray as $fKey => $fundumentals) {
-            foreach ($fundumentals as $jKey => $jVal) {
-                if ($data['category'] == 'beginer') {
-                    $fundumentalArray[$fKey][$jKey]['duration'] = $jVal['duration'][1];
-                } else {
-                    $fundumentalArray[$fKey][$jKey]['duration'] = $jVal['duration'][2];
-                }
-                $exercise = Exercise::where('id', $jVal['exercise_id'])->with(['video'])->first();
-                $fundumentalArray[$fKey][$jKey]['exercise'] = $exercise->toArray();
-            }
-        }
+        $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['focus'], $userUnlockedSkillExerciseQuery));
+
+        $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['focus'], $userUnlockedSkillExerciseQuery));
 
         $warmUps = DB::table('warmups')->select('*')->get();
 
-        if ($data['test1'] == 0 && $data['test2'] == 0) {
-            foreach ($warmUps as $wKey => $warmUp) {
+        if ($data['category'] == 'beginer') {
+            foreach ($fundumentalArray as $fKey => $fundumentals) {
+                $fundumentalArray[$fKey] = array_map(function ($fundumental) {
+
+                    $fundumental['duration'] = $fundumental['duration'][1];
+
+                    $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+
+                    $fundumental['exercise'] = $exercise->toArray();
+
+                    return $fundumental;
+                }, $fundumentals);
+            }
+
+            $warmUps = array_map(function($warmUp) {
+
                 $duration = $warmUp->duration;
 
                 $durationArray = json_decode($duration, true);
 
-                $warmUps[$wKey]->duration = $durationArray[1];
-            }
-        } elseif (($data['test1'] == 1 && $data['test2'] == 0) || ($data['test1'] == 1 && $data['test2'] == 1)) {
+                $warmUp->duration = $durationArray[1];
 
-            foreach ($warmUps as $wKey => $warmUp) {
+                $warmUp->is_completed = 0;
+
+                return $warmUp;
+            }, $warmUps);
+        } else {
+            foreach ($fundumentalArray as $fKey => $fundumentals) {
+
+                $fundumentalArray[$fKey] = array_map(function ($fundumental) {
+
+                    $fundumental['duration'] = $fundumental['duration'][2];
+
+                    $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+
+                    $fundumental['exercise'] = $exercise->toArray();
+
+                    return $fundumental;
+                }, $fundumentals);
+            }
+
+            $warmUps = array_map(function($warmUp) {
+
                 $duration = $warmUp->duration;
 
                 $durationArray = json_decode($duration, true);
 
-                $warmUps[$wKey]->duration = $durationArray[2];
-            }
+                $warmUp->duration = $durationArray[2];
+
+                $warmUp->is_completed = 0;
+
+                return $warmUp;
+            }, $warmUps);
         }
 
-        $warmupArray = $warmUps;
-
-        $strechingArray = [
-            ['exercise_id' => 'Superman', 'duration' => ['min' => 5, 'max' => 10], 'unit' => 'times'],
-            ['exercise_id' => 'Lower Back Strength', 'duration' => ['min' => 30, 'max' => 50], 'unit' => 'times'],
-            ['exercise_id' => 'Upper Dog', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Child\'s Pose', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'L-sit on the floor', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Frog stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Good morning', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Chest Opener', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Triceps Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Hands Back', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
-            ['exercise_id' => 'Shoulder Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds'],
+        $stretches = [
+            ['exercise_id' => 'Superman', 'duration' => ['min' => 5, 'max' => 10], 'unit' => 'times', 'is_completed' => 0],
+            ['exercise_id' => 'Lower Back Strength', 'duration' => ['min' => 30, 'max' => 50], 'unit' => 'times', 'is_completed' => 0],
+            ['exercise_id' => 'Upper Dog', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Child\'s Pose', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'L-sit on the floor', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Frog stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Good morning', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Chest Opener', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Triceps Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Hands Back', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
+            ['exercise_id' => 'Shoulder Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
         ];
 
-        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-                ->select('exercise_id')
-                ->whereRaw('user_id = ' . $data['user_id'])->toSql();
 
-        if ($data['focus'] == 1) {
-            $userMatchedSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 1
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 1
-                                            ORDER   BY exercise_count DESC';
+        if ($data['category'] == 'beginer') {
+            $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'beginer');
+        } else {
+            if ($data['test1'] == 1 && $data['test2'] == 0) {
+                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'advanced');
+            } else {
+                $stretches = array_map(function($stretch) {
+                    $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
+                    $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
+                }, $stretches);
 
-
-            $userMatchedCSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 1
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 2
-                                            ORDER   BY exercise_count DESC';
-        } elseif ($data['focus'] == 2) {
-            $userMatchedSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 2
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 1
-                                            ORDER   BY exercise_count DESC';
-
-
-            $userMatchedCSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 2
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 2
-                                            ORDER   BY exercise_count DESC';
-        } elseif ($data['focus'] == 3) {
-
-            $userMatchedSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 3
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 1
-                                            ORDER   BY exercise_count DESC';
-
-
-            $userMatchedCSworkoutsQuery = 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = 3
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = 2
-                                            ORDER   BY exercise_count DESC';
-        }
-
-        $userWorkouts['strength'] = DB::select($userMatchedSworkoutsQuery);
-
-        $userWorkouts['cardio_strength'] = DB::select($userMatchedCSworkoutsQuery);
-
-        if ($data['test1'] == 0 && $data['test2'] == 0) {
-            //user failed in test1
-            $warmup = $warmupArray;
-
-            $stretches = $strechingArray;
-            if ($data['focus'] == 1) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 1, 'beginer');
-            } elseif ($data['focus'] == 2) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 2, 'beginer');
-            } elseif ($data['focus'] == 3) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'beginer');
-            }
-        }
-
-        if ($data['test1'] == 1 && $data['test2'] == 0) {
-
-            $warmup = $warmupArray;
-
-            $stretches = $strechingArray;
-
-            if ($data['focus'] == 1) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 1, 'advanced');
-            } elseif ($data['focus'] == 2) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 2, 'advanced');
-            } elseif ($data['focus'] == 3) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'advanced');
-            }
-        }
-
-        if ($data['test1'] == 1 && $data['test2'] == 1) {
-
-            $warmup = $warmupArray;
-
-            $stretches = $strechingArray;
-
-            foreach ($stretches as $sKey => $sValue) {
-                $stretches[$sKey]['duration']['min'] = round($sValue['duration']['min'] + ($sValue['duration']['min'] * (25 / 100)));
-                $stretches[$sKey]['duration']['max'] = round($sValue['duration']['max'] + ($sValue['duration']['max'] * (25 / 100)));
-            }
-
-            if ($data['focus'] == 1) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 1, 'professional');
-            } elseif ($data['focus'] == 2) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 2, 'professional');
-            } elseif ($data['focus'] == 3) {
-                $coach = self::getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'professional');
+                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'professional');
             }
         }
 
         return $coach;
     }
 
-    public static function getCoachForFocus($warmup, $fundumentalArray, $stretches, $data, $userWorkouts, $focus, $userLevel)
+    public static function getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $focus, $userLevel)
     {
         $coach = [];
         if ($userLevel == 'beginer') {
             if ($focus == 1) {
 
-                $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $data['user_id'])->toSql();
-
-                $basicSkillsQuery = DB::table('skills')
-                    ->leftJoin('exercises', 'skills.exercise_id', '=', 'exercises.id')
-                    ->select('skills.*')
-                    ->groupBy('skills.progression_id')
-                    ->orderBy('skills.id');
-                if ($data['muscle_groups'] != '') {
-
-                    $muscleGroupArray = explode(',', $data['muscle_groups']);
-                    $likeQuery = '( ';
-                    foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
-                        $likeQuery .= 'exercises.muscle_groups LIKE %' . $muscleGroupId . '%';
-                        if ($mgKey < count($muscleGroupArray) - 1) {
-                            $likeQuery = $likeQuery . ' OR ';
-                        }
-                    }
-                    $likeQuery .= $likeQuery = ' )';
-
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 1');
-                } else {
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 1');
-                }
-
-                $basicSkills = $basicSkillsQuery->get();
+                $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $focus);
 
                 $exercises = [];
                 foreach ($basicSkills as $bKey => $basicSkill) {
-                    $exercises[] = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
+                    $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
+                    if (!is_null($exercise)) {
+                        $exercise->is_completed = 0;
+                        $exercises[] = $exercise;
+                    }
                 }
 
                 $day1Workout = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $focus);
@@ -312,7 +196,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -320,19 +205,22 @@ class Coach extends Model
                     $coach['day1']['workout_intensity'] = 1;
                     $coach['day1']['hiit'] = [];
                     $coach['day1']['stretching'] = $stretches;
+                    $coach['day1']['is_completed'] = 0;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -343,18 +231,20 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
 
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -365,7 +255,8 @@ class Coach extends Model
                 } elseif ($data['days'] == 4) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -376,17 +267,19 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set                    
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -396,18 +289,20 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -417,17 +312,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -437,17 +334,19 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set                    
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     $coach['day5']['workout'] = $day5Workout;
@@ -457,7 +356,8 @@ class Coach extends Model
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -467,17 +367,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -487,27 +389,30 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = $exercises;
                     $coach['day5']['workout'] = [];
                     $coach['day5']['coach_workout_rounds'] = 0;
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day6 exercise set                    
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     $coach['day6']['workout'] = $day5Workout;
@@ -518,33 +423,8 @@ class Coach extends Model
                 }
             } elseif ($focus == 2) {
 
-                $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $data['user_id'])->toSql();
+                $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $focus);
 
-                $basicSkillsQuery = DB::table('skills')
-                    ->leftJoin('exercises', 'skills.exercise_id', '=', 'exercises.id')
-                    ->select('skills.*')
-                    ->groupBy('skills.progression_id')
-                    ->orderBy('skills.id');
-                if ($data['muscle_groups'] != '') {
-
-                    $muscleGroupArray = explode(',', $data['muscle_groups']);
-                    $likeQuery = '( ';
-                    foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
-                        $likeQuery .= 'exercises.muscle_groups LIKE %' . $muscleGroupId . '%';
-                        if ($mgKey < count($muscleGroupArray) - 1) {
-                            $likeQuery = $likeQuery . ' OR ';
-                        }
-                    }
-                    $likeQuery .= $likeQuery = ' )';
-
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 2');
-                } else {
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 2');
-                }
-
-                $basicSkills = $basicSkillsQuery->get();
                 $exercises = [];
                 foreach ($basicSkills as $bKey => $basicSkill) {
                     $exercises[] = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -561,7 +441,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -571,17 +452,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -592,18 +475,20 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
 
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -614,7 +499,8 @@ class Coach extends Model
                 } elseif ($data['days'] == 4) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -625,17 +511,19 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set                    
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -645,18 +533,20 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -666,17 +556,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -686,17 +578,19 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set                    
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     $coach['day5']['workout'] = $day5Workout;
@@ -706,7 +600,8 @@ class Coach extends Model
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -716,17 +611,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -736,27 +633,30 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = $exercises;
                     $coach['day5']['workout'] = [];
                     $coach['day5']['coach_workout_rounds'] = 0;
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day6 exercise set                    
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     $coach['day6']['workout'] = $day5Workout;
@@ -766,33 +666,7 @@ class Coach extends Model
                     $coach['day6']['stretching'] = $stretches;
                 }
             } elseif ($focus == 3) {
-                $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $data['user_id'])->toSql();
-
-                $basicSkillsQuery = DB::table('skills')
-                    ->leftJoin('exercises', 'skills.exercise_id', '=', 'exercises.id')
-                    ->select('skills.*')
-                    ->groupBy('skills.progression_id')
-                    ->orderBy('skills.id');
-                if ($data['muscle_groups'] != '') {
-
-                    $muscleGroupArray = explode(',', $data['muscle_groups']);
-                    $likeQuery = '( ';
-                    foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
-                        $likeQuery .= 'exercises.muscle_groups LIKE %' . $muscleGroupId . '%';
-                        if ($mgKey < count($muscleGroupArray) - 1) {
-                            $likeQuery = $likeQuery . ' OR ';
-                        }
-                    }
-                    $likeQuery .= $likeQuery = ' )';
-
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 3');
-                } else {
-                    $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = 3');
-                }
-
-                $basicSkills = $basicSkillsQuery->get();
+                $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $focus);
                 $exercises = [];
                 foreach ($basicSkills as $bKey => $basicSkill) {
                     $exercises[] = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -809,7 +683,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -819,17 +694,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -840,18 +717,20 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
 
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -862,7 +741,8 @@ class Coach extends Model
                 } elseif ($data['days'] == 4) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -873,17 +753,19 @@ class Coach extends Model
 
                     //Day2 Exercise set
 
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set                    
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -893,18 +775,20 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -914,17 +798,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -934,17 +820,19 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set                    
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     $coach['day5']['workout'] = $day5Workout;
@@ -954,7 +842,8 @@ class Coach extends Model
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     $coach['day1']['workout'] = $day1Workout;
@@ -964,17 +853,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     $coach['day3']['workout'] = $day3Workout;
@@ -984,27 +875,30 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = $exercises;
                     $coach['day4']['workout'] = [];
                     $coach['day4']['coach_workout_rounds'] = 0;
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = $exercises;
                     $coach['day5']['workout'] = [];
                     $coach['day5']['coach_workout_rounds'] = 0;
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day6 exercise set                    
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     $coach['day6']['workout'] = $day5Workout;
@@ -1015,13 +909,6 @@ class Coach extends Model
                 }
             }
         } elseif ($userLevel == 'advanced') {
-
-
-            $userCompletedExercisesQuery = DB::table('exercise_users')
-                ->select('exercise_id')
-                ->where('user_id', $data['user_id'])
-                ->toSql();
-
 
             $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $focus);
 
@@ -1050,7 +937,8 @@ class Coach extends Model
             if ($focus == 1) {
                 if ($data['days'] == 2) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     //intensify csWorkout1
                     $coach['day1']['exercises'] = [];
@@ -1061,18 +949,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1083,17 +973,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1104,7 +996,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1115,17 +1008,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1136,19 +1031,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1159,17 +1056,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1180,30 +1079,33 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 2;
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1214,17 +1116,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1235,7 +1139,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -1246,18 +1151,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout1;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout2
@@ -1271,7 +1178,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1282,18 +1190,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1304,17 +1214,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1325,7 +1237,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1336,17 +1249,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1357,19 +1272,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout2;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1380,17 +1297,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1401,29 +1320,32 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1434,17 +1356,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1455,7 +1379,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -1466,18 +1391,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout2;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout2
@@ -1492,7 +1419,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1503,18 +1431,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1525,17 +1455,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1546,7 +1478,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1557,17 +1490,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1578,19 +1513,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout2;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1601,17 +1538,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1622,29 +1561,32 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day4']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1655,17 +1597,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1676,7 +1620,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -1687,18 +1632,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout2;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day5']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout2
@@ -1740,7 +1687,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1751,18 +1699,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1773,17 +1723,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1794,7 +1746,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1805,17 +1758,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1826,19 +1781,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1849,17 +1806,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1870,30 +1829,33 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 2;
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1904,17 +1866,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -1925,7 +1889,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -1936,18 +1901,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout1;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout2
@@ -1962,7 +1929,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1973,18 +1941,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -1995,17 +1965,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2016,7 +1988,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2027,17 +2000,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2048,19 +2023,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout2;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2071,17 +2048,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($csWorkout2);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2092,30 +2071,33 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout2, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 2;
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2126,17 +2108,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $csWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2147,7 +2131,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -2158,18 +2143,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout2;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout2
@@ -2184,7 +2171,8 @@ class Coach extends Model
                 if ($data['days'] == 2) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2195,18 +2183,20 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2217,17 +2207,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2238,7 +2230,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2249,17 +2242,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout2;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2270,19 +2265,21 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout4;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2293,17 +2290,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 3, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2314,30 +2313,33 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day4']['workout'] = $sWorkout3;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
-                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day4']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = self::intensifyWorkout($sWorkout4, 1);
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 2;
-                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
 
                     //Day1 exercise set
-                    $coach['day1']['warmup'] = $warmup;
+                    $coach['day1']['warmup'] = $warmUps;
+                    $coach['day1']['is_completed'] = 0;
                     $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day1']['exercises'] = [];
                     //intensify csWorkout1
@@ -2348,17 +2350,19 @@ class Coach extends Model
                     $coach['day1']['stretching'] = $stretches;
 
                     //Day2 Exercise set
-                    $coach['day2']['warmup'] = $warmup;
+                    $coach['day2']['warmup'] = $warmUps;
+                    $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
                     $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($coach['day2']['workout']['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
-                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4], ['id' => 1, 'intensity' => 3]];
+                    $coach['day2']['hiit'] = [['id' => 1, 'intensity' => 4, 'is_completed' => 0], ['id' => 1, 'intensity' => 3, 'is_completed' => 0]];
                     $coach['day2']['stretching'] = $stretches;
 
                     //Day3 Exercise set
-                    $coach['day3']['warmup'] = $warmup;
+                    $coach['day3']['warmup'] = $warmUps;
+                    $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
                     //intensify sWorkout2
@@ -2369,7 +2373,8 @@ class Coach extends Model
                     $coach['day3']['stretching'] = $stretches;
 
                     //Day4 Exercise set
-                    $coach['day4']['warmup'] = $warmup;
+                    $coach['day4']['warmup'] = $warmUps;
+                    $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
                     //intensify sWorkout2
@@ -2380,18 +2385,20 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day5']['warmup'] = $warmup;
+                    $coach['day5']['warmup'] = $warmUps;
+                    $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
                     //intensify sWorkout2
                     $coach['day5']['workout'] = $sWorkout4;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
-                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4]];
+                    $coach['day5']['hiit'] = [['id' => 2, 'intensity' => 4, 'is_completed' => 0]];
                     $coach['day5']['stretching'] = $stretches;
 
                     //Day5 Exercise set
-                    $coach['day6']['warmup'] = $warmup;
+                    $coach['day6']['warmup'] = $warmUps;
+                    $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
                     //intensify sWorkout5
@@ -2411,6 +2418,7 @@ class Coach extends Model
     {
 
         $workout = Workout::where('id', '=', $workoutId)->first();
+        $workout->is_completed = 0;
         $rounds = $workout->rounds;
         $count = 1;
         $exercises = [];
@@ -2420,13 +2428,14 @@ class Coach extends Model
                     ->where('workout_id', '=', $workoutId)
                     ->with(['video', 'exercise'])->get();
 
+            foreach ($roundExercises as $reKey => $roundExercise) {
+                $roundExercises[$reKey]->is_completed = 0;
+            }
+
             $exercises['round' . $count] = $roundExercises->toArray();
 
             $count++;
         } while ($count <= $rounds);
-
-
-
 
         $workoutArray = $workout->toArray();
 
@@ -2479,83 +2488,97 @@ class Coach extends Model
 
         $fundumentalArray = [
             1 => [
-                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds']
+                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0]
             ],
             2 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times'],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             3 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times'],
-                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds'],
-                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
+                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             4 => [
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times'],
-                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times'],
-                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times']
+                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
             ],
             5 => [
-                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times'],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times'],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds'],
-                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times']
+                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
+                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
+                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0]
             ],
         ];
 
         foreach ($fundumentalArray as $fKey => $fundumentals) {
-            foreach ($fundumentals as $jKey => $jVal) {
-                if ($coach->category == 'beginer' && $coachStatus->week == 6) {
-                    $fundumentalArray[$fKey][$jKey]['duration'] = $jVal['duration'][2];
-                }
-                $exercise = Exercise::where('id', $jVal['exercise_id'])->with(['video'])->first();
-                $fundumentalArray[$fKey][$jKey]['exercise'] = $exercise->toArray();
-
-                $userDoneExercises[] = $jVal['exercise_id'];
+            if ($data['category'] == 'beginer') {
+                $fundumentalArray[$fKey] = array_map(function ($fundumental) {
+                    $fundumental['duration'] = $fundumental['duration'][1];
+                    $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+                    $fundumental['exercise'] = $exercise->toArray();
+                    return $fundumental;
+                }, $fundumentals);
+            } else {
+                $fundumentalArray[$fKey] = array_map(function ($fundumental) {
+                    $fundumental['duration'] = $fundumental['duration'][2];
+                    $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+                    $fundumental['exercise'] = $exercise->toArray();
+                    return $fundumental;
+                }, $fundumentals);
             }
         }
 
         $warmUps = DB::table('warmups')->select('*')->get();
 
         if ($coach->category == 'beginer') {
-            foreach ($warmUps as $wKey => $warmUp) {
+            $warmUps = array_map(function($warmUp) {
+
                 $duration = $warmUp->duration;
 
                 $durationArray = json_decode($duration, true);
 
-                $warmUps[$wKey]->duration = $durationArray[1];
-            }
+                $warmUp->duration = $durationArray[1];
+
+                $warmUp->is_completed = 0;
+
+                return $warmUp;
+            }, $warmUps);
         } else {
 
-            foreach ($warmUps as $wKey => $warmUp) {
+            $warmUps = array_map(function($warmUp) {
+
                 $duration = $warmUp->duration;
 
                 $durationArray = json_decode($duration, true);
 
-                $warmUps[$wKey]->duration = $durationArray[2];
-            }
-        }
+                $warmUp->duration = $durationArray[2];
 
-        $warmupArray = $warmUps;
+                $warmUp->is_completed = 0;
+
+                return $warmUp;
+            }, $warmUps);
+        }
 
         if (isset($dayExercise['fundumentals'])) {
             $dayExercise['fundumentals'] = $fundumentalArray;
         }
 
         if (isset($dayExercise['warmup'])) {
-            $dayExercise['warmup'] = $warmupArray;
+            $dayExercise['warmup'] = $warmUps;
         }
 
         if ($assessment == 1) {
@@ -2580,6 +2603,7 @@ class Coach extends Model
                         } else {
                             $dayExercise['exercises'][$fKey]['duration'] = round($exercise['duration'] + ($exercise['duration'] * 5 / 100));
                         }
+                        $dayExercise['exercises'][$fKey]['is_completed'] = 0;
                         $userDoneExercises[] = strval($exercise['id']);
                     }
                 }
@@ -2589,6 +2613,8 @@ class Coach extends Model
 
                 if (!empty($dayExercise['workout'])) {
                     $dayExercise['workout'] = self::intensifyWorkout($dayExercise['workout'], 1);
+                    
+                    $dayExercise['workout']['is_completed'] = 0;
 
                     $workoutExerciseRoundCount = count($dayExercise['workout']['exercises']);
 
@@ -2599,6 +2625,7 @@ class Coach extends Model
             if (isset($dayExercise['hiit']) && count($dayExercise['hiit']) > 0) {
                 if (!empty($dayExercise['hiit'])) {
                     foreach ($dayExercise['hiit'] as $hKey => $hiit) {
+                        $dayExercise['hiit'][$hKey]['is_completed'] = 0;
                         if ($hiit['id'] == 1) {
                             if ($hiit['intensity'] < 10) {
                                 $dayExercise['hiit'][$hKey]['intensity'] = $hiit['intensity'] + 1;
@@ -2700,5 +2727,55 @@ class Coach extends Model
         }
 
         return $dayExercise;
+    }
+
+    public static function getUserMatchedWorkoutsQuery($category, $focus, $userUnlockedSkillExerciseQuery)
+    {
+
+        return 'SELECT  t1.id, 
+                                                    s.totalCount AS exercise_count 
+                                            FROM    workouts AS t1 
+                                                    LEFT JOIN
+                                                    (
+                                                        SELECT  workout_id, COUNT(*) totalCount 
+                                                        FROM    workout_exercises 
+                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = ' . $focus . '
+                                                        GROUP   BY workout_id
+                                                    )  s ON s.workout_id = t1.id
+                                            WHERE   t1.category = ' . $category . '
+                                            ORDER   BY exercise_count DESC';
+    }
+
+    public static function getUserBasicSkills($userId, $muscleGroups, $focus)
+    {
+
+        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
+            ->select('exercise_id')
+            ->whereRaw('user_id = ' . $userId)
+            ->toSql();
+
+        $basicSkillsQuery = DB::table('skills')
+            ->leftJoin('exercises', 'skills.exercise_id', '=', 'exercises.id')
+            ->select('skills.*')
+            ->groupBy('skills.progression_id')
+            ->orderBy('skills.id');
+        if ($muscleGroups != '') {
+
+            $muscleGroupArray = explode(',', $muscleGroups);
+            $likeQuery = '( ';
+            foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
+                $likeQuery .= 'exercises.muscle_groups LIKE %' . $muscleGroupId . '%';
+                if ($mgKey < count($muscleGroupArray) - 1) {
+                    $likeQuery = $likeQuery . ' OR ';
+                }
+            }
+            $likeQuery .= $likeQuery = ' )';
+
+            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus);
+        } else {
+            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus);
+        }
+
+        return $basicSkills = $basicSkillsQuery->get();
     }
 }

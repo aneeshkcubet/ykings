@@ -291,19 +291,19 @@
 
                             <!-- BEGIN EXERCISE MENU -->
                             <li>
-                                <a href="{{ route('admin.exercises') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                <a href="{{ route('admin.skills') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Exercises</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li {!! (Request::is('admin.exercises') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ route('admin.exercises') }}">
+                                    <li {!! (Request::is('admin.skills') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skills') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Exercises
                                         </a>
                                     </li>
-                                    <li {!! (Request::is('admin.exercise.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ route('admin.exercise.create') }}">
+                                    <li {!! (Request::is('admin.skill.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skill.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Exercise
                                         </a>
@@ -334,6 +334,29 @@
                                 </ul>
                             </li>
                             <!-- END WORKOUT MENU -->
+                            
+                            <!-- BEGIN SKILL MENU -->
+                            <li>
+                                <a href="{{ route('admin.skills') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Skills</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.skills') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skills') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Skills
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.skill.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skill.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Skill
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END SKILL MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

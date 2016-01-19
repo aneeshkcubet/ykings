@@ -75,7 +75,7 @@ class ExerciseController extends Controller
                 return Redirect::back()->withInput()->with('error', $error);
             }
         }
-        
+
         $muscleGroups = Input::get('muscle_groups');
         $duration = Input::get('repetitions');
         $exercise = Exercise::create([
@@ -88,7 +88,7 @@ class ExerciseController extends Controller
                 'duration' => $duration,
                 'unit' => Input::get('unit'),
                 'equipment' => Input::get('equipment'),
-                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != ''))? implode(',', Input::get('muscle_groups')) : '' ,
+                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
                 'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
                 'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
                 'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
@@ -162,16 +162,20 @@ class ExerciseController extends Controller
         $exercise = Exercise::where('id', $id)->with(['video'])->first();
         $eMgroups = explode(',', $exercise->muscle_groups);
 
-        foreach ($muscleGroups as $mgKey => $muscleGroup) {
-            if (in_array($muscleGroup->id, $eMgroups)) {
-                $muscleGroups[$mgKey]->selected = 1;
-            } else {
-                $muscleGroups[$mgKey]->selected = 0;
+        if (count($eMgroups) > 0) {
+            foreach ($muscleGroups as $mgKey => $muscleGroup) {
+                if (in_array($muscleGroup->id, $eMgroups)) {
+                    $muscleGroups[$mgKey]->selected = 1;
+                } else {
+                    $muscleGroups[$mgKey]->selected = 0;
+                }
             }
         }
         // Get the user information
         if (!is_null($exercise)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+            
+            return View('admin.exercise.edit', compact('exercise', 'user', 'muscleGroups'));
         } else {
             // Prepare the error message
             $error = 'Exercise not found';
@@ -203,7 +207,7 @@ class ExerciseController extends Controller
             }
         }
         $exercise = Exercise::where('id', $id)->first();
-        
+
         $muscleGroups = Input::get('muscle_groups');
 
         if (!is_null($exercise)) {
@@ -219,25 +223,25 @@ class ExerciseController extends Controller
                 'duration' => $duration,
                 'unit' => Input::get('unit'),
                 'equipment' => Input::get('equipment'),
-                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != ''))? implode(',', Input::get('muscle_groups')) : '',
+                'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
                 'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
                 'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
                 'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
             ]);
-            
+
             if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
-                
+
                 $video = Video::where('parent_id', $exercise->id)->where('parent_type', 1)->first();
 
                 $filename = $exercise->id . '_' . time();
                 $extension = Input::file('video')->getClientOriginalExtension(); // getting image extension
                 $fullName = $filename . '.' . $extension; // renameing image
                 Input::file('video')->move(public_path('uploads/videos/'), $fullName);
-                
+
                 //Unlink previusly uploaded file and thumbnail
-                
+
                 unlink(public_path('uploads/videos/') . $video->path);
-                
+
                 unlink(config("image.videoThumbPath") . $video->videothumbnail);
 
                 echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.png');
@@ -248,15 +252,13 @@ class ExerciseController extends Controller
                     'videothumbnail' => $filename . '.png'
                 ]);
             }
-            
+
             return Redirect::route('admin.exercises')->with('success', 'Updated successfully');
         } else {
-            
+
             return Redirect::route('admin.exercises', $id)->withInput()->with('error', 'Exercise not found!');
-            
         }
         // Redirect to the user page
-        
     }
 
     /**
@@ -268,15 +270,14 @@ class ExerciseController extends Controller
     public function getDelete($id = null)
     {
         $exercise = Exercise::where('id', $id)->first();
-        
+
         if (is_null($exercise)) {
-            
+
             $error = 'Exercise does not exists.';
-            
-            Redirect::route("admin.exercises")->with('error', $error);           
-            
+
+            Redirect::route("admin.exercises")->with('error', $error);
         }
-        
+
         Exercise::where('id', $id)->delete();
 
         return Redirect::route("admin.exercises")->with('success', 'Successfully deleted exercise.');
@@ -291,20 +292,20 @@ class ExerciseController extends Controller
     public function getModalDelete($id = null)
     {
         $model = 'exercises';
-        
+
         $confirm_route = $error = null;
-        
+
         $entity = 'exercise';
-        
+
         $exercise = Exercise::where('id', $id)->first();
-        
+
         if (is_null($exercise)) {
             $error = 'Exercise does not exists.';
             return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
         }
 
         $confirm_route = route('admin.exercise.delete', ['id' => $id]);
-        
+
         return View('admin/layouts/modal_confirmation', compact('error', 'model', 'confirm_route', 'entity'));
     }
 }

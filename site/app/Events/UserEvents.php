@@ -6,6 +6,7 @@ use App\Video;
 use App\Settings;
 use App\Skill;
 use App\Unlockedexercise;
+use App\Follow;
 use DB;
 use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
@@ -63,6 +64,8 @@ class UserEvents extends Event
         
         $unlockedSkills = Skill::where('level', 1)->get();
         
+        $adminUsers = User::where('is_admin', 1)->where('status', 1);
+        
         foreach($unlockedSkills as $sKey => $unlockedSkill){
             Unlockedexercise::create([
                 'user_id' => $user->id,
@@ -70,6 +73,15 @@ class UserEvents extends Event
                 'exercise_id' => $unlockedSkill->exercise_id
             ]);            
         }
+        
+        foreach($adminUsers as $aKey => $adminUser){
+            Follow::create([
+                'user_id' => $user->id,
+                'follow_id' => $adminUser->id
+            ]);            
+        }
+        
+        
     }
 
     public function userDeleted(User $user)

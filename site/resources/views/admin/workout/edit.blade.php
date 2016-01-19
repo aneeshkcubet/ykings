@@ -64,7 +64,7 @@ Edit Workout - {{  $workout->name }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#tab3" data-toggle="tab"> 
+                                    <a href="#tab4" data-toggle="tab"> 
                                         Strength Exercises
                                     </a>
                                 </li>

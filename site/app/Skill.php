@@ -16,6 +16,7 @@ class Skill extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
+        'description',
         'progression_id',
         'level',
         'row',
@@ -23,13 +24,23 @@ class Skill extends Model
     ]; 
     
     /**
-     * Define the relationship for the author
+     * Define the relationship for the exercise
      *
      * @return \Illuminate\Database\Query\Builder
      */
     public function exercise()
     {
-        return $this->hasOne('App\Exercise', 'id', 'exercise_id');
+        return $this->hasOne('App\Exercise', 'id', 'exercise_id')->with(['video']);
+    }
+    
+    /**
+     * Define the relationship for the progression
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function progression()
+    {
+        return $this->hasOne('App\Progression', 'id', 'progression_id');
     }
 
 }

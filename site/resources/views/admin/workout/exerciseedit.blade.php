@@ -85,19 +85,13 @@ Edit Workout Exercise - {{  $workoutExercise['exercise']->name }}
                                     <div class="form-group">
                                         <label for="category" class="col-sm-2 control-label">Rounds *</label>                                        
                                         <div class="col-sm-3">
-                                            <select id="rounds" name="rounds[]" class="form-control required" multiple="">
-                                                @foreach($rounds as $rKey => $round)
-                                                @if($round['is_on'] == 1)
-                                                <option value="{{$round['id']}}" selected="selected" >Round {{$round['id']}}</option>
-                                                @endif
-                                                @endforeach
-                                            </select>                                            
+                                            <input type="text" id="round" name="round" class="form-control required" value="{{Input::old('round', $workoutExercise->round)}}" readonly=""/>                                       
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="category" class="col-sm-2 control-label">Repetitions / Duration</label>                                        
                                         <div class="col-sm-3">
-                                            <input type="text" name='repititions' id='repititions' placeholder="Repetitions/Duration" class="form-control required" value="{{Input::old('repitations', $workoutExercise->repitations)}}" />                                          
+                                            <input type="text" name='repititions' id='repititions' placeholder="Repetitions/Duration" class="form-control required" value="{{Input::old('repitations', $workoutExercise->repititions)}}" />                                          
                                         </div>
                                     </div>
                                     <p>(*) Mandatory</p>

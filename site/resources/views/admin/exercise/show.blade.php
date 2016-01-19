@@ -22,11 +22,10 @@ View Exercise - {{ $exercise->name }}
 <!--end of page level css-->
 @stop
 
-
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>View Exercise</h1>
+    <h1>View Exercise : {{ $exercise->name }}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>

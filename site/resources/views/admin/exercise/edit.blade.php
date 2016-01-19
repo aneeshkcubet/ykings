@@ -144,6 +144,7 @@ Edit Exercise - {{  $exercise->name }}
                                         <div class="col-sm-10">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                                                    @if(count($exercise['video'])>0)
                                                     <video id="exercise_video" class="video-js vjs-default-skin" controls
                                                            preload="none" width="200" height="200" poster="{{{ url('/').'/uploads/videos/'.$exercise['video'][0]['videothumbnail'] }}}"
                                                            data-setup='{}'>
@@ -153,6 +154,11 @@ Edit Exercise - {{  $exercise->name }}
                                                             that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                                                         </p>
                                                     </video>
+                                                    @else
+                                                    <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;">
+                                                        <img src="http://placehold.it/100x100" alt="Exercise Video">
+                                                    </div>
+                                                    @endif
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100px; max-height: 100px;"></div>
                                                 <div>
