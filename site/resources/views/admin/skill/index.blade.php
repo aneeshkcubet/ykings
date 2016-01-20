@@ -10,6 +10,13 @@ Skills
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .skill-card .panel-body{
+        height: 120px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
 @stop
 
 
@@ -72,9 +79,19 @@ Skills
                                 @foreach($skills['pull'] as $sKey => $skill)
                                 <div class="row">
                                     @foreach($skill as $rKey => $row)
-                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left">
+                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}</div>
+                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                                <div style="position: absolute;right: 24px;top: 13px;">
+                                                    <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
+                                                    <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
+
+                                                    <a href="{{ route('admin.confirm-delete.skill', $row['id']) }}" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="skill-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete skill">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="panel-body">                                            
                                                 @if($row['exercise']['category'] == 1)
                                                 Difficulty: <b>Beginner</b>
@@ -109,9 +126,19 @@ Skills
                                 @foreach($skills['dip'] as $sKey => $skill)
                                 <div class="row">
                                     @foreach($skill as $rKey => $row)
-                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left">
+                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}</div>
+                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                                <div style="position: absolute;right: 24px;top: 13px;">
+                                                    <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
+                                                    <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
+
+                                                    <a href="{{ route('admin.confirm-delete.skill', $row['id']) }}" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="skill-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete skill">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="panel-body">                                            
                                                 @if($row['exercise']['category'] == 1)
                                                 Difficulty: <b>Beginner</b>
@@ -146,9 +173,19 @@ Skills
                                 @foreach($skills['full_body'] as $sKey => $skill)
                                 <div class="row">
                                     @foreach($skill as $rKey => $row)
-                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left">
+                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}</div>
+                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                                <div style="position: absolute;right: 24px;top: 13px;">
+                                                    <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
+                                                    <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
+
+                                                    <a href="{{ route('admin.confirm-delete.skill', $row['id']) }}" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="skill-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete skill">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="panel-body">                                            
                                                 @if($row['exercise']['category'] == 1)
                                                 Difficulty: <b>Beginner</b>
@@ -183,9 +220,19 @@ Skills
                                 @foreach($skills['push'] as $sKey => $skill)
                                 <div class="row">
                                     @foreach($skill as $rKey => $row)
-                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left">
+                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}</div>
+                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                                <div style="position: absolute;right: 24px;top: 13px;">
+                                                    <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
+                                                    <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
+
+                                                    <a href="{{ route('admin.confirm-delete.skill', $row['id']) }}" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="skill-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete skill">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="panel-body">                                            
                                                 @if($row['exercise']['category'] == 1)
                                                 Difficulty: <b>Beginner</b>
@@ -220,9 +267,19 @@ Skills
                                 @foreach($skills['core'] as $sKey => $skill)
                                 <div class="row">
                                     @foreach($skill as $rKey => $row)
-                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left">
+                                    <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}</div>
+                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                                <div style="position: absolute;right: 24px;top: 13px;">
+                                                    <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
+                                                    <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
+
+                                                    <a href="{{ route('admin.confirm-delete.skill', $row['id']) }}" data-toggle="modal" data-target="#delete_confirm">
+                                                        <i class="livicon" data-name="skill-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete skill">
+                                                        </i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <div class="panel-body">                                            
                                                 @if($row['exercise']['category'] == 1)
                                                 Difficulty: <b>Beginner</b>
@@ -252,15 +309,6 @@ Skills
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-<script type="text/javascript" src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.js') }}"></script>
-
-<script>
-$(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
-
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content"></div>

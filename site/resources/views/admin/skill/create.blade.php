@@ -104,11 +104,11 @@ Add New Skill
                                         <div class="col-sm-4">
                                             <select id="row" name="row" class="form-control required">
                                                 <option value="">Select Row in Progression</option>
-                                                <option value="1" @if(Input::old('level') == 1) selected="selected" @endif>1</option>
-                                                <option value="2" @if(Input::old('level') == 2) selected="selected" @endif>2</option>
-                                                <option value="3" @if(Input::old('level') == 3) selected="selected" @endif>3</option>
-                                                <option value="4" @if(Input::old('level') == 4) selected="selected" @endif>4</option>
-                                                <option value="5" @if(Input::old('level') == 5) selected="selected" @endif>5</option>
+                                                <option value="1" @if(Input::old('row') == 1) selected="selected" @endif>1</option>
+                                                <option value="2" @if(Input::old('row') == 2) selected="selected" @endif>2</option>
+                                                <option value="3" @if(Input::old('row') == 3) selected="selected" @endif>3</option>
+                                                <option value="4" @if(Input::old('row') == 4) selected="selected" @endif>4</option>
+                                                <option value="5" @if(Input::old('row') == 5) selected="selected" @endif>5</option>
                                             </select>                                            
                                         </div>
                                     </div>

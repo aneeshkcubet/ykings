@@ -191,7 +191,7 @@ class SkillController extends Controller
     public function getEdit($id = null)
     {
 
-        $skill = Skill::where('id', $id)->with(['video', 'exercise', 'progression'])->first();
+        $skill = Skill::where('id', $id)->with(['exercise', 'progression'])->first();
         $exercises = Exercise::all();
         $progressions = Progression::all();
         // Get the user information

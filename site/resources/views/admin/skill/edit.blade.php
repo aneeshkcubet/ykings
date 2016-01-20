@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Edit Skill - {{  $skill->name }}
+Edit Skill - {{  $skill['exercise']->name }}
 @parent
 @stop
 
@@ -19,7 +19,7 @@ Edit Skill - {{  $skill->name }}
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Edit Skill - {{{  $skill->name }}}</h1>
+    <h1>Edit Skill - {{{  $skill['exercise']->name }}}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
@@ -27,7 +27,7 @@ Edit Skill - {{  $skill->name }}
             </a>
         </li>
         <li><a href="{{ route('admin.skills') }}">Skills</a></li>
-        <li class="active">Edit: {{{  $skill->name }}}</li>
+        <li class="active">Edit: {{{  $skill['exercise']->name }}}</li>
     </ol>
 </section>
 <section class="content">
@@ -36,7 +36,7 @@ Edit Skill - {{  $skill->name }}
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> <i class="livicon" data-name="users" data-size="16" data-c="#fff" data-hc="#fff" data-loop="true"></i>
-                        {{{  $skill->name }}} 
+                        {{{  $skill['exercise']->name }}} 
                     </h3>
                     <span class="pull-right clickable">
                         <i class="glyphicon glyphicon-chevron-up"></i>
@@ -54,142 +54,64 @@ Edit Skill - {{  $skill->name }}
 
                                 <!-- first tab -->
                                 <!-- first tab -->
-                                <h1>Skill</h1>
+                                <h1>Basic Details</h1>
 
                                 <section>
+                                    
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Name*</label>
-                                        <div class="col-sm-10">
-                                            <input id="name" name="name" type="text" placeholder="Name" class="form-control required" value="{{{ Input::old('name',$skill->name) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="description" class="col-sm-2 control-label">Description</label>
-                                        <div class="col-sm-10">
-                                            <input id="description" name="description" type="text" placeholder="Description" class="form-control" value="{{{ Input::old('description',$skill->description) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="category" class="col-sm-2 control-label">Category *</label>
-                                        <div class="col-sm-3">
-                                            <select id="category" name="category" class="form-control required">
-                                                <option value="">Select a category</option>
-                                                <option value="1" @if(Input::old('category', $skill->category) == 1) selected="selected" @endif>Lean</option>
-                                                <option value="2" @if(Input::old('category', $skill->category) == 2) selected="selected" @endif>Athletic</option>
-                                                <option value="3" @if(Input::old('category', $skill->category) == 3) selected="selected" @endif>Strength</option>
-                                            </select>                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="type" class="col-sm-2 control-label">Type *</label>
-                                        <div class="col-sm-3">
-                                            <select id="type" name="type" class="form-control required">
-                                                <option value="">Select free/paid</option>
-                                                <option value="1" @if(Input::old('type', $skill->type) == 1) selected="selected" @endif>Free</option>
-                                                <option value="2" @if(Input::old('type', $skill->type) == 2) selected="selected" @endif>Paid</option>                                                
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="rewards" class="col-sm-2 control-label">Rewards *</label>
-                                        <div class="col-sm-10">
-                                            <input id="rewards" name="rewards" type="text" placeholder="Rewards" class="form-control required number" value="{{{  Input::old('rewards', $skill->rewards) }}}" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="repititions" class="col-sm-2 control-label">Repititions/Duration *</label>
-                                        <div class="col-sm-10">
-                                            <input id="repetitions" name="repetitions" type="text" placeholder="Repetitions" class="form-control required number" value="@if($skill->type == 'seconds'){{{ Input::old('repetitions', $skill->duration)}}}@else{{{Input::old('repetitions', $skill->repititions)}}}@endif" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="unit" class="col-sm-2 control-label">Unit *</label>
-                                        <div class="col-sm-3">
-                                            <select id="unit" name="unit" class="form-control required">
-                                                <option value="">Select unit</option>
-                                                <option value="times" @if(Input::old('unit', $skill->unit) == "times") selected="selected" @endif>Repetitions</option>
-                                                <option value="seconds" @if(Input::old('unit', $skill->unit) == "seconds") selected="selected" @endif>Seconds</option>                                                
-                                            </select>                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="equipment" class="col-sm-2 control-label">Equipment</label>
-                                        <div class="col-sm-10">
-                                            <input id="equipment" name="equipment" type="text" placeholder="Equipment" class="form-control" value="{{{ Input::old('equipment', $skill->equipment) }}}" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="muscle_groups">Select Muscle Groups</label>
+                                        <label class="col-sm-2 control-label" for="progression_id">Select Progression *</label>
                                         <div class="col-sm-4">
-                                            <select id="muscle_groups" name="muscle_groups[]" class="form-control" multiple="multiple">
-                                                @foreach ($muscleGroups as $mKey => $muscleGroup)
-                                                <option value="{{ $muscleGroup->id }}" @if($muscleGroup->selected == 1) selected="selected" @endif>{{ $muscleGroup->name }}</option>
+                                            <select id="progression_id" name="progression_id" class="form-control required" readonly>
+                                                @foreach ($progressions as $mKey => $progression)
+                                                <option @if(Input::old('progression_id', $skill->progression_id) == $progression->id) selected="selected" @endif value="{{ $progression->id }}">{{ $progression->name }}</option>
                                                 @endforeach                                                
                                             </select>
                                         </div>
                                     </div>
-                                    <p>(*) Mandatory</p>
-                                </section>
-                                <!-- Second tab -->
-                                <h1>Media</h1>
-
-                                <section>
+                                    
                                     <div class="form-group">
-                                        <label for="video" class="col-sm-2 control-label">Skill video</label>
+                                        <label class="col-sm-2 control-label" for="exercise_id">Select Exercise *</label>
+                                        <div class="col-sm-4">
+                                            <select id="exercise_id" name="exercise_id" class="form-control required">
+                                                @foreach ($exercises as $mKey => $exercise)
+                                                <option @if(Input::old('exercise_id', $skill->exercise_id) == $exercise->id) selected="selected" @endif value="{{ $exercise->id }}">{{ $exercise->name }}</option>
+                                                @endforeach                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="exercise_id">Description</label>
                                         <div class="col-sm-10">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
-                                                    <video id="skill_video" class="video-js vjs-default-skin" controls
-                                                           preload="none" width="200" height="200" poster="{{{ url('/').'/uploads/videos/'.$skill['video'][0]['videothumbnail'] }}}"
-                                                           data-setup='{}'>
-                                                        <source src="{{{ url('/').'/uploads/videos/'.$skill['video'][0]['path'] }}}" type='video/mp4'>                                        
-                                                        <p class="vjs-no-js">
-                                                            To view this video please enable JavaScript, and consider upgrading to a web browser
-                                                            that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                                                        </p>
-                                                    </video>
-                                                </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100px; max-height: 100px;"></div>
-                                                <div>
-                                                    <span class="btn btn-default btn-file">
-                                                        <span class="fileinput-new">Select Video</span>
-                                                        <span class="fileinput-exists">Change</span>
-                                                        <input id="video" name="video" MAX_FILESIZE type="file" class="form-control" />
-                                                    </span>
-                                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                                </div>
-                                            </div>
+                                            <input type="text" class="form-control" value="{{Input::old('description', $skill->description)}}" name="description" id="description" placeholder="Enter description of this skill here" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-12"><strong>Video Tips</strong></div>
-                                        <div class="col-sm-12">
-                                            <textarea name="video_tips" placeholder="Type the video tips of this skill here" id="video_tips" class="form-control">@if(Input::old('video_tips') != '') {{Input::old('video_tips')}} @else {{$skill->video_tips}} @endif</textarea>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <!-- Third tab -->
-                                <h1>Additional Details</h1>                                
-                                <section>
-                                    <div class="form-group">
-                                        <div class="col-sm-12"><strong>Range of Motion</strong></div>
-                                        <div class="col-sm-12">
-                                            <textarea name="range_of_motion" placeholder=" Type the range of motion of this skill here " id="range_of_motion" class="form-control">@if(Input::old('range_of_motion') != '') {{Input::old('range_of_motion')}} @else {{$skill->range_of_motion}} @endif</textarea>
+                                        <label for="level" class="col-sm-2 control-label">Level *</label>
+                                        <div class="col-sm-4">
+                                            <select id="level" name="level" class="form-control required" readonly>
+                                                <option value="">Select Level of Progression</option>
+                                                <option value="1" @if(Input::old('level', $skill->level) == 1) selected="selected" @endif>1</option>
+                                                <option value="2" @if(Input::old('level', $skill->level) == 2) selected="selected" @endif>2</option>
+                                                <option value="3" @if(Input::old('level', $skill->level) == 3) selected="selected" @endif>3</option>
+                                                <option value="4" @if(Input::old('level', $skill->level) == 4) selected="selected" @endif>4</option>
+                                                <option value="5" @if(Input::old('level', $skill->level) == 5) selected="selected" @endif>5</option>                                                
+                                            </select>                                            
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-12"><strong>Pro Tips</strong></div>
-                                        <div class="col-sm-12">
-                                            <textarea name="pro_tips" placeholder="Type the pro tips for this skill here" id="pro_tips" class="form-control">@if(Input::old('video_tips') != '') {{Input::old('pro_tips')}} @else {{$skill->pro_tips}} @endif</textarea>
+                                        <label for="level" class="col-sm-2 control-label">Row *</label>
+                                        <div class="col-sm-4">
+                                            <select id="row" name="row" class="form-control required" readonly>
+                                                <option value="">Select Row in Progression</option>
+                                                <option value="1" @if(Input::old('row', $skill->row) == 1) selected="selected" @endif>1</option>
+                                                <option value="2" @if(Input::old('row', $skill->row) == 2) selected="selected" @endif>2</option>
+                                                <option value="3" @if(Input::old('row', $skill->row) == 3) selected="selected" @endif>3</option>
+                                                <option value="4" @if(Input::old('row', $skill->row) == 4) selected="selected" @endif>4</option>
+                                                <option value="5" @if(Input::old('row', $skill->row) == 5) selected="selected" @endif>5</option>
+                                            </select>                                            
                                         </div>
                                     </div>
-
+                                    <p>(*) Mandatory</p>
                                 </section>
                             </form>
                             <!-- END FORM WIZARD WITH VALIDATION --> 

@@ -80,7 +80,7 @@ Workouts
                             ?>
                             <td>Lean - {{ $rewardsArray->lean }}, Athletic - {{$rewardsArray->athletic}}, Strength - {{$rewardsArray->strength}}</td>                            
                             <td>{{ $list->duration }}</td>
-                            <td>{{ $list->equipment }}</td>
+                            <td>{{ $list->equipments }}</td>
                             <td>{{ $list->created_at }}</td>
                             <td>
                                 <a href="{{ route('admin.workout.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view workout"></i></a>

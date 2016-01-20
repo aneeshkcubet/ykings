@@ -52,6 +52,8 @@ class FeedController extends Controller
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
      * @apiParam {Number} [volume] volume of exercise/workout/hiit
+     * @apiParam {Number} [is_coach] 1 in case if coach workout
+     * @apiParam {Number} [coach_rounds] number of workout rounds ("coach_workout_rounds" field from day workout)
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -192,6 +194,8 @@ class FeedController extends Controller
                     ]);
                 } elseif ($request->item_type == 'workout') {
 
+                    $workoutDetails = Workout::where('id', $request->item_id)->first();
+
                     $data = [
                         'workout_id' => $request->item_id,
                         'user_id' => $request->user_id,
@@ -201,23 +205,34 @@ class FeedController extends Controller
                         'category' => $request->category,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : '',
-                        'focus' => isset($request->focus) ? $request->focus : ''
+                        'focus' => isset($request->focus) ? $request->focus : '',
+                        'is_coach' => isset($request->is_coach) ? $request->is_coach : 0,
+                        'coach_rounds' => isset($request->coach_rounds) ? $request->coach_rounds : 0,
                     ];
 
                     $workoutUser = WorkoutUser::create($data);
 
-                    $exerciseDetails = WorkoutUser::where('id', $request->item_id)->first();
-
-
                     $pointsEarned = 0;
-                    if (isset($request->volume))
-                        $pointsEarned = $exerciseDetails->rewards * $request->volume;
+
+                    $rewardsArray = json_decode($workoutDetails->rewards);
+
+                    if (isset($request->is_coach) && $request->is_coach == 1) {
+                        if ($request->category == 1) {
+                            $pointsEarned = ($rewardsArray->lean / $workoutDetails->rounds) * $request->coach_rounds;
+                        } elseif ($request->category == 2) {
+                            $pointsEarned = ($rewardsArray->athletic / $workoutDetails->rounds) * $request->coach_rounds;
+                        } elseif ($request->category == 3) {
+                            $pointsEarned = ($rewardsArray->strength / $workoutDetails->rounds) * $request->coach_rounds;
+                        }
+                    } else {
+                        $pointsEarned = $request->rewards;
+                    }
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'item_id' => $workoutUser->id,
                         'activity' => 'workout_completed',
-                        'points' => $request->rewards,
+                        'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
                 } elseif ($request->item_type == 'hiit') {
@@ -272,20 +287,20 @@ class FeedController extends Controller
                     $image->save(config('image.feedSmallPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
                     $image_upload = Images::create([
-                        'user_id' => $request->input('user_id'),
-                        'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
-                        'description' => $request->input('text'),
-                        'parent_type' => 2,
-                        'parent_id' => $feed->id
+                            'user_id' => $request->input('user_id'),
+                            'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
+                            'description' => $request->input('text'),
+                            'parent_type' => 2,
+                            'parent_id' => $feed->id
                     ]);
 
                     if (file_exists($_FILES['image']['tmp_name']) && is_writable($_FILES['image']['tmp_name'])) {
                         unlink($_FILES['image']['tmp_name']);
                     }
                 }
-                
+
                 $feeds = Feeds::with(['user'])->get();
-                
+
                 return response()->json(['status' => 1, 'success' => 'feed_created_successfully'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
@@ -309,43 +324,212 @@ class FeedController extends Controller
       "success": "List",
       "follower_count": 2,
       "level_count": 0,
-      "workout_count": 0,
+      "workout_count": 15,
       "feed_list": [
       {
-      "id": "21",
-      "user_id": "14",
-      "item_type": "exercise",
+      "id": "45",
+      "user_id": "96",
+      "item_type": "hiit",
       "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 06:27:51",
-      "updated_at": "2015-11-11 06:27:51",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:04:32",
+      "updated_at": "2016-01-08 06:04:32",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "category": "Strength",
-      "item_name": "Baldur",
-      "image": [],
-      "workout": [],
-      "exercise": []
+      "image": [
+      {
+      "id": "68",
+      "user_id": "96",
+      "path": "96_1452233072.jpg",
+      "description": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "parent_type": "2",
+      "parent_id": "45",
+      "created_at": "2016-01-08 06:04:32",
+      "updated_at": "2016-01-08 06:04:32"
+      }
+      ],
+      "item_name": "30/30",
+      "duration": "2250.00",
+      "intensity": "10"
       },
       {
-      "id": "22",
-      "user_id": "14",
-      "item_type": "exercise",
-      "item_id": "1",
-      "feed_text": "afassdfsd",
-      "created_at": "2015-11-11 06:49:38",
-      "updated_at": "2015-11-11 06:49:38",
+      "id": "44",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "3",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:48",
+      "updated_at": "2016-01-08 06:03:48",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "category": "Strength",
-      "item_name": "Baldur",
       "image": [],
-      "workout": [],
-      "exercise": []
+      "item_name": "60/120",
+      "duration": "1500.00",
+      "intensity": "5"
+      },
+      {
+      "id": "43",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "3",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:44",
+      "updated_at": "2016-01-08 06:03:44",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "item_name": "60/120",
+      "duration": "1500.00",
+      "intensity": "4"
+      },
+      {
+      "id": "42",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "3",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:37",
+      "updated_at": "2016-01-08 06:03:37",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "item_name": "60/120",
+      "duration": "1500.00",
+      "intensity": "3"
+      },
+      {
+      "id": "41",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "2",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:27",
+      "updated_at": "2016-01-08 06:03:27",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "item_name": "20/10",
+      "duration": "1500.00",
+      "intensity": "8"
+      },
+      {
+      "id": "40",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "2",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:17",
+      "updated_at": "2016-01-08 06:03:17",
+      "clap_count": 1,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 1,
+      "image": [],
+      "item_name": "20/10",
+      "duration": "1500.00",
+      "intensity": "5"
+      },
+      {
+      "id": "39",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "2",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:03:10",
+      "updated_at": "2016-01-08 06:03:10",
+      "clap_count": 2,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 1,
+      "image": [],
+      "item_name": "20/10",
+      "duration": "1500.00",
+      "intensity": "7"
+      },
+      {
+      "id": "38",
+      "user_id": "96",
+      "item_type": "hiit",
+      "item_id": "1",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 06:02:50",
+      "updated_at": "2016-01-08 06:02:50",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "item_name": "30/30",
+      "duration": "1500.00",
+      "intensity": "4"
+      },
+      {
+      "id": "37",
+      "user_id": "96",
+      "item_type": "workout",
+      "item_id": "15",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 05:49:36",
+      "updated_at": "2016-01-08 05:49:36",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [
+      {
+      "id": "67",
+      "user_id": "96",
+      "path": "96_1452232176.jpg",
+      "description": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "parent_type": "2",
+      "parent_id": "37",
+      "created_at": "2016-01-08 05:49:36",
+      "updated_at": "2016-01-08 05:49:36"
+      }
+      ],
+      "category": "Cardio-strength",
+      "item_name": "Mimir",
+      "duration": "1500",
+      "intensity": "2"
+      },
+      {
+      "id": "36",
+      "user_id": "96",
+      "item_type": "workout",
+      "item_id": "9",
+      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "created_at": "2016-01-08 05:49:27",
+      "updated_at": "2016-01-08 05:49:27",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [
+      {
+      "id": "66",
+      "user_id": "96",
+      "path": "96_1452232167.jpg",
+      "description": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
+      "parent_type": "2",
+      "parent_id": "36",
+      "created_at": "2016-01-08 05:49:27",
+      "updated_at": "2016-01-08 05:49:27"
+      }
+      ],
+      "category": "Cardio-strength",
+      "item_name": "Elli",
+      "duration": "1500",
+      "intensity": "2"
       }
       ],
       "urls": {
@@ -464,69 +648,271 @@ class FeedController extends Controller
       "success": "List",
       "feed_list": [
       {
-      "id": "38",
-      "user_id": "11",
+      "id": "235",
+      "user_id": "84",
       "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 11:53:35",
-      "updated_at": "2015-11-11 11:53:35",
+      "item_id": "12",
+      "feed_text": "Post check",
+      "created_at": "2016-01-20 06:52:57",
+      "updated_at": "2016-01-20 06:52:57",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "category": "Strength",
-      "item_name": "Baldur",
-      "image": [
-      {
-      "id": "6",
-      "user_id": "11",
-      "path": "11_1447242815.jpg",
-      "description": "testttttttttt",
-      "parent_type": "2",
-      "parent_id": "38",
-      "created_at": "2015-11-11 11:53:35",
-      "updated_at": "2015-11-11 11:53:35"
-      }
-      ],
+      "image": [],
+      "category": "Cardio-strength",
+      "item_name": "Forseti",
+      "duration": "41",
+      "intensity": "1",
       "profile": {
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "image": "11_1447237788.jpg"
+      "user_id": "84",
+      "first_name": "Aneesh",
+      "last_name": "ILeaf",
+      "image": "84_1453206435.jpg",
+      "quote": "new things",
+      "level": 7
       }
       },
       {
-      "id": "37",
-      "user_id": "11",
-      "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "testttttttttt",
-      "created_at": "2015-11-11 11:46:28",
-      "updated_at": "2015-11-11 11:46:28",
+      "id": "233",
+      "user_id": "84",
+      "item_type": "exercise",
+      "item_id": "2",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-20 04:53:55",
+      "updated_at": "2016-01-20 04:53:55",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "category": "Strength",
-      "item_name": "Baldur",
-      "image": [
-      {
-      "id": "5",
-      "user_id": "11",
-      "path": "11_1447242388.jpg",
-      "description": "testttttttttt",
-      "parent_type": "2",
-      "parent_id": "37",
-      "created_at": "2015-11-11 11:46:28",
-      "updated_at": "2015-11-11 11:46:28"
-      }
-      ],
+      "image": [],
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "8",
+      "intensity": "1",
+      "unit": "times",
       "profile": {
-      "user_id": "11",
-      "first_name": "ansa",
-      "last_name": "v",
-      "image": "11_1447237788.jpg"
+      "user_id": "84",
+      "first_name": "Aneesh",
+      "last_name": "ILeaf",
+      "image": "84_1453206435.jpg",
+      "quote": "new things",
+      "level": 7
+      }
+      },
+      {
+      "id": "232",
+      "user_id": "84",
+      "item_type": "exercise",
+      "item_id": "43",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-20 04:53:16",
+      "updated_at": "2016-01-20 04:53:16",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Athletic",
+      "item_name": "Pushups",
+      "duration": "2",
+      "intensity": "1",
+      "unit": "times",
+      "profile": {
+      "user_id": "84",
+      "first_name": "Aneesh",
+      "last_name": "ILeaf",
+      "image": "84_1453206435.jpg",
+      "quote": "new things",
+      "level": 7
+      }
+      },
+      {
+      "id": "231",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "43",
+      "feed_text": "Hai",
+      "created_at": "2016-01-20 04:37:20",
+      "updated_at": "2016-01-20 04:37:20",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Athletic",
+      "item_name": "Pushups",
+      "duration": "5",
+      "intensity": "1",
+      "unit": "times",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "230",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "17",
+      "feed_text": "Ok",
+      "created_at": "2016-01-19 13:48:39",
+      "updated_at": "2016-01-19 13:48:39",
+      "clap_count": 1,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 1,
+      "image": [],
+      "category": "Lean",
+      "item_name": "Plank",
+      "duration": "1",
+      "intensity": "1",
+      "unit": "seconds",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "229",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "1",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-19 13:48:04",
+      "updated_at": "2016-01-19 13:48:04",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Lean",
+      "item_name": "Jumping Pullups",
+      "duration": "3",
+      "intensity": "10",
+      "unit": "times",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "228",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "40",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-19 13:47:35",
+      "updated_at": "2016-01-19 13:47:35",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Athletic",
+      "item_name": "Lunge",
+      "duration": "3",
+      "intensity": "1",
+      "unit": "times",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "227",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "2",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-19 13:46:59",
+      "updated_at": "2016-01-19 13:46:59",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "2",
+      "intensity": "1",
+      "unit": "times",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "226",
+      "user_id": "86",
+      "item_type": "exercise",
+      "item_id": "43",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-19 13:46:23",
+      "updated_at": "2016-01-19 13:46:23",
+      "clap_count": 1,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Athletic",
+      "item_name": "Pushups",
+      "duration": "0",
+      "intensity": "1",
+      "unit": "times",
+      "profile": {
+      "user_id": "86",
+      "first_name": "Vinish",
+      "last_name": "Tester",
+      "image": "86_1452668192.jpg",
+      "quote": "how are you?",
+      "level": 18
+      }
+      },
+      {
+      "id": "225",
+      "user_id": "84",
+      "item_type": "workout",
+      "item_id": "2",
+      "feed_text": "How hard was your Training? what kept you going?",
+      "created_at": "2016-01-19 13:35:46",
+      "updated_at": "2016-01-19 13:35:46",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "image": [],
+      "category": "Cardio-strength",
+      "item_name": "Borr",
+      "duration": "5",
+      "intensity": "1",
+      "profile": {
+      "user_id": "84",
+      "first_name": "Aneesh",
+      "last_name": "ILeaf",
+      "image": "84_1453206435.jpg",
+      "quote": "new things",
+      "level": 7
       }
       }
       ],
@@ -646,7 +1032,9 @@ class FeedController extends Controller
 
             //To get Category
             if ($feedsArray['item_type'] == 'workout') {
+
                 $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
+
                 if (!is_null($workout)) {
                     if ($workout->category == 1) {
                         $feedsArray['category'] = "Strength";
@@ -658,16 +1046,31 @@ class FeedController extends Controller
                 }
                 $feedsArray['item_name'] = $workout->name;
 
-                $duration = DB::table('workout_users')
+                $workoutUser = DB::table('workout_users')
                     ->where('feed_id', $feedsArray['id'])
-                    ->pluck('time');
+                    ->first();
 
-                if (!is_null($duration)) {
-                    $feedsArray['duration'] = $duration;
+                if (!is_null($workoutUser->time)) {
+                    $feedsArray['duration'] = $workoutUser->time;
                 } else {
                     $feedsArray['duration'] = 0;
                 }
+
+                if ($workoutUser->is_coach == 1) {
+                    if ($workoutUser->coach_rounds == $workout->rounds) {
+                        $feedsArray['intensity'] = 1;
+                    } elseif ($workoutUser->coach_rounds > $workout->rounds) {
+                        if (($workoutUser->coach_rounds % $workout->rounds) == 0) {
+                            $feedsArray['intensity'] = $workoutUser->coach_rounds / $workout->rounds;
+                        } else {
+                            $feedsArray['intensity'] = ($workoutUser->coach_rounds / $workout->rounds) + 1;
+                        }
+                    }
+                } else {
+                    $feedsArray['intensity'] = $workoutUser->volume;
+                }
             } elseif ($feedsArray['item_type'] == 'exercise') {
+
                 $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
                 if (!is_null($exercise)) {
                     if ($exercise->category == 1) {
@@ -682,28 +1085,36 @@ class FeedController extends Controller
                 }
                 $feedsArray['item_name'] = $exercise->name;
 
-                $duration = DB::table('exercise_users')
+                $exerciseUser = DB::table('exercise_users')
                     ->where('feed_id', $feedsArray['id'])
-                    ->pluck('time');
+                    ->first();
 
-                if (!is_null($duration)) {
-                    $feedsArray['duration'] = $duration;
+                if (!is_null($exerciseUser->time)) {
+                    $feedsArray['duration'] = $exerciseUser->time;
+                    ;
                 } else {
                     $feedsArray['duration'] = 0;
                 }
+
+                $feedsArray['intensity'] = $exerciseUser->volume;
+
+                $feedsArray['unit'] = $exercise->unit;
             } elseif ($feedsArray['item_type'] == 'hiit') {
+
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                 $feedsArray['item_name'] = $hiit->name;
 
-                $duration = DB::table('hiit_users')
+                $hiitUser = DB::table('hiit_users')
                     ->where('feed_id', $feedsArray['id'])
-                    ->pluck('time');
+                    ->first();
 
-                if (!is_null($duration)) {
-                    $feedsArray['duration'] = $duration;
+                if (!is_null($hiitUser->time)) {
+                    $feedsArray['duration'] = $hiitUser->time;
                 } else {
                     $feedsArray['duration'] = 0;
                 }
+
+                $feedsArray['intensity'] = $hiitUser->volume;
             } else {
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "";

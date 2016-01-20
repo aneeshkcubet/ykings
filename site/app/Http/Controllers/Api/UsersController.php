@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Exceptions\InvalidConfirmationCodeException;
+use Carbon\Carbon;
 use App\User;
 use App\Profile;
 use App\Settings;
@@ -27,6 +28,8 @@ use App\Exerciseuser;
 use App\Workoutuser;
 use App\Hiituser;
 use App\Point;
+use App\Skill;
+use App\Musclegroup;
 
 class UsersController extends Controller
 {
@@ -3156,6 +3159,883 @@ class UsersController extends Controller
             return response()->json(['status' => 1, 'success' => 'user_successfully_logged_out'], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'user_already_logged_out'], 401);
+        }
+    }
+
+    /**
+     * @api {post} /user/options/goaloptions getUserGoalOptions
+     * @apiName getUserGoalOptions
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} progression_id id of Progression *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "user_selected_goals",
+      "skill_levels": {
+      "1": {
+      "id": "5",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "69",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "69",
+      "name": "Muscleups",
+      "description": "",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "0",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "69",
+      "path": "Now69.mp4",
+      "videothumbnail": "thumbnail3.jpg",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 1
+      },
+      "2": {
+      "id": "10",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "2",
+      "substitute": "0",
+      "exercise_id": "77",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "77",
+      "name": "Front Lever",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "78",
+      "path": "Now78.mp4",
+      "videothumbnail": "thumbnail2.png",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 0
+      },
+      "3": {
+      "id": "15",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "3",
+      "substitute": "0",
+      "exercise_id": "78",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "78",
+      "name": "Pullover",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "79",
+      "path": "Now79.mp4",
+      "videothumbnail": "thumbnail3.jpg",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 1
+      },
+      "4": {
+      "id": "20",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "4",
+      "substitute": "0",
+      "exercise_id": "79",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "79",
+      "name": "Back Lever",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "80",
+      "path": "Now80.mp4",
+      "videothumbnail": "thumbnail1.png",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 1
+      }
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The progression_id field is required"
+     *     }
+     */
+    public function getUserGoalOptions(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->progression_id) || ($request->progression_id == null)) {
+            return response()->json(["status" => "0", "error" => "The progression_id field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+                $pullRowCount = count(Skill::where('progression_id', $request->progression_id)->groupBy('row')->get());
+
+
+                $i = 1;
+
+                do {
+
+                    $skill = Skill::where('row', $i)->where('progression_id', $request->progression_id)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
+
+                    $skills[$i] = $skill->toArray();
+
+                    $i++;
+                } while ($i <= $pullRowCount);
+
+                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->first();
+
+                $skills = array_map(function($skill) use ($userOptions) {
+                    if (!is_null($userOptions)) {
+                        $userOptionsArray = explode(',', $userOptions->goal_options);
+                        if (count($userOptionsArray) > 0) {
+                            if (in_array($skill['id'], $userOptionsArray)) {
+                                $skill['is_selected'] = 1;
+                            } else {
+                                $skill['is_selected'] = 0;
+                            }
+                        } else {
+                            $skill['is_selected'] = 0;
+                        }
+                    } else {
+                        $skill['is_selected'] = 0;
+                    }
+                    return $skill;
+                }, $skills);
+                return response()->json(['status' => 1, 'success' => 'user_selected_goals', 'skill_levels' => $skills], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/options/updategoaloptions updateUserGoalOptions
+     * @apiName updateUserGoalOptions
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} progression_id id of Progression *required
+     * @apiParam {String} selected_goals id of Progression *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "updated_user_goals",
+      "skill_levels": {
+      "1": {
+      "id": "5",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "69",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "69",
+      "name": "Muscleups",
+      "description": "",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "0",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "69",
+      "path": "Now69.mp4",
+      "videothumbnail": "thumbnail3.jpg",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 1
+      },
+      "2": {
+      "id": "10",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "2",
+      "substitute": "0",
+      "exercise_id": "77",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "77",
+      "name": "Front Lever",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "78",
+      "path": "Now78.mp4",
+      "videothumbnail": "thumbnail2.png",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 0
+      },
+      "3": {
+      "id": "15",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "3",
+      "substitute": "0",
+      "exercise_id": "78",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "78",
+      "name": "Pullover",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "1",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "79",
+      "path": "Now79.mp4",
+      "videothumbnail": "thumbnail3.jpg",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 0
+      },
+      "4": {
+      "id": "20",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "4",
+      "substitute": "0",
+      "exercise_id": "79",
+      "created_at": "2015-12-14 03:04:45",
+      "updated_at": "2015-12-15 05:48:46",
+      "exercise": {
+      "id": "79",
+      "name": "Back Lever",
+      "description": "",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "0",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video": [
+      {
+      "id": "80",
+      "path": "Now80.mp4",
+      "videothumbnail": "thumbnail1.png",
+      "description": "Test Description"
+      }
+      ]
+      },
+      "is_selected": 1
+      }
+      }
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The progression_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The goal_options field is required"
+     *     }
+     */
+    public function updateUserGoalOptions(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->progression_id) || ($request->progression_id == null)) {
+            return response()->json(["status" => "0", "error" => "The progression_id field is required"]);
+        } elseif (!isset($request->goal_options) || ($request->goal_options == null)) {
+            return response()->json(["status" => "0", "error" => "The goal_options field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+
+                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->first();
+
+                if (!is_null($userOptions)) {
+
+                    DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->update(['goal_options' => $request->goal_options]);
+                } else {
+
+                    DB::table('user_goal_options')->insert([
+                        'user_id' => $request->user_id,
+                        'goal_options' => $request->goal_options,
+                        'progression_id' => $request->progression_id,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
+
+                $pullRowCount = count(Skill::where('progression_id', $request->progression_id)->groupBy('row')->get());
+
+                $i = 1;
+
+                do {
+
+                    $skill = Skill::where('row', $i)->where('progression_id', $request->progression_id)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
+
+                    $skills[$i] = $skill->toArray();
+
+                    $i++;
+                } while ($i <= $pullRowCount);
+
+                $userOptionsArray = explode(',', $request->goal_options);
+                $whereNotInQuery = '';
+                $whereInQuery = '';
+                if (count($userOptionsArray) > 0) {
+                    foreach ($userOptionsArray as $userOption) {
+                        $skill1 = Skill::where('id', $userOption)->first();
+                        $skillsInthisRowQuery = DB::table('skills')->select('skills.id')
+                                ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.row =' . $skill1->row)->toSql();
+
+                        $whereNotInQuery .= ' AND skills.id NOT IN(' . $skillsInthisRowQuery . ')';
+
+                        $whereInQuery .= ' AND skills.id IN(' . $skillsInthisRowQuery . ')';
+                    }
+                }
+
+                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->first();
+
+                $skills = array_map(function($skill) use ($userOptions) {
+                    if (!is_null($userOptions)) {
+                        $userOptionsArray = explode(',', $userOptions->goal_options);
+                        if (count($userOptionsArray) > 0) {
+                            if (in_array($skill['id'], $userOptionsArray)) {
+                                $skill['is_selected'] = 1;
+                            } else {
+                                $skill['is_selected'] = 0;
+                            }
+                        } else {
+                            $skill['is_selected'] = 0;
+                        }
+                    } else {
+                        $skill['is_selected'] = 0;
+                    }
+                    return $skill;
+                }, $skills);
+
+                $skillsShouldLockedQuery = DB::table('skills')->select('skills.id')
+                        ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.level != 1' . $whereNotInQuery)->toSql();
+
+                $skillsShouldUnlocked = DB::table('skills')->select('skills.id', 'skills.exercise_id')
+                        ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.level != 1' . $whereInQuery)->get();
+
+                DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
+
+//                foreach ($skillsShouldUnlocked as $skillUnlocked) {
+//                    DB::table('unlocked_skills')->insert([
+//                        'user_id' => $request->user_id,
+//                        'skill_id' => $skillUnlocked->id,
+//                        'exercise_id' => $skillUnlocked->exercise_id,
+//                        'created_at' => Carbon::now()
+//                    ]);
+//                }
+                return response()->json(['status' => 1, 'success' => 'updated_user_goals', 'skill_levels' => $skills], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/options/physiqueoptions getUserPhysiqueOptions
+     * @apiName getUserPhysiqueOptions
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "physique_groups",
+      "physique_groups": [
+      {
+      "id": "1",
+      "name": "Shoulders",
+      "is_selected": 1
+      },
+      {
+      "id": "2",
+      "name": "Chest",
+      "is_selected": 1
+      },
+      {
+      "id": "3",
+      "name": "Triceps",
+      "is_selected": 1
+      },
+      {
+      "id": "4",
+      "name": "Lower Back",
+      "is_selected": 0
+      },
+      {
+      "id": "5",
+      "name": "Arms",
+      "is_selected": 1
+      },
+      {
+      "id": "6",
+      "name": "Core",
+      "is_selected": 1
+      },
+      {
+      "id": "7",
+      "name": "Legs",
+      "is_selected": 1
+      },
+      {
+      "id": "8",
+      "name": "Full Body",
+      "is_selected": 0
+      }
+      ]
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.     * 
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * 
+     */
+    public function getUserPhysiqueOptions(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+
+                $muscleGroups = DB::table('muscle_groups')->get();
+
+                $userOptions = DB::table('user_physique_options')->where('user_id', $request->user_id)->first();
+
+                $muscleGroups = array_map(function($muscleGroup) use ($userOptions) {
+                    if (!is_null($userOptions)) {
+                        $userOptionsArray = explode(',', $userOptions->physique_options);
+                        if (count($userOptionsArray) > 0) {
+                            if (in_array($muscleGroup->id, $userOptionsArray)) {
+                                $muscleGroup->is_selected = 1;
+                            } else {
+                                $muscleGroup->is_selected = 0;
+                            }
+                        } else {
+                            $muscleGroup->is_selected = 0;
+                        }
+                    } else {
+                        $muscleGroup->is_selected = 0;
+                    }
+                    return $muscleGroup;
+                }, $muscleGroups);
+
+                return response()->json(['status' => 1, 'success' => 'physique_groups', 'physique_groups' => $muscleGroups], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
+
+    /**
+     * @api {post} /user/options/updatephysiqueoptions updateUserPhysiqueOptions
+     * @apiName updateUserPhysiqueOptions
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} physique_options comma seperated ids of each muscle group *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "updated_user_physique_groups",
+      "physique_groups": [
+      {
+      "id": "1",
+      "name": "Shoulders",
+      "is_selected": 1
+      },
+      {
+      "id": "2",
+      "name": "Chest",
+      "is_selected": 0
+      },
+      {
+      "id": "3",
+      "name": "Triceps",
+      "is_selected": 1
+      },
+      {
+      "id": "4",
+      "name": "Lower Back",
+      "is_selected": 0
+      },
+      {
+      "id": "5",
+      "name": "Arms",
+      "is_selected": 1
+      },
+      {
+      "id": "6",
+      "name": "Core",
+      "is_selected": 1
+      },
+      {
+      "id": "7",
+      "name": "Legs",
+      "is_selected": 1
+      },
+      {
+      "id": "8",
+      "name": "Full Body",
+      "is_selected": 0
+      }
+      ]
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.     * 
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * 
+     */
+    public function updateUserPhysiqueOptions(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->physique_options) || ($request->physique_options == null)) {
+            return response()->json(["status" => "0", "error" => "The physique_options field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->input('user_id'))->first();
+
+            if ($user) {
+
+                $muscleGroups = DB::table('muscle_groups')->get();
+
+                $userOptions = DB::table('user_physique_options')->where('user_id', $request->user_id)->first();
+
+                if (!is_null($userOptions)) {
+                    DB::table('user_physique_options')
+                        ->where('user_id', $request->user_id)
+                        ->update(['physique_options' => $request->physique_options]);
+                } else {
+                    DB::table('user_physique_options')->insert([
+                        'user_id' => $request->user_id,
+                        'physique_options' => $request->physique_options,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
+
+                $userOptionsArray = explode(',', $request->physique_options);
+                $whereNotInQuery = '';
+                if (count($userOptionsArray) > 0) {
+                    foreach ($userOptionsArray as $userOption) {
+                        $skillsInthisRowQuery = DB::table('exercises')->select('exercises.id')
+                                ->whereRaw('exercises.muscle_groups LIKE "%' . $userOption . '%"')->toSql();
+                        $whereNotInQuery .= ' AND skills.exercise_id NOT IN(' . $skillsInthisRowQuery . ')';
+                    }
+                }
+
+                $muscleGroups = array_map(function($muscleGroup) use ($userOptions) {
+                    if (!is_null($userOptions)) {
+                        $userOptionsArray = explode(',', $userOptions->physique_options);
+                        if (count($userOptionsArray) > 0) {
+                            if (in_array($muscleGroup->id, $userOptionsArray)) {
+                                $muscleGroup->is_selected = 1;
+                            } else {
+                                $muscleGroup->is_selected = 0;
+                            }
+                        } else {
+                            $muscleGroup->is_selected = 0;
+                        }
+                    } else {
+                        $muscleGroup->is_selected = 0;
+                    }
+                    return $muscleGroup;
+                }, $muscleGroups);
+
+                $skillsShouldLockedQuery = DB::table('skills')->select('skills.id')
+                        ->whereRaw('skills.level != 1' . $whereNotInQuery)->toSql();
+
+                DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
+
+                return response()->json(['status' => 1, 'success' => 'updated_user_physique_groups', 'physique_groups' => $muscleGroups], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
         }
     }
 }

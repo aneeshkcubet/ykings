@@ -159,6 +159,7 @@ class Coach extends Model
                 $stretches = array_map(function($stretch) {
                     $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
                     $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
+                    return $stretch;
                 }, $stretches);
 
                 $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'professional');

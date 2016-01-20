@@ -1159,6 +1159,20 @@
             "optional": true,
             "field": "volume",
             "description": "<p>volume of exercise/workout/hiit</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "is_coach",
+            "description": "<p>1 in case if coach workout</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": true,
+            "field": "coach_rounds",
+            "description": "<p>number of workout rounds (&quot;coach_workout_rounds&quot; field from day workout)</p> "
           }
         ]
       }
@@ -1289,7 +1303,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"38\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [\n      {\n      \"id\": \"6\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242815.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"38\",\n      \"created_at\": \"2015-11-11 11:53:35\",\n      \"updated_at\": \"2015-11-11 11:53:35\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"11\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [\n      {\n      \"id\": \"5\",\n      \"user_id\": \"11\",\n      \"path\": \"11_1447242388.jpg\",\n      \"description\": \"testttttttttt\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2015-11-11 11:46:28\",\n      \"updated_at\": \"2015-11-11 11:46:28\"\n      }\n      ],\n      \"profile\": {\n      \"user_id\": \"11\",\n      \"first_name\": \"ansa\",\n      \"last_name\": \"v\",\n      \"image\": \"11_1447237788.jpg\"\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"235\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"12\",\n      \"feed_text\": \"Post check\",\n      \"created_at\": \"2016-01-20 06:52:57\",\n      \"updated_at\": \"2016-01-20 06:52:57\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Cardio-strength\",\n      \"item_name\": \"Forseti\",\n      \"duration\": \"41\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"233\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:55\",\n      \"updated_at\": \"2016-01-20 04:53:55\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"8\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"232\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:16\",\n      \"updated_at\": \"2016-01-20 04:53:16\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"231\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"Hai\",\n      \"created_at\": \"2016-01-20 04:37:20\",\n      \"updated_at\": \"2016-01-20 04:37:20\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"230\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"17\",\n      \"feed_text\": \"Ok\",\n      \"created_at\": \"2016-01-19 13:48:39\",\n      \"updated_at\": \"2016-01-19 13:48:39\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Plank\",\n      \"duration\": \"1\",\n      \"intensity\": \"1\",\n      \"unit\": \"seconds\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"229\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:48:04\",\n      \"updated_at\": \"2016-01-19 13:48:04\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Jumping Pullups\",\n      \"duration\": \"3\",\n      \"intensity\": \"10\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"228\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"40\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:47:35\",\n      \"updated_at\": \"2016-01-19 13:47:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Lunge\",\n      \"duration\": \"3\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"227\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:59\",\n      \"updated_at\": \"2016-01-19 13:46:59\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"226\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:23\",\n      \"updated_at\": \"2016-01-19 13:46:23\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"0\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"225\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:35:46\",\n      \"updated_at\": \"2016-01-19 13:35:46\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Cardio-strength\",\n      \"item_name\": \"Borr\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1398,7 +1412,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 0,\n      \"feed_list\": [\n      {\n      \"id\": \"21\",\n      \"user_id\": \"14\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"testttttttttt\",\n      \"created_at\": \"2015-11-11 06:27:51\",\n      \"updated_at\": \"2015-11-11 06:27:51\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      },\n      {\n      \"id\": \"22\",\n      \"user_id\": \"14\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"afassdfsd\",\n      \"created_at\": \"2015-11-11 06:49:38\",\n      \"updated_at\": \"2015-11-11 06:49:38\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"category\": \"Strength\",\n      \"item_name\": \"Baldur\",\n      \"image\": [],\n      \"workout\": [],\n      \"exercise\": []\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 15,\n      \"feed_list\": [\n      {\n      \"id\": \"45\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"68\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452233072.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"45\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\"\n      }\n      ],\n      \"item_name\": \"30/30\",\n      \"duration\": \"2250.00\",\n      \"intensity\": \"10\"\n      },\n      {\n      \"id\": \"44\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:48\",\n      \"updated_at\": \"2016-01-08 06:03:48\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"43\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:44\",\n      \"updated_at\": \"2016-01-08 06:03:44\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"42\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:37\",\n      \"updated_at\": \"2016-01-08 06:03:37\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"3\"\n      },\n      {\n      \"id\": \"41\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:27\",\n      \"updated_at\": \"2016-01-08 06:03:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"8\"\n      },\n      {\n      \"id\": \"40\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:17\",\n      \"updated_at\": \"2016-01-08 06:03:17\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"39\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:10\",\n      \"updated_at\": \"2016-01-08 06:03:10\",\n      \"clap_count\": 2,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"7\"\n      },\n      {\n      \"id\": \"38\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:02:50\",\n      \"updated_at\": \"2016-01-08 06:02:50\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"30/30\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"15\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"67\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232176.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\"\n      }\n      ],\n      \"category\": \"Cardio-strength\",\n      \"item_name\": \"Mimir\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      },\n      {\n      \"id\": \"36\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"9\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"66\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232167.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"36\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\"\n      }\n      ],\n      \"category\": \"Cardio-strength\",\n      \"item_name\": \"Elli\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2881,88 +2895,6 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/SearchController.php",
-    "groupTitle": "Settings"
-  },
-  {
-    "type": "post",
-    "url": "/user/getsettings",
-    "title": "getUserSettings",
-    "name": "getUserSettings",
-    "group": "Settings",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "user_id",
-            "description": "<p>Id of user *required</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "success.",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"22\",\n      \"user_id\": \"41\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 04:28:18\"\n      },\n      {\n      \"id\": \"23\",\n      \"user_id\": \"41\",\n      \"key\": \"notification\",\n      \"value\": {\n      \"comments\": \"1\",\n      \"claps\": \"0\",\n      \"follow\": \"0\",\n      \"my_performance\": \"1\",\n      \"motivation_knowledge\": \"1\"\n      },\n      \"created_at\": \"2015-12-03 04:22:37\",\n      \"updated_at\": \"2015-12-03 06:13:52\"\n      }\n      ],\n      \"facebook_connect\": 0\n      }",
           "type": "json"
         }
@@ -3009,6 +2941,88 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Api/UserSettingsController.php",
+    "groupTitle": "Settings"
+  },
+  {
+    "type": "post",
+    "url": "/user/getsettings",
+    "title": "getUserSettings",
+    "name": "getUserSettings",
+    "group": "Settings",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Id of user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"settings\": [\n      {\n      \"id\": \"2\",\n      \"user_id\": \"2\",\n      \"key\": \"notification\",\n      \"value\": [\n      {\n      \"comments\": \"1\"\n      },\n      {\n      \"claps\": \"0\"\n      },\n      {\n      \"follow\": \"0\"\n      },\n      {\n      \"my_performance\": \"1\"\n      },\n      {\n      \"motivation_knowledge\": \"1\"\n      }\n      ],\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:00\"\n      },\n      {\n      \"id\": \"3\",\n      \"user_id\": \"2\",\n      \"key\": \"subscription\",\n      \"value\": 1,\n      \"created_at\": \"2015-11-20 00:00:00\",\n      \"updated_at\": \"2015-11-20 06:33:27\"\n      }\n      ]\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 user_not_exists\n{\n  \"status\" : 0,\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/SearchController.php",
     "groupTitle": "Settings"
   },
   {
@@ -5154,6 +5168,106 @@
   },
   {
     "type": "post",
+    "url": "/user/options/goaloptions",
+    "title": "getUserGoalOptions",
+    "name": "getUserGoalOptions",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>id of loggedin user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "progression_id",
+            "description": "<p>id of Progression *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"user_selected_goals\",\n      \"skill_levels\": {\n      \"1\": {\n      \"id\": \"5\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"69\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"69\",\n      \"name\": \"Muscleups\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"1\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"69\",\n      \"path\": \"Now69.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 1\n      },\n      \"2\": {\n      \"id\": \"10\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"77\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"77\",\n      \"name\": \"Front Lever\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"10\",\n      \"unit\": \"seconds\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"78\",\n      \"path\": \"Now78.mp4\",\n      \"videothumbnail\": \"thumbnail2.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 0\n      },\n      \"3\": {\n      \"id\": \"15\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"78\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"78\",\n      \"name\": \"Pullover\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"79\",\n      \"path\": \"Now79.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 1\n      },\n      \"4\": {\n      \"id\": \"20\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"79\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"79\",\n      \"name\": \"Back Lever\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"10\",\n      \"unit\": \"seconds\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"80\",\n      \"path\": \"Now80.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 1\n      }\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The progression_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
     "url": "/user/history/hiit",
     "title": "getUserHiitHistory",
     "name": "getUserHiitHistory",
@@ -5227,6 +5341,94 @@
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/user/options/physiqueoptions",
+    "title": "getUserPhysiqueOptions",
+    "name": "getUserPhysiqueOptions",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>id of loggedin user *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"physique_groups\",\n      \"physique_groups\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Shoulders\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"2\",\n      \"name\": \"Chest\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"3\",\n      \"name\": \"Triceps\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"4\",\n      \"name\": \"Lower Back\",\n      \"is_selected\": 0\n      },\n      {\n      \"id\": \"5\",\n      \"name\": \"Arms\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"6\",\n      \"name\": \"Core\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"7\",\n      \"name\": \"Legs\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"8\",\n      \"name\": \"Full Body\",\n      \"is_selected\": 0\n      }\n      ]\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
           "type": "json"
         },
         {
@@ -5403,6 +5605,213 @@
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/user/options/updategoaloptions",
+    "title": "updateUserGoalOptions",
+    "name": "updateUserGoalOptions",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>id of loggedin user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "progression_id",
+            "description": "<p>id of Progression *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "selected_goals",
+            "description": "<p>id of Progression *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"updated_user_goals\",\n      \"skill_levels\": {\n      \"1\": {\n      \"id\": \"5\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"1\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"69\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"69\",\n      \"name\": \"Muscleups\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"1\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"6.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"69\",\n      \"path\": \"Now69.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 1\n      },\n      \"2\": {\n      \"id\": \"10\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"2\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"77\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"77\",\n      \"name\": \"Front Lever\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"10\",\n      \"unit\": \"seconds\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"78\",\n      \"path\": \"Now78.mp4\",\n      \"videothumbnail\": \"thumbnail2.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 0\n      },\n      \"3\": {\n      \"id\": \"15\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"3\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"78\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"78\",\n      \"name\": \"Pullover\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"1\",\n      \"unit\": \"times\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"79\",\n      \"path\": \"Now79.mp4\",\n      \"videothumbnail\": \"thumbnail3.jpg\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 0\n      },\n      \"4\": {\n      \"id\": \"20\",\n      \"description\": \"\",\n      \"progression_id\": \"1\",\n      \"level\": \"5\",\n      \"row\": \"4\",\n      \"substitute\": \"0\",\n      \"exercise_id\": \"79\",\n      \"created_at\": \"2015-12-14 03:04:45\",\n      \"updated_at\": \"2015-12-15 05:48:46\",\n      \"exercise\": {\n      \"id\": \"79\",\n      \"name\": \"Back Lever\",\n      \"description\": \"\",\n      \"category\": \"3\",\n      \"type\": \"2\",\n      \"muscle_groups\": \"0\",\n      \"rewards\": \"10.00\",\n      \"repititions\": \"10\",\n      \"duration\": \"10\",\n      \"unit\": \"seconds\",\n      \"equipment\": \"\",\n      \"range_of_motion\": \"\",\n      \"video_tips\": \"\",\n      \"pro_tips\": \"\",\n      \"video\": [\n      {\n      \"id\": \"80\",\n      \"path\": \"Now80.mp4\",\n      \"videothumbnail\": \"thumbnail1.png\",\n      \"description\": \"Test Description\"\n      }\n      ]\n      },\n      \"is_selected\": 1\n      }\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The user_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The progression_id field is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The goal_options field is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/UsersController.php",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/user/options/updatephysiqueoptions",
+    "title": "updateUserPhysiqueOptions",
+    "name": "updateUserPhysiqueOptions",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>id of loggedin user *required</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>integer</p> ",
+            "optional": false,
+            "field": "physique_options",
+            "description": "<p>comma seperated ids of each muscle group *required</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "success.",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"updated_user_physique_groups\",\n      \"physique_groups\": [\n      {\n      \"id\": \"1\",\n      \"name\": \"Shoulders\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"2\",\n      \"name\": \"Chest\",\n      \"is_selected\": 0\n      },\n      {\n      \"id\": \"3\",\n      \"name\": \"Triceps\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"4\",\n      \"name\": \"Lower Back\",\n      \"is_selected\": 0\n      },\n      {\n      \"id\": \"5\",\n      \"name\": \"Arms\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"6\",\n      \"name\": \"Core\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"7\",\n      \"name\": \"Legs\",\n      \"is_selected\": 1\n      },\n      {\n      \"id\": \"8\",\n      \"name\": \"Full Body\",\n      \"is_selected\": 0\n      }\n      ]\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Message token_invalid.</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "user_not_exists",
+            "description": "<p>User error.</p> "
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_invalid\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\":\"0\",\n  \"error\": \"token_expired\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"token_not_provided\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Bad Request\n{\n  \"status\":\"0\",\n  \"error\": \"user_not_exists\"\n}",
           "type": "json"
         },
         {

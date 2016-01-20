@@ -74,6 +74,28 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.history.hiit',
         'uses' => 'Api\UsersController@getUserHiitHistory'
     ]);
+    
+    Route::post('user/options/goaloptions', [
+        'as' => 'user.options.goaloptions',
+        'uses' => 'Api\UsersController@getUserGoalOptions'
+    ]);
+    
+    Route::post('user/options/updategoaloptions', [
+        'as' => 'user.options.updategoaloptions',
+        'uses' => 'Api\UsersController@updateUserGoalOptions'
+    ]);
+    
+    Route::post('user/options/physiqueoptions', [
+        'as' => 'user.options.physiqueoptions',
+        'uses' => 'Api\UsersController@getUserPhysiqueOptions'
+    ]);
+    
+    Route::post('user/options/updatephysiqueoptions', [
+        'as' => 'user.options.updatephysiqueoptions',
+        'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
+    ]);
+    
+    
 
     Route::get('verify', [
         'as' => 'confirmation_path',

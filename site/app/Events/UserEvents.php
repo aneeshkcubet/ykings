@@ -64,7 +64,7 @@ class UserEvents extends Event
         
         $unlockedSkills = Skill::where('level', 1)->get();
         
-        $adminUsers = User::where('is_admin', 1)->where('status', 1);
+        $adminUsers = User::where('is_admin', 1)->where('status', 1)->get();
         
         foreach($unlockedSkills as $sKey => $unlockedSkill){
             Unlockedexercise::create([
