@@ -26,6 +26,11 @@ class Coach extends Model
         'category',
         'muscle_groups'
     ];
+    
+    public function profile()
+    {
+        return $this->belongsTo('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image', 'quote', 'gender'));
+    }
 
     public static function prepareCoachExercises($coachId, $data)
     {

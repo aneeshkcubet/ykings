@@ -23,6 +23,11 @@ use App\Video;
 
 class ExerciseController extends Controller
 {
+    
+    public function __construct()
+    {        
+        $this->middleware('admin');
+    }
 
     /**
      * Index page

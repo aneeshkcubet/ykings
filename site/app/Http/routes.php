@@ -410,6 +410,25 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{exerciseId}/confirm-delete-exercise', array('as' => 'admin.confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
     });
+    
+    # HIIT Management
+    Route::group(array('prefix' => 'hiits'), function () {
+        Route::get('/', array('as' => 'admin.hiits', 'uses' => 'Admin\HiitController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.hiit.create', 'uses' => 'Admin\HiitController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.hiit.postcreate', 'uses' => 'Admin\HiitController@postCreate'));
+
+        Route::get('{hiitId}/edit', array('as' => 'admin.hiit.edit', 'uses' => 'Admin\HiitController@getEdit'));
+
+        Route::post('{hiitId}/edit', array('as' => 'admin.hiit.postedit', 'uses' => 'Admin\HiitController@postEdit'));
+
+        Route::get('{hiitId}', array('as' => 'admin.hiit.show', 'uses' => 'Admin\HiitController@show'));
+
+        Route::get('{hiitId}/delete', array('as' => 'admin.hiit.delete', 'uses' => 'Admin\HiitController@getDelete'));
+
+        Route::get('{hiitId}/confirm-delete-hiit', array('as' => 'admin.confirm-delete.hiit', 'uses' => 'Admin\HiitController@getModalDelete'));
+    });
 
     # Workout Management
     Route::group(array('prefix' => 'workouts'), function () {
@@ -459,5 +478,55 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{skillId}/delete', array('as' => 'admin.skill.delete', 'uses' => 'Admin\SkillController@getDelete'));
 
         Route::get('{skillId}/confirm-delete-skill', array('as' => 'admin.confirm-delete.skill', 'uses' => 'Admin\SkillController@getModalDelete'));
+    });
+    
+    # Feed Management
+    Route::group(array('prefix' => 'feeds'), function () {
+        Route::get('/', array('as' => 'admin.feeds', 'uses' => 'Admin\FeedController@getIndex'));
+
+        Route::get('{feedId}', array('as' => 'admin.feed.edit', 'uses' => 'Admin\FeedController@getEdit'));
+
+        Route::post('{feedId}/edit', array('as' => 'admin.feed.postedit', 'uses' => 'Admin\FeedController@postEdit'));
+
+        Route::get('{feedId}/delete', array('as' => 'admin.feed.delete', 'uses' => 'Admin\FeedController@getDelete'));
+
+        Route::get('{feedId}/confirm-delete-feed', array('as' => 'admin.confirm-delete.feed', 'uses' => 'Admin\FeedController@getModalDelete'));
+        
+        Route::get('comment/{commentId}/edit', array('as' => 'admin.feed.comment.edit', 'uses' => 'Admin\FeedController@getEdit'));
+
+        Route::post('comment/{commentId}/edit', array('as' => 'admin.feed.comment.postedit', 'uses' => 'Admin\FeedController@postEdit'));
+
+        Route::get('comment/{commentId}/delete', array('as' => 'admin.feed.comment.delete', 'uses' => 'Admin\FeedController@getCommentDelete'));
+    });
+    
+    # Coach Management
+    Route::group(array('prefix' => 'coaches'), function () {
+        Route::get('/', array('as' => 'admin.coaches', 'uses' => 'Admin\CoachController@getIndex'));
+        
+        Route::get('{coachId}', array('as' => 'admin.coach.delete', 'uses' => 'Admin\CoachController@getDelete'));
+
+        Route::get('{coachId}/delete', array('as' => 'admin.coach.delete', 'uses' => 'Admin\CoachController@getDelete'));
+
+        Route::get('{coachId}/confirm-delete-coach', array('as' => 'admin.confirm-delete.coach', 'uses' => 'Admin\CoachController@getModalDelete'));
+
+    });
+    
+    # Warmup Exercise Management
+    Route::group(array('prefix' => 'warmups'), function () {
+        Route::get('/', array('as' => 'admin.warmups', 'uses' => 'Admin\WarmupController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.warmup.create', 'uses' => 'Admin\WarmupController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.warmup.postcreate', 'uses' => 'Admin\WarmupController@postCreate'));
+
+        Route::get('{warmupId}/edit', array('as' => 'admin.warmup.edit', 'uses' => 'Admin\WarmupController@getEdit'));
+
+        Route::post('{warmupId}/edit', array('as' => 'admin.warmup.postedit', 'uses' => 'Admin\WarmupController@postEdit'));
+
+        Route::get('{warmupId}', array('as' => 'admin.warmup.show', 'uses' => 'Admin\WarmupController@show'));
+
+        Route::get('{warmupId}/delete', array('as' => 'admin.warmup.delete', 'uses' => 'Admin\WarmupController@getDelete'));
+
+        Route::get('{warmupId}/confirm-delete-warmup', array('as' => 'admin.confirm-delete.warmup', 'uses' => 'Admin\WarmupController@getModalDelete'));
     });
 });

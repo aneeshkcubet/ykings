@@ -157,7 +157,8 @@ class FeedController extends Controller
                         'user_id' => $request->input('user_id'),
                         'item_type' => $request->input('item_type'),
                         'item_id' => $request->input('item_id'),
-                        'feed_text' => $request->input('text')
+                        'feed_text' => $request->input('text'),
+                        'image' => ''
                 ]);
 
                 if ($request->item_type == 'exercise') {
@@ -292,6 +293,10 @@ class FeedController extends Controller
                             'description' => $request->input('text'),
                             'parent_type' => 2,
                             'parent_id' => $feed->id
+                    ]);
+
+                    Feeds::where('id', $feed->id)->update([
+                        'image' => 'feed_' . $feed->id . '_' . $time . '.jpg'
                     ]);
 
                     if (file_exists($_FILES['image']['tmp_name']) && is_writable($_FILES['image']['tmp_name'])) {
@@ -1256,7 +1261,9 @@ class FeedController extends Controller
 
                     //To get Category
                     if ($feedsArray['item_type'] == 'workout') {
+
                         $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
+
                         if (!is_null($workout)) {
                             if ($workout->category == 1) {
                                 $feedsArray['category'] = "Strength";
@@ -1267,13 +1274,32 @@ class FeedController extends Controller
                             $feedsArray['category'] = "";
                         }
                         $feedsArray['item_name'] = $workout->name;
-                        $duration = DB::table('workout_users')->where('user_id', $request->user_id)->where('workout_id', $feedsArray['item_id'])->pluck('time');
-                        if (!is_null($duration)) {
-                            $feedsArray['duration'] = $duration;
+
+                        $workoutUser = DB::table('workout_users')
+                            ->where('feed_id', $feedsArray['id'])
+                            ->first();
+
+                        if (!is_null($workoutUser->time)) {
+                            $feedsArray['duration'] = $workoutUser->time;
                         } else {
                             $feedsArray['duration'] = 0;
                         }
+
+                        if ($workoutUser->is_coach == 1) {
+                            if ($workoutUser->coach_rounds == $workout->rounds) {
+                                $feedsArray['intensity'] = 1;
+                            } elseif ($workoutUser->coach_rounds > $workout->rounds) {
+                                if (($workoutUser->coach_rounds % $workout->rounds) == 0) {
+                                    $feedsArray['intensity'] = $workoutUser->coach_rounds / $workout->rounds;
+                                } else {
+                                    $feedsArray['intensity'] = ($workoutUser->coach_rounds / $workout->rounds) + 1;
+                                }
+                            }
+                        } else {
+                            $feedsArray['intensity'] = $workoutUser->volume;
+                        }
                     } elseif ($feedsArray['item_type'] == 'exercise') {
+
                         $exercise = Exercise::where('id', '=', $feedsArray['item_id'])->first();
                         if (!is_null($exercise)) {
                             if ($exercise->category == 1) {
@@ -1287,21 +1313,37 @@ class FeedController extends Controller
                             $feedsArray['category'] = "";
                         }
                         $feedsArray['item_name'] = $exercise->name;
-                        $duration = DB::table('exercise_users')->where('user_id', $request->user_id)->where('exercise_id', $feedsArray['item_id'])->pluck('time');
-                        if (!is_null($duration)) {
-                            $feedsArray['duration'] = $duration;
+
+                        $exerciseUser = DB::table('exercise_users')
+                            ->where('feed_id', $feedsArray['id'])
+                            ->first();
+
+                        if (!is_null($exerciseUser->time)) {
+                            $feedsArray['duration'] = $exerciseUser->time;
+                            ;
                         } else {
                             $feedsArray['duration'] = 0;
                         }
+
+                        $feedsArray['intensity'] = $exerciseUser->volume;
+
+                        $feedsArray['unit'] = $exercise->unit;
                     } elseif ($feedsArray['item_type'] == 'hiit') {
+
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
                         $feedsArray['item_name'] = $hiit->name;
-                        $duration = DB::table('hiit_users')->where('user_id', $request->user_id)->where('hiit_id', $feedsArray['item_id'])->pluck('time');
-                        if (!is_null($duration)) {
-                            $feedsArray['duration'] = $duration;
+
+                        $hiitUser = DB::table('hiit_users')
+                            ->where('feed_id', $feedsArray['id'])
+                            ->first();
+
+                        if (!is_null($hiitUser->time)) {
+                            $feedsArray['duration'] = $hiitUser->time;
                         } else {
                             $feedsArray['duration'] = 0;
                         }
+
+                        $feedsArray['intensity'] = $hiitUser->volume;
                     } else {
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "";

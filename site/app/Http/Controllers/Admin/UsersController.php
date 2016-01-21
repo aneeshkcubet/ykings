@@ -19,6 +19,11 @@ use App\Country;
 
 class UsersController extends Controller
 {
+    
+    public function __construct()
+    {        
+        $this->middleware('admin');
+    }
 
     /**
      * User index page

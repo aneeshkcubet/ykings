@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Users
+Warmups
 @parent
 @stop
 
@@ -16,15 +16,14 @@ Users
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Users</h1>
+    <h1>Warmups</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
-        </li>
-        <li>Users</li>
-        <li class="active">Users</li>
+        </li>       
+        <li class="active">Warmups</li>
     </ol>
 </section>
 
@@ -34,7 +33,7 @@ Users
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Users List
+                    Warmups
                 </h4>
             </div>
             <br />
@@ -43,31 +42,41 @@ Users
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>User E-mail</th>
-                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Repititions / Duration</th>                            
+                            <th>Unit</th>
                             <th>Actions</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($usersList as $list)
+                        @foreach ($warmup as $list)
                         <tr>
-                            <td>{{{ $list->id }}}</td>
-                            <td>{{{ $list['profile'][0]['first_name'] }}}</td>
-                            <td>{{{ $list['profile'][0]['last_name'] }}}</td>
-                            <td>{{{ $list->email }}}</td>
-                            <td>{{{ $list->status }}}</td>
+                            <td>{{ $list->id }}</td>
+                            <td>{{ $list->name }}</td>                            
                             <td>
-                                <a href="{{ route('users.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                <a href="{{ route('users.update', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>
-                                @if ($list->id != 1)	
-                                <a href="{{ route('confirm-delete/user', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
-                                    <i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
+                                <?php $durationArray = json_decode($list->duration, true); ?>
+                                
+                                Beginner(Min-{{$durationArray[1]['min']}}, Max - {{$durationArray[1]['max']}}) <br />
+                                Advanced(Min-{{$durationArray[2]['min']}}, Max - {{$durationArray[2]['max']}})
+
+                            </td>
+                            <td>
+                                @if($list->unit == 'times')
+                                    Repititions
+                                @else
+                                    Seconds
+                                @endif                               
+                                
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.warmup.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Warmup Details"></i></a>
+                                <a href="{{ route('admin.warmup.edit', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Warmup Details"></i></a>
+
+                                <a href="{{ route('admin.confirm-delete.warmup', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="livicon" data-name="warmup-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete warmup">
                                     </i>
                                 </a>
-                                @endif
+
                             </td>
                         </tr>
                         @endforeach

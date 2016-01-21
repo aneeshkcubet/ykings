@@ -22,6 +22,11 @@ use App\Progression;
 
 class SkillController extends Controller
 {
+    
+    public function __construct()
+    {        
+        $this->middleware('admin');
+    }
 
     /**
      * Index page

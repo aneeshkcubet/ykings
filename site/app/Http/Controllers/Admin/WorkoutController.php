@@ -19,6 +19,11 @@ use App\User;
 
 class WorkoutController extends Controller
 {
+    
+    public function __construct()
+    {        
+        $this->middleware('admin');
+    }
 
     /**
      * Index page

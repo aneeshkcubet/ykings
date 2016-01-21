@@ -291,24 +291,31 @@
 
                             <!-- BEGIN EXERCISE MENU -->
                             <li>
-                                <a href="{{ route('admin.skills') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                <a href="{{ route('admin.exercises') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
                                     <span class="title">Exercises</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li {!! (Request::is('admin.skills') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ route('admin.skills') }}">
+                                    <li {!! (Request::is('admin.exercises') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.exercises') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Exercises
                                         </a>
                                     </li>
                                     <li {!! (Request::is('admin.skill.create') ? 'class="active" id="active"' : '') !!}>
-                                        <a href="{{ route('admin.skill.create') }}">
+                                        <a href="{{ route('admin.exercise.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Exercise
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <!-- END EXERCISE MENU -->
+                            <!-- BEGIN HIIT MENU -->
+                            <li>
+                                <a href="{{ route('admin.hiits') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">HIIT</span>                                    
+                                </a>
                             </li>
                             <!-- END EXERCISE MENU -->
 
@@ -357,6 +364,52 @@
                                 </ul>
                             </li>
                             <!-- END SKILL MENU -->
+                            <!-- BEGIN FEED MENU -->
+                            <li>
+                                <a href="{{ route('admin.feeds') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Feeds</span>
+                                </a>
+                            </li>
+                            <!-- END FEED MENU -->
+                            <!-- BEGIN COACH MENU -->
+                            <li>
+                                <a href="{{ route('admin.coaches') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Coaches</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.coaches') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.coaches') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Coaches
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END COACH MENU -->
+                            
+                            <!-- BEGIN WARMUP MENU -->
+                            <li>
+                                <a href="{{ route('admin.warmups') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Warmups</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.warmups') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.warmups') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Warmups
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.warmup.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.warmup.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Warmup
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END WARMUP MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

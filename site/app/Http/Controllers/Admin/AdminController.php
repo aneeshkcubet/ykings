@@ -50,11 +50,14 @@ class AdminController extends Controller
         $data = $request->all();
         if (Auth::attempt([ 'email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
-            if (Auth::user()->status == 1) {
+            if (Auth::user()->status == 1 && Auth::user()->is_admin == 1) {
                 return Redirect::route("admin.index")->with('success', 'Succesfully loggedin as Admin');
+            } else {
+                Auth::logout();
+                return Redirect::route("admin.getlogin")->with('error', 'You are not an admininistrator!!');;
             }
         } else {
-            return view('admin.login');
+            return Redirect::route("admin.getlogin")->with('error', 'Invalid Credentials');
         }
     }
 

@@ -1870,19 +1870,21 @@ class UsersController extends Controller
 
             if ($user) {
                 $exercises = Exercise::all();
-                foreach ($exercises as $eKey => $exercise) {
+                
+                $exerciseArray = $exercises->toArray();
+                foreach ($exerciseArray as $eKey => $exercise) {
 
                     foreach ($arr1 as $vKey => $volume1) {
                         $exerciseUserDet[$volume1] = DB::table('exercise_users')
-                            ->where('exercise_id', $exercise->id)
+                            ->where('exercise_id', $exercise['id'])
                             ->where('user_id', $request->user_id)
                             ->where('volume', $volume1)
                             ->get();
                     }
 
-                    $exercises[$eKey]->scores = $exerciseUserDet;
+                    $exerciseArray[$eKey]['scores'] = $exerciseUserDet;
                 }
-                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exercises], 200);
+                return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exerciseArray], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -2826,45 +2828,44 @@ class UsersController extends Controller
 
             if ($user) {
                 $workouts = Workout::all();
-                foreach ($workouts as $eKey => $workout) {
-
-
-
+                $workoutArray = $workouts->toArray();
+                foreach ($workoutArray as $eKey => $workout) {
+                    
                     foreach ($arr1 as $vKey => $volume1) {
                         $exerciseUserDetLean[$volume1] = DB::table('workout_users')
-                            ->where('workout_id', $workout->id)
+                            ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
                             ->where('volume', $volume1)
                             ->where('focus', 1)
                             ->get();
                     }
 
-                    $workouts[$eKey]['lean']['scores'] = $exerciseUserDetLean;
+                    $workoutArray[$eKey]['lean']['scores'] = $exerciseUserDetLean;
 
                     foreach ($arr1 as $vKey => $volume1) {
                         $exerciseUserDetAthletic[$volume1] = DB::table('workout_users')
-                            ->where('workout_id', $workout->id)
+                            ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
                             ->where('volume', $volume1)
                             ->where('focus', 2)
                             ->get();
                     }
 
-                    $workouts[$eKey]['athletic']['scores'] = $exerciseUserDetAthletic;
+                    $workoutArray[$eKey]['athletic']['scores'] = $exerciseUserDetAthletic;
 
                     foreach ($arr1 as $vKey => $volume1) {
                         $exerciseUserDetStrength[$volume1] = DB::table('workout_users')
-                            ->where('workout_id', $workout->id)
+                            ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
                             ->where('volume', $volume1)
                             ->where('focus', 3)
                             ->get();
                     }
 
-                    $workouts[$eKey]['strength']['scores'] = $exerciseUserDetStrength;
+                    $workoutArray[$eKey]['strength']['scores'] = $exerciseUserDetStrength;
                 }
 
-                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workouts], 200);
+                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workoutArray], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -3114,17 +3115,18 @@ class UsersController extends Controller
             if ($user) {
 
                 $hiits = Hiit::all();
-                foreach ($hiits as $eKey => $hiit) {
+                $hiitArray = $hiits->toArray();
+                foreach ($hiitArray as $eKey => $hiit) {
                     foreach ($arr1 as $vKey => $volume1) {
                         $hiitSores[$volume1] = DB::table('hiit_users')
-                            ->where('hiit_id', $hiit->id)
+                            ->where('hiit_id', $hiit['id'])
                             ->where('user_id', $request->user_id)
                             ->where('volume', $volume1)
                             ->get();
                     }
-                    $hiits[$eKey]['scores'] = $hiitSores;
+                    $hiitArray[$eKey]['scores'] = $hiitSores;
                 }
-                return response()->json(['status' => 1, 'success' => 'history', 'hiit_history' => $hiits], 200);
+                return response()->json(['status' => 1, 'success' => 'history', 'hiit_history' => $hiitArray], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -3172,155 +3174,155 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "user_selected_goals",
-      "skill_levels": {
-      "1": {
-      "id": "5",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "1",
-      "substitute": "0",
-      "exercise_id": "69",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": "",
-      "category": "3",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      },
-      "2": {
-      "id": "10",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "2",
-      "substitute": "0",
-      "exercise_id": "77",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 0
-      },
-      "3": {
-      "id": "15",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "3",
-      "substitute": "0",
-      "exercise_id": "78",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "78",
-      "name": "Pullover",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "79",
-      "path": "Now79.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      },
-      "4": {
-      "id": "20",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "4",
-      "substitute": "0",
-      "exercise_id": "79",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "79",
-      "name": "Back Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "80",
-      "path": "Now80.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      }
-      }
-      }
+          "status": 1,
+          "success": "user_selected_goals",
+          "skill_levels": [
+            {
+              "id": "5",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "1",
+              "substitute": "0",
+              "exercise_id": "69",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "69",
+                "name": "Muscleups",
+                "description": "",
+                "category": "3",
+                "type": "1",
+                "muscle_groups": "0",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "69",
+                    "path": "Now69.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 1
+            },
+            {
+              "id": "10",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "2",
+              "substitute": "0",
+              "exercise_id": "77",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "77",
+                "name": "Front Lever",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "seconds",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "78",
+                    "path": "Now78.mp4",
+                    "videothumbnail": "thumbnail2.png",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 0
+            },
+            {
+              "id": "15",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "78",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "78",
+                "name": "Pullover",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "1",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "79",
+                    "path": "Now79.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 0
+            },
+            {
+              "id": "20",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "4",
+              "substitute": "0",
+              "exercise_id": "79",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "79",
+                "name": "Back Lever",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "seconds",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "80",
+                    "path": "Now80.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 1
+            }
+          ]
+        }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -3390,7 +3392,7 @@ class UsersController extends Controller
 
                     $skill = Skill::where('row', $i)->where('progression_id', $request->progression_id)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
-                    $skills[$i] = $skill->toArray();
+                    $skills[] = $skill->toArray();
 
                     $i++;
                 } while ($i <= $pullRowCount);
@@ -3427,160 +3429,160 @@ class UsersController extends Controller
      * @apiGroup User
      * @apiParam {integer} user_id id of loggedin user *required
      * @apiParam {integer} progression_id id of Progression *required
-     * @apiParam {String} selected_goals id of Progression *required
+     * @apiParam {String} goal_options comma seperated values of goals selected *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "updated_user_goals",
-      "skill_levels": {
-      "1": {
-      "id": "5",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "1",
-      "substitute": "0",
-      "exercise_id": "69",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": "",
-      "category": "3",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      },
-      "2": {
-      "id": "10",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "2",
-      "substitute": "0",
-      "exercise_id": "77",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 0
-      },
-      "3": {
-      "id": "15",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "3",
-      "substitute": "0",
-      "exercise_id": "78",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "78",
-      "name": "Pullover",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "79",
-      "path": "Now79.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 0
-      },
-      "4": {
-      "id": "20",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "4",
-      "substitute": "0",
-      "exercise_id": "79",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "79",
-      "name": "Back Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "80",
-      "path": "Now80.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      }
-      }
-      }
+          "status": 1,
+          "success": "updated_user_goals",
+          "skill_levels": [
+            {
+              "id": "5",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "1",
+              "substitute": "0",
+              "exercise_id": "69",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "69",
+                "name": "Muscleups",
+                "description": "",
+                "category": "3",
+                "type": "1",
+                "muscle_groups": "0",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "1",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "69",
+                    "path": "Now69.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 1
+            },
+            {
+              "id": "10",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "2",
+              "substitute": "0",
+              "exercise_id": "77",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "77",
+                "name": "Front Lever",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "seconds",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "78",
+                    "path": "Now78.mp4",
+                    "videothumbnail": "thumbnail2.png",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 0
+            },
+            {
+              "id": "15",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "3",
+              "substitute": "0",
+              "exercise_id": "78",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "78",
+                "name": "Pullover",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "1",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "79",
+                    "path": "Now79.mp4",
+                    "videothumbnail": "thumbnail3.jpg",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 0
+            },
+            {
+              "id": "20",
+              "description": "",
+              "progression_id": "1",
+              "level": "5",
+              "row": "4",
+              "substitute": "0",
+              "exercise_id": "79",
+              "created_at": "2015-12-14 03:04:45",
+              "updated_at": "2015-12-15 05:48:46",
+              "exercise": {
+                "id": "79",
+                "name": "Back Lever",
+                "description": "",
+                "category": "3",
+                "type": "2",
+                "muscle_groups": "0",
+                "rewards": "10.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "seconds",
+                "equipment": "",
+                "range_of_motion": "",
+                "video_tips": "",
+                "pro_tips": "",
+                "video": [
+                  {
+                    "id": "80",
+                    "path": "Now80.mp4",
+                    "videothumbnail": "thumbnail1.png",
+                    "description": "Test Description"
+                  }
+                ]
+              },
+              "is_selected": 1
+            }
+          ]
+        }
      * 
      * 
      * @apiError error Message token_invalid.
@@ -3674,7 +3676,7 @@ class UsersController extends Controller
 
                     $skill = Skill::where('row', $i)->where('progression_id', $request->progression_id)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
-                    $skills[$i] = $skill->toArray();
+                    $skills[] = $skill->toArray();
 
                     $i++;
                 } while ($i <= $pullRowCount);
@@ -3878,7 +3880,7 @@ class UsersController extends Controller
      * @apiName updateUserPhysiqueOptions
      * @apiGroup User
      * @apiParam {integer} user_id id of loggedin user *required
-     * @apiParam {integer} physique_options comma seperated ids of each muscle group *required
+     * @apiParam {integer} physique_options comma seperated ids of each muscle groups *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
