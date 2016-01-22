@@ -529,4 +529,23 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{warmupId}/confirm-delete-warmup', array('as' => 'admin.confirm-delete.warmup', 'uses' => 'Admin\WarmupController@getModalDelete'));
     });
+    
+    # Fundumental Exercise Management
+    Route::group(array('prefix' => 'fundumentals'), function () {
+        Route::get('/', array('as' => 'admin.fundumentals', 'uses' => 'Admin\FundumentalController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.fundumental.create', 'uses' => 'Admin\FundumentalController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.fundumental.postcreate', 'uses' => 'Admin\FundumentalController@postCreate'));
+
+        Route::get('{fundumentalId}/edit', array('as' => 'admin.fundumental.edit', 'uses' => 'Admin\FundumentalController@getEdit'));
+
+        Route::post('{fundumentalId}/edit', array('as' => 'admin.fundumental.postedit', 'uses' => 'Admin\FundumentalController@postEdit'));
+
+        Route::get('{fundumentalId}', array('as' => 'admin.fundumental.show', 'uses' => 'Admin\FundumentalController@show'));
+
+        Route::get('{fundumentalId}/delete', array('as' => 'admin.fundumental.delete', 'uses' => 'Admin\FundumentalController@getDelete'));
+
+        Route::get('{fundumentalId}/confirm-delete-fundumental', array('as' => 'admin.confirm-delete.fundumental', 'uses' => 'Admin\FundumentalController@getModalDelete'));
+    });
 });

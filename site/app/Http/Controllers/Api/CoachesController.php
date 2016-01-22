@@ -107,18 +107,16 @@ class CoachesController extends Controller
 
                     $weekStatus = json_decode($coachStatus->week_status, true);
 
-                    foreach ($coach->exercises as $ekey => $exercise) {
-                        if (in_array((int) (str_replace('day', '', $ekey)), $dayStatus) && $dayStatus[(int) (str_replace('day', '', $ekey))] == 1) {
-                            $coach->exercises[$ekey]['status'] = 'completed';
-                        } else {
-                            $coach->exercises[$ekey]['status'] = 'pending';
+                    if (isset($coach->exercises) && !empty($coach->exercises)) {
+                        foreach ($coach->exercises as $ekey => $exercise) {
+                            if (in_array((int) (str_replace('day', '', $ekey)), $dayStatus) && $dayStatus[(int) (str_replace('day', '', $ekey))] == 1) {
+                                $coach->exercises[$ekey]['status'] = 'completed';
+                            } else {
+                                $coach->exercises[$ekey]['status'] = 'pending';
+                            }
                         }
                     }
 
-                    $coach->exercises = array_map(function($exercise) use ($dayStatus) {
-
-                        return $exercise;
-                    }, $coach->exercises);
 
                     if (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp) {
                         //User feedback required
@@ -190,30 +188,7 @@ class CoachesController extends Controller
                             }
                         }
                     }
-
-                    if ($coachStatus->need_update == 1 && (strtotime($coachStatus->updated_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
-                        
-                    } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp)) {
-                        $coach->exercises = json_decode($coach->exercises, true);
-                        return response()->json([
-                                'status' => 1,
-                                'coach_day' => $coachStatus->day,
-                                'coach_week' => $coachStatus->week,
-                                'is_subscribed' => $user->is_subscribed,
-                                'need_update' => 1,
-                                'coach' => [],
-                                'urls' => config('urls.urls')], 200);
-                    } elseif ($coachStatus->need_update == 0 && (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') > $currentTimestamp)) {
-                        $coach->exercises = json_decode($coach->exercises, true);
-                        return response()->json([
-                                'status' => 1,
-                                'coach_day' => $coachStatus->day,
-                                'coach_week' => $coachStatus->week,
-                                'is_subscribed' => $user->is_subscribed,
-                                'need_update' => 0,
-                                'coach' => $coach,
-                                'urls' => config('urls.urls')], 200);
-                    }
+                    
                 } else {
                     return response()->json([
                             'status' => 1,
@@ -2131,9 +2106,9 @@ class CoachesController extends Controller
                     'user_id' => $request->user_id,
                     'focus' => $request->focus,
                     'category' => ($request->test1 == 0 && $request->test2 == 0) ? 'beginer' : 'advanced',
-                    'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null))? "" : $request->muscle_groups,
-                    'height' => (!isset($request->height) || ($request->height == null))? "" : $request->height,
-                    'weight' => (!isset($request->weight) || ($request->weight == null))? "" : $request->weight,
+                    'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null)) ? "" : $request->muscle_groups,
+                    'height' => (!isset($request->height) || ($request->height == null)) ? "" : $request->height,
+                    'weight' => (!isset($request->weight) || ($request->weight == null)) ? "" : $request->weight,
                     'days' => $request->days,
                     'exercises' => ''
                 ];

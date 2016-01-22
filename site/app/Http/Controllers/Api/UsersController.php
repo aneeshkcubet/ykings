@@ -4011,9 +4011,8 @@ class UsersController extends Controller
                     }
                 }
 
-                $muscleGroups = array_map(function($muscleGroup) use ($userOptions) {
-                    if (!is_null($userOptions)) {
-                        $userOptionsArray = explode(',', $userOptions->physique_options);
+                $muscleGroups = array_map(function($muscleGroup) use ($userOptionsArray) {
+                    if (count($userOptionsArray)>=1) {
                         if (count($userOptionsArray) > 0) {
                             if (in_array($muscleGroup->id, $userOptionsArray)) {
                                 $muscleGroup->is_selected = 1;
@@ -4028,7 +4027,7 @@ class UsersController extends Controller
                     }
                     return $muscleGroup;
                 }, $muscleGroups);
-
+                
                 $skillsShouldLockedQuery = DB::table('skills')->select('skills.id')
                         ->whereRaw('skills.level != 1' . $whereNotInQuery)->toSql();
 

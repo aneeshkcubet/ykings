@@ -410,6 +410,29 @@
                                 </ul>
                             </li>
                             <!-- END WARMUP MENU -->
+                            
+                            <!-- BEGIN FUNDUMENTAL MENU -->
+                            <li>
+                                <a href="{{ route('admin.fundumentals') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Fundumentals</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.fundumentals') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.fundumentals') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Fundumentals
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.fundumental.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.fundumental.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Fundumental
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END FUNDUMENTAL MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

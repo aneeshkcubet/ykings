@@ -4,6 +4,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Exercise;
+use App\Fundumental;
 
 class Coach extends Model
 {
@@ -35,44 +36,18 @@ class Coach extends Model
     public static function prepareCoachExercises($coachId, $data)
     {
         $coach = [];
+        
+        $i = 1;
 
-        $fundumentalArray = [
-            1 => [
-                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0]
-            ],
-            2 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            3 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
-                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            4 => [
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            5 => [
-                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
-                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-        ];
+        do {
+
+            $fundumental = Fundumental::where('row', $i)->with(['exercise'])->get();
+            
+            $fundumentalArray[$i] = $fundumental->toArray();
+
+            $i++;
+            unset($fundumental);
+        } while ($i <= 5);
         
         $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
             ->select('exercise_id')
@@ -84,12 +59,14 @@ class Coach extends Model
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['focus'], $userUnlockedSkillExerciseQuery));
 
         $warmUps = DB::table('warmups')->select('*')->get();
-
+        
         if ($data['category'] == 'beginer') {
             foreach ($fundumentalArray as $fKey => $fundumentals) {
-                $fundumentalArray[$fKey] = array_map(function ($fundumental) {
+                $fundumentalArray[$fKey] = array_map(function ($fundumental) {                    
+                   
+                    $fundumentalDurationArray = json_decode($fundumental['duration'], TRUE);
 
-                    $fundumental['duration'] = $fundumental['duration'][1];
+                    $fundumental['duration'] = $fundumentalDurationArray[1];
 
                     $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
 
@@ -98,7 +75,7 @@ class Coach extends Model
                     return $fundumental;
                 }, $fundumentals);
             }
-
+            
             $warmUps = array_map(function($warmUp) {
 
                 $duration = $warmUp->duration;
@@ -116,7 +93,9 @@ class Coach extends Model
 
                 $fundumentalArray[$fKey] = array_map(function ($fundumental) {
 
-                    $fundumental['duration'] = $fundumental['duration'][2];
+                    $fundumentalDurationArray = json_decode($fundumental['duration'], TRUE);
+
+                    $fundumental['duration'] = $fundumentalDurationArray[2];
 
                     $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
 
@@ -156,7 +135,7 @@ class Coach extends Model
 
 
         if ($data['category'] == 'beginer') {
-            $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'beginer');
+            $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'beginer');
         } else {
             if ($data['test1'] == 1 && $data['test2'] == 0) {
                 $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'advanced');
@@ -167,7 +146,7 @@ class Coach extends Model
                     return $stretch;
                 }, $stretches);
 
-                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, 3, 'professional');
+                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'professional');
             }
         }
 
@@ -179,9 +158,7 @@ class Coach extends Model
         $coach = [];
         if ($userLevel == 'beginer') {
             if ($focus == 1) {
-
                 $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $focus);
-
                 $exercises = [];
                 foreach ($basicSkills as $bKey => $basicSkill) {
                     $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -2492,58 +2469,45 @@ class Coach extends Model
 
         $userDoneExercises = [];
 
-        $fundumentalArray = [
-            1 => [
-                ['exercise_id' => 1, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 13, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 16, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 7, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0]
-            ],
-            2 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 10], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 8, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            3 => [
-                ['exercise_id' => 4, 'duration' => [1 => ['min' => 7], 2 => ['min' => 10]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 14, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
-                ['exercise_id' => 10, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            4 => [
-                ['exercise_id' => 3, 'duration' => [1 => ['min' => 7], 2 => ['min' => 15]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 46, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 5, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 30, 'duration' => [1 => ['min' => 10], 2 => ['min' => 25]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 11, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-            5 => [
-                ['exercise_id' => 2, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 12, 'duration' => [1 => ['min' => 10], 2 => ['min' => 20]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 36, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0],
-                ['exercise_id' => 17, 'duration' => [1 => ['min' => 10, 'max' => 60], 2 => ['min' => 60, 'max' => 90]], 'unit' => 'seconds', 'is_completed' => 0],
-                ['exercise_id' => 9, 'duration' => [1 => ['min' => 20], 2 => ['min' => 40]], 'unit' => 'times', 'is_completed' => 0]
-            ],
-        ];
+        $i = 1;
+
+        do {
+
+            $fundumental = Fundumental::where('row', $i)->with(['exercise'])->get();
+            
+            $fundumentalArray[$i] = $fundumental->toArray();
+
+            $i++;
+            unset($fundumental);
+        } while ($i <= 5);
 
         foreach ($fundumentalArray as $fKey => $fundumentals) {
             if ($data['category'] == 'beginer') {
                 $fundumentalArray[$fKey] = array_map(function ($fundumental) {
-                    $fundumental['duration'] = $fundumental['duration'][1];
+                    $fundumentalDurationArray = json_decode($fundumental['duration'], TRUE);
+
+                    $fundumental['duration'] = $fundumentalDurationArray[1];
+                    
                     $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+                    
                     $fundumental['exercise'] = $exercise->toArray();
+                    
                     return $fundumental;
+                    
                 }, $fundumentals);
             } else {
                 $fundumentalArray[$fKey] = array_map(function ($fundumental) {
-                    $fundumental['duration'] = $fundumental['duration'][2];
+                    
+                    $fundumentalDurationArray = json_decode($fundumental['duration'], TRUE);
+
+                    $fundumental['duration'] = $fundumentalDurationArray[2];
+                    
                     $exercise = Exercise::where('id', $fundumental['exercise_id'])->with(['video'])->first();
+                    
                     $fundumental['exercise'] = $exercise->toArray();
+                    
                     return $fundumental;
+                    
                 }, $fundumentals);
             }
         }
@@ -2761,27 +2725,30 @@ class Coach extends Model
             ->toSql();
 
         $basicSkillsQuery = DB::table('skills')
-            ->leftJoin('exercises', 'skills.exercise_id', '=', 'exercises.id')
+            ->leftJoin('exercises', 'exercises.id', '=', 'skills.exercise_id')
             ->select('skills.*')
             ->groupBy('skills.progression_id')
             ->orderBy('skills.id');
+        
         if ($muscleGroups != '') {
-
             $muscleGroupArray = explode(',', $muscleGroups);
-            $likeQuery = '( ';
+            $likeQuery = ' AND (';
             foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
                 $likeQuery .= 'exercises.muscle_groups LIKE %' . $muscleGroupId . '%';
                 if ($mgKey < count($muscleGroupArray) - 1) {
-                    $likeQuery = $likeQuery . ' OR ';
+                    $likeQuery .= $likeQuery . ' OR ';
                 }
             }
-            $likeQuery .= $likeQuery = ' )';
 
-            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus);
+            $likeQuery .= ')';
+
+            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus . $likeQuery);
         } else {
             $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus);
-        }
+        }               
 
-        return $basicSkills = $basicSkillsQuery->get();
+        $basicSkills = $basicSkillsQuery->get();
+        
+        return $basicSkills;
     }
 }
