@@ -161,6 +161,7 @@ class WorkoutsController extends Controller
      * @apiName getWorkoutWithLevels
      * @apiGroup Workout
      * @apiParam {Number} workout_id Id of workout *required
+     * @apiParam {Number} user_d Id of user *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -292,6 +293,8 @@ class WorkoutsController extends Controller
 
         if (!isset($request->workout_id) || ($request->workout_id == null)) {
             return response()->json(["status" => "0", "error" => "The workout_id field is required"]);
+        } elseif (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $workout = Workout::where('id', '=', $request->input('workout_id'))->first();
             if (!is_null($workout)) {
@@ -300,19 +303,19 @@ class WorkoutsController extends Controller
                 
                 $featuredUserQuery = DB::table('users')->select('id')->whereRaw('status = 1 AND is_featured = 1')->toSql();
                 
-                $leanWorkoutUsers = WorkoutUser::whereRaw('category = 1 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
+                $leanWorkoutUsers = WorkoutUser::whereRaw('focus = 1 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')
                     ->get();
                 
-                $athleteWorkoutUsers = WorkoutUser::whereRaw('category = 2 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
+                $athleteWorkoutUsers = WorkoutUser::whereRaw('focus = 2 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')
                     ->get();
                 
-                $strengthWorkoutUsers = WorkoutUser::whereRaw('category = 3 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
+                $strengthWorkoutUsers = WorkoutUser::whereRaw('focus = 3 AND workout_id = '. $request->workout_id .' AND status= 1 AND user_id IN('.$featuredUserQuery.')')                    
                     ->with(['profile'])
                     ->groupBy('user_id')
                     ->orderBy('time', 'ASC')
@@ -336,21 +339,22 @@ class WorkoutsController extends Controller
 
                     //code added by ansa@cubettech.com on 31-12-2015.
                     //list data with Featured & Following
-                    $following = WorkoutUser::whereIn('user_id', function($query) use ($request) {
-                            $query->select('follow_id')
-                                ->from('follows')
-                                ->where('user_id', $request->user_id);
-                        });
-
-                    $following->where('workout_id', '=', $request->workout_id)
-                        ->where('status', '=', 1)
+                    $followQuery = DB::table('follows')->select('follow_id')->whereRaw('user_id = '. $request->user_id)->toSql();
+                    
+                    $followingLeanWorkout = WorkoutUser::whereRaw('workout_id = '. $request->workout_id .' AND focus = 1 AND (user_id IN('.$followQuery.') OR user_id IN('. $request->user_id.'))')                        
                         ->with(['profile'])
-                        ->groupBy('user_id')
-                        ->orderBy('time', 'ASC');
-
-                    $followingLeanWorkout = $following->where('category', '=', 1)->get();
-                    $followingAthleteWorkout = $following->where('category', '=', 2)->get();
-                    $followingStrengthWorkout = $following->where('category', '=', 3)->get();
+                        ->orderBy('time', 'ASC')
+                        ->get();
+                    
+                    $followingAthleteWorkout = WorkoutUser::whereRaw('workout_id = '. $request->workout_id .' AND focus = 2 AND (user_id IN('.$followQuery.') OR user_id IN('. $request->user_id.'))')                        
+                        ->with(['profile'])
+                        ->orderBy('time', 'ASC')
+                        ->get();
+                    
+                    $followingStrengthWorkout = WorkoutUser::whereRaw('workout_id = '. $request->workout_id .' AND focus = 3 AND (user_id IN('.$followQuery.') OR user_id IN('. $request->user_id.'))')                        
+                        ->with(['profile'])
+                        ->orderBy('time', 'ASC')
+                        ->get();
                 }
 
                 $workoutArray['lean'] = [];

@@ -433,6 +433,53 @@
                                 </ul>
                             </li>
                             <!-- END FUNDUMENTAL MENU -->
+                            <!-- BEGIN SRETCHING MENU -->
+                            <li>
+                                <a href="{{ route('admin.stretchings') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Stretchings</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.stretchings') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.stretchings') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Stretchings
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.stretching.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.stretching.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Stretching
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <!-- END SRETCHING MENU -->
+                            
+                            <!-- BEGIN NEWSLETTER MENU -->
+                            <li>
+                                <a href="{{ route('admin.newsletters') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Newsletters</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.newsletters') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.newsletters') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Newsletters
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.newsletter.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.newsletter.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Newsletter
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <!-- END NEWSLETTER MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

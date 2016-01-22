@@ -3397,11 +3397,11 @@ class UsersController extends Controller
                     $i++;
                 } while ($i <= $pullRowCount);
 
-                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->first();
+                $userOptions = DB::table('user_goal_options')->where('progression_id', $request->progression_id)->where('user_id', $request->user_id)->first();
 
                 $skills = array_map(function($skill) use ($userOptions) {
                     if (!is_null($userOptions)) {
-                        $userOptionsArray = explode(',', $userOptions->goal_options);
+                        $userOptionsArray = explode(',', $userOptions->goal_options);                        
                         if (count($userOptionsArray) > 0) {
                             if (in_array($skill['id'], $userOptionsArray)) {
                                 $skill['is_selected'] = 1;

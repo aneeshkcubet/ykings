@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Exercise;
 use App\Fundumental;
+use App\Stretching;
 
 class Coach extends Model
 {
@@ -118,27 +119,25 @@ class Coach extends Model
                 return $warmUp;
             }, $warmUps);
         }
+        $stretches = Stretching::all();
+        
+        $stretchesArray = $stretches->toArray();
+        
+        $stretchesArray = array_map(function($stretch) {
 
-        $stretches = [
-            ['exercise_id' => 'Superman', 'duration' => ['min' => 5, 'max' => 10], 'unit' => 'times', 'is_completed' => 0],
-            ['exercise_id' => 'Lower Back Strength', 'duration' => ['min' => 30, 'max' => 50], 'unit' => 'times', 'is_completed' => 0],
-            ['exercise_id' => 'Upper Dog', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Child\'s Pose', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'L-sit on the floor', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Frog stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Good morning', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Chest Opener', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Triceps Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Hands Back', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-            ['exercise_id' => 'Shoulder Stretch', 'duration' => ['min' => 30, 'max' => 60], 'unit' => 'seconds', 'is_completed' => 0],
-        ];
+                $duration = $stretch['duration'];
+
+                $stretch['duration'] = json_decode($duration, true);
+
+                return $stretch;
+            }, $stretchesArray);
 
 
         if ($data['category'] == 'beginer') {
-            $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'beginer');
+            $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], 'beginer');
         } else {
             if ($data['test1'] == 1 && $data['test2'] == 0) {
-                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'advanced');
+                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], 'advanced');
             } else {
                 $stretches = array_map(function($stretch) {
                     $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
@@ -146,7 +145,7 @@ class Coach extends Model
                     return $stretch;
                 }, $stretches);
 
-                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretches, $data, $userWorkouts, $data['focus'], 'professional');
+                $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], 'professional');
             }
         }
 
@@ -2655,10 +2654,6 @@ class Coach extends Model
         }
 
         $notInQuery = '';
-
-//        var_dump($userDoneExercises);
-//        
-//        die;
 
         if (count($userDoneExercises) > 0) {
 

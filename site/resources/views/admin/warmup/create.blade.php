@@ -80,20 +80,20 @@ Add New Warmup
                                         <div class="col-sm-5">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <input type="text" placeholder="minimum" name="duration[1][min]" value="{{Input::old('duration[beginner][min]')}}" class="form-control required number" />
+                                                    <input type="text" placeholder="minimum" name="duration[1][min]" value="{{Input::old('duration[1][min]')}}" class="form-control required number" />
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input type="text" placeholder="maximum" name="duration[1][max]" value="{{Input::old('duration[beginner][max]')}}" class="form-control number" />
+                                                    <input type="text" placeholder="maximum" name="duration[1][max]" value="{{Input::old('duration[1][max]')}}" class="form-control number" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <input type="text" placeholder="minimum" name="duration[2][min]" value="{{Input::old('duration[advanced][min]')}}" class="form-control required number" />
+                                                    <input type="text" placeholder="minimum" name="duration[2][min]" value="{{Input::old('duration[2][min]')}}" class="form-control required number" />
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input type="text" placeholder="maximum" name="duration[2][max]" value="{{Input::old('duration[advanced][max]')}}" class="form-control number" />
+                                                    <input type="text" placeholder="maximum" name="duration[2][max]" value="{{Input::old('duration[2][max]')}}" class="form-control number" />
                                                 </div>
                                             </div>
                                         </div>

@@ -548,4 +548,44 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{fundumentalId}/confirm-delete-fundumental', array('as' => 'admin.confirm-delete.fundumental', 'uses' => 'Admin\FundumentalController@getModalDelete'));
     });
+    
+    # Stretching Exercise Management
+    Route::group(array('prefix' => 'stretchings'), function () {
+        Route::get('/', array('as' => 'admin.stretchings', 'uses' => 'Admin\StretchingController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.stretching.create', 'uses' => 'Admin\StretchingController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.stretching.postcreate', 'uses' => 'Admin\StretchingController@postCreate'));
+
+        Route::get('{stretchingId}/edit', array('as' => 'admin.stretching.edit', 'uses' => 'Admin\StretchingController@getEdit'));
+
+        Route::post('{stretchingId}/edit', array('as' => 'admin.stretching.postedit', 'uses' => 'Admin\StretchingController@postEdit'));
+
+        Route::get('{stretchingId}', array('as' => 'admin.stretching.show', 'uses' => 'Admin\StretchingController@show'));
+
+        Route::get('{stretchingId}/delete', array('as' => 'admin.stretching.delete', 'uses' => 'Admin\StretchingController@getDelete'));
+
+        Route::get('{stretchingId}/confirm-delete-stretching', array('as' => 'admin.confirm-delete.stretching', 'uses' => 'Admin\StretchingController@getModalDelete'));
+    });
+    
+    # Newsletter Exercise Management
+    Route::group(array('prefix' => 'newsletters'), function () {
+        Route::get('/', array('as' => 'admin.newsletters', 'uses' => 'Admin\NewsletterController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.newsletter.create', 'uses' => 'Admin\NewsletterController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.newsletter.postcreate', 'uses' => 'Admin\NewsletterController@postCreate'));
+        
+        Route::post('send', array('as' => 'admin.newsletter.postsend', 'uses' => 'Admin\NewsletterController@postSend'));
+
+        Route::get('{newsletterId}/edit', array('as' => 'admin.newsletter.edit', 'uses' => 'Admin\NewsletterController@getEdit'));
+
+        Route::post('{newsletterId}/edit', array('as' => 'admin.newsletter.postedit', 'uses' => 'Admin\NewsletterController@postEdit'));
+
+        Route::get('{newsletterId}', array('as' => 'admin.newsletter.show', 'uses' => 'Admin\NewsletterController@show'));
+
+        Route::get('{newsletterId}/delete', array('as' => 'admin.newsletter.delete', 'uses' => 'Admin\NewsletterController@getDelete'));
+
+        Route::get('{newsletterId}/confirm-delete-newsletter', array('as' => 'admin.confirm-delete.newsletter', 'uses' => 'Admin\NewsletterController@getModalDelete'));
+    });
 });
