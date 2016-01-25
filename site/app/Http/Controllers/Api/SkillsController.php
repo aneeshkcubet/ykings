@@ -605,7 +605,7 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 1)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
+                    $skill = Skill::where('row', $i)->where('progression_id', 1)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
                     $skills['pull'][] = $skill->toArray();
 
@@ -617,7 +617,7 @@ class SkillsController extends Controller
                 $dipRowCount = count(Skill::where('progression_id', 2)->groupBy('row')->get());
 
                 do {
-                    $skill = Skill::where('row', $i)->where('progression_id', 2)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
+                    $skill = Skill::where('row', $i)->where('progression_id', 2)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
                     $skills['dip'][] = $skill->toArray();
                     $i++;
@@ -630,7 +630,7 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 3)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
+                    $skill = Skill::where('row', $i)->where('progression_id', 3)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
                     $skills['full_body'][] = $skill->toArray();
                     $i++;
@@ -644,7 +644,7 @@ class SkillsController extends Controller
                 do {
 
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 4)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
+                    $skill = Skill::where('row', $i)->where('progression_id', 4)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
 
                     $skills['push'][] = $skill->toArray();
                     $i++;
@@ -657,7 +657,7 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 5)->with(['exercise'])->orderBy('skills.id', 'DESC')->first();
+                    $skill = Skill::where('row', $i)->where('progression_id', 5)->with(['exercise'])->orderBy('skills.level', 'ASC')->first();
 
                     $skills['core'][] = $skill->toArray();
                     $i++;
@@ -870,7 +870,7 @@ class SkillsController extends Controller
 
                 $skill = Skill::where('id', $request->skill_id)->first();
 
-                $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->get();
+                $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
                 foreach ($skills as $sKey => $sValue) {
                     $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                     $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
@@ -1189,7 +1189,7 @@ class SkillsController extends Controller
                         'user_id' => $request->user_id
                     ]);                    
 
-                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->get();
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
                     foreach ($skills as $sKey => $sValue) {
                         $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                         $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
@@ -1443,7 +1443,7 @@ class SkillsController extends Controller
 
                     Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
 
-                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->get();
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
                     foreach ($skills as $sKey => $sValue) {
                         $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                         $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);

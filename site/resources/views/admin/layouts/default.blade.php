@@ -263,7 +263,6 @@
                                     <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title">Dashboard</span>
                                 </a>
-
                             </li>  
                             <!-- BEGIN USER MENU -->
                             <li>
@@ -341,7 +340,7 @@
                                 </ul>
                             </li>
                             <!-- END WORKOUT MENU -->
-                            
+
                             <!-- BEGIN SKILL MENU -->
                             <li>
                                 <a href="{{ route('admin.skills') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
@@ -384,21 +383,10 @@
                                             Coaches
                                         </a>
                                     </li>
-                                </ul>
-                            </li>
-                            <!-- END COACH MENU -->
-                            
-                            <!-- BEGIN WARMUP MENU -->
-                            <li>
-                                <a href="{{ route('admin.warmups') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
-                                    <span class="title">Warmups</span>
-                                    <span class="fa arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
                                     <li {!! (Request::is('admin.warmups') ? 'class="active" id="active"' : '') !!}>
                                         <a href="{{ route('admin.warmups') }}">
                                             <i class="fa fa-angle-double-right"></i>
-                                            Warmups
+                                            Manage Warmup
                                         </a>
                                     </li>
                                     <li {!! (Request::is('admin.warmup.create') ? 'class="active" id="active"' : '') !!}>
@@ -407,43 +395,22 @@
                                             Add New Warmup
                                         </a>
                                     </li>
-                                </ul>
-                            </li>
-                            <!-- END WARMUP MENU -->
-                            
-                            <!-- BEGIN FUNDUMENTAL MENU -->
-                            <li>
-                                <a href="{{ route('admin.fundumentals') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
-                                    <span class="title">Fundumentals</span>
-                                    <span class="fa arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
                                     <li {!! (Request::is('admin.fundumentals') ? 'class="active" id="active"' : '') !!}>
                                         <a href="{{ route('admin.fundumentals') }}">
                                             <i class="fa fa-angle-double-right"></i>
-                                            Fundumentals
+                                            Manage Fundamentals
                                         </a>
                                     </li>
                                     <li {!! (Request::is('admin.fundumental.create') ? 'class="active" id="active"' : '') !!}>
                                         <a href="{{ route('admin.fundumental.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
-                                            Add New Fundumental
+                                            Add New Fundamental
                                         </a>
                                     </li>
-                                </ul>
-                            </li>
-                            <!-- END FUNDUMENTAL MENU -->
-                            <!-- BEGIN SRETCHING MENU -->
-                            <li>
-                                <a href="{{ route('admin.stretchings') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
-                                    <span class="title">Stretchings</span>
-                                    <span class="fa arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
                                     <li {!! (Request::is('admin.stretchings') ? 'class="active" id="active"' : '') !!}>
                                         <a href="{{ route('admin.stretchings') }}">
                                             <i class="fa fa-angle-double-right"></i>
-                                            Stretchings
+                                            Manage Stretching
                                         </a>
                                     </li>
                                     <li {!! (Request::is('admin.stretching.create') ? 'class="active" id="active"' : '') !!}>
@@ -451,12 +418,11 @@
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Stretching
                                         </a>
-                                    </li>
+                                    </li>                                    
                                 </ul>
                             </li>
-                            
-                            <!-- END SRETCHING MENU -->
-                            
+                            <!-- END COACH MENU -->                           
+
                             <!-- BEGIN NEWSLETTER MENU -->
                             <li>
                                 <a href="{{ route('admin.newsletters') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
@@ -478,7 +444,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <!-- END NEWSLETTER MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->

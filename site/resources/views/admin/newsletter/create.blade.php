@@ -58,7 +58,7 @@ Add New Newsletter
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <!-- first tab -->
-                                <h1>Basic Details</h1>
+                                <h1>Send Newsletter</h1>
 
                                 <section>
                                     <div class="form-group">
