@@ -24,6 +24,7 @@ use App\Workout;
 use App\Exercise;
 use App\Hiit;
 use App\Hiituser;
+use App\Point;
 use App\CommonFunctions\PushNotificationFunction;
 
 class FeedController extends Controller
@@ -46,13 +47,13 @@ class FeedController extends Controller
      * @apiParam {Number} item_id id of the targetting item *required
      * @apiParam {Number} [time_taken] time in seconds
      * @apiParam {Number} [rewards] points earned by doing activity
-     * @apiParam {Number} [category] in case of workout completion 1-Strength, 2-Cardio Strength
+     * @apiParam {Number} [category] in case of workout completion 1-Strength, 2-HIIT Strength
      * @apiParam {Number} [focus] in case of workout completion 1-Lean, 2-Athletic 3-Strength
      * @apiParam {String} text *required
      * @apiParam {file} [image]
      * @apiParam {String} [starred] 0/1
      * @apiParam {Number} [volume] volume of exercise/workout/hiit
-     * @apiParam {Number} [is_coach] 1 in case if coach workout
+     * @apiParam {Number} [is_coach] 1 in case if coach workouts/exercises/hiits
      * @apiParam {Number} [coach_rounds] number of workout rounds ("coach_workout_rounds" field from day workout)
      * @apiSuccess {String} success.
      * 
@@ -143,7 +144,11 @@ class FeedController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
+
+
             if ($user) {
+
+                $userLevelBefore = Point::userLevel($user->id);
 
                 //Code added by <ansa@cubettech.com> on 30-12-2015
                 //To add star for feed
@@ -193,6 +198,15 @@ class FeedController extends Controller
                         'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
+
+                    if (isset($request->is_coach) && $request->is_coach == 1) {
+                        $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
+                        DB::table('coach_points')->insert([
+                            'user_id' => $request->user_id,
+                            'week' => $coachStatus->week,
+                            'points' => $pointsEarned
+                        ]);
+                    }
                 } elseif ($request->item_type == 'workout') {
 
                     $workoutDetails = Workout::where('id', $request->item_id)->first();
@@ -229,6 +243,15 @@ class FeedController extends Controller
                         $pointsEarned = $request->rewards;
                     }
 
+                    if (isset($request->is_coach) && $request->is_coach == 1) {
+                        $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
+                        DB::table('coach_points')->insert([
+                            'user_id' => $request->user_id,
+                            'week' => $coachStatus->week,
+                            'points' => $pointsEarned
+                        ]);
+                    }
+
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'item_id' => $workoutUser->id,
@@ -263,6 +286,15 @@ class FeedController extends Controller
                         'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
+
+                    if (isset($request->is_coach) && $request->is_coach == 1) {
+                        $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
+                        DB::table('coach_points')->insert([
+                            'user_id' => $request->user_id,
+                            'week' => $coachStatus->week,
+                            'points' => $pointsEarned
+                        ]);
+                    }
                 }
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -302,6 +334,23 @@ class FeedController extends Controller
                     if (file_exists($_FILES['image']['tmp_name']) && is_writable($_FILES['image']['tmp_name'])) {
                         unlink($_FILES['image']['tmp_name']);
                     }
+                }
+
+                $userLevelAfter = Point::userLevel($user->id);
+
+                if ($userLevelAfter > $userLevelBefore) {
+
+                    //Push Notification
+                    $data = [
+                        'type' => 'perfomance',
+                        'type_id' => $request->user_id,
+                        'user_id' => $request->user_id,
+                        'friend_id' => 1,
+                        'from_level' => $userLevelBefore,
+                        'to_level' => $userLevelAfter,
+                    ];
+
+                    PushNotificationFunction::pushNotification($data);
                 }
 
                 $feeds = Feeds::with(['user'])->get();
@@ -502,7 +551,7 @@ class FeedController extends Controller
       "updated_at": "2016-01-08 05:49:36"
       }
       ],
-      "category": "Cardio-strength",
+      "category": "HIIT-strength",
       "item_name": "Mimir",
       "duration": "1500",
       "intensity": "2"
@@ -531,7 +580,7 @@ class FeedController extends Controller
       "updated_at": "2016-01-08 05:49:27"
       }
       ],
-      "category": "Cardio-strength",
+      "category": "HIIT-strength",
       "item_name": "Elli",
       "duration": "1500",
       "intensity": "2"
@@ -665,7 +714,7 @@ class FeedController extends Controller
       "is_commented": 0,
       "is_claped": 0,
       "image": [],
-      "category": "Cardio-strength",
+      "category": "HIIT-strength",
       "item_name": "Forseti",
       "duration": "41",
       "intensity": "1",
@@ -907,7 +956,7 @@ class FeedController extends Controller
       "is_commented": 0,
       "is_claped": 0,
       "image": [],
-      "category": "Cardio-strength",
+      "category": "HIIT-strength",
       "item_name": "Borr",
       "duration": "5",
       "intensity": "1",
@@ -1044,7 +1093,7 @@ class FeedController extends Controller
                     if ($workout->category == 1) {
                         $feedsArray['category'] = "Strength";
                     } elseif ($workout->category == 2) {
-                        $feedsArray['category'] = "Cardio-strength";
+                        $feedsArray['category'] = "HIIT-strength";
                     }
                 } else {
                     $feedsArray['category'] = "";
@@ -1268,7 +1317,7 @@ class FeedController extends Controller
                             if ($workout->category == 1) {
                                 $feedsArray['category'] = "Strength";
                             } elseif ($workout->category == 2) {
-                                $feedsArray['category'] = "Cardio-strength";
+                                $feedsArray['category'] = "HIIT-strength";
                             }
                         } else {
                             $feedsArray['category'] = "";
@@ -1438,13 +1487,13 @@ class FeedController extends Controller
                     $feed->claps()->save($clap_details);
 
                     //Push Notification
-                    $request = [
+                    $data = [
                         'type' => 'clap',
                         'type_id' => $request->input('feed_id'),
                         'user_id' => $request->user_id,
                         'friend_id' => $feed->user_id
                     ];
-                    PushNotificationFunction::pushNotification($request);
+                    PushNotificationFunction::pushNotification($data);
                 }
 
                 return response()->json(['status' => 1, 'success' => 'clap added'], 200);

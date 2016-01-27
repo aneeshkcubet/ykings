@@ -139,11 +139,11 @@ class Coach extends Model
             if ($data['test1'] == 1 && $data['test2'] == 0) {
                 $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], 'advanced');
             } else {
-                $stretches = array_map(function($stretch) {
+                $stretchesArray = array_map(function($stretch) {
                     $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
                     $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
                     return $stretch;
-                }, $stretches);
+                }, $stretchesArray);
 
                 $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], 'professional');
             }

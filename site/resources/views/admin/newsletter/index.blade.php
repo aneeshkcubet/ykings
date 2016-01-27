@@ -41,10 +41,10 @@ Newsletters
                 <table class="table table-bordered " id="table">
                     <thead>
                         <tr class="filters">
-                            <th>ID</th>
-                            <th>Subject</th>
-                            <th>Content</th>
-                            <th>Actions</th>
+                            <th width="5%">ID</th>
+                            <th width="30%">Subject</th>
+                            <th width="60%">Content</th>
+                            <th width="5%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,8 +53,7 @@ Newsletters
                             <td>{{ $list->id }}</td>
                             <td>{{ $list->subject }}</td>                            
                             <td>
-                                {{ Str::limit($list->content,50) }}                              
-
+                                {{ str_limit($list->content,200) }}
                             </td>
                             <td>
                                 <a href="{{ route('admin.newsletter.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Newsletter Details"></i></a>

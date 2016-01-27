@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Edit Newsletter - {{  $newsletter->exercise_id }}
+Edit Newsletter - {{  $newsletter->subject }}
 @parent
 @stop
 
@@ -19,7 +19,7 @@ Edit Newsletter - {{  $newsletter->exercise_id }}
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Edit Newsletter - {{{  $newsletter->exercise_id }}}</h1>
+    <h1>Edit Newsletter - {{{  $newsletter->subject }}}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
@@ -27,7 +27,7 @@ Edit Newsletter - {{  $newsletter->exercise_id }}
             </a>
         </li>
         <li><a href="{{ route('admin.newsletters') }}">Newsletters</a></li>
-        <li class="active">Edit: {{{  $newsletter->exercise_id }}}</li>
+        <li class="active">Edit: {{{  $newsletter->subject }}}</li>
     </ol>
 </section>
 <section class="content">
@@ -36,7 +36,7 @@ Edit Newsletter - {{  $newsletter->exercise_id }}
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> <i class="livicon" data-name="users" data-size="16" data-c="#fff" data-hc="#fff" data-loop="true"></i>
-                        {{{  $newsletter->exercise_id }}} 
+                        {{{  $newsletter->subject }}} 
                     </h3>
                     <span class="pull-right clickable">
                         <i class="glyphicon glyphicon-chevron-up"></i>
@@ -44,25 +44,50 @@ Edit Newsletter - {{  $newsletter->exercise_id }}
                 </div>
                 <div class="panel-body">
 
+                    <!-- errors -->
+                    <div class="has-error">
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+
                     <!--main content-->
                     <div class="row">
+
                         <div class="col-md-12">
+
                             <!-- BEGIN FORM WIZARD WITH VALIDATION -->
-                            <form class="form-wizard form-horizontal" action="{{ route('admin.newsletter.postedit', $newsletter->id) }}" method="POST" id="wizard" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{ route('admin.newsletter.postcreate') }}" method="POST" id="newsletter-form" enctype="multipart/form-data">
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
                                 <!-- first tab -->
-                                <!-- first tab -->
-                                <h1>Newsletter</h1>
+                                <h1>Send Newsletter</h1>
 
                                 <section>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Name*</label>
-                                        <div class="col-sm-10">
-                                            <input id="name" name="name" type="text" placeholder="Name" class="form-control required" value="{{{ Input::old('name',$newsletter->exercise_id) }}}" />
+                                        <div class="col-sm-12">Subject *</div>
+                                        <div class="col-sm-12">
+                                            <input id="subject" name="subject" type="text" placeholder="Subject" class="form-control" value="{{{ Input::old('subject', $newsletter->subject) }}}" />
                                         </div>
-                                    </div>                                  
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">Content *</div>
+                                        <div class="col-sm-12">
+                                            <textarea name="content" id="content" class="form-control editor">{{{ Input::old('content', $newsletter->content) }}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary newsletter-submit" id="newsletter-save">Draft</button>
+                                            <button type="button" class="btn btn-primary newsletter-submit" id="newsletter-send">Send</button>
+                                        </div>                                        
+                                    </div>                                    
                                     <p>(*) Mandatory</p>
                                 </section>
                             </form>
@@ -84,4 +109,31 @@ Edit Newsletter - {{  $newsletter->exercise_id }}
 <script src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
 <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/pages/add_user.js') }}"></script>
+<script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
+
+<script type="text/javascript">
+tinymce.init({selector: 'textarea.editor',
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+});
+</script>
+<script type="text/javascript">
+    $('.newsletter-submit').bind('click', function (event) {
+        if ($(event.target).attr('id') == 'newsletter-save') {
+            $('#newsletter-form').attr('action', "{{{route('admin.newsletter.postedit', $newsletter->id)}}}");
+        } else {
+            $('#newsletter-form').attr('action', "{{{route('admin.newsletter.posteditsend', $newsletter->id)}}}");
+        }
+
+        $('#newsletter-form').submit();
+    });
+
+</script>
 @stop

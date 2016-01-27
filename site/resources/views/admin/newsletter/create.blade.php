@@ -46,6 +46,15 @@ Add New Newsletter
 
                     <!-- errors -->
                     <div class="has-error">
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                     </div>
 
                     <!--main content-->
@@ -62,21 +71,21 @@ Add New Newsletter
 
                                 <section>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Subject *</label>
-                                        <div class="col-sm-10">
-                                            <input id="subject" name="subject" type="text" placeholder="Subject" class="form-control required" value="{{{ Input::old('subject') }}}" />
+                                        <div class="col-sm-12">Subject *</div>
+                                        <div class="col-sm-12">
+                                            <input id="subject" name="subject" type="text" placeholder="Subject" class="form-control" value="{{{ Input::old('subject') }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">Content *</div>
                                         <div class="col-sm-12">
-                                            <textarea name="content" id="content" class="form-control editor required">{{{ Input::old('content') }}}</textarea>
+                                            <textarea name="content" id="content" class="form-control editor">{{{ Input::old('content') }}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-primary newsletter-submit" id="newsletter-save">Save</button>
-                                            <button class="btn btn-primary newsletter-submit" id="newsletter-send">Send</button>
+                                            <button type="button" class="btn btn-primary newsletter-submit" id="newsletter-save">Draft</button>
+                                            <button type="button" class="btn btn-primary newsletter-submit" id="newsletter-send">Send</button>
                                         </div>                                        
                                     </div>                                    
                                     <p>(*) Mandatory</p>
@@ -99,19 +108,30 @@ Add New Newsletter
 <script type="text/javascript" src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
 <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
-<script src="{{ asset('assets/js/pages/add_user.js') }}"></script>
 <script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript">
-          tinymce.init({selector:'textarea.editor',
-                        theme: "modern",
-                        plugins: [
-                            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                            "searchreplace wordcount visualblocks visualchars code fullscreen",
-                            "insertdatetime media nonbreaking save table contextmenu directionality",
-                            "emoticons template paste textcolor colorpicker textpattern"
-                        ],
-                        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons",
-                        image_advtab: true,
-                    });
-    </script>
+tinymce.init({selector: 'textarea.editor',
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+});
+</script>
+<script type="text/javascript">
+    $('.newsletter-submit').bind('click', function (event) {
+        if ($(event.target).attr('id') == 'newsletter-save') {
+            $('#newsletter-form').attr('action', "{{{route('admin.newsletter.postcreate')}}}");
+        } else {
+            $('#newsletter-form').attr('action', "{{{route('admin.newsletter.postsend')}}}");
+        }
+
+        $('#newsletter-form').submit();
+    });
+
+</script>  
 @stop

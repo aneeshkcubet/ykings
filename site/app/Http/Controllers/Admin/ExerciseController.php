@@ -23,9 +23,9 @@ use App\Video;
 
 class ExerciseController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -112,6 +112,7 @@ class ExerciseController extends Controller
                 Video::create([
                     'user_id' => Auth::user()->id,
                     'path' => $fullName,
+                    'description' => $exercise->name,
                     'videothumbnail' => $filename . '.png',
                     'parent_type' => 1,
                     'parent_id' => $exercise->id,
@@ -179,7 +180,7 @@ class ExerciseController extends Controller
         // Get the user information
         if (!is_null($exercise)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
+
             return View('admin.exercise.edit', compact('exercise', 'user', 'muscleGroups'));
         } else {
             // Prepare the error message
@@ -243,19 +244,32 @@ class ExerciseController extends Controller
                 $fullName = $filename . '.' . $extension; // renameing image
                 Input::file('video')->move(public_path('uploads/videos/'), $fullName);
 
-                //Unlink previusly uploaded file and thumbnail
+                echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.jpg');
 
-                unlink(public_path('uploads/videos/') . $video->path);
+                if (!is_null($video)) {
+                    
+                    //Unlink previusly uploaded file and thumbnail
 
-                unlink(config("image.videoThumbPath") . $video->videothumbnail);
+                    unlink(public_path('uploads/videos/') . $video->path);
 
-                echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.png');
+                    unlink(config("image.videoThumbPath") . $video->videothumbnail);
 
-                Video::where('parent_id', $exercise->id)->where('parent_type', 1)->update([
-                    'user_id' => Auth::user()->id,
-                    'path' => $fullName,
-                    'videothumbnail' => $filename . '.png'
-                ]);
+                    Video::where('parent_id', $exercise->id)->where('parent_type', 1)->update([
+                        'user_id' => Auth::user()->id,
+                        'path' => $fullName,
+                        'videothumbnail' => $filename . '.jpg'
+                    ]);
+                } else {
+                    Video::create([
+                        'user_id' => Auth::user()->id,
+                        'path' => $fullName,
+                        'description' => $exercise->name,
+                        'videothumbnail' => $filename . '.jpg',
+                        'parent_type' => 1,
+                        'parent_id' => $exercise->id,
+                        'type' => 1
+                    ]);
+                }
             }
 
             return Redirect::route('admin.exercises')->with('success', 'Updated successfully');

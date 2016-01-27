@@ -129,8 +129,7 @@ class MessageController extends Controller
             if ($user) {
                 $notifications = Message::where('message.friend_id', '=', $request->input('user_id'))
                     ->join('user_profiles', 'user_profiles.user_id', '=', 'message.friend_id')
-                    ->select(array('message.*', 'user_profiles.image'))
-                    ->where('message.read', 0)
+                    ->select(array('message.*', 'user_profiles.image'))                    
                     ->orderBy('message.id', 'DESC')                    
                     ->get();
                 return response()->json(['status' => 1, 'notifications' => $notifications, 'urls' => config('urls.urls')], 200);
@@ -211,10 +210,14 @@ class MessageController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
-                $notifications = Message::where('id', '=', $request->message_id)->first();
-                if (!empty($notifications)) {
-                    $notifications->read = 1;
-                    $notifications->update();
+                $notification = Message::where('id', '=', $request->message_id)->first();
+                if (!empty($notification)) {
+                    Message::where('user_id', $notification->user_id)
+                        ->where('friend_id', $notification->friend_id)
+                        ->where('message_type', $notification->message_type)
+                        ->where('type_id', $notification->type_id)
+                        ->update(['read'=>1]);
+
                     return response()->json(['status' => 1, 'success' => 'Successfully Updated'], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'message_not_exists'], 422);

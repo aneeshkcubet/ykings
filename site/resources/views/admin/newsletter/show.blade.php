@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-View Newsletter - {{ $newsletter->exercise_id }}
+View Newsletter - {{ $newsletter->subject }}
 @parent
 @stop
 
@@ -25,7 +25,7 @@ View Newsletter - {{ $newsletter->exercise_id }}
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>View Newsletter : {{ $newsletter->exercise_id }}</h1>
+    <h1>View Newsletter : {{ $newsletter->subject }}</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.index') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
@@ -33,7 +33,7 @@ View Newsletter - {{ $newsletter->exercise_id }}
             </a>
         </li>
         <li><a href="{{ route('admin.newsletters') }}">Newsletters</a></li>
-        <li class="active">{{ $newsletter->exercise_id }}</li>
+        <li class="active">{{ $newsletter->subject }}</li>
     </ol>
 </section>
 <section class="content">
@@ -42,7 +42,7 @@ View Newsletter - {{ $newsletter->exercise_id }}
             <ul class="nav  nav-tabs ">
                 <li class="active">
                     <a href="#tab1" data-toggle="tab"> 
-                        Basic Details
+                        Details
                     </a>
                 </li>
             </ul>
@@ -60,28 +60,26 @@ View Newsletter - {{ $newsletter->exercise_id }}
                                                 <th>Value</th>
                                                 </thead>
                                                 <tr>
-                                                    <td>Name</td>
+                                                    <td>Subject</td>
                                                     <td>
-                                                        {{ $newsletter->exercise_id }}
+                                                        {{ $newsletter->subject }}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
-                                                    <td>Repetitions/Duration</td>
+                                                    <td>Content</td>
                                                     <td>
-                                                        <?php $durationArray = json_decode($newsletter->duration, true); ?>
-
-                                                        Min-{{$durationArray['min']}}, Max - {{$durationArray['max']}}
+                                                        {!! $newsletter->content !!}
 
                                                     </td>
                                                 </tr>                                                
                                                 <tr>
-                                                    <td>Unit</td>
+                                                    <td>Status</td>
                                                     <td>
-                                                        @if($newsletter->unit == 'times')
-                                                        Repititions
+                                                        @if($newsletter->status == 1)
+                                                        Sent
                                                         @else
-                                                        Seconds
+                                                        Draft
                                                         @endif 
                                                     </td>
                                                 </tr>

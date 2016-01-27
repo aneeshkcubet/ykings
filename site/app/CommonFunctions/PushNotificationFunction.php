@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Message as Notification;
 use App\PushNotification;
 use App\Profile;
+use App\Settings;
 
 /**
  * Push notification
@@ -42,16 +43,47 @@ class PushNotificationFunction
             //To get sender info
             $senderName = Profile::where('user_id', $request['user_id'])
                 ->pluck('first_name');
+            
+            $userSettings = Settings::where('user_id', '=', $request['friend_id'])
+                    ->where('key', '=', 'notification')
+                    ->first();
+            
+            if(!is_null($userSettings)){
+                $settingsArray = json_decode($userSettings->value, TRUE);
+            }
 
             if ($request['type'] == 'clap') {
+                if($settingsArray['claps']==0){
+                    return false;
+                }
                 $notfyMessage = $senderName . ' clapped your feed.';
             } elseif ($request['type'] == 'comment') {
+                if($settingsArray['comments']==0){
+                    return false;
+                }
                 $notfyMessage = $senderName . ' commented on your feed.';
             } elseif ($request['type'] == 'following') {
+                if($settingsArray['follow']==0){
+                    return false;
+                }
                 $notfyMessage = $senderName . ' following you.';
+            } elseif ($request['type'] == 'perfomance') {
+                if($settingsArray['my_performance']==0){
+                    return false;
+                }
+                $notfyMessage = 'Congradulations. Your lavel has been upgraded from '.$request['from_level'].' to '.$request['to_level'].'.';
+            } elseif ($request['type'] == 'motivation') {
+                if($settingsArray['motivation_knowledge']==0){
+                    return false;
+                }
+                $notfyMessage = $senderName . ' updated motivation message.';
             } else {
                 $notfyMessage = 'You have a new message';
             }
+            
+            
+            
+            
             
             //To save notifications on pushnotification to Message table
             $notification = Notification::create([
@@ -67,7 +99,8 @@ class PushNotificationFunction
                 'id' => $notification->id,
                 'text' => $notfyMessage,
                 'feed_id' => $request['type_id'],
-                'type' => $request['type']
+                'type' => $request['type'],
+                'user_id' => $request['user_id']
             ];
             
             //Android Push

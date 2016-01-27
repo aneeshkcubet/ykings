@@ -95,6 +95,11 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
     ]);
     
+    Route::post('/user/updatemotivation', [
+        'as' => 'user.updatemotivation',
+        'uses' => 'Api\UsersController@updateMotivation'
+    ]);
+    
     
 
     Route::get('verify', [
@@ -254,6 +259,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.updateDeviceToken',
         'uses' => 'Api\UserSettingsController@updateDeviceToken'
     ]);
+    
     //SkillsController
     Route::post('/skills/list', [
         'as' => 'skill.list',
@@ -310,6 +316,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.getmusclegroups',
         'uses' => 'Api\CoachesController@getMuscleGroups'
     ]);
+    
+    Route::post('coach/reset', [
+        'as' => 'coach.reset',
+        'uses' => 'Api\CoachesController@resetCoach'
+    ]);
 
     //MessageController
     Route::post('/user/listNotifications', [
@@ -342,6 +353,8 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
 
 Route::get('/admin', ['middleware' => 'auth', function () {
         return view('home');
@@ -581,11 +594,15 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{newsletterId}/edit', array('as' => 'admin.newsletter.edit', 'uses' => 'Admin\NewsletterController@getEdit'));
 
         Route::post('{newsletterId}/edit', array('as' => 'admin.newsletter.postedit', 'uses' => 'Admin\NewsletterController@postEdit'));
+        
+        Route::post('{newsletterId}/editsend', array('as' => 'admin.newsletter.posteditsend', 'uses' => 'Admin\NewsletterController@postEditSend'));
 
         Route::get('{newsletterId}', array('as' => 'admin.newsletter.show', 'uses' => 'Admin\NewsletterController@show'));
 
         Route::get('{newsletterId}/delete', array('as' => 'admin.newsletter.delete', 'uses' => 'Admin\NewsletterController@getDelete'));
 
         Route::get('{newsletterId}/confirm-delete-newsletter', array('as' => 'admin.confirm-delete.newsletter', 'uses' => 'Admin\NewsletterController@getModalDelete'));
+        
+        
     });
 });
