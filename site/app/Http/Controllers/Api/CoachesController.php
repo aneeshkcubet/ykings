@@ -509,7 +509,19 @@ class CoachesController extends Controller
      * HTTP/1.1 200 OK
      * {
       "status": 1,
-      "message": "successfully finished day workouts"
+      "message": "successfully finished day workouts",
+      "coach_day": "1",
+      "coach_week": "1",
+      "is_subscribed": 0,
+      "need_update": 1,
+      "week_status": {
+      "1": 1
+      },
+      "day_status": {
+      "1": 1,
+      "2": 1
+      },
+      "week_points": 0
       }
      * 
      * @apiError error Message token_invalid.
@@ -566,19 +578,62 @@ class CoachesController extends Controller
 
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
 
-                $statusArray = json_decode($coach->day_status, TRUE);
-
-                $data['day_status'] = json_encode($statusArray);
-
-                $data['week_status'] = json_decode($coach->week_status, TRUE);
-
-                if ($request->day == $coach->days) {
-                    $data['week_status'][$coach->week] = 1;
-                    $data['day_status'][$request->day] = 1;
+                if (is_null($coachStatus->day_status) || $coachStatus->day_status == '') {
+                    for ($i = 1; $i <= $coach->days; $i++) {
+                        if ($dKay <= $request->day) {
+                            $statusArray[$i] = 1;
+                        } else {
+                            $statusArray[$i] = 0;
+                        }
+                    }
                     $data['day_status'] = json_encode($statusArray);
-                    $data['need_update'] = 1;
                 } else {
-                    $data['need_update'] = 0;
+                    $statusArray = json_decode($coachStatus->day_status, TRUE);
+
+                    foreach ($statusArray as $dKay => $status) {
+                        if ($dKay <= $request->day) {
+                            $statusArray[$dKay] = 1;
+                        } else {
+                            $statusArray[$dKay] = 0;
+                        }
+                    }
+                    $data['day_status'] = json_encode($statusArray);
+                }
+
+                if (is_null($coachStatus->week_status) || $coachStatus->week_status == '') {
+                    $WeekStatusArray = [];
+
+                    if ($request->day == $coach->days) {
+                        for ($j = 1; $j <= $coachStatus->week; $j++) {
+                            $WeekStatusArray[$j] = 1;
+                        }
+                        $data['need_update'] = 1;
+                    } else {
+                        for ($j = 1; $j < $coachStatus->week; $j++) {
+                            $WeekStatusArray[$j] = 1;
+                        }
+
+                        $WeekStatusArray[$coachStatus->week] = 0;
+                        $data['need_update'] = 0;
+                    }
+                    $data['week_status'] = json_encode($WeekStatusArray);
+                } else {
+
+                    $WeekStatusArray = json_decode($coach->week_status, TRUE);
+                    if ($request->day == $coach->days) {
+                        for ($j = 1; $j <= $coachStatus->week; $j++) {
+                            $WeekStatusArray[$j] = 1;
+                        }
+                        $data['need_update'] = 1;
+                    } else {
+                        for ($j = 1; $j < $coachStatus->week; $j++) {
+                            $WeekStatusArray[$j] = 1;
+                        }
+
+                        $WeekStatusArray[$coachStatus->week] = 0;
+                        $data['need_update'] = 0;
+                    }
+                    $data['week_status'] = json_encode($WeekStatusArray);
                 }
 
                 DB::table('coach_status')
@@ -586,7 +641,31 @@ class CoachesController extends Controller
                     ->where('coach_id', $coach->id)
                     ->update($data);
 
-                return response()->json(['status' => 1, 'message' => 'successfully finished day workouts'], 500);
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+
+                $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
+
+                if ($coachStatus->week <= 15) {
+                    $coach->description = DB::table('coach_descriptions')->where('week', $coachStatus->week)->pluck('description');
+                } else {
+                    $coach->description = DB::table('coach_descriptions')->where('week', 15)->pluck('description');
+                }
+
+                $dayStatus = json_decode($coachStatus->day_status, true);
+
+                $weekStatus = json_decode($coachStatus->week_status, true);
+
+                return response()->json([
+                        'status' => 1,
+                        'message' => 'successfully finished day workouts',
+                        'coach_day' => $coachStatus->day,
+                        'coach_week' => $coachStatus->week,
+                        'is_subscribed' => $user->is_subscribed,
+                        'need_update' => 1,
+                        'week_status' => $weekStatus,
+                        'day_status' => $dayStatus,
+                        'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                        ], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -2076,7 +2155,7 @@ class CoachesController extends Controller
                 DB::table('coaches')->where('id', $coachId)->update(['exercises' => json_encode($coachExercises)]);
 
                 $userCoachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coachId)->first();
-                
+
                 for ($i = 1; $i <= $request->days; $i++) {
                     $statusArray[$i] = 0;
                 }
@@ -2124,6 +2203,7 @@ class CoachesController extends Controller
 
                 return response()->json([
                         'status' => 1,
+                        'message' => 'coach_exercises',
                         'coach_day' => $coachStatus->day,
                         'coach_week' => $coachStatus->week,
                         'is_subscribed' => $user->is_subscribed,

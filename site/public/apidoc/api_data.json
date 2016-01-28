@@ -40,7 +40,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"message\": \"successfully finished day workouts\"\n      }",
+          "content": "HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"message\": \"successfully finished day workouts\",\n      \"coach_day\": \"1\",\n      \"coach_week\": \"1\",\n      \"is_subscribed\": 0,\n      \"need_update\": 1,\n      \"week_status\": {\n      \"1\": 1\n      },\n      \"day_status\": {\n      \"1\": 1,\n      \"2\": 1\n      },\n      \"week_points\": 0\n      }",
           "type": "json"
         }
       ]

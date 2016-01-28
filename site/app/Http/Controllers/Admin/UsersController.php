@@ -16,12 +16,15 @@ use JWTAuth;
 use App\User;
 use App\Profile;
 use App\Country;
+use App\Feeds;
+use App\Images;
+use App\CommonFunctions\PushNotificationFunction;
 
 class UsersController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -50,7 +53,7 @@ class UsersController extends Controller
     public function getCreate()
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-        
+
         $countries = Country::all();
         // Show the page
         return View('admin.users.create', compact('user', 'countries'));
@@ -78,7 +81,7 @@ class UsersController extends Controller
         $confirmation_code = str_random(30);
 
         $isActivated = Input::get('is_activated');
-        
+
         $isAdmin = Input::get('is_admin');
 
         $user = User::create([
@@ -171,7 +174,7 @@ class UsersController extends Controller
             // Redirect to the user management page
             return Redirect::route('admin.users')->with('error', $error);
         }
-        
+
         $countries = Country::all();
 
 
@@ -201,7 +204,7 @@ class UsersController extends Controller
             // Redirect to the user management page
             return Redirect::route('admin.users')->with('error', $error);
         }
-        
+
         $countries = Country::all();
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
@@ -257,7 +260,7 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->withInput()->withErrors($validator);
         }
-        
+
         $userProfile = Profile::where('user_id', $id)->first();
         // Update the user
         $userProfile->first_name = Input::get('first_name');
@@ -290,13 +293,11 @@ class UsersController extends Controller
 
             $image->crop(65, 65);
 
-            $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');            
+            $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
 
             $name = $user->id . '_' . time() . '.jpg';
-            
-            DB::table('user_profiles')->where('user_id', $user->id)->update(['image' => $name]);
 
-            
+            DB::table('user_profiles')->where('user_id', $user->id)->update(['image' => $name]);
         }
         // Prepare the success message
         $success = 'Successfully updated the user profile.';
@@ -332,7 +333,7 @@ class UsersController extends Controller
     public function getModalDelete($id = null)
     {
         $model = 'users';
-        
+
         $entity = 'user';
 
         $confirm_route = $error = null;
@@ -377,5 +378,107 @@ class UsersController extends Controller
         $user->update();
 
         return Redirect::route("admin.users")->with('success', 'Successfully removed featured user.');
+    }
+
+    /**
+     * User create form processing.
+     * @since 04/01/2015
+     * @author ansa@cubettech.com
+     * @return json
+     */
+    public function getKnowledgeCreate()
+    {
+        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
+        $countries = Country::all();
+        // Show the page
+        return View('admin.knowledge.create', compact('user', 'countries'));
+    }
+
+    /**
+     * User create form processing.
+     * @since 12/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function postKnowledgeCreate(Request $request)
+    {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+            $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
+
+            //Check for valid image type
+            if (!in_array($_FILES['image']['type'], $accepableTypes)) {
+                $error = 'Please upload a png or jpg or gif image.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
+        }
+
+        $feed = Feeds::create([
+                'user_id' => Auth::user()->id,
+                'item_type' => 'knowledge',
+                'item_id' => 0,
+                'feed_text' => $request->input('text'),
+                'image' => ''
+        ]);
+
+        $users = User::where('status', 1)->where('id', '!=', Auth::user()->id)->get();
+
+        foreach ($users as $uKey => $user) {
+
+            $data = [
+                'type' => 'knowledge',
+                'type_id' => $feed->id,
+                'user_id' => Auth::user()->id,
+                'friend_id' => $user->id,
+            ];
+
+            PushNotificationFunction::pushNotification($data);
+        }
+        
+        //If user uploaded image
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+
+            $image = Image::make($_FILES['image']['tmp_name']);
+
+            $time = time();
+
+            $image->encode('jpeg');
+
+            $image->save(config('image.feedOriginalPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
+
+            $image->crop(400, 400);
+
+            $image->save(config('image.feedLargePath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
+
+            $image->crop(150, 150);
+
+            $image->save(config('image.feedMediumPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
+
+            $image->crop(65, 65);
+
+            $image->save(config('image.feedSmallPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
+
+            $image_upload = Images::create([
+                    'user_id' => Auth::user()->id,
+                    'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
+                    'description' => $request->input('text'),
+                    'parent_type' => 2,
+                    'parent_id' => $feed->id
+            ]);
+
+            Feeds::where('id', $feed->id)->update([
+                'image' => 'feed_' . $feed->id . '_' . $time . '.jpg'
+            ]);
+
+            if (file_exists($_FILES['image']['tmp_name']) && is_writable($_FILES['image']['tmp_name'])) {
+                unlink($_FILES['image']['tmp_name']);
+            }
+        }
+
+        // Redirect to the home page with success message
+
+        return Redirect::route("admin.feeds")->with('success', 'Successfully added message.');
     }
 }

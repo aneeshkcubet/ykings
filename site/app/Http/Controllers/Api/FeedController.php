@@ -144,8 +144,6 @@ class FeedController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-
-
             if ($user) {
 
                 $userLevelBefore = Point::userLevel($user->id);
@@ -345,7 +343,7 @@ class FeedController extends Controller
                         'type' => 'perfomance',
                         'type_id' => $request->user_id,
                         'user_id' => $request->user_id,
-                        'friend_id' => 1,
+                        'friend_id' => $request->user_id,
                         'from_level' => $userLevelBefore,
                         'to_level' => $userLevelAfter,
                     ];

@@ -553,9 +553,27 @@ class UsersController extends Controller
             $profData['instagram'] = $data['instagram'];
         }
 
-        if ($user = User::where('email', '=', $data['email'])->with(['profile'])->first()) {
+        if ($user = User::where('email', '=', $data['email'])->with(['profile', 'followers'])->first()) {
+            
+            $userArray = $user->toArray();
+            //To add followers level in response.
+            //code added by ansa@cubettech.com on 1-12-2015
+            
+            if (count($user->followers) > 0 && (isset($profData['quote']) && $user->profile[0]->quote != $profData['quote'])) {
+                foreach ($user->followers as $follower) {
+                    //Push Notification
+                    $data = [
+                        'type' => 'motivation',
+                        'type_id' => $follower->user_id,
+                        'user_id' => $user->id,
+                        'friend_id' => $follower->user_id
+                    ];
 
-            $user->profile()->update($profData);
+                    PushNotificationFunction::pushNotification($data);
+                }
+            }
+            
+            $user->profile()->update($profData);    
 
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
 
@@ -2825,40 +2843,38 @@ class UsersController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $arr1 = Array(1, 2, 3);
-
             if ($user) {
                 $workouts = Workout::all();
                 $workoutArray = $workouts->toArray();
                 foreach ($workoutArray as $eKey => $workout) {
 
-                    foreach ($arr1 as $vKey => $volume1) {
-                        $exerciseUserDetLean[$volume1] = DB::table('workout_users')
+                    for ($i = 1; $i <= 3; $i++) {
+                        $exerciseUserDetLean[$i] = DB::table('workout_users')
                             ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)
+                            ->where('volume', $i)
                             ->where('focus', 1)
                             ->get();
                     }
 
                     $workoutArray[$eKey]['lean']['scores'] = $exerciseUserDetLean;
 
-                    foreach ($arr1 as $vKey => $volume1) {
-                        $exerciseUserDetAthletic[$volume1] = DB::table('workout_users')
+                    for ($i = 1; $i <= 3; $i++) {
+                        $exerciseUserDetAthletic[$i] = DB::table('workout_users')
                             ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)
+                            ->where('volume', $i)
                             ->where('focus', 2)
                             ->get();
                     }
 
                     $workoutArray[$eKey]['athletic']['scores'] = $exerciseUserDetAthletic;
 
-                    foreach ($arr1 as $vKey => $volume1) {
-                        $exerciseUserDetStrength[$volume1] = DB::table('workout_users')
+                    for ($i = 1; $i <= 3; $i++) {
+                        $exerciseUserDetStrength[$i] = DB::table('workout_users')
                             ->where('workout_id', $workout['id'])
                             ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)
+                            ->where('volume', $i)
                             ->where('focus', 3)
                             ->get();
                     }
@@ -4102,28 +4118,11 @@ class UsersController extends Controller
             return response()->json(["status" => "0", "error" => "The quote field is required"]);
         } else {
 
-            $user = User::where('id', $request->user_id)
-                    ->with(['followers'])->first();
+            $user = User::where('id', $request->user_id)->with(['followers'])->first();
 
             if ($user) {
 
-                Profile::where('user_id', $request->user_id)->update(['quote' => $request->quote]);
 
-                //To add followers level in response.
-                //code added by ansa@cubettech.com on 1-12-2015
-                if (count($user->followers) > 0) {
-                    foreach ($user->followers as $follower) {
-                        //Push Notification
-                        $data = [
-                            'type' => 'motivation',
-                            'type_id' => $follower->user_id,
-                            'user_id' => $user->id,
-                            'friend_id' => $follower->user_id
-                        ];
-
-                        PushNotificationFunction::pushNotification($data);
-                    }
-                }
 
                 return response()->json(['status' => 1, 'success' => 'updated_user_motivation_messsage'], 200);
             } else {

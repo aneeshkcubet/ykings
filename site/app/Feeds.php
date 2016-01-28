@@ -20,6 +20,7 @@ class Feeds extends Model
         'item_type',
         'item_id',
         'feed_text'
+        
     ];
 
     /**

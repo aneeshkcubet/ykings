@@ -39,7 +39,7 @@ class PushNotificationFunction
     public static function pushNotification($request)
     {
 
-        if ($request['user_id'] != $request['friend_id']) {
+        if ($request['user_id'] != $request['friend_id'] || $request['type'] == 'perfomance') {
             //To get sender info
             $senderName = Profile::where('user_id', $request['user_id'])
                 ->pluck('first_name');
@@ -56,7 +56,7 @@ class PushNotificationFunction
                 if($settingsArray['claps']==0){
                     return false;
                 }
-                $notfyMessage = $senderName . ' clapped your feed.';
+                $notfyMessage = 'You have got a hooya from '.$senderName . '.';
             } elseif ($request['type'] == 'comment') {
                 if($settingsArray['comments']==0){
                     return false;
@@ -71,18 +71,20 @@ class PushNotificationFunction
                 if($settingsArray['my_performance']==0){
                     return false;
                 }
-                $notfyMessage = 'Congradulations. Your lavel has been upgraded from '.$request['from_level'].' to '.$request['to_level'].'.';
+                $notfyMessage = 'Congrats. Your level has been upgraded to '.$request['to_level'].'.';
             } elseif ($request['type'] == 'motivation') {
                 if($settingsArray['motivation_knowledge']==0){
                     return false;
                 }
                 $notfyMessage = $senderName . ' updated motivation message.';
+            } elseif ($request['type'] == 'knowledge') {
+                if($settingsArray['motivation_knowledge']==0){
+                    return false;
+                }
+                $notfyMessage = $senderName . ' added a new message.';
             } else {
                 $notfyMessage = 'You have a new message';
             }
-            
-            
-            
             
             
             //To save notifications on pushnotification to Message table

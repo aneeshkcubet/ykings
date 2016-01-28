@@ -257,6 +257,7 @@ class ExerciseController extends Controller
                     Video::where('parent_id', $exercise->id)->where('parent_type', 1)->update([
                         'user_id' => Auth::user()->id,
                         'path' => $fullName,
+                        'description' => $exercise->name,
                         'videothumbnail' => $filename . '.jpg'
                     ]);
                 } else {

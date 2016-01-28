@@ -21,8 +21,12 @@ class Workoutuser extends Model
         'status',
         'time',
         'category',
+        'is_starred',
         'volume',
-        'feed_id'
+        'focus',
+        'is_coach',
+        'feed_id',
+        'coach_rounds'
     ];
 
     /**

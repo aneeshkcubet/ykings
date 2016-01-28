@@ -74,33 +74,33 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.history.hiit',
         'uses' => 'Api\UsersController@getUserHiitHistory'
     ]);
-    
+
     Route::post('user/options/goaloptions', [
         'as' => 'user.options.goaloptions',
         'uses' => 'Api\UsersController@getUserGoalOptions'
     ]);
-    
+
     Route::post('user/options/updategoaloptions', [
         'as' => 'user.options.updategoaloptions',
         'uses' => 'Api\UsersController@updateUserGoalOptions'
     ]);
-    
+
     Route::post('user/options/physiqueoptions', [
         'as' => 'user.options.physiqueoptions',
         'uses' => 'Api\UsersController@getUserPhysiqueOptions'
     ]);
-    
+
     Route::post('user/options/updatephysiqueoptions', [
         'as' => 'user.options.updatephysiqueoptions',
         'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
     ]);
-    
+
     Route::post('/user/updatemotivation', [
         'as' => 'user.updatemotivation',
         'uses' => 'Api\UsersController@updateMotivation'
     ]);
-    
-    
+
+
 
     Route::get('verify', [
         'as' => 'confirmation_path',
@@ -259,7 +259,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.updateDeviceToken',
         'uses' => 'Api\UserSettingsController@updateDeviceToken'
     ]);
-    
+
     //SkillsController
     Route::post('/skills/list', [
         'as' => 'skill.list',
@@ -311,12 +311,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.update',
         'uses' => 'Api\CoachesController@updateCoach'
     ]);
-    
+
     Route::post('coach/getmusclegroups', [
         'as' => 'coach.getmusclegroups',
         'uses' => 'Api\CoachesController@getMuscleGroups'
     ]);
-    
+
     Route::post('coach/reset', [
         'as' => 'coach.reset',
         'uses' => 'Api\CoachesController@resetCoach'
@@ -423,7 +423,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{exerciseId}/confirm-delete-exercise', array('as' => 'admin.confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
     });
-    
+
     # HIIT Management
     Route::group(array('prefix' => 'hiits'), function () {
         Route::get('/', array('as' => 'admin.hiits', 'uses' => 'Admin\HiitController@getIndex'));
@@ -473,7 +473,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('workoutexercise/{workoutExerciseId}/delete', array('as' => 'admin.workout.workoutexercise.delete', 'uses' => 'Admin\WorkoutController@getExerciseDelete'));
     });
-    
+
     # Skill Management
     Route::group(array('prefix' => 'skills'), function () {
         Route::get('/', array('as' => 'admin.skills', 'uses' => 'Admin\SkillController@getIndex'));
@@ -492,7 +492,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{skillId}/confirm-delete-skill', array('as' => 'admin.confirm-delete.skill', 'uses' => 'Admin\SkillController@getModalDelete'));
     });
-    
+
     # Feed Management
     Route::group(array('prefix' => 'feeds'), function () {
         Route::get('/', array('as' => 'admin.feeds', 'uses' => 'Admin\FeedController@getIndex'));
@@ -504,26 +504,25 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{feedId}/delete', array('as' => 'admin.feed.delete', 'uses' => 'Admin\FeedController@getDelete'));
 
         Route::get('{feedId}/confirm-delete-feed', array('as' => 'admin.confirm-delete.feed', 'uses' => 'Admin\FeedController@getModalDelete'));
-        
+
         Route::get('comment/{commentId}/edit', array('as' => 'admin.feed.comment.edit', 'uses' => 'Admin\FeedController@getEdit'));
 
         Route::post('comment/{commentId}/edit', array('as' => 'admin.feed.comment.postedit', 'uses' => 'Admin\FeedController@postEdit'));
 
         Route::get('comment/{commentId}/delete', array('as' => 'admin.feed.comment.delete', 'uses' => 'Admin\FeedController@getCommentDelete'));
     });
-    
+
     # Coach Management
     Route::group(array('prefix' => 'coaches'), function () {
         Route::get('/', array('as' => 'admin.coaches', 'uses' => 'Admin\CoachController@getIndex'));
-        
+
         Route::get('{coachId}', array('as' => 'admin.coach.delete', 'uses' => 'Admin\CoachController@getDelete'));
 
         Route::get('{coachId}/delete', array('as' => 'admin.coach.delete', 'uses' => 'Admin\CoachController@getDelete'));
 
         Route::get('{coachId}/confirm-delete-coach', array('as' => 'admin.confirm-delete.coach', 'uses' => 'Admin\CoachController@getModalDelete'));
-
     });
-    
+
     # Warmup Exercise Management
     Route::group(array('prefix' => 'warmups'), function () {
         Route::get('/', array('as' => 'admin.warmups', 'uses' => 'Admin\WarmupController@getIndex'));
@@ -542,7 +541,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{warmupId}/confirm-delete-warmup', array('as' => 'admin.confirm-delete.warmup', 'uses' => 'Admin\WarmupController@getModalDelete'));
     });
-    
+
     # Fundumental Exercise Management
     Route::group(array('prefix' => 'fundumentals'), function () {
         Route::get('/', array('as' => 'admin.fundumentals', 'uses' => 'Admin\FundumentalController@getIndex'));
@@ -561,7 +560,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{fundumentalId}/confirm-delete-fundumental', array('as' => 'admin.confirm-delete.fundumental', 'uses' => 'Admin\FundumentalController@getModalDelete'));
     });
-    
+
     # Stretching Exercise Management
     Route::group(array('prefix' => 'stretchings'), function () {
         Route::get('/', array('as' => 'admin.stretchings', 'uses' => 'Admin\StretchingController@getIndex'));
@@ -580,21 +579,21 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{stretchingId}/confirm-delete-stretching', array('as' => 'admin.confirm-delete.stretching', 'uses' => 'Admin\StretchingController@getModalDelete'));
     });
-    
-    # Newsletter Exercise Management
+
+    # Newsletter Management
     Route::group(array('prefix' => 'newsletters'), function () {
         Route::get('/', array('as' => 'admin.newsletters', 'uses' => 'Admin\NewsletterController@getIndex'));
 
         Route::get('create', array('as' => 'admin.newsletter.create', 'uses' => 'Admin\NewsletterController@getCreate'));
 
         Route::post('create', array('as' => 'admin.newsletter.postcreate', 'uses' => 'Admin\NewsletterController@postCreate'));
-        
+
         Route::post('send', array('as' => 'admin.newsletter.postsend', 'uses' => 'Admin\NewsletterController@postSend'));
 
         Route::get('{newsletterId}/edit', array('as' => 'admin.newsletter.edit', 'uses' => 'Admin\NewsletterController@getEdit'));
 
         Route::post('{newsletterId}/edit', array('as' => 'admin.newsletter.postedit', 'uses' => 'Admin\NewsletterController@postEdit'));
-        
+
         Route::post('{newsletterId}/editsend', array('as' => 'admin.newsletter.posteditsend', 'uses' => 'Admin\NewsletterController@postEditSend'));
 
         Route::get('{newsletterId}', array('as' => 'admin.newsletter.show', 'uses' => 'Admin\NewsletterController@show'));
@@ -602,7 +601,9 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{newsletterId}/delete', array('as' => 'admin.newsletter.delete', 'uses' => 'Admin\NewsletterController@getDelete'));
 
         Route::get('{newsletterId}/confirm-delete-newsletter', array('as' => 'admin.confirm-delete.newsletter', 'uses' => 'Admin\NewsletterController@getModalDelete'));
-        
-        
     });
+
+    Route::get('knowledge/create', array('as' => 'admin.knowledge.create', 'uses' => 'Admin\UsersController@getKnowledgeCreate'));
+
+    Route::post('knowledge/create', array('as' => 'admin.knowledge.postcreate', 'uses' => 'Admin\UsersController@postKnowledgeCreate'));
 });
