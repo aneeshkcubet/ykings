@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Ykings |    </title>
+    <title>Ykings</title>
 
     <meta name="description" content="" />    <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="http://ykings.com/xmlrpc.php" />
@@ -165,8 +165,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="container">
                 <div class="row">
 

@@ -6,6 +6,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use App\User;
+use App\Feeds;
+use App\Subscription;
+use Carbon\Carbon;
 use Redirect;
 
 class AdminController extends Controller
@@ -22,7 +25,41 @@ class AdminController extends Controller
         if (Auth::user()) {
             $user = User::where('id', '=', Auth::user()->id)->with(['profile'])->first();
             $user = $user->toArray();
-            return View('admin.dashboard.index', compact('user'));
+
+            $date = date("Y-m-d");
+
+            $dateDayBack = date("Y-m-d H:i:s", strtotime($date . " -1 day"));
+
+            $dateWeekBack = date("Y-m-d H:i:s", strtotime($date . " -1 week"));
+
+            $dateMonthBack = date("Y-m-d H:i:s", strtotime($date . " -1 month"));
+
+            $activities = [
+                'last_day' => Feeds::where('created_at', '>', $dateDayBack)->count(),
+                'last_week' => Feeds::where('created_at', '>', $dateWeekBack)->count(),
+                'last_month' => Feeds::where('created_at', '>', $dateMonthBack)->count()
+            ];
+
+            $activeUsers = [
+                'last_day' => User::where('created_at', '>', $dateDayBack)->where('status', 1)->count(),
+                'last_week' => User::where('created_at', '>', $dateWeekBack)->where('status', 1)->count(),
+                'last_month' => User::where('created_at', '>', $dateMonthBack)->where('status', 1)->count()
+            ];
+
+            $subscriptions = [
+                'last_day' => Subscription::where('created_at', '>', $dateDayBack)->count(),
+                'last_week' => Subscription::where('created_at', '>', $dateWeekBack)->count(),
+                'last_month' => Subscription::where('created_at', '>', $dateMonthBack)->count()
+            ];
+
+            $registeredUsers = [
+                'last_day' => User::where('created_at', '>', $dateDayBack)->count(),
+                'last_week' => User::where('created_at', '>', $dateWeekBack)->count(),
+                'last_month' => User::where('created_at', '>', $dateMonthBack)->count()
+            ];
+
+            return View('admin.dashboard.index', compact(
+                    'user', 'activities', 'activeUsers', 'subscriptions', 'registeredUsers'));
         } else {
             return Redirect::route("admin.getlogin");
         }
@@ -54,7 +91,8 @@ class AdminController extends Controller
                 return Redirect::route("admin.index")->with('success', 'Succesfully loggedin as Admin');
             } else {
                 Auth::logout();
-                return Redirect::route("admin.getlogin")->with('error', 'You are not an admininistrator!!');;
+                return Redirect::route("admin.getlogin")->with('error', 'You are not an admininistrator!!');
+                ;
             }
         } else {
             return Redirect::route("admin.getlogin")->with('error', 'Invalid Credentials');
@@ -72,4 +110,5 @@ class AdminController extends Controller
         Auth::logout();
         return Redirect::route("admin.getlogin");
     }
+
 }

@@ -156,7 +156,7 @@ Edit Exercise - {{  $exercise->name }}
                                                     </video>
                                                     @else
                                                     <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;">
-                                                        <img src="http://placehold.it/100x100" alt="Exercise Video">
+                                                        <img src="http://placehold.it/200x200" alt="Exercise Video">
                                                     </div>
                                                     @endif
                                                 </div>

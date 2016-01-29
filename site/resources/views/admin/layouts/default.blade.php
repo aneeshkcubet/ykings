@@ -150,7 +150,7 @@
                                             Exercises
                                         </a>
                                     </li>
-                                    <li {!! (Request::is('admin.skill.create') ? 'class="active" id="active"' : '') !!}>
+                                    <li {!! (Request::is('admin.exercise.create') ? 'class="active" id="active"' : '') !!}>
                                         <a href="{{ route('admin.exercise.create') }}">
                                             <i class="fa fa-angle-double-right"></i>
                                             Add New Exercise
@@ -295,6 +295,49 @@
                             </li>
 
                             <!-- END NEWSLETTER MENU -->
+                            <!-- BEGIN PlAN MENU -->
+                            <li>
+                                <a href="{{ route('admin.plans') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Plans</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.plans') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.plans') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Plans
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.plan.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.plan.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Plan
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- BEGIN PlAN MENU -->
+                            <li>
+                                <a href="{{ route('admin.medias') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Media</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.medias') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.medias') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Media
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.media.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.media.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Media
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END MEDIA MENU -->
                             <!-- BEGIN Knowledge MENU -->
                             <li>
                                 <a href="{{ route('admin.knowledge.create') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>

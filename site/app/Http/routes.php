@@ -356,13 +356,10 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
 
-Route::get('/admin', ['middleware' => 'auth', function () {
-        return view('home');
-    }]);
 
-Route::get('/', function () {
+Route::get('/', ['as' => 'index', function () {
     return view('welcome');
-});
+}]);
 //Admin Routes
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/', [
@@ -380,6 +377,11 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/logout', [
         'as' => 'admin.logout',
         'uses' => 'Admin\AdminController@logout'
+    ]);
+    
+    Route::get('/getServerLoad', [
+        'as' => 'admin.serverload',
+        'uses' => 'Admin\AdminController@getServerLoad'
     ]);
 
     # User Management
@@ -606,4 +608,38 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('knowledge/create', array('as' => 'admin.knowledge.create', 'uses' => 'Admin\UsersController@getKnowledgeCreate'));
 
     Route::post('knowledge/create', array('as' => 'admin.knowledge.postcreate', 'uses' => 'Admin\UsersController@postKnowledgeCreate'));
+    
+    # Media Management
+    Route::group(array('prefix' => 'medias'), function () {
+        Route::get('/', array('as' => 'admin.medias', 'uses' => 'Admin\MediaController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.media.create', 'uses' => 'Admin\MediaController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.media.postcreate', 'uses' => 'Admin\MediaController@postCreate'));
+
+        Route::get('{mediaId}', array('as' => 'admin.media.show', 'uses' => 'Admin\MediaController@show'));
+
+        Route::get('{mediaId}/delete', array('as' => 'admin.media.delete', 'uses' => 'Admin\MediaController@getDelete'));
+
+        Route::get('{mediaId}/confirm-delete-media', array('as' => 'admin.confirm-delete.media', 'uses' => 'Admin\MediaController@getModalDelete'));
+    });
+    
+    # Plan Management
+    Route::group(array('prefix' => 'plans'), function () {
+        Route::get('/', array('as' => 'admin.plans', 'uses' => 'Admin\PlanController@getIndex'));
+
+        Route::get('create', array('as' => 'admin.plan.create', 'uses' => 'Admin\PlanController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.plan.postcreate', 'uses' => 'Admin\PlanController@postCreate'));
+
+        Route::get('{planId}/edit', array('as' => 'admin.plan.edit', 'uses' => 'Admin\PlanController@getEdit'));
+
+        Route::post('{planId}/edit', array('as' => 'admin.plan.postedit', 'uses' => 'Admin\PlanController@postEdit'));
+
+        Route::get('{planId}', array('as' => 'admin.plan.show', 'uses' => 'Admin\PlanController@show'));
+
+        Route::get('{planId}/delete', array('as' => 'admin.plan.delete', 'uses' => 'Admin\PlanController@getDelete'));
+
+        Route::get('{planId}/confirm-delete-plan', array('as' => 'admin.confirm-delete.plan', 'uses' => 'Admin\PlanController@getModalDelete'));
+    });
 });

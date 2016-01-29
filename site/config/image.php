@@ -29,5 +29,9 @@ return array(
     'coverMediumPath' => public_path('uploads/images/cover_image/medium/'),
     'coverLargePath' => public_path('uploads/images/cover_image/large/'),
     'videoThumbPath' => public_path('uploads/images/videothumbnails/'),
+    'mediaOriginalPath' => public_path('uploads/images/media/original/'),
+    'mediaSmallPath' => public_path('uploads/images/media/small/'),
+    'mediaMediumPath' => public_path('uploads/images/media/medium/'),
+    'mediaLargePath' => public_path('uploads/images/media/large/'),
 
 );

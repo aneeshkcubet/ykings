@@ -1,34 +1,58 @@
-@extends('app')
-
-@section('htmlheader_title')
-    Server error
-@endsection
-
-@section('contentheader_title')
-    500 Error Page
-@endsection
-
-@section('$contentheader_description')
-@endsection
-
-@section('main-content')
-
-    <div class="error-page">
-        <h2 class="headline text-red">500</h2>
-        <div class="error-content">
-            <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
-            <p>
-                We will work on fixing that right away.
-                Meanwhile, you may <a href='{{ url('/home') }}'>return to dashboard</a> or try using the search form.
-            </p>
-            <form class='search-form'>
-                <div class='input-group'>
-                    <input type="text" name="search" class='form-control' placeholder="Search"/>
-                    <div class="input-group-btn">
-                        <button type="submit" name="submit" class="btn btn-danger btn-flat"><i class="fa fa-search"></i></button>
-                    </div>
-                </div><!-- /.input-group -->
-            </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>500 Internal Error | Ykings</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- global level js -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <!-- end of global js-->
+    <!-- page level styles-->
+    <link href="{{ asset('assets/css/frontend/500.css') }}" rel="stylesheet" type="text/css" />
+    <!-- end of page level styles-->
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-offset-1 col-xs-10 middle">
+            <div class="error-container">
+                <div class="error-main">
+                    <h1> <i class="livicon" data-name="warning" data-s="100" data-c="#ffbc60" data-hc="#ffbc60" data-eventtype="click" data-iteration="15" data-duration="2000"></i>
+                        500
+                    </h1>
+                    <h3>
+                        Thats an error.
+                        <br>There was an error. Please Try again later. Thats all we know
+                    </h3>
+                        <a href="{{ route('index') }}" class="btn btn-primary">Home</a>
+                    <br>
+                </div>
+            </div>
         </div>
-    </div><!-- /.error-page -->
-@endsection
+    </div>
+    <!-- global js -->
+    <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <!--livicons-->
+    <script src="{{ asset('assets/vendors/livicons/minified/raphael-min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/livicons/minified/livicons-1.4.min.js') }}"></script>
+    <!-- end of global js -->
+    <!-- begining of page level js-->
+    <script>
+    $("document").ready(function() {
+        setTimeout(function() {
+            $(".livicon").trigger('click');
+        }, 10);
+    });
+    // code for aligning center
+    $(document).ready(function() {
+        var x = $(window).height();
+        var y = $(".middle").height();
+        //alert(x);
+        x = x - y;
+        x = x / 2;
+        $(".middle").css("padding-top", x);
+    });
+    </script>
+    <!-- end of page level js-->
+</body>
+</html>

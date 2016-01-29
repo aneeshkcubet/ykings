@@ -64,16 +64,16 @@ class UsersController extends Controller
      * @apiParam {string} email email address of user *required
      * @apiParam {string} password password added by user *required
      * @apiParam {file} [image] user avatar image *accepted formats JPEG, PNG, and GIF
-     * @apiParam {number} [gender] user id of the user 1-Male, 2-Female 
+     * @apiParam {number} [gender] gender of the user 1-Male, 2-Female 
      * @apiParam {number} [fitness_status] user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional
      * @apiParam {number} [goal] user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong 
      * @apiParam {string} [city] user's city 
      * @apiParam {string} [state] user's state 
      * @apiParam {string} [country] user's country 
-     * @apiParam {string} [spot] spot
+     * @apiParam {string} [spot] Training Spot
      * @apiParam {string} [device_token] Device Token
      * @apiParam {string} [device_type] Device Type(android/ios)
-     * @apiParam {string} [quote] Quote added by user
+     * @apiParam {string} [quote] Motivational quote added by user
      * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
      * @apiSuccess {String} success.
      * 
@@ -102,7 +102,7 @@ class UsersController extends Controller
      *                   "city": "",
      *                   "state": "",
      *                   "country": "",
-      "spot": "",
+     *                   "spot": "",
      *                   "quote": "",
      *                   "created_at": "2015-11-11 11:40:10",
      *                   "updated_at": "2015-11-11 11:40:11"
@@ -316,14 +316,16 @@ class UsersController extends Controller
         $profile = new Profile([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'gender' => isset($data['gender']) ? $data['gender'] : '',
-            'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : '',
-            'goal' => isset($data['goal']) ? $data['goal'] : '',
+            'gender' => isset($data['gender']) ? $data['gender'] : 0,
+            'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : 0,
+            'goal' => isset($data['goal']) ? $data['goal'] : 0,
             'city' => isset($data['city']) ? $data['city'] : '',
             'state' => isset($data['state']) ? $data['state'] : '',
             'country' => isset($data['country']) ? $data['country'] : '',
             'spot' => isset($data['spot']) ? $data['spot'] : '',
-            'quote' => isset($data['quote']) ? $data['quote'] : '']);
+            'quote' => isset($data['quote']) ? $data['quote'] : ''
+            ]
+        );
 
 
         $userProfile = $user->profile()->save($profile);
@@ -554,11 +556,11 @@ class UsersController extends Controller
         }
 
         if ($user = User::where('email', '=', $data['email'])->with(['profile', 'followers'])->first()) {
-            
+
             $userArray = $user->toArray();
             //To add followers level in response.
             //code added by ansa@cubettech.com on 1-12-2015
-            
+
             if (count($user->followers) > 0 && (isset($profData['quote']) && $user->profile[0]->quote != $profData['quote'])) {
                 foreach ($user->followers as $follower) {
                     //Push Notification
@@ -572,8 +574,8 @@ class UsersController extends Controller
                     PushNotificationFunction::pushNotification($data);
                 }
             }
-            
-            $user->profile()->update($profData);    
+
+            $user->profile()->update($profData);
 
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
 
@@ -1378,7 +1380,7 @@ class UsersController extends Controller
                     if ($workout->category == 1) {
                         $history->category = "Strength";
                     } elseif ($workout->category == 2) {
-                        $history->category = "Cardio-strength";
+                        $history->category = "HIIT-strength";
                     }
                 }
 
@@ -1888,7 +1890,7 @@ class UsersController extends Controller
             $arr1 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
 
             if ($user) {
-                $exercises = Exercise::all();
+                $exercises = Exercise::where('name', '!=', 'Rest')->get();
 
                 $exerciseArray = $exercises->toArray();
                 foreach ($exerciseArray as $eKey => $exercise) {
@@ -1897,7 +1899,7 @@ class UsersController extends Controller
                         $exerciseUserDet[$volume1] = DB::table('exercise_users')
                             ->where('exercise_id', $exercise['id'])
                             ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)
+                            ->where('volume', $volume1)                            
                             ->get();
                     }
 
@@ -3160,13 +3162,13 @@ class UsersController extends Controller
 
             $user = User::whereConfirmationCode($conformationCode)->first();
 
-            if (!is_null($user)) {
+            if (is_null($user)) {
                 $error = 'User not found';
             } else {
                 $user->status = 1;
                 $user->confirmation_code = null;
                 $user->save();
-                return Redirect::to('/')->with('error', $error);
+                return Redirect::to('/')->with('success', 'You are successfully confirmed your email. You can login to app by using your email and password.');
             }
         }
         return Redirect::to('/')->with('error', $error);
