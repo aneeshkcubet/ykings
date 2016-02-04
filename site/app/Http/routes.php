@@ -84,6 +84,11 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.options.updategoaloptions',
         'uses' => 'Api\UsersController@updateUserGoalOptions'
     ]);
+    
+    Route::post('user/options/removegoaloptions', [
+        'as' => 'user.options.removegoaloptions',
+        'uses' => 'Api\UsersController@removeUserGoalOptions'
+    ]);
 
     Route::post('user/options/physiqueoptions', [
         'as' => 'user.options.physiqueoptions',
@@ -246,6 +251,17 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.search',
         'uses' => 'Api\SearchController@userSearch'
     ]);
+    
+    Route::post('/search/featuredUsers', [
+        'as' => 'search.featured',
+        'uses' => 'Api\SearchController@featuredUsers'
+    ]);
+    
+    Route::post('/search/cityUsers', [
+        'as' => 'search.city',
+        'uses' => 'Api\SearchController@cityUsers'
+    ]);
+    
     //UserSettingsController
     Route::post('user/settings', [
         'as' => 'user.settings',
@@ -327,6 +343,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.listNotifications',
         'uses' => 'Api\MessageController@listNotifications'
     ]);
+    
     Route::post('/message/updateReadStatus', [
         'as' => 'message.updateReadStatus',
         'uses' => 'Api\MessageController@updateReadStatus'
@@ -641,5 +658,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('{planId}/delete', array('as' => 'admin.plan.delete', 'uses' => 'Admin\PlanController@getDelete'));
 
         Route::get('{planId}/confirm-delete-plan', array('as' => 'admin.confirm-delete.plan', 'uses' => 'Admin\PlanController@getModalDelete'));
+    });
+    Route::group(array('prefix' => 'settings'), function () {
+        Route::get('edit', array('as' => 'admin.settings.edit', 'uses' => 'Admin\SettingController@getEdit'));
+
+        Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));        
     });
 });

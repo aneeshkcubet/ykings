@@ -6,6 +6,8 @@ use DB;
 use App\Exercise;
 use App\Fundumental;
 use App\Stretching;
+use App\Musclegroup;
+use App\Skill;
 
 class Coach extends Model
 {
@@ -24,10 +26,58 @@ class Coach extends Model
         'height',
         'weight',
         'days',
+        'goal_option',
         'exercises',
         'category',
         'muscle_groups'
     ];
+    protected $appends = ['musclegroup_string', 'goaloption_string'];
+
+    public function getMusclegroupStringAttribute()
+    {
+        return $this->attributes['musclegroup_string'] = self::musclegroupString($this->muscle_groups);
+    }
+
+    public static function musclegroupString($muscleGroups)
+    {
+        $eMuscleGroups = [];
+        if ($muscleGroups == '') {
+            return '';
+        } else {
+            $muscleGroupsArray = DB::table('muscle_groups')->lists('name', 'id');
+
+            if (is_array($muscleGroups)) {
+                $emuscleGroupsArray = $muscleGroups;
+            } elseif (is_string($muscleGroups)) {
+                $emuscleGroupsArray = explode(',', $muscleGroups);
+            } else {
+                $emuscleGroupsArray = [];
+            }
+
+            foreach ($emuscleGroupsArray as $exerciseMuscleGroup) {
+                if (isset($exerciseMuscleGroup) && $exerciseMuscleGroup != '' && !empty($exerciseMuscleGroup) && !is_null($exerciseMuscleGroup)) {
+                    $eMuscleGroups[] = $muscleGroupsArray[$exerciseMuscleGroup];
+                }
+            }
+
+            return implode(', ', $eMuscleGroups);
+        }
+    }
+    
+    public function getGoaloptionStringAttribute()
+    {
+        return $this->attributes['goaloption_string'] = self::goaloptionString($this->goal_option);
+    }
+
+    public static function goaloptionString($goalOption)
+    {
+        if ($goalOption == '' || $goalOption == 0) {
+            return '';
+        } else {
+            $skill = Skill::where('id', $goalOption)->with(['exercise'])->first();
+            return $skill['exercise']->name();
+        }
+    }
 
     public function profile()
     {
@@ -50,14 +100,11 @@ class Coach extends Model
             unset($fundumental);
         } while ($i <= 5);
 
-        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-            ->select('exercise_id')
-            ->whereRaw('user_id = ' . $data['user_id'])
-            ->toSql();
 
-        $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['focus'], $userUnlockedSkillExerciseQuery));
 
-        $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['focus'], $userUnlockedSkillExerciseQuery));
+        $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['focus'], $data['user_id']));
+
+        $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['focus'], $data['user_id']));
 
         $warmUps = DB::table('warmups')->select('*')->get();
 
@@ -2453,6 +2500,7 @@ class Coach extends Model
         if ($assessment != 3) {
             foreach ($exercises as $eKey => $dayExercise) {
                 $exercises[$eKey] = self::updateDayExercises($dayExercise, $assessment, $coachId);
+                $exercises[$eKey]['is_completed'] = 0;
             }
         }
 
@@ -2659,10 +2707,6 @@ class Coach extends Model
         }
 
 
-
-
-
-
         $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
                 ->select('exercise_id')
                 ->whereRaw('user_id = ' . $coach->user_id)->toSql();
@@ -2696,21 +2740,74 @@ class Coach extends Model
         return $dayExercise;
     }
 
-    public static function getUserMatchedWorkoutsQuery($category, $focus, $userUnlockedSkillExerciseQuery)
+    public static function getUserMatchedWorkoutsQuery($category, $focus, $userId)
     {
+        $whereQuery = '';
+
+        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
+            ->select('exercise_id')
+            ->whereRaw('user_id = ' . $userId)
+            ->toSql();
+
+        $whereQuery .= ' AND (exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')';
+        
+
+        $userMuscleGroups = DB::table('user_physique_options')->where('user_id', $userId)->first();
+
+
+        if (!is_null($userMuscleGroups)) {
+            if ($userMuscleGroups->physique_options != '') {
+                $muscleGroupArray = explode(',', $userMuscleGroups->physique_options);
+
+                $likeQuery = '';
+                
+                foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
+                    if ($muscleGroupId != ' ' && $muscleGroupId != '') {
+                        $likeQueryArray[] = 'exercises.muscle_groups LIKE "%' . $muscleGroupId . '%"';
+                    }
+                }
+                $likeQuery .= implode(' OR ', $likeQueryArray);
+
+                if ($likeQuery != '') {
+                    $userOptedMuscleExercisesQuery = DB::table('exercises')
+                        ->select('id')
+                        ->whereRaw($likeQuery)
+                        ->toSql();
+                    $whereQuery .= ' AND exercise_id IN(' . $userOptedMuscleExercisesQuery . ')';
+                }
+            }
+        }
+
+        $userGoalOption = DB::table('user_goal_options')->where('user_id', $userId)->first();
+
+        if (!is_null($userGoalOption)) {
+            if ($userGoalOption->goal_options != '') {
+
+                $goal = DB::table('skills')->where('id', $userGoalOption->goal_options)->first();
+
+                $userOptedGoalExercisesQuery = DB::table('skills')
+                    ->select('exercise_id')
+                    ->whereRaw('progression_id = ' . $goal->progression_id . ' AND row = ' . $goal->row)
+                    ->toSql();
+
+                $whereQuery .= ' AND exercise_id IN(' . $userOptedGoalExercisesQuery . ')';
+            }
+        }
+        
+        $whereQuery .= ')';
 
         return 'SELECT  t1.id, 
-                                                    s.totalCount AS exercise_count 
-                                            FROM    workouts AS t1 
-                                                    LEFT JOIN
-                                                    (
-                                                        SELECT  workout_id, COUNT(*) totalCount 
-                                                        FROM    workout_exercises 
-                                                        WHERE   exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND workout_exercises.category = ' . $focus . '
-                                                        GROUP   BY workout_id
-                                                    )  s ON s.workout_id = t1.id
-                                            WHERE   t1.category = ' . $category . '
-                                            ORDER   BY exercise_count DESC';
+                        s.totalCount AS exercise_count 
+                FROM    workouts AS t1 
+                        LEFT JOIN
+                        (
+                            SELECT  workout_id, COUNT(*) totalCount 
+                            FROM    workout_exercises 
+                            WHERE   workout_exercises.category = ' . $focus . $whereQuery .
+            'GROUP   BY workout_id
+                        )  s ON s.workout_id = t1.id
+                WHERE   t1.category = ' . $category . '
+                ORDER   BY exercise_count DESC';
     }
 
     public static function getUserBasicSkills($userId, $muscleGroups, $focus)

@@ -38,7 +38,7 @@ class ExerciseController extends Controller
     public function getIndex()
     {
         // Grab all the users
-        $exercise = Exercise::get();
+        $exercise = Exercise::all();
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 

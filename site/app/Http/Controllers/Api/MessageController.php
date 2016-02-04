@@ -128,7 +128,7 @@ class MessageController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if ($user) {
                 $notifications = Message::where('message.friend_id', '=', $request->input('user_id'))
-                    ->join('user_profiles', 'user_profiles.user_id', '=', 'message.friend_id')
+                    ->join('user_profiles', 'user_profiles.user_id', '=', 'message.user_id')
                     ->select(array('message.*', 'user_profiles.image'))                    
                     ->orderBy('message.id', 'DESC')                    
                     ->get();

@@ -445,27 +445,24 @@ class SocialController extends Controller
                 if (Auth::loginUsingId($user->id)) {
                     // Authentication passed...
 
-                    if (Auth::user()->status == 1) {
-                        try {
-                            // verify the credentials and create a token for the user
-                            if (!$token = JWTAuth::fromUser($user)) {
-                                return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
-                            }
-                        } catch (JWTException $e) {
-                            // something went wrong
-                            return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
+
+                    try {
+                        // verify the credentials and create a token for the user
+                        if (!$token = JWTAuth::fromUser($user)) {
+                            return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
                         }
-                        $user['workout_count'] = Workout::workoutCount($user->id);
-                        $user['points'] = Point::userPoints($user->id);
-                        $user['level'] = Point::userLevel($user->id);
-                        $user['facebook_connect'] = Social::isFacebookConnect($user->id);
-                        //follower count
-                        $user['follower_count'] = Follow::followerCount($user->id);
-                        // if no errors are encountered we can return a JWT
-                        return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
-                    } else {
-                        return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
+                    } catch (JWTException $e) {
+                        // something went wrong
+                        return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
                     }
+                    $user['workout_count'] = Workout::workoutCount($user->id);
+                    $user['points'] = Point::userPoints($user->id);
+                    $user['level'] = Point::userLevel($user->id);
+                    $user['facebook_connect'] = Social::isFacebookConnect($user->id);
+                    //follower count
+                    $user['follower_count'] = Follow::followerCount($user->id);
+                    // if no errors are encountered we can return a JWT
+                    return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
                 } else {
                     return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
                 }
@@ -502,6 +499,7 @@ class SocialController extends Controller
                     'provider_uid' => $data['provider_id'],
                     'access_token' => isset($data['access_token']) ? $data['access_token'] : '',
                 ]);
+                User::where('email', '=', $data['email'])->update(['status' => 1]);
                 //to do update profile details with new details
                 $profile = Profile::where('user_id', '=', $user_exist->id)->first();
 
@@ -606,6 +604,7 @@ class SocialController extends Controller
                 'provider_uid' => $data['provider_id'],
                 'access_token' => isset($data['access_token']) ? $data['access_token'] : '',
             ]);
+
             $socialAccount = $user->social()->save($social);
 
             $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
@@ -671,7 +670,7 @@ class SocialController extends Controller
      *       "status" : 0,
      *       "error": "user_not_exists"
      *     }  
-    
+
      */
     public function facebookDisconnect(Request $request)
     {

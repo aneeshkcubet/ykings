@@ -605,9 +605,17 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 1)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
-
-                    $skills['pull'][] = $skill->toArray();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 1)->orderBy('skills.level', 'DESC')->first();
+                    
+                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    
+                    $skill->is_selected = 0;
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
+                    if($unlockCount > 0){
+                        $skill->is_selected = 1;
+                    }
+                    
+                    $skills['pull'][] = $skill;
 
                     $i++;
                 } while ($i <= $pullRowCount);
@@ -617,9 +625,15 @@ class SkillsController extends Controller
                 $dipRowCount = count(Skill::where('progression_id', 2)->groupBy('row')->get());
 
                 do {
-                    $skill = Skill::where('row', $i)->where('progression_id', 2)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
-
-                    $skills['dip'][] = $skill->toArray();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 2)->orderBy('skills.level', 'DESC')->first();
+                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->is_selected = 0;
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
+                    if($unlockCount > 0){
+                        $skill->is_selected = 1;
+                    }
+                    
+                    $skills['dip'][] = $skill;
                     $i++;
                     unset($skill);
                 } while ($i <= $dipRowCount);
@@ -630,9 +644,15 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 3)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
-
-                    $skills['full_body'][] = $skill->toArray();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 3)->orderBy('skills.level', 'DESC')->first();
+                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->is_selected = 0;
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
+                    if($unlockCount > 0){
+                        $skill->is_selected = 1;
+                    }
+                    
+                    $skills['full_body'][] = $skill;
                     $i++;
                     unset($skill);
                 } while ($i <= $fullBodyRowCount);
@@ -644,9 +664,15 @@ class SkillsController extends Controller
                 do {
 
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 4)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
-
-                    $skills['push'][] = $skill->toArray();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 4)->orderBy('skills.level', 'DESC')->first();
+                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->is_selected = 0;
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
+                    if($unlockCount > 0){
+                        $skill->is_selected = 1;
+                    }
+                    
+                    $skills['push'][] = $skill;
                     $i++;
                     unset($skill);
                 } while ($i <= $pushRowCount);
@@ -657,9 +683,15 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', 5)->with(['exercise'])->orderBy('skills.level', 'ASC')->first();
-
-                    $skills['core'][] = $skill->toArray();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 5)->orderBy('skills.level', 'ASC')->first();
+                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->is_selected = 0;
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
+                    if($unlockCount > 0){
+                        $skill->is_selected = 1;
+                    }
+                    
+                    $skills['core'][] = $skill;
                     $i++;
                     unset($skill);
                 } while ($i <= $coreRowCount);

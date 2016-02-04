@@ -70,7 +70,7 @@ View Workout - {{ $workout->name }}
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <form method="post" action="#">
-                                            <table class="table table-bordered table-striped" id="users">
+                                            <table class="table table-bordered table-striped" id="workouts">
                                                 <thead>
                                                 <th width='20%'>Field</th>
                                                 <th>Value</th>
@@ -157,7 +157,7 @@ View Workout - {{ $workout->name }}
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="users">
+                                                <table class="table table-bordered table-striped" id="workout_exercises_lean">
                                                     <thead>
                                                     <th width='70%'>Exercices</th>
                                                     <th>Value</th>
@@ -192,11 +192,11 @@ View Workout - {{ $workout->name }}
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="row">
-                                        @foreach ($exercises['strength'] as $eKey => $workoutExercise)
+                                        @foreach ($exercises['athletic'] as $eKey => $workoutExercise)
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="users">
+                                                <table class="table table-bordered table-striped" id="workout_exercises_athletic">
                                                     <thead>
                                                     <th width='70%'>Exercices</th>
                                                     <th>Value</th>
@@ -217,8 +217,7 @@ View Workout - {{ $workout->name }}
                                                 </table>
                                             </div>
                                         </div>
-                                        @endforeach
-                                        
+                                        @endforeach                                        
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +234,7 @@ View Workout - {{ $workout->name }}
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="users">
+                                                <table class="table table-bordered table-striped" id="workout_exercises_strength">
                                                     <thead>
                                                     <th width='70%'>Exercices</th>
                                                     <th>Value</th>

@@ -4,22 +4,26 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class PushNotification extends Model
+class Invitation extends Model
 {
 
     /**
      * Set the database specific table name
      */
-    protected $table = 'push_notifications';
+    protected $table = 'invitations';
 
     /**
      * Set the fillable fields within the model
      */
     protected $fillable = [
         'user_id',
-        'type',
-        'device_token'
+        'email',
+        'code',
+        'status',
+    ];
+    protected $hidden = [
+        'updated_at',
+        'created_at'
     ];
 
- 
 }

@@ -33,7 +33,7 @@ Workouts
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                   Workouts
+                    Workouts
                 </h4>
             </div>
             <br />
@@ -75,8 +75,9 @@ Workouts
                                 Paid                                
                                 @endif
                             </td>
-                            <?php 
-                            $rewardsArray = json_decode($list->rewards); 
+                            <?php
+                            $rewardsArray = json_decode($list->rewards);
+
                             ?>
                             <td>Lean - {{ $rewardsArray->lean }}, Athletic - {{$rewardsArray->athletic}}, Strength - {{$rewardsArray->strength}}</td>                            
                             <td>{{ $list->duration }}</td>

@@ -25,6 +25,7 @@ use App\Exercise;
 use App\Hiit;
 use App\Hiituser;
 use App\Point;
+use App\Freestyleuser;
 use App\CommonFunctions\PushNotificationFunction;
 
 class FeedController extends Controller
@@ -43,9 +44,9 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit' *required
-     * @apiParam {Number} item_id id of the targetting item *required
-     * @apiParam {Number} [time_taken] time in seconds
+     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle' *required
+     * @apiParam {Number} item_id id of the targetting item (0 incase of freestyle) *required
+     * @apiParam {Number} [time_taken] time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'
      * @apiParam {Number} [rewards] points earned by doing activity
      * @apiParam {Number} [category] in case of workout completion 1-Strength, 2-HIIT Strength
      * @apiParam {Number} [focus] in case of workout completion 1-Lean, 2-Athletic 3-Strength
@@ -293,6 +294,32 @@ class FeedController extends Controller
                             'points' => $pointsEarned
                         ]);
                     }
+                } elseif ($request->item_type == 'freestyle') {
+
+                    $pointsEarned = 0;
+
+                    $pointForSingle = DB::table('site_settings')->where('key', '=', 'freestyle_points')->pluck('value');
+
+                    $pointsEarned = ($request->time_taken / 60) * $pointForSingle;
+
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'status' => 1,
+                        'feed_id' => $feed->id,
+                        'time' => $request->time_taken,
+                        'is_starred' => $addStar,
+                        'volume' => ceil(($request->time_taken / 60))
+                    ];
+
+                    $freestyleUser = Freestyleuser::create($data);
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'item_id' => $freestyleUser->id,
+                        'activity' => 'freestyle_completed',
+                        'points' => $pointsEarned,
+                        'created_at' => Carbon::now()
+                    ]);
                 }
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -1143,7 +1170,6 @@ class FeedController extends Controller
 
                 if (!is_null($exerciseUser->time)) {
                     $feedsArray['duration'] = $exerciseUser->time;
-                    ;
                 } else {
                     $feedsArray['duration'] = 0;
                 }
@@ -1167,6 +1193,23 @@ class FeedController extends Controller
                 }
 
                 $feedsArray['intensity'] = $hiitUser->volume;
+            } elseif ($feedsArray['item_type'] == 'freestyle') {
+                $feedsArray['item_name'] = 'Freestyle';
+
+                $freestyleUser = DB::table('freestyle_users')
+                    ->where('feed_id', $feedsArray['id'])
+                    ->first();
+
+                if (!is_null($freestyleUser)) {
+                    $feedsArray['duration'] = $freestyleUser->time;
+                } else {
+                    $feedsArray['duration'] = 0;
+                }
+
+                $feedsArray['intensity'] = $freestyleUser->volume;
+            } elseif ($feedsArray['item_type'] == 'knowledge') {
+                $feedsArray['category'] = "";
+                $feedsArray['item_name'] = "Knowledge";
             } else {
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "";
@@ -1367,7 +1410,6 @@ class FeedController extends Controller
 
                         if (!is_null($exerciseUser->time)) {
                             $feedsArray['duration'] = $exerciseUser->time;
-                            ;
                         } else {
                             $feedsArray['duration'] = 0;
                         }
@@ -1391,6 +1433,23 @@ class FeedController extends Controller
                         }
 
                         $feedsArray['intensity'] = $hiitUser->volume;
+                    } elseif ($feedsArray['item_type'] == 'freestyle') {
+                        $feedsArray['item_name'] = 'Freestyle';
+
+                        $freestyleUser = DB::table('freestyle_users')
+                            ->where('feed_id', $feedsArray['id'])
+                            ->first();
+
+                        if (!is_null($freestyleUser)) {
+                            $feedsArray['duration'] = $freestyleUser->time;
+                        } else {
+                            $feedsArray['duration'] = 0;
+                        }
+
+                        $feedsArray['intensity'] = $freestyleUser->volume;
+                    } elseif ($feedsArray['item_type'] == 'knowledge') {
+                        $feedsArray['category'] = "";
+                        $feedsArray['item_name'] = "Knowledge";
                     } else {
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "";

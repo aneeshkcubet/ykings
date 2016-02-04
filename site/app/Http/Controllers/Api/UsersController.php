@@ -74,7 +74,8 @@ class UsersController extends Controller
      * @apiParam {string} [device_token] Device Token
      * @apiParam {string} [device_type] Device Type(android/ios)
      * @apiParam {string} [quote] Motivational quote added by user
-     * @apiParam {number} [subscription] Whether Newsletter subscription selected by user 
+     * @apiParam {number} [subscription] Whether Newsletter subscription selected by user
+     * @apiParam {string} [referral_code] If user added referral code 
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -126,7 +127,8 @@ class UsersController extends Controller
      *                           "updated_at": "2015-11-11 17:43:27"
      *                       }
      *                   }
-     *               ]
+     *               ],
+     *          "promo_code": "hewiby"
      *           },
      *           "urls": {
      *               "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -175,29 +177,33 @@ class UsersController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
      *     {
+      "status": 0,
+      "error": "The email field is required.",
+      "referral_code": "i2dGox"
+      }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
      *       "status" : 0,
-     *       "error": "The email field is required."
+     *       "error": "The password field is required.",
+     *       "referral_code": "i2dGox"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
      *     {
      *       "status" : 0,
-     *       "error": "The password field is required."
+     *       "error": "The first_name field is required",
+     *       "referral_code": "i2dGox"
      *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
      *     {
      *       "status" : 0,
-     *       "error": "The first_name field is required"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The last_name field is required"
+     *       "error": "The last_name field is required",
+     *       "referral_code": "i2dGox"
      *     }
      * 
      * @apiErrorExample Error-Response:
@@ -211,7 +217,8 @@ class UsersController extends Controller
      *     HTTP/1.1 500 could_not_create_user
      *     {
      *       "status" : 0,
-     *       "error": "could_not_create_user"
+     *       "error": "could_not_create_user",
+     *       "referral_code": "i2dGox"
      *     }
      * 
      * @apiErrorExample Error-Response:
@@ -224,13 +231,29 @@ class UsersController extends Controller
     public function postRegister(Request $request)
     {
         if (!isset($request->email) || ($request->email == NULL)) {
-            return response()->json([ "status" => 0, "error" => "The email field is required."]);
+            $respArray = [ "status" => 0, "error" => "The email field is required."];
+            if (isset($request->referral_code) && $request->referral_code != '') {
+                $respArray['referral_code'] = $request->referral_code;
+            }
+            return response()->json($respArray);
         } elseif (!isset($request->password) || ($request->password == NULL)) {
-            return response()->json([ "status" => 0, "error" => "The password field is required."]);
+            $respArray = [ "status" => 0, "error" => "The password field is required."];
+            if (isset($request->referral_code) && $request->referral_code != '') {
+                $respArray['referral_code'] = $request->referral_code;
+            }
+            return response()->json($respArray);
         } elseif (!isset($request->first_name) || ($request->first_name == NULL)) {
-            return response()->json(["status" => 0, "error" => "The first_name field is required"]);
+            $respArray = ["status" => 0, "error" => "The first_name field is required"];
+            if (isset($request->referral_code) && $request->referral_code != '') {
+                $respArray['referral_code'] = $request->referral_code;
+            }
+            return response()->json($respArray);
         } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
-            return response()->json([ "status" => 0, "error" => "The last_name field is required"]);
+            $respArray = [ "status" => 0, "error" => "The last_name field is required"];
+            if (isset($request->referral_code) && $request->referral_code != '') {
+                $respArray['referral_code'] = $request->referral_code;
+            }
+            return response()->json($respArray);
         } else {
 
             $user = User::where('email', '=', $request->email)->first();
@@ -270,8 +293,29 @@ class UsersController extends Controller
 
                     $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
                 }
-                $user = User::where('email', '=', $request->input('email'))->with([ 'profile',
-                        'videos'])->first();
+
+                DB::table('promo_code')->insert([
+                    'code' => $this->getToken(6),
+                    'user_id' => $user->id,
+                    'created_at' => Carbon::now()
+                ]);
+
+
+                if (isset($request->referral_code) && $request->referral_code != '') {
+                    $ref = DB::table('promo_code')->where('code', '=', $request->referral_code)->first();
+                    if (!is_null($ref)) {
+                        DB::table('points')->insert([
+                            'user_id' => $ref->user_id,
+                            'item_id' => $ref->id,
+                            'activity' => 'reference',
+                            'points' => DB::table('site_settings')->where('key', '=', 'invitation_points')->pluck('value'),
+                            'created_at' => Carbon::now()
+                        ]);
+                    }
+                }
+
+                $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
+
                 $userArray = $user->toArray();
 
                 $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
@@ -282,9 +326,14 @@ class UsersController extends Controller
                 //Code to check facebook connected for user.
                 //Added by ansa@cubettech.com on 27-11-2015
                 $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
                 return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
-                return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
+                $respArray = ['status' => 0, 'error' => 'could_not_create_user'];
+                if (isset($request->referral_code) && $request->referral_code != '') {
+                    $respArray['referral_code'] = $request->referral_code;
+                }
+                return response()->json($respArray, 500);
             }
         }
     }
@@ -432,7 +481,8 @@ class UsersController extends Controller
      *                           "updated_at": "2015-11-11 17:43:27"
      *                       }
      *                   }
-     *               ]
+     *               ],
+     *              "promo_code": "hewiby",
      *           },
      *            "urls": {
       "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -579,6 +629,16 @@ class UsersController extends Controller
 
             $user = User::where('email', '=', $request->input('email'))->with(['profile'])->first();
 
+            $promoCode = DB::table('promo_code')->where('user_id', '=', $user->id)->first();
+
+            if (is_null($promoCode)) {
+                DB::table('promo_code')->insert([
+                    'code' => $this->getToken(6),
+                    'user_id' => $user->id,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
                 $image = Image::make($_FILES['image']['tmp_name']);
@@ -624,7 +684,10 @@ class UsersController extends Controller
 
                 $user->profile()->update(['cover_image' => $user->id . '_' . time() . '.jpg']);
             }
+
             $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
+
+
 
             if (isset($data['subscription'])) {
                 Settings::where('user_id', '=', $user->id)
@@ -638,6 +701,7 @@ class UsersController extends Controller
             $userArray['workout_count'] = Workout::workoutCount($user['id']);
             $userArray['points'] = Point::userPoints($user['id']);
             $userArray['level'] = Point::userLevel($user['id']);
+            $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
 
             //Code to check facebook connected for user.
             //Added by ansa@cubettech.com on 27-11-2015
@@ -721,7 +785,8 @@ class UsersController extends Controller
       "workout_count": 0,
       "points": 0,
       "level": 1,
-      "facebook_connected": 0
+      "facebook_connected": 0,
+      "promo_code": "hewiby"
       },
       "urls": {
       "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
@@ -818,6 +883,17 @@ class UsersController extends Controller
             // Authentication passed...
 
             if (Auth::user()->status == 1) {
+
+                $promoCode = DB::table('promo_code')->where('user_id', '=', Auth::user()->id)->first();
+
+                if (is_null($promoCode)) {
+                    DB::table('promo_code')->insert([
+                        'code' => $this->getToken(6),
+                        'user_id' => Auth::user()->id,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
+
                 $user = User::where('id', '=', Auth::user()->id)->with(['profile', 'settings'])->first();
 
                 try {
@@ -853,6 +929,7 @@ class UsersController extends Controller
                 $userArray['workout_count'] = Workout::workoutCount($user['id']);
                 $userArray['points'] = Point::userPoints($user['id']);
                 $userArray['level'] = Point::userLevel($user['id']);
+                $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
 
                 //Code to check facebook connected for user.
                 //Added by ansa@cubettech.com on 27-11-2015
@@ -940,7 +1017,8 @@ class UsersController extends Controller
       "total_skills": 6,
       "user_skills_count": 2,
       "athlete_since": "2015-11-09 09:14:02",
-      "facebook_connected": 0
+      "facebook_connected": 0,
+      "promo_code": "hewiby"
       },
       "urls": {
       "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -1021,6 +1099,16 @@ class UsersController extends Controller
         }
         if (Auth::user()->status == 1) {
 
+            $promoCode = DB::table('promo_code')->where('user_id', '=', Auth::user()->id)->first();
+
+            if (is_null($promoCode)) {
+                DB::table('promo_code')->insert([
+                    'code' => $this->getToken(6),
+                    'user_id' => Auth::user()->id,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+
             $getUserQuery = User::where('id', '=', $data['profile_id']);
             $getUserQuery->with(['profile']);
             //Need settings array if user views own profile
@@ -1067,6 +1155,7 @@ class UsersController extends Controller
             //Code to check facebook connected for user.
             //Added by ansa@cubettech.com on 27-11-2015
             $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+            $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
 
 
             return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
@@ -1899,7 +1988,7 @@ class UsersController extends Controller
                         $exerciseUserDet[$volume1] = DB::table('exercise_users')
                             ->where('exercise_id', $exercise['id'])
                             ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)                            
+                            ->where('volume', $volume1)
                             ->get();
                     }
 
@@ -3402,7 +3491,7 @@ class UsersController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            if ($user) {
+            if (!is_null($user)) {
                 $pullRowCount = count(Skill::where('progression_id', $request->progression_id)->groupBy('row')->get());
 
 
@@ -3448,160 +3537,13 @@ class UsersController extends Controller
      * @apiName updateUserGoalOptions
      * @apiGroup User
      * @apiParam {integer} user_id id of loggedin user *required
-     * @apiParam {integer} progression_id id of Progression *required
-     * @apiParam {String} goal_options comma seperated values of goals selected *required
+     * @apiParam {String} goal_options value of goal selected *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
       "status": 1,
-      "success": "updated_user_goals",
-      "skill_levels": [
-      {
-      "id": "5",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "1",
-      "substitute": "0",
-      "exercise_id": "69",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": "",
-      "category": "3",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      },
-      {
-      "id": "10",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "2",
-      "substitute": "0",
-      "exercise_id": "77",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "77",
-      "name": "Front Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "78",
-      "path": "Now78.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 0
-      },
-      {
-      "id": "15",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "3",
-      "substitute": "0",
-      "exercise_id": "78",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "78",
-      "name": "Pullover",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "79",
-      "path": "Now79.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 0
-      },
-      {
-      "id": "20",
-      "description": "",
-      "progression_id": "1",
-      "level": "5",
-      "row": "4",
-      "substitute": "0",
-      "exercise_id": "79",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "79",
-      "name": "Back Lever",
-      "description": "",
-      "category": "3",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "80",
-      "path": "Now80.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      },
-      "is_selected": 1
-      }
-      ]
+      "success": "updated_user_goal"
       }
      * 
      * 
@@ -3663,96 +3605,141 @@ class UsersController extends Controller
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } elseif (!isset($request->progression_id) || ($request->progression_id == null)) {
-            return response()->json(["status" => "0", "error" => "The progression_id field is required"]);
         } elseif (!isset($request->goal_options) || ($request->goal_options == null)) {
             return response()->json(["status" => "0", "error" => "The goal_options field is required"]);
         } else {
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            if ($user) {
+            if (!is_null($user)) {
 
-                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->first();
+                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->get();
+
+                $skill = DB::table('skills')->where('id', $request->goal_options)->first();
 
                 if (!is_null($userOptions)) {
 
-                    DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->update(['goal_options' => $request->goal_options]);
+                    DB::table('user_goal_options')
+                        ->where('user_id', $request->user_id)
+                        ->update(['progression_id' => $skill->progression_id, 'goal_options' => $request->goal_options]);
                 } else {
 
                     DB::table('user_goal_options')->insert([
                         'user_id' => $request->user_id,
                         'goal_options' => $request->goal_options,
-                        'progression_id' => $request->progression_id,
+                        'progression_id' => $skill->progression_id,
                         'created_at' => Carbon::now()
                     ]);
                 }
+                
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+                
+                if (!is_null($coach)) {
+                    
+                    DB::table('coaches')
+                        ->where('user_id', $request->user_id)
+                        ->update(['goal_option' => $request->goal_options]);
+                    
+                }
+                
+                return response()->json(['status' => 1, 'success' => 'updated_user_goal'], 200);
+            } else {
+                return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
+            }
+        }
+    }
 
-                $pullRowCount = count(Skill::where('progression_id', $request->progression_id)->groupBy('row')->get());
+    /**
+     * @api {post} /user/options/removegoaloptions removeUserGoalOptions
+     * @apiName removeUserGoalOptions
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "removed_user_goal"
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError user_not_exists User error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "user_not_exists"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The progression_id field is required"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The goal_options field is required"
+     *     }
+     */
+    public function removeUserGoalOptions(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
 
-                $i = 1;
+            $user = User::where('id', '=', $request->input('user_id'))->first();
 
-                do {
+            if (!is_null($user)) {
 
-                    $skill = Skill::where('row', $i)->where('progression_id', $request->progression_id)->with(['exercise'])->orderBy('skills.level', 'DESC')->first();
-
-                    $skills[] = $skill->toArray();
-
-                    $i++;
-                } while ($i <= $pullRowCount);
-
-                $userOptionsArray = explode(',', $request->goal_options);
-                $whereNotInQuery = '';
-                $whereInQuery = '';
-                if (count($userOptionsArray) > 0) {
-                    foreach ($userOptionsArray as $userOption) {
-                        $skill1 = Skill::where('id', $userOption)->first();
-                        $skillsInthisRowQuery = DB::table('skills')->select('skills.id')
-                                ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.row =' . $skill1->row)->toSql();
-
-                        $whereNotInQuery .= ' AND skills.id NOT IN(' . $skillsInthisRowQuery . ')';
-
-                        $whereInQuery .= ' AND skills.id IN(' . $skillsInthisRowQuery . ')';
-                    }
+                DB::table('user_goal_options')->where('user_id', $request->user_id)->delete();
+                
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+                
+                if (!is_null($coach)) {
+                    
+                    DB::table('coaches')
+                        ->where('user_id', $request->user_id)
+                        ->update(['goal_option' => 0]);
+                    
                 }
 
-                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('progression_id', $request->progression_id)->first();
-
-                $skills = array_map(function($skill) use ($userOptions) {
-                    if (!is_null($userOptions)) {
-                        $userOptionsArray = explode(',', $userOptions->goal_options);
-                        if (count($userOptionsArray) > 0) {
-                            if (in_array($skill['id'], $userOptionsArray)) {
-                                $skill['is_selected'] = 1;
-                            } else {
-                                $skill['is_selected'] = 0;
-                            }
-                        } else {
-                            $skill['is_selected'] = 0;
-                        }
-                    } else {
-                        $skill['is_selected'] = 0;
-                    }
-                    return $skill;
-                }, $skills);
-
-                $skillsShouldLockedQuery = DB::table('skills')->select('skills.id')
-                        ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.level != 1' . $whereNotInQuery)->toSql();
-
-                $skillsShouldUnlocked = DB::table('skills')->select('skills.id', 'skills.exercise_id')
-                        ->whereRaw('skills.progression_id = ' . $request->progression_id . ' AND skills.level != 1' . $whereInQuery)->get();
-
-                DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
-
-//                foreach ($skillsShouldUnlocked as $skillUnlocked) {
-//                    DB::table('unlocked_skills')->insert([
-//                        'user_id' => $request->user_id,
-//                        'skill_id' => $skillUnlocked->id,
-//                        'exercise_id' => $skillUnlocked->exercise_id,
-//                        'created_at' => Carbon::now()
-//                    ]);
-//                }
-                return response()->json(['status' => 1, 'success' => 'updated_user_goals', 'skill_levels' => $skills], 200);
+                return response()->json(['status' => 1, 'success' => 'removed_user_goal'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -4052,6 +4039,15 @@ class UsersController extends Controller
                         ->whereRaw('skills.level != 1' . $whereNotInQuery)->toSql();
 
                 DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
+                
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+                
+                if (!is_null($coach)) {                    
+                    DB::table('coaches')
+                        ->where('user_id', $request->user_id)
+                        ->update(['muscle_groups' => $request->physique_options]);
+                    
+                }
 
                 return response()->json(['status' => 1, 'success' => 'updated_user_physique_groups', 'physique_groups' => $muscleGroups], 200);
             } else {
@@ -4131,5 +4127,34 @@ class UsersController extends Controller
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
         }
+    }
+
+    public function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1)
+            return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd >= $range);
+        return $min + $rnd;
+    }
+
+    public function getToken($length)
+    {
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
+        }
+        return $token;
     }
 }

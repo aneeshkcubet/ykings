@@ -98,8 +98,8 @@
                         <div class="nav_icons">
                             <ul class="sidebar_threeicons">
                                 <li>
-                                    <a href="#">
-                                        <i class="livicon" data-name="hammer" title="Form Builder 1" data-loop="true" data-color="#42aaca" data-hc="#42aaca" data-s="25"></i>
+                                    <a href="{{ route('admin.settings.edit') }}">
+                                        <i class="livicon" data-name="hammer" title="App settings" data-loop="true" data-color="#42aaca" data-hc="#42aaca" data-s="25"></i>
                                     </a>
                                 </li>
                             </ul>

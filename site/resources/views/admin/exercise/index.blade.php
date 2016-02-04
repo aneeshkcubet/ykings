@@ -41,16 +41,16 @@ Exercises
                 <table class="table table-bordered " id="table">
                     <thead>
                         <tr class="filters">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Type</th>
-                            <th>Rewards</th>
-                            <th>Repititions/Duration</th>                            
-                            <th>Unit</th>
-                            <th>Equipment</th>
-                            <th>Created</th>
+                            <th width="5%">ID</th>
+                            <th width="15%">Name</th>
+                            <th width="20%">Description</th>
+                            <th width="10%">Category</th>
+                            <th width="10%">Type</th>
+                            <th width="5%">Rewards</th>
+                            <th width="5%">Repititions</th>                            
+                            <th width="10%">Unit</th>
+                            <th width="10%">Equipment</th>
+                            <th width="10%">Muscle Groups</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -93,7 +93,7 @@ Exercises
                                 @endif
                             </td>
                             <td>{{ $list->equipment }}</td>
-                            <td>{{ $list->created_at }}</td>
+                            <td>{{ $list->musclegroup_string }}</td>
                             <td>
                                 <a href="{{ route('admin.exercise.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Exercise Details"></i></a>
                                 <a href="{{ route('admin.exercise.edit', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Exercise Details"></i></a>

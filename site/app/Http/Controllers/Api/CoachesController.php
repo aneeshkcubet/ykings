@@ -94,10 +94,12 @@ class CoachesController extends Controller
             if (!is_null($user)) {
                 //Check whether the user completed the week workouts
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
-
-
-
+                
                 if (!is_null($coach)) {
+
+                    $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
+                    
+                    $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
                     $coach->exercises = json_decode($coach->exercises, true);
 
@@ -578,6 +580,25 @@ class CoachesController extends Controller
 
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
 
+                $exercisesArray = json_decode($coach->exercises, true);
+
+                $dayExerciseArray = $exercisesArray['day' . $coachStatus->day];
+                
+                $exercisesArray['day' . $coachStatus->day] = $this->updateDayExercises($dayExerciseArray);
+                
+                
+                for($i = 1; $i<= $coach->days; $i++){
+                    if($i <= $coachStatus->day){
+                        $exercisesArray['day' . $i]['is_completed'] = 1;
+                    } else {
+                        $exercisesArray['day' . $i]['is_completed'] = 0;
+                    }
+                }
+                
+                Coach::where('user_id', $request->user_id)->update([
+                    'exercises' => json_encode($exercisesArray)
+                ]);
+
                 if (is_null($coachStatus->day_status) || $coachStatus->day_status == '') {
                     for ($i = 1; $i <= $coach->days; $i++) {
                         if ($dKay <= $request->day) {
@@ -625,6 +646,8 @@ class CoachesController extends Controller
                             $WeekStatusArray[$j] = 1;
                         }
                         $data['need_update'] = 1;
+                        $data['day'] = 1;
+                        $data['week'] = $coachStatus->week + 1;
                     } else {
                         for ($j = 1; $j < $coachStatus->week; $j++) {
                             $WeekStatusArray[$j] = 1;
@@ -632,6 +655,7 @@ class CoachesController extends Controller
 
                         $WeekStatusArray[$coachStatus->week] = 0;
                         $data['need_update'] = 0;
+                        $data['day'] = $coachStatus->day + 1;
                     }
                     $data['week_status'] = json_encode($WeekStatusArray);
                 }
@@ -642,6 +666,10 @@ class CoachesController extends Controller
                     ->update($data);
 
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+
+                $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
+                
+                $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
 
@@ -655,7 +683,8 @@ class CoachesController extends Controller
 
                 $weekStatus = json_decode($coachStatus->week_status, true);
 
-                return response()->json([
+
+               return response()->json([
                         'status' => 1,
                         'message' => 'successfully finished day workouts',
                         'coach_day' => $coachStatus->day,
@@ -664,12 +693,43 @@ class CoachesController extends Controller
                         'need_update' => 1,
                         'week_status' => $weekStatus,
                         'day_status' => $dayStatus,
+                        'musclegroup_string' => $coach->musclegroup_string,
                         'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
                         ], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
         }
+    }
+
+    public function updateDayExercises($dayExercise)
+    {
+
+        if (isset($dayExercise['exercises']) && count($dayExercise['exercises']) > 0) {
+            foreach ($dayExercise['exercises'] as $fKey => $exercise) {
+                if (!empty($exercise)) {
+                    $dayExercise['exercises'][$fKey]['is_completed'] = 1;
+                }
+            }
+        }
+
+        if (isset($dayExercise['workout']) && count($dayExercise['workout'] > 0)) {
+
+            if (!empty($dayExercise['workout'])) {
+
+                $dayExercise['workout']['is_completed'] = 1;
+            }
+        }
+
+        if (isset($dayExercise['hiit']) && count($dayExercise['hiit']) > 0) {
+            if (!empty($dayExercise['hiit'])) {
+                foreach ($dayExercise['hiit'] as $hKey => $hiit) {
+                    $dayExercise['hiit'][$hKey]['is_completed'] = 1;
+                }
+            }
+        }
+        
+        return $dayExercise;
     }
 
     /**
@@ -2131,6 +2191,15 @@ class CoachesController extends Controller
                 ];
 
                 $userCoach = Coach::where('user_id', '=', $request->input('user_id'))->first();
+                
+                if(isset($request->muscle_groups) && $request->muscle_groups != '' &&  $request->muscle_groups != null && $request->muscle_groups != '(null)'){
+                    $muscleGroups = DB::table('user_physique_options')->where('user_id', $request->user_id)->first();                    
+                    if(!is_null($muscleGroups)){
+                        DB::table('user_physique_options')->where('user_id', $request->user_id)->update(['physique_options' => $request->muscle_groups]);
+                    } else {
+                        DB::table('user_physique_options')->insert(['physique_options' => $request->muscle_groups, 'user_id' => $request->user_id]);
+                    }
+                }
 
                 if (is_null($userCoach)) {
 
@@ -2194,6 +2263,10 @@ class CoachesController extends Controller
                 } else {
                     $coach->description = DB::table('coach_descriptions')->where('week', 15)->pluck('description');
                 }
+
+                $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
+                
+                $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
                 $coach->exercises = json_decode($coach->exercises, true);
 
@@ -4349,6 +4422,10 @@ class CoachesController extends Controller
                 ]);
 
                 $coach = Coach::where('user_id', $request->user_id)->first();
+
+                $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
+                
+                $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
                 $coach->exercises = json_decode($coach->exercises, true);
 

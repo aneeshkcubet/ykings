@@ -141,6 +141,12 @@ View Exercise - {{ $exercise->name }}
                                                         {{ $exercise->equipment }}
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>Muscle Groups</td>
+                                                    <td>
+                                                        {{ $exercise->musclegroup_string }}
+                                                    </td>
+                                                </tr>                                                
                                             </table>
                                         </form>
                                     </div>
@@ -154,6 +160,7 @@ View Exercise - {{ $exercise->name }}
                         <div class="col-lg-12">
                             <div class="panel">
                                 <div class="panel-body" style="text-align: center">
+                                    @if(isset($exercise['video'][0]))
                                     <video id="exercise_video" class="video-js vjs-default-skin" controls
                                            preload="none" width="920" height="560" poster="{{{ url('/').'/uploads/videos/'.$exercise['video'][0]['videothumbnail'] }}}"
                                            data-setup='{}'>
@@ -163,6 +170,7 @@ View Exercise - {{ $exercise->name }}
                                             that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                                         </p>
                                     </video>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,8 @@
 
 use Auth,
     Mail,
-    Validator;
+    Validator,
+    DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Social;
 use App\Follow;
+use Carbon\Carbon;
+
 
 class UserFriendsController extends Controller
 {
@@ -274,21 +277,51 @@ class UserFriendsController extends Controller
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else if (!isset($request->email) || (count(json_decode($request->email)) == 0 )) {
             return response()->json(["status" => "0", "error" => "The email field is required"]);
-        } else if (!isset($request->invitation_code) || ($request->invitation_code == null )) {
-            return response()->json(["status" => "0", "error" => "The invitation code is required"]);
         } else {
+            $promoCode = DB::table('promo_code')->where('user_id', '=', $request->user_id)->first();
+
+            if (is_null($promoCode)) {
+                DB::table('promo_code')->insert([
+                    'code' => $this->getToken(6),
+                    'user_id' => $request->user_id,
+                    'created_at' => Carbon::now()
+                ]);
+            }
 
             $user = User::where(['id' => $request->user_id])->with(['profile'])->first();
             if ($user) {
                 $emailArray = json_decode($request->email, true);
                 foreach ($emailArray as $email) {
-                    $dataArray = array("first_name" => $user->profile[0]['first_name'],
-                        "last_name" => $user->profile[0]['last_name'],
-                        "email" => $email);
-                    Mail::send('email.invite', ['code' => $request->invitation_code], function($message) use ($dataArray) {
-                        $message->to($dataArray['email'], $dataArray['first_name'] . ' ' . $dataArray['last_name'])
-                            ->subject('Invitation from Ykings');
-                    });
+
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+
+                        $userExists = User::where(['email' => $email])->first();
+
+                        if (is_null($userExists)) {
+                            $dataArray = [
+                                "first_name" => $user->profile[0]['first_name'],
+                                "last_name" => $user->profile[0]['last_name'],
+                                "email" => $email
+                            ];
+
+                            $emailArray = explode('@', $email);
+
+                            $dataArray['userName'] = ucfirst($emailArray[0]);
+                            $dataArray['code'] = DB::table('promo_code')->where('user_id', '=', $request->user_id)->pluck('code');
+
+                            Mail::send('email.invite', $dataArray, function($message) use ($dataArray) {
+                                $message->to($dataArray['email'], $dataArray['userName'])
+                                    ->subject('Invitation from Ykings');
+                            });
+
+                            DB::table('invitations')->insert([
+                                'user_id' => $user->id,
+                                'email' => $dataArray['email'],
+                                'code' => $dataArray['code'],
+                                'status' => 0
+                            ]);
+                        }
+                    }
                 }
                 return response()->json(['status' => 1, 'success' => 'Invitation sent'], 200);
             } else {
@@ -296,4 +329,5 @@ class UserFriendsController extends Controller
             }
         }
     }
+    
 }
