@@ -160,7 +160,9 @@ class CoachesController extends Controller
 
                         if ($coachStatus->need_update == 0) {
                             if ($dayStatus[$coachStatus->day] == 1) {
-                                if (strtotime($coachStatus->updated_at . ' + 1 days') >= $currentTimestamp) {
+                                $coachUpdatedDate = date('Y-m-d', strtotime($coachStatus->updated_at));
+                                $coachNextDay = strtotime($coachUpdatedDate.' 00:00:01 + 1 days');
+                                if ($coachNextDay > $currentTimestamp) {
                                     return response()->json([
                                             'status' => 1,
                                             'message' => 'already_completed_day_workouts',
