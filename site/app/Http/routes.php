@@ -10,375 +10,8 @@
   |
  */
 
-Route::group(['prefix' => 'api'], function() {
-    Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
-    Route::get('authenticate', 'Api\AuthenticateController@authenticate');
-    Route::get('users', 'Api\AuthenticateController@index');
-    //UsersController
-    Route::post('user/get', [
-        'as' => 'user.get',
-        'uses' => 'Api\UsersController@getUser'
-    ]);
-    Route::post('user/login', [
-        'as' => 'user.login',
-        'uses' => 'Api\UsersController@login'
-    ]);
-    Route::post('user/update', [
-        'as' => 'user.update',
-        'uses' => 'Api\UsersController@update'
-    ]);
-    Route::post('user/logout', [
-        'as' => 'user.logout',
-        'uses' => 'Api\UsersController@logout'
-    ]);
-    Route::post('user/resendverify', [
-        'as' => 'user.resendverify',
-        'uses' => 'Api\UsersController@resendVerifyEmail'
-    ]);
-    //UserVideosController
-    Route::post('user/videos', [
-        'as' => 'user.videos',
-        'uses' => 'Api\UserVideosController@GetUserVideos'
-    ]);
-    Route::post('user/video/delete', [
-        'as' => 'user.video.delete',
-        'uses' => 'Api\UserVideosController@deleteUserVideo'
-    ]);
-
-    //UsersController
-    Route::post('user', [
-        'as' => 'user.signup',
-        'uses' => 'Api\UsersController@postRegister'
-    ]);
-
-    //UsersController
-    Route::post('user/history/recent', [
-        'as' => 'user.history.recent',
-        'uses' => 'Api\UsersController@getUserRecentHistory'
-    ]);
-
-    //UsersController
-    Route::post('user/history/exercise', [
-        'as' => 'user.history.exercise',
-        'uses' => 'Api\UsersController@getUserExerciseHistory'
-    ]);
-
-    //UsersController
-    Route::post('user/history/workout', [
-        'as' => 'user.history.workout',
-        'uses' => 'Api\UsersController@getUserWorkoutHistory'
-    ]);
-
-    //UsersController
-    Route::post('user/history/hiit', [
-        'as' => 'user.history.hiit',
-        'uses' => 'Api\UsersController@getUserHiitHistory'
-    ]);
-
-    Route::post('user/options/goaloptions', [
-        'as' => 'user.options.goaloptions',
-        'uses' => 'Api\UsersController@getUserGoalOptions'
-    ]);
-
-    Route::post('user/options/updategoaloptions', [
-        'as' => 'user.options.updategoaloptions',
-        'uses' => 'Api\UsersController@updateUserGoalOptions'
-    ]);
-    
-    Route::post('user/options/removegoaloptions', [
-        'as' => 'user.options.removegoaloptions',
-        'uses' => 'Api\UsersController@removeUserGoalOptions'
-    ]);
-
-    Route::post('user/options/physiqueoptions', [
-        'as' => 'user.options.physiqueoptions',
-        'uses' => 'Api\UsersController@getUserPhysiqueOptions'
-    ]);
-
-    Route::post('user/options/updatephysiqueoptions', [
-        'as' => 'user.options.updatephysiqueoptions',
-        'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
-    ]);
-
-    Route::post('/user/updatemotivation', [
-        'as' => 'user.updatemotivation',
-        'uses' => 'Api\UsersController@updateMotivation'
-    ]);
-
-
-
-    Route::get('verify', [
-        'as' => 'confirmation_path',
-        'uses' => 'Api\UsersController@confirm'
-    ]);
-    //PasswordController
-    Route::post('password/email', [
-        'as' => 'password.email',
-        'uses' => 'Api\PasswordController@postEmail'
-    ]);
-    //SocialController
-    Route::post('/social/facebookSignUp', [
-        'as' => 'facebook.signup',
-        'uses' => 'Api\SocialController@facebookSignUp'
-    ]);
-
-    Route::post('social/facebookLogin', [
-        'as' => 'facebook.login',
-        'uses' => 'Api\SocialController@facebookLogin'
-    ]);
-    Route::post('social/facebookUpdate', [
-        'as' => 'facebook.update',
-        'uses' => 'Api\SocialController@facebookUpdate'
-    ]);
-
-    Route::post('social/facebookDisconnect', [
-        'as' => 'facebook.disconnect',
-        'uses' => 'Api\SocialController@facebookDisconnect'
-    ]);
-    //FeedController
-    Route::post('feeds/create', [
-        'as' => 'feeds.create',
-        'uses' => 'Api\FeedController@createFeeds'
-    ]);
-    Route::post('user/feedlist', [
-        'as' => 'feeds.list',
-        'uses' => 'Api\FeedController@userFeeds'
-    ]);
-    Route::post('feeds/list', [
-        'as' => 'feeds.list',
-        'uses' => 'Api\FeedController@listFeeds'
-    ]);
-    Route::post('feeds/feedDetails', [
-        'as' => 'feeds.details',
-        'uses' => 'Api\FeedController@feedsDetails'
-    ]);
-    Route::post('feeds/clap', [
-        'as' => 'feeds.clap',
-        'uses' => 'Api\FeedController@clapFeed'
-    ]);
-    Route::post('feeds/unclap', [
-        'as' => 'feeds.unclap',
-        'uses' => 'Api\FeedController@unclapFeed'
-    ]);
-    Route::post('feeds/notification', [
-        'as' => 'feeds.notification',
-        'uses' => 'Api\FeedController@notification'
-    ]);
-    //CommentsController
-    Route::post('feeds/comments', [
-        'as' => 'feeds.comments',
-        'uses' => 'Api\CommentsController@loadComments'
-    ]);
-
-    Route::post('feeds/addComment', [
-        'as' => 'feeds.addComment',
-        'uses' => 'Api\CommentsController@addFeedComment'
-    ]);
-    Route::post('feeds/deleteComment', [
-        'as' => 'feeds.comments',
-        'uses' => 'Api\CommentsController@deleteComment'
-    ]);
-
-    //UserFollowsController
-    Route::post('follow/add', [
-        'as' => 'follow.add',
-        'uses' => 'Api\UserFollowsController@follow'
-    ]);
-    Route::post('follow/unfollow', [
-        'as' => 'follow.unfollow',
-        'uses' => 'Api\UserFollowsController@unFollow'
-    ]);
-    Route::post('follow/get', [
-        'as' => 'follow.get',
-        'uses' => 'Api\UserFollowsController@getFollowers'
-    ]);
-
-    Route::post('follow/follows', [
-        'as' => 'follow.follows',
-        'uses' => 'Api\UserFollowsController@getMyFollowings'
-    ]);
-    //UserFriendsController
-    Route::post('connect/connectFriends', [
-        'as' => 'connect.phone',
-        'uses' => 'Api\UserFriendsController@connectFriends'
-    ]);
-    Route::post('connect/inviteFriends', [
-        'as' => 'connect.invite',
-        'uses' => 'Api\UserFriendsController@inviteFriends'
-    ]);
-    //SubscriptionsController
-    Route::post('subscription/update', [
-        'as' => 'subscription.update',
-        'uses' => 'Api\SubscriptionsController@updateSubscription'
-    ]);
-    //ExercisesController
-    Route::post('exercise/list', [
-        'as' => 'exercise.list',
-        'uses' => 'Api\ExercisesController@loadExercises'
-    ]);
-
-    Route::post('exercise/get', [
-        'as' => 'exercise.get',
-        'uses' => 'Api\ExercisesController@getExercise'
-    ]);
-
-    Route::post('exercise/getwithusers', [
-        'as' => 'exercise.get',
-        'uses' => 'Api\ExercisesController@getExerciseWithUsers'
-    ]);
-    //WorkoutsController
-    Route::post('workout/list', [
-        'as' => 'workout.list',
-        'uses' => 'Api\WorkoutsController@loadWorkouts'
-    ]);
-
-    Route::post('workout/getlevels', [
-        'as' => 'workout.getlevels',
-        'uses' => 'Api\WorkoutsController@getWorkoutWithLevels'
-    ]);
-    Route::post('workout/getexercises', [
-        'as' => 'workout.getexercises',
-        'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
-    ]);
-
-    Route::post('workout/addstar', [
-        'as' => 'workout.addstar',
-        'uses' => 'Api\WorkoutsController@addStar'
-    ]);
-
-    //SearchController
-    Route::post('/search/searchUser', [
-        'as' => 'user.search',
-        'uses' => 'Api\SearchController@userSearch'
-    ]);
-    
-    Route::post('/search/featuredUsers', [
-        'as' => 'search.featured',
-        'uses' => 'Api\SearchController@featuredUsers'
-    ]);
-    
-    Route::post('/search/cityUsers', [
-        'as' => 'search.city',
-        'uses' => 'Api\SearchController@cityUsers'
-    ]);
-    
-    //UserSettingsController
-    Route::post('user/settings', [
-        'as' => 'user.settings',
-        'uses' => 'Api\UserSettingsController@userSettings'
-    ]);
-    Route::post('/user/getsettings', [
-        'as' => 'user.getsettings',
-        'uses' => 'Api\UserSettingsController@getUserSettings'
-    ]);
-    Route::post('/user/updateDeviceToken', [
-        'as' => 'user.updateDeviceToken',
-        'uses' => 'Api\UserSettingsController@updateDeviceToken'
-    ]);
-
-    //SkillsController
-    Route::post('/skills/list', [
-        'as' => 'skill.list',
-        'uses' => 'Api\SkillsController@loadSkills'
-    ]);
-
-    Route::post('/skills/getlevelskills', [
-        'as' => 'skill.getlevelskills',
-        'uses' => 'Api\SkillsController@getLevelSkills'
-    ]);
-
-    Route::post('/skills/lockskill', [
-        'as' => 'skill.lockskill',
-        'uses' => 'Api\SkillsController@lockSkill'
-    ]);
-
-    Route::post('/skills/unlockskill', [
-        'as' => 'skill.unlockskill',
-        'uses' => 'Api\SkillsController@unlockSkill'
-    ]);
-
-    Route::post('/coach/getfundumentals', [
-        'as' => 'coach.getfundumentals',
-        'uses' => 'Api\CoachesController@getFundumentals'
-    ]);
-
-    Route::post('/coach/getdescription', [
-        'as' => 'coach.getdescription',
-        'uses' => 'Api\CoachesController@getDescription'
-    ]);
-
-
-    Route::post('/coach/preparecoach', [
-        'as' => 'coach.preparecoach',
-        'uses' => 'Api\CoachesController@prepareCoach'
-    ]);
-
-    Route::post('/coach/get', [
-        'as' => 'coach.get',
-        'uses' => 'Api\CoachesController@getCoach'
-    ]);
-
-    Route::post('/coach/finishday', [
-        'as' => 'coach.finishday',
-        'uses' => 'Api\CoachesController@finishCoachDayWorkouts'
-    ]);
-
-    Route::post('/coach/update', [
-        'as' => 'coach.update',
-        'uses' => 'Api\CoachesController@updateCoach'
-    ]);
-
-    Route::post('coach/getmusclegroups', [
-        'as' => 'coach.getmusclegroups',
-        'uses' => 'Api\CoachesController@getMuscleGroups'
-    ]);
-
-    Route::post('coach/reset', [
-        'as' => 'coach.reset',
-        'uses' => 'Api\CoachesController@resetCoach'
-    ]);
-
-    //MessageController
-    Route::post('/user/listNotifications', [
-        'as' => 'user.listNotifications',
-        'uses' => 'Api\MessageController@listNotifications'
-    ]);
-    
-    Route::post('/message/updateReadStatus', [
-        'as' => 'message.updateReadStatus',
-        'uses' => 'Api\MessageController@updateReadStatus'
-    ]);
-});
-
-// Authentication routes...
-Route::get('auth/login', [
-    'uses' => 'Auth\AuthController@getLogin',
-    'as' => 'login_path'
-]);
-
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-
-// Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
-
-// Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
-
-Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
-
-
-Route::get('/', ['as' => 'index', function () {
-    return view('welcome');
-}]);
 //Admin Routes
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['domain' => 'admin.ykings.com'], function () {
     Route::get('/', [
         'as' => 'admin.index',
         'uses' => 'Admin\AdminController@index'
@@ -394,11 +27,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/logout', [
         'as' => 'admin.logout',
         'uses' => 'Admin\AdminController@logout'
-    ]);
-    
-    Route::get('/getServerLoad', [
-        'as' => 'admin.serverload',
-        'uses' => 'Admin\AdminController@getServerLoad'
     ]);
 
     # User Management
@@ -625,7 +253,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('knowledge/create', array('as' => 'admin.knowledge.create', 'uses' => 'Admin\UsersController@getKnowledgeCreate'));
 
     Route::post('knowledge/create', array('as' => 'admin.knowledge.postcreate', 'uses' => 'Admin\UsersController@postKnowledgeCreate'));
-    
+
     # Media Management
     Route::group(array('prefix' => 'medias'), function () {
         Route::get('/', array('as' => 'admin.medias', 'uses' => 'Admin\MediaController@getIndex'));
@@ -640,7 +268,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('{mediaId}/confirm-delete-media', array('as' => 'admin.confirm-delete.media', 'uses' => 'Admin\MediaController@getModalDelete'));
     });
-    
+
     # Plan Management
     Route::group(array('prefix' => 'plans'), function () {
         Route::get('/', array('as' => 'admin.plans', 'uses' => 'Admin\PlanController@getIndex'));
@@ -662,6 +290,375 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(array('prefix' => 'settings'), function () {
         Route::get('edit', array('as' => 'admin.settings.edit', 'uses' => 'Admin\SettingController@getEdit'));
 
-        Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));        
+        Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));
     });
 });
+
+Route::group(['prefix' => 'api'], function() {
+    Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
+    Route::get('authenticate', 'Api\AuthenticateController@authenticate');
+    Route::get('users', 'Api\AuthenticateController@index');
+    //UsersController
+    Route::post('user/get', [
+        'as' => 'user.get',
+        'uses' => 'Api\UsersController@getUser'
+    ]);
+    Route::post('user/login', [
+        'as' => 'user.login',
+        'uses' => 'Api\UsersController@login'
+    ]);
+    Route::post('user/update', [
+        'as' => 'user.update',
+        'uses' => 'Api\UsersController@update'
+    ]);
+    Route::post('user/logout', [
+        'as' => 'user.logout',
+        'uses' => 'Api\UsersController@logout'
+    ]);
+    Route::post('user/resendverify', [
+        'as' => 'user.resendverify',
+        'uses' => 'Api\UsersController@resendVerifyEmail'
+    ]);
+    //UserVideosController
+    Route::post('user/videos', [
+        'as' => 'user.videos',
+        'uses' => 'Api\UserVideosController@GetUserVideos'
+    ]);
+    Route::post('user/video/delete', [
+        'as' => 'user.video.delete',
+        'uses' => 'Api\UserVideosController@deleteUserVideo'
+    ]);
+
+    //UsersController
+    Route::post('user', [
+        'as' => 'user.signup',
+        'uses' => 'Api\UsersController@postRegister'
+    ]);
+
+    //UsersController
+    Route::post('user/history/recent', [
+        'as' => 'user.history.recent',
+        'uses' => 'Api\UsersController@getUserRecentHistory'
+    ]);
+
+    //UsersController
+    Route::post('user/history/exercise', [
+        'as' => 'user.history.exercise',
+        'uses' => 'Api\UsersController@getUserExerciseHistory'
+    ]);
+
+    //UsersController
+    Route::post('user/history/workout', [
+        'as' => 'user.history.workout',
+        'uses' => 'Api\UsersController@getUserWorkoutHistory'
+    ]);
+
+    //UsersController
+    Route::post('user/history/hiit', [
+        'as' => 'user.history.hiit',
+        'uses' => 'Api\UsersController@getUserHiitHistory'
+    ]);
+
+    Route::post('user/options/goaloptions', [
+        'as' => 'user.options.goaloptions',
+        'uses' => 'Api\UsersController@getUserGoalOptions'
+    ]);
+
+    Route::post('user/options/updategoaloptions', [
+        'as' => 'user.options.updategoaloptions',
+        'uses' => 'Api\UsersController@updateUserGoalOptions'
+    ]);
+
+    Route::post('user/options/removegoaloptions', [
+        'as' => 'user.options.removegoaloptions',
+        'uses' => 'Api\UsersController@removeUserGoalOptions'
+    ]);
+
+    Route::post('user/options/physiqueoptions', [
+        'as' => 'user.options.physiqueoptions',
+        'uses' => 'Api\UsersController@getUserPhysiqueOptions'
+    ]);
+
+    Route::post('user/options/updatephysiqueoptions', [
+        'as' => 'user.options.updatephysiqueoptions',
+        'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
+    ]);
+
+    Route::post('/user/updatemotivation', [
+        'as' => 'user.updatemotivation',
+        'uses' => 'Api\UsersController@updateMotivation'
+    ]);
+
+
+
+    Route::get('verify', [
+        'as' => 'confirmation_path',
+        'uses' => 'Api\UsersController@confirm'
+    ]);
+    //PasswordController
+    Route::post('password/email', [
+        'as' => 'password.email',
+        'uses' => 'Api\PasswordController@postEmail'
+    ]);
+    //SocialController
+    Route::post('/social/facebookSignUp', [
+        'as' => 'facebook.signup',
+        'uses' => 'Api\SocialController@facebookSignUp'
+    ]);
+
+    Route::post('social/facebookLogin', [
+        'as' => 'facebook.login',
+        'uses' => 'Api\SocialController@facebookLogin'
+    ]);
+    Route::post('social/facebookUpdate', [
+        'as' => 'facebook.update',
+        'uses' => 'Api\SocialController@facebookUpdate'
+    ]);
+
+    Route::post('social/facebookDisconnect', [
+        'as' => 'facebook.disconnect',
+        'uses' => 'Api\SocialController@facebookDisconnect'
+    ]);
+    //FeedController
+    Route::post('feeds/create', [
+        'as' => 'feeds.create',
+        'uses' => 'Api\FeedController@createFeeds'
+    ]);
+    Route::post('user/feedlist', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@userFeeds'
+    ]);
+    Route::post('feeds/list', [
+        'as' => 'feeds.list',
+        'uses' => 'Api\FeedController@listFeeds'
+    ]);
+    Route::post('feeds/feedDetails', [
+        'as' => 'feeds.details',
+        'uses' => 'Api\FeedController@feedsDetails'
+    ]);
+    Route::post('feeds/clap', [
+        'as' => 'feeds.clap',
+        'uses' => 'Api\FeedController@clapFeed'
+    ]);
+    Route::post('feeds/unclap', [
+        'as' => 'feeds.unclap',
+        'uses' => 'Api\FeedController@unclapFeed'
+    ]);
+    Route::post('feeds/notification', [
+        'as' => 'feeds.notification',
+        'uses' => 'Api\FeedController@notification'
+    ]);
+    //CommentsController
+    Route::post('feeds/comments', [
+        'as' => 'feeds.comments',
+        'uses' => 'Api\CommentsController@loadComments'
+    ]);
+
+    Route::post('feeds/addComment', [
+        'as' => 'feeds.addComment',
+        'uses' => 'Api\CommentsController@addFeedComment'
+    ]);
+    Route::post('feeds/deleteComment', [
+        'as' => 'feeds.comments',
+        'uses' => 'Api\CommentsController@deleteComment'
+    ]);
+
+    //UserFollowsController
+    Route::post('follow/add', [
+        'as' => 'follow.add',
+        'uses' => 'Api\UserFollowsController@follow'
+    ]);
+    Route::post('follow/unfollow', [
+        'as' => 'follow.unfollow',
+        'uses' => 'Api\UserFollowsController@unFollow'
+    ]);
+    Route::post('follow/get', [
+        'as' => 'follow.get',
+        'uses' => 'Api\UserFollowsController@getFollowers'
+    ]);
+
+    Route::post('follow/follows', [
+        'as' => 'follow.follows',
+        'uses' => 'Api\UserFollowsController@getMyFollowings'
+    ]);
+    //UserFriendsController
+    Route::post('connect/connectFriends', [
+        'as' => 'connect.phone',
+        'uses' => 'Api\UserFriendsController@connectFriends'
+    ]);
+    Route::post('connect/inviteFriends', [
+        'as' => 'connect.invite',
+        'uses' => 'Api\UserFriendsController@inviteFriends'
+    ]);
+    //SubscriptionsController
+    Route::post('subscription/update', [
+        'as' => 'subscription.update',
+        'uses' => 'Api\SubscriptionsController@updateSubscription'
+    ]);
+    //ExercisesController
+    Route::post('exercise/list', [
+        'as' => 'exercise.list',
+        'uses' => 'Api\ExercisesController@loadExercises'
+    ]);
+
+    Route::post('exercise/get', [
+        'as' => 'exercise.get',
+        'uses' => 'Api\ExercisesController@getExercise'
+    ]);
+
+    Route::post('exercise/getwithusers', [
+        'as' => 'exercise.get',
+        'uses' => 'Api\ExercisesController@getExerciseWithUsers'
+    ]);
+    //WorkoutsController
+    Route::post('workout/list', [
+        'as' => 'workout.list',
+        'uses' => 'Api\WorkoutsController@loadWorkouts'
+    ]);
+
+    Route::post('workout/getlevels', [
+        'as' => 'workout.getlevels',
+        'uses' => 'Api\WorkoutsController@getWorkoutWithLevels'
+    ]);
+    Route::post('workout/getexercises', [
+        'as' => 'workout.getexercises',
+        'uses' => 'Api\WorkoutsController@getWorkoutWithExercises'
+    ]);
+
+    Route::post('workout/addstar', [
+        'as' => 'workout.addstar',
+        'uses' => 'Api\WorkoutsController@addStar'
+    ]);
+
+    //SearchController
+    Route::post('/search/searchUser', [
+        'as' => 'user.search',
+        'uses' => 'Api\SearchController@userSearch'
+    ]);
+
+    Route::post('/search/featuredUsers', [
+        'as' => 'search.featured',
+        'uses' => 'Api\SearchController@featuredUsers'
+    ]);
+
+    Route::post('/search/cityUsers', [
+        'as' => 'search.city',
+        'uses' => 'Api\SearchController@cityUsers'
+    ]);
+
+    //UserSettingsController
+    Route::post('user/settings', [
+        'as' => 'user.settings',
+        'uses' => 'Api\UserSettingsController@userSettings'
+    ]);
+    Route::post('/user/getsettings', [
+        'as' => 'user.getsettings',
+        'uses' => 'Api\UserSettingsController@getUserSettings'
+    ]);
+    Route::post('/user/updateDeviceToken', [
+        'as' => 'user.updateDeviceToken',
+        'uses' => 'Api\UserSettingsController@updateDeviceToken'
+    ]);
+
+    //SkillsController
+    Route::post('/skills/list', [
+        'as' => 'skill.list',
+        'uses' => 'Api\SkillsController@loadSkills'
+    ]);
+
+    Route::post('/skills/getlevelskills', [
+        'as' => 'skill.getlevelskills',
+        'uses' => 'Api\SkillsController@getLevelSkills'
+    ]);
+
+    Route::post('/skills/lockskill', [
+        'as' => 'skill.lockskill',
+        'uses' => 'Api\SkillsController@lockSkill'
+    ]);
+
+    Route::post('/skills/unlockskill', [
+        'as' => 'skill.unlockskill',
+        'uses' => 'Api\SkillsController@unlockSkill'
+    ]);
+
+    Route::post('/coach/getfundumentals', [
+        'as' => 'coach.getfundumentals',
+        'uses' => 'Api\CoachesController@getFundumentals'
+    ]);
+
+    Route::post('/coach/getdescription', [
+        'as' => 'coach.getdescription',
+        'uses' => 'Api\CoachesController@getDescription'
+    ]);
+
+
+    Route::post('/coach/preparecoach', [
+        'as' => 'coach.preparecoach',
+        'uses' => 'Api\CoachesController@prepareCoach'
+    ]);
+
+    Route::post('/coach/get', [
+        'as' => 'coach.get',
+        'uses' => 'Api\CoachesController@getCoach'
+    ]);
+
+    Route::post('/coach/finishday', [
+        'as' => 'coach.finishday',
+        'uses' => 'Api\CoachesController@finishCoachDayWorkouts'
+    ]);
+
+    Route::post('/coach/update', [
+        'as' => 'coach.update',
+        'uses' => 'Api\CoachesController@updateCoach'
+    ]);
+
+    Route::post('coach/getmusclegroups', [
+        'as' => 'coach.getmusclegroups',
+        'uses' => 'Api\CoachesController@getMuscleGroups'
+    ]);
+
+    Route::post('coach/reset', [
+        'as' => 'coach.reset',
+        'uses' => 'Api\CoachesController@resetCoach'
+    ]);
+
+    //MessageController
+    Route::post('/user/listNotifications', [
+        'as' => 'user.listNotifications',
+        'uses' => 'Api\MessageController@listNotifications'
+    ]);
+
+    Route::post('/message/updateReadStatus', [
+        'as' => 'message.updateReadStatus',
+        'uses' => 'Api\MessageController@updateReadStatus'
+    ]);
+});
+
+// Authentication routes...
+Route::get('auth/login', [
+    'uses' => 'Auth\AuthController@getLogin',
+    'as' => 'login_path'
+]);
+
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
+
+
+Route::get('/', ['as' => 'index', function () {
+        return view('welcome');
+    }]);
+

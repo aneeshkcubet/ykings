@@ -12,8 +12,7 @@
             <br>
             Fitness sport. Bodyweight only. Anywhere and anytime.
             <br>
-            Your password to login into the App is <b>{{ $password }}</b>            
-
+            Your password to login into the App is <b>{{ $password }}</b>
         </div>
     </body>
 </html>

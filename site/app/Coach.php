@@ -74,8 +74,9 @@ class Coach extends Model
         if ($goalOption == '' || $goalOption == 0) {
             return '';
         } else {
-            $skill = Skill::where('id', $goalOption)->with(['exercise'])->first();
-            return $skill['exercise']->name();
+            $skill = Skill::where('id', (int)$goalOption)->first();
+            $exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+            return $exercise->name;
         }
     }
 
