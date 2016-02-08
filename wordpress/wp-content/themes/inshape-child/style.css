@@ -140,6 +140,11 @@ Template: inshape-parent
     height: 300px;
     height: 300px;
 }*/
+
+.postlist-sidebar.recent-posts li{
+    border: none !important;
+}
+
 .common_padding{
     padding: 0 15px;
 }
