@@ -18,13 +18,17 @@ body {
 }
 .content-wrap{
     float: right;
-    width: 50%;
-    background: rgba(246, 178, 32, 0.8);
-    position: relative;
-    padding-bottom: 15%;
+       
+    position: relative;    
 }
 .content-inner{
-    padding: 12% 8% 5%;
+    position: relative;
+    padding-left: 315px;
+}
+.content-inner .content-block{
+    padding: 12% 5%;
+    background: rgba(246,178,32,.8);
+    width: 100%;
 }
 .content-inner h2{
     color: #fff;
@@ -111,10 +115,11 @@ body {
     top: 4px;
 }
 .content-footer{
-    position: absolute;
+    position: relative;
+   
     bottom: 0;
     padding: 35px;
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0, 0, 0, 0.9);
 }
 .content-footer p{
     color: #b5b5b5;
@@ -128,6 +133,20 @@ body {
     margin-bottom: 5%;
     display: none;
 }
+img.side-bg {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    bottom: 0;
+    width: 315px;
+}
+img.footer-side {
+    position: absolute;
+    left: -55px;
+    height: 100%;
+    width: 55px;
+    bottom: 0;
+}
 .message{
     background: #eaffef none repeat scroll 0 0;
     border: 1px solid #a7ffbd;
@@ -139,11 +158,24 @@ body {
     opacity: 0.8;
     display: block;
 }
-@media only screen and (min-width: 1500px){
+@media (min-width: 1024px){
     .content-wrap{
-        padding-bottom: 10%;
+        width: 900px;
+    } 
+    .content-inner .content-block{
+        padding:12% 5% 5% 0;
     }
 }
+@media (min-width: 1400px){
+    .content-wrap{
+        width: 1200px;
+    }
+    .content-inner .content-block{
+        padding: 12% 5% 5% 1%;
+    }
+}
+
+
 @media only screen and (max-width: 1180px){
     .content-inner h4{
         margin-bottom: 25px;
@@ -165,12 +197,11 @@ body {
     .newsletter-container .logo img {
         width: 176px;
     }
-}
-@media only screen and (max-width: 1024px){
-    .content-wrap{
-        padding-bottom: 28%;
+    .img.side-bg{
+        display: none;
     }
 }
+
 @media only screen and (max-width: 950px){
     .content-inner .logo-res{
         display: block;
@@ -182,20 +213,21 @@ body {
         width: 100%;
         float: none;
     }
-    .content-inner{
-        padding: 5%;
-    }
-    .content-wrap{
-        padding-bottom: 0;
-    }
-    .content-footer{
-        position: inherit;
-    }
+    
+   
+    
     .content-inner h2, .content-inner h4{
         text-align: center;
     }
     .content-inner .form-group .form-control{
         float: left;
+    }
+    img.side-bg{
+      
+        display: none;
+    }
+    .content-inner{
+        padding-left: 0;
     }
 }
 @media only screen and (max-width: 950px){
@@ -204,9 +236,7 @@ body {
         width: 100%;
         margin-bottom: 15px;
     }
-    .content-inner{
-        padding-bottom: 10%;
-    }
+   
     .content-footer{
         padding: 25px;
     }
