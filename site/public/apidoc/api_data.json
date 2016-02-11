@@ -390,7 +390,7 @@
             "type": "<p>Number</p> ",
             "optional": true,
             "field": "height",
-            "description": "<p>user height in centimeters</p> "
+            "description": "<p>user feedback 1- I can do way more, 2 - I can do more, 3 - It was ok *required</p> "
           },
           {
             "group": "Parameter",

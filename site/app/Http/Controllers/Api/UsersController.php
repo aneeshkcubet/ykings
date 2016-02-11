@@ -3613,15 +3613,18 @@ class UsersController extends Controller
 
             if (!is_null($user)) {
 
-                $userOptions = DB::table('user_goal_options')->where('user_id', $request->user_id)->get();
+                $userOption = DB::table('user_goal_options')->where('user_id', $request->user_id)->first();
 
                 $skill = DB::table('skills')->where('id', $request->goal_options)->first();
 
-                if (!is_null($userOptions)) {
+                if (!is_null($userOption)) {
 
                     DB::table('user_goal_options')
                         ->where('user_id', $request->user_id)
-                        ->update(['progression_id' => $skill->progression_id, 'goal_options' => $request->goal_options]);
+                        ->update([
+                            'progression_id' => $skill->progression_id,
+                            'goal_options' => $request->goal_options
+                    ]);
                 } else {
 
                     DB::table('user_goal_options')->insert([
@@ -3631,17 +3634,18 @@ class UsersController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 }
-                
+
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
-                
+
                 if (!is_null($coach)) {
-                    
+
                     DB::table('coaches')
                         ->where('user_id', $request->user_id)
-                        ->update(['goal_option' => $request->goal_options]);
-                    
+                        ->update([
+                            'goal_option' => $request->goal_options
+                    ]);
                 }
-                
+
                 return response()->json(['status' => 1, 'success' => 'updated_user_goal'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
@@ -3728,15 +3732,14 @@ class UsersController extends Controller
             if (!is_null($user)) {
 
                 DB::table('user_goal_options')->where('user_id', $request->user_id)->delete();
-                
+
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
-                
+
                 if (!is_null($coach)) {
-                    
+
                     DB::table('coaches')
                         ->where('user_id', $request->user_id)
                         ->update(['goal_option' => 0]);
-                    
                 }
 
                 return response()->json(['status' => 1, 'success' => 'removed_user_goal'], 200);
@@ -4039,14 +4042,13 @@ class UsersController extends Controller
                         ->whereRaw('skills.level != 1' . $whereNotInQuery)->toSql();
 
                 DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
-                
+
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
-                
-                if (!is_null($coach)) {                    
+
+                if (!is_null($coach)) {
                     DB::table('coaches')
                         ->where('user_id', $request->user_id)
                         ->update(['muscle_groups' => $request->physique_options]);
-                    
                 }
 
                 return response()->json(['status' => 1, 'success' => 'updated_user_physique_groups', 'physique_groups' => $muscleGroups], 200);
