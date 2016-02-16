@@ -50,7 +50,7 @@ class Workoutexercise extends Model
      */
     public function exercise()
     {
-        return $this->belongsTo('App\Exercise', 'exercise_id', 'id')->select(array('id', 'name', 'description'));
+        return $this->belongsTo('App\Exercise', 'exercise_id', 'id');
     }
     /**
      * Function to get follower count.

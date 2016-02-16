@@ -738,6 +738,11 @@ class UsersController extends Controller
       "created_at": "2015-11-16 15:24:09",
       "updated_at": "2015-11-16 16:32:47",
       "is_subscribed": 0,
+      "is_subscribed": 0,
+      "user_raid": {
+      "id": "6",
+      "name": "Front Lever"
+      },
       "profile": [
       {
       "id": "31",
@@ -4158,5 +4163,115 @@ class UsersController extends Controller
             $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
         }
         return $token;
+    }
+
+    /**
+     * @api {post} /user/updateemail updateUserEmail
+     * @apiName updateUserEmail
+     * @apiGroup User
+     *
+     * @apiParam {string} email email address of user *required
+     * @apiParam {Number} user_id id of user user *required
+     * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     * {
+      "status": 0,
+      "error": "Successfully updated email address."
+      }
+     *       
+     *
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     * @apiError error Message An user already registered with this email address.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status" : 0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+              "status": 0,
+              "error": "The email field is required.",
+          }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required."
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 Already Exists Erroe
+     *     {
+     *       "status" : 0,
+     *       "error": "An user already registered with this email address."
+     *     }
+     */
+    public function updateUserEmail(Request $request)
+    {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } elseif (!isset($request->email) || ($request->email == null)) {
+            return response()->json(["status" => "0", "error" => "The email field is required"]);
+        } else {
+
+            $user = User::where('id', '=', $request->user_id)->with(['profile'])->first();
+
+            $alreadyExist = User::where('email', '=', $request->email)->first();
+
+            if (!is_null($alreadyExist)) {
+                return response()->json(["status" => "0", "error" => "An user already registered with this email address."]);
+            }
+
+            if (is_null($user)) {
+                return response()->json([ "status" => 0, "error" => "User does not exists."], 422);
+            } else {
+
+                $data = [
+                    'email' => $request->email,
+                    'first_name' => $user['profile'][0]->first_name,
+                    'last_name' => $user['profile'][0]->last_name,
+                ];
+
+                $confirmation_code = str_random(30);
+
+                User::where('id', '=', $request->user_id)->update([
+                    'email' => $request->email,
+                    'confirmation_code' => $confirmation_code,
+                    'status' => 0
+                ]);
+
+                Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
+                    $message->to($data['email'], $data['first_name'] . ' ' . $data['last_name'])
+                        ->subject('Verify your email address');
+                });
+
+                return response()->json([ "status" => 1, "error" => "Successfully updated email address."], 200);
+            }
+        }
     }
 }

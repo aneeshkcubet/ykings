@@ -36,7 +36,7 @@ class AdminAuthenticate
     {
         
         if (!$this->auth->check() || $this->auth->user()->is_admin != 1) {
-            return redirect()->guest('admin/login');  
+            return redirect()->guest('/login');  
         }
 
         return $next($request);

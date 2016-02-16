@@ -384,12 +384,15 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UsersController@updateUserPhysiqueOptions'
     ]);
 
-    Route::post('/user/updatemotivation', [
+    Route::post('user/updatemotivation', [
         'as' => 'user.updatemotivation',
         'uses' => 'Api\UsersController@updateMotivation'
     ]);
-
-
+    
+    Route::post('user/updateemail', [
+        'as' => 'user.updateemail',
+        'uses' => 'Api\UsersController@updateUserEmail'
+    ]);
 
     Route::get('verify', [
         'as' => 'confirmation_path',
@@ -605,6 +608,11 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('/coach/finishday', [
         'as' => 'coach.finishday',
         'uses' => 'Api\CoachesController@finishCoachDayWorkouts'
+    ]);
+    
+    Route::post('/coach/finishweek', [
+        'as' => 'coach.finishweek',
+        'uses' => 'Api\CoachesController@finishCoachWeekWorkouts'
     ]);
 
     Route::post('/coach/update', [

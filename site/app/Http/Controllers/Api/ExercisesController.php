@@ -238,25 +238,25 @@ class ExercisesController extends Controller
 
                 $exercises = [];
 
-                $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1')
+                $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
-                $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1')
+                $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
-                $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1')
+                $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
 
 
                 $leanExercisesPaid = Exercise::where('category', '=', 1)
-                    ->whereRaw('category = 1 AND type = 2')
+                    ->whereRaw('category = 1 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
-                $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2')
+                $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
-                $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2')
+                $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
 

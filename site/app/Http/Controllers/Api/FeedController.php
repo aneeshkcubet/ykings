@@ -26,6 +26,7 @@ use App\Hiit;
 use App\Hiituser;
 use App\Point;
 use App\Freestyleuser;
+use App\Testuser;
 use App\CommonFunctions\PushNotificationFunction;
 
 class FeedController extends Controller
@@ -44,7 +45,7 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle' *required
+     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test' *required
      * @apiParam {Number} item_id id of the targetting item (0 incase of freestyle) *required
      * @apiParam {Number} [time_taken] time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'
      * @apiParam {Number} [rewards] points earned by doing activity
@@ -318,6 +319,27 @@ class FeedController extends Controller
                         'item_id' => $freestyleUser->id,
                         'activity' => 'freestyle_completed',
                         'points' => $pointsEarned,
+                        'created_at' => Carbon::now()
+                    ]);
+                } elseif ($request->item_type == 'test') {
+
+                    $data = [
+                        'test_id' => $request->item_id,
+                        'user_id' => $request->user_id,
+                        'status' => 1,
+                        'feed_id' => $feed->id,
+                        'time' => $request->time_taken,
+                        'is_starred' => $addStar,
+                        'volume' => isset($request->volume) ? $request->volume : ''
+                    ];
+
+                    $hiitUser = Testuser::create($data);
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'item_id' => $hiitUser->id,
+                        'activity' => 'test_completed',
+                        'points' => $request->rewards,
                         'created_at' => Carbon::now()
                     ]);
                 }
@@ -1210,6 +1232,25 @@ class FeedController extends Controller
             } elseif ($feedsArray['item_type'] == 'knowledge') {
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "Knowledge";
+            } elseif ($feedsArray['item_type'] == 'test') {
+
+                $hiitUser = DB::table('test_users')
+                    ->where('feed_id', $feedsArray['id'])
+                    ->first();
+
+                if ($hiitUser->test_id == 1) {
+                    $feedsArray['item_name'] = 'Fitness test MK1';
+                } else {
+                    $feedsArray['item_name'] = 'Fitness test MK2';
+                }
+
+                if (!is_null($hiitUser->time)) {
+                    $feedsArray['duration'] = $hiitUser->time;
+                } else {
+                    $feedsArray['duration'] = 0;
+                }
+
+                $feedsArray['intensity'] = $hiitUser->volume;
             } else {
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "";
@@ -1450,6 +1491,24 @@ class FeedController extends Controller
                     } elseif ($feedsArray['item_type'] == 'knowledge') {
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "Knowledge";
+                    } elseif ($feedsArray['item_type'] == 'test') {
+                        $hiitUser = DB::table('test_users')
+                            ->where('feed_id', $feedsArray['id'])
+                            ->first();
+
+                        if ($hiitUser->test_id == 1) {
+                            $feedsArray['item_name'] = 'Fitness test MK1';
+                        } else {
+                            $feedsArray['item_name'] = 'Fitness test MK2';
+                        }
+
+                        if (!is_null($hiitUser->time)) {
+                            $feedsArray['duration'] = $hiitUser->time;
+                        } else {
+                            $feedsArray['duration'] = 0;
+                        }
+
+                        $feedsArray['intensity'] = $hiitUser->volume;
                     } else {
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "";

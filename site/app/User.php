@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+use App\Skill;
+
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
 
@@ -51,8 +53,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    
-    protected $appends = array('is_subscribed');
+    protected $appends = ['is_subscribed', 'user_raid'];
 
     /**
      * Fetch the user's profile via a one to one
@@ -126,9 +127,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-    
-    public function getIsSubscribedAttribute() {
-        
+
+    public function getIsSubscribedAttribute()
+    {
+
         return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
     }
 
@@ -140,14 +142,43 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->where('user_id', '=', $userId)
             ->orderBy('id', 'DESC')
             ->first();
-        if(is_null($subscription)){
+        if (is_null($subscription)) {
             return 0;
-        }        
-       
-        if($subscription->end_time <= $time){
+        }
+
+        if ($subscription->end_time <= $time) {
             return 0;
         } else {
             return 1;
+        }
+    }
+
+    public function getUserRaidAttribute()
+    {
+
+        return $this->attributes['user_raid'] = $this->userRaid($this->id);
+    }
+
+    public function userRaid($userId)
+    {
+        $time = time();
+        $userRaid = DB::table('user_goal_options')
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->orderBy('id', 'DESC')
+            ->first();
+        if (is_null($userRaid)) {
+            return [];
+        } else {
+            $raidSkill = Skill::where('id', '=', $userRaid->goal_options)
+                ->with(['exercise'])
+                ->first();
+            
+            if (is_null($userRaid)) {
+                return [];
+            }
+            
+            return ['id' => $raidSkill->id, 'name' => $raidSkill['exercise']->name];
         }
     }
 }
