@@ -2481,7 +2481,9 @@ class CoachesController extends Controller
                 ]);
 
                 Coach::where('user_id', $request->user_id)->update([
-                    'exercises' => json_encode($exercises)
+                    'exercises' => json_encode($exercises),
+                    'days' => $request->days,
+                    'focus' => $request->focus
                 ]);
 
                 $coach = Coach::where('user_id', $request->user_id)->first();

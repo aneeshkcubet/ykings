@@ -27,6 +27,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         static::created(function($user) {
             Event::fire('user.created', $user);
         });
+        
+        static::updated(function($user) {
+            Event::fire('user.updated', $user);
+        });
 
         static::deleted(function($user) {
             Event::fire('user.deleted', $user);
