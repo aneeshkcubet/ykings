@@ -10,7 +10,7 @@ define({
   },
   "footer": {
     "title": "My own footer title",
-    "content": "<p>#How to authenticate via token?</p>\n<p>Suppose your API call is http://sandbox.ykings.com/api/users then add you token as query parameter to the url. To get auth token tou have to post http://sandbox.ykings.com/api/authenticate.</p>\n<p>eg. http://sandbox.ykings.com/api/users?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY2Mzk0NjEiLCJleHAiOiIxNDQ2NjQzMDYxIiwibmJmIjoiMTQ0NjYzOTQ2MSIsImp0aSI6IjNjMTQ4M2IwMzIyNWJiNmJkMzY1ZDEzZjYwZWJhYzI0In0.DDkmO2tA4LXj59PA50X6a3-dPqyq6tjYCLvVuPm6UNY</p>\n"
+    "content": "<p>#How to authenticate via token?</p>\n<p>Suppose your API call is http://sandbox.ykings.com/api/users then add you token as query parameter to the url.\nTo get auth token you have to login to the app.</p>\n<p>Once your token has been expired you need to refresh token using POST</p>\n<p>POST http://sandbox.ykings.com/api/authenticate.</p>\n<p>Parameters:- token =&gt; [old token that has already expired]</p>\n<p>eg. http://sandbox.ykings.com/api/users?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY2Mzk0NjEiLCJleHAiOiIxNDQ2NjQzMDYxIiwibmJmIjoiMTQ0NjYzOTQ2MSIsImp0aSI6IjNjMTQ4M2IwMzIyNWJiNmJkMzY1ZDEzZjYwZWJhYzI0In0.DDkmO2tA4LXj59PA50X6a3-dPqyq6tjYCLvVuPm6UNY</p>\n"
   },
   "order": [
     "GetUser",
@@ -24,7 +24,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2016-02-16T09:35:53.931Z",
+    "time": "2016-02-24T09:20:35.682Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

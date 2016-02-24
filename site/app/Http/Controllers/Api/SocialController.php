@@ -27,6 +27,23 @@ class SocialController extends Controller
       | This controller handles the registration and login from social media.
       |
      */
+    
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', ['except' => [
+            'facebookSignUp', 
+            'facebookLogin',
+            'postRegister',
+            'login',
+            'resendVerifyEmail',
+            'updateUserEmail'
+            ]]);
+    }
 
     /**
      * @api {post} /social/facebookSignUp facebookSignUp
@@ -127,27 +144,10 @@ class SocialController extends Controller
       "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
       }
       }
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "error": "token_not_provided"
-     *     }
+     * @apiError Validation error
+     * @apiError Validation error
+     * @apiError Validation error
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_user
@@ -160,11 +160,20 @@ class SocialController extends Controller
       "status": 0,
       "error": "The email field is required."
       }
+     * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "error": "could_not_create_user"
-     *     }
+     *      HTTP/1.1 422 Validation error
+      {
+      "status": 0,
+      "error": "The provider id field is required"
+      }
+     * 
+     * @apiErrorExample Error-Response:
+     *      HTTP/1.1 422 Validation error
+      {
+      "status": 0,
+      "error": "The provider field is required."
+      }
      */
     public function facebookSignUp(Request $request)
     {
@@ -390,44 +399,37 @@ class SocialController extends Controller
       "coverImageOriginal": "http://ykings.me/uploads/images/cover_image/original"
       }
       }
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
      * @apiError could_not_create_user User error.
-     *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "error": "token_not_provided"
-     *     }
-     * 
+     * @apiError Validation error.
+     * @apiError Validation error
+     * @apiError Validation error
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 500 could_not_create_user
      *     {
      *       "error": "could_not_create_user"
      *     }
+     * 
      *  @apiErrorExample Error-Response:
-     *      HTTP/1.1 422 Validation error
+     *  HTTP/1.1 422 Validation error
       {
       "status": 0,
       "error": "The email field is required."
       }
+     * 
      * @apiErrorExample Error-Response:
-     *     HTTP/1.1 422 Validation error
-     *     {
-     *       "error": "could_not_create_user"
-     *     }
+     *  HTTP/1.1 422 Validation error
+      {
+      "status": 0,
+      "error": "The provider id field is required"
+      }
+     * 
+     * @apiErrorExample Error-Response:
+     *  HTTP/1.1 422 Validation error
+      {
+      "status": 0,
+      "error": "The provider field is required."
+      }
+     * 
      */
     public function facebookLogin(Request $request)
     {
@@ -443,9 +445,6 @@ class SocialController extends Controller
                         ->with(['profile', 'settings'])->first();
 
                 if (Auth::loginUsingId($user->id)) {
-                    // Authentication passed...
-
-
                     try {
                         // verify the credentials and create a token for the user
                         if (!$token = JWTAuth::fromUser($user)) {

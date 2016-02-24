@@ -17,6 +17,8 @@ use App\Exercise;
 use App\Profile;
 use App\User;
 use App\Musclegroup;
+use App\Workoutexercise;
+use App\Fundumental;
 use FFMpeg\FFMpeg;
 use FFMpeg\Coordinate\TimeCode as TimeCode;
 use App\Video;
@@ -234,6 +236,10 @@ class ExerciseController extends Controller
                 'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
                 'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
             ]);
+            
+            Fundumental::where('exercise_id', $id)->update(['unit' => Input::get('unit')]);
+            
+            Workoutexercise::where('exercise_id', $id)->update(['unit' => Input::get('unit')]);
 
             if (isset($_FILES['video']) && $_FILES['video']['error'] == UPLOAD_ERR_OK) {
 
@@ -247,7 +253,7 @@ class ExerciseController extends Controller
                 echo shell_exec('/usr/bin/ffmpeg -i ' . public_path("uploads/videos/") . $fullName . ' -vf "thumbnail,scale=640:360" -frames:v 1 ' . config("image.videoThumbPath") . $filename . '.jpg');
 
                 if (!is_null($video)) {
-                    
+
                     //Unlink previusly uploaded file and thumbnail
 
                     unlink(public_path('uploads/videos/') . $video->path);
@@ -271,6 +277,10 @@ class ExerciseController extends Controller
                         'type' => 1
                     ]);
                 }
+            } else {
+                $video = Video::where('parent_id', $exercise->id)->where('parent_type', 1)->update([
+                        'description' => $exercise->name
+                ]);
             }
 
             return Redirect::route('admin.exercises')->with('success', 'Updated successfully');

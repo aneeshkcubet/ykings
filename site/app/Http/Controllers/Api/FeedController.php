@@ -45,7 +45,7 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test' *required
+     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement' *required
      * @apiParam {Number} item_id id of the targetting item (0 incase of freestyle) *required
      * @apiParam {Number} [time_taken] time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'
      * @apiParam {Number} [rewards] points earned by doing activity
@@ -259,7 +259,7 @@ class FeedController extends Controller
                         'points' => $pointsEarned,
                         'created_at' => Carbon::now()
                     ]);
-                } elseif ($request->item_type == 'hiit') {
+                } elseif ($request->item_type == 'hiit' || $request->item_type == 'hiit_replacement') {
 
                     $data = [
                         'hiit_id' => $request->item_id,
@@ -276,8 +276,9 @@ class FeedController extends Controller
                     $exerciseDetails = Hiit::where('id', $request->item_id)->first();
 
                     $pointsEarned = 0;
+                    
                     if (isset($request->volume))
-                        $pointsEarned = $exerciseDetails->rewards * $request->volume;
+                        $pointsEarned = $request->rewards;
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -427,6 +428,32 @@ class FeedController extends Controller
       "level_count": 0,
       "workout_count": 15,
       "feed_list": [
+      {
+      "id": 703,
+      "user_id": 48,
+      "item_type": "hiit_replacement",
+      "item_id": 3,
+      "feed_text": "Testing HIIT replacements",
+      "image": [],
+      "created_at": "2016-02-23 13:20:00",
+      "updated_at": "2016-02-23 13:20:00",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "item_name": "60/120(Replacement)",
+      "duration": 320,
+      "intensity": 4,
+      "profile": {
+        "user_id": 48,
+        "first_name": "Aneesh",
+        "last_name": "Kallikkattil",
+        "image": "",
+        "quote": "",
+        "gender": 1,
+        "level": 2
+      }
+    },
       {
       "id": "45",
       "user_id": "96",
@@ -748,6 +775,32 @@ class FeedController extends Controller
       "status": 1,
       "success": "List",
       "feed_list": [
+     * {
+      "id": 703,
+      "user_id": 48,
+      "item_type": "hiit_replacement",
+      "item_id": 3,
+      "feed_text": "Testing HIIT replacements",
+      "image": [],
+      "created_at": "2016-02-23 13:20:00",
+      "updated_at": "2016-02-23 13:20:00",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "item_name": "60/120(Replacement)",
+      "duration": 320,
+      "intensity": 4,
+      "profile": {
+        "user_id": 48,
+        "first_name": "Aneesh",
+        "last_name": "Kallikkattil",
+        "image": "",
+        "quote": "",
+        "gender": 1,
+        "level": 2
+      }
+    },
       {
       "id": "235",
       "user_id": "84",
@@ -1199,10 +1252,15 @@ class FeedController extends Controller
                 $feedsArray['intensity'] = $exerciseUser->volume;
 
                 $feedsArray['unit'] = $exercise->unit;
-            } elseif ($feedsArray['item_type'] == 'hiit') {
+            } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
-                $feedsArray['item_name'] = $hiit->name;
+                if ($feedsArray['item_type'] == 'hiit_replacement') {
+                    $feedsArray['item_name'] = $hiit->name . '(Replacement)';
+                } else {
+                    $feedsArray['item_name'] = $hiit->name;
+                }
+
 
                 $hiitUser = DB::table('hiit_users')
                     ->where('feed_id', $feedsArray['id'])
@@ -1458,10 +1516,14 @@ class FeedController extends Controller
                         $feedsArray['intensity'] = $exerciseUser->volume;
 
                         $feedsArray['unit'] = $exercise->unit;
-                    } elseif ($feedsArray['item_type'] == 'hiit') {
+                    } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
-                        $feedsArray['item_name'] = $hiit->name;
+                        if ($feedsArray['item_type'] == 'hiit_replacement') {
+                            $feedsArray['item_name'] = $hiit->name . '(Replacement)';
+                        } else {
+                            $feedsArray['item_name'] = $hiit->name;
+                        }
 
                         $hiitUser = DB::table('hiit_users')
                             ->where('feed_id', $feedsArray['id'])

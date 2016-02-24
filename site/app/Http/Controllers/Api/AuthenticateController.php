@@ -26,9 +26,11 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * @api {get} /authenticate Get JW token
+     * @api {post} /authenticate Get JW token
      * @apiName Athenticate
      * @apiGroup General
+     * 
+     * @apiParam {String} token expired token *required
      *
      * @apiSuccess {String} token JWT Auth token.
      *
@@ -38,9 +40,16 @@ class AuthenticateController extends Controller
      *       "status" : 1,
      *       "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY2MzMwNzgiLCJleHAiOiIxNDQ2NjM2Njc4IiwibmJmIjoiMTQ0NjYzMzA3OCIsImp0aSI6ImFiNDAwNTllZmU0OTI3ODYwMTczYjI1ZGEzZWJmMDkwIn0.uM_G0OAne9b-twd60tAZlAUGmpitINP0JMgGC3ZrNoo",
      *     }
-     *
+     * @apiError Validation Error
      * @apiError invalid_credentials Message invalid_credentials.
      * @apiError could_not_create_token JWT error.
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The token field is required"
+     *     }
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 404 invalid_credentials
@@ -58,16 +67,18 @@ class AuthenticateController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $credentials = User::where('id', '=', 1)->first();
+        if (!isset($request->token) || ($request->token == null)) {
+            return response()->json(["status" => "0", "error" => "The token field is required"]);
+        }
 
         try {
             // verify the credentials and create a token for the user
-            if (!$token = JWTAuth::fromUser($credentials)) {
+            if (!$token = JWTAuth::refresh($request->token)) {
                 return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong
-            return response()->json(['status' => 0, 'error' => 'could_not_create_token'], 500);
+            return response()->json(['status' => 0, 'error' => 'could_not_refresh_token'], 500);
         }
 
         // if no errors are encountered we can return a JWT

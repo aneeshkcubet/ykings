@@ -128,7 +128,7 @@ class CoachesController extends Controller
                     }
 
 
-                    if (strtotime($coachStatus->created_at . ' + ' . $coachStatus->week . ' weeks') <= $currentTimestamp) {
+                    if (strtotime($coach->updated_at . ' + 7 days') <= $currentTimestamp &&  $coachStatus->need_update == 1) {
                         //User feedback required
                         return response()->json([
                                 'status' => 1,
@@ -590,10 +590,12 @@ class CoachesController extends Controller
 
 
                 for ($i = 1; $i <= $coach->days; $i++) {
-                    if ($i <= $coachStatus->day) {
+                    if ($i <= $request->day) {
                         $exercisesArray['day' . $i]['is_completed'] = 1;
+                        $exercisesArray['day' . $i]['status'] = 'completed';
                     } else {
                         $exercisesArray['day' . $i]['is_completed'] = 0;
+                        $exercisesArray['day' . $i]['status'] = 'pending';
                     }
                 }
 
@@ -621,7 +623,9 @@ class CoachesController extends Controller
                         }
                     }
                     $data['day_status'] = json_encode($statusArray);
+                    
                 }
+                $data['day'] = $request->day;
 
                 DB::table('coach_status')
                     ->where('user_id', $request->user_id)
@@ -2264,11 +2268,19 @@ class CoachesController extends Controller
             return response()->json(["status" => "0", "error" => "The feedback field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
+            
+            if($request->test1 == 0 && $request->test2 == 0){
+                $category = 'beginer';
+            } elseif($request->test1 == 1 && $request->test2 == 0){
+                $category = 'advanced';
+            } else{
+                $category = 'professional';
+            }
             if (!is_null($user)) {
                 $data = [
                     'user_id' => $request->user_id,
                     'focus' => $request->focus,
-                    'category' => ($request->test1 == 0 && $request->test2 == 0) ? 'beginer' : 'advanced',
+                    'category' => $category,
                     'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null)) ? "" : $request->muscle_groups,
                     'height' => (!isset($request->height) || ($request->height == null)) ? "" : $request->height,
                     'weight' => (!isset($request->weight) || ($request->weight == null)) ? "" : $request->weight,
@@ -2305,6 +2317,8 @@ class CoachesController extends Controller
                 $data['test1'] = $request->test1;
 
                 $data['test2'] = $request->test2;
+                
+                $data['week'] = 1;
 
                 $coachExercises = Coach::prepareCoachExercises($coachId, $data);                
                
@@ -2468,8 +2482,8 @@ class CoachesController extends Controller
 
                 $weekStatusArray[$coachStatus->week + 1] = 0;
 
-                $exercises = Coach::updateCoach($request->assessment, $coach->id, $request->focus, $request->days);                
-               
+                $exercises = Coach::updateCoach($request->assessment, $coach->id, $request->focus, $request->days);                 
+              
                 DB::table('coach_status')
                     ->where('coach_id', $coach->id)
                     ->update([

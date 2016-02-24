@@ -683,7 +683,7 @@ class SkillsController extends Controller
 
                 do {
 
-                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 5)->orderBy('skills.level', 'ASC')->first();
+                    $skill = DB::table('skills')->where('row', $i)->where('progression_id', 5)->orderBy('skills.level', 'DESC')->first();
                     $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();

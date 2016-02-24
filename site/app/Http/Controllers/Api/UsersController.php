@@ -51,7 +51,13 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['except' => ['validator', 'create', 'confirm']]);
+        $this->middleware('jwt.auth', ['except' => [
+            'confirm',
+            'postRegister',
+            'login',
+            'resendVerifyEmail',
+            'updateUserEmail'
+            ]]);
     }
 
     /**
@@ -143,9 +149,6 @@ class UsersController extends Controller
      *           }
      *       }
      *
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error Validation error.
@@ -153,26 +156,6 @@ class UsersController extends Controller
      * @apiError error Message user_created_but_we_accept_only_jpeg_gif_png_files_as_profile_images.
      * @apiError could_not_create_user User error.
      *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status" : 0,
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_not_provided"
-     *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
@@ -811,34 +794,11 @@ class UsersController extends Controller
       }
       }
      *
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error user_not_verified User error.
      * @apiError error invalid_credentials User error.
      *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status" : 0,
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_not_provided"
-     *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
@@ -1186,33 +1146,10 @@ class UsersController extends Controller
      *          "email": "aneeshk@cubettech.com"
      *      }
      *
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
      * @apiError error Validation Error.
      * @apiError error email not registered with us.
      * @apiError error email already verified.
      *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status" : 0,
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *      "status" : 0,
-     *       "error": "token_not_provided"
-     *     }
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 422 email_reqired
@@ -4182,33 +4119,10 @@ class UsersController extends Controller
       }
      *       
      *
-     * @apiError error Message token_invalid.
-     * @apiError error Message token_expired.
-     * @apiError error Message token_not_provided.
      * @apiError error Validation error.
      * @apiError error Validation error.
      * @apiError error Message An user already registered with this email address.
      *
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Invalid Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_invalid"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 401 Unauthorised
-     *     {
-     *       "status" : 0,
-     *       "error": "token_expired"
-     *     }
-     * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Bad Request
-     *     {
-     *       "status" : 0,
-     *       "error": "token_not_provided"
-     *     }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error

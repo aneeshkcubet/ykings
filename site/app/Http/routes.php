@@ -296,7 +296,9 @@ Route::group(['domain' => 'admin.ykings.com'], function () {
 
 Route::group(['prefix' => 'api'], function() {
     Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
-    Route::get('authenticate', 'Api\AuthenticateController@authenticate');
+    
+    Route::post('authenticate', 'Api\AuthenticateController@authenticate');
+    
     Route::get('users', 'Api\AuthenticateController@index');
     //UsersController
     Route::post('user/get', [

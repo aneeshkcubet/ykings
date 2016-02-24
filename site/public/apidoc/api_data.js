@@ -1203,7 +1203,7 @@ define({ "api": [
             "type": "<p>String</p> ",
             "optional": false,
             "field": "item_type",
-            "description": "<p>'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test' *required</p> "
+            "description": "<p>'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement' *required</p> "
           },
           {
             "group": "Parameter",
@@ -1411,7 +1411,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n      {\n      \"id\": \"235\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"12\",\n      \"feed_text\": \"Post check\",\n      \"created_at\": \"2016-01-20 06:52:57\",\n      \"updated_at\": \"2016-01-20 06:52:57\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Forseti\",\n      \"duration\": \"41\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"233\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:55\",\n      \"updated_at\": \"2016-01-20 04:53:55\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"8\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"232\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:16\",\n      \"updated_at\": \"2016-01-20 04:53:16\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"231\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"Hai\",\n      \"created_at\": \"2016-01-20 04:37:20\",\n      \"updated_at\": \"2016-01-20 04:37:20\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"230\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"17\",\n      \"feed_text\": \"Ok\",\n      \"created_at\": \"2016-01-19 13:48:39\",\n      \"updated_at\": \"2016-01-19 13:48:39\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Plank\",\n      \"duration\": \"1\",\n      \"intensity\": \"1\",\n      \"unit\": \"seconds\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"229\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:48:04\",\n      \"updated_at\": \"2016-01-19 13:48:04\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Jumping Pullups\",\n      \"duration\": \"3\",\n      \"intensity\": \"10\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"228\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"40\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:47:35\",\n      \"updated_at\": \"2016-01-19 13:47:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Lunge\",\n      \"duration\": \"3\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"227\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:59\",\n      \"updated_at\": \"2016-01-19 13:46:59\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"226\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:23\",\n      \"updated_at\": \"2016-01-19 13:46:23\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"0\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"225\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:35:46\",\n      \"updated_at\": \"2016-01-19 13:35:46\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Borr\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"feed_list\": [\n{\n      \"id\": 703,\n      \"user_id\": 48,\n      \"item_type\": \"hiit_replacement\",\n      \"item_id\": 3,\n      \"feed_text\": \"Testing HIIT replacements\",\n      \"image\": [],\n      \"created_at\": \"2016-02-23 13:20:00\",\n      \"updated_at\": \"2016-02-23 13:20:00\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"item_name\": \"60/120(Replacement)\",\n      \"duration\": 320,\n      \"intensity\": 4,\n      \"profile\": {\n        \"user_id\": 48,\n        \"first_name\": \"Aneesh\",\n        \"last_name\": \"Kallikkattil\",\n        \"image\": \"\",\n        \"quote\": \"\",\n        \"gender\": 1,\n        \"level\": 2\n      }\n    },\n      {\n      \"id\": \"235\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"12\",\n      \"feed_text\": \"Post check\",\n      \"created_at\": \"2016-01-20 06:52:57\",\n      \"updated_at\": \"2016-01-20 06:52:57\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Forseti\",\n      \"duration\": \"41\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"233\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:55\",\n      \"updated_at\": \"2016-01-20 04:53:55\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"8\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"232\",\n      \"user_id\": \"84\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-20 04:53:16\",\n      \"updated_at\": \"2016-01-20 04:53:16\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      },\n      {\n      \"id\": \"231\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"Hai\",\n      \"created_at\": \"2016-01-20 04:37:20\",\n      \"updated_at\": \"2016-01-20 04:37:20\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"230\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"17\",\n      \"feed_text\": \"Ok\",\n      \"created_at\": \"2016-01-19 13:48:39\",\n      \"updated_at\": \"2016-01-19 13:48:39\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Plank\",\n      \"duration\": \"1\",\n      \"intensity\": \"1\",\n      \"unit\": \"seconds\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"229\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:48:04\",\n      \"updated_at\": \"2016-01-19 13:48:04\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Jumping Pullups\",\n      \"duration\": \"3\",\n      \"intensity\": \"10\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"228\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"40\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:47:35\",\n      \"updated_at\": \"2016-01-19 13:47:35\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Lunge\",\n      \"duration\": \"3\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"227\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:59\",\n      \"updated_at\": \"2016-01-19 13:46:59\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Lean\",\n      \"item_name\": \"Australian Pullups\",\n      \"duration\": \"2\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"226\",\n      \"user_id\": \"86\",\n      \"item_type\": \"exercise\",\n      \"item_id\": \"43\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:46:23\",\n      \"updated_at\": \"2016-01-19 13:46:23\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"Athletic\",\n      \"item_name\": \"Pushups\",\n      \"duration\": \"0\",\n      \"intensity\": \"1\",\n      \"unit\": \"times\",\n      \"profile\": {\n      \"user_id\": \"86\",\n      \"first_name\": \"Vinish\",\n      \"last_name\": \"Tester\",\n      \"image\": \"86_1452668192.jpg\",\n      \"quote\": \"how are you?\",\n      \"level\": 18\n      }\n      },\n      {\n      \"id\": \"225\",\n      \"user_id\": \"84\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"How hard was your Training? what kept you going?\",\n      \"created_at\": \"2016-01-19 13:35:46\",\n      \"updated_at\": \"2016-01-19 13:35:46\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Borr\",\n      \"duration\": \"5\",\n      \"intensity\": \"1\",\n      \"profile\": {\n      \"user_id\": \"84\",\n      \"first_name\": \"Aneesh\",\n      \"last_name\": \"ILeaf\",\n      \"image\": \"84_1453206435.jpg\",\n      \"quote\": \"new things\",\n      \"level\": 7\n      }\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -1520,7 +1520,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 15,\n      \"feed_list\": [\n      {\n      \"id\": \"45\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"68\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452233072.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"45\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\"\n      }\n      ],\n      \"item_name\": \"30/30\",\n      \"duration\": \"2250.00\",\n      \"intensity\": \"10\"\n      },\n      {\n      \"id\": \"44\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:48\",\n      \"updated_at\": \"2016-01-08 06:03:48\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"43\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:44\",\n      \"updated_at\": \"2016-01-08 06:03:44\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"42\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:37\",\n      \"updated_at\": \"2016-01-08 06:03:37\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"3\"\n      },\n      {\n      \"id\": \"41\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:27\",\n      \"updated_at\": \"2016-01-08 06:03:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"8\"\n      },\n      {\n      \"id\": \"40\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:17\",\n      \"updated_at\": \"2016-01-08 06:03:17\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"39\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:10\",\n      \"updated_at\": \"2016-01-08 06:03:10\",\n      \"clap_count\": 2,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"7\"\n      },\n      {\n      \"id\": \"38\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:02:50\",\n      \"updated_at\": \"2016-01-08 06:02:50\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"30/30\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"15\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"67\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232176.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\"\n      }\n      ],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Mimir\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      },\n      {\n      \"id\": \"36\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"9\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"66\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232167.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"36\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\"\n      }\n      ],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Elli\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"success\": \"List\",\n      \"follower_count\": 2,\n      \"level_count\": 0,\n      \"workout_count\": 15,\n      \"feed_list\": [\n      {\n      \"id\": 703,\n      \"user_id\": 48,\n      \"item_type\": \"hiit_replacement\",\n      \"item_id\": 3,\n      \"feed_text\": \"Testing HIIT replacements\",\n      \"image\": [],\n      \"created_at\": \"2016-02-23 13:20:00\",\n      \"updated_at\": \"2016-02-23 13:20:00\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"item_name\": \"60/120(Replacement)\",\n      \"duration\": 320,\n      \"intensity\": 4,\n      \"profile\": {\n        \"user_id\": 48,\n        \"first_name\": \"Aneesh\",\n        \"last_name\": \"Kallikkattil\",\n        \"image\": \"\",\n        \"quote\": \"\",\n        \"gender\": 1,\n        \"level\": 2\n      }\n    },\n      {\n      \"id\": \"45\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"68\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452233072.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"45\",\n      \"created_at\": \"2016-01-08 06:04:32\",\n      \"updated_at\": \"2016-01-08 06:04:32\"\n      }\n      ],\n      \"item_name\": \"30/30\",\n      \"duration\": \"2250.00\",\n      \"intensity\": \"10\"\n      },\n      {\n      \"id\": \"44\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:48\",\n      \"updated_at\": \"2016-01-08 06:03:48\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"43\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:44\",\n      \"updated_at\": \"2016-01-08 06:03:44\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"42\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"3\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:37\",\n      \"updated_at\": \"2016-01-08 06:03:37\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"60/120\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"3\"\n      },\n      {\n      \"id\": \"41\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:27\",\n      \"updated_at\": \"2016-01-08 06:03:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"8\"\n      },\n      {\n      \"id\": \"40\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:17\",\n      \"updated_at\": \"2016-01-08 06:03:17\",\n      \"clap_count\": 1,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"5\"\n      },\n      {\n      \"id\": \"39\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"2\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:03:10\",\n      \"updated_at\": \"2016-01-08 06:03:10\",\n      \"clap_count\": 2,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 1,\n      \"image\": [],\n      \"item_name\": \"20/10\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"7\"\n      },\n      {\n      \"id\": \"38\",\n      \"user_id\": \"96\",\n      \"item_type\": \"hiit\",\n      \"item_id\": \"1\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 06:02:50\",\n      \"updated_at\": \"2016-01-08 06:02:50\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [],\n      \"item_name\": \"30/30\",\n      \"duration\": \"1500.00\",\n      \"intensity\": \"4\"\n      },\n      {\n      \"id\": \"37\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"15\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"67\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232176.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"37\",\n      \"created_at\": \"2016-01-08 05:49:36\",\n      \"updated_at\": \"2016-01-08 05:49:36\"\n      }\n      ],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Mimir\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      },\n      {\n      \"id\": \"36\",\n      \"user_id\": \"96\",\n      \"item_type\": \"workout\",\n      \"item_id\": \"9\",\n      \"feed_text\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\",\n      \"clap_count\": 0,\n      \"comment_count\": 0,\n      \"is_commented\": 0,\n      \"is_claped\": 0,\n      \"image\": [\n      {\n      \"id\": \"66\",\n      \"user_id\": \"96\",\n      \"path\": \"96_1452232167.jpg\",\n      \"description\": \"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.\",\n      \"parent_type\": \"2\",\n      \"parent_id\": \"36\",\n      \"created_at\": \"2016-01-08 05:49:27\",\n      \"updated_at\": \"2016-01-08 05:49:27\"\n      }\n      ],\n      \"category\": \"HIIT-strength\",\n      \"item_name\": \"Elli\",\n      \"duration\": \"1500\",\n      \"intensity\": \"2\"\n      }\n      ],\n      \"urls\": {\n      \"profileImageSmall\": \"http://sandbox.ykings.com/uploads/images/profile/small\",\n      \"profileImageMedium\": \"http://sandbox.ykings.com/uploads/images/profile/medium\",\n      \"profileImageLarge\": \"http://sandbox.ykings.com/uploads/images/profile/large\",\n      \"profileImageOriginal\": \"http://sandbox.ykings.com/uploads/images/profile/original\",\n      \"video\": \"http://sandbox.ykings.com/uploads/videos\",\n      \"videothumbnail\": \"http://sandbox.ykings.com/uploads/images/videothumbnails\",\n      \"feedImageSmall\": \"http://sandbox.ykings.com/uploads/images/feed/small\",\n      \"feedImageMedium\": \"http://sandbox.ykings.com/uploads/images/feed/medium\",\n      \"feedImageLarge\": \"http://sandbox.ykings.com/uploads/images/feed/large\",\n      \"feedImageOriginal\": \"http://sandbox.ykings.com/uploads/images/feed/original\",\n      \"coverImageSmall\": \"http://sandbox.ykings.com/uploads/images/cover_image/small\",\n      \"coverImageMedium\": \"http://sandbox.ykings.com/uploads/images/cover_image/medium\",\n      \"coverImageLarge\": \"http://sandbox.ykings.com/uploads/images/cover_image/large\",\n      \"coverImageOriginal\": \"http://sandbox.ykings.com/uploads/images/cover_image/original\"\n      }\n      }",
           "type": "json"
         }
       ]
@@ -2645,11 +2645,24 @@ define({ "api": [
     "groupTitle": "Follow"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/authenticate",
     "title": "Get JW token",
     "name": "Athenticate",
     "group": "General",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "token",
+            "description": "<p>expired token *required</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -2676,6 +2689,12 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "Validation",
+            "description": "<p>Error</p> "
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "invalid_credentials",
             "description": "<p>Message invalid_credentials.</p> "
           },
@@ -2688,6 +2707,11 @@ define({ "api": [
         ]
       },
       "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The token field is required\"\n}",
+          "type": "json"
+        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 invalid_credentials\n{\n  \"status\" : 0,\n  \"error\": \"invalid_credentials\"\n}",
@@ -4062,33 +4086,18 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "field": "could_not_create_user",
+            "description": "<p>User error.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "could_not_create_user",
-            "description": "<p>User error.</p> "
+            "field": "Validation",
+            "description": "<p>error.</p> "
           }
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 500 could_not_create_user\n{\n  \"error\": \"could_not_create_user\"\n}",
@@ -4096,12 +4105,17 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n {\n \"status\": 0,\n \"error\": \"The email field is required.\"\n }",
+          "content": "HTTP/1.1 422 Validation error\n     {\n     \"status\": 0,\n     \"error\": \"The email field is required.\"\n     }",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"error\": \"could_not_create_user\"\n}",
+          "content": "HTTP/1.1 422 Validation error\n     {\n     \"status\": 0,\n     \"error\": \"The provider id field is required\"\n     }",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n     {\n     \"status\": 0,\n     \"error\": \"The provider field is required.\"\n     }",
           "type": "json"
         }
       ]
@@ -4232,33 +4246,18 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "field": "could_not_create_user",
+            "description": "<p>User error.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "could_not_create_user",
-            "description": "<p>User error.</p> "
+            "field": "Validation",
+            "description": "<p>error</p> "
           }
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 500 could_not_create_user\n{\n  \"error\": \"could_not_create_user\"\n}",
@@ -4271,7 +4270,12 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 422 Validation error\n{\n  \"error\": \"could_not_create_user\"\n}",
+          "content": "HTTP/1.1 422 Validation error\n {\n \"status\": 0,\n \"error\": \"The provider id field is required\"\n }",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 422 Validation error\n {\n \"status\": 0,\n \"error\": \"The provider field is required.\"\n }",
           "type": "json"
         }
       ]
@@ -4606,7 +4610,7 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "description": "<p>Validation error.</p> "
           },
           {
             "group": "Error 4xx",
@@ -4617,21 +4621,6 @@ define({ "api": [
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Validation error\n{\n  \"status\": 0,\n  \"error\": \"The email field is required.\",\n  \"referral_code\": \"i2dGox\"\n  }",
@@ -4916,26 +4905,11 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "description": "<p>Validation error.</p> "
           }
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Validation error\n{\n  \"status\" : 0,\n  \"error\": \"The email field is required.\"\n}",
@@ -5013,26 +4987,11 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "description": "<p>Validation Error.</p> "
           }
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 422 email_reqired\n{\n     \"status\" : 0,\n     \"error\": \"email field is required\"\n}",
@@ -6133,26 +6092,11 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p> "
+            "description": "<p>Validation error.</p> "
           }
         ]
       },
       "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Invalid Request\n{\n  \"status\" : 0,\n  \"error\": \"token_invalid\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorised\n{\n  \"status\" : 0,\n  \"error\": \"token_expired\"\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"status\" : 0,\n  \"error\": \"token_not_provided\"\n}",
-          "type": "json"
-        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Validation error\n{\n          \"status\": 0,\n          \"error\": \"The email field is required.\",\n      }",
