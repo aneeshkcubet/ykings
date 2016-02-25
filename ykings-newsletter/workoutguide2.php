@@ -85,7 +85,7 @@ function syncMailchimp($data) {
 
   <body>
   
-  <div class="newsletter-container clearfix" style="background: url('./images/Bg_newsletter.jpg') no-repeat 0 0; background-size:cover;">
+  <div class="newsletter-container clearfix" style="background: url('./images/Bg_newsletter2.jpg') no-repeat 0 0; background-size:cover;">
     <div class="logo"><img src="images/logo-ykings.png" alt=""></div>
      <div class="content-wrap">
         <div class="content-inner">
