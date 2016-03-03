@@ -26,8 +26,8 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * @api {post} /authenticate Get JW token
-     * @apiName Athenticate
+     * @api {post} authenticate RefreshToken
+     * @apiName RefreshToken
      * @apiGroup General
      * 
      * @apiParam {String} token expired token *required
@@ -40,6 +40,7 @@ class AuthenticateController extends Controller
      *       "status" : 1,
      *       "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvc2FuZGJveC55a2luZ3MuY29tXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY2MzMwNzgiLCJleHAiOiIxNDQ2NjM2Njc4IiwibmJmIjoiMTQ0NjYzMzA3OCIsImp0aSI6ImFiNDAwNTllZmU0OTI3ODYwMTczYjI1ZGEzZWJmMDkwIn0.uM_G0OAne9b-twd60tAZlAUGmpitINP0JMgGC3ZrNoo",
      *     }
+     * 
      * @apiError Validation Error
      * @apiError invalid_credentials Message invalid_credentials.
      * @apiError could_not_create_token JWT error.

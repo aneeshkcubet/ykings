@@ -54,8 +54,15 @@ Users
                         @foreach ($usersList as $list)
                         <tr>
                             <td>{{{ $list->id }}}</td>
-                            <td>{{{ $list['profile'][0]['first_name'] }}}</td>
-                            <td>{{{ $list['profile'][0]['last_name'] }}}</td>
+                            <td>@if(isset($list->profile[0]['first_name']))
+                                {{{ $list->profile[0]['first_name'] }}}
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($list->profile[0]['last_name']))
+                                {{{ $list->profile[0]['last_name'] }}}
+                                @endif
+                            </td>
                             <td>{{{ $list->email }}}</td>
                             <td>{{{ $list->status }}}</td>
                             <td>
@@ -76,10 +83,19 @@ Users
                                     <i class="livicon" data-name="thumbs-down" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Remove Featured"></i>
                                 </a>                                
                                 @endif
+                                
+                                @if ($list->is_subscribed_backend != 1)
+                                <a href="{{ route('admin.user.setsubscribed', $list->id) }}" title="Set as Subscribed User">
+                                    <i class="livicon" data-name="thumbs-up" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Set as Subscribed User"></i>
+                                </a>
+                                @else
+                                <a href="{{ route('admin.user.unsetsubscribed', $list->id) }}" title="Remove Subscribed">
+                                    <i class="livicon" data-name="thumbs-down" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Remove Subscribed"></i>
+                                </a>                                
+                                @endif
                             </td>
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

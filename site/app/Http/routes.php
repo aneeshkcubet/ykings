@@ -50,6 +50,10 @@ Route::group(['domain' => 'admin.ykings.com'], function () {
         Route::get('{userId}/setfeatured', array('as' => 'admin.user.setfeatured', 'uses' => 'Admin\UsersController@setFeatured'));
 
         Route::get('{userId}/unsetfeatured', array('as' => 'admin.user.unsetfeatured', 'uses' => 'Admin\UsersController@unsetFeatured'));
+        
+        Route::get('{userId}/setsubscribed', array('as' => 'admin.user.setsubscribed', 'uses' => 'Admin\UsersController@setSubscribed'));
+
+        Route::get('{userId}/unsetsubscribed', array('as' => 'admin.user.unsetsubscribed', 'uses' => 'Admin\UsersController@unsetSubscribed'));
     });
 
     # Exercise Management

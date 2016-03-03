@@ -37,9 +37,22 @@ class UsersController extends Controller
     public function getIndex()
     {
         // Grab all the users
-        $usersList = User::where('status', '!=', 2)->get();
+        $usersList = User::whereRaw('status !=  2')->get();
+        
+        if(count($usersList)>0){            
+            foreach($usersList as $uKey => $user){
+                $profile = Profile::where('user_id', $user->id)->get();
+                if(!is_null($profile)){
+                    $usersList[$uKey]->profile = $profile->toArray();
+                } else {
+                    $usersList[$uKey]->profile = [];
+                }
+                
+            }            
+        }
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
         // Show the page
         return View('admin.users.index', compact('usersList', 'user'));
     }
@@ -378,6 +391,36 @@ class UsersController extends Controller
         $user->update();
 
         return Redirect::route("admin.users")->with('success', 'Successfully removed featured user.');
+    }
+    
+    /**
+     * User Delete
+     * @since 26/02/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function setSubscribed($id = null)
+    {
+        $user = User::where('id', $id)->first();
+        $user->is_subscribed_backend = 1;
+        $user->update();
+
+        return Redirect::route("admin.users")->with('success', 'Successfully set as subscribed user.');
+    }
+
+    /**
+     * User Delete
+     * @since 26/02/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
+    public function unsetSubscribed($id = null)
+    {
+        $user = User::where('id', $id)->first();
+        $user->is_subscribed_backend = 0;
+        $user->update();
+
+        return Redirect::route("admin.users")->with('success', 'Successfully removed subscribed user.');
     }
 
     /**

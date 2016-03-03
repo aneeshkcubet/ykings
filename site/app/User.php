@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin'];
+    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin', 'is_subscribed_backend'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -141,11 +141,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function isSubscribed($userId)
     {
         $time = time();
+        
+        $adminSubscribed = DB::table('users')
+            ->select('*')
+            ->where('id', $userId)
+            ->where('is_subscribed_backend', 1)
+            ->first();
+        
+        if (!is_null($adminSubscribed)) {
+            return 1;
+        }
+        
         $subscription = DB::table('subscriptions')
             ->select('*')
             ->where('user_id', '=', $userId)
             ->orderBy('id', 'DESC')
             ->first();
+        
         if (is_null($subscription)) {
             return 0;
         }
