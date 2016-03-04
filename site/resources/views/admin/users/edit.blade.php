@@ -88,6 +88,20 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                             <input id="email" name="email" readonly="" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email', $tUser->email) }}}" />
                                         </div>
                                     </div>
+                                    @if($tUser['is_admin'] == 1)
+                                    <div class="form-group">
+                                        <label for="last_name" class="col-sm-2 control-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="{{{ Input::old('password') }}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name" class="col-sm-2 control-label">Confirm Password</label>
+                                        <div class="col-sm-10">
+                                            <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirm Password" class="form-control" value="{{{ Input::old('password_confirm') }}}" />
+                                        </div>
+                                    </div>
+                                    @endif
                                     <p>(*) Mandatory</p>
                                 </section>
                                 <!-- second tab -->
@@ -156,7 +170,7 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <input type="checkbox" name="is_admin" class="flat-red" @if($tUser['isadmin'] == 1 || Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
+                                            <input type="checkbox" name="is_admin" class="flat-red" @if($tUser['is_admin'] == 1 || Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
                                         </div>
                                     </div>
                                 </section>

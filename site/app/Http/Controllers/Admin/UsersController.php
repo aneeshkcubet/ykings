@@ -256,23 +256,26 @@ class UsersController extends Controller
             // Redirect to the user management page
             return Redirect::route('admin.users')->with('error', $error);
         }
+        
+        $isAdmin = Input::get('is_admin');
 
 
-        $this->validationRules['email'] = "required|email";
 
         // Do we want to update the user password?
-        if (!$password = Input::get('password')) {
-            unset($this->validationRules['password']);
-            unset($this->validationRules['password_confirm']);
+        if (Input::get('password')) {
+            User::where('id', $id)->update([
+                'password' => Hash::make(Input::get('password')),
+                'is_admin' => (isset($isAdmin)) ? 1 : 0,
+                ]);
         }
 
         // Create a new validator instance from our validation rules
-        $validator = Validator::make(Input::all(), $this->validationRules);
+//        $validator = Validator::make(Input::all(), $this->validationRules);
 
         // If validation fails, we'll exit the operation now.
-        if ($validator->fails()) {
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
+//        if ($validator->fails()) {
+//            return Redirect::back()->withInput()->withErrors($validator);
+//        }
 
         $userProfile = Profile::where('user_id', $id)->first();
         // Update the user
@@ -315,7 +318,7 @@ class UsersController extends Controller
         // Prepare the success message
         $success = 'Successfully updated the user profile.';
         // Redirect to the user page
-        return Redirect::route('admin.users', $id)->with('success', $success);
+        return Redirect::route('admin.users')->with('success', $success);
 
 
         // Redirect to the user page
