@@ -1918,7 +1918,7 @@ class UsersController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $arr1 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+            $arr1 = Array(7, 10, 15, 20, 25, 30, 40, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
 
             if ($user) {
                 $exercises = Exercise::where('name', '!=', 'Rest')->get();
