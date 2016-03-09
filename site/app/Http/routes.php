@@ -646,6 +646,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'message.updateReadStatus',
         'uses' => 'Api\MessageController@updateReadStatus'
     ]);
+    
+    // route for refferal table
+    Route::post('/referral/parameters', [
+        'as' => 'user.settings',
+        'uses' => 'Api\UserSettingsController@saveRefferalDetails'
+    ]);
 });
 
 // Authentication routes...

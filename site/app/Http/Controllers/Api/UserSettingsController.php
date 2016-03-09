@@ -11,6 +11,7 @@ use App\User;
 use App\Profile;
 use App\Social;
 use App\PushNotification;
+use App\Refferal;
 
 class UserSettingsController extends Controller
 {
@@ -328,7 +329,6 @@ class UserSettingsController extends Controller
                             'type' => $request->type,
                             'device_token' => $request->device_token
                     ]);
-                   
                 } else {
                     $userDeviceToken->device_token = $request->device_token;
                     $userDeviceToken->update();
@@ -337,6 +337,81 @@ class UserSettingsController extends Controller
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }
+        }
+    }
+
+    /**
+     * @api {post} /user/updateDeviceToken saveRefferalDetails
+     * @apiName saveRefferalDetails
+     * @apiGroup Refferal
+     * 
+     * @apiParam {String} email email of downloaded user *required
+     * @apiParam {String} parameters json encoded parameters from the device *required
+     * @apiSuccess {String} success.
+     * 
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+            "status": 1,
+            "success": "Updated Successfully"
+        }
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     * @apiError error Validation error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status" : 0,
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status" : 0,
+     *       "error": "token_not_provided"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The email field is required"
+     *     }
+     * 
+     *  
+     */
+    public function saveRefferalDetails(Request $request)
+    {
+        if (!isset($request->email) || ($request->email == null)) {
+            return response()->json(["status" => "0", "error" => "The email field is required"]);
+        } else if (!isset($request->parameters) || ($request->parameters == null)) {
+            return response()->json(["status" => "0", "error" => "The parameters field is required"]);
+        } else {
+
+            Refferal::create([
+                'email' => $request->email,
+                'parameters' => $request->parameters
+            ]);
+            return response()->json(['status' => 1, 'success' => 'Updated Successfully'], 200);
         }
     }
 }
