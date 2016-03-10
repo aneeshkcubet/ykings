@@ -85,6 +85,7 @@ class ExerciseController extends Controller
 
         $muscleGroups = Input::get('muscle_groups');
         $duration = Input::get('repetitions');
+        $isStatic = Input::get('is_static');
         $exercise = Exercise::create([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
@@ -98,7 +99,8 @@ class ExerciseController extends Controller
                 'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
                 'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
                 'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
-                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
+                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips'),
+                'is_static'  => (isset($isStatic)) ? 1 : 0
         ]);
 
         if (!is_null($exercise)) {
@@ -217,6 +219,8 @@ class ExerciseController extends Controller
         $exercise = Exercise::where('id', $id)->first();
 
         $muscleGroups = Input::get('muscle_groups');
+        
+        $isStatic = Input::get('is_static');
 
         if (!is_null($exercise)) {
 
@@ -234,7 +238,8 @@ class ExerciseController extends Controller
                 'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
                 'range_of_motion' => ((Input::get('range_of_motion') == 'Type the range of motion here') || Input::get('range_of_motion') == '') ? '' : Input::get('range_of_motion'),
                 'video_tips' => ((Input::get('video_tips') == 'Type the video tips here') || Input::get('video_tips') == '') ? '' : Input::get('video_tips'),
-                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips')
+                'pro_tips' => ((Input::get('pro_tips') == 'Type the pro tips here') || Input::get('pro_tips') == '') ? '' : Input::get('pro_tips'),
+                'is_static'  => (isset($isStatic)) ? 1 : 0
             ]);
             
             Fundumental::where('exercise_id', $id)->update(['unit' => Input::get('unit')]);

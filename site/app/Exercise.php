@@ -28,7 +28,8 @@ class Exercise extends Model
         'muscle_groups',
         'range_of_motion',
         'video_tips',
-        'pro_tips'
+        'pro_tips',
+        'is_static'
     ];
     protected $hidden = [
         'updated_at',

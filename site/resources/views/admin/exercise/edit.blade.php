@@ -133,6 +133,11 @@ Edit Exercise - {{  $exercise->name }}
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <input type="checkbox" name="is_static" @if(Input::old('is_static') == 'on' || $exercise->is_static == 1)checked="" @endif> Mark as static
+                                        </div>
+                                    </div>
                                     <p>(*) Mandatory</p>
                                 </section>
                                 <!-- Second tab -->

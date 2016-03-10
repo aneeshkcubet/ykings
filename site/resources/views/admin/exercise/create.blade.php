@@ -137,6 +137,12 @@ Add New Exercise
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <input type="checkbox" name="is_static" > Mark as static
+                                        </div>
+                                    </div>
+                                    
                                     <p>(*) Mandatory</p>
                                 </section>
 

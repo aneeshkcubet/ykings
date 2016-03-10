@@ -45,7 +45,7 @@ class FeedController extends Controller
      * @apiName CreateFeed
      * @apiGroup Feeds
      * @apiParam {Number} user_id Id of user *required 
-     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement' *required
+     * @apiParam {String} item_type 'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement','fundamental' *required
      * @apiParam {Number} item_id id of the targetting item (0 incase of freestyle) *required
      * @apiParam {Number} [time_taken] time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'
      * @apiParam {Number} [rewards] points earned by doing activity
@@ -157,14 +157,20 @@ class FeedController extends Controller
                     $addStar = intval($request->starred);
 
                 $itemId = $request->input('item_id');
-
-                $feed = Feeds::create([
+                
+                if ($request->item_type != 'fundamental' && $request->item_type != 'test'){
+                    $feed = Feeds::create([
                         'user_id' => $request->input('user_id'),
                         'item_type' => $request->input('item_type'),
                         'item_id' => $request->input('item_id'),
                         'feed_text' => $request->input('text'),
                         'image' => ''
                 ]);
+                    
+                }
+
+                
+                
 
                 if ($request->item_type == 'exercise') {
                     $exerciseUser = Exerciseuser::create([
@@ -328,7 +334,7 @@ class FeedController extends Controller
                         'test_id' => $request->item_id,
                         'user_id' => $request->user_id,
                         'status' => 1,
-                        'feed_id' => $feed->id,
+                        'feed_id' => 0,
                         'time' => $request->time_taken,
                         'is_starred' => $addStar,
                         'volume' => isset($request->volume) ? $request->volume : ''

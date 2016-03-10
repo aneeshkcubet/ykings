@@ -146,7 +146,17 @@ View Exercise - {{ $exercise->name }}
                                                     <td>
                                                         {{ $exercise->musclegroup_string }}
                                                     </td>
-                                                </tr>                                                
+                                                </tr>
+                                                <tr>
+                                                    <td>Static</td>
+                                                    <td>
+                                                        @if($exercise->is_static == 1)
+                                                        Yes
+                                                        @else
+                                                        No
+                                                        @endif
+                                                    </td>
+                                                </tr>
                                             </table>
                                         </form>
                                     </div>
