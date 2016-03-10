@@ -607,7 +607,7 @@ class SkillsController extends Controller
 
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 1)->orderBy('skills.level', 'DESC')->first();
                     
-                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
@@ -626,7 +626,7 @@ class SkillsController extends Controller
 
                 do {
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 2)->orderBy('skills.level', 'DESC')->first();
-                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
                     if($unlockCount > 0){
@@ -645,7 +645,7 @@ class SkillsController extends Controller
                 do {
 
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 3)->orderBy('skills.level', 'DESC')->first();
-                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
                     if($unlockCount > 0){
@@ -665,7 +665,7 @@ class SkillsController extends Controller
 
 
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 4)->orderBy('skills.level', 'DESC')->first();
-                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
                     if($unlockCount > 0){
@@ -684,7 +684,7 @@ class SkillsController extends Controller
                 do {
 
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 5)->orderBy('skills.level', 'DESC')->first();
-                    $skill->exercise = DB::table('exercises')->where('id', $skill->exercise_id)->first();
+                    $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $skill->id)->count();
                     if($unlockCount > 0){
