@@ -470,17 +470,25 @@ class CoachesController extends Controller
     {
         $fundumentalArray = [
             1 => [
-                ['exercise_id' => 43, 'duration' => 10, 'test_done' => 0],
-                ['exercise_id' => 2, 'duration' => 10, 'test_done' => 0],
-                ['exercise_id' => 40, 'duration' => 15, 'test_done' => 0],
-                ['exercise_id' => 17, 'duration' => 15, 'test_done' => 0]
-            ],
-            2 => [
-                ['exercise_id' => 43, 'duration' => 30, 'test_done' => 0],
-                ['exercise_id' => 32, 'duration' => 10, 'test_done' => 0],
-                ['exercise_id' => 38, 'duration' => 25, 'test_done' => 0]
-            ],
+                ['exercise_id' => 67, 'duration' => 7, 'test_done' => 0],
+                ['exercise_id' => 45, 'duration' => 25, 'test_done' => 0],
+                ['exercise_id' => 4, 'duration' => 45, 'test_done' => 0],
+                ['exercise_id' => 12, 'duration' => 15, 'test_done' => 0]
+            ]
+//            ,
+//            1 => [
+//                ['exercise_id' => 43, 'duration' => 10, 'test_done' => 0],
+//                ['exercise_id' => 2, 'duration' => 10, 'test_done' => 0],
+//                ['exercise_id' => 40, 'duration' => 15, 'test_done' => 0],
+//                ['exercise_id' => 17, 'duration' => 15, 'test_done' => 0]
+//            ],
+//            2 => [
+//                ['exercise_id' => 43, 'duration' => 30, 'test_done' => 0],
+//                ['exercise_id' => 32, 'duration' => 10, 'test_done' => 0],
+//                ['exercise_id' => 38, 'duration' => 25, 'test_done' => 0]
+//            ],
         ];
+
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
@@ -825,12 +833,11 @@ class CoachesController extends Controller
      * @apiName prepareCoach
      * @apiGroup Coach
      * @apiParam {Number} user_id Id of user *required
-     * @apiParam {Number} test1 status of test1 0-failed 1-passed *required
-     * @apiParam {Number} test2 status of test2 0-failed 1-passed *required
+     * @apiParam {Number} test status of test exercises json encoded array of exercise ids and statuses [{"exercise_id":67,"test_done":1},{"exercise_id":45,"test_done":1},{"exercise_id":4,"test_done":1},{"exercise_id":12,"test_done":1}] *required
      * @apiParam {Number} focus user focus 1-Lean, 2-Athletic, 3-Strength *required
      * @apiParam {Number} days number of workout days per week *required
      * @apiParam {String} [muscle_groups] user muscle groups preferences comma seperated ids 1,5,6 etc.
-     * @apiParam {String} feedback user feedback json_encoded array {"1":[{"43":1},{"2":1},{"40":3},{"17":2}],"2":[{"43":1},{"32":3},{"38":0}]} 0-not done, 1- I can do way more, 2 - I can do more, 3 - It was ok *required
+     * @apiParam {String} feedback user feedback json_encoded array {"67":2,"45":1,"4":2,"12":3} 0-not done, 1- I can do way more, 2 - I can do more, 3 - It was ok *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
@@ -2256,11 +2263,16 @@ class CoachesController extends Controller
 
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } elseif (!isset($request->test1) || ($request->test1 == null)) {
-            return response()->json(["status" => "0", "error" => "The test1 field is required"]);
-        } elseif (!isset($request->test2) || ($request->test2 == null)) {
-            return response()->json(["status" => "0", "error" => "The test2 field is required"]);
-        } elseif (!isset($request->focus) || ($request->focus == null)) {
+        }
+        elseif (!isset($request->test) || ($request->test == null)) {
+            return response()->json(["status" => "0", "error" => "The test field is required"]);
+        }
+//        elseif (!isset($request->test1) || ($request->test1 == null)) {
+//            return response()->json(["status" => "0", "error" => "The test1 field is required"]);
+//        } elseif (!isset($request->test2) || ($request->test2 == null)) {
+//            return response()->json(["status" => "0", "error" => "The test2 field is required"]);
+//        } 
+        elseif (!isset($request->focus) || ($request->focus == null)) {
             return response()->json(["status" => "0", "error" => "The focus field is required"]);
         } elseif (!isset($request->days) || ($request->days == null)) {
             return response()->json(["status" => "0", "error" => "The days field is required"]);
@@ -2269,13 +2281,26 @@ class CoachesController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             
-            if($request->test1 == 0 && $request->test2 == 0){
-                $category = 'beginer';
-            } elseif($request->test1 == 1 && $request->test2 == 0){
-                $category = 'advanced';
-            } else{
-                $category = 'professional';
+            
+
+            $feedbacks = json_decode($request->feedback,true);
+            
+            $feedbackSum = 0;
+            
+            foreach($feedbacks as $feedback){
+                $feedbackSum += $feedback;
             }
+            
+           $feedAvg = round($feedbackSum/4);
+           
+           if($feedAvg < 2){
+               $category = 'beginer';
+           }elseif($feedAvg == 2){
+               $category = 'advanced';
+           }elseif($feedAvg == 3){
+               $category = 'professional';
+           }
+
             if (!is_null($user)) {
                 $data = [
                     'user_id' => $request->user_id,
@@ -2314,9 +2339,11 @@ class CoachesController extends Controller
                 }
 
 
-                $data['test1'] = $request->test1;
-
-                $data['test2'] = $request->test2;
+                $data['test'] = $request->test;
+                
+//                $data['test1'] = $request->test1;
+//
+//                $data['test2'] = $request->test2;
                 
                 $data['week'] = 1;
 

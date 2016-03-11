@@ -227,6 +227,19 @@ class Coach extends Model
 
     public static function prepareCoachExercises($coachId, $data)
     {
+
+//        print_r(json_decode($data['test'],true));
+//        print_r(json_decode($data['feedback'],true));
+
+        $tests = json_decode($data['test'], true);
+        $passed = 1;
+        foreach ($tests as $test) {
+            if ($test['test_done'] == 0) {
+                $passed = 0;
+                continue;
+            }
+        }
+
         $coach = [];
 
         $i = 1;
@@ -243,7 +256,7 @@ class Coach extends Model
 
         $warmUps = DB::table('warmups')->select('*')->get();
 
-        if (($data['test1'] == 0 && $data['test2'] == 0) || ($data['test1'] == 1 && $data['test2'] == 0)) {
+        if ($passed == 0) {
             foreach ($fundumentalArray as $fKey => $fundumentals) {
                 $fundumentalArray[$fKey] = array_map(function ($fundumental) {
 
@@ -315,24 +328,15 @@ class Coach extends Model
             return $stretch;
         }, $stretchesArray);
 
-        if ($data['category'] == 'beginer') {
-            $userLevel = 'beginer';
-        } else {
-            if ($data['test1'] == 1 && $data['test2'] == 0) {
-                $userLevel = 'advanced';
-            } else {
-                $stretchesArray = array_map(function($stretch) {
-                    $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
-                    $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
-                    return $stretch;
-                }, $stretchesArray);
-
-                $userLevel = 'professional';
-            }
-        }
+        $userLevel = $data['category'];
 
         if ($userLevel == 'professional') {
             $intenseFactor = 2;
+            $stretchesArray = array_map(function($stretch) {
+                $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
+                $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
+                return $stretch;
+            }, $stretchesArray);
         } elseif ($userLevel == 'advanced') {
             $intenseFactor = 1;
         } elseif ($userLevel == 'beginer') {
@@ -2793,34 +2797,19 @@ class Coach extends Model
             return $stretch;
         }, $stretchesArray);
 
-        if ($coach->category == 'beginer') {
-            $userLevel = 'beginer';
-        } else {
-            if ($coach->category == 'advanced') {
-                $userLevel = 'advanced';
-            } else {
-                $stretchesArray = array_map(function($stretch) {
-                    $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
-                    $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
-                    return $stretch;
-                }, $stretchesArray);
-
-                $userLevel = 'professional';
-            }
-        }
+        $userLevel = $coach->category;
 
         if ($userLevel == 'professional') {
             $intenseFactor = 2;
-            $data['test1'] = 1;
-            $data['test2'] = 1;
+            $stretchesArray = array_map(function($stretch) {
+                $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
+                $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
+                return $stretch;
+            }, $stretchesArray);
         } elseif ($userLevel == 'advanced') {
             $intenseFactor = 1;
-            $data['test1'] = 1;
-            $data['test2'] = 0;
         } elseif ($userLevel == 'beginer') {
             $intenseFactor = 0;
-            $data['test1'] = 0;
-            $data['test2'] = 0;
         }
 
         $data['user_id'] = $coach->user_id;
@@ -2916,7 +2905,7 @@ class Coach extends Model
         $testArray = [];
         $testString = '';
 
-        if ($data['test1'] == 1 && $data['test1'] == 0) {
+        if ($data['category'] == 'advanced') {
             $fundumentalArray = $fundumentalArray[1];
 
             foreach ($fundumentalArray as $fKey => $fundumental) {
@@ -2926,7 +2915,7 @@ class Coach extends Model
             }
             $testString = implode(',', $testArray);
             $whereTestQuery .= ' AND exercise_id IN(' . $testString . ')';
-        } elseif ($data['test1'] == 1 && $data['test1'] == 1) {
+        } elseif ($data['category'] == 'professional') {
 
             $fundumentalArray = array_merge($fundumentalArray[1], $fundumentalArray[2]);
             foreach ($fundumentalArray as $fKey => $fundumental) {
@@ -3128,7 +3117,7 @@ class Coach extends Model
         }
 
         $likeQuery .= implode(' OR ', $likeQueryArray) . ')';
-        
+
         if ($week < 7) {
             if ($assessment == 3) {
                 $slab = 1;
@@ -3150,7 +3139,7 @@ class Coach extends Model
 
                     foreach ($newRoundExercises as $roundExercise) {
                         $roundExercise->is_completed = 0;
-                    }                    
+                    }
 
                     $basicSkillsQuery->whereRaw('exercises.category = ' . $coach->focus . $likeQuery . $notInQuery);
 
@@ -3302,8 +3291,8 @@ class Coach extends Model
                             ->get();
 
                         foreach ($newRoundExercises as $roundExercise) {
-                            $roundExercise->is_completed = 0;                            
-                        }                        
+                            $roundExercise->is_completed = 0;
+                        }
 
                         $basicSkillsQuery->whereRaw('exercises.category = ' . $coach->focus . $likeQuery . $notInQuery);
 
