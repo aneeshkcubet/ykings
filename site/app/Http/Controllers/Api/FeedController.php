@@ -140,8 +140,6 @@ class FeedController extends Controller
             return response()->json(["status" => "0", "error" => "The item_type field is required"]);
         } elseif (!isset($request->item_id) || ($request->item_id == null)) {
             return response()->json(["status" => "0", "error" => "The item_id field is required."]);
-        } elseif (!isset($request->text) || ($request->text == null)) {
-            return response()->json(["status" => "0", "error" => "The text field is required."]);
         } else {
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
@@ -169,7 +167,17 @@ class FeedController extends Controller
                     
                 }
 
-                
+                if ($request->item_type == 'fundamental'){
+                    
+                    DB::table('points')->insert([
+                        'user_id' => $request->user_id,
+                        'item_id' => 0,
+                        'activity' => 'fundamental_completed',
+                        'points' => $request->rewards,
+                        'created_at' => Carbon::now()
+                    ]);
+                    
+                }
                 
 
                 if ($request->item_type == 'exercise') {
@@ -341,6 +349,7 @@ class FeedController extends Controller
                     ];
 
                     $hiitUser = Testuser::create($data);
+                    
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -351,7 +360,7 @@ class FeedController extends Controller
                     ]);
                 }
 
-                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK && $request->item_type != 'fundamental' && $request->item_type != 'test') {
 
                     $image = Image::make($_FILES['image']['tmp_name']);
 

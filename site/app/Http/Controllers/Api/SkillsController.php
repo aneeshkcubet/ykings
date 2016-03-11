@@ -717,127 +717,232 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "skills": [
-      {
-      "id": "21",
-      "progression_id": "2",
-      "level": "1",
-      "row": "1",
-      "substitute": "0",
-      "exercise_id": "5",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "isLocked": 0,
-      "isLockable": 0,
-      "isUnlockable": 1,
-      "exercise": {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "30.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "22",
-      "progression_id": "2",
-      "level": "2",
-      "row": "1",
-      "substitute": "57",
-      "exercise_id": "36",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 1,
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "23",
-      "progression_id": "2",
-      "level": "3",
-      "row": "1",
-      "substitute": "36",
-      "exercise_id": "57",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 1,
-      "exercise": {
-      "id": "57",
-      "name": "Elevated Dips",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "24",
-      "progression_id": "2",
-      "level": "4",
-      "row": "1",
-      "substitute": "0",
-      "exercise_id": "70",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 0,
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": "",
-      "category": "3",
-      "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      }
-      ],
-      "is_subscribed": 0,
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+    "status": 1,
+    "skills": [
+        {
+            "id": "5",
+            "description": "Expose yourself to packed shoulders and hang time.",
+            "progression_id": "1",
+            "level": "1",
+            "row": "1",
+            "substitute": "68",
+            "exercise_id": "69",
+            "created_at": "2023-01-16 06:06:00",
+            "updated_at": "2023-01-16 06:06:00",
+            "is_selected": 0,
+            "isLocked": 0,
+            "isLockable": 0,
+            "isUnlockable": 0,
+            "exercise": {
+                "id": "69",
+                "name": "Jumping Pullups",
+                "description": "Expose yourself to packed shoulders and hang time.",
+                "category": "1",
+                "type": "1",
+                "muscle_groups": "",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": " \"1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position\"\r\n ",
+                "video_tips": "  ",
+                "pro_tips": " \"A deadhang postion requires your shoulder blades down or towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly\"\r\n ",
+                "is_static": "0",
+                "musclegroup_string": "",
+                "video": [
+                    {
+                        "id": "74",
+                        "path": "69_1454045392.mp4",
+                        "videothumbnail": "69_1454045392.jpg",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        {
+            "id": "4",
+            "description": "Develop your back strength with slow, controlled and strict movements.",
+            "progression_id": "1",
+            "level": "2",
+            "row": "1",
+            "substitute": "0",
+            "exercise_id": "68",
+            "created_at": "2022-01-16 06:06:00",
+            "updated_at": "2022-01-16 06:06:00",
+            "is_selected": 0,
+            "isLocked": 1,
+            "isLockable": 0,
+            "isUnlockable": 1,
+            "exercise": {
+                "id": "68",
+                "name": "Supported Pullups",
+                "description": "Develop your back strength with slow, controlled and strict movements.",
+                "category": "1",
+                "type": "1",
+                "muscle_groups": "",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Keep neck in neutral position at all times\r\n3. Pull up till chin is above the bar\r\n4. Go down controlled\"\r\n ",
+                "video_tips": "  ",
+                "pro_tips": " Use a partner, bench or resistance bands to help you during the exercise.\r\n ",
+                "is_static": "0",
+                "musclegroup_string": "",
+                "video": [
+                    {
+                        "id": "73",
+                        "path": "68_1454045293.mp4",
+                        "videothumbnail": "68_1454045293.jpg",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        {
+            "id": "3",
+            "description": "Experience the beauty of strict pullups to build insane upper body strength.",
+            "progression_id": "1",
+            "level": "3",
+            "row": "1",
+            "substitute": "66",
+            "exercise_id": "67",
+            "created_at": "2021-01-16 06:06:00",
+            "updated_at": "2021-01-16 06:06:00",
+            "is_selected": 0,
+            "isLocked": 1,
+            "isLockable": 0,
+            "isUnlockable": 0,
+            "exercise": {
+                "id": "67",
+                "name": "Pullups/Chinups",
+                "description": "Experience the beauty of strict pullups to build insane upper body strength.",
+                "category": "2",
+                "type": "1",
+                "muscle_groups": "",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Pull up till chin is above the bar\r\n4. Pause at the top of the exercise and then lower back down under control. \r\n5. Return to the starting position and repeat.\"\r\n ",
+                "video_tips": "  ",
+                "pro_tips": " \"You might switch grips to build all muscles simultaneously. Try close and wide grip and underhand and overhand pullups.\r\nYou want to go up fast but slowly and controlled into the deadhang.\"\r\n ",
+                "is_static": "0",
+                "musclegroup_string": "",
+                "video": [
+                    {
+                        "id": "72",
+                        "path": "67_1454045247.mp4",
+                        "videothumbnail": "67_1454045247.jpg",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "description": "Do your first explosive and dynamic element in order to build the strength and muscle memory to master one more step.",
+            "progression_id": "1",
+            "level": "4",
+            "row": "1",
+            "substitute": "0",
+            "exercise_id": "66",
+            "created_at": "2020-01-16 06:06:00",
+            "updated_at": "2020-01-16 06:06:00",
+            "is_selected": 0,
+            "isLocked": 1,
+            "isLockable": 0,
+            "isUnlockable": 0,
+            "exercise": {
+                "id": "66",
+                "name": "Explosive Pullups",
+                "description": "Do your first explosive and dynamic element in order to build the strength and muscle memory to master one more step.",
+                "category": "2",
+                "type": "1",
+                "muscle_groups": "",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Explosive Pull up till chin is above the bar\r\n4. Go down controlled\"\r\n ",
+                "video_tips": "  ",
+                "pro_tips": " You may find it easier with the kick but do them strict as you progress.\r\n ",
+                "is_static": "0",
+                "musclegroup_string": "",
+                "video": [
+                    {
+                        "id": "51",
+                        "path": "66_1454045197.mp4",
+                        "videothumbnail": "66_1454045197.jpg",
+                        "description": "Explosive Pullups"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "1",
+            "description": "You mastered the muscleup. Congratulations",
+            "progression_id": "1",
+            "level": "5",
+            "row": "1",
+            "substitute": "0",
+            "exercise_id": "65",
+            "created_at": "2019-01-16 06:06:00",
+            "updated_at": "2019-01-16 06:06:00",
+            "is_selected": 1,
+            "isLocked": 1,
+            "isLockable": 0,
+            "isUnlockable": 0,
+            "exercise": {
+                "id": "65",
+                "name": "Muscleups",
+                "description": "You mastered the muscleup. Congratulations",
+                "category": "3",
+                "type": "1",
+                "muscle_groups": "",
+                "rewards": "6.00",
+                "repititions": "10",
+                "duration": "10",
+                "unit": "times",
+                "equipment": "",
+                "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Keep neck in neutral position at all times\"\r\n ",
+                "video_tips": "  ",
+                "pro_tips": " \"You may find it easier to start with a flexband to support you making the transition. \r\nChallenge yourself and try the same with rings.\"\r\n ",
+                "is_static": "0",
+                "musclegroup_string": "",
+                "video": [
+                    {
+                        "id": "50",
+                        "path": "65_1454045132.mp4",
+                        "videothumbnail": "65_1454045132.jpg",
+                        "description": "Muscleups"
+                    }
+                ]
+            }
+        }
+    ],
+    "is_subscribed": 1,
+    "urls": {
+        "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
+        "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
+        "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
+        "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
+        "video": "http://sandbox.ykings.com/uploads/videos",
+        "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
+        "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
+        "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
+        "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
+        "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
+        "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
+        "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
+        "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
+        "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+    }
+}
      * 
      * 
      * 
@@ -901,9 +1006,17 @@ class SkillsController extends Controller
             if (!is_null($user)) {
 
                 $skill = Skill::where('id', $request->skill_id)->first();
+                
+                
 
                 $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
                 foreach ($skills as $sKey => $sValue) {
+                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
+                    if($unlockCount > 0){
+                        $skills[$sKey]->is_selected = 1;
+                    }else{
+                        $skills[$sKey]->is_selected = 0;
+                    }
                     $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                     $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
                     $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
