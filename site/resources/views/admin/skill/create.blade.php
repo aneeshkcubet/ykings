@@ -112,6 +112,17 @@ Add New Skill
                                             </select>                                            
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="exercise_id">Select Substitute</label>
+                                        <div class="col-sm-4">
+                                            <select id="exercise_id" name="substitute" class="form-control">
+                                                <option value="0">Select Substitute</option>
+                                                @foreach ($exercises as $mKey => $exercise)
+                                                <option value="{{ $exercise->id }}">{{ $exercise->name }}</option>
+                                                @endforeach                                                
+                                            </select>
+                                        </div>
+                                    </div>
                                     <p>(*) Mandatory</p>
                                 </section>
                             </form>

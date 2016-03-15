@@ -20,7 +20,8 @@ class Skill extends Model
         'progression_id',
         'level',
         'row',
-        'exercise_id'
+        'exercise_id',
+        'substitute'
     ]; 
     
     /**

@@ -150,7 +150,7 @@ class SkillController extends Controller
                 'level' => Input::get('level'),
                 'row' => Input::get('row'),
                 'exercise_id' => Input::get('exercise_id'),
-                'substitute_id' => 0,
+                'substitute' => Input::get('substitute'),
         ]);
 
         if (!is_null($skill)) {
@@ -224,6 +224,15 @@ class SkillController extends Controller
         $skill = Skill::where('id', $id)->first();
 
         if (!is_null($skill)) {
+            
+            Skill::where('id', $id)->update([
+                'description' => Input::get('description'),
+                'progression_id' => Input::get('progression_id'),
+                'level' => Input::get('level'),
+                'row' => Input::get('row'),
+                'exercise_id' => Input::get('exercise_id'),
+                'substitute' => Input::get('substitute'),
+        ]);
 
 
             return Redirect::route('admin.skills')->with('success', 'Skill updated successfully');
