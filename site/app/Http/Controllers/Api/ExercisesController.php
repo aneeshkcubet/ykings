@@ -502,12 +502,19 @@ class ExercisesController extends Controller
             //code added by ansa@cubettech.com on 31-12-2015
             //Added video in response
             $exercise = Exercise::where('id', '=', $request->input('exercise_id'))->with(['video'])->first();
-
-            $arr1 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+            
+            $arr1 = Array(5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300);
+            
+            $arr2 = Array(10, 20, 25, 30, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+            if($exercise->unit == 'seconds'){
+                $volumeArray = $arr1;
+            }else{
+                $volumeArray = $arr2;
+            }
 
             if (!is_null($exercise)) {
                 $exerciseArray = $exercise->toArray();
-                foreach ($arr1 as $vKey => $volume1) {
+                foreach ($volumeArray as $vKey => $volume1) {
                     $exerciseUsers = ExerciseUser::where('exercise_id', '=', $request->input('exercise_id'))
                         ->where('status', '=', 1)
                         ->where('volume', '=', $volume1)
