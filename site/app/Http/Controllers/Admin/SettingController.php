@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Profile;
+use App\Refferal;
+use App\Point;
 class SettingController extends Controller
 {
 
@@ -59,5 +62,45 @@ class SettingController extends Controller
         return Redirect::route('admin.settings.edit')->with('success', 'Settings updated successfully');
 
         // Redirect to the user page
+    }
+    
+    public function refferalIndex(){
+        
+        // Grab all the users
+        $refferalsList = Refferal::all();
+        
+//        if(count($refferalsList)>0){            
+//            foreach($refferalsList as $lKey => $refferal){
+//                $profile = Profile::where('user_id', $user->id)->get();
+//                if(!is_null($profile)){
+//                    $usersList[$uKey]->profile = $profile->toArray();
+//                } else {
+//                    $usersList[$uKey]->profile = [];
+//                }
+//                
+//            }            
+//        }
+
+        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
+
+        // Show the page
+        return View('admin.refferals.index', ['refferalsList' => $refferalsList,'user' => $user]);
+        
+    }
+    
+    public function addPoints($id){
+//        echo $id;die;
+        $pointForSingle = DB::table('site_settings')->where('key', '=', 'freestyle_points')->pluck('value');
+        $refferal = DB::table('refferals')->where('id', $id)->first();
+        Point::create([
+            'points' => $pointForSingle,
+            'user_id' => 3,
+            'item_id' => $id,
+            'activity' => 'refferal'
+        ]);
+        DB::table('refferals')->where('id', $id)->update([
+            'status' => 1
+        ]);
+        return Redirect::route('admin.refferals')->with('success', 'Refferal accepted successfully');
     }
 }

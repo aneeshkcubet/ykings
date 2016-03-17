@@ -341,11 +341,10 @@ class UserSettingsController extends Controller
     }
 
     /**
-     * @api {post} /user/updateDeviceToken saveRefferalDetails
+     * @api {post} /referral/parameters saveRefferalDetails
      * @apiName saveRefferalDetails
      * @apiGroup Refferal
      * 
-     * @apiParam {String} email email of downloaded user *required
      * @apiParam {String} parameters json encoded parameters from the device *required
      * @apiSuccess {String} success.
      * 
@@ -353,7 +352,7 @@ class UserSettingsController extends Controller
      * HTTP/1.1 200 OK
      * {
             "status": 1,
-            "success": "Updated Successfully"
+            "success": "Saved Successfully"
         }
      * 
      * @apiError error Message token_invalid.
@@ -387,31 +386,26 @@ class UserSettingsController extends Controller
      *     HTTP/1.1 400 Validation error
      *     {
      *       "status" : 0,
-     *       "error": "The email field is required"
+     *       "error": "The parameters field is required"
      *     }
      * 
-     * @apiErrorExample Error-Response:
-     *     HTTP/1.1 400 Validation error
-     *     {
-     *       "status" : 0,
-     *       "error": "The email field is required"
-     *     }
      * 
      *  
      */
     public function saveRefferalDetails(Request $request)
     {
-        if (!isset($request->email) || ($request->email == null)) {
-            return response()->json(["status" => "0", "error" => "The email field is required"]);
-        } else if (!isset($request->parameters) || ($request->parameters == null)) {
+        if (!isset($request->parameters) || ($request->parameters == null)) {
             return response()->json(["status" => "0", "error" => "The parameters field is required"]);
         } else {
 
+            $parameters = json_decode($request->parameters, true);
+            
             Refferal::create([
-                'email' => $request->email,
-                'parameters' => $request->parameters
+                'email' => $parameters['email'],
+                'parameters' => $request->parameters,
+                'status' => 0
             ]);
-            return response()->json(['status' => 1, 'success' => 'Updated Successfully'], 200);
+            return response()->json(['status' => 1, 'success' => 'Saved Successfully'], 200);
         }
     }
 }

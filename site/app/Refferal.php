@@ -17,7 +17,8 @@ class Refferal extends Model
      */
     protected $fillable = [
         'email',
-        'parameters'
+        'parameters',
+        'status'
     ];
 
 

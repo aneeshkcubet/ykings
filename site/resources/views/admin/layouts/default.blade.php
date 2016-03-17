@@ -345,6 +345,13 @@
                                 </a>
                             </li>
                             <!-- END Knowledge MENU -->
+                            <!-- BEGIN Refferal MENU -->
+                            <li>
+                                <a href="{{ route('admin.refferals') }}">  <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Manage Refferals</span>                                    
+                                </a>
+                            </li>
+                            <!-- END Refferal MENU -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>
