@@ -1918,15 +1918,23 @@ class UsersController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $arr1 = Array(7, 10, 15, 20, 25, 30, 40, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+            $arr1 = Array(5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300);
+            
+            $arr2 = Array(7, 10, 15, 20, 25, 30, 40, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
 
             if ($user) {
                 $exercises = Exercise::where('name', '!=', 'Rest')->get();
 
                 $exerciseArray = $exercises->toArray();
                 foreach ($exerciseArray as $eKey => $exercise) {
+                    
+                    if($exercise['unit'] == 'seconds'){
+                        $volumeArray = $arr1;
+                    }else{
+                        $volumeArray = $arr2;
+                    }
 
-                    foreach ($arr1 as $vKey => $volume1) {
+                    foreach ($volumeArray as $vKey => $volume1) {
                         $exerciseUserDet[$volume1] = DB::table('exercise_users')
                             ->where('exercise_id', $exercise['id'])
                             ->where('user_id', $request->user_id)

@@ -464,25 +464,25 @@ class Coach extends Model
             } while ($completed == false);
 
 
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
             if ($focus == 1) {
 
@@ -1197,25 +1197,25 @@ class Coach extends Model
 
 
 
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
             if ($focus == 1) {
                 if ($data['days'] == 2) {
@@ -1908,25 +1908,25 @@ class Coach extends Model
             } while ($completed == false);
 
 
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor);
+            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[1]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor);
+            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[2]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor);
+            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[3]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor);
+            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[4]]->id, $focus, $intenseFactor, $data['user_id']);
 
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor);
+            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][$workoutSelectionArray[5]]->id, $focus, $intenseFactor, $data['user_id']);
 
             if ($focus == 1) {
                 if ($data['days'] == 2) {
@@ -2611,11 +2611,12 @@ class Coach extends Model
                 }
             }
         }
+       // die;
 
         return $coach;
     }
 
-    public static function getWorkoutWithExercises($workoutId, $category, $intenseFactor)
+    public static function getWorkoutWithExercises($workoutId, $category, $intenseFactor, $userId)
     {
         $workout = Workout::where('id', '=', $workoutId)->first();
 
@@ -2639,6 +2640,8 @@ class Coach extends Model
         $count = 1;
         $exercises = [];
         do {
+
+
             $roundExercises = Workoutexercise::where('round', '=', $count)
                 ->where('category', '=', $category)
                 ->where('workout_id', '=', $workoutId)
@@ -2646,6 +2649,26 @@ class Coach extends Model
                 ->get();
 
             foreach ($roundExercises as $roundExercise) {
+
+                $unLocked = DB::table('unlocked_skills')
+                    ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $roundExercise->exercise_id)
+                    ->first();
+
+                if (is_null($unLocked)) {
+                    $skill = DB::table('skills')->where('exercise_id', $roundExercise->exercise_id)->first();
+                    
+                    if ($skill->substitute != 0) {
+                        $unLocked = DB::table('unlocked_skills')
+                            ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $skill->substitute)
+                            ->first();
+                       if (!is_null($unLocked)) {
+                            $roundExercise->exercise_id = $unLocked->exercise_id;                            
+                            $exercise = Exercise::where('id',$unLocked->exercise_id)->with(['video'])->first();
+                            $roundExercise->unit = $exercise->unit;
+                            $roundExercise['exercise'] = $exercise;
+                        }
+                    }
+                } 
                 $roundExercise->is_completed = 0;
             }
 
@@ -2905,31 +2928,9 @@ class Coach extends Model
         $testArray = [];
         $testString = '';
 
-        if ($data['category'] == 'advanced') {
-            $fundumentalArray = $fundumentalArray[1];
-
-            foreach ($fundumentalArray as $fKey => $fundumental) {
-                if ($fundumental != 0) {
-                    $testArray[] = $fKey;
-                }
-            }
-            $testString = implode(',', $testArray);
-            $whereTestQuery .= ' AND exercise_id IN(' . $testString . ')';
-        } elseif ($data['category'] == 'professional') {
-
-            $fundumentalArray = array_merge($fundumentalArray[1], $fundumentalArray[2]);
-            foreach ($fundumentalArray as $fKey => $fundumental) {
-                if ($fundumental != 0) {
-                    $testArray[] = $fKey;
-                }
-            }
-            $testString = implode(',', $testArray);
-            $whereTestQuery .= ' AND exercise_id IN(' . $testString . ')';
-        }
-
         $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
             ->select('exercise_id')
-            ->whereRaw('user_id = ' . $userId . $whereTestQuery)
+            ->whereRaw('user_id = ' . $userId)
             ->toSql();
 
         $whereQuery .= ' AND (exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')';
