@@ -1083,7 +1083,7 @@ class SkillsController extends Controller
 
                 $prevSkill = Skill::where('row', $skill->row)
                     ->where('progression_id', $skill->progression_id)
-                    ->where('level', ($skill->level - 1))
+                    ->where('level', '<', $skill->level)
                     ->first();
 
                 if (!is_null($prevSkill)) {
@@ -1586,7 +1586,7 @@ class SkillsController extends Controller
 
                     $unlockedSkill = Skill::where('id', $request->skill_id)->first();
 
-                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= ' . $unlockedSkill->level)->toSql();
+                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= ' . $unlockedSkill->level.' AND level > 1 AND progression_id = '.$unlockedSkill->progression_id .' AND row = '.$unlockedSkill->row)->toSql();
 
                     Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
 
