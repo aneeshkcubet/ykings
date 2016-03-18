@@ -82,6 +82,7 @@ class UsersController extends Controller
      * @apiParam {string} [quote] Motivational quote added by user
      * @apiParam {number} [subscription] Whether Newsletter subscription selected by user
      * @apiParam {string} [referral_code] If user added referral code 
+     * @apiParam {string} [parameters] json_encoded array {"marketing_title":"marketing"}. 
      * @apiSuccess {String} success.
      * 
      * @apiSuccessExample Success-Response:
@@ -282,7 +283,21 @@ class UsersController extends Controller
                     'user_id' => $user->id,
                     'created_at' => Carbon::now()
                 ]);
-
+                
+                // inserting into refferal table
+                if(isset($request->parameters) || ($request->parameters != NULL)){
+                    
+                    $parameters = json_decode($request->parameters, true);
+                    
+                    DB::table('refferals')->insert([
+                        'user_id' => $user->id,
+                        'email' => $user->email,
+                        'marketing_title' => $parameters['marketing_title'],
+                        'parameters' => $request->parameters,
+                        'is_coach_subscribed' => 0,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
 
                 if (isset($request->referral_code) && $request->referral_code != '') {
                     $ref = DB::table('promo_code')->where('code', '=', $request->referral_code)->first();

@@ -66,7 +66,7 @@ class SettingController extends Controller
     
     public function refferalIndex(){
         
-        // Grab all the users
+        // Grab all the refferals
         $refferalsList = Refferal::all();
         
 //        if(count($refferalsList)>0){            
@@ -88,19 +88,4 @@ class SettingController extends Controller
         
     }
     
-    public function addPoints($id){
-//        echo $id;die;
-        $pointForSingle = DB::table('site_settings')->where('key', '=', 'freestyle_points')->pluck('value');
-        $refferal = DB::table('refferals')->where('id', $id)->first();
-        Point::create([
-            'points' => $pointForSingle,
-            'user_id' => 3,
-            'item_id' => $id,
-            'activity' => 'refferal'
-        ]);
-        DB::table('refferals')->where('id', $id)->update([
-            'status' => 1
-        ]);
-        return Redirect::route('admin.refferals')->with('success', 'Refferal accepted successfully');
-    }
 }

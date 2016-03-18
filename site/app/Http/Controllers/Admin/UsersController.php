@@ -333,9 +333,9 @@ class UsersController extends Controller
      */
     public function getDelete($id = null)
     {
-        $user = User::where('id', $id)->first();
-        $user->status = 2;
-        $user->update();
+        $user = User::where('id', $id)->delete();
+//        $user->status = 2;
+//        $user->update();
 
         return Redirect::route("admin.users")->with('success', 'Successfully deleted user.');
     }

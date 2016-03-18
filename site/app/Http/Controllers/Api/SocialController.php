@@ -16,6 +16,8 @@ use App\Images;
 use App\Follow;
 use App\Workout;
 use App\Point;
+use DB;
+use Carbon\Carbon;
 
 class SocialController extends Controller
 {
@@ -62,6 +64,7 @@ class SocialController extends Controller
      * @apiParam {string} [fitness_status] fitness_status
      * @apiParam {string} [goal] goal 
      * @apiParam {string} [quote] quote 
+     * @apiParam {string} [parameters] json_encoded array {"marketing_title":"marketing"}.
 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -197,6 +200,21 @@ class SocialController extends Controller
 
                 if (Auth::loginUsingId($user->id)) {
                     // Authentication passed...
+                    
+                    // inserting into refferal table
+                if(isset($request->parameters) || ($request->parameters != NULL)){
+                    
+                    $parameters = json_decode($request->parameters, true);
+                    
+                    DB::table('refferals')->insert([
+                        'user_id' => $user->id,
+                        'email' => $user->email,
+                        'marketing_title' => $parameters['marketing_title'],
+                        'parameters' => $request->parameters,
+                        'is_coach_subscribed' => 0,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
 
                     if (Auth::user()->status == 1) {
                         try {

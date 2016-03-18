@@ -42,24 +42,26 @@ Refferals
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
+                            <th>UserId</th>
                             <th>Email</th>
+                            <th>Marketing Title</th>
                             <th>Parameters</th>
-                            <th>Actions</th>
+                            <th>Is Coach Subscribed</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($refferalsList as $list)
                         <tr>
                             <td>{{{ $list->id }}}</td>
+                            <td>{{{ $list->user_id }}}</td>
                             <td>{{{ $list->email }}}</td>
+                            <td>{{{ $list->marketing_title }}}</td>
                             <td>{{{ $list->parameters }}}</td>
-                            <td>	
-                                @if($list->status == 0)
-                                <a href="{{ route('admin.add-points.refferal', $list->id) }}" title="Set as Subscribed User">
-                                    <i class="livicon" data-name="thumbs-up" data-size="18" data-c="#f56954" data-hc="#f56954" data-loop="true" title="Add Points"></i>
-                                </a>
-                                @endif
-                            </td>
+                            @if($list->is_coach_subscribed == 1)
+                             <td>Yes</td>
+                            @else
+                             <td>No</td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
