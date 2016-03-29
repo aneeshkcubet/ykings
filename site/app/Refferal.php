@@ -16,9 +16,11 @@ class Refferal extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
+        'user_id',
         'email',
+        'marketing_title',
         'parameters',
-        'status'
+        'is_coach_subscribed'
     ];
 
 
