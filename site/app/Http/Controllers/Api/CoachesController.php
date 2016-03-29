@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Profile;
 use App\Exercise;
 use App\Exerciseuser;
 use App\Coach;
@@ -470,10 +471,10 @@ class CoachesController extends Controller
     {
         $fundumentalArray = [
             1 => [
-                ['exercise_id' => 67, 'duration' => 7, 'test_done' => 0],
-                ['exercise_id' => 45, 'duration' => 25, 'test_done' => 0],
+                ['exercise_id' => 67, 'duration' => 10, 'test_done' => 0],
+                ['exercise_id' => 45, 'duration' => 15, 'test_done' => 0],
                 ['exercise_id' => 4, 'duration' => 45, 'test_done' => 0],
-                ['exercise_id' => 12, 'duration' => 15, 'test_done' => 0]
+                ['exercise_id' => 12, 'duration' => 20, 'test_done' => 0]
             ]
 //            ,
 //            1 => [
@@ -2294,17 +2295,19 @@ class CoachesController extends Controller
            $feedAvg = round($feedbackSum/4);
            
            if($feedAvg < 2){
-               $category = 'beginer';
+               $category = 'professional';
            }elseif($feedAvg == 2){
                $category = 'advanced';
            }elseif($feedAvg == 3){
-               $category = 'professional';
+               $category = 'beginer';
            }
+           
+           $profile = Profile::where('user_id', $request->user_id)->first();
 
             if (!is_null($user)) {
                 $data = [
                     'user_id' => $request->user_id,
-                    'focus' => $request->focus,
+                    'focus' => $profile->goal,
                     'category' => $category,
                     'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null)) ? "" : $request->muscle_groups,
                     'height' => (!isset($request->height) || ($request->height == null)) ? "" : $request->height,
@@ -2508,8 +2511,10 @@ class CoachesController extends Controller
                 }
 
                 $weekStatusArray[$coachStatus->week + 1] = 0;
+                
+                $profile = Profile::where('user_id', $request->user_id)->first();
 
-                $exercises = Coach::updateCoach($request->assessment, $coach->id, $request->focus, $request->days);                 
+                $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);                 
               
                 DB::table('coach_status')
                     ->where('coach_id', $coach->id)
@@ -2520,11 +2525,13 @@ class CoachesController extends Controller
                         'day' => 1,
                         'week' => $coachStatus->week + 1
                 ]);
+                
+                
 
                 Coach::where('user_id', $request->user_id)->update([
                     'exercises' => json_encode($exercises),
                     'days' => $request->days,
-                    'focus' => $request->focus
+                    'focus' => $profile->goal
                 ]);
 
                 $coach = Coach::where('user_id', $request->user_id)->first();

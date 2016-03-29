@@ -10,17 +10,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "day",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -30,7 +30,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -52,7 +52,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -99,17 +99,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "week",
-            "description": "<p>*required</p>"
+            "description": "<p>*required</p> "
           }
         ]
       }
@@ -119,7 +119,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -141,7 +141,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -188,10 +188,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -201,7 +201,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -223,7 +223,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -270,10 +270,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -283,7 +283,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -305,7 +305,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -352,10 +352,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -365,7 +365,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -387,7 +387,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -434,45 +434,45 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "test",
-            "description": "<p>status of test exercises json encoded array of exercise ids and statuses [{&quot;exercise_id&quot;:67,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:45,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:4,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:12,&quot;test_done&quot;:1}] *required</p>"
+            "description": "<p>status of test exercises json encoded array of exercise ids and statuses [{&quot;exercise_id&quot;:67,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:45,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:4,&quot;test_done&quot;:1},{&quot;exercise_id&quot;:12,&quot;test_done&quot;:1}] *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "focus",
-            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *required</p>"
+            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "days",
-            "description": "<p>number of workout days per week *required</p>"
+            "description": "<p>number of workout days per week *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": true,
             "field": "muscle_groups",
-            "description": "<p>user muscle groups preferences comma seperated ids 1,5,6 etc.</p>"
+            "description": "<p>user muscle groups preferences comma seperated ids 1,5,6 etc.</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "feedback",
-            "description": "<p>user feedback json_encoded array {&quot;67&quot;:2,&quot;45&quot;:1,&quot;4&quot;:2,&quot;12&quot;:3} 0-not done, 1- I can do way more, 2 - I can do more, 3 - It was ok *required</p>"
+            "description": "<p>user feedback json_encoded array {&quot;67&quot;:2,&quot;45&quot;:1,&quot;4&quot;:2,&quot;12&quot;:3} 0-not done, 1- I can do way more, 2 - I can do more, 3 - It was ok *required</p> "
           }
         ]
       }
@@ -482,7 +482,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -504,7 +504,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -551,10 +551,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -564,7 +564,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -586,7 +586,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -633,31 +633,31 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "assessment",
-            "description": "<p>1- I can do way more, 2 - I can do more, 3 - It was ok *required</p>"
+            "description": "<p>1- I can do way more, 2 - I can do more, 3 - It was ok *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "focus",
-            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *required</p>"
+            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "days",
-            "description": "<p>number of workout days per week *required</p>"
+            "description": "<p>number of workout days per week *required</p> "
           }
         ]
       }
@@ -667,7 +667,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -689,7 +689,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -731,30 +731,30 @@
     "title": "connectFriends",
     "name": "connectFriends",
     "group": "Connect",
-    "description": "<p>API for connecting facebook/phone book.</p>",
+    "description": "<p>API for connecting facebook/phone book.</p> ",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>User Id of user *required</p>"
+            "description": "<p>User Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "friends_list",
-            "description": "<p>email/facebook id ,json array *required</p>"
+            "description": "<p>email/facebook id ,json array *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "type",
-            "description": "<p>facebook/phonebook *required</p>"
+            "description": "<p>facebook/phonebook *required</p> "
           }
         ]
       }
@@ -764,7 +764,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -786,7 +786,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -833,23 +833,23 @@
     "title": "inviteFriends",
     "name": "inviteFriends",
     "group": "Connect",
-    "description": "<p>API for inviteFriends.</p>",
+    "description": "<p>API for inviteFriends.</p> ",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>User Id of user *required</p>"
+            "description": "<p>User Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>Email Ids from contact,json array  *required</p>"
+            "description": "<p>Email Ids from contact,json array  *required</p> "
           }
         ]
       }
@@ -859,7 +859,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -881,7 +881,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -928,10 +928,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "exercise_id",
-            "description": "<p>Id of exercise *required</p>"
+            "description": "<p>Id of exercise *required</p> "
           }
         ]
       }
@@ -941,7 +941,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -963,7 +963,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1010,17 +1010,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "exercise_id",
-            "description": "<p>Id of exercise *required</p>"
+            "description": "<p>Id of exercise *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -1030,7 +1030,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1052,7 +1052,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1104,10 +1104,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -1117,7 +1117,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1139,7 +1139,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1186,94 +1186,94 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "item_type",
-            "description": "<p>'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement','fundamental' *required</p>"
+            "description": "<p>'exercise','workout','motivation','announcement', 'hiit', 'freestyle', 'test', 'hiit_replacement','fundamental' *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "item_id",
-            "description": "<p>id of the targetting item (0 incase of freestyle) *required</p>"
+            "description": "<p>id of the targetting item (0 incase of freestyle) *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "time_taken",
-            "description": "<p>time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'</p>"
+            "description": "<p>time in seconds (for 'exercise','workout', 'hiit', and 'freestyle'</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "rewards",
-            "description": "<p>points earned by doing activity</p>"
+            "description": "<p>points earned by doing activity</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "category",
-            "description": "<p>in case of workout completion 1-Strength, 2-HIIT Strength</p>"
+            "description": "<p>in case of workout completion 1-Strength, 2-HIIT Strength</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "focus",
-            "description": "<p>in case of workout completion 1-Lean, 2-Athletic 3-Strength</p>"
+            "description": "<p>in case of workout completion 1-Lean, 2-Athletic 3-Strength</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "text",
-            "description": "<p>*required</p>"
+            "description": "<p>*required</p> "
           },
           {
             "group": "Parameter",
-            "type": "file",
+            "type": "<p>file</p> ",
             "optional": true,
             "field": "image",
             "description": ""
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": true,
             "field": "starred",
-            "description": "<p>0/1</p>"
+            "description": "<p>0/1</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "volume",
-            "description": "<p>volume of exercise/workout/hiit</p>"
+            "description": "<p>volume of exercise/workout/hiit</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "is_coach",
-            "description": "<p>1 in case if coach workouts/exercises/hiits</p>"
+            "description": "<p>1 in case if coach workouts/exercises/hiits</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "coach_rounds",
-            "description": "<p>number of workout rounds (&quot;coach_workout_rounds&quot; field from day workout)</p>"
+            "description": "<p>number of workout rounds (&quot;coach_workout_rounds&quot; field from day workout)</p> "
           }
         ]
       }
@@ -1283,7 +1283,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1305,7 +1305,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1367,24 +1367,24 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "offset",
-            "description": "<p>offset</p>"
+            "description": "<p>offset</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "limit",
-            "description": "<p>limit</p>"
+            "description": "<p>limit</p> "
           }
         ]
       }
@@ -1394,7 +1394,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1416,13 +1416,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -1469,31 +1469,31 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "profile_id",
-            "description": "<p>id of other user *required</p>"
+            "description": "<p>id of other user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "offset",
-            "description": "<p>offset</p>"
+            "description": "<p>offset</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "limit",
-            "description": "<p>limit</p>"
+            "description": "<p>limit</p> "
           }
         ]
       }
@@ -1503,7 +1503,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1525,13 +1525,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -1583,24 +1583,24 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "feed_id",
-            "description": "<p>of the targetting item *required</p>"
+            "description": "<p>of the targetting item *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "text",
-            "description": "<p>*required</p>"
+            "description": "<p>*required</p> "
           }
         ]
       }
@@ -1610,7 +1610,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1632,7 +1632,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1694,17 +1694,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "feed_id",
-            "description": "<p>feed_id *required</p>"
+            "description": "<p>feed_id *required</p> "
           }
         ]
       }
@@ -1714,7 +1714,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1736,13 +1736,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -1794,17 +1794,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "comment_id",
-            "description": "<p>feed_id *required</p>"
+            "description": "<p>feed_id *required</p> "
           }
         ]
       }
@@ -1814,7 +1814,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1836,7 +1836,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -1888,17 +1888,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "feed_id",
-            "description": "<p>feed_id *required</p>"
+            "description": "<p>feed_id *required</p> "
           }
         ]
       }
@@ -1908,7 +1908,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -1930,13 +1930,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -1988,31 +1988,31 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "feed_id",
-            "description": "<p>feed_id *required</p>"
+            "description": "<p>feed_id *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "offset",
-            "description": "<p>offset</p>"
+            "description": "<p>offset</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": true,
             "field": "limit",
-            "description": "<p>limit</p>"
+            "description": "<p>limit</p> "
           }
         ]
       }
@@ -2022,7 +2022,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2044,13 +2044,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -2102,17 +2102,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "feed_id",
-            "description": "<p>feed_id *required</p>"
+            "description": "<p>feed_id *required</p> "
           }
         ]
       }
@@ -2122,7 +2122,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2144,13 +2144,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -2207,17 +2207,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "follower_id",
-            "description": "<p>id of follower user  *required</p>"
+            "description": "<p>id of follower user  *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "following_id",
-            "description": "<p>id of following user *required</p>"
+            "description": "<p>id of following user *required</p> "
           }
         ]
       }
@@ -2227,7 +2227,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2249,7 +2249,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -2326,17 +2326,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user  *required</p>"
+            "description": "<p>id of loggedin user  *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "profile_id",
-            "description": "<p>id of targetting user  *required</p>"
+            "description": "<p>id of targetting user  *required</p> "
           }
         ]
       }
@@ -2346,7 +2346,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2368,7 +2368,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid</p>"
+            "description": "<p>Message token_invalid</p> "
           }
         ]
       },
@@ -2425,17 +2425,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of targetting user  *required</p>"
+            "description": "<p>id of targetting user  *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "profile_id",
-            "description": "<p>id of targetting user  *required</p>"
+            "description": "<p>id of targetting user  *required</p> "
           }
         ]
       }
@@ -2445,7 +2445,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2467,7 +2467,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid</p>"
+            "description": "<p>Message token_invalid</p> "
           }
         ]
       },
@@ -2524,17 +2524,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "follower_id",
-            "description": "<p>id of follower user  *required</p>"
+            "description": "<p>id of follower user  *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "following_id",
-            "description": "<p>id of following user *required</p>"
+            "description": "<p>id of following user *required</p> "
           }
         ]
       }
@@ -2544,7 +2544,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2566,7 +2566,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -2648,10 +2648,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "token",
-            "description": "<p>expired token *required</p>"
+            "description": "<p>expired token *required</p> "
           }
         ]
       }
@@ -2661,10 +2661,10 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "token",
-            "description": "<p>JWT Auth token.</p>"
+            "description": "<p>JWT Auth token.</p> "
           }
         ]
       },
@@ -2683,19 +2683,19 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "Validation",
-            "description": "<p>Error</p>"
+            "description": "<p>Error</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "invalid_credentials",
-            "description": "<p>Message invalid_credentials.</p>"
+            "description": "<p>Message invalid_credentials.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "could_not_create_token",
-            "description": "<p>JWT error.</p>"
+            "description": "<p>JWT error.</p> "
           }
         ]
       },
@@ -2732,10 +2732,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -2745,7 +2745,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2767,7 +2767,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -2814,17 +2814,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "message_id",
-            "description": "<p>message of user *required</p>"
+            "description": "<p>message of user *required</p> "
           }
         ]
       }
@@ -2834,7 +2834,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2856,7 +2856,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -2908,10 +2908,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -2921,7 +2921,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -2943,7 +2943,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -2985,10 +2985,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -2998,7 +2998,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3020,7 +3020,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3062,17 +3062,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "search_key",
-            "description": "<p>search key *required</p>"
+            "description": "<p>search key *required</p> "
           }
         ]
       }
@@ -3082,7 +3082,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3104,7 +3104,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3151,10 +3151,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -3164,7 +3164,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3186,7 +3186,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3233,10 +3233,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -3246,7 +3246,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3268,7 +3268,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3315,24 +3315,24 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "device_token",
-            "description": "<p>device_token of user *required</p>"
+            "description": "<p>device_token of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "type",
-            "description": "<p>device type (ios/android) *required</p>"
+            "description": "<p>device type (ios/android) *required</p> "
           }
         ]
       }
@@ -3342,7 +3342,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3364,7 +3364,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3411,24 +3411,24 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "settings_key",
-            "description": "<p>notification/subscription *required</p>"
+            "description": "<p>notification/subscription *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "status",
-            "description": "<p>json array of {&quot;comments&quot;:&quot;1&quot;,&quot;claps&quot;:&quot;0&quot;,&quot;follow&quot;:&quot;0&quot;,&quot;my_performance&quot;:&quot;1&quot;,&quot;motivation_knowledge&quot;:&quot;1&quot;}</p>"
+            "description": "<p>json array of {&quot;comments&quot;:&quot;1&quot;,&quot;claps&quot;:&quot;0&quot;,&quot;follow&quot;:&quot;0&quot;,&quot;my_performance&quot;:&quot;1&quot;,&quot;motivation_knowledge&quot;:&quot;1&quot;}</p> "
           }
         ]
       }
@@ -3438,7 +3438,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3460,7 +3460,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3512,17 +3512,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "skill_id",
-            "description": "<p>Id of skill *required</p>"
+            "description": "<p>Id of skill *required</p> "
           }
         ]
       }
@@ -3532,7 +3532,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3554,7 +3554,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3606,10 +3606,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -3619,7 +3619,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3641,7 +3641,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3688,17 +3688,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "skill_id",
-            "description": "<p>Id of skill *required</p>"
+            "description": "<p>Id of skill *required</p> "
           }
         ]
       }
@@ -3708,7 +3708,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3730,7 +3730,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3787,17 +3787,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "skill_id",
-            "description": "<p>Id of skill *required</p>"
+            "description": "<p>Id of skill *required</p> "
           }
         ]
       }
@@ -3807,7 +3807,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3829,7 +3829,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3886,10 +3886,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -3899,7 +3899,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -3921,7 +3921,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -3968,87 +3968,87 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "first_name",
-            "description": "<p>Firstname of user</p>"
+            "description": "<p>Firstname of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "last_name",
-            "description": "<p>LastName of user</p>"
+            "description": "<p>LastName of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "image_url",
-            "description": "<p>Facebook Profile Image Url of user</p>"
+            "description": "<p>Facebook Profile Image Url of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "access_token",
-            "description": "<p>Access Token</p>"
+            "description": "<p>Access Token</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "provider_id",
-            "description": "<p>Facebook id of user *required</p>"
+            "description": "<p>Facebook id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "provider",
-            "description": "<p>Provider,eg:facebook *required</p>"
+            "description": "<p>Provider,eg:facebook *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "subscription",
-            "description": "<p>Permission flag 0/1</p>"
+            "description": "<p>Permission flag 0/1</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "gender",
-            "description": "<p>gender</p>"
+            "description": "<p>gender</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "fitness_status",
-            "description": "<p>fitness_status</p>"
+            "description": "<p>fitness_status</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "goal",
-            "description": "<p>goal</p>"
+            "description": "<p>goal</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "quote",
-            "description": "<p>quote</p>"
+            "description": "<p>quote</p> "
           }
         ]
       }
@@ -4058,7 +4058,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4080,13 +4080,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "could_not_create_user",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "Validation",
-            "description": "<p>error.</p>"
+            "description": "<p>error.</p> "
           }
         ]
       },
@@ -4128,94 +4128,94 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "first_name",
-            "description": "<p>Firstname of user</p>"
+            "description": "<p>Firstname of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "last_name",
-            "description": "<p>LastName of user</p>"
+            "description": "<p>LastName of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "image_url",
-            "description": "<p>Facebook Profile Image Url of user</p>"
+            "description": "<p>Facebook Profile Image Url of user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "access_token",
-            "description": "<p>Access Token</p>"
+            "description": "<p>Access Token</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "provider_id",
-            "description": "<p>Facebook id of user *required</p>"
+            "description": "<p>Facebook id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "provider",
-            "description": "<p>Provider,eg:facebook *required</p>"
+            "description": "<p>Provider,eg:facebook *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "subscription",
-            "description": "<p>Permission flag 0/1</p>"
+            "description": "<p>Permission flag 0/1</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "gender",
-            "description": "<p>gender</p>"
+            "description": "<p>gender</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "fitness_status",
-            "description": "<p>fitness_status</p>"
+            "description": "<p>fitness_status</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "goal",
-            "description": "<p>goal</p>"
+            "description": "<p>goal</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "quote",
-            "description": "<p>quote</p>"
+            "description": "<p>quote</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "parameters",
-            "description": "<p>json_encoded array {&quot;marketing_title&quot;:&quot;marketing&quot;}.</p>"
+            "description": "<p>json_encoded array {&quot;marketing_title&quot;:&quot;marketing&quot;}.</p> "
           }
         ]
       }
@@ -4225,7 +4225,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4247,13 +4247,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "could_not_create_user",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "Validation",
-            "description": "<p>error</p>"
+            "description": "<p>error</p> "
           }
         ]
       },
@@ -4295,66 +4295,66 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "amount",
-            "description": "<p>amount of subscription *required</p>"
+            "description": "<p>amount of subscription *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "currency",
-            "description": "<p>currency of payment *required</p>"
+            "description": "<p>currency of payment *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Date",
+            "type": "<p>Date</p> ",
             "optional": false,
             "field": "process_time",
-            "description": "<p>time payment processed in UTC *required</p>"
+            "description": "<p>time payment processed in UTC *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "transaction_id",
-            "description": "<p>id of payment transaction *required</p>"
+            "description": "<p>id of payment transaction *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": true,
             "field": "details",
-            "description": "<p>details of transaction device, os, version etc as json array</p>"
+            "description": "<p>details of transaction device, os, version etc as json array</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "inapp_id",
-            "description": "<p>id of subscription id created with Inapp *required</p>"
+            "description": "<p>id of subscription id created with Inapp *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "months",
-            "description": "<p>duration of subscription *required</p>"
+            "description": "<p>duration of subscription *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "status",
-            "description": "<p>status of payment  0-failure, 1-success *required</p>"
+            "description": "<p>status of payment  0-failure, 1-success *required</p> "
           }
         ]
       }
@@ -4364,7 +4364,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4386,7 +4386,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -4463,129 +4463,129 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "first_name",
-            "description": "<p>Firstname of user *required</p>"
+            "description": "<p>Firstname of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "last_name",
-            "description": "<p>Firstname of user *required</p>"
+            "description": "<p>Firstname of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "password",
-            "description": "<p>password added by user *required</p>"
+            "description": "<p>password added by user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "file",
+            "type": "<p>file</p> ",
             "optional": true,
             "field": "image",
-            "description": "<p>user avatar image *accepted formats JPEG, PNG, and GIF</p>"
+            "description": "<p>user avatar image *accepted formats JPEG, PNG, and GIF</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "gender",
-            "description": "<p>gender of the user 1-Male, 2-Female</p>"
+            "description": "<p>gender of the user 1-Male, 2-Female</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "fitness_status",
-            "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p>"
+            "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "goal",
-            "description": "<p>user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong</p>"
+            "description": "<p>user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "city",
-            "description": "<p>user's city</p>"
+            "description": "<p>user's city</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "state",
-            "description": "<p>user's state</p>"
+            "description": "<p>user's state</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "country",
-            "description": "<p>user's country</p>"
+            "description": "<p>user's country</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "spot",
-            "description": "<p>Training Spot</p>"
+            "description": "<p>Training Spot</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "device_token",
-            "description": "<p>Device Token</p>"
+            "description": "<p>Device Token</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "device_type",
-            "description": "<p>Device Type(android/ios)</p>"
+            "description": "<p>Device Type(android/ios)</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "quote",
-            "description": "<p>Motivational quote added by user</p>"
+            "description": "<p>Motivational quote added by user</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "subscription",
-            "description": "<p>Whether Newsletter subscription selected by user</p>"
+            "description": "<p>Whether Newsletter subscription selected by user</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "referral_code",
-            "description": "<p>If user added referral code</p>"
+            "description": "<p>If user added referral code</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "parameters",
-            "description": "<p>json_encoded array {&quot;marketing_title&quot;:&quot;marketing&quot;}.</p>"
+            "description": "<p>json_encoded array {&quot;marketing_title&quot;:&quot;marketing&quot;}.</p> "
           }
         ]
       }
@@ -4595,7 +4595,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4617,13 +4617,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Validation error.</p>"
+            "description": "<p>Validation error.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "could_not_create_user",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -4680,17 +4680,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "profile_id",
-            "description": "<p>id of other user *required</p>"
+            "description": "<p>id of other user *required</p> "
           }
         ]
       }
@@ -4700,7 +4700,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4722,7 +4722,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -4774,10 +4774,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "id",
-            "description": "<p>id of user *required</p>"
+            "description": "<p>id of user *required</p> "
           }
         ]
       }
@@ -4787,7 +4787,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4809,7 +4809,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -4856,31 +4856,31 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "password",
-            "description": "<p>password added by user *required</p>"
+            "description": "<p>password added by user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "device_token",
-            "description": "<p>Device Token</p>"
+            "description": "<p>Device Token</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "device_type",
-            "description": "<p>Device Type(android/ios)</p>"
+            "description": "<p>Device Type(android/ios)</p> "
           }
         ]
       }
@@ -4890,7 +4890,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4912,7 +4912,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Validation error.</p>"
+            "description": "<p>Validation error.</p> "
           }
         ]
       },
@@ -4959,10 +4959,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           }
         ]
       }
@@ -4972,7 +4972,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -4994,7 +4994,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Validation Error.</p>"
+            "description": "<p>Validation Error.</p> "
           }
         ]
       },
@@ -5031,122 +5031,122 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "first_name",
-            "description": "<p>Firstname of user *optional</p>"
+            "description": "<p>Firstname of user *optional</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "last_name",
-            "description": "<p>Firstname of user *optional</p>"
+            "description": "<p>Firstname of user *optional</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *readonly *required</p>"
+            "description": "<p>email address of user *readonly *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "gender",
-            "description": "<p>gender of the user 1-Male, 2-Female</p>"
+            "description": "<p>gender of the user 1-Male, 2-Female</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "fitness_status",
-            "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p>"
+            "description": "<p>user's self assessment about fitness 1-I am definitely fit, 2-I am quite fit, 3-I am not so fit *optional</p> "
           },
           {
             "group": "Parameter",
-            "type": "file",
+            "type": "<p>file</p> ",
             "optional": true,
             "field": "image",
-            "description": "<p>user avatar image  *accepted formats JPEG, PNG, and GIF</p>"
+            "description": "<p>user avatar image  *accepted formats JPEG, PNG, and GIF</p> "
           },
           {
             "group": "Parameter",
-            "type": "file",
+            "type": "<p>file</p> ",
             "optional": true,
             "field": "cover_image",
-            "description": "<p>user cover_image</p>"
+            "description": "<p>user cover_image</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "goal",
-            "description": "<p>user's goal</p>"
+            "description": "<p>user's goal</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "city",
-            "description": "<p>user's city</p>"
+            "description": "<p>user's city</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "state",
-            "description": "<p>user's state</p>"
+            "description": "<p>user's state</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "country",
-            "description": "<p>user's country</p>"
+            "description": "<p>user's country</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "spot",
-            "description": "<p>spot</p>"
+            "description": "<p>spot</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "twitter",
-            "description": "<p>twitter</p>"
+            "description": "<p>twitter</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "facebook",
-            "description": "<p>facebook</p>"
+            "description": "<p>facebook</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "instagram",
-            "description": "<p>instagram</p>"
+            "description": "<p>instagram</p> "
           },
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": true,
             "field": "quote",
-            "description": "<p>Quote added by user</p>"
+            "description": "<p>Quote added by user</p> "
           },
           {
             "group": "Parameter",
-            "type": "number",
+            "type": "<p>number</p> ",
             "optional": true,
             "field": "subscription",
-            "description": "<p>Whether Newsletter subscription selected by user</p>"
+            "description": "<p>Whether Newsletter subscription selected by user</p> "
           }
         ]
       }
@@ -5156,7 +5156,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5178,7 +5178,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -5230,17 +5230,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of user *required</p>"
+            "description": "<p>id of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "video_id",
-            "description": "<p>id of user video *required</p>"
+            "description": "<p>id of user video *required</p> "
           }
         ]
       }
@@ -5250,7 +5250,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5272,7 +5272,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -5324,10 +5324,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5337,7 +5337,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5359,13 +5359,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5412,17 +5412,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "progression_id",
-            "description": "<p>id of Progression *required</p>"
+            "description": "<p>id of Progression *required</p> "
           }
         ]
       }
@@ -5432,7 +5432,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5454,13 +5454,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5512,10 +5512,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5525,7 +5525,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5547,13 +5547,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5600,10 +5600,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5613,7 +5613,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5635,13 +5635,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5688,10 +5688,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5701,7 +5701,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5723,13 +5723,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5776,10 +5776,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5789,7 +5789,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5811,13 +5811,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5864,10 +5864,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           }
         ]
       }
@@ -5877,7 +5877,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -5899,13 +5899,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -5962,17 +5962,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "quote",
-            "description": "<p>User motivation message *required</p>"
+            "description": "<p>User motivation message *required</p> "
           }
         ]
       }
@@ -5982,7 +5982,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6004,13 +6004,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -6057,17 +6057,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of user user *required</p>"
+            "description": "<p>id of user user *required</p> "
           }
         ]
       }
@@ -6077,7 +6077,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6099,7 +6099,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Validation error.</p>"
+            "description": "<p>Validation error.</p> "
           }
         ]
       },
@@ -6136,17 +6136,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "goal_options",
-            "description": "<p>value of goal selected *required</p>"
+            "description": "<p>value of goal selected *required</p> "
           }
         ]
       }
@@ -6156,7 +6156,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6178,13 +6178,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -6241,17 +6241,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>id of loggedin user *required</p>"
+            "description": "<p>id of loggedin user *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "<p>integer</p> ",
             "optional": false,
             "field": "physique_options",
-            "description": "<p>comma seperated ids of each muscle groups *required</p>"
+            "description": "<p>comma seperated ids of each muscle groups *required</p> "
           }
         ]
       }
@@ -6261,7 +6261,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6283,13 +6283,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "user_not_exists",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
@@ -6336,17 +6336,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "workout_id",
-            "description": "<p>Id of workout *required</p>"
+            "description": "<p>Id of workout *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "category",
-            "description": "<p>of workout 1-lean, 2-athletic, 3-strength *required</p>"
+            "description": "<p>of workout 1-lean, 2-athletic, 3-strength *required</p> "
           }
         ]
       }
@@ -6356,7 +6356,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6378,7 +6378,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -6430,17 +6430,17 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "workout_id",
-            "description": "<p>Id of workout *required</p>"
+            "description": "<p>Id of workout *required</p> "
           },
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_d",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -6450,7 +6450,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6472,7 +6472,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -6519,10 +6519,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "Number",
+            "type": "<p>Number</p> ",
             "optional": false,
             "field": "user_id",
-            "description": "<p>Id of user *required</p>"
+            "description": "<p>Id of user *required</p> "
           }
         ]
       }
@@ -6532,7 +6532,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6554,7 +6554,7 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           }
         ]
       },
@@ -6601,10 +6601,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "<p>string</p> ",
             "optional": false,
             "field": "email",
-            "description": "<p>email address of user *required</p>"
+            "description": "<p>email address of user *required</p> "
           }
         ]
       }
@@ -6614,7 +6614,7 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "<p>String</p> ",
             "optional": false,
             "field": "success.",
             "description": ""
@@ -6636,13 +6636,13 @@
             "group": "Error 4xx",
             "optional": false,
             "field": "error",
-            "description": "<p>Message token_invalid.</p>"
+            "description": "<p>Message token_invalid.</p> "
           },
           {
             "group": "Error 4xx",
             "optional": false,
             "field": "invalid_email",
-            "description": "<p>User error.</p>"
+            "description": "<p>User error.</p> "
           }
         ]
       },
