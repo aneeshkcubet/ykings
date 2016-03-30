@@ -1267,6 +1267,8 @@ class FeedController extends Controller
                 $feedsArray['intensity'] = $exerciseUser->volume;
 
                 $feedsArray['unit'] = $exercise->unit;
+                
+                $feedsArray['is_static'] =$exercise->is_static;
             } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
@@ -1531,6 +1533,7 @@ class FeedController extends Controller
                         $feedsArray['intensity'] = $exerciseUser->volume;
 
                         $feedsArray['unit'] = $exercise->unit;
+                        $feedsArray['is_static'] =$exercise->is_static;
                     } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
