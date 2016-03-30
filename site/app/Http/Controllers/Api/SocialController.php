@@ -209,7 +209,7 @@ class SocialController extends Controller
                     DB::table('refferals')->insert([
                         'user_id' => $user->id,
                         'email' => $user->email,
-                        'marketing_title' => $parameters['marketing_title'],
+                        'marketing_title' => $parameters['$marketing_title'],
                         'parameters' => $request->parameters,
                         'is_coach_subscribed' => 0,
                         'created_at' => Carbon::now()
@@ -463,6 +463,21 @@ class SocialController extends Controller
                         ->with(['profile', 'settings'])->first();
 
                 if (Auth::loginUsingId($user->id)) {
+                    
+                    // inserting into refferal table
+                if(isset($request->parameters) || ($request->parameters != NULL)){
+                    
+                    $parameters = json_decode($request->parameters, true);
+                    
+                    DB::table('refferals')->insert([
+                        'user_id' => $user->id,
+                        'email' => $user->email,
+                        'marketing_title' => $parameters['$marketing_title'],
+                        'parameters' => $request->parameters,
+                        'is_coach_subscribed' => 0,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
                     try {
                         // verify the credentials and create a token for the user
                         if (!$token = JWTAuth::fromUser($user)) {
