@@ -292,7 +292,7 @@ class UsersController extends Controller
                     DB::table('refferals')->insert([
                         'user_id' => $user->id,
                         'email' => $user->email,
-                        'marketing_title' => $parameters['marketing_title'],
+                        'marketing_title' => $parameters['$marketing_title'],
                         'parameters' => $request->parameters,
                         'is_coach_subscribed' => 0,
                         'created_at' => Carbon::now()
