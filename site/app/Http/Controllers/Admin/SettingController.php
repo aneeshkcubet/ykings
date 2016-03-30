@@ -69,17 +69,21 @@ class SettingController extends Controller
         // Grab all the refferals
         $refferalsList = Refferal::all();
         
-//        if(count($refferalsList)>0){            
-//            foreach($refferalsList as $lKey => $refferal){
-//                $profile = Profile::where('user_id', $user->id)->get();
-//                if(!is_null($profile)){
-//                    $usersList[$uKey]->profile = $profile->toArray();
-//                } else {
-//                    $usersList[$uKey]->profile = [];
-//                }
-//                
-//            }            
-//        }
+        if(count($refferalsList)>0){            
+            foreach($refferalsList as $lKey => $refferal){
+                $profile = User::where('email', $refferal->email)->first();
+                if(!is_null($profile)){
+                    if($profile->is_subscribed == 1){
+                        $refferalsList[$lKey]->is_coach_subscribed = 1;
+                    }  else {
+                        $refferalsList[$lKey]->is_coach_subscribed = 0;
+                    }                    
+                } else {
+                    $refferalsList[$lKey]->is_coach_subscribed = 0;
+                }
+                
+            }            
+        }
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
