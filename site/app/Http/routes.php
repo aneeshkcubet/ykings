@@ -11,7 +11,7 @@
  */
 
 //Admin Routes
-Route::group(['domain' => 'admin.ykings.com'], function () {
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [
         'as' => 'admin.index',
         'uses' => 'Admin\AdminController@index'
@@ -296,6 +296,13 @@ Route::group(['domain' => 'admin.ykings.com'], function () {
 
         Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));
     });
+    Route::group(array('prefix' => 'refferals'), function () {
+        Route::get('/', array('as' => 'admin.refferals', 'uses' => 'Admin\SettingController@refferalIndex'));
+       
+    });
+    
+    
+    
 });
 
 Route::group(['prefix' => 'api'], function() {
@@ -647,11 +654,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\MessageController@updateReadStatus'
     ]);
     
-    // route for refferal table
-    Route::post('/referral/parameters', [
-        'as' => 'user.settings',
-        'uses' => 'Api\UserSettingsController@saveRefferalDetails'
-    ]);
+    
 });
 
 // Authentication routes...
