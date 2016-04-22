@@ -20,5 +20,4 @@ class Stretching extends Model
         'duration',
         'unit'
     ];
-
 }

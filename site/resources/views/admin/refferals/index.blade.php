@@ -45,8 +45,9 @@ Refferals
                             <th>UserId</th>
                             <th>Email</th>
                             <th>Marketing Title</th>
-                            <th>Parameters</th>
                             <th>Is Coach Subscribed</th>
+                            <th>Parameters</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -56,12 +57,13 @@ Refferals
                             <td>{{{ $list->user_id }}}</td>
                             <td>{{{ $list->email }}}</td>
                             <td>{{{ $list->marketing_title }}}</td>
-                            <td>{{{ $list->parameters }}}</td>
                             @if($list->is_coach_subscribed == 1)
                              <td>Yes</td>
                             @else
                              <td>No</td>
                             @endif
+                            <td>{{{ $list->parameters }}}</td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

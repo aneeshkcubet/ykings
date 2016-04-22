@@ -31,17 +31,30 @@ class Exercise extends Model
         'pro_tips',
         'is_static'
     ];
+    
     protected $hidden = [
         'updated_at',
         'created_at'
     ];
+    
     protected $appends = ['musclegroup_string'];
-
+    
+    /**
+     * Function to stringify muscle groups related to an exercise.
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function getMusclegroupStringAttribute()
     {
         return $this->attributes['musclegroup_string'] = self::musclegroupString($this->muscle_groups);
     }
-
+    
+    /**
+     * Function to get get muscle groups of an exercise.
+     * @param type $muscleGroups
+     * @return string
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public static function musclegroupString($muscleGroups)
     {
         $eMuscleGroups = [];

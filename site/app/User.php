@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin', 'is_subscribed_backend'];
+    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin', 'is_subscribed_backend', 'referral_code'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -57,7 +57,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    protected $appends = ['is_subscribed', 'user_raid'];
+    protected $appends = ['is_subscribed', 'user_raid', 'need_renew'];
 
     /**
      * Fetch the user's profile via a one to one
@@ -137,6 +137,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
         return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
     }
+    
+    public function getNeedRenewAttribute()
+    {
+
+        return $this->attributes['need_renew'] = $this->needToUpdate($this->id);
+    }
 
     public function isSubscribed($userId)
     {
@@ -160,12 +166,39 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         
         if (is_null($subscription)) {
             return 0;
+        } else {
+            return 1;
+        }
+    }
+    
+    public function needToUpdate($userId)
+    {
+        $time = time();
+        
+        $adminSubscribed = DB::table('users')
+            ->select('*')
+            ->where('id', $userId)
+            ->where('is_subscribed_backend', 1)            
+            ->first();
+        
+        if (!is_null($adminSubscribed)) {
+            return 0;
+        }
+        
+        $subscription = DB::table('subscriptions')
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->orderBy('id', 'DESC')
+            ->first();
+        
+        if (is_null($subscription)) {
+            return 0;
         }
 
         if ($subscription->end_time <= $time) {
-            return 0;
-        } else {
             return 1;
+        } else {
+            return 0;
         }
     }
 

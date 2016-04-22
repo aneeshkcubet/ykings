@@ -155,20 +155,19 @@ class FeedController extends Controller
                     $addStar = intval($request->starred);
 
                 $itemId = $request->input('item_id');
-                
-                if ($request->item_type != 'fundamental' && $request->item_type != 'test'){
+
+                if ($request->item_type != 'fundamental' && $request->item_type != 'test') {
                     $feed = Feeds::create([
-                        'user_id' => $request->input('user_id'),
-                        'item_type' => $request->input('item_type'),
-                        'item_id' => $request->input('item_id'),
-                        'feed_text' => $request->input('text'),
-                        'image' => ''
-                ]);
-                    
+                            'user_id' => $request->input('user_id'),
+                            'item_type' => $request->input('item_type'),
+                            'item_id' => $request->input('item_id'),
+                            'feed_text' => $request->input('text'),
+                            'image' => ''
+                    ]);
                 }
 
-                if ($request->item_type == 'fundamental'){
-                    
+                if ($request->item_type == 'fundamental') {
+
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'item_id' => 0,
@@ -176,9 +175,8 @@ class FeedController extends Controller
                         'points' => $request->rewards,
                         'created_at' => Carbon::now()
                     ]);
-                    
                 }
-                
+
 
                 if ($request->item_type == 'exercise') {
                     $exerciseUser = Exerciseuser::create([
@@ -290,7 +288,7 @@ class FeedController extends Controller
                     $exerciseDetails = Hiit::where('id', $request->item_id)->first();
 
                     $pointsEarned = 0;
-                    
+
                     if (isset($request->volume))
                         $pointsEarned = $request->rewards;
 
@@ -349,7 +347,7 @@ class FeedController extends Controller
                     ];
 
                     $hiitUser = Testuser::create($data);
-                    
+
 
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
@@ -460,15 +458,15 @@ class FeedController extends Controller
       "duration": 320,
       "intensity": 4,
       "profile": {
-        "user_id": 48,
-        "first_name": "Aneesh",
-        "last_name": "Kallikkattil",
-        "image": "",
-        "quote": "",
-        "gender": 1,
-        "level": 2
+      "user_id": 48,
+      "first_name": "Aneesh",
+      "last_name": "Kallikkattil",
+      "image": "",
+      "quote": "",
+      "gender": 1,
+      "level": 2
       }
-    },
+      },
       {
       "id": "45",
       "user_id": "96",
@@ -807,40 +805,43 @@ class FeedController extends Controller
       "duration": 320,
       "intensity": 4,
       "profile": {
-        "user_id": 48,
-        "first_name": "Aneesh",
-        "last_name": "Kallikkattil",
-        "image": "",
-        "quote": "",
-        "gender": 1,
-        "level": 2
-      }
-    },
-      {
-      "id": "235",
-      "user_id": "84",
-      "item_type": "workout",
-      "item_id": "12",
-      "feed_text": "Post check",
-      "created_at": "2016-01-20 06:52:57",
-      "updated_at": "2016-01-20 06:52:57",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "HIIT-strength",
-      "item_name": "Forseti",
-      "duration": "41",
-      "intensity": "1",
-      "profile": {
-      "user_id": "84",
+      "user_id": 48,
       "first_name": "Aneesh",
-      "last_name": "ILeaf",
-      "image": "84_1453206435.jpg",
-      "quote": "new things",
-      "level": 7
+      "last_name": "Kallikkattil",
+      "image": "",
+      "quote": "",
+      "gender": 1,
+      "level": 2
       }
+      },
+      {
+          "id": "1167",
+          "user_id": "130",
+          "item_type": "workout",
+          "item_id": "9",
+          "feed_text": " ",
+          "image": "",
+          "created_at": "2016-04-07 11:16:49",
+          "updated_at": "2016-04-07 11:16:49",
+          "clap_count": 0,
+          "comment_count": 0,
+          "is_commented": 0,
+          "is_claped": 0,
+          "category": "HIIT-strength",
+          "item_name": "Elli",
+          "duration": "3",
+          "workout_rounds": "3",
+          "intensity": "1",
+          "focus": "Athletic",
+          "profile": {
+            "user_id": "130",
+            "first_name": "test",
+            "last_name": "user 2",
+            "image": "130_1460027861.jpg",
+            "quote": "",
+            "gender": "1",
+            "level": 3
+          }
       },
       {
       "id": "233",
@@ -1059,31 +1060,35 @@ class FeedController extends Controller
       }
       },
       {
-      "id": "225",
-      "user_id": "84",
-      "item_type": "workout",
-      "item_id": "2",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-19 13:35:46",
-      "updated_at": "2016-01-19 13:35:46",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "HIIT-strength",
-      "item_name": "Borr",
-      "duration": "5",
-      "intensity": "1",
-      "profile": {
-      "user_id": "84",
-      "first_name": "Aneesh",
-      "last_name": "ILeaf",
-      "image": "84_1453206435.jpg",
-      "quote": "new things",
-      "level": 7
-      }
-      }
+          "id": "1133",
+          "user_id": "67",
+          "item_type": "workout",
+          "item_id": "2",
+          "feed_text": "hcjgg",
+          "image": "",
+          "created_at": "2016-03-31 17:19:28",
+          "updated_at": "2016-03-31 17:19:28",
+          "clap_count": 0,
+          "comment_count": 0,
+          "is_commented": 0,
+          "is_claped": 0,
+          "category": "HIIT-strength",
+          "item_name": "Borr",
+          "duration": "8",
+          "workout_rounds": "3",
+          "is_coach": 1,
+          "coach_workout_rounds": "1",
+          "focus": "Athletic",
+          "profile": {
+            "user_id": "67",
+            "first_name": "Aneesh",
+            "last_name": "iL",
+            "image": "67_1457647007.jpg",
+            "quote": "",
+            "gender": "2",
+            "level": 36
+          }
+        }
       ],
       "urls": {
       "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -1225,7 +1230,11 @@ class FeedController extends Controller
                     $feedsArray['duration'] = 0;
                 }
 
+                $feedsArray['workout_rounds'] = $workout->rounds;
                 if ($workoutUser->is_coach == 1) {
+                    $feedsArray['is_coach'] = 1;
+                    $feedsArray['coach_workout_rounds'] = $workoutUser->coach_rounds;
+
                     if ($workoutUser->coach_rounds == $workout->rounds) {
                         $feedsArray['intensity'] = 1;
                     } elseif ($workoutUser->coach_rounds > $workout->rounds) {
@@ -1237,6 +1246,15 @@ class FeedController extends Controller
                     }
                 } else {
                     $feedsArray['intensity'] = $workoutUser->volume;
+                }
+                if (isset($workoutUser->focus) && $workoutUser->focus > 0) {
+                    if ($workoutUser->focus == 1) {
+                        $feedsArray['focus'] = 'Lean';
+                    } elseif ($workoutUser->focus == 2) {
+                        $feedsArray['focus'] = 'Athletic';
+                    } elseif ($workoutUser->focus == 3) {
+                        $feedsArray['focus'] = 'Strong';
+                    }
                 }
             } elseif ($feedsArray['item_type'] == 'exercise') {
 
@@ -1267,8 +1285,8 @@ class FeedController extends Controller
                 $feedsArray['intensity'] = $exerciseUser->volume;
 
                 $feedsArray['unit'] = $exercise->unit;
-                
-                $feedsArray['is_static'] =$exercise->is_static;
+
+                $feedsArray['is_static'] = $exercise->is_static;
             } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                 $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
@@ -1347,34 +1365,35 @@ class FeedController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "Details",
-      "feed_details": [
-      {
-      "id": "1",
-      "user_id": "1",
+      "id": "1133",
+      "user_id": "67",
       "item_type": "workout",
-      "item_id": "1",
-      "feed_text": "Testing",
-      "created_at": "2015-11-01 05:30:00",
-      "updated_at": "2015-11-23 10:14:16",
-      "clap_count": 1,
-      "comment_count": 3,
-      "is_commented": 1,
+      "item_id": "2",
+      "feed_text": "hcjgg",
+      "image": "",
+      "created_at": "2016-03-31 17:19:28",
+      "updated_at": "2016-03-31 17:19:28",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
       "is_claped": 0,
-      "category": "Strength",
-      "item_name": "Baldur",
-      "duration": 0,
-      "image": [],
+      "category": "HIIT-strength",
+      "item_name": "Borr",
+      "duration": "8",
+      "workout_rounds": "3",
+      "is_coach": 1,
+      "coach_workout_rounds": "1",
+      "focus": "Athletic",
       "profile": {
-      "user_id": "1",
-      "first_name": "Ykings",
-      "last_name": "Administrator",
-      "image": "53_1447764255.jpg",
-      "quote": "I am Simple",
-      "level": 1
+        "user_id": "67",
+        "first_name": "Aneesh",
+        "last_name": "iL",
+        "image": "67_1457647007.jpg",
+        "quote": "",
+        "gender": "2",
+        "level": 36
       }
-      }
+    }
       ],
       "urls": {
       "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
@@ -1491,7 +1510,11 @@ class FeedController extends Controller
                             $feedsArray['duration'] = 0;
                         }
 
+                        $feedsArray['workout_rounds'] = $workout->rounds;
                         if ($workoutUser->is_coach == 1) {
+                            $feedsArray['is_coach'] = 1;
+                            $feedsArray['coach_workout_rounds'] = $workoutUser->coach_rounds;
+
                             if ($workoutUser->coach_rounds == $workout->rounds) {
                                 $feedsArray['intensity'] = 1;
                             } elseif ($workoutUser->coach_rounds > $workout->rounds) {
@@ -1503,6 +1526,15 @@ class FeedController extends Controller
                             }
                         } else {
                             $feedsArray['intensity'] = $workoutUser->volume;
+                        }
+                        if (isset($workoutUser->focus) && $workoutUser->focus > 0) {
+                            if ($workoutUser->focus == 1) {
+                                $feedsArray['focus'] = 'Lean';
+                            } elseif ($workoutUser->focus == 2) {
+                                $feedsArray['focus'] = 'Athletic';
+                            } elseif ($workoutUser->focus == 3) {
+                                $feedsArray['focus'] = 'Strong';
+                            }
                         }
                     } elseif ($feedsArray['item_type'] == 'exercise') {
 
@@ -1533,7 +1565,7 @@ class FeedController extends Controller
                         $feedsArray['intensity'] = $exerciseUser->volume;
 
                         $feedsArray['unit'] = $exercise->unit;
-                        $feedsArray['is_static'] =$exercise->is_static;
+                        $feedsArray['is_static'] = $exercise->is_static;
                     } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();

@@ -1007,9 +1007,8 @@ class SkillsController extends Controller
 
                 $skill = Skill::where('id', $request->skill_id)->first();
 
-
-
                 $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
                 foreach ($skills as $sKey => $sValue) {
                     $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
                     if ($unlockCount > 0) {
@@ -1039,7 +1038,6 @@ class SkillsController extends Controller
             ->select('exercise_id')
             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
             ->count();
-
 
         if ($unLockCount > 0 || $skill->level < 2) {
             return 0;
@@ -1586,7 +1584,7 @@ class SkillsController extends Controller
 
                     $unlockedSkill = Skill::where('id', $request->skill_id)->first();
 
-                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= ' . $unlockedSkill->level.' AND level > 1 AND progression_id = '.$unlockedSkill->progression_id .' AND row = '.$unlockedSkill->row)->toSql();
+                    $higherLevelSkills = DB::table('skills')->select('id')->whereRaw('level >= ' . $unlockedSkill->level . ' AND level > 1 AND progression_id = ' . $unlockedSkill->progression_id . ' AND row = ' . $unlockedSkill->row)->toSql();
 
                     Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
 

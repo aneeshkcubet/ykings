@@ -1,11 +1,10 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model {
+class Settings extends Model
+{
 
     /**
      * Set the database specific table name
@@ -20,14 +19,14 @@ class Settings extends Model {
         'key',
         'value'
     ];
- /**
+
+    /**
      * Define the relationship for the author
-     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>     * 
      */
     protected function user()
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
     }
-   
 }

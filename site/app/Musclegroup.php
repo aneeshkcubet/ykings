@@ -10,7 +10,6 @@ class Musclegroup extends Model
     /**
      * Set the database specific table name
      */
-    protected $table = 'muscle_groups';   
-
+    protected $table = 'muscle_groups'; 
 
 }

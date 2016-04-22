@@ -21,8 +21,8 @@ class Follow extends Model
     ];
 
     /**
-     * Relation with user table.
-     * @author <aneesh@cubettech.com>
+     * Relation with followers.
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 12th November 2015
      * 
      */
@@ -32,8 +32,8 @@ class Follow extends Model
     }
 
     /**
-     * Relation with user table.
-     * @author <aneesh@cubettech.com>
+     * Relation with following users
+     * @author Aneesh K<aneesh@cubettech.com>
      * @since 12th November 2015
      */
     public function following()
@@ -42,8 +42,8 @@ class Follow extends Model
     }
 
     /**
-     * Relation with user table.
-     * @author <aneesh@cubettech.com>
+     * Relation with follw profile user.
+     * @author Aneesh K<aneesh@cubettech.com>
      * @since 12th November 2015
      */
     public function followProfile()
@@ -52,8 +52,8 @@ class Follow extends Model
     }
 
     /**
-     * Relation with user table.
-     * @author <aneesh@cubettech.com>
+     * Relation with follwing profile user.
+     * @author Aneesh K<aneesh@cubettech.com>
      * @since 12th November 2015
      */
     public function followingProfile()

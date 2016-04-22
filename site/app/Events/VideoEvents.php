@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Events;
+<?php namespace App\Events;
 
 use App\User;
 use App\Uservideo;

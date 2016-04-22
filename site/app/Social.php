@@ -15,15 +15,16 @@ class Social extends Model
     /**
      * Set the fillable fields within the model
      */
-    protected $fillable = ['user_id',
+    protected $fillable = [
+        'user_id',
         'provider',
         'provider_uid'
     ];
 
     /**
      * Define the relationship for the author
-     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     public function user()
     {

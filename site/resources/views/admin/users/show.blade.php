@@ -185,7 +185,7 @@ View User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                                                 @elseif($tUser->status == 1)
                                                                 Active
                                                                 @elseif($tUser->status == 2)
-                                                                Deleted
+                                                                Banned
                                                                 @else
                                                                 @endif
                                                             </td>
@@ -195,7 +195,15 @@ View User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                                             <td>
                                                                 {{{ $tUser->created_at->diffForHumans() }}}
                                                             </td>
-                                                        </tr> 
+                                                        </tr>
+                                                        @if($tUser->referral_code > 0)
+                                                        <tr>
+                                                            <td>Reffered By</td>
+                                                            <td>
+                                                                <a href="{{ route('admin.user.show', $tUser['refferance']->user_id) }}">{{{$tUser['refferance']->first_name}}} {{{$tUser['refferance']->last_name}}}</a>
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                     </table>
                                                 </form>
                                             </div>

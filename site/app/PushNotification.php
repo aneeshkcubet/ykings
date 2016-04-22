@@ -19,7 +19,5 @@ class PushNotification extends Model
         'user_id',
         'type',
         'device_token'
-    ];
-
- 
+    ]; 
 }

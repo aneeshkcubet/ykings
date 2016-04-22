@@ -29,7 +29,7 @@ class SocialController extends Controller
       | This controller handles the registration and login from social media.
       |
      */
-    
+
     /**
      * Create a new authentication controller instance.
      *
@@ -38,13 +38,13 @@ class SocialController extends Controller
     public function __construct()
     {
         $this->middleware('jwt.auth', ['except' => [
-            'facebookSignUp', 
-            'facebookLogin',
-            'postRegister',
-            'login',
-            'resendVerifyEmail',
-            'updateUserEmail'
-            ]]);
+                'facebookSignUp',
+                'facebookLogin',
+                'postRegister',
+                'login',
+                'resendVerifyEmail',
+                'updateUserEmail'
+        ]]);
     }
 
     /**
@@ -64,6 +64,7 @@ class SocialController extends Controller
      * @apiParam {string} [fitness_status] fitness_status
      * @apiParam {string} [goal] goal 
      * @apiParam {string} [quote] quote 
+     * @apiParam {string} [referral_code] If user added referral code 
      * @apiParam {string} [parameters] json_encoded array {"marketing_title":"marketing"}.
 
      * @apiSuccess {String} success.
@@ -200,21 +201,20 @@ class SocialController extends Controller
 
                 if (Auth::loginUsingId($user->id)) {
                     // Authentication passed...
-                    
                     // inserting into refferal table
-                if(isset($request->parameters) || ($request->parameters != NULL)){
-                    
-                    $parameters = json_decode($request->parameters, true);
-                    
-                    DB::table('refferals')->insert([
-                        'user_id' => $user->id,
-                        'email' => $user->email,
-                        'marketing_title' => $parameters['$marketing_title'],
-                        'parameters' => $request->parameters,
-                        'is_coach_subscribed' => 0,
-                        'created_at' => Carbon::now()
-                    ]);
-                }
+                    if (isset($request->parameters) || ($request->parameters != NULL)) {
+
+                        $parameters = json_decode($request->parameters, true);
+
+                        DB::table('refferals')->insert([
+                            'user_id' => $user->id,
+                            'email' => $user->email,
+                            'marketing_title' => $parameters['$marketing_title'],
+                            'parameters' => $request->parameters,
+                            'is_coach_subscribed' => 0,
+                            'created_at' => Carbon::now()
+                        ]);
+                    }
 
                     if (Auth::user()->status == 1) {
                         try {
@@ -262,7 +262,11 @@ class SocialController extends Controller
             return $response = array('email' => 1, 'status' => true);
         } else {
             //user table
-            $user = User::create(['email' => $data['email'], 'status' => 1]);
+            $user = User::create([
+                    'email' => $data['email'],
+                    'status' => 1,
+                    'referral_code' => isset($data['referral_code']) ? $data['referral_code'] : 0
+            ]);
             //user profile table
             $profile = new Profile([
                 'first_name' => isset($data['first_name']) ? $data['first_name'] : '',
@@ -310,6 +314,15 @@ class SocialController extends Controller
             $socialAccount = $user->social()->save($social);
 
             $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
+            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] !='(null)') {
+                DB::table('points')->insert([
+                    'user_id' => $request->referral_code,
+                    'item_id' => $request->referral_code,
+                    'activity' => 'reference',
+                    'points' => DB::table('site_settings')->where('key', '=', 'invitation_points')->pluck('value'),
+                    'created_at' => Carbon::now()
+                ]);
+            }
             if (!is_null($user)) {
                 return true;
             } else {
@@ -335,6 +348,9 @@ class SocialController extends Controller
      * @apiParam {string} [fitness_status] fitness_status
      * @apiParam {string} [goal] goal 
      * @apiParam {string} [quote] quote 
+     * @apiParam {string} [referral_code] If user added referral code 
+     * @apiParam {string} [parameters] json_encoded array {"marketing_title":"marketing"}.
+     * 
 
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
@@ -463,21 +479,21 @@ class SocialController extends Controller
                         ->with(['profile', 'settings'])->first();
 
                 if (Auth::loginUsingId($user->id)) {
-                    
+
                     // inserting into refferal table
-                if(isset($request->parameters) || ($request->parameters != NULL)){
-                    
-                    $parameters = json_decode($request->parameters, true);
-                    
-                    DB::table('refferals')->insert([
-                        'user_id' => $user->id,
-                        'email' => $user->email,
-                        'marketing_title' => $parameters['$marketing_title'],
-                        'parameters' => $request->parameters,
-                        'is_coach_subscribed' => 0,
-                        'created_at' => Carbon::now()
-                    ]);
-                }
+                    if (isset($request->parameters) || ($request->parameters != NULL)) {
+
+                        $parameters = json_decode($request->parameters, true);
+
+                        DB::table('refferals')->insert([
+                            'user_id' => $user->id,
+                            'email' => $user->email,
+                            'marketing_title' => $parameters['$marketing_title'],
+                            'parameters' => $request->parameters,
+                            'is_coach_subscribed' => 0,
+                            'created_at' => Carbon::now()
+                        ]);
+                    }
                     try {
                         // verify the credentials and create a token for the user
                         if (!$token = JWTAuth::fromUser($user)) {
@@ -640,6 +656,18 @@ class SocialController extends Controller
             $socialAccount = $user->social()->save($social);
 
             $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
+
+            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] !='(null)') {
+
+                DB::table('points')->insert([
+                    'user_id' => $request->referral_code,
+                    'item_id' => $request->referral_code,
+                    'activity' => 'reference',
+                    'points' => DB::table('site_settings')->where('key', '=', 'invitation_points')->pluck('value'),
+                    'created_at' => Carbon::now()
+                ]);
+            }
+
             if (!is_null($user)) {
                 return true;
             } else {

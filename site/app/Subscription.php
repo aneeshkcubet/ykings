@@ -27,9 +27,9 @@ class Subscription extends Model
     ];
 
     /**
-     * Define the relationship for the author
-     *
+     * Define the relationship for the author     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     protected function user()
     {
@@ -37,9 +37,9 @@ class Subscription extends Model
     }
     
     /**
-     * Define the relationship for the author
-     *
+     * Define the relationship for the plan
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     protected function plan()
     {

@@ -64,7 +64,7 @@ Add New Knowledge
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Message *</label>
                                         <div class="col-sm-10">
-                                            <input id="text" name="text" type="text" placeholder="Message" class="form-control required" value="{{{ Input::old('name') }}}" />
+                                            <textarea rows="5" id="text" name="text" placeholder="Message" class="form-control required">{{{ Input::old('name') }}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

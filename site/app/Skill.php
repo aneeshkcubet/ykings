@@ -26,8 +26,8 @@ class Skill extends Model
     
     /**
      * Define the relationship for the exercise
-     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     public function exercise()
     {
@@ -36,8 +36,8 @@ class Skill extends Model
     
     /**
      * Define the relationship for the progression
-     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     public function progression()
     {

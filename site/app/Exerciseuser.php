@@ -27,8 +27,8 @@ class Exerciseuser extends Model
 
     /**
      * Define the relationship for the author
-     *
      * @return \Illuminate\Database\Query\Builder
+     * @author Aneesh K<aneeshk@cubettech.com>
      */
     public function profile()
     {

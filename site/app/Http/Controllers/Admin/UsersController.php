@@ -37,7 +37,7 @@ class UsersController extends Controller
     public function getIndex()
     {
         // Grab all the users
-        $usersList = User::whereRaw('status !=  2')->get();
+        $usersList = User::all();
         
         if(count($usersList)>0){            
             foreach($usersList as $uKey => $user){
@@ -46,8 +46,7 @@ class UsersController extends Controller
                     $usersList[$uKey]->profile = $profile->toArray();
                 } else {
                     $usersList[$uKey]->profile = [];
-                }
-                
+                }                
             }            
         }
 
@@ -189,6 +188,17 @@ class UsersController extends Controller
         }
 
         $countries = Country::all();
+        
+        if($tUser->referral_code > 0){
+            $refer = Profile::where('user_id', $tUser->referral_code)->first();
+            $tUser->refferance = $refer;
+        }
+        
+//        echo '<pre>';
+//        
+//        print_r($tUser->refferance);
+//        
+//        die;
 
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();

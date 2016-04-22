@@ -6,7 +6,6 @@ use DB;
 
 class Newsletter extends Model
 {
-
     /**
      * Set the database specific table name
      */
@@ -21,5 +20,4 @@ class Newsletter extends Model
         'status',
         'subscribers'
     ];
-
 }

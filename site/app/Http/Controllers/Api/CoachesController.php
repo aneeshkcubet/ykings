@@ -129,7 +129,7 @@ class CoachesController extends Controller
                     }
 
 
-                    if (strtotime($coach->updated_at . ' + 7 days') <= $currentTimestamp &&  $coachStatus->need_update == 1) {
+                    if (strtotime($coach->updated_at . ' + 7 days') <= $currentTimestamp && $coachStatus->need_update == 1) {
                         //User feedback required
                         return response()->json([
                                 'status' => 1,
@@ -632,7 +632,6 @@ class CoachesController extends Controller
                         }
                     }
                     $data['day_status'] = json_encode($statusArray);
-                    
                 }
                 $data['day'] = $request->day;
 
@@ -742,8 +741,8 @@ class CoachesController extends Controller
                 $coach = Coach::where('user_id', $request->user_id)->first();
 
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
-                
-                $statusArray=[];
+
+                $statusArray = [];
 
                 for ($i = 1; $i <= $coachStatus->week; $i++) {
                     if ($i <= $request->week) {
@@ -752,7 +751,7 @@ class CoachesController extends Controller
                         $statusArray[$i] = 0;
                     }
                 }
-                
+
                 $data['week_status'] = json_encode($statusArray);
 
                 $data['need_update'] = 1;
@@ -2264,17 +2263,8 @@ class CoachesController extends Controller
 
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        }
-        elseif (!isset($request->test) || ($request->test == null)) {
+        } elseif (!isset($request->test) || ($request->test == null)) {
             return response()->json(["status" => "0", "error" => "The test field is required"]);
-        }
-//        elseif (!isset($request->test1) || ($request->test1 == null)) {
-//            return response()->json(["status" => "0", "error" => "The test1 field is required"]);
-//        } elseif (!isset($request->test2) || ($request->test2 == null)) {
-//            return response()->json(["status" => "0", "error" => "The test2 field is required"]);
-//        } 
-        elseif (!isset($request->focus) || ($request->focus == null)) {
-            return response()->json(["status" => "0", "error" => "The focus field is required"]);
         } elseif (!isset($request->days) || ($request->days == null)) {
             return response()->json(["status" => "0", "error" => "The days field is required"]);
         } elseif (!isset($request->feedback) || ($request->feedback == null)) {
@@ -2282,27 +2272,25 @@ class CoachesController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             
-            
+            $feedbacks = json_decode($request->feedback, true);
 
-            $feedbacks = json_decode($request->feedback,true);
-            
             $feedbackSum = 0;
-            
-            foreach($feedbacks as $feedback){
+
+            foreach ($feedbacks as $feedback) {
                 $feedbackSum += $feedback;
             }
-            
-           $feedAvg = round($feedbackSum/4);
-           
-           if($feedAvg < 2){
-               $category = 'professional';
-           }elseif($feedAvg == 2){
-               $category = 'advanced';
-           }elseif($feedAvg == 3){
-               $category = 'beginer';
-           }
-           
-           $profile = Profile::where('user_id', $request->user_id)->first();
+
+            $feedAvg = round($feedbackSum / 4);
+
+            if ($feedAvg < 2 && $feedAvg > 0) {
+                $category = 'professional';
+            } elseif ($feedAvg == 2) {
+                $category = 'advanced';
+            } elseif ($feedAvg == 3 || $feedAvg == 0) {
+                $category = 'beginer';
+            }
+
+            $profile = Profile::where('user_id', $request->user_id)->first();
 
             if (!is_null($user)) {
                 $data = [
@@ -2343,17 +2331,18 @@ class CoachesController extends Controller
 
 
                 $data['test'] = $request->test;
-                
-//                $data['test1'] = $request->test1;
-//
-//                $data['test2'] = $request->test2;
-                
-                $data['week'] = 1;
 
-                $coachExercises = Coach::prepareCoachExercises($coachId, $data);                
-               
-                $filteredCoach = Coach::filterCoachExercises($coachExercises, $data);
+                $data['week'] = 1;
                 
+                //Prepare coach exercises according to user options
+                $coachExercises = Coach::prepareCoachExercises($coachId, $data);
+                
+                $coachExercises = Coach::addRaidExercisesToWorkouts($request->user_id, $coachExercises);
+                
+                //Limit the coach exercises and reptitions
+
+                $filteredCoach = Coach::filterCoachExercises($coachExercises, $data);
+
                 DB::table('coaches')->where('id', $coachId)->update(['exercises' => json_encode($filteredCoach)]);
 
                 $userCoachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coachId)->first();
@@ -2363,7 +2352,6 @@ class CoachesController extends Controller
                 }
 
                 $weekStatusArray[1] = 0;
-
 
                 if (is_null($userCoachStatus)) {
                     DB::table('coach_status')->insert([
@@ -2511,11 +2499,11 @@ class CoachesController extends Controller
                 }
 
                 $weekStatusArray[$coachStatus->week + 1] = 0;
-                
+
                 $profile = Profile::where('user_id', $request->user_id)->first();
 
-                $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);                 
-              
+                $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);
+
                 DB::table('coach_status')
                     ->where('coach_id', $coach->id)
                     ->update([
@@ -2525,8 +2513,8 @@ class CoachesController extends Controller
                         'day' => 1,
                         'week' => $coachStatus->week + 1
                 ]);
-                
-                
+
+
 
                 Coach::where('user_id', $request->user_id)->update([
                     'exercises' => json_encode($exercises),

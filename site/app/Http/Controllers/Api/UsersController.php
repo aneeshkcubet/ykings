@@ -52,12 +52,12 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('jwt.auth', ['except' => [
-            'confirm',
-            'postRegister',
-            'login',
-            'resendVerifyEmail',
-            'updateUserEmail'
-            ]]);
+                'confirm',
+                'postRegister',
+                'login',
+                'resendVerifyEmail',
+                'updateUserEmail'
+        ]]);
     }
 
     /**
@@ -214,25 +214,25 @@ class UsersController extends Controller
      */
     public function postRegister(Request $request)
     {
-        if (!isset($request->email) || ($request->email == NULL)) {
+        if (!isset($request->email) || ($request->email == NULL) || $request->email == '(null)') {
             $respArray = [ "status" => 0, "error" => "The email field is required."];
             if (isset($request->referral_code) && $request->referral_code != '') {
                 $respArray['referral_code'] = $request->referral_code;
             }
             return response()->json($respArray);
-        } elseif (!isset($request->password) || ($request->password == NULL)) {
+        } elseif (!isset($request->password) || ($request->password == NULL) || $request->password == '(null)') {
             $respArray = [ "status" => 0, "error" => "The password field is required."];
             if (isset($request->referral_code) && $request->referral_code != '') {
                 $respArray['referral_code'] = $request->referral_code;
             }
             return response()->json($respArray);
-        } elseif (!isset($request->first_name) || ($request->first_name == NULL)) {
+        } elseif (!isset($request->first_name) || ($request->first_name == NULL) || $request->first_name == '(null)') {
             $respArray = ["status" => 0, "error" => "The first_name field is required"];
             if (isset($request->referral_code) && $request->referral_code != '') {
                 $respArray['referral_code'] = $request->referral_code;
             }
             return response()->json($respArray);
-        } elseif (!isset($request->last_name) || ($request->last_name == NULL)) {
+        } elseif (!isset($request->last_name) || ($request->last_name == NULL) || $request->last_name == '(null)') {
             $respArray = [ "status" => 0, "error" => "The last_name field is required"];
             if (isset($request->referral_code) && $request->referral_code != '') {
                 $respArray['referral_code'] = $request->referral_code;
@@ -240,7 +240,7 @@ class UsersController extends Controller
             return response()->json($respArray);
         } else {
 
-            $user = User::where('email', '=', $request->email)->first();
+            $user = User::where('email', '=', trim(strtolower($request->email)))->first();
 
             if (!is_null($user)) {
                 return response()->json([ "status" => 0, "error" => "This email already signed up with us."], 422);
@@ -283,12 +283,12 @@ class UsersController extends Controller
                     'user_id' => $user->id,
                     'created_at' => Carbon::now()
                 ]);
-                
+
                 // inserting into refferal table
-                if(isset($request->parameters) || ($request->parameters != NULL)){
-                    
+                if (isset($request->parameters) || ($request->parameters != NULL)) {
+
                     $parameters = json_decode($request->parameters, true);
-                    
+
                     DB::table('refferals')->insert([
                         'user_id' => $user->id,
                         'email' => $user->email,
@@ -300,16 +300,14 @@ class UsersController extends Controller
                 }
 
                 if (isset($request->referral_code) && $request->referral_code != '') {
-                    $ref = DB::table('promo_code')->where('code', '=', $request->referral_code)->first();
-                    if (!is_null($ref)) {
-                        DB::table('points')->insert([
-                            'user_id' => $ref->user_id,
-                            'item_id' => $ref->id,
-                            'activity' => 'reference',
-                            'points' => DB::table('site_settings')->where('key', '=', 'invitation_points')->pluck('value'),
-                            'created_at' => Carbon::now()
-                        ]);
-                    }
+
+                    DB::table('points')->insert([
+                        'user_id' => $request->referral_code,
+                        'item_id' => $request->referral_code,
+                        'activity' => 'reference',
+                        'points' => DB::table('site_settings')->where('key', '=', 'invitation_points')->pluck('value'),
+                        'created_at' => Carbon::now()
+                    ]);
                 }
 
                 $user = User::where('email', '=', $request->input('email'))->with([ 'profile', 'videos'])->first();
@@ -351,7 +349,8 @@ class UsersController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'confirmation_code' => $confirmation_code,
-                'status' => 0
+                'status' => 0,
+                'referral_code' => isset($data['referral_code']) ? $data['referral_code'] : 0
         ]);
 
         Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
@@ -359,21 +358,19 @@ class UsersController extends Controller
                 ->subject('Verify your email address');
         });
 
-
         $profile = new Profile([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'gender' => isset($data['gender']) ? $data['gender'] : 0,
-            'fitness_status' => isset($data['fitness_status']) ? $data['fitness_status'] : 0,
-            'goal' => isset($data['goal']) ? $data['goal'] : 0,
-            'city' => isset($data['city']) ? $data['city'] : '',
-            'state' => isset($data['state']) ? $data['state'] : '',
-            'country' => isset($data['country']) ? $data['country'] : '',
-            'spot' => isset($data['spot']) ? $data['spot'] : '',
-            'quote' => isset($data['quote']) ? $data['quote'] : ''
+            'gender' => isset($data['gender']) && $data['gender'] != '(null)' && $data['gender'] != '' ? $data['gender'] : 0,
+            'fitness_status' => isset($data['fitness_status']) && $data['fitness_status'] != '(null)' && $data['fitness_status'] != '' ? $data['fitness_status'] : 0,
+            'goal' => isset($data['goal']) && $data['goal'] != '(null)' && $data['goal'] != '' ? $data['goal'] : 0,
+            'city' => isset($data['city']) && $data['city'] != '(null)' && $data['city'] != '' ? $data['city'] : '',
+            'state' => isset($data['state']) && $data['state'] != '(null)' && $data['state'] != '' ? $data['state'] : '',
+            'country' => isset($data['country']) && $data['country'] != '(null)' && $data['country'] != '' ? $data['country'] : '',
+            'spot' => isset($data['spot']) && $data['spot'] != '(null)' && $data['spot'] != '' ? $data['spot'] : '',
+            'quote' => isset($data['quote']) && $data['quote'] != '(null)' && $data['quote'] != '' ? $data['quote'] : ''
             ]
         );
-
 
         $userProfile = $user->profile()->save($profile);
 
@@ -388,7 +385,8 @@ class UsersController extends Controller
         //Code added by <ansa@cubettech.com> on 31-12-2015
         //To save device token
         if (isset($request->device_token) && (isset($request->device_type))) {
-            $deviceToken = PushNotification::create(['user_id' => $user->id,
+            $deviceToken = PushNotification::create([
+                    'user_id' => $user->id,
                     'type' => $request->device_token,
                     'device_token' => $request->device_token
             ]);
@@ -687,6 +685,18 @@ class UsersController extends Controller
 
 
 
+            try {
+                // verify the credentials and create a token for the user
+                if (!$token = JWTAuth::fromUser($user)) {
+                    return response()->json([ 'status' => 0, 'error' => 'invalid_credentials'], 401);
+                }
+            } catch (JWTException $e) {
+                // something went wrong
+                return response()->json([ 'status' => 0, 'error' => 'could_not_create_token'], 500);
+            }
+
+
+
             if (isset($data['subscription'])) {
                 Settings::where('user_id', '=', $user->id)
                     ->where('key', '=', 'subscription')
@@ -705,7 +715,7 @@ class UsersController extends Controller
             //Added by ansa@cubettech.com on 27-11-2015
             $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
 
-            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
+            return response()->json(['status' => 1, 'success' => 'successfully_updated_user_profile', 'token' => $token, 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
             return response()->json(['status' => 0, 'error' => 'could_not_update_user'], 500);
         }
@@ -1934,7 +1944,7 @@ class UsersController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             $arr1 = Array(5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300);
-            
+
             $arr2 = Array(7, 10, 15, 20, 25, 30, 40, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
 
             if ($user) {
@@ -1942,10 +1952,10 @@ class UsersController extends Controller
 
                 $exerciseArray = $exercises->toArray();
                 foreach ($exerciseArray as $eKey => $exercise) {
-                    
-                    if($exercise['unit'] == 'seconds'){
+
+                    if ($exercise['unit'] == 'seconds') {
                         $volumeArray = $arr1;
-                    }else{
+                    } else {
                         $volumeArray = $arr2;
                     }
 
@@ -4150,9 +4160,9 @@ class UsersController extends Controller
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error
      *     {
-              "status": 0,
-              "error": "The email field is required.",
-          }
+      "status": 0,
+      "error": "The email field is required.",
+      }
      * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Validation error

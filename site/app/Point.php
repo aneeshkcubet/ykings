@@ -66,7 +66,7 @@ class Point extends Model
 
     /**
      * Function to find user points.
-     * @author <aneeshk@cubettech.com>
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 8-12-2015
      */
     public static function userPontToNextLevel($userId)

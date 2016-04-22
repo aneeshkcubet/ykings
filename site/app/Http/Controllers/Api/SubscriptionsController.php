@@ -21,7 +21,7 @@ class SubscriptionsController extends Controller
       | This controller handles  user subscription.
       |
      */
-    
+
     /**
      * Create a new authentication controller instance.
      *
@@ -31,7 +31,6 @@ class SubscriptionsController extends Controller
     {
         $this->middleware('jwt.auth');
     }
-
 
     /**
      * @api {post} /subscription/update updateSubscription
@@ -46,12 +45,13 @@ class SubscriptionsController extends Controller
      * @apiParam {String} inapp_id id of subscription id created with Inapp *required
      * @apiParam {Number} months duration of subscription *required
      * @apiParam {Number} status status of payment  0-failure, 1-success *required
+     * @apiParam {Number} [is_renew] transaction is renewal or not 1 - renew, 0 - new subscription
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
-     *HTTP/1.1 200 OK
+     * HTTP/1.1 200 OK
       {
-            "status": 1,
-            "message": "Subscription Updated"
+      "status": 1,
+      "message": "Subscription Updated"
       }
      * 
      * @apiError error Message token_invalid.
@@ -164,20 +164,41 @@ class SubscriptionsController extends Controller
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
-                
+
                 $planId = Plan::where('inapp_id', $data['inapp_id'])->first();
-                
-                Subscription::create([
-                    'user_id' => $data['user_id'],
-                    'amount' => $data['amount'],
-                    'currency' => $data['currency'],
-                    'process_time' => strtotime($data['process_time']),
-                    'transaction_id' => $data['transaction_id'],
-                    'plan_id' => $planId->id,
-                    'status' => $data['status'],
-                    'start_time' => time($data['process_time']),
-                    'end_time' => strtotime("+".$data['months']." month", time($data['process_time']))
-                ]);
+
+                if (isset($data['is_renew']) && $data['is_renew'] != 0 && $data['is_renew'] != '' && $data['is_renew'] != NULL && $data['is_renew'] != '(null)') {
+                    $subscription = DB::table('subscriptions')
+                        ->select('*')
+                        ->where('user_id', '=', $data['user_id'])
+                        ->orderBy('id', 'DESC')
+                        ->first();
+                    $subEndDate = gmdate("Y-m-d\TH:i:s\Z", $subscription->end_time);
+                    Subscription::where('user_id', $data['user_id'])->update([
+                        'amount' => $data['amount'],
+                        'currency' => $data['currency'],
+                        'process_time' => time(),
+                        'transaction_id' => $data['transaction_id'],
+                        'plan_id' => $planId->id,
+                        'status' => $data['status'],
+                        'start_time' => $subscription->end_time,
+                        'end_time' => strtotime("+" . $data['months'] . " month", time($subEndDate))
+                    ]);
+                } else {
+                    Subscription::create([
+                        'user_id' => $data['user_id'],
+                        'amount' => $data['amount'],
+                        'currency' => $data['currency'],
+                        'process_time' => strtotime($data['process_time']),
+                        'transaction_id' => $data['transaction_id'],
+                        'plan_id' => $planId->id,
+                        'status' => $data['status'],
+                        'start_time' => time($data['process_time']),
+                        'end_time' => strtotime("+" . $data['months'] . " month", time($data['process_time']))
+                    ]);
+                }
+
+
 
                 return response()->json(['status' => 1, 'message' => 'Subscription Updated'], 200);
             } else {
@@ -185,5 +206,4 @@ class SubscriptionsController extends Controller
             }
         }
     }
-   
 }
