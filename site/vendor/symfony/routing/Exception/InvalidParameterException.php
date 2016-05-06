@@ -1,4 +1,4 @@
-<?php
+<?php namespace Symfony\Component\Routing\Exception;
 
 /*
  * This file is part of the Symfony package.
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Routing\Exception;
+
 
 /**
  * Exception thrown when a parameter is not valid.

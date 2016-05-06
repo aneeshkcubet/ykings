@@ -1,4 +1,5 @@
 <?php
+namespace Symfony\Component\HttpFoundation;
 
 /*
  * This file is part of the Symfony package.
@@ -9,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\HttpFoundation;
+
 
 /**
  * RedirectResponse represents an HTTP response doing a redirect.

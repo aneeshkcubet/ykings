@@ -1,4 +1,4 @@
-<?php
+<?php namespace SebastianBergmann\Diff;
 /*
  * This file is part of the Diff package.
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SebastianBergmann\Diff;
+
 
 /**
  */

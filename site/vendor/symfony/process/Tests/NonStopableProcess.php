@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Symfony package.
  *
@@ -26,13 +25,12 @@ function handleSignal($signal)
             $name = 'SIGINT';
             break;
         default:
-            $name = $signal.' (unknown)';
+            $name = $signal . ' (unknown)';
             break;
     }
 
     echo "signal $name\n";
 }
-
 pcntl_signal(SIGTERM, 'handleSignal');
 pcntl_signal(SIGINT, 'handleSignal');
 
