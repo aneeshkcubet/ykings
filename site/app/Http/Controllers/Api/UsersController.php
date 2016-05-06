@@ -915,15 +915,22 @@ class UsersController extends Controller
 
                 $userArray = $user->toArray();
 
-                $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $user['id'])->count();
-                $userArray['workout_count'] = Workout::workoutCount($user['id']);
-                $userArray['points'] = Point::userPoints($user['id']);
-                $userArray['level'] = Point::userLevel($user['id']);
+                $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $userArray['id'])->count();
+                $userArray['workout_count'] = Workout::workoutCount($userArray['id']);
+                $userArray['points'] = Point::userPoints($userArray['id']);
+                $userArray['level'] = Point::userLevel($userArray['id']);
                 $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
 
                 //Code to check facebook connected for user.
                 //Added by ansa@cubettech.com on 27-11-2015
                 $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
+                if(!is_null($coachStatus)){
+                    $userArray['coach_week'] = $coachStatus->week;
+                } else {
+                    $userArray['coach_week'] = 0;
+                }
+                
                 // if no errors are encountered we can return a JWT
                 return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {

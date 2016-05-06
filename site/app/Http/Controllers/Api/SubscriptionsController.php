@@ -198,9 +198,131 @@ class SubscriptionsController extends Controller
                     ]);
                 }
 
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
+
+                if (!is_null($coach)) {
+
+                    $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
+
+                    $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
+
+                    $coach->exercises = json_decode($coach->exercises, true);
+
+                    $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
+
+                    if ($coachStatus->week <= 15) {
+                        $coach->description = DB::table('coach_descriptions')->where('week', $coachStatus->week)->pluck('description');
+                    } else {
+                        $coach->description = DB::table('coach_descriptions')->where('week', 15)->pluck('description');
+                    }
+
+                    $currentTimestamp = time();
+
+                    $dayStatus = json_decode($coachStatus->day_status, true);
+
+                    $weekStatus = json_decode($coachStatus->week_status, true);
+
+                    if (isset($coach->exercises) && !empty($coach->exercises)) {
+                        foreach ($coach->exercises as $ekey => $exercise) {
+                            if (in_array((int) (str_replace('day', '', $ekey)), $dayStatus) && $dayStatus[(int) (str_replace('day', '', $ekey))] == 1) {
+                                $coach->exercises[$ekey]['status'] = 'completed';
+                            } else {
+                                $coach->exercises[$ekey]['status'] = 'pending';
+                            }
+                        }
+                    }
 
 
-                return response()->json(['status' => 1, 'message' => 'Subscription Updated'], 200);
+                    if (strtotime($coach->updated_at . ' + 7 days') <= $currentTimestamp && $coachStatus->need_update == 1) {
+                        //User feedback required
+                        $coachDet = [
+                            'status' => 1,
+                            'message' => 'user_feedback_required',
+                            'coach_day' => $coachStatus->day,
+                            'coach_week' => $coachStatus->week,
+                            'is_subscribed' => $user->is_subscribed,
+                            'need_update' => 1,
+                            'week_status' => $weekStatus,
+                            'day_status' => $dayStatus,
+                            'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                            'coach' => $coach,
+                            'urls' => config('urls.urls')];
+                    } else {
+                        if ($coachStatus->need_update == 1) {
+                            $coachDet = [
+                                'status' => 1,
+                                'message' => 'already_completed_week_workouts',
+                                'coach_day' => $coachStatus->day,
+                                'coach_week' => $coachStatus->week,
+                                'is_subscribed' => $user->is_subscribed,
+                                'need_update' => 1,
+                                'week_status' => $weekStatus,
+                                'day_status' => $dayStatus,
+                                'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                                'coach' => $coach,
+                                'urls' => config('urls.urls')];
+                        }
+
+                        if ($coachStatus->need_update == 0) {
+                            if ($dayStatus[$coachStatus->day] == 1) {
+                                $coachUpdatedDate = date('Y-m-d', strtotime($coachStatus->updated_at));
+                                $coachNextDay = strtotime($coachUpdatedDate . ' 00:00:01 + 1 days');
+                                if ($coachNextDay > $currentTimestamp) {
+                                    $coachDet = [
+                                        'status' => 1,
+                                        'message' => 'already_completed_day_workouts',
+                                        'coach_day' => $coachStatus->day,
+                                        'coach_week' => $coachStatus->week,
+                                        'is_subscribed' => $user->is_subscribed,
+                                        'need_update' => 0,
+                                        'week_status' => $weekStatus,
+                                        'day_status' => $dayStatus,
+                                        'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                                        'coach' => $coach,
+                                        'urls' => config('urls.urls')];
+                                } else {
+                                    $coachDet = [
+                                        'status' => 1,
+                                        'message' => 'coach_exercises',
+                                        'coach_day' => $coachStatus->day + 1,
+                                        'coach_week' => $coachStatus->week,
+                                        'is_subscribed' => $user->is_subscribed,
+                                        'need_update' => 0,
+                                        'week_status' => $weekStatus,
+                                        'day_status' => $dayStatus,
+                                        'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                                        'coach' => $coach,
+                                        'urls' => config('urls.urls')];
+                                }
+                            } else {
+                                $coachDet = [
+                                    'status' => 1,
+                                    'message' => 'coach_exercises',
+                                    'coach_day' => $coachStatus->day,
+                                    'coach_week' => $coachStatus->week,
+                                    'is_subscribed' => $user->is_subscribed,
+                                    'need_update' => 0,
+                                    'week_status' => $weekStatus,
+                                    'day_status' => $dayStatus,
+                                    'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                                    'coach' => $coach,
+                                    'urls' => config('urls.urls')];
+                            }
+                        }
+                    }
+                } else {
+                    $coachDet = [
+                        'status' => 1,
+                        'message' => 'coach_not_found',
+                        'coach_day' => 0,
+                        'coach_week' => 0,
+                        'is_subscribed' => $user->is_subscribed,
+                        'need_update' => 0,
+                        'coach' => [],
+                        'urls' => config('urls.urls')];
+                }
+                
+                return response()->json($coachDet, 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

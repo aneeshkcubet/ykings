@@ -492,7 +492,7 @@ class Coach extends Model
 
         $exerciseCat = self::userWorkoutCategory($data['user_id'], $userWorkouts);
 
-        $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $exerciseCat);
+        $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups']);
         $exercises = [];
         foreach ($basicSkills as $bKey => $basicSkill) {
             $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -505,14 +505,11 @@ class Coach extends Model
 
         if ($userLevel == 'beginer') {
 
-
             $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
 
             $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
 
             $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-
 
             $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
 
@@ -756,13 +753,6 @@ class Coach extends Model
                 }
             } elseif ($focus == 2) {
 
-                $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $exerciseCat);
-
-                $exercises = [];
-                foreach ($basicSkills as $bKey => $basicSkill) {
-                    $exercises[] = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
-                }
-
                 if ($data['days'] == 2) {
 
 //                  Day1 exercise set
@@ -989,11 +979,6 @@ class Coach extends Model
                     $coach['day6']['stretching'] = $stretches;
                 }
             } elseif ($focus == 3) {
-                $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $exerciseCat);
-                $exercises = [];
-                foreach ($basicSkills as $bKey => $basicSkill) {
-                    $exercises[] = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
-                }
 
                 if ($data['days'] == 2) {
 
@@ -4015,34 +4000,49 @@ class Coach extends Model
      * @return type
      * @author Aneesh K<aneeshk@cubettech.com>
      */
-    public static function getUserBasicSkills($userId, $muscleGroups, $focus)
+    public static function getUserBasicSkills($userId, $muscleGroups)
     {
+        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();
 
-        $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
-            ->select('exercise_id')
-            ->whereRaw('user_id = ' . $userId)
-            ->toSql();
+        if (!is_null($userRaid)) {
+            $skill = Skill::where('id', $userRaid->goal_options)->first();
 
-        $basicSkillsQuery = DB::table('skills')
-            ->leftJoin('exercises', 'exercises.id', '=', 'skills.exercise_id')
-            ->select('skills.*')
-            ->groupBy('skills.progression_id')
-            ->orderBy('skills.id');
-
-        if ($muscleGroups != '') {
-            $muscleGroupArray = explode(',', $muscleGroups);
-            $likeQuery = ' OR (';
-            foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
-                $likeQueryArray[] = 'exercises.muscle_groups LIKE "%' . $muscleGroupId . '%"';
-            }
-            $likeQuery .= implode(' OR ', $likeQueryArray) . ')';
-
-            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus . $likeQuery);
+            $basicSkills = DB::table('unlocked_skills')
+                ->select('skills.*')
+                ->leftJoin('skills', 'unlocked_skills.skill_id', '=', 'skills.id')
+                ->where('skills.row', $skill->row)
+                ->where('skills.progression_id', $skill->progression_id)
+                ->where('unlocked_skills.user_id', $userId)
+                ->orderBy('skills.level', 'ASC')
+                ->take(5)
+                ->get();
         } else {
-            $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ') AND exercises.category = ' . $focus);
-        }
+            $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
+                ->select('exercise_id')
+                ->whereRaw('user_id = ' . $userId)
+                ->toSql();
 
-        $basicSkills = $basicSkillsQuery->get();
+            $basicSkillsQuery = DB::table('skills')
+                ->leftJoin('exercises', 'exercises.id', '=', 'skills.exercise_id')
+                ->select('skills.*')
+                ->groupBy('skills.progression_id')
+                ->orderBy('skills.id');
+
+            if ($muscleGroups != '') {
+                $muscleGroupArray = explode(',', $muscleGroups);
+                $likeQuery = ' AND (';
+                foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
+                    $likeQueryArray[] = 'exercises.muscle_groups LIKE "%' . $muscleGroupId . '%"';
+                }
+                $likeQuery .= implode(' OR ', $likeQueryArray) . ')';
+
+                $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')' . $likeQuery);
+            } else {
+                $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')');
+            }
+
+            $basicSkills = $basicSkillsQuery->get();
+        }
 
         return $basicSkills;
     }
