@@ -7,7 +7,7 @@
         <h2>Verify Your Email Address</h2>
 
         <div>
-            Thanks for creating an account with the verification Ykings app.
+            Thanks for creating an account with the Ykings app.
             Please follow the link below to verify your email address
             <a href="{{'http://sandbox.ykings.com/api/verify?token=' . $confirmation_code}}">Verify Email Address</a>.<br/>
 

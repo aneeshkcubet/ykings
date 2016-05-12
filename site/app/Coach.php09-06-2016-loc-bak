@@ -32,7 +32,6 @@ class Coach extends Model
         'exercises',
         'category',
         'muscle_groups',
-        'limitations',
         'feedback'
     ];
     protected $appends = ['musclegroup_string', 'goaloption_string'];
@@ -267,12 +266,12 @@ class Coach extends Model
     public static function prepareCoachExercises($coachId, $data)
     {
 
-        $tests = json_decode($data['feedback'], true);
+        $tests = json_decode($data['test'], true);
         $passed = 1;
         foreach ($tests as $test) {
-            if ($test == 3) {
+            if ($test['test_done'] == 0) {
                 $passed = 0;
-                break;
+                continue;
             }
         }
 
@@ -493,7 +492,7 @@ class Coach extends Model
 
         $exerciseCat = self::userWorkoutCategory($data['user_id'], $userWorkouts);
 
-        $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $data['limitations']);
+        $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups']);
         $exercises = [];
         foreach ($basicSkills as $bKey => $basicSkill) {
             $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -1247,7 +1246,7 @@ class Coach extends Model
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = $exercises;
                     $coach['day2']['workout'] = [];
-                    $coach['day2']['coach_workout_rounds'] = 0;
+                    $coach['day2']['coach_workout_rounds'] = count($sWorkout1['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
@@ -1946,7 +1945,7 @@ class Coach extends Model
                     $coach['day2']['exercises'] = $exercises;
                     ;
                     $coach['day2']['workout'] = [];
-                    $coach['day2']['coach_workout_rounds'] = 0;
+                    $coach['day2']['coach_workout_rounds'] = count($sWorkout1['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
@@ -3354,40 +3353,6 @@ class Coach extends Model
             $whereQuery .= ')';
         }
 
-        $whereLimitSubQueryArray = [];
-
-        if (isset($data['limitations']) && $data['limitations'] != '') {
-
-            $limitQueryArray = [];
-            $limitArray = explode(',', $data['limitations']);
-
-            $limitQuery = '';
-
-            foreach ($limitArray as $mgKey => $limitId) {
-                if ($limitId != ' ' && $limitId != '') {
-                    $limitQueryArray[] = 'exercises.muscle_groups LIKE "%' . $limitId . '%"';
-                }
-            }
-
-            $limitQuery .= implode(' OR ', $limitQueryArray);
-
-            if ($limitQuery != '') {
-                $userLimitedMuscleExercisesQuery = DB::table('exercises')
-                    ->select('id')
-                    ->whereRaw($limitQuery)
-                    ->toSql();
-                $whereLimitSubQueryArray[] = 'exercise_id NOT IN(' . $userLimitedMuscleExercisesQuery . ')';
-            }
-        }
-
-        if (count($whereLimitSubQueryArray) > 0) {
-            $whereQuery .= 'AND (';
-
-            $whereQuery .= implode(' OR ', $whereLimitSubQueryArray);
-
-            $whereQuery .= ')';
-        }
-
         $selWorkouts = [];
 
         if (isset($data['week']) && $data['week'] <= 7) {
@@ -4035,19 +4000,22 @@ class Coach extends Model
      * @return type
      * @author Aneesh K<aneeshk@cubettech.com>
      */
-    public static function getUserBasicSkills($userId, $muscleGroups, $limitations)
+    public static function getUserBasicSkills($userId, $muscleGroups)
     {
         $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();
 
         if (!is_null($userRaid)) {
             $skill = Skill::where('id', $userRaid->goal_options)->first();
 
-            $basicSkillsQuery = DB::table('unlocked_skills')
+            $basicSkills = DB::table('unlocked_skills')
                 ->select('skills.*')
                 ->leftJoin('skills', 'unlocked_skills.skill_id', '=', 'skills.id')
+                ->where('skills.row', $skill->row)
+                ->where('skills.progression_id', $skill->progression_id)
+                ->where('unlocked_skills.user_id', $userId)
                 ->orderBy('skills.level', 'ASC')
-                ->take(5);
-            $whereQuery = 'skills.row = ' . $skill->row . ' AND skills.progression_id = ' . $skill->progression_id . ' AND unlocked_skills.user_id = ' . $userId;
+                ->take(5)
+                ->get();
         } else {
             $userUnlockedSkillExerciseQuery = DB::table('unlocked_skills')
                 ->select('exercise_id')
@@ -4068,47 +4036,13 @@ class Coach extends Model
                 }
                 $likeQuery .= implode(' OR ', $likeQueryArray) . ')';
 
-                $whereQuery = 'skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')' . $likeQuery;
+                $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')' . $likeQuery);
             } else {
-                $whereQuery = 'skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')';
-            }
-        }
-
-        $whereLimitSubQueryArray = [];
-
-        if (isset($limitations) && $limitations != '') {
-
-            $limitQueryArray = [];
-            $limitArray = explode(',', $limitations);
-
-            $limitQuery = '';
-
-            foreach ($limitArray as $mgKey => $limitId) {
-                if ($limitId != ' ' && $limitId != '') {
-                    $limitQueryArray[] = 'exercises.muscle_groups LIKE "%' . $limitId . '%"';
-                }
+                $basicSkillsQuery->whereRaw('skills.exercise_id IN(' . $userUnlockedSkillExerciseQuery . ')');
             }
 
-            $limitQuery .= implode(' OR ', $limitQueryArray);
-
-            if ($limitQuery != '') {
-                $userLimitedMuscleExercisesQuery = DB::table('exercises')
-                    ->select('id')
-                    ->whereRaw($limitQuery)
-                    ->toSql();
-                $whereLimitSubQueryArray[] = 'skills.exercise_id NOT IN(' . $userLimitedMuscleExercisesQuery . ')';
-            }
+            $basicSkills = $basicSkillsQuery->get();
         }
-
-        if (count($whereLimitSubQueryArray) > 0) {
-            $whereQuery .= ' AND (';
-
-            $whereQuery .= implode(' OR ', $whereLimitSubQueryArray);
-
-            $whereQuery .= ')';
-        }
-
-        $basicSkills = $basicSkillsQuery->whereRaw($whereQuery)->get();
 
         return $basicSkills;
     }
@@ -4228,22 +4162,19 @@ class Coach extends Model
                                     $exercise = Exercise::where('id', $unlockedExercise->exercise_id)->with(['video'])->first();
                                     if ($unlockedCnt == 1) {
                                         for ($j = 0; $j < 2; $j++) {
-                                            $exerciseArray = $exercise->toArray();
                                             $coachExercises[$day]['workout']['exercises']['round1'][] = [
                                                 'workout_id' => $coachExercise['workout']['id'],
-                                                'exercise' => $exerciseArray,
+                                                'exercise' => $exercise->toArray(),
                                                 'category' => $exercise->category,
                                                 'repititions' => 25,
                                                 'exercise_id' => $exercise->id,
                                                 'unit' => $exercise->unit,
                                                 'round' => 1,
-                                                'is_completed' => 0,
-                                                'video' => $exerciseArray['video'][0]
+                                                'is_completed' => 0
                                             ];
                                         }
                                     } elseif ($unlockedCnt > 1) {
                                         $reps = floor(50 / $unlockedCnt);
-                                        $exerciseArray = $exercise->toArray();
                                         $coachExercises[$day]['workout']['exercises']['round1'][] = [
                                             'workout_id' => $coachExercise['workout']['id'],
                                             'exercise' => $exercise->toArray(),
@@ -4252,8 +4183,7 @@ class Coach extends Model
                                             'exercise_id' => $exercise->id,
                                             'unit' => $exercise->unit,
                                             'round' => 1,
-                                            'is_completed' => 0,
-                                            'video' => $exerciseArray['video'][0]
+                                            'is_completed' => 0
                                         ];
                                     }
                                 }
@@ -4263,7 +4193,6 @@ class Coach extends Model
                                     for ($i = 1; $i <= $roundCount; $i++) {
                                         if ($unlockedCnt == 1) {
                                             for ($j = 0; $j < 2; $j++) {
-                                                $exerciseArray = $exercise->toArray();
                                                 $coachExercises[$day]['workout']['exercises']['round' . $i][] = [
                                                     'workout_id' => $coachExercise['workout']['id'],
                                                     'exercise' => $exercise->toArray(),
@@ -4272,13 +4201,11 @@ class Coach extends Model
                                                     'exercise_id' => $exercise->id,
                                                     'unit' => $exercise->unit,
                                                     'round' => $i,
-                                                    'is_completed' => 0,
-                                                    'video' => $exerciseArray['video'][0]
+                                                    'is_completed' => 0
                                                 ];
                                             }
                                         } elseif ($unlockedCnt > 1) {
                                             $reps = floor(50 / $unlockedCnt);
-                                            $exerciseArray = $exercise->toArray();
                                             $coachExercises[$day]['workout']['exercises']['round' . $i][] = [
                                                 'workout_id' => $coachExercise['workout']['id'],
                                                 'exercise' => $exercise->toArray(),
@@ -4287,15 +4214,13 @@ class Coach extends Model
                                                 'exercise_id' => $exercise->id,
                                                 'unit' => $exercise->unit,
                                                 'round' => $i,
-                                                'is_completed' => 0,
-                                                'video' => $exerciseArray['video'][0]
+                                                'is_completed' => 0
                                             ];
                                         }
                                     }
                                 }
                             }
                         }
-                        break;
                     }
                 }
             }

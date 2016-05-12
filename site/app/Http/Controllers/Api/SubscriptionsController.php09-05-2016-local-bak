@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Api;
 
 use Auth,
-    DB,
     Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -166,7 +165,7 @@ class SubscriptionsController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
 
-                 $planId = Plan::where('inapp_id', $data['inapp_id'])->first();
+                $planId = Plan::where('inapp_id', $data['inapp_id'])->first();
 
                 if (isset($data['is_renew']) && $data['is_renew'] != 0 && $data['is_renew'] != '' && $data['is_renew'] != NULL && $data['is_renew'] != '(null)') {
                     $subscription = DB::table('subscriptions')
@@ -178,7 +177,7 @@ class SubscriptionsController extends Controller
                     Subscription::where('user_id', $data['user_id'])->update([
                         'amount' => $data['amount'],
                         'currency' => $data['currency'],
-                       // 'process_time' => time(),
+                        'process_time' => time(),
                         'transaction_id' => $data['transaction_id'],
                         'plan_id' => $planId->id,
                         'status' => $data['status'],
@@ -198,14 +197,12 @@ class SubscriptionsController extends Controller
                         'end_time' => strtotime("+" . $data['months'] . " month", time($data['process_time']))
                     ]);
                 }
-//code modified by ansa@cubettech.co on 09-05-2016.$data['user_id']
-                   $coach = DB::table('coaches')->where('user_id', $data['user_id'])->first();
+
+                $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
 
                 if (!is_null($coach)) {
 
                     $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
-
-		    $coach->limitations = Coach::musclegroupString($coach->limitations);
 
                     $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 

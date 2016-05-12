@@ -100,8 +100,6 @@ class CoachesController extends Controller
 
                     $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
 
-                    $coach->limitations = Coach::musclegroupString($coach->limitations);
-
                     $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
                     $coach->exercises = json_decode($coach->exercises, true);
@@ -2300,7 +2298,6 @@ class CoachesController extends Controller
                     'focus' => $profile->goal,
                     'category' => $category,
                     'muscle_groups' => (!isset($request->muscle_groups) || ($request->muscle_groups == null)) ? "" : $request->muscle_groups,
-                    'limitations' => (!isset($request->limitations) || ($request->limitations == null)) ? "" : $request->limitations,
                     'height' => (!isset($request->height) || ($request->height == null)) ? "" : $request->height,
                     'weight' => (!isset($request->weight) || ($request->weight == null)) ? "" : $request->weight,
                     'days' => $request->days,
@@ -2389,8 +2386,6 @@ class CoachesController extends Controller
                 }
 
                 $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
-
-                $coach->limitations = Coach::musclegroupString($coach->limitations);
 
                 $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
@@ -2504,11 +2499,7 @@ class CoachesController extends Controller
                 }
 
                 $weekStatusArray[$coachStatus->week + 1] = 0;
-               //Code added by ansa@cubettech.com on 09-05-2016
-               //To update goal in user_profile.
-               Profile::where('user_id', $request->user_id)->update([
-                   'goal' => $request->focus
-               ]);
+
                 $profile = Profile::where('user_id', $request->user_id)->first();
 
                 $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);
@@ -2534,8 +2525,6 @@ class CoachesController extends Controller
                 $coach = Coach::where('user_id', $request->user_id)->first();
 
                 $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
-
-                $coach->limitations = Coach::musclegroupString($coach->limitations);
 
                 $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
@@ -2711,12 +2700,6 @@ class CoachesController extends Controller
                 Coach::where('user_id', $request->user_id)->delete();
 
                 DB::table('coach_points')->where('user_id', $request->user_id)->delete();
-                
-                DB::table('user_physique_options')->where('user_id', $request->user_id)->delete();
-                
-                DB::table('user_goal_options')->where('user_id', $request->user_id)->delete();
-                
-                DB::table('coach_status')->where('user_id', $request->user_id)->delete();
 
                 return response()->json([
                         'status' => 1,
