@@ -50,82 +50,81 @@ class PushNotificationFunction
 
             if (!is_null($userSettings)) {
                 $settingsArray = json_decode($userSettings->value, TRUE);
-            }
-
-            if ($request['type'] == 'clap') {
-                if ($settingsArray['claps'] == 0) {
-                    return false;
+                if ($request['type'] == 'clap') {
+                    if ($settingsArray['claps'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = 'You have got a hooya from ' . $senderName . '.';
+                } elseif ($request['type'] == 'comment') {
+                    if ($settingsArray['comments'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = $senderName . ' commented on your feed.';
+                } elseif ($request['type'] == 'following') {
+                    if ($settingsArray['follow'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = $senderName . ' following you.';
+                } elseif ($request['type'] == 'perfomance') {
+                    if ($settingsArray['my_performance'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = 'Congrats. Your level has been upgraded to ' . $request['to_level'] . '.';
+                } elseif ($request['type'] == 'motivation') {
+                    if ($settingsArray['motivation_knowledge'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = $senderName . ' updated motivation message.';
+                } elseif ($request['type'] == 'knowledge') {
+                    if ($settingsArray['motivation_knowledge'] == 0) {
+                        return false;
+                    }
+                    $notfyMessage = $senderName . ' added a new message.';
+                } else {
+                    $notfyMessage = 'You have a new message';
                 }
-                $notfyMessage = 'You have got a hooya from ' . $senderName . '.';
-            } elseif ($request['type'] == 'comment') {
-                if ($settingsArray['comments'] == 0) {
-                    return false;
-                }
-                $notfyMessage = $senderName . ' commented on your feed.';
-            } elseif ($request['type'] == 'following') {
-                if ($settingsArray['follow'] == 0) {
-                    return false;
-                }
-                $notfyMessage = $senderName . ' following you.';
-            } elseif ($request['type'] == 'perfomance') {
-                if ($settingsArray['my_performance'] == 0) {
-                    return false;
-                }
-                $notfyMessage = 'Congrats. Your level has been upgraded to ' . $request['to_level'] . '.';
-            } elseif ($request['type'] == 'motivation') {
-                if ($settingsArray['motivation_knowledge'] == 0) {
-                    return false;
-                }
-                $notfyMessage = $senderName . ' updated motivation message.';
-            } elseif ($request['type'] == 'knowledge') {
-                if ($settingsArray['motivation_knowledge'] == 0) {
-                    return false;
-                }
-                $notfyMessage = $senderName . ' added a new message.';
-            } else {
-                $notfyMessage = 'You have a new message';
-            }
 
 
-            //To save notifications on pushnotification to Message table
-            $notification = Notification::create([
+                //To save notifications on pushnotification to Message table
+                $notification = Notification::create([
+                        'user_id' => $request['user_id'],
+                        'friend_id' => $request['friend_id'],
+                        'message_type' => $request['type'],
+                        'type_id' => $request['type_id'],
+                        'message' => $notfyMessage,
+                        'read' => 0
+                ]);
+
+                $pushMessage = [
+                    'id' => $notification->id,
+                    'text' => $notfyMessage,
+                    'feed_id' => $request['type_id'],
+                    'type' => $request['type'],
                     'user_id' => $request['user_id'],
-                    'friend_id' => $request['friend_id'],
-                    'message_type' => $request['type'],
-                    'type_id' => $request['type_id'],
-                    'message' => $notfyMessage,
-                    'read' => 0
-            ]);
+                    'friend_id' => $request['friend_id']
+                ];
 
-            $pushMessage = [
-                'id' => $notification->id,
-                'text' => $notfyMessage,
-                'feed_id' => $request['type_id'],
-                'type' => $request['type'],
-                'user_id' => $request['user_id'],
-                'friend_id' => $request['friend_id']
-            ];
+                //Android Push
+                $androidDevicetoken = PushNotification::where('user_id', $request['friend_id'])
+                    ->where('type', 'android')
+                    ->first();
 
-            //Android Push
-            $androidDevicetoken = PushNotification::where('user_id', $request['friend_id'])
-                ->where('type', 'android')
-                ->first();
+                if (!is_null($androidDevicetoken)) {
+                    $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => json_encode($pushMessage));
+                    // mail('ansa@cubettech.com', $androidDevicetoken->device_token, $androidDevicetoken->device_token);
+                    PushNotificationFunction::androidNotification($androidArray);
+                }
 
-            if (!is_null($androidDevicetoken)) {
-                $androidArray = array('deviceToken' => $androidDevicetoken->device_token, 'message' => json_encode($pushMessage));
-                // mail('ansa@cubettech.com', $androidDevicetoken->device_token, $androidDevicetoken->device_token);
-                PushNotificationFunction::androidNotification($androidArray);
-            }
+                //IOS Push
+                $iosDevicetoken = PushNotification::where('user_id', $request['friend_id'])
+                    ->where('type', 'ios')
+                    ->orderBy('id', 'DESC')
+                    ->first();
 
-            //IOS Push
-            $iosDevicetoken = PushNotification::where('user_id', $request['friend_id'])
-                ->where('type', 'ios')
-                ->orderBy('id', 'DESC')
-                ->first();
-
-            if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
-                $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => json_encode($pushMessage), 'messageArray' => $pushMessage);
-                PushNotificationFunction::iosNotification($iosArray);
+                if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
+                    $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => json_encode($pushMessage), 'messageArray' => $pushMessage);
+                    PushNotificationFunction::iosNotification($iosArray);
+                }
             }
         }
     }

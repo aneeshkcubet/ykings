@@ -181,11 +181,11 @@ class SocialController extends Controller
      */
     public function facebookSignUp(Request $request)
     {
-        if (!isset($request->email) || ($request->email == null)) {
+        if (!isset($request->email) || ($request->email == null) || ($request->email == '(null)')) {
             return response()->json(["status" => "0", "error" => "The email field is required"]);
-        } elseif (!isset($request->provider_id) || ($request->provider_id == null)) {
+        } elseif (!isset($request->provider_id) || ($request->provider_id == null) || ($request->provider_id == '(null)')) {
             return response()->json(["status" => "0", "error" => "The provider id field is required"]);
-        } elseif (!isset($request->provider) || ($request->provider == null)) {
+        } elseif (!isset($request->provider) || ($request->provider == null) || ($request->provider == '(null)')) {
             return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
 
@@ -257,7 +257,7 @@ class SocialController extends Controller
     protected function create(array $data)
     {
         $user_exist = User::where('email', '=', $data['email'])->first();
-
+        
         if (!is_null($user_exist)) {
             return $response = array('email' => 1, 'status' => true);
         } else {
@@ -276,30 +276,9 @@ class SocialController extends Controller
                 'goal' => isset($data['goal']) ? $data['goal'] : '',
                 'quote' => isset($data['quote']) ? $data['quote'] : ''
             ]);
+
             $userProfile = $user->profile()->save($profile);
 
-            if (isset($data['image_url']) && $data['image_url'] != '') {
-
-                $image = Image::make($data['image_url']);
-
-                $image->encode('jpeg');
-
-                $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(400, 400);
-
-                $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(150, 150);
-
-                $image->save(config('image.profileMediumPath') . $user->id . '_' . time() . '.jpg');
-
-                $image->crop(65, 65);
-
-                $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
-
-                $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
-            }
             if (isset($data['subscription'])) {
                 Settings::create(['user_id' => $user->id,
                     'key' => 'subscription', 'value' => $data['subscription']
@@ -311,10 +290,12 @@ class SocialController extends Controller
                 'provider_uid' => $data['provider_id'],
                 'access_token' => isset($data['access_token']) ? $data['access_token'] : '',
             ]);
+
             $socialAccount = $user->social()->save($social);
 
-            $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
-            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] !='(null)') {
+            $user = User::where('email', '=', $data['email'])->with(['profile'])->first();
+
+            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] != '(null)') {
                 DB::table('points')->insert([
                     'user_id' => $request->referral_code,
                     'item_id' => $request->referral_code,
@@ -323,6 +304,48 @@ class SocialController extends Controller
                     'created_at' => Carbon::now()
                 ]);
             }
+
+            if (isset($data['image_url']) && $data['image_url'] != '' && $data['image_url'] != '(null)') {
+
+                try {
+                    
+                    $imageName = $user->id . '_' . time();
+                    
+                    $originalName = base64_encode($imageName);
+                    
+                    $fileStore = file_put_contents(config('image.profileOriginalPath') . $originalName , file_get_contents(utf8_decode(urldecode($data['image_url']))));
+
+                    $image = Image::make(config('image.profileOriginalPath') . $originalName);  
+                    
+                    $image->encode('jpeg');
+
+                    $image->save(config('image.profileOriginalPath') . $imageName . '.jpg');
+
+                    $image->crop(400, 400);
+
+                    $image->save(config('image.profileLargePath') . $imageName . '.jpg');
+
+                    $image->crop(150, 150);
+
+                    $image->save(config('image.profileMediumPath') . $imageName . '.jpg');
+
+                    $image->crop(65, 65);
+
+                    $image->save(config('image.profileSmallPath') . $imageName . '.jpg');
+
+                    $user->profile()->update(['image' => $imageName . '.jpg']);
+                    
+                    unlink(config('image.profileOriginalPath') . $originalName);
+                    
+                } catch (Exception $ex) {
+                    if (!is_null($user)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            
             if (!is_null($user)) {
                 return true;
             } else {
@@ -467,11 +490,11 @@ class SocialController extends Controller
      */
     public function facebookLogin(Request $request)
     {
-        if (!isset($request->email) || ($request->email == null)) {
+        if (!isset($request->email) || ($request->email == null) || ($request->email == '(null)')) {
             return response()->json(["status" => "0", "error" => "The email field is required"]);
-        } elseif (!isset($request->provider_id) || ($request->provider_id == null)) {
+        } elseif (!isset($request->provider_id) || ($request->provider_id == null) || ($request->provider_id == '(null)')) {
             return response()->json(["status" => "0", "error" => "The provider id field is required"]);
-        } elseif (!isset($request->provider) || ($request->provider == null)) {
+        } elseif (!isset($request->provider) || ($request->provider == null) || ($request->provider == '(null)')) {
             return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
             if ($this->login($request->all())) {
@@ -657,7 +680,7 @@ class SocialController extends Controller
 
             $user = User::where('email', '=', $data['email'])->with(['profile'])->get();
 
-            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] !='(null)') {
+            if (isset($data['referral_code']) && $data['referral_code'] != '' && $data['referral_code'] != '(null)') {
 
                 DB::table('points')->insert([
                     'user_id' => $request->referral_code,
