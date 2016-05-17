@@ -161,7 +161,7 @@ class FeedController extends Controller
                             'user_id' => $request->input('user_id'),
                             'item_type' => $request->input('item_type'),
                             'item_id' => $request->input('item_id'),
-                            'feed_text' => $request->input('text'),
+                            'feed_text' => (isset($request->text) && ($request->text != null)) ? $request->text : '',
                             'image' => ''
                     ]);
                 }
@@ -383,7 +383,7 @@ class FeedController extends Controller
                     $image_upload = Images::create([
                             'user_id' => $request->input('user_id'),
                             'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
-                            'description' => $request->input('text'),
+                            'description' => (isset($request->text) && ($request->text != null)) ? $request->text : '',
                             'parent_type' => 2,
                             'parent_id' => $feed->id
                     ]);
@@ -762,11 +762,13 @@ class FeedController extends Controller
                 $followerCount = Follow::followerCount($request->profile_id);
                 //workout count
                 $workoutCount = Workoutuser::workoutCount($request->profile_id);
-                return response()->json(['status' => 1, 'success' => 'List',
+                return response()->json([
+                        'status' => 1,
+                        'success' => 'List',
                         'follower_count' => $followerCount,
                         'level_count' => 0,
                         'workout_count' => $workoutCount,
-                        'feed_list' => $feedsResponse,
+                        'feed_list' => $this->removeNullfromArray($feedsResponse),
                         'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
@@ -815,33 +817,33 @@ class FeedController extends Controller
       }
       },
       {
-          "id": "1167",
-          "user_id": "130",
-          "item_type": "workout",
-          "item_id": "9",
-          "feed_text": " ",
-          "image": "",
-          "created_at": "2016-04-07 11:16:49",
-          "updated_at": "2016-04-07 11:16:49",
-          "clap_count": 0,
-          "comment_count": 0,
-          "is_commented": 0,
-          "is_claped": 0,
-          "category": "HIIT-strength",
-          "item_name": "Elli",
-          "duration": "3",
-          "workout_rounds": "3",
-          "intensity": "1",
-          "focus": "Athletic",
-          "profile": {
-            "user_id": "130",
-            "first_name": "test",
-            "last_name": "user 2",
-            "image": "130_1460027861.jpg",
-            "quote": "",
-            "gender": "1",
-            "level": 3
-          }
+      "id": "1167",
+      "user_id": "130",
+      "item_type": "workout",
+      "item_id": "9",
+      "feed_text": " ",
+      "image": "",
+      "created_at": "2016-04-07 11:16:49",
+      "updated_at": "2016-04-07 11:16:49",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "HIIT-strength",
+      "item_name": "Elli",
+      "duration": "3",
+      "workout_rounds": "3",
+      "intensity": "1",
+      "focus": "Athletic",
+      "profile": {
+      "user_id": "130",
+      "first_name": "test",
+      "last_name": "user 2",
+      "image": "130_1460027861.jpg",
+      "quote": "",
+      "gender": "1",
+      "level": 3
+      }
       },
       {
       "id": "233",
@@ -1060,35 +1062,35 @@ class FeedController extends Controller
       }
       },
       {
-          "id": "1133",
-          "user_id": "67",
-          "item_type": "workout",
-          "item_id": "2",
-          "feed_text": "hcjgg",
-          "image": "",
-          "created_at": "2016-03-31 17:19:28",
-          "updated_at": "2016-03-31 17:19:28",
-          "clap_count": 0,
-          "comment_count": 0,
-          "is_commented": 0,
-          "is_claped": 0,
-          "category": "HIIT-strength",
-          "item_name": "Borr",
-          "duration": "8",
-          "workout_rounds": "3",
-          "is_coach": 1,
-          "coach_workout_rounds": "1",
-          "focus": "Athletic",
-          "profile": {
-            "user_id": "67",
-            "first_name": "Aneesh",
-            "last_name": "iL",
-            "image": "67_1457647007.jpg",
-            "quote": "",
-            "gender": "2",
-            "level": 36
-          }
-        }
+      "id": "1133",
+      "user_id": "67",
+      "item_type": "workout",
+      "item_id": "2",
+      "feed_text": "hcjgg",
+      "image": "",
+      "created_at": "2016-03-31 17:19:28",
+      "updated_at": "2016-03-31 17:19:28",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "HIIT-strength",
+      "item_name": "Borr",
+      "duration": "8",
+      "workout_rounds": "3",
+      "is_coach": 1,
+      "coach_workout_rounds": "1",
+      "focus": "Athletic",
+      "profile": {
+      "user_id": "67",
+      "first_name": "Aneesh",
+      "last_name": "iL",
+      "image": "67_1457647007.jpg",
+      "quote": "",
+      "gender": "2",
+      "level": 36
+      }
+      }
       ],
       "urls": {
       "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
@@ -1174,7 +1176,7 @@ class FeedController extends Controller
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $feedsResponse, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1385,15 +1387,15 @@ class FeedController extends Controller
       "coach_workout_rounds": "1",
       "focus": "Athletic",
       "profile": {
-        "user_id": "67",
-        "first_name": "Aneesh",
-        "last_name": "iL",
-        "image": "67_1457647007.jpg",
-        "quote": "",
-        "gender": "2",
-        "level": 36
+      "user_id": "67",
+      "first_name": "Aneesh",
+      "last_name": "iL",
+      "image": "67_1457647007.jpg",
+      "quote": "",
+      "gender": "2",
+      "level": 36
       }
-    }
+      }
       ],
       "urls": {
       "profileImageSmall": "http://ykings.me/uploads/images/profile/small",
@@ -1627,7 +1629,7 @@ class FeedController extends Controller
                     }
                     $feedsResponse[] = $feedsArray;
                 }
-                return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $feedsResponse, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1821,6 +1823,30 @@ class FeedController extends Controller
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);
             }
+        }
+    }
+
+    /**
+     * Method to remove null from response string(It will complecate the development on Ios)
+     * @param type $array
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     * @since 7th March, 2016
+     */
+    public function removeNullfromArray($array)
+    {
+        if (is_object($array)) {
+            $jsonString = json_encode($array);
+
+            $jsonString = str_replace('null,', '"",', $jsonString);
+
+            return json_decode($jsonString);
+        } elseif (is_array($array)) {
+            $jsonString = json_encode($array);
+
+            $jsonString = str_replace('null,', '"",', $jsonString);
+
+            return json_decode($jsonString, true);
         }
     }
 }

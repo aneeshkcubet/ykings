@@ -200,6 +200,11 @@ class SocialController extends Controller
 
 
                 if (Auth::loginUsingId($user->id)) {
+                    DB::table('promo_code')->insert([
+                        'code' => $this->getToken(6),
+                        'user_id' => $user->id,
+                        'created_at' => Carbon::now()
+                    ]);
                     // Authentication passed...
                     // inserting into refferal table
                     if (isset($request->parameters) || ($request->parameters != NULL)) {
@@ -230,18 +235,19 @@ class SocialController extends Controller
                         $user['workout_count'] = Workout::workoutCount($user->id);
                         $user['points'] = Point::userPoints($user->id);
                         $user['level'] = Point::userLevel($user->id);
-                        $user['facebook_connect'] = Social::isFacebookConnect($user->id);
+                        $user['facebook_connected'] = Social::isFacebookConnect($user->id);
                         //follower count
                         $user['follower_count'] = Follow::followerCount($user->id);
+                        $user['promo_code'] = DB::table('promo_code')->where('user_id', '=', $user->id)->pluck('code');
                         // if no errors are encountered we can return a JWT
-                        return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'token' => $token, 'user' => $user->toArray(), 'urls' => config('urls.urls')], 200);
+                        return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'token' => $token, 'user' => $user, 'urls' => config('urls.urls')], 200);
                     } else {
                         return response()->json(['status' => 0, 'error' => 'user_not_verified'], 401);
                     }
                 } else {
                     return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
                 }
-                return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $user->toArray()], 200);
+                
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
             }
@@ -257,7 +263,7 @@ class SocialController extends Controller
     protected function create(array $data)
     {
         $user_exist = User::where('email', '=', $data['email'])->first();
-        
+
         if (!is_null($user_exist)) {
             return $response = array('email' => 1, 'status' => true);
         } else {
@@ -308,15 +314,15 @@ class SocialController extends Controller
             if (isset($data['image_url']) && $data['image_url'] != '' && $data['image_url'] != '(null)') {
 
                 try {
-                    
-                    $imageName = $user->id . '_' . time();
-                    
-                    $originalName = base64_encode($imageName);
-                    
-                    $fileStore = file_put_contents(config('image.profileOriginalPath') . $originalName , file_get_contents(utf8_decode(urldecode($data['image_url']))));
 
-                    $image = Image::make(config('image.profileOriginalPath') . $originalName);  
-                    
+                    $imageName = $user->id . '_' . time();
+
+                    $originalName = base64_encode($imageName);
+
+                    $fileStore = file_put_contents(config('image.profileOriginalPath') . $originalName, file_get_contents(utf8_decode(urldecode($data['image_url']))));
+
+                    $image = Image::make(config('image.profileOriginalPath') . $originalName);
+
                     $image->encode('jpeg');
 
                     $image->save(config('image.profileOriginalPath') . $imageName . '.jpg');
@@ -334,9 +340,8 @@ class SocialController extends Controller
                     $image->save(config('image.profileSmallPath') . $imageName . '.jpg');
 
                     $user->profile()->update(['image' => $imageName . '.jpg']);
-                    
+
                     unlink(config('image.profileOriginalPath') . $originalName);
-                    
                 } catch (Exception $ex) {
                     if (!is_null($user)) {
                         return true;
@@ -345,7 +350,7 @@ class SocialController extends Controller
                     }
                 }
             }
-            
+
             if (!is_null($user)) {
                 return true;
             } else {
@@ -498,10 +503,21 @@ class SocialController extends Controller
             return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
             if ($this->login($request->all())) {
+
                 $user = User::where('email', '=', $request->input('email'))
                         ->with(['profile', 'settings'])->first();
 
                 if (Auth::loginUsingId($user->id)) {
+
+                    $promoCode = DB::table('promo_code')->where('user_id', '=', $user->id)->first();
+
+                    if (is_null($promoCode)) {
+                        DB::table('promo_code')->insert([
+                            'code' => $this->getToken(6),
+                            'user_id' => $user->id,
+                            'created_at' => Carbon::now()
+                        ]);
+                    }
 
                     // inserting into refferal table
                     if (isset($request->parameters) || ($request->parameters != NULL)) {
@@ -529,7 +545,8 @@ class SocialController extends Controller
                     $user['workout_count'] = Workout::workoutCount($user->id);
                     $user['points'] = Point::userPoints($user->id);
                     $user['level'] = Point::userLevel($user->id);
-                    $user['facebook_connect'] = Social::isFacebookConnect($user->id);
+                    $user['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                    $user['promo_code'] = DB::table('promo_code')->where('user_id', '=', $user->id)->pluck('code');
                     //follower count
                     $user['follower_count'] = Follow::followerCount($user->id);
                     // if no errors are encountered we can return a JWT
@@ -537,6 +554,7 @@ class SocialController extends Controller
                 } else {
                     return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
                 }
+                
                 return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
@@ -775,5 +793,34 @@ class SocialController extends Controller
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }
         }
+    }
+
+    public function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1)
+            return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd >= $range);
+        return $min + $rnd;
+    }
+
+    public function getToken($length)
+    {
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
+        }
+        return $token;
     }
 }

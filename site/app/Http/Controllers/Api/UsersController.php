@@ -321,7 +321,7 @@ class UsersController extends Controller
 
                 //Code to check facebook connected for user.
                 //Added by ansa@cubettech.com on 27-11-2015
-                $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                $userArray['facebook_connected'] = Social::isFacebookConnect($userArray['id']);
                 $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
                 return response()->json(['status' => 1, 'success' => 'successfully_created_user', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -923,7 +923,7 @@ class UsersController extends Controller
 
                 //Code to check facebook connected for user.
                 //Added by ansa@cubettech.com on 27-11-2015
-                $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
+                $userArray['facebook_connected'] = Social::isFacebookConnect($userArray['id']);
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
                 if(!is_null($coachStatus)){
                     $userArray['coach_week'] = $coachStatus->week;

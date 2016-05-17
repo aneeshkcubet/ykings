@@ -26,7 +26,7 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * @api {post} authenticate RefreshToken
+     * @api {post} /authenticate/ RefreshToken
      * @apiName RefreshToken
      * @apiGroup General
      * 
@@ -44,7 +44,7 @@ class AuthenticateController extends Controller
      * @apiError Validation Error
      * @apiError invalid_credentials Message invalid_credentials.
      * @apiError could_not_create_token JWT error.
-     * 
+     *   
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 422 Validation error
      *     {
