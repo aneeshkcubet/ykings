@@ -410,10 +410,13 @@ class Coach extends Model
         $coach = [];
         if ($userLevel == 'professional') {
             $intenseFactor = 2;
+            $exerciseCat = 3;
         } elseif ($userLevel == 'advanced') {
             $intenseFactor = 1;
+            $exerciseCat = 2;
         } elseif ($userLevel == 'beginer') {
             $intenseFactor = 0;
+            $exerciseCat = 1;
         }
 
         $hiitReplacements = [
@@ -492,8 +495,11 @@ class Coach extends Model
         }
 
         $exerciseCat = self::userWorkoutCategory($data['user_id'], $userWorkouts);
+        
+//        die;
 
         $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $data['limitations']);
+        
         $exercises = [];
         foreach ($basicSkills as $bKey => $basicSkill) {
             $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -1584,7 +1590,7 @@ class Coach extends Model
                     $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
-                    $coach['day3']['workout'] = $csWorkout3;
+                    $coach['day3']['workout'] = $sWorkout1;
                     $coach['day3']['coach_workout_rounds'] = count($coach['day3']['workout']['exercises']);
                     $coach['day3']['workout_intensity'] = 1;
                     $coach['day3']['hiit'] = [];
@@ -1595,7 +1601,7 @@ class Coach extends Model
                     $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
-                    $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout'] = $sWorkout2;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [];
@@ -1606,7 +1612,7 @@ class Coach extends Model
                     $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
-                    $coach['day5']['workout'] = $sWorkout2;
+                    $coach['day5']['workout'] = $sWorkout3;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
@@ -1925,7 +1931,6 @@ class Coach extends Model
             $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
 
             $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
             if ($focus == 1) {
                 if ($data['days'] == 2) {
 //Day1 exercise set
@@ -2285,7 +2290,7 @@ class Coach extends Model
                     $coach['day3']['is_completed'] = 0;
                     $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day3']['exercises'] = [];
-                    $coach['day3']['workout'] = $csWorkout3;
+                    $coach['day3']['workout'] = $sWorkout1;
                     $coach['day3']['coach_workout_rounds'] = count($coach['day3']['workout']['exercises']);
                     $coach['day3']['workout_intensity'] = 1;
                     $coach['day3']['hiit'] = [];
@@ -2296,7 +2301,7 @@ class Coach extends Model
                     $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
-                    $coach['day4']['workout'] = $sWorkout1;
+                    $coach['day4']['workout'] = $sWorkout2;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [];
@@ -2307,7 +2312,7 @@ class Coach extends Model
                     $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
-                    $coach['day5']['workout'] = $sWorkout2;
+                    $coach['day5']['workout'] = $sWorkout3;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = $hiit;
@@ -2609,7 +2614,9 @@ class Coach extends Model
                 }
             }
         }
-
+        
+        $coach = self::addRaidExercisesToWorkouts($data['user_id'], $coach, $exerciseCat);
+        
         return $coach;
     }
 
@@ -2693,7 +2700,6 @@ class Coach extends Model
 
         if ($categoryArray[3] > 0) {
             $category = 3;
-
             foreach ($workoutExercisesArray3 as $workoutExercise) {
 
                 if ($category > 2) {
@@ -2703,8 +2709,7 @@ class Coach extends Model
                         ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $workoutExercise)
                         ->first();
 
-                    if (count($unLocked) <= 0) {
-
+                    if (count($unLocked) <= 0) {  
                         //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
@@ -2720,7 +2725,7 @@ class Coach extends Model
                                 ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $substitute->id)
                                 ->count();
 
-                            if ($unLockCount == 0) {
+                            if ($unLockCount <= 0) {
                                 //Unlocked substitute then replace the workout exercise with new one.
                                 $category = 2;
                             }
@@ -2729,6 +2734,9 @@ class Coach extends Model
                             $category = 2;
                         }
                     }
+                } else {
+//                    echo '1.exercise___'.$workoutExercise;
+                    break;
                 }
             }
         }
@@ -2747,6 +2755,7 @@ class Coach extends Model
                         ->first();
 
                     if (count($unLocked) <= 0) {
+                        
 
                         //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
@@ -2772,6 +2781,9 @@ class Coach extends Model
                             $category = 1;
                         }
                     }
+                } else {
+//                    echo '2.exercise___'.$workoutExercise;
+                    break;
                 }
             }
         }
@@ -2779,6 +2791,8 @@ class Coach extends Model
         if ($category == 1 && $categoryArray[1] > 0) {
             $category = 1;
         }
+        
+//        die;
 
         return $category;
     }
@@ -3189,6 +3203,7 @@ class Coach extends Model
         $data['muscle_groups'] = $coach->muscle_groups;
         $data['days'] = $days;
         $data['week'] = $coachStatus->week + 1;
+        $data['limitations'] = $coach->limitations;
 
 
         $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $coach->user_id, $data, $intenseFactor, $fundumentalArray));
@@ -4198,9 +4213,10 @@ class Coach extends Model
      * @return type
      * @author Aneesh K<aneeshk@cubettech.com>
      */
-    public static function addRaidExercisesToWorkouts($userId, $coachExercises)
+    public static function addRaidExercisesToWorkouts($userId, $coachExercises, $exerciseCat)
     {
-        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();
+        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();       
+        
 
         if (!is_null($userRaid)) {
             foreach ($coachExercises as $day => $coachExercise) {
@@ -4217,11 +4233,14 @@ class Coach extends Model
                         if ($unlockedCnt > 0) {
                             $unlocked = DB::table('unlocked_skills')
                                 ->leftJoin('skills', 'unlocked_skills.skill_id', '=', 'skills.id')
+                                ->leftJoin('exercises', 'unlocked_skills.exercise_id', '=', 'exercises.id')
                                 ->where('skills.row', $skill->row)
                                 ->where('skills.progression_id', $skill->progression_id)
+                                ->where('exercises.category', $exerciseCat)
                                 ->where('unlocked_skills.user_id', $userId)
                                 ->orderBy('skills.level', 'ASC')
                                 ->get();
+                            
                             $roundCount = count($coachExercise['workout']['exercises']);
                             if ($roundCount == 1) {
                                 foreach ($unlocked as $uKey => $unlockedExercise) {

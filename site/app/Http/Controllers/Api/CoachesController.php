@@ -2340,8 +2340,6 @@ class CoachesController extends Controller
                 //Prepare coach exercises according to user options
                 $coachExercises = Coach::prepareCoachExercises($coachId, $data);
                 
-                $coachExercises = Coach::addRaidExercisesToWorkouts($request->user_id, $coachExercises);
-                
                 //Limit the coach exercises and reptitions
 
                 $filteredCoach = Coach::filterCoachExercises($coachExercises, $data);
