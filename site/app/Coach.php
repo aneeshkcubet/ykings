@@ -383,7 +383,9 @@ class Coach extends Model
 
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
 
-        $coach = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
+        list($coach, $exerciseCat)  = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
+        
+        $coach = self::addRaidExercisesToWorkouts($data['user_id'], $coach, $exerciseCat);
 //        die;
         return $coach;
     }
@@ -2615,9 +2617,9 @@ class Coach extends Model
             }
         }
         
-        $coach = self::addRaidExercisesToWorkouts($data['user_id'], $coach, $exerciseCat);
         
-        return $coach;
+        
+        return array($coach, $exerciseCat);
     }
 
     /**
@@ -3210,7 +3212,7 @@ class Coach extends Model
 
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $coach->user_id, $data, $intenseFactor, $fundumentalArray));
 
-        $exercises = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $focus, $userLevel, $coachStatus->week + 1);
+        list($exercises, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $focus, $userLevel, $coachStatus->week + 1);
 
         if ($coachStatus->week + 1 <= 2) {
             if ($assessment == 3) {

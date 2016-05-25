@@ -164,7 +164,12 @@ class CoachesController extends Controller
                         if ($coachStatus->need_update == 0) {
                             if ($dayStatus[$coachStatus->day] == 1) {
                                 $coachUpdatedDate = date('Y-m-d', strtotime($coachStatus->updated_at));
-                                $coachNextDay = strtotime($coachUpdatedDate . ' 00:00:01 + 1 days');
+//                                Live
+//                                $coachNextDay = strtotime($coachUpdatedDate . ' 00:00:01 + 1 days');
+//                                
+//                                
+//                                Development
+                                $coachNextDay = strtotime($coachStatus->updated_at . ' + 30 Minutes');
                                 if ($coachNextDay > $currentTimestamp) {
                                     return response()->json([
                                             'status' => 1,
@@ -2262,7 +2267,6 @@ class CoachesController extends Controller
      */
     public function prepareCoach(Request $request)
     {
-
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } elseif (!isset($request->test) || ($request->test == null)) {
@@ -2273,7 +2277,7 @@ class CoachesController extends Controller
             return response()->json(["status" => "0", "error" => "The feedback field is required"]);
         } else {
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            
+
             $feedbacks = json_decode($request->feedback, true);
 
             $feedbackSum = 0;
@@ -2336,10 +2340,10 @@ class CoachesController extends Controller
                 $data['test'] = $request->test;
 
                 $data['week'] = 1;
-                
+
                 //Prepare coach exercises according to user options
                 $coachExercises = Coach::prepareCoachExercises($coachId, $data);
-                
+
                 //Limit the coach exercises and reptitions
 
                 $filteredCoach = Coach::filterCoachExercises($coachExercises, $data);
@@ -2502,11 +2506,11 @@ class CoachesController extends Controller
                 }
 
                 $weekStatusArray[$coachStatus->week + 1] = 0;
-               //Code added by ansa@cubettech.com on 09-05-2016
-               //To update goal in user_profile.
-               Profile::where('user_id', $request->user_id)->update([
-                   'goal' => $request->focus
-               ]);
+                //Code added by ansa@cubettech.com on 09-05-2016
+                //To update goal in user_profile.
+                Profile::where('user_id', $request->user_id)->update([
+                    'goal' => $request->focus
+                ]);
                 $profile = Profile::where('user_id', $request->user_id)->first();
 
                 $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);
@@ -2709,11 +2713,11 @@ class CoachesController extends Controller
                 Coach::where('user_id', $request->user_id)->delete();
 
                 DB::table('coach_points')->where('user_id', $request->user_id)->delete();
-                
+
                 DB::table('user_physique_options')->where('user_id', $request->user_id)->delete();
-                
+
                 DB::table('user_goal_options')->where('user_id', $request->user_id)->delete();
-                
+
                 DB::table('coach_status')->where('user_id', $request->user_id)->delete();
 
                 return response()->json([
