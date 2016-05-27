@@ -3393,16 +3393,18 @@ class Coach extends Model
                     ->select('id')
                     ->whereRaw($limitQuery)
                     ->toSql();
-                $whereLimitSubQueryArray[] = 'exercise_id NOT IN(' . $userLimitedMuscleExercisesQuery . ')';
+                $whereLimitSubQueryArray[] = 'workout_exercises.exercise_id NOT IN(' . $userLimitedMuscleExercisesQuery . ')';
             }
         }
+        
+        $whereOmmitQuery = '';
 
         if (count($whereLimitSubQueryArray) > 0) {
-            $whereQuery .= 'AND (';
+            $whereOmmitQuery .= ' AND (';
 
-            $whereQuery .= implode(' OR ', $whereLimitSubQueryArray);
+            $whereOmmitQuery .= implode(' OR ', $whereLimitSubQueryArray);
 
-            $whereQuery .= ')';
+            $whereOmmitQuery .= ')';
         }
 
         $selWorkouts = [];
@@ -3445,7 +3447,8 @@ class Coach extends Model
                             WHERE   ' . $whereQuery .
             ' GROUP BY workout_id
                         ) s ON s.workout_id = t1.id
-                WHERE t1.category = ' . $category . $selectedWorkouts . '
+                        LEFT JOIN workout_exercises ON workout_exercises.workout_id = t1.id
+                WHERE t1.category = ' . $category . $selectedWorkouts . $whereOmmitQuery.'
                 ORDER BY exercise_count DESC';
     }
 

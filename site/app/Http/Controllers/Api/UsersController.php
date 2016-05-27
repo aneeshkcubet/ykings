@@ -898,7 +898,7 @@ class UsersController extends Controller
 
                 //Code added by <ansa@cubettech.com> on 31-12-2015
                 //To save device token
-                if (isset($request->device_token) && (isset($request->device_type))) {
+                if (isset($request->device_token) && isset($request->device_type) && $request->device_token != null && $request->device_token != '(null)') {
                     $userDeviceToken = PushNotification::where('user_id', '=', Auth::user()->id)
                         ->where('type', '=', $request->device_type)
                         ->first();
@@ -4096,13 +4096,15 @@ class UsersController extends Controller
     {
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
-        } elseif (!isset($request->quote) || ($request->quote == null)) {
+        } elseif (!isset($request->quote) || ($request->quote == null) || $request->quote == '(null)') {
             return response()->json(["status" => "0", "error" => "The quote field is required"]);
         } else {
 
             $user = User::where('id', $request->user_id)->with(['followers'])->first();
 
             if ($user) {
+                
+                Profile::where('user_id', $request->user_id)->update(['quote' => $request->quote]);
 
 
 
@@ -4154,8 +4156,8 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      * {
-      "status": 0,
-      "error": "Successfully updated email address."
+      "status": 1,
+      "message": "Successfully updated email address."
       }
      *       
      *
@@ -4224,7 +4226,7 @@ class UsersController extends Controller
                         ->subject('Verify your email address');
                 });
 
-                return response()->json([ "status" => 1, "error" => "Successfully updated email address."], 200);
+                return response()->json([ "status" => 1, "message" => "Successfully updated email address."], 200);
             }
         }
     }

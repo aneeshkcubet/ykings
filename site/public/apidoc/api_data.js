@@ -6115,7 +6115,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 0,\n      \"error\": \"Successfully updated email address.\"\n      }",
+          "content": "    HTTP/1.1 200 OK\n{\n      \"status\": 1,\n      \"message\": \"Successfully updated email address.\"\n      }",
           "type": "json"
         }
       ]
