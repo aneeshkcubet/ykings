@@ -1203,8 +1203,13 @@ class FeedController extends Controller
             //is claped
             $feedsArray['is_claped'] = Clap::isClaped($userId, $feedsArray['id'], 'feed');
 
+            $images = Images::where('parent_id', $feedsArray['id'])->where('parent_type', '=', 2)->get();
 
-            $feedsArray['image'] = Images::where('parent_id', $feedsArray['id'])->where('parent_type', '=', 2)->get();
+            foreach ($images as $iKey => $image) {
+                $images[$iKey]->description = str_replace('\r', '', $image->description);
+            }
+
+            $feedsArray['image'] = $images;
 
             //To get Category
             if ($feedsArray['item_type'] == 'workout') {
@@ -1354,6 +1359,14 @@ class FeedController extends Controller
             $feedsResponse[] = $feedsArray;
             unset($feedsArray);
         }
+
+        $json = json_encode($feedsResponse);
+
+        $feedsResponse = str_replace('\r', '', $json);
+
+
+        $feedsResponse = json_decode($feedsResponse, true);
+
         return $feedsResponse;
     }
 
@@ -1473,6 +1486,14 @@ class FeedController extends Controller
                 $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))
                         ->with(['profile'])->first();
                 if ($feedsArray) {
+                    $images = Images::where('parent_id', $feedsArray['id'])->where('parent_type', '=', 2)->get();
+
+                    foreach ($images as $iKey => $image) {
+                        $images[$iKey]->description = str_replace('\r', '', $image->description);
+                    }
+
+                    $feedsArray['image'] = $images;
+
                     $feedsArray['clap_count'] = Clap::where('item_id', $feedsArray['id'])
                         ->where('item_type', '=', 'feed')
                         ->count();
@@ -1627,6 +1648,14 @@ class FeedController extends Controller
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "";
                     }
+                    $json = json_encode($feedsArray);
+
+                    $json = json_encode($feedsResponse);
+
+                    $feedsArray = str_replace('\r', '', $json);
+
+                    $feedsArray = json_decode($feedsArray, true);
+                    
                     $feedsResponse[] = $feedsArray;
                 }
                 return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
