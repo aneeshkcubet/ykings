@@ -380,13 +380,14 @@ class Coach extends Model
         }
 
         $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
+        
 
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
 
-        list($coach, $exerciseCat)  = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
-        
+        list($coach, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
+
         $coach = self::addRaidExercisesToWorkouts($data['user_id'], $coach, $exerciseCat);
-//        die;
+        
         return $coach;
     }
 
@@ -497,11 +498,11 @@ class Coach extends Model
         }
 
         $exerciseCat = self::userWorkoutCategory($data['user_id'], $userWorkouts);
-        
+
 //        die;
 
         $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $data['limitations']);
-        
+
         $exercises = [];
         foreach ($basicSkills as $bKey => $basicSkill) {
             $exercise = Exercise::where('id', $basicSkill->exercise_id)->with(['video'])->first();
@@ -2616,9 +2617,9 @@ class Coach extends Model
                 }
             }
         }
-        
-        
-        
+
+
+
         return array($coach, $exerciseCat);
     }
 
@@ -2711,7 +2712,7 @@ class Coach extends Model
                         ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $workoutExercise)
                         ->first();
 
-                    if (count($unLocked) <= 0) {  
+                    if (count($unLocked) <= 0) {
                         //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
@@ -2757,7 +2758,7 @@ class Coach extends Model
                         ->first();
 
                     if (count($unLocked) <= 0) {
-                        
+
 
                         //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
@@ -2793,7 +2794,7 @@ class Coach extends Model
         if ($category == 1 && $categoryArray[1] > 0) {
             $category = 1;
         }
-        
+
 //        die;
 
         return $category;
@@ -2843,152 +2844,48 @@ class Coach extends Model
 
         $count = 1;
         $exercises = [];
-
-        $workoutExercises = DB::table('workout_exercises')->select('exercise_id')->whereRaw('workout_id = ' . $workoutId)->groupBy('exercise_id')->get();
-        $workoutExercisesArray = Array();
-        foreach ($workoutExercises as $workoutExercise) {
-            $workoutExercisesArray[] = $workoutExercise->exercise_id;
-        }
-
-        $workoutExercises1 = DB::table('workout_exercises')
-            ->select('exercise_id')
-            ->whereRaw('workout_id = ' . $workoutId . ' AND category = 1')
-            ->groupBy('exercise_id')
-            ->get();
-
-        foreach ($workoutExercises1 as $workoutExercise) {
-            $workoutExercisesArray1[] = $workoutExercise->exercise_id;
-        }
-
-        $workoutExercises2 = DB::table('workout_exercises')
-            ->select('exercise_id')
-            ->whereRaw('workout_id = ' . $workoutId . ' AND category = 2')
-            ->groupBy('exercise_id')
-            ->get();
-
-        foreach ($workoutExercises2 as $workoutExercise) {
-            $workoutExercisesArray2[] = $workoutExercise->exercise_id;
-        }
-
-
-
-        $workoutExercises3 = DB::table('workout_exercises')
-            ->select('exercise_id')
-            ->whereRaw('workout_id = ' . $workoutId . ' AND category = 3')
-            ->groupBy('exercise_id')
-            ->get();
-
-        foreach ($workoutExercises3 as $workoutExercise) {
-            $workoutExercisesArray3[] = $workoutExercise->exercise_id;
-        }
-
-        $categoryArray[1] = DB::table('exercises')
-            ->select(DB::raw('DISTINCT exercises.category, COUNT(*) catCount'))
-            ->join('unlocked_skills', 'unlocked_skills.exercise_id', '=', 'exercises.id')
-            ->whereIn('unlocked_skills.exercise_id', $workoutExercisesArray)
-            ->where('exercises.category', 1)
-            ->count();
-
-        $categoryArray[2] = DB::table('exercises')
-            ->select(DB::raw('DISTINCT exercises.category, COUNT(*) catCount'))
-            ->join('unlocked_skills', 'unlocked_skills.exercise_id', '=', 'exercises.id')
-            ->whereIn('unlocked_skills.exercise_id', $workoutExercisesArray)
-            ->where('exercises.category', 2)
-            ->count();
-
-        $categoryArray[3] = DB::table('exercises')
-            ->select(DB::raw('DISTINCT exercises.category, COUNT(*) catCount'))
-            ->join('unlocked_skills', 'unlocked_skills.exercise_id', '=', 'exercises.id')
-            ->whereIn('unlocked_skills.exercise_id', $workoutExercisesArray)
-            ->where('exercises.category', 3)
-            ->count();
-
-        $replacementArray = Array();
-
-        if ($category == 3) {
-            foreach ($workoutExercisesArray3 as $workoutExercise) {
-
-                $exercise = Exercise::where('id', $workoutExercise)->first();
-
-                $unLocked = DB::table('unlocked_skills')
-                    ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $workoutExercise)
-                    ->first();
-
-                if (count($unLocked) <= 0) {
-
-                    //Not unlocked the skill
-                    $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
-
-                    if ($skill->substitute > 0) {
-                        //Skill has substitute
-                        $substitute = DB::table('skills')->where('row', $skill->row)
-                            ->where('progression_id', $skill->progression_id)
-                            ->where('exercise_id', '=', $skill->substitute)
-                            ->first();
-
-                        $unLockCount = DB::table('unlocked_skills')
-                            ->select('exercise_id')
-                            ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $substitute->id)
-                            ->count();
-
-                        if ($unLockCount > 0) {
-                            //Unlocked substitute then replace the workout exercise with new one.
-                            $replacementArray[$workoutExercise] = $skill->substitute;
-                        }
-                    }
-                }
-            }
-        }
-
-        if ($category == 2) {
-            foreach ($workoutExercisesArray2 as $workoutExercise) {
-
-                $exercise = Exercise::where('id', $workoutExercise)->first();
-
-                $unLocked = DB::table('unlocked_skills')
-                    ->whereRaw('user_id = ' . $userId . ' AND exercise_id = ' . $workoutExercise)
-                    ->first();
-
-                if (count($unLocked) <= 0) {
-
-                    //Not unlocked the skill
-                    $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
-
-                    if ($skill->substitute > 0) {
-                        //Skill has substitute
-                        $substitute = DB::table('skills')->where('row', $skill->row)
-                            ->where('progression_id', $skill->progression_id)
-                            ->where('exercise_id', '=', $skill->substitute)
-                            ->first();
-
-                        $unLockCount = DB::table('unlocked_skills')
-                            ->select('exercise_id')
-                            ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $substitute->id)
-                            ->count();
-
-                        if ($unLockCount > 0) {
-                            //Unlocked substitute then replace the workout exercise with new one.                            
-                            $replacementArray[$workoutExercise] = $skill->substitute;
-                        }
-                    }
-                } else {
-                    $replacementArray[$workoutExercise] = $workoutExercise;
-                }
-            }
-        }
+        
+        $categoryArray = [1 => 0, 2 => 0, 3 => 0];
 
         do {
             $roundExercises = Workoutexercise::where('round', '=', $count)
-                ->where('category', '=', $category)
+                ->where('category', '=', 1)
                 ->where('workout_id', '=', $workoutId)
-                ->with(['video', 'exercise'])
+                ->with(['exercise'])
                 ->get();
+            
 
             foreach ($roundExercises as $roundExercise) {
+                $skill = DB::table('skills')
+                    ->where('exercise_id', $roundExercise->exercise_id)
+                    ->first();
 
-                if (array_key_exists($roundExercise->exercise_id, $replacementArray)) {
+                if (!is_null($skill)) {
+                    $highestUnlockedSkill = DB::table('unlocked_skills')
+                        ->leftJoin('skills', 'skills.id', '=', 'unlocked_skills.skill_id')
+                        ->where('skills.progression_id', $skill->progression_id)
+                        ->where('skills.row', $skill->row)
+                        ->where('unlocked_skills.user_id', $userId)
+                        ->orderBy('skills.level', 'DESC')
+                        ->first();
 
-                    $roundExercise->exercise_id = $replacementArray[$roundExercise->exercise_id];
+                    if (!is_null($highestUnlockedSkill)) {
+                        if ($highestUnlockedSkill->level <= 2) {
+                            $categoryArray[1] ++;
+                        } elseif ($highestUnlockedSkill->level <= 4) {
+                            $categoryArray[2] ++;
+                        } else {
+                            $categoryArray[3] ++;
+                        }
+                        $roundExercise->exercise_id = $highestUnlockedSkill->exercise_id;
+
+                        $exercise = Exercise::where('id', $highestUnlockedSkill->exercise_id)->with(['video'])->first();
+
+                        $roundExercise->unit = $exercise->unit;
+
+                        $roundExercise['exercise'] = $exercise;
+                    }
+                } else {
 
                     $exercise = Exercise::where('id', $roundExercise->exercise_id)->with(['video'])->first();
 
@@ -2998,13 +2895,20 @@ class Coach extends Model
                 }
 
                 $roundExercise->is_completed = 0;
+                $newExercises[] = $roundExercise->toArray();
             }
 
-            $exercises['round' . $count] = $roundExercises->toArray();
+            $exercises['round' . $count] = $newExercises;
+            
+            $newExercises = Array();
 
             $count++;
         } while ($count <= $rounds);
-
+        
+        $maxs = array_keys($categoryArray, max($categoryArray));
+        
+        $category = $maxs[0];
+        
         $workoutArray = $workout->toArray();
 
         $workoutArray['exercises'] = $exercises;
@@ -3018,6 +2922,9 @@ class Coach extends Model
         } elseif ($category == 3) {
             $workoutArray['rewards'] = $rewardArray['strength'];
         }
+        
+        $workoutArray['exercise_category'] = $category;
+        
         return $workoutArray;
     }
 
@@ -3396,7 +3303,7 @@ class Coach extends Model
                 $whereLimitSubQueryArray[] = 'workout_exercises.exercise_id NOT IN(' . $userLimitedMuscleExercisesQuery . ')';
             }
         }
-        
+
         $whereOmmitQuery = '';
 
         if (count($whereLimitSubQueryArray) > 0) {
@@ -3437,7 +3344,7 @@ class Coach extends Model
             $selectedWorkouts .= ' AND t1.id IN(' . implode(",", $selWorkouts) . ')';
         }
 
-        return 'SELECT t1.id, 
+        return 'SELECT DISTINCT t1.id, 
                         s.totalCount AS exercise_count 
                 FROM workouts AS t1 
                         LEFT JOIN
@@ -3448,7 +3355,7 @@ class Coach extends Model
             ' GROUP BY workout_id
                         ) s ON s.workout_id = t1.id
                         LEFT JOIN workout_exercises ON workout_exercises.workout_id = t1.id
-                WHERE t1.category = ' . $category . $selectedWorkouts . $whereOmmitQuery.'
+                WHERE t1.category = ' . $category . $selectedWorkouts . $whereOmmitQuery . '
                 ORDER BY exercise_count DESC';
     }
 
@@ -4158,8 +4065,7 @@ class Coach extends Model
             3 => 0,
             4 => 0,
             5 => 0
-        ];
-
+        ];        
 
         foreach ($coachExercises as $aKey => $coachExercise) {
 
@@ -4220,8 +4126,8 @@ class Coach extends Model
      */
     public static function addRaidExercisesToWorkouts($userId, $coachExercises, $exerciseCat)
     {
-        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();       
-        
+        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();
+
 
         if (!is_null($userRaid)) {
             foreach ($coachExercises as $day => $coachExercise) {
@@ -4245,7 +4151,7 @@ class Coach extends Model
                                 ->where('unlocked_skills.user_id', $userId)
                                 ->orderBy('skills.level', 'ASC')
                                 ->get();
-                            
+
                             $roundCount = count($coachExercise['workout']['exercises']);
                             if ($roundCount == 1) {
                                 foreach ($unlocked as $uKey => $unlockedExercise) {
