@@ -131,7 +131,7 @@ class CoachesController extends Controller
                     }
 
 
-                    if (strtotime($coach->updated_at . ' + 7 days') <= $currentTimestamp && $coachStatus->need_update == 1) {
+                    if ($coachStatus->need_update == 1) {
                         //User feedback required
                         return response()->json([
                                 'status' => 1,
@@ -146,20 +146,20 @@ class CoachesController extends Controller
                                 'coach' => $coach,
                                 'urls' => config('urls.urls')], 200);
                     } else {
-                        if ($coachStatus->need_update == 1) {
-                            return response()->json([
-                                    'status' => 1,
-                                    'message' => 'already_completed_week_workouts',
-                                    'coach_day' => $coachStatus->day,
-                                    'coach_week' => $coachStatus->week,
-                                    'is_subscribed' => $user->is_subscribed,
-                                    'need_update' => 1,
-                                    'week_status' => $weekStatus,
-                                    'day_status' => $dayStatus,
-                                    'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
-                                    'coach' => $coach,
-                                    'urls' => config('urls.urls')], 200);
-                        }
+//                        if ($coachStatus->need_update == 1) {
+//                            return response()->json([
+//                                    'status' => 1,
+//                                    'message' => 'already_completed_week_workouts',
+//                                    'coach_day' => $coachStatus->day,
+//                                    'coach_week' => $coachStatus->week,
+//                                    'is_subscribed' => $user->is_subscribed,
+//                                    'need_update' => 1,
+//                                    'week_status' => $weekStatus,
+//                                    'day_status' => $dayStatus,
+//                                    'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+//                                    'coach' => $coach,
+//                                    'urls' => config('urls.urls')], 200);
+//                        }
 
                         if ($coachStatus->need_update == 0) {
                             if ($dayStatus[$coachStatus->day] == 1) {
@@ -841,9 +841,9 @@ class CoachesController extends Controller
      * @apiGroup Coach
      * @apiParam {Number} user_id Id of user *required
      * @apiParam {Number} test status of test exercises json encoded array of exercise ids and statuses [{"exercise_id":67,"test_done":1},{"exercise_id":45,"test_done":1},{"exercise_id":4,"test_done":1},{"exercise_id":12,"test_done":1}] *required
-     * @apiParam {Number} focus user focus 1-Lean, 2-Athletic, 3-Strength *required
      * @apiParam {Number} days number of workout days per week *required
      * @apiParam {String} [muscle_groups] user muscle groups preferences comma seperated ids 1,5,6 etc.
+     * @apiParam {String} [limitations] user muscle groups preferences comma seperated ids 1,5,6 etc.
      * @apiParam {String} feedback user feedback json_encoded array {"67":2,"45":1,"4":2,"12":3} 0-not done, 1- I can do way more, 2 - I can do more, 3 - It was ok *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:

@@ -450,13 +450,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "<p>Number</p> ",
             "optional": false,
-            "field": "focus",
-            "description": "<p>user focus 1-Lean, 2-Athletic, 3-Strength *required</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
             "field": "days",
             "description": "<p>number of workout days per week *required</p> "
           },
@@ -465,6 +458,13 @@ define({ "api": [
             "type": "<p>String</p> ",
             "optional": true,
             "field": "muscle_groups",
+            "description": "<p>user muscle groups preferences comma seperated ids 1,5,6 etc.</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": true,
+            "field": "limitations",
             "description": "<p>user muscle groups preferences comma seperated ids 1,5,6 etc.</p> "
           },
           {

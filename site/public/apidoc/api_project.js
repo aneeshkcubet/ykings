@@ -24,7 +24,7 @@ define({
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2016-05-25T05:42:21.704Z",
+    "time": "2016-06-14T03:40:47.038Z",
     "url": "http://apidocjs.com",
     "version": "0.13.1"
   }

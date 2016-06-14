@@ -381,7 +381,6 @@ class Coach extends Model
 
         $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
         
-
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
 
         list($coach, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
@@ -2859,7 +2858,7 @@ class Coach extends Model
                 $skill = DB::table('skills')
                     ->where('exercise_id', $roundExercise->exercise_id)
                     ->first();
-
+                
                 if (!is_null($skill)) {
                     $highestUnlockedSkill = DB::table('unlocked_skills')
                         ->leftJoin('skills', 'skills.id', '=', 'unlocked_skills.skill_id')
@@ -3234,9 +3233,7 @@ class Coach extends Model
             if ($userMuscleGroups->physique_options != '') {
                 $likeQueryArray = [];
                 $muscleGroupArray = explode(',', $userMuscleGroups->physique_options);
-
                 $likeQuery = '';
-
                 foreach ($muscleGroupArray as $mgKey => $muscleGroupId) {
                     if ($muscleGroupId != ' ' && $muscleGroupId != '') {
                         $likeQueryArray[] = 'exercises.muscle_groups LIKE "%' . $muscleGroupId . '%"';
@@ -3258,14 +3255,11 @@ class Coach extends Model
 
         if (!is_null($userGoalOption)) {
             if ($userGoalOption->goal_options != '') {
-
                 $goal = DB::table('skills')->where('id', $userGoalOption->goal_options)->first();
-
                 $userOptedGoalExercisesQuery = DB::table('skills')
                     ->select('exercise_id')
                     ->whereRaw('progression_id = ' . $goal->progression_id . ' AND row = ' . $goal->row)
                     ->toSql();
-
                 $whereSubQueryArray[] = 'exercise_id IN(' . $userOptedGoalExercisesQuery . ')';
             }
         }
@@ -3352,7 +3346,7 @@ class Coach extends Model
                             SELECT DISTINCT  workout_id, COUNT(*) totalCount 
                             FROM    workout_exercises 
                             WHERE   ' . $whereQuery .
-            ' GROUP BY workout_id
+                            ' GROUP BY workout_id
                         ) s ON s.workout_id = t1.id
                         LEFT JOIN workout_exercises ON workout_exercises.workout_id = t1.id
                 WHERE t1.category = ' . $category . $selectedWorkouts . $whereOmmitQuery . '
@@ -4068,7 +4062,6 @@ class Coach extends Model
         ];        
 
         foreach ($coachExercises as $aKey => $coachExercise) {
-
             if (!empty($coachExercise['workout'])) {
                 foreach ($coachExercise['workout']['exercises'] as $rKey => $roundExercises) {
                     foreach ($roundExercises as $roundExercise) {
@@ -4097,7 +4090,6 @@ class Coach extends Model
                 }
             }
         }
-
         return $coachExercises;
     }
 
@@ -4127,8 +4119,6 @@ class Coach extends Model
     public static function addRaidExercisesToWorkouts($userId, $coachExercises, $exerciseCat)
     {
         $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->first();
-
-
         if (!is_null($userRaid)) {
             foreach ($coachExercises as $day => $coachExercise) {
                 if (isset($coachExercise['workout']) && !empty($coachExercise['workout']) && (!isset($coachExercise['hiit']) || empty($coachExercise['hiit']))) {
