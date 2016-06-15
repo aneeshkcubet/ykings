@@ -380,13 +380,13 @@ class Coach extends Model
         }
 
         $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
-        
+
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
 
         list($coach, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
 
         $coach = self::addRaidExercisesToWorkouts($data['user_id'], $coach, $exerciseCat);
-        
+
         return $coach;
     }
 
@@ -2843,7 +2843,7 @@ class Coach extends Model
 
         $count = 1;
         $exercises = [];
-        
+
         $categoryArray = [1 => 0, 2 => 0, 3 => 0];
 
         do {
@@ -2852,13 +2852,12 @@ class Coach extends Model
                 ->where('workout_id', '=', $workoutId)
                 ->with(['exercise'])
                 ->get();
-            
 
             foreach ($roundExercises as $roundExercise) {
                 $skill = DB::table('skills')
                     ->where('exercise_id', $roundExercise->exercise_id)
                     ->first();
-                
+
                 if (!is_null($skill)) {
                     $highestUnlockedSkill = DB::table('unlocked_skills')
                         ->leftJoin('skills', 'skills.id', '=', 'unlocked_skills.skill_id')
@@ -2882,7 +2881,20 @@ class Coach extends Model
 
                         $roundExercise->unit = $exercise->unit;
 
-                        $roundExercise['exercise'] = $exercise;
+                        $roundExercise->exercise = $exercise;
+                    } else {
+                        if ($skill->level <= 2) {
+                            $categoryArray[1] ++;
+                        } elseif ($skill->level <= 4) {
+                            $categoryArray[2] ++;
+                        } else {
+                            $categoryArray[3] ++;
+                        }
+                        $exercise = Exercise::where('id', $roundExercise->exercise_id)->with(['video'])->first();
+
+                        $roundExercise->unit = $exercise->unit;
+
+                        $roundExercise->exercise = $exercise;
                     }
                 } else {
 
@@ -2890,7 +2902,7 @@ class Coach extends Model
 
                     $roundExercise->unit = $exercise->unit;
 
-                    $roundExercise['exercise'] = $exercise;
+                    $roundExercise->exercise = $exercise;
                 }
 
                 $roundExercise->is_completed = 0;
@@ -2898,16 +2910,16 @@ class Coach extends Model
             }
 
             $exercises['round' . $count] = $newExercises;
-            
+
             $newExercises = Array();
 
             $count++;
         } while ($count <= $rounds);
-        
+
         $maxs = array_keys($categoryArray, max($categoryArray));
-        
+
         $category = $maxs[0];
-        
+
         $workoutArray = $workout->toArray();
 
         $workoutArray['exercises'] = $exercises;
@@ -2921,9 +2933,9 @@ class Coach extends Model
         } elseif ($category == 3) {
             $workoutArray['rewards'] = $rewardArray['strength'];
         }
-        
+
         $workoutArray['exercise_category'] = $category;
-        
+
         return $workoutArray;
     }
 
@@ -3346,7 +3358,7 @@ class Coach extends Model
                             SELECT DISTINCT  workout_id, COUNT(*) totalCount 
                             FROM    workout_exercises 
                             WHERE   ' . $whereQuery .
-                            ' GROUP BY workout_id
+            ' GROUP BY workout_id
                         ) s ON s.workout_id = t1.id
                         LEFT JOIN workout_exercises ON workout_exercises.workout_id = t1.id
                 WHERE t1.category = ' . $category . $selectedWorkouts . $whereOmmitQuery . '
@@ -4059,7 +4071,7 @@ class Coach extends Model
             3 => 0,
             4 => 0,
             5 => 0
-        ];        
+        ];
 
         foreach ($coachExercises as $aKey => $coachExercise) {
             if (!empty($coachExercise['workout'])) {

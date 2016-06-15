@@ -44,6 +44,4914 @@ class CoachesController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
+     * {
+  "status": 1,
+  "message": "coach_exercises",
+  "coach_day": "1",
+  "coach_week": "1",
+  "is_subscribed": 1,
+  "need_update": 0,
+  "week_status": {
+    "1": 0
+  },
+  "day_status": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "week_points": "330.00",
+  "coach": {
+    "id": "490",
+    "user_id": "67",
+    "focus": "2",
+    "height": "0.00",
+    "weight": "0.00",
+    "days": "6",
+    "exercises": {
+      "day1": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "16",
+            "row": "4",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:51:17",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "17",
+            "row": "4",
+            "exercise_id": "78",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:22",
+            "updated_at": "2016-04-04 14:00:58",
+            "exercise": {
+              "id": "78",
+              "name": "Australian Pullups",
+              "description": "Get started with developing your grip and back strength",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "1,4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Grip a bar that is suspended at around waist height, with the feet resting on the ground.\r\n2. Squeeze the shoulder blades together and pull your chest up to the bar",
+              "video_tips": "    ",
+              "pro_tips": "The closer the body is to horizontal the more difficult the exercise becomes.?\r\nA set of height adjustable gymnastics rings are a good alternative.\r\nKeep whole body engaged and keep your butt in line with your body.?  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Arms, Core",
+              "video": [
+                {
+                  "id": "78",
+                  "path": "78_1454045971.mp4",
+                  "videothumbnail": "78_1454045971.jpg",
+                  "description": "Australian Pullups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "18",
+            "row": "4",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:56",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "19",
+            "row": "4",
+            "exercise_id": "45",
+            "duration": {
+              "min": "25",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:53:50",
+            "updated_at": "2016-04-04 14:16:38",
+            "exercise": {
+              "id": "45",
+              "name": "Squats",
+              "description": "Get strong with a world class full body compound exercise",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "7",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a squat \r\n3. Keep your hands in front of you and press yourself up ",
+              "video_tips": "      ",
+              "pro_tips": " Lock the knees out while squeezing the glutes to execute properly.\r\nSquat deep and hold for 1-2 secs, ass to the grass!     ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "41",
+                  "path": "45_1454043104.mp4",
+                  "videothumbnail": "45_1454043104.jpg",
+                  "description": "Squats"
+                }
+              ]
+            }
+          },
+          {
+            "id": "20",
+            "row": "4",
+            "exercise_id": "32",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:54:35",
+            "updated_at": "2016-04-04 11:06:44",
+            "exercise": {
+              "id": "32",
+              "name": "Sprawl",
+              "description": "Boost your cardio and strength with sprawls",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+              "video_tips": "    ",
+              "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+              "is_static": "0",
+              "musclegroup_string": "Full Body",
+              "video": [
+                {
+                  "id": "29",
+                  "path": "32_1454041954.mp4",
+                  "videothumbnail": "32_1454041954.jpg",
+                  "description": "Sprawl"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "3",
+          "name": "Bragi",
+          "description": "D,C,A",
+          "rounds": "5",
+          "category": "2",
+          "type": "2",
+          "rewards": "440",
+          "duration": "480.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "100",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "105",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "110",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:53",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "101",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "106",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "111",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "102",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "107",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "112",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day2": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "6",
+            "row": "2",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:29:57",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "7",
+            "row": "2",
+            "exercise_id": "14",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:31:09",
+            "updated_at": "2016-04-04 09:33:39",
+            "exercise": {
+              "id": "14",
+              "name": "Incline Pushups",
+              "description": "Start your journey with the simplest way to develop an athletic physique",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+              "video_tips": "    ",
+              "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "13",
+                  "path": "14_1453984243.mp4",
+                  "videothumbnail": "14_1453984243.jpg",
+                  "description": "Incline Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "8",
+            "row": "2",
+            "exercise_id": "48",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:04",
+            "updated_at": "2016-04-04 14:19:00",
+            "exercise": {
+              "id": "48",
+              "name": "Bench Dips",
+              "description": "Develop more strength as you increase resistance with your bodyweight",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Sit on side of bench. \r\n2. Place hands on edge of bench. Position feet away from bench and rest heels on floor with legs straight. \r\n3. Lower your body with the feet in front of you\r\n4. Press your body up and hold in extension ",
+              "video_tips": "      ",
+              "pro_tips": " Don?t rush through your movements to make things easier on yourself. You will sacrifice your form, and in the end, you won?t actually get good at the skills you?re working on.\r\nThe closer you put your hands together, the tougher the bench dip becomes. ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "62",
+                  "path": "48_1454043291.mp4",
+                  "videothumbnail": "48_1454043291.jpg",
+                  "description": "Bench Dips"
+                }
+              ]
+            }
+          },
+          {
+            "id": "9",
+            "row": "2",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:49",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "10",
+            "row": "2",
+            "exercise_id": "42",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:33:42",
+            "updated_at": "2016-04-04 11:22:09",
+            "exercise": {
+              "id": "42",
+              "name": "Single Leg Deadlift",
+              "description": "Get your hips mobile and control your balance",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Keeping that knee slightly bent, perform a stiff-legged deadlift by bending at the hip.\r\n3. Continue lowering yourself until your upper body is parallel to the ground, and then return to the upright position. \r\n4. Repeat for the desired number of repetitions.",
+              "video_tips": "    ",
+              "pro_tips": "Avoid bending your supporting leg.\r\nKeep your non-supporting leg extended behind you for balance.",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "38",
+                  "path": "42_1454042789.mp4",
+                  "videothumbnail": "42_1454042789.jpg",
+                  "description": "Single Leg Deadlift"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "2",
+          "name": "Borr",
+          "description": "A,C,E,B",
+          "rounds": "3",
+          "category": "2",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1140.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "16",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "19",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:29",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "22",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "25",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:31:40",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "17",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "20",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "23",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "26",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "18",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "21",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "24",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "27",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day3": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "9",
+          "name": "Elli",
+          "description": "C,A,D",
+          "rounds": "3",
+          "category": "2",
+          "type": "1",
+          "rewards": "330",
+          "duration": "420.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "325",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "328",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "331",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "337",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "326",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "329",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "332",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "338",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "327",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "330",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "333",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "339",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day4": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "1",
+          "name": "Baldur",
+          "description": "A,D,B",
+          "rounds": "5",
+          "category": "1",
+          "type": "2",
+          "rewards": "440",
+          "duration": "2380.00",
+          "equipments": "Bar/Rings, Paralettes/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "1",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:15:36",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "6",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:17:21",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "11",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:19:02",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "3",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:16:17",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "8",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:17:54",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "13",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:19:23",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "5",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:16:40",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "10",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:18:11",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "15",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:19:48",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day5": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "21",
+          "name": "Vali",
+          "description": "A,B,E",
+          "rounds": "3",
+          "category": "1",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1620.00",
+          "equipments": "Bar/Rings, Ladder/Post",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "838",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "841",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "844",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "847",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "850",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:27",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "839",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "842",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "845",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "848",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "852",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "840",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "843",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "846",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "849",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "854",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day6": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "10",
+          "name": "Loki",
+          "description": "A,E,B",
+          "rounds": "1",
+          "category": "1",
+          "type": "1",
+          "rewards": "330",
+          "duration": "1440.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "364",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "365",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:24",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "366",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:49",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "367",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:05",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "368",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:21",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "369",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:44",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "370",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:38",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "371",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:58",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "372",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:38:13",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 1,
+        "workout_intensity": 1,
+        "hiit": [
+          {
+            "id": 2,
+            "intensity": 4,
+            "is_completed": 0,
+            "replacement": [
+              {
+                "round1": [
+                  {
+                    "name": "Burpee",
+                    "duration": 10,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "31",
+                      "name": "Burpee",
+                      "description": "Test your fitness with the original burpee",
+                      "category": "2",
+                      "type": "1",
+                      "muscle_groups": "8",
+                      "rewards": "7.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start in a standing position\r\n2. Go down and bring your body down to the floor\r\n3. Jump back up with your hands behind your head",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                      "is_static": "0",
+                      "musclegroup_string": "Full Body",
+                      "video": [
+                        {
+                          "id": "28",
+                          "path": "31_1454041910.mp4",
+                          "videothumbnail": "31_1454041910.jpg",
+                          "description": "Burpee"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round2": [
+                  {
+                    "name": "High Jumps",
+                    "duration": 25,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "36",
+                      "name": "High Jumps",
+                      "description": "Do high jumps as a part of restless HIIT workouts",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                      "video_tips": "    ",
+                      "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                      "is_static": "0",
+                      "musclegroup_string": "Legs",
+                      "video": [
+                        {
+                          "id": "33",
+                          "path": "36_1454042273.mp4",
+                          "videothumbnail": "36_1454042273.jpg",
+                          "description": "High Jumps"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round3": [
+                  {
+                    "name": "Knee Raises",
+                    "duration": 15,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "57",
+                      "name": "Knee Raises",
+                      "description": "Develop grip and core strength and get used to slow and controlled moves",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "4,6,7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                      "is_static": "0",
+                      "musclegroup_string": "Back, Core, Legs",
+                      "video": [
+                        {
+                          "id": "67",
+                          "path": "57_1454044213.mp4",
+                          "videothumbnail": "57_1454044213.jpg",
+                          "description": "Knee Raises"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ]
+              }
+            ],
+            "replacement_round_count": 3
+          }
+        ],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      }
+    },
+    "category": "professional",
+    "muscle_groups": "",
+    "limitations": "",
+    "goal_option": "0",
+    "feedback": "0",
+    "created_at": "2016-05-27 06:54:49",
+    "updated_at": "2016-06-14 12:50:18",
+    "musclegroup_string": "",
+    "goaloption_string": "",
+    "description": "Strive for progress"
+  },
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.
@@ -849,1379 +5757,4907 @@ class CoachesController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "coach_day": "1",
-      "coach_week": "1",
-      "is_subscribed": 0,
-      "need_update": "0",
-      "week_points": 200,
-      "coach": {
-      "id": "9",
-      "user_id": "96",
-      "focus": "3",
-      "height": "172.00",
-      "weight": "176.00",
-      "days": "2",
-      "exercises": {
+  "status": 1,
+  "message": "coach_exercises",
+  "coach_day": "1",
+  "coach_week": "1",
+  "is_subscribed": 1,
+  "need_update": "0",
+  "week_status": {
+    "1": 0
+  },
+  "day_status": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "week_points": "330.00",
+  "coach": {
+    "id": "490",
+    "user_id": "67",
+    "focus": "2",
+    "height": "0.00",
+    "weight": "0.00",
+    "days": "6",
+    "exercises": {
       "day1": {
-      "warmup": [
-      {
-      "id": "1",
-      "name": "Wall Extensions",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:27:00"
-      },
-      {
-      "id": "2",
-      "name": "band dislocates",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:57"
-      },
-      {
-      "id": "3",
-      "name": "Cat-camels",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:53"
-      },
-      {
-      "id": "4",
-      "name": "Scapular Shrugs",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:49"
-      },
-      {
-      "id": "5",
-      "name": "Full Body Circles",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:26:44"
-      },
-      {
-      "id": "6",
-      "name": "Front and Side Leg Swings",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:26:40"
-      },
-      {
-      "id": "7",
-      "name": "Jumping Jacks",
-      "duration": {
-      "min": 100
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:29:46"
-      },
-      {
-      "id": "8",
-      "name": "Arm Rotations",
-      "duration": {
-      "min": 120
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:29:55"
-      },
-      {
-      "id": "9",
-      "name": "High Knees",
-      "duration": {
-      "min": 50
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:30:04"
-      },
-      {
-      "id": "10",
-      "name": "Plank",
-      "duration": {
-      "min": 10,
-      "max": 60
-      },
-      "unit": "seconds",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:28:03"
-      },
-      {
-      "id": "11",
-      "name": "Burpee",
-      "duration": {
-      "min": 10
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:30:44"
-      },
-      {
-      "id": "12",
-      "name": "Shouder rolls",
-      "duration": {
-      "min": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:31:11"
-      },
-      {
-      "id": "13",
-      "name": "Squat jumps",
-      "duration": {
-      "min": 10
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:31:29"
-      }
-      ],
-      "fundumentals": [
-      {
-      "exercise_id": 4,
-      "duration": {
-      "min": 10
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "4",
-      "name": "Skin the cat",
-      "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
-      "category": "1",
-      "type": "2",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "4",
-      "path": "Now4.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 12,
-      "duration": {
-      "min": 20
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "2,1,3",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "12",
-      "path": "Now12.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 36,
-      "duration": {
-      "min": 40
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
-      "description": "",
-      "category": "2",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "36",
-      "path": "Now36.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 3,
-      "duration": {
-      "min": 15
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
-      "type": "2",
-      "muscle_groups": "6,4,7",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "3",
-      "path": "Now3.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 8,
-      "duration": {
-      "min": 20
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "8",
-      "name": "Single Leg Deadlift",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "muscle_groups": "7",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "8",
-      "path": "Now8.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "1",
-      "name": "Baldur",
-      "description": "Baldur Baldur",
-      "rounds": "5",
-      "category": "1",
-      "type": "2",
-      "rewards": 550,
-      "duration": "1680.00",
-      "equipments": "",
-      "exercises": {
-      "round1": [
-      {
-      "id": "31",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "32",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "33",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round2": [
-      {
-      "id": "34",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "35",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "36",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "40",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "2",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round3": [
-      {
-      "id": "37",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "38",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "39",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "30",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "3",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round4": [
-      {
-      "id": "40",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "41",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "42",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "20",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "4",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round5": [
-      {
-      "id": "43",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "44",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "45",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "10",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "5",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ],
-      "round6": [
-      {
-      "id": "31",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "32",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "85",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "86",
-      "path": "Now86.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "85",
-      "name": "Atztec Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "33",
-      "workout_id": "1",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-12-07 10:17:23",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "coach_workout_rounds": 6,
-      "workout_intensity": 2,
-      "hiit": [],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 6,
-      "max": 13
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 38,
-      "max": 63
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      }
-      ]
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "16",
+            "row": "4",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:51:17",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "17",
+            "row": "4",
+            "exercise_id": "78",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:22",
+            "updated_at": "2016-04-04 14:00:58",
+            "exercise": {
+              "id": "78",
+              "name": "Australian Pullups",
+              "description": "Get started with developing your grip and back strength",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "1,4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Grip a bar that is suspended at around waist height, with the feet resting on the ground.\r\n2. Squeeze the shoulder blades together and pull your chest up to the bar",
+              "video_tips": "    ",
+              "pro_tips": "The closer the body is to horizontal the more difficult the exercise becomes.?\r\nA set of height adjustable gymnastics rings are a good alternative.\r\nKeep whole body engaged and keep your butt in line with your body.?  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Arms, Core",
+              "video": [
+                {
+                  "id": "78",
+                  "path": "78_1454045971.mp4",
+                  "videothumbnail": "78_1454045971.jpg",
+                  "description": "Australian Pullups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "18",
+            "row": "4",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:56",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "19",
+            "row": "4",
+            "exercise_id": "45",
+            "duration": {
+              "min": "25",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:53:50",
+            "updated_at": "2016-04-04 14:16:38",
+            "exercise": {
+              "id": "45",
+              "name": "Squats",
+              "description": "Get strong with a world class full body compound exercise",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "7",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a squat \r\n3. Keep your hands in front of you and press yourself up ",
+              "video_tips": "      ",
+              "pro_tips": " Lock the knees out while squeezing the glutes to execute properly.\r\nSquat deep and hold for 1-2 secs, ass to the grass!     ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "41",
+                  "path": "45_1454043104.mp4",
+                  "videothumbnail": "45_1454043104.jpg",
+                  "description": "Squats"
+                }
+              ]
+            }
+          },
+          {
+            "id": "20",
+            "row": "4",
+            "exercise_id": "32",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:54:35",
+            "updated_at": "2016-04-04 11:06:44",
+            "exercise": {
+              "id": "32",
+              "name": "Sprawl",
+              "description": "Boost your cardio and strength with sprawls",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+              "video_tips": "    ",
+              "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+              "is_static": "0",
+              "musclegroup_string": "Full Body",
+              "video": [
+                {
+                  "id": "29",
+                  "path": "32_1454041954.mp4",
+                  "videothumbnail": "32_1454041954.jpg",
+                  "description": "Sprawl"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "3",
+          "name": "Bragi",
+          "description": "D,C,A",
+          "rounds": "5",
+          "category": "2",
+          "type": "2",
+          "rewards": "440",
+          "duration": "480.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "100",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "105",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "110",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:53",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "101",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "106",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "111",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "102",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "107",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "112",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       },
       "day2": {
-      "warmup": [
-      {
-      "id": "1",
-      "name": "Wall Extensions",
-      "duration": {
-      "min": 10,
-      "max": 20
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "6",
+            "row": "2",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:29:57",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "7",
+            "row": "2",
+            "exercise_id": "14",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:31:09",
+            "updated_at": "2016-04-04 09:33:39",
+            "exercise": {
+              "id": "14",
+              "name": "Incline Pushups",
+              "description": "Start your journey with the simplest way to develop an athletic physique",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+              "video_tips": "    ",
+              "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "13",
+                  "path": "14_1453984243.mp4",
+                  "videothumbnail": "14_1453984243.jpg",
+                  "description": "Incline Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "8",
+            "row": "2",
+            "exercise_id": "48",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:04",
+            "updated_at": "2016-04-04 14:19:00",
+            "exercise": {
+              "id": "48",
+              "name": "Bench Dips",
+              "description": "Develop more strength as you increase resistance with your bodyweight",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Sit on side of bench. \r\n2. Place hands on edge of bench. Position feet away from bench and rest heels on floor with legs straight. \r\n3. Lower your body with the feet in front of you\r\n4. Press your body up and hold in extension ",
+              "video_tips": "      ",
+              "pro_tips": " Don?t rush through your movements to make things easier on yourself. You will sacrifice your form, and in the end, you won?t actually get good at the skills you?re working on.\r\nThe closer you put your hands together, the tougher the bench dip becomes. ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "62",
+                  "path": "48_1454043291.mp4",
+                  "videothumbnail": "48_1454043291.jpg",
+                  "description": "Bench Dips"
+                }
+              ]
+            }
+          },
+          {
+            "id": "9",
+            "row": "2",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:49",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "10",
+            "row": "2",
+            "exercise_id": "42",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:33:42",
+            "updated_at": "2016-04-04 11:22:09",
+            "exercise": {
+              "id": "42",
+              "name": "Single Leg Deadlift",
+              "description": "Get your hips mobile and control your balance",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Keeping that knee slightly bent, perform a stiff-legged deadlift by bending at the hip.\r\n3. Continue lowering yourself until your upper body is parallel to the ground, and then return to the upright position. \r\n4. Repeat for the desired number of repetitions.",
+              "video_tips": "    ",
+              "pro_tips": "Avoid bending your supporting leg.\r\nKeep your non-supporting leg extended behind you for balance.",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "38",
+                  "path": "42_1454042789.mp4",
+                  "videothumbnail": "42_1454042789.jpg",
+                  "description": "Single Leg Deadlift"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "2",
+          "name": "Borr",
+          "description": "A,C,E,B",
+          "rounds": "3",
+          "category": "2",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1140.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "16",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "19",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:29",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "22",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "25",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:31:40",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "17",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "20",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "23",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "26",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "18",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "21",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "24",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "27",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:27:00"
+      "day3": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "9",
+          "name": "Elli",
+          "description": "C,A,D",
+          "rounds": "3",
+          "category": "2",
+          "type": "1",
+          "rewards": "330",
+          "duration": "420.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "325",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "328",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "331",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "337",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "326",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "329",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "332",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "338",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "327",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "330",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "333",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "339",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       },
-      {
-      "id": "2",
-      "name": "band dislocates",
-      "duration": {
-      "min": 10,
-      "max": 20
+      "day4": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "1",
+          "name": "Baldur",
+          "description": "A,D,B",
+          "rounds": "5",
+          "category": "1",
+          "type": "2",
+          "rewards": "440",
+          "duration": "2380.00",
+          "equipments": "Bar/Rings, Paralettes/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "1",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:15:36",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "6",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:17:21",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "11",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:19:02",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "3",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:16:17",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "8",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:17:54",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "13",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:19:23",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "5",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:16:40",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "10",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:18:11",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "15",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:19:48",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:57"
+      "day5": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "21",
+          "name": "Vali",
+          "description": "A,B,E",
+          "rounds": "3",
+          "category": "1",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1620.00",
+          "equipments": "Bar/Rings, Ladder/Post",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "838",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "841",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "844",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "847",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "850",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:27",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "839",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "842",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "845",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "848",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "852",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "840",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "843",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "846",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "849",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "854",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       },
-      {
-      "id": "3",
-      "name": "Cat-camels",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:53"
-      },
-      {
-      "id": "4",
-      "name": "Scapular Shrugs",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:00",
-      "updated_at": "2016-01-11 08:26:49"
-      },
-      {
-      "id": "5",
-      "name": "Full Body Circles",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:26:44"
-      },
-      {
-      "id": "6",
-      "name": "Front and Side Leg Swings",
-      "duration": {
-      "min": 10,
-      "max": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:26:40"
-      },
-      {
-      "id": "7",
-      "name": "Jumping Jacks",
-      "duration": {
-      "min": 100
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:01",
-      "updated_at": "2016-01-11 08:29:46"
-      },
-      {
-      "id": "8",
-      "name": "Arm Rotations",
-      "duration": {
-      "min": 120
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:29:55"
-      },
-      {
-      "id": "9",
-      "name": "High Knees",
-      "duration": {
-      "min": 50
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:30:04"
-      },
-      {
-      "id": "10",
-      "name": "Plank",
-      "duration": {
-      "min": 10,
-      "max": 60
-      },
-      "unit": "seconds",
-      "created_at": "2016-01-11 00:00:02",
-      "updated_at": "2016-01-11 08:28:03"
-      },
-      {
-      "id": "11",
-      "name": "Burpee",
-      "duration": {
-      "min": 10
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:30:44"
-      },
-      {
-      "id": "12",
-      "name": "Shouder rolls",
-      "duration": {
-      "min": 20
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:31:11"
-      },
-      {
-      "id": "13",
-      "name": "Squat jumps",
-      "duration": {
-      "min": 10
-      },
-      "unit": "times",
-      "created_at": "2016-01-11 00:00:03",
-      "updated_at": "2016-01-11 08:31:29"
+      "day6": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "10",
+          "name": "Loki",
+          "description": "A,E,B",
+          "rounds": "1",
+          "category": "1",
+          "type": "1",
+          "rewards": "330",
+          "duration": "1440.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "364",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "365",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:24",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "366",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:49",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "367",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:05",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "368",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:21",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "369",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:44",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "370",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:38",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "371",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:58",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "372",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:38:13",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 1,
+        "workout_intensity": 1,
+        "hiit": [
+          {
+            "id": 2,
+            "intensity": 4,
+            "is_completed": 0,
+            "replacement": [
+              {
+                "round1": [
+                  {
+                    "name": "Burpee",
+                    "duration": 10,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "31",
+                      "name": "Burpee",
+                      "description": "Test your fitness with the original burpee",
+                      "category": "2",
+                      "type": "1",
+                      "muscle_groups": "8",
+                      "rewards": "7.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start in a standing position\r\n2. Go down and bring your body down to the floor\r\n3. Jump back up with your hands behind your head",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                      "is_static": "0",
+                      "musclegroup_string": "Full Body",
+                      "video": [
+                        {
+                          "id": "28",
+                          "path": "31_1454041910.mp4",
+                          "videothumbnail": "31_1454041910.jpg",
+                          "description": "Burpee"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round2": [
+                  {
+                    "name": "High Jumps",
+                    "duration": 25,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "36",
+                      "name": "High Jumps",
+                      "description": "Do high jumps as a part of restless HIIT workouts",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                      "video_tips": "    ",
+                      "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                      "is_static": "0",
+                      "musclegroup_string": "Legs",
+                      "video": [
+                        {
+                          "id": "33",
+                          "path": "36_1454042273.mp4",
+                          "videothumbnail": "36_1454042273.jpg",
+                          "description": "High Jumps"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round3": [
+                  {
+                    "name": "Knee Raises",
+                    "duration": 15,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "57",
+                      "name": "Knee Raises",
+                      "description": "Develop grip and core strength and get used to slow and controlled moves",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "4,6,7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                      "is_static": "0",
+                      "musclegroup_string": "Back, Core, Legs",
+                      "video": [
+                        {
+                          "id": "67",
+                          "path": "57_1454044213.mp4",
+                          "videothumbnail": "57_1454044213.jpg",
+                          "description": "Knee Raises"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ]
+              }
+            ],
+            "replacement_round_count": 3
+          }
+        ],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ]
       }
-      ],
-      "fundumentals": [
-      {
-      "exercise_id": 1,
-      "duration": {
-      "min": 15
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "1",
-      "path": "Now1.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 13,
-      "duration": {
-      "min": 20
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "13",
-      "name": "Military Press",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "1,3",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "13",
-      "path": "Now13.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 5,
-      "duration": {
-      "min": 40
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "5",
-      "name": "Side Triceps",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "0",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "30",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "5",
-      "path": "Now5.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 16,
-      "duration": {
-      "min": 40
-      },
-      "unit": "times",
-      "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "6",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "16",
-      "path": "Now16.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      },
-      {
-      "exercise_id": 7,
-      "duration": {
-      "min": 60,
-      "max": 90
-      },
-      "unit": "seconds",
-      "exercise": {
-      "id": "7",
-      "name": "Wall Sits",
-      "description": "",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "7,8",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "seconds",
-      "equipment": "",
-      "range_of_motion": "",
-      "video_tips": "",
-      "pro_tips": "",
-      "video": [
-      {
-      "id": "7",
-      "path": "Now7.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      }
-      ]
-      }
-      }
-      ],
-      "exercises": [],
-      "workout": {
-      "id": "4",
-      "name": "Buri",
-      "description": "Buri",
-      "rounds": "1",
-      "category": "1",
-      "type": "2",
-      "rewards": 550,
-      "duration": "1440.00",
-      "equipments": "Bar",
-      "exercises": {
-      "round1": [
-      {
-      "id": "150",
-      "workout_id": "4",
-      "category": "3",
-      "repititions": "180",
-      "exercise_id": "75",
-      "unit": "seconds",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "76",
-      "path": "Now76.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "75",
-      "name": "Jacknives",
-      "description": ""
-      }
-      },
-      {
-      "id": "151",
-      "workout_id": "4",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "69",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "69",
-      "path": "Now69.mp4",
-      "videothumbnail": "thumbnail3.jpg",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "69",
-      "name": "Muscleups",
-      "description": ""
-      }
-      },
-      {
-      "id": "152",
-      "workout_id": "4",
-      "category": "3",
-      "repititions": "100",
-      "exercise_id": "70",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:54",
-      "video": {
-      "id": "70",
-      "path": "Now70.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "70",
-      "name": "Dips",
-      "description": ""
-      }
-      },
-      {
-      "id": "153",
-      "workout_id": "4",
-      "category": "3",
-      "repititions": "50",
-      "exercise_id": "74",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:45:38",
-      "video": {
-      "id": "75",
-      "path": "Now75.mp4",
-      "videothumbnail": "thumbnail2.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "74",
-      "name": "Handstand Pushups",
-      "description": ""
-      }
-      },
-      {
-      "id": "154",
-      "workout_id": "4",
-      "category": "3",
-      "repititions": "200",
-      "exercise_id": "82",
-      "unit": "times",
-      "round": "1",
-      "created_at": "2015-11-18 18:30:00",
-      "updated_at": "2015-11-19 10:00:00",
-      "video": {
-      "id": "83",
-      "path": "Now83.mp4",
-      "videothumbnail": "thumbnail1.png",
-      "description": "Test Description"
-      },
-      "exercise": {
-      "id": "82",
-      "name": "Iron Mike",
-      "description": ""
-      }
-      }
-      ]
-      }
-      },
-      "coach_workout_rounds": 1,
-      "workout_intensity": 1,
-      "hiit": [
-      {
-      "id": 2,
-      "intensity": 4
-      }
-      ],
-      "stretching": [
-      {
-      "exercise_id": "Superman",
-      "duration": {
-      "min": 6,
-      "max": 13
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Lower Back Strength",
-      "duration": {
-      "min": 38,
-      "max": 63
-      },
-      "unit": "times"
-      },
-      {
-      "exercise_id": "Upper Dog",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Child's Pose",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "L-sit on the floor",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Frog stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Good morning",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Chest Opener",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Triceps Stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Hands Back",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      },
-      {
-      "exercise_id": "Shoulder Stretch",
-      "duration": {
-      "min": 38,
-      "max": 75
-      },
-      "unit": "seconds"
-      }
-      ]
-      }
-      },
-      "category": "advanced",
-      "muscle_groups": "3,6,8",
-      "created_at": "2016-01-14 11:31:41",
-      "updated_at": "2016-01-15 06:27:40"
-      },
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+    },
+    "category": "professional",
+    "muscle_groups": "",
+    "limitations": "",
+    "goal_option": "0",
+    "feedback": "0",
+    "created_at": "2016-05-27 06:54:49",
+    "updated_at": "2016-06-14 12:50:18",
+    "description": "Strive for progress",
+    "musclegroup_string": "",
+    "goaloption_string": ""
+  },
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -2431,7 +10867,4914 @@ class CoachesController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
+     * {
+  "status": 1,
+  "message": "Successfully updated coach exercises",
+  "coach_day": "1",
+  "coach_week": "1",
+  "is_subscribed": 1,
+  "need_update": 0,
+  "week_status": {
+    "1": 0
+  },
+  "day_status": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "week_points": "330.00",
+  "coach": {
+    "id": "490",
+    "user_id": "67",
+    "focus": "2",
+    "height": "0.00",
+    "weight": "0.00",
+    "days": "6",
+    "exercises": {
+      "day1": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "16",
+            "row": "4",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:51:17",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "17",
+            "row": "4",
+            "exercise_id": "78",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:22",
+            "updated_at": "2016-04-04 14:00:58",
+            "exercise": {
+              "id": "78",
+              "name": "Australian Pullups",
+              "description": "Get started with developing your grip and back strength",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "1,4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Grip a bar that is suspended at around waist height, with the feet resting on the ground.\r\n2. Squeeze the shoulder blades together and pull your chest up to the bar",
+              "video_tips": "    ",
+              "pro_tips": "The closer the body is to horizontal the more difficult the exercise becomes.?\r\nA set of height adjustable gymnastics rings are a good alternative.\r\nKeep whole body engaged and keep your butt in line with your body.?  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Arms, Core",
+              "video": [
+                {
+                  "id": "78",
+                  "path": "78_1454045971.mp4",
+                  "videothumbnail": "78_1454045971.jpg",
+                  "description": "Australian Pullups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "18",
+            "row": "4",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:52:56",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "19",
+            "row": "4",
+            "exercise_id": "45",
+            "duration": {
+              "min": "25",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:53:50",
+            "updated_at": "2016-04-04 14:16:38",
+            "exercise": {
+              "id": "45",
+              "name": "Squats",
+              "description": "Get strong with a world class full body compound exercise",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "7",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a squat \r\n3. Keep your hands in front of you and press yourself up ",
+              "video_tips": "      ",
+              "pro_tips": " Lock the knees out while squeezing the glutes to execute properly.\r\nSquat deep and hold for 1-2 secs, ass to the grass!     ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "41",
+                  "path": "45_1454043104.mp4",
+                  "videothumbnail": "45_1454043104.jpg",
+                  "description": "Squats"
+                }
+              ]
+            }
+          },
+          {
+            "id": "20",
+            "row": "4",
+            "exercise_id": "32",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:54:35",
+            "updated_at": "2016-04-04 11:06:44",
+            "exercise": {
+              "id": "32",
+              "name": "Sprawl",
+              "description": "Boost your cardio and strength with sprawls",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+              "video_tips": "    ",
+              "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+              "is_static": "0",
+              "musclegroup_string": "Full Body",
+              "video": [
+                {
+                  "id": "29",
+                  "path": "32_1454041954.mp4",
+                  "videothumbnail": "32_1454041954.jpg",
+                  "description": "Sprawl"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "3",
+          "name": "Bragi",
+          "description": "D,C,A",
+          "rounds": "5",
+          "category": "2",
+          "type": "2",
+          "rewards": "440",
+          "duration": "480.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "100",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "105",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "110",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 04:19:53",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "101",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "106",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "111",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "102",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "14",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:18:12",
+                "updated_at": "2016-04-04 09:33:39",
+                "exercise": {
+                  "id": "14",
+                  "name": "Incline Pushups",
+                  "description": "Start your journey with the simplest way to develop an athletic physique",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,2,3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Chest, Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "107",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "36",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:20",
+                "updated_at": "2016-04-04 11:12:49",
+                "exercise": {
+                  "id": "36",
+                  "name": "High Jumps",
+                  "description": "Do high jumps as a part of restless HIIT workouts",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                  "video_tips": "    ",
+                  "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "112",
+                "workout_id": "3",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 04:19:54",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day2": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "6",
+            "row": "2",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:29:57",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "7",
+            "row": "2",
+            "exercise_id": "14",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:31:09",
+            "updated_at": "2016-04-04 09:33:39",
+            "exercise": {
+              "id": "14",
+              "name": "Incline Pushups",
+              "description": "Start your journey with the simplest way to develop an athletic physique",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+              "video_tips": "    ",
+              "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "13",
+                  "path": "14_1453984243.mp4",
+                  "videothumbnail": "14_1453984243.jpg",
+                  "description": "Incline Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "8",
+            "row": "2",
+            "exercise_id": "48",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:04",
+            "updated_at": "2016-04-04 14:19:00",
+            "exercise": {
+              "id": "48",
+              "name": "Bench Dips",
+              "description": "Develop more strength as you increase resistance with your bodyweight",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Sit on side of bench. \r\n2. Place hands on edge of bench. Position feet away from bench and rest heels on floor with legs straight. \r\n3. Lower your body with the feet in front of you\r\n4. Press your body up and hold in extension ",
+              "video_tips": "      ",
+              "pro_tips": " Don?t rush through your movements to make things easier on yourself. You will sacrifice your form, and in the end, you won?t actually get good at the skills you?re working on.\r\nThe closer you put your hands together, the tougher the bench dip becomes. ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "62",
+                  "path": "48_1454043291.mp4",
+                  "videothumbnail": "48_1454043291.jpg",
+                  "description": "Bench Dips"
+                }
+              ]
+            }
+          },
+          {
+            "id": "9",
+            "row": "2",
+            "exercise_id": "57",
+            "duration": {
+              "min": "15",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:32:49",
+            "updated_at": "2016-04-04 12:10:48",
+            "exercise": {
+              "id": "57",
+              "name": "Knee Raises",
+              "description": "Develop grip and core strength and get used to slow and controlled moves",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,6,7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+              "video_tips": "    ",
+              "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+              "is_static": "0",
+              "musclegroup_string": "Back, Core, Legs",
+              "video": [
+                {
+                  "id": "67",
+                  "path": "57_1454044213.mp4",
+                  "videothumbnail": "57_1454044213.jpg",
+                  "description": "Knee Raises"
+                }
+              ]
+            }
+          },
+          {
+            "id": "10",
+            "row": "2",
+            "exercise_id": "42",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:33:42",
+            "updated_at": "2016-04-04 11:22:09",
+            "exercise": {
+              "id": "42",
+              "name": "Single Leg Deadlift",
+              "description": "Get your hips mobile and control your balance",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Keeping that knee slightly bent, perform a stiff-legged deadlift by bending at the hip.\r\n3. Continue lowering yourself until your upper body is parallel to the ground, and then return to the upright position. \r\n4. Repeat for the desired number of repetitions.",
+              "video_tips": "    ",
+              "pro_tips": "Avoid bending your supporting leg.\r\nKeep your non-supporting leg extended behind you for balance.",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "38",
+                  "path": "42_1454042789.mp4",
+                  "videothumbnail": "42_1454042789.jpg",
+                  "description": "Single Leg Deadlift"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "2",
+          "name": "Borr",
+          "description": "A,C,E,B",
+          "rounds": "3",
+          "category": "2",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1140.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "16",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "19",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:29",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "22",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "25",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:31:40",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "17",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "20",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "23",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "26",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "18",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "32",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:29:53",
+                "updated_at": "2016-04-04 11:06:44",
+                "exercise": {
+                  "id": "32",
+                  "name": "Sprawl",
+                  "description": "Boost your cardio and strength with sprawls",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                  "is_static": "0",
+                  "musclegroup_string": "Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "21",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:30",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "24",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "40",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:30:59",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "27",
+                "workout_id": "2",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:31:41",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day3": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "9",
+          "name": "Elli",
+          "description": "C,A,D",
+          "rounds": "3",
+          "category": "2",
+          "type": "1",
+          "rewards": "330",
+          "duration": "420.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "325",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "328",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "331",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "337",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "326",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "329",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "332",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "338",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "327",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "39",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:28:43",
+                "updated_at": "2016-04-04 11:16:09",
+                "exercise": {
+                  "id": "39",
+                  "name": "Climbers",
+                  "description": "Increase your energy, health and endurance",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+                  "video_tips": "    ",
+                  "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Legs"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "330",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:05",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "333",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:29:28",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "339",
+                "workout_id": "9",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "57",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 05:30:04",
+                "updated_at": "2016-04-04 12:10:48",
+                "exercise": {
+                  "id": "57",
+                  "name": "Knee Raises",
+                  "description": "Develop grip and core strength and get used to slow and controlled moves",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,6,7",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                  "video_tips": "    ",
+                  "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Core, Legs"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day4": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "1",
+          "name": "Baldur",
+          "description": "A,D,B",
+          "rounds": "5",
+          "category": "1",
+          "type": "2",
+          "rewards": "440",
+          "duration": "2380.00",
+          "equipments": "Bar/Rings, Paralettes/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "1",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:15:36",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "6",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:17:21",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "11",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 03:19:02",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "3",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:16:17",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "8",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:17:54",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "13",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "20",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 03:19:23",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "5",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:16:40",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "10",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "22",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:18:11",
+                "updated_at": "2016-04-04 14:09:31",
+                "exercise": {
+                  "id": "22",
+                  "name": "Spiderman Pushups",
+                  "description": "Learn to control your body and create body awareness",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "2,3,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+                  "video_tips": "      ",
+                  "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Chest, Triceps, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "15",
+                "workout_id": "1",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 03:19:48",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day5": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "21",
+          "name": "Vali",
+          "description": "A,B,E",
+          "rounds": "3",
+          "category": "1",
+          "type": "2",
+          "rewards": "330",
+          "duration": "1620.00",
+          "equipments": "Bar/Rings, Ladder/Post",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "838",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "841",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "844",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "847",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "850",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 23:16:27",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round2": [
+              {
+                "id": "839",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "842",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "845",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "848",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "852",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "2",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ],
+            "round3": [
+              {
+                "id": "840",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "7",
+                "exercise_id": "64",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:14:44",
+                "updated_at": "2016-04-04 14:27:54",
+                "exercise": {
+                  "id": "64",
+                  "name": "Skin the cat",
+                  "description": "Develop your joints mobility and expose yourself to new movement layers",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "4,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+                  "video_tips": "        ",
+                  "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+                  "is_static": "0",
+                  "musclegroup_string": "Back, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "843",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:12",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "846",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:15:35",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "849",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "30",
+                "exercise_id": "72",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:00",
+                "updated_at": "2016-04-04 14:34:27",
+                "exercise": {
+                  "id": "73",
+                  "name": "Tucked Human Flag",
+                  "description": "Start securing your anchoring point and learn to fully lock out your support",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "1,5,6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+                  "video_tips": "          ",
+                  "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+                  "is_static": "1",
+                  "musclegroup_string": "Shoulders, Arms, Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "854",
+                "workout_id": "21",
+                "category": "1",
+                "repititions": "10",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "3",
+                "created_at": "2016-01-19 23:16:28",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 3,
+        "workout_intensity": 1,
+        "hiit": [],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      },
+      "day6": {
+        "warmup": [
+          {
+            "id": "1",
+            "name": "wall extensions",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:55:06",
+            "updated_at": "2016-01-21 08:55:06",
+            "is_completed": 0
+          },
+          {
+            "id": "2",
+            "name": "band dislocates",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 08:57:38",
+            "updated_at": "2016-01-21 08:57:38",
+            "is_completed": 0
+          },
+          {
+            "id": "3",
+            "name": "cat-camels",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:00:39",
+            "updated_at": "2016-01-21 09:00:39",
+            "is_completed": 0
+          },
+          {
+            "id": "4",
+            "name": "scapular shrugs",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:01",
+            "updated_at": "2016-01-21 09:01:01",
+            "is_completed": 0
+          },
+          {
+            "id": "5",
+            "name": "full body circles",
+            "duration": {
+              "min": "10",
+              "max": "20"
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:01:26",
+            "updated_at": "2016-01-21 09:01:26",
+            "is_completed": 0
+          },
+          {
+            "id": "6",
+            "name": "Jumping Jacks",
+            "duration": {
+              "min": "100",
+              "max": ""
+            },
+            "unit": "seconds",
+            "created_at": "2016-01-21 09:04:52",
+            "updated_at": "2016-01-21 09:04:52",
+            "is_completed": 0
+          },
+          {
+            "id": "7",
+            "name": "Arm rotations",
+            "duration": {
+              "min": "120",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:05:29",
+            "updated_at": "2016-01-21 09:05:29",
+            "is_completed": 0
+          },
+          {
+            "id": "8",
+            "name": "High Knees",
+            "duration": {
+              "min": "50",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:02",
+            "updated_at": "2016-01-21 09:06:02",
+            "is_completed": 0
+          },
+          {
+            "id": "9",
+            "name": "Shouder rolls",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "created_at": "2016-01-21 09:06:34",
+            "updated_at": "2016-01-21 09:06:34",
+            "is_completed": 0
+          }
+        ],
+        "is_completed": 0,
+        "fundumentals": [
+          {
+            "id": "11",
+            "row": "3",
+            "exercise_id": "64",
+            "duration": {
+              "min": "10",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:35:13",
+            "updated_at": "2016-04-04 14:27:54",
+            "exercise": {
+              "id": "64",
+              "name": "Skin the cat",
+              "description": "Develop your joints mobility and expose yourself to new movement layers",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "4,5,6",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+              "video_tips": "        ",
+              "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+              "is_static": "0",
+              "musclegroup_string": "Back, Arms, Core",
+              "video": [
+                {
+                  "id": "71",
+                  "path": "64_1454045043.mp4",
+                  "videothumbnail": "64_1454045043.jpg",
+                  "description": "Skin the cat"
+                }
+              ]
+            }
+          },
+          {
+            "id": "12",
+            "row": "3",
+            "exercise_id": "12",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:16",
+            "updated_at": "2016-04-04 09:26:06",
+            "exercise": {
+              "id": "12",
+              "name": "Pushups",
+              "description": "Perform the most popular exercise of all time with real strength",
+              "category": "2",
+              "type": "1",
+              "muscle_groups": "1,2,3",
+              "rewards": "7.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+              "video_tips": "      ",
+              "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Chest, Triceps",
+              "video": [
+                {
+                  "id": "57",
+                  "path": "12_1453984139.mp4",
+                  "videothumbnail": "12_1453984139.jpg",
+                  "description": "Pushups"
+                }
+              ]
+            }
+          },
+          {
+            "id": "13",
+            "row": "3",
+            "exercise_id": "49",
+            "duration": {
+              "min": "30",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:36:49",
+            "updated_at": "2016-04-04 14:19:29",
+            "exercise": {
+              "id": "49",
+              "name": "Side Triceps",
+              "description": "Start with the basics of building triceps strength",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "3",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+              "video_tips": "          ",
+              "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+              "is_static": "0",
+              "musclegroup_string": "Triceps",
+              "video": [
+                {
+                  "id": "43",
+                  "path": "49_1454043404.mp4",
+                  "videothumbnail": "49_1454043404.jpg",
+                  "description": "Side Triceps"
+                }
+              ]
+            }
+          },
+          {
+            "id": "14",
+            "row": "3",
+            "exercise_id": "4",
+            "duration": {
+              "min": "60",
+              "max": "90"
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:32",
+            "updated_at": "2016-04-04 14:02:11",
+            "exercise": {
+              "id": "4",
+              "name": "Plank",
+              "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+              "category": "1",
+              "type": "1",
+              "muscle_groups": "1,4,6,8",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "seconds",
+              "equipment": "",
+              "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+              "video_tips": "        ",
+              "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+              "is_static": "0",
+              "musclegroup_string": "Shoulders, Back, Core, Full Body",
+              "video": [
+                {
+                  "id": "4",
+                  "path": "4_1453976855.mp4",
+                  "videothumbnail": "4_1453976855.jpg",
+                  "description": "Plank"
+                }
+              ]
+            }
+          },
+          {
+            "id": "15",
+            "row": "3",
+            "exercise_id": "36",
+            "duration": {
+              "min": "20",
+              "max": ""
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 04:37:57",
+            "updated_at": "2016-04-04 11:12:49",
+            "exercise": {
+              "id": "36",
+              "name": "High Jumps",
+              "description": "Do high jumps as a part of restless HIIT workouts",
+              "category": "1",
+              "type": "2",
+              "muscle_groups": "7",
+              "rewards": "6.00",
+              "repititions": "10",
+              "duration": "10",
+              "unit": "times",
+              "equipment": "",
+              "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+              "video_tips": "    ",
+              "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+              "is_static": "0",
+              "musclegroup_string": "Legs",
+              "video": [
+                {
+                  "id": "33",
+                  "path": "36_1454042273.mp4",
+                  "videothumbnail": "36_1454042273.jpg",
+                  "description": "High Jumps"
+                }
+              ]
+            }
+          }
+        ],
+        "exercises": [],
+        "workout": {
+          "id": "10",
+          "name": "Loki",
+          "description": "A,E,B",
+          "rounds": "1",
+          "category": "1",
+          "type": "1",
+          "rewards": "330",
+          "duration": "1440.00",
+          "equipments": "Bar/Rings",
+          "is_completed": 0,
+          "exercises": {
+            "round1": [
+              {
+                "id": "364",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:04",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "365",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:24",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "366",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:35:49",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "367",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:05",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "368",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "9",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:21",
+                "updated_at": "2016-04-04 09:22:17",
+                "exercise": {
+                  "id": "9",
+                  "name": "Crunches",
+                  "description": "Do the most admired sixpack exercise in the world",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+                  "video_tips": "    ",
+                  "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "369",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "25",
+                "exercise_id": "29",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:36:44",
+                "updated_at": "2016-04-04 14:14:02",
+                "exercise": {
+                  "id": "29",
+                  "name": "Tucked DF",
+                  "description": "Develop your core strength on the path to the hardest core exercise in history",
+                  "category": "1",
+                  "type": "2",
+                  "muscle_groups": "6",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+                  "video_tips": "          ",
+                  "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+                  "is_static": "0",
+                  "musclegroup_string": "Core"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "370",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "50",
+                "exercise_id": "49",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:38",
+                "updated_at": "2016-04-04 14:19:29",
+                "exercise": {
+                  "id": "49",
+                  "name": "Side Triceps",
+                  "description": "Start with the basics of building triceps strength",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "3",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+                  "video_tips": "          ",
+                  "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+                  "is_static": "0",
+                  "musclegroup_string": "Triceps"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "371",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "120",
+                "exercise_id": "4",
+                "unit": "seconds",
+                "round": "1",
+                "created_at": "2016-01-19 05:37:58",
+                "updated_at": "2016-04-04 14:02:11",
+                "exercise": {
+                  "id": "4",
+                  "name": "Plank",
+                  "description": "The plank builds your isometric strength and helps sculpt your waistline.",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,4,6,8",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "seconds",
+                  "equipment": "",
+                  "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+                  "video_tips": "        ",
+                  "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Back, Core, Full Body"
+                },
+                "is_completed": 0
+              },
+              {
+                "id": "372",
+                "workout_id": "10",
+                "category": "1",
+                "repititions": "15",
+                "exercise_id": "66",
+                "unit": "times",
+                "round": "1",
+                "created_at": "2016-01-19 05:38:13",
+                "updated_at": "2016-04-04 14:31:38",
+                "exercise": {
+                  "id": "69",
+                  "name": "Jumping Pullups",
+                  "description": "Expose yourself to packed shoulders and hang time",
+                  "category": "1",
+                  "type": "1",
+                  "muscle_groups": "1,5",
+                  "rewards": "6.00",
+                  "repititions": "10",
+                  "duration": "10",
+                  "unit": "times",
+                  "equipment": "",
+                  "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+                  "video_tips": "        ",
+                  "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+                  "is_static": "0",
+                  "musclegroup_string": "Shoulders, Arms"
+                },
+                "is_completed": 0
+              }
+            ]
+          },
+          "exercise_category": 1
+        },
+        "coach_workout_rounds": 1,
+        "workout_intensity": 1,
+        "hiit": [
+          {
+            "id": 2,
+            "intensity": 4,
+            "is_completed": 0,
+            "replacement": [
+              {
+                "round1": [
+                  {
+                    "name": "Burpee",
+                    "duration": 10,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "31",
+                      "name": "Burpee",
+                      "description": "Test your fitness with the original burpee",
+                      "category": "2",
+                      "type": "1",
+                      "muscle_groups": "8",
+                      "rewards": "7.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start in a standing position\r\n2. Go down and bring your body down to the floor\r\n3. Jump back up with your hands behind your head",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+                      "is_static": "0",
+                      "musclegroup_string": "Full Body",
+                      "video": [
+                        {
+                          "id": "28",
+                          "path": "31_1454041910.mp4",
+                          "videothumbnail": "31_1454041910.jpg",
+                          "description": "Burpee"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round2": [
+                  {
+                    "name": "High Jumps",
+                    "duration": 25,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "36",
+                      "name": "High Jumps",
+                      "description": "Do high jumps as a part of restless HIIT workouts",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+                      "video_tips": "    ",
+                      "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+                      "is_static": "0",
+                      "musclegroup_string": "Legs",
+                      "video": [
+                        {
+                          "id": "33",
+                          "path": "36_1454042273.mp4",
+                          "videothumbnail": "36_1454042273.jpg",
+                          "description": "High Jumps"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ],
+                "round3": [
+                  {
+                    "name": "Knee Raises",
+                    "duration": 15,
+                    "unit": "times",
+                    "exercise": {
+                      "id": "57",
+                      "name": "Knee Raises",
+                      "description": "Develop grip and core strength and get used to slow and controlled moves",
+                      "category": "1",
+                      "type": "2",
+                      "muscle_groups": "4,6,7",
+                      "rewards": "6.00",
+                      "repititions": "10",
+                      "duration": "10",
+                      "unit": "times",
+                      "equipment": "",
+                      "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+                      "video_tips": "    ",
+                      "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+                      "is_static": "0",
+                      "musclegroup_string": "Back, Core, Legs",
+                      "video": [
+                        {
+                          "id": "67",
+                          "path": "57_1454044213.mp4",
+                          "videothumbnail": "57_1454044213.jpg",
+                          "description": "Knee Raises"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Rest",
+                    "duration": 10,
+                    "unit": "seconds",
+                    "exercise": []
+                  }
+                ]
+              }
+            ],
+            "replacement_round_count": 3
+          }
+        ],
+        "stretching": [
+          {
+            "id": "1",
+            "exercise_id": "Superman",
+            "duration": {
+              "min": 6,
+              "max": 13
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:10:31",
+            "updated_at": "2016-01-22 07:10:31"
+          },
+          {
+            "id": "2",
+            "exercise_id": "Lower Back Strength",
+            "duration": {
+              "min": 38,
+              "max": 63
+            },
+            "unit": "times",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:15:02",
+            "updated_at": "2016-01-22 07:15:02"
+          },
+          {
+            "id": "3",
+            "exercise_id": "Upper Dog",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:03",
+            "updated_at": "2016-01-22 07:16:03"
+          },
+          {
+            "id": "4",
+            "exercise_id": "Child's Pose",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:16:46",
+            "updated_at": "2016-01-22 07:16:46"
+          },
+          {
+            "id": "5",
+            "exercise_id": "L-sit on the floor",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:13",
+            "updated_at": "2016-01-22 07:17:13"
+          },
+          {
+            "id": "6",
+            "exercise_id": "Good morning",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:17:43",
+            "updated_at": "2016-01-22 07:17:43"
+          },
+          {
+            "id": "7",
+            "exercise_id": "Chest Opener",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:32",
+            "updated_at": "2016-01-22 07:19:32"
+          },
+          {
+            "id": "8",
+            "exercise_id": "Triceps Stretc",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:19:56",
+            "updated_at": "2016-01-22 07:19:56"
+          },
+          {
+            "id": "9",
+            "exercise_id": "Hands Back",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:19",
+            "updated_at": "2016-01-22 07:20:19"
+          },
+          {
+            "id": "10",
+            "exercise_id": "Shoulder Stretch",
+            "duration": {
+              "min": 38,
+              "max": 75
+            },
+            "unit": "seconds",
+            "is_completed": "0",
+            "created_at": "2016-01-22 07:20:45",
+            "updated_at": "2016-01-22 07:20:45"
+          }
+        ],
+        "status": "pending"
+      }
+    },
+    "category": "professional",
+    "muscle_groups": "",
+    "limitations": "",
+    "goal_option": "0",
+    "feedback": "0",
+    "created_at": "2016-05-27 06:54:49",
+    "updated_at": "2016-06-14 12:50:18",
+    "musclegroup_string": "",
+    "goaloption_string": "",
+    "description": "Strive for progress"
+  },
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * @apiError error Message token_invalid.
      * @apiError error Message token_expired.

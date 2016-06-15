@@ -27,6 +27,7 @@ use App\Hiituser;
 use App\Point;
 use App\Freestyleuser;
 use App\Testuser;
+use App\Message;
 use App\CommonFunctions\PushNotificationFunction;
 
 class FeedController extends Controller
@@ -165,6 +166,20 @@ class FeedController extends Controller
                             'image' => ''
                     ]);
                 }
+
+                if ($addStar == 1) {
+
+                    $feed = Feeds::where('id', '=', $feed->id)->with(['claps'])->first();
+
+                    $clap_details = new Clap([
+                        'user_id' => $request->input('user_id'),
+                        'item_type' => 'feed',
+                        'item_id' => $feed->id
+                    ]);
+
+                    $feed->claps()->save($clap_details);
+                }
+
 
                 if ($request->item_type == 'fundamental') {
 
@@ -785,328 +800,347 @@ class FeedController extends Controller
      * @apiParam {Number} [limit] limit
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 200 OK
+     * HTTP/1.1 200 OK
      * {
       "status": 1,
       "success": "List",
       "feed_list": [
-     * {
-      "id": 703,
-      "user_id": 48,
-      "item_type": "hiit_replacement",
-      "item_id": 3,
-      "feed_text": "Testing HIIT replacements",
+      {
+      "id": "1386",
+      "user_id": "17",
+      "item_type": "workout",
+      "item_id": "9",
+      "feed_text": "Hi",
       "image": [],
-      "created_at": "2016-02-23 13:20:00",
-      "updated_at": "2016-02-23 13:20:00",
+      "created_at": "2016-06-13 13:17:46",
+      "updated_at": "2016-06-13 13:17:46",
       "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
+      "comment_count": 2,
+      "is_commented": 1,
       "is_claped": 0,
-      "item_name": "60/120(Replacement)",
-      "duration": 320,
-      "intensity": 4,
+      "category": "HIIT-strength",
+      "item_name": "Elli",
+      "duration": "8",
+      "workout_rounds": "3",
+      "intensity": "1",
+      "focus": "Athletic",
       "profile": {
-      "user_id": 48,
-      "first_name": "Aneesh",
-      "last_name": "Kallikkattil",
-      "image": "",
-      "quote": "",
-      "gender": 1,
-      "level": 2
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
       }
       },
       {
-      "id": "1167",
-      "user_id": "130",
+      "id": "1385",
+      "user_id": "17",
       "item_type": "workout",
       "item_id": "9",
-      "feed_text": " ",
-      "image": "",
-      "created_at": "2016-04-07 11:16:49",
-      "updated_at": "2016-04-07 11:16:49",
-      "clap_count": 0,
+      "feed_text": "Tester",
+      "image": [],
+      "created_at": "2016-06-13 13:15:23",
+      "updated_at": "2016-06-13 13:15:23",
+      "clap_count": 1,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
       "category": "HIIT-strength",
       "item_name": "Elli",
-      "duration": "3",
+      "duration": "2",
       "workout_rounds": "3",
       "intensity": "1",
       "focus": "Athletic",
       "profile": {
-      "user_id": "130",
-      "first_name": "test",
-      "last_name": "user 2",
-      "image": "130_1460027861.jpg",
-      "quote": "",
-      "gender": "1",
-      "level": 3
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
       }
       },
       {
-      "id": "233",
-      "user_id": "84",
-      "item_type": "exercise",
+      "id": "1384",
+      "user_id": "17",
+      "item_type": "freestyle",
+      "item_id": "0",
+      "feed_text": "freestyle",
+      "image": [],
+      "created_at": "2016-06-13 11:22:00",
+      "updated_at": "2016-06-13 11:22:00",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "item_name": "Freestyle",
+      "duration": "216.00",
+      "intensity": "4",
+      "profile": {
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
+      }
+      },
+      {
+      "id": "1383",
+      "user_id": "17",
+      "item_type": "hiit_replacement",
       "item_id": "2",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-20 04:53:55",
-      "updated_at": "2016-01-20 04:53:55",
+      "feed_text": "test\\uD83D\\uDE02",
+      "image": [],
+      "created_at": "2016-06-13 11:05:46",
+      "updated_at": "2016-06-13 11:05:46",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "image": [],
-      "category": "Lean",
-      "item_name": "Australian Pullups",
-      "duration": "8",
-      "intensity": "1",
-      "unit": "times",
+      "item_name": "20/10(Replacement)",
+      "duration": "44.00",
+      "intensity": "0",
       "profile": {
-      "user_id": "84",
-      "first_name": "Aneesh",
-      "last_name": "ILeaf",
-      "image": "84_1453206435.jpg",
-      "quote": "new things",
-      "level": 7
-      }
-      },
-      {
-      "id": "232",
-      "user_id": "84",
-      "item_type": "exercise",
-      "item_id": "43",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-20 04:53:16",
-      "updated_at": "2016-01-20 04:53:16",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "Athletic",
-      "item_name": "Pushups",
-      "duration": "2",
-      "intensity": "1",
-      "unit": "times",
-      "profile": {
-      "user_id": "84",
-      "first_name": "Aneesh",
-      "last_name": "ILeaf",
-      "image": "84_1453206435.jpg",
-      "quote": "new things",
-      "level": 7
-      }
-      },
-      {
-      "id": "231",
-      "user_id": "86",
-      "item_type": "exercise",
-      "item_id": "43",
-      "feed_text": "Hai",
-      "created_at": "2016-01-20 04:37:20",
-      "updated_at": "2016-01-20 04:37:20",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "Athletic",
-      "item_name": "Pushups",
-      "duration": "5",
-      "intensity": "1",
-      "unit": "times",
-      "profile": {
-      "user_id": "86",
+      "user_id": "17",
       "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
       }
       },
       {
-      "id": "230",
-      "user_id": "86",
-      "item_type": "exercise",
-      "item_id": "17",
-      "feed_text": "Ok",
-      "created_at": "2016-01-19 13:48:39",
-      "updated_at": "2016-01-19 13:48:39",
-      "clap_count": 1,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 1,
-      "image": [],
-      "category": "Lean",
-      "item_name": "Plank",
-      "duration": "1",
-      "intensity": "1",
-      "unit": "seconds",
-      "profile": {
-      "user_id": "86",
-      "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
-      }
-      },
-      {
-      "id": "229",
-      "user_id": "86",
-      "item_type": "exercise",
+      "id": "1382",
+      "user_id": "17",
+      "item_type": "workout",
       "item_id": "1",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-19 13:48:04",
-      "updated_at": "2016-01-19 13:48:04",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "Lean",
-      "item_name": "Jumping Pullups",
-      "duration": "3",
-      "intensity": "10",
-      "unit": "times",
-      "profile": {
-      "user_id": "86",
-      "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
-      }
-      },
+      "feed_text": "testing2",
+      "image": [
       {
-      "id": "228",
-      "user_id": "86",
-      "item_type": "exercise",
-      "item_id": "40",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-19 13:47:35",
-      "updated_at": "2016-01-19 13:47:35",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "Athletic",
-      "item_name": "Lunge",
-      "duration": "3",
-      "intensity": "1",
-      "unit": "times",
-      "profile": {
-      "user_id": "86",
-      "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
+      "id": "78",
+      "user_id": "17",
+      "path": "feed_1382_1465815822.jpg",
+      "description": "testing2",
+      "parent_type": "2",
+      "parent_id": "1382",
+      "created_at": "2016-06-13 11:03:42",
+      "updated_at": "2016-06-13 11:03:42"
       }
-      },
-      {
-      "id": "227",
-      "user_id": "86",
-      "item_type": "exercise",
-      "item_id": "2",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-19 13:46:59",
-      "updated_at": "2016-01-19 13:46:59",
-      "clap_count": 0,
-      "comment_count": 0,
-      "is_commented": 0,
-      "is_claped": 0,
-      "image": [],
-      "category": "Lean",
-      "item_name": "Australian Pullups",
-      "duration": "2",
-      "intensity": "1",
-      "unit": "times",
-      "profile": {
-      "user_id": "86",
-      "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
-      }
-      },
-      {
-      "id": "226",
-      "user_id": "86",
-      "item_type": "exercise",
-      "item_id": "43",
-      "feed_text": "How hard was your Training? what kept you going?",
-      "created_at": "2016-01-19 13:46:23",
-      "updated_at": "2016-01-19 13:46:23",
+      ],
+      "created_at": "2016-06-13 11:03:42",
+      "updated_at": "2016-06-13 11:03:42",
       "clap_count": 1,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
-      "image": [],
-      "category": "Athletic",
-      "item_name": "Pushups",
-      "duration": "0",
-      "intensity": "1",
-      "unit": "times",
+      "category": "Strength",
+      "item_name": "Baldur",
+      "duration": "9",
+      "workout_rounds": "5",
+      "is_coach": 1,
+      "coach_workout_rounds": "3",
+      "focus": "Lean",
       "profile": {
-      "user_id": "86",
+      "user_id": "17",
       "first_name": "Vinish",
-      "last_name": "Tester",
-      "image": "86_1452668192.jpg",
-      "quote": "how are you?",
-      "level": 18
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
       }
       },
       {
-      "id": "1133",
-      "user_id": "67",
+      "id": "1381",
+      "user_id": "17",
       "item_type": "workout",
       "item_id": "2",
-      "feed_text": "hcjgg",
-      "image": "",
-      "created_at": "2016-03-31 17:19:28",
-      "updated_at": "2016-03-31 17:19:28",
+      "feed_text": "testing1",
+      "image": [
+      {
+      "id": "77",
+      "user_id": "17",
+      "path": "feed_1381_1465815305.jpg",
+      "description": "testing1",
+      "parent_type": "2",
+      "parent_id": "1381",
+      "created_at": "2016-06-13 10:55:05",
+      "updated_at": "2016-06-13 10:55:05"
+      }
+      ],
+      "created_at": "2016-06-13 10:55:05",
+      "updated_at": "2016-06-13 10:55:05",
       "clap_count": 0,
       "comment_count": 0,
       "is_commented": 0,
       "is_claped": 0,
       "category": "HIIT-strength",
       "item_name": "Borr",
-      "duration": "8",
+      "duration": "7",
       "workout_rounds": "3",
       "is_coach": 1,
-      "coach_workout_rounds": "1",
-      "focus": "Athletic",
+      "coach_workout_rounds": "3",
+      "intensity": 1,
+      "focus": "Lean",
+      "profile": {
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
+      }
+      },
+      {
+      "id": "1380",
+      "user_id": "17",
+      "item_type": "workout",
+      "item_id": "3",
+      "feed_text": "testing",
+      "image": [],
+      "created_at": "2016-06-13 10:53:15",
+      "updated_at": "2016-06-13 10:53:15",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "HIIT-strength",
+      "item_name": "Bragi",
+      "duration": "4",
+      "workout_rounds": "5",
+      "is_coach": 1,
+      "coach_workout_rounds": "3",
+      "focus": "Lean",
+      "profile": {
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
+      }
+      },
+      {
+      "id": "1366",
+      "user_id": "17",
+      "item_type": "workout",
+      "item_id": "2",
+      "feed_text": "Haiiiii",
+      "image": [],
+      "created_at": "2016-06-09 10:34:46",
+      "updated_at": "2016-06-09 10:34:46",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "HIIT-strength",
+      "item_name": "Borr",
+      "duration": "4",
+      "workout_rounds": "3",
+      "is_coach": 1,
+      "coach_workout_rounds": "3",
+      "intensity": 1,
+      "focus": "Lean",
+      "profile": {
+      "user_id": "17",
+      "first_name": "Vinish",
+      "last_name": "P",
+      "image": "17_1457639358.jpg",
+      "quote": "you",
+      "gender": "0",
+      "level": 28
+      }
+      },
+      {
+      "id": "1364",
+      "user_id": "1",
+      "item_type": "knowledge",
+      "item_id": "0",
+      "feed_text": "This is a test message.\nAgain test for line feed.\n\nSecond with double line feed.",
+      "image": [
+      {
+      "id": "76",
+      "user_id": "1",
+      "path": "feed_1364_1464871380.jpg",
+      "description": "This is a test message.\nAgain test for line feed.\n\nSecond with double line feed.",
+      "parent_type": "2",
+      "parent_id": "1364",
+      "created_at": "2016-06-02 12:43:00",
+      "updated_at": "2016-06-02 12:43:00"
+      }
+      ],
+      "created_at": "2016-06-02 12:42:59",
+      "updated_at": "2016-06-02 12:43:47",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "",
+      "item_name": "Knowledge",
+      "profile": {
+      "user_id": "1",
+      "first_name": "Team",
+      "last_name": "Ykings",
+      "image": "1_1463145040.jpg",
+      "quote": "",
+      "gender": "0",
+      "level": 3
+      }
+      },
+      {
+      "id": "1363",
+      "user_id": "67",
+      "item_type": "exercise",
+      "item_id": "8",
+      "feed_text": "Community Workout in Augsburg. Our first YKMS in the books. Thanks everyone for the support. Next YKMS coming soon. #StriveForProgress\n\t\\\\n\n\t\\\\nCommunity Workout in Augsburg. Unsere erste YKMS ist geschafft. Danke an alle Beteiligten. Auf ein Neues in K\\\\U00fcrze.  #StriveForProgress",
+      "image": [],
+      "created_at": "2016-05-30 10:10:00",
+      "updated_at": "2016-05-30 10:10:00",
+      "clap_count": 0,
+      "comment_count": 0,
+      "is_commented": 0,
+      "is_claped": 0,
+      "category": "Athletic",
+      "item_name": "Bicycle",
+      "duration": "10",
+      "intensity": "7",
+      "unit": "times",
+      "is_static": "0",
       "profile": {
       "user_id": "67",
       "first_name": "Aneesh",
-      "last_name": "iL",
-      "image": "67_1457647007.jpg",
-      "quote": "",
+      "last_name": "iLeaf",
+      "image": "67_1460107183.jpg",
+      "quote": "åäÀáâæ?ã",
       "gender": "2",
-      "level": 36
+      "level": 43
       }
       }
       ],
+      "unread_notification_count": 6,
       "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+      "video": "http://testing.ykings.com/uploads/videos",
+      "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 
@@ -1176,7 +1210,10 @@ class FeedController extends Controller
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
-                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
+                $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
+                    ->where('message.read', 0)
+                    ->count();
+                return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'unread_notification_count' => $unreadNotificationCnt, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1655,7 +1692,7 @@ class FeedController extends Controller
                     $feedsArray = str_replace('\r', '', $json);
 
                     $feedsArray = json_decode($feedsArray, true);
-                    
+
                     $feedsResponse[] = $feedsArray;
                 }
                 return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
