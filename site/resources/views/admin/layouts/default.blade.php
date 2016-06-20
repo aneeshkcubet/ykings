@@ -20,6 +20,8 @@
         <!-- font Awesome -->
         <link href="{{ asset('assets/vendors/font-awesome-4.2.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/styles/black.css') }}" rel="stylesheet" type="text/css" id="colorscheme" />
+       
+       <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
         <link rel="stylesheet" href="{{ asset('assets/css/panel.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/metisMenu.css') }}" />
 
@@ -378,6 +380,7 @@
         <script src="{{ asset('assets/js/josh.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/metisMenu.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/vendors/holder-master/holder.js') }}"></script>
+         <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
         <!-- end of global js -->
         <!-- begin page level js -->
         @yield('footer_scripts')
