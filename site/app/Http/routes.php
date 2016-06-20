@@ -1,4 +1,5 @@
 <?php
+
 /*
   |--------------------------------------------------------------------------
   | Application Routes
@@ -29,9 +30,21 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'Admin\AdminController@logout'
     ]);
 
+
+
     # User Management
+    Route::group(array('prefix' => 'user'), function () {
+        Route::controller('/', 'Admin\UsersController', [
+            'anyData' => 'admin.users.data',
+            'getIndex' => 'admin.users',
+        ]);
+    });
+
+
     Route::group(array('prefix' => 'users'), function () {
-        Route::get('/', array('as' => 'admin.users', 'uses' => 'Admin\UsersController@getIndex'));
+
+
+        //Route::get('/', array('as' => 'admin.users', 'uses' => 'Admin\UsersController@getIndex'));
 
         Route::get('create', array('as' => 'admin.user.create', 'uses' => 'Admin\UsersController@getCreate'));
 
@@ -50,13 +63,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{userId}/setfeatured', array('as' => 'admin.user.setfeatured', 'uses' => 'Admin\UsersController@setFeatured'));
 
         Route::get('{userId}/unsetfeatured', array('as' => 'admin.user.unsetfeatured', 'uses' => 'Admin\UsersController@unsetFeatured'));
-        
+
         Route::get('{userId}/setsubscribed', array('as' => 'admin.user.setsubscribed', 'uses' => 'Admin\UsersController@setSubscribed'));
 
         Route::get('{userId}/unsetsubscribed', array('as' => 'admin.user.unsetsubscribed', 'uses' => 'Admin\UsersController@unsetSubscribed'));
+//        Route::get('/', array('as' => 'admin.users', 'uses' => 'Admin\UsersController@getIndex'));
+//       Route::get('/', array('as' => 'admin.users.data', 'uses' => 'Admin\UsersController@anyData'));
     });
 
-    # Exercise Management
+# Exercise Management
     Route::group(array('prefix' => 'exercises'), function () {
         Route::get('/', array('as' => 'admin.exercises', 'uses' => 'Admin\ExerciseController@getIndex'));
 
@@ -75,7 +90,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{exerciseId}/confirm-delete-exercise', array('as' => 'admin.confirm-delete.exercise', 'uses' => 'Admin\ExerciseController@getModalDelete'));
     });
 
-    # HIIT Management
+# HIIT Management
     Route::group(array('prefix' => 'hiits'), function () {
         Route::get('/', array('as' => 'admin.hiits', 'uses' => 'Admin\HiitController@getIndex'));
 
@@ -94,7 +109,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{hiitId}/confirm-delete-hiit', array('as' => 'admin.confirm-delete.hiit', 'uses' => 'Admin\HiitController@getModalDelete'));
     });
 
-    # Workout Management
+# Workout Management
     Route::group(array('prefix' => 'workouts'), function () {
 
         Route::get('/', array('as' => 'admin.workouts', 'uses' => 'Admin\WorkoutController@getIndex'));
@@ -125,7 +140,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('workoutexercise/{workoutExerciseId}/delete', array('as' => 'admin.workout.workoutexercise.delete', 'uses' => 'Admin\WorkoutController@getExerciseDelete'));
     });
 
-    # Skill Management
+# Skill Management
     Route::group(array('prefix' => 'skills'), function () {
         Route::get('/', array('as' => 'admin.skills', 'uses' => 'Admin\SkillController@getIndex'));
 
@@ -144,9 +159,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{skillId}/confirm-delete-skill', array('as' => 'admin.confirm-delete.skill', 'uses' => 'Admin\SkillController@getModalDelete'));
     });
 
-    # Feed Management
+# Feed Management
+    Route::group(array('prefix' => 'feed'), function () {
+        Route::controller('/', 'Admin\FeedController', [
+            'anyData' => 'admin.feeds.data',
+            'getIndex' => 'admin.feeds',
+        ]);
+    });
+
+
+
     Route::group(array('prefix' => 'feeds'), function () {
-        Route::get('/', array('as' => 'admin.feeds', 'uses' => 'Admin\FeedController@getIndex'));
+        // Route::get('/', array('as' => 'admin.feeds', 'uses' => 'Admin\FeedController@getIndex'));
+
 
         Route::get('{feedId}', array('as' => 'admin.feed.edit', 'uses' => 'Admin\FeedController@getEdit'));
 
@@ -163,7 +188,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('comment/{commentId}/delete', array('as' => 'admin.feed.comment.delete', 'uses' => 'Admin\FeedController@getCommentDelete'));
     });
 
-    # Coach Management
+# Coach Management
     Route::group(array('prefix' => 'coaches'), function () {
         Route::get('/', array('as' => 'admin.coaches', 'uses' => 'Admin\CoachController@getIndex'));
 
@@ -174,7 +199,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{coachId}/confirm-delete-coach', array('as' => 'admin.confirm-delete.coach', 'uses' => 'Admin\CoachController@getModalDelete'));
     });
 
-    # Warmup Exercise Management
+# Warmup Exercise Management
     Route::group(array('prefix' => 'warmups'), function () {
         Route::get('/', array('as' => 'admin.warmups', 'uses' => 'Admin\WarmupController@getIndex'));
 
@@ -193,7 +218,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{warmupId}/confirm-delete-warmup', array('as' => 'admin.confirm-delete.warmup', 'uses' => 'Admin\WarmupController@getModalDelete'));
     });
 
-    # Fundumental Exercise Management
+# Fundumental Exercise Management
     Route::group(array('prefix' => 'fundumentals'), function () {
         Route::get('/', array('as' => 'admin.fundumentals', 'uses' => 'Admin\FundumentalController@getIndex'));
 
@@ -212,7 +237,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{fundumentalId}/confirm-delete-fundumental', array('as' => 'admin.confirm-delete.fundumental', 'uses' => 'Admin\FundumentalController@getModalDelete'));
     });
 
-    # Stretching Exercise Management
+# Stretching Exercise Management
     Route::group(array('prefix' => 'stretchings'), function () {
         Route::get('/', array('as' => 'admin.stretchings', 'uses' => 'Admin\StretchingController@getIndex'));
 
@@ -231,7 +256,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{stretchingId}/confirm-delete-stretching', array('as' => 'admin.confirm-delete.stretching', 'uses' => 'Admin\StretchingController@getModalDelete'));
     });
 
-    # Newsletter Management
+# Newsletter Management
     Route::group(array('prefix' => 'newsletters'), function () {
         Route::get('/', array('as' => 'admin.newsletters', 'uses' => 'Admin\NewsletterController@getIndex'));
 
@@ -258,7 +283,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('knowledge/create', array('as' => 'admin.knowledge.postcreate', 'uses' => 'Admin\UsersController@postKnowledgeCreate'));
 
-    # Media Management
+# Media Management
     Route::group(array('prefix' => 'medias'), function () {
         Route::get('/', array('as' => 'admin.medias', 'uses' => 'Admin\MediaController@getIndex'));
 
@@ -273,7 +298,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{mediaId}/confirm-delete-media', array('as' => 'admin.confirm-delete.media', 'uses' => 'Admin\MediaController@getModalDelete'));
     });
 
-    # Plan Management
+# Plan Management
     Route::group(array('prefix' => 'plans'), function () {
         Route::get('/', array('as' => 'admin.plans', 'uses' => 'Admin\PlanController@getIndex'));
 
@@ -298,20 +323,16 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::group(array('prefix' => 'refferals'), function () {
         Route::get('/', array('as' => 'admin.refferals', 'uses' => 'Admin\SettingController@refferalIndex'));
-       
     });
-    
-    
-    
 });
 
 Route::group(['prefix' => 'api'], function() {
     Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
-    
+
     Route::post('authenticate', 'Api\AuthenticateController@authenticate');
-    
+
     Route::get('users', 'Api\AuthenticateController@index');
-    //UsersController
+//UsersController
     Route::post('user/get', [
         'as' => 'user.get',
         'uses' => 'Api\UsersController@getUser'
@@ -332,7 +353,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.resendverify',
         'uses' => 'Api\UsersController@resendVerifyEmail'
     ]);
-    //UserVideosController
+//UserVideosController
     Route::post('user/videos', [
         'as' => 'user.videos',
         'uses' => 'Api\UserVideosController@GetUserVideos'
@@ -342,31 +363,31 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UserVideosController@deleteUserVideo'
     ]);
 
-    //UsersController
+//UsersController
     Route::post('user', [
         'as' => 'user.signup',
         'uses' => 'Api\UsersController@postRegister'
     ]);
 
-    //UsersController
+//UsersController
     Route::post('user/history/recent', [
         'as' => 'user.history.recent',
         'uses' => 'Api\UsersController@getUserRecentHistory'
     ]);
 
-    //UsersController
+//UsersController
     Route::post('user/history/exercise', [
         'as' => 'user.history.exercise',
         'uses' => 'Api\UsersController@getUserExerciseHistory'
     ]);
 
-    //UsersController
+//UsersController
     Route::post('user/history/workout', [
         'as' => 'user.history.workout',
         'uses' => 'Api\UsersController@getUserWorkoutHistory'
     ]);
 
-    //UsersController
+//UsersController
     Route::post('user/history/hiit', [
         'as' => 'user.history.hiit',
         'uses' => 'Api\UsersController@getUserHiitHistory'
@@ -401,7 +422,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'user.updatemotivation',
         'uses' => 'Api\UsersController@updateMotivation'
     ]);
-    
+
     Route::post('user/updateemail', [
         'as' => 'user.updateemail',
         'uses' => 'Api\UsersController@updateUserEmail'
@@ -411,12 +432,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'confirmation_path',
         'uses' => 'Api\UsersController@confirm'
     ]);
-    //PasswordController
+//PasswordController
     Route::post('password/email', [
         'as' => 'password.email',
         'uses' => 'Api\PasswordController@postEmail'
     ]);
-    //SocialController
+//SocialController
     Route::post('/social/facebookSignUp', [
         'as' => 'facebook.signup',
         'uses' => 'Api\SocialController@facebookSignUp'
@@ -435,7 +456,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'facebook.disconnect',
         'uses' => 'Api\SocialController@facebookDisconnect'
     ]);
-    //FeedController
+//FeedController
     Route::post('feeds/create', [
         'as' => 'feeds.create',
         'uses' => 'Api\FeedController@createFeeds'
@@ -464,7 +485,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'feeds.notification',
         'uses' => 'Api\FeedController@notification'
     ]);
-    //CommentsController
+//CommentsController
     Route::post('feeds/comments', [
         'as' => 'feeds.comments',
         'uses' => 'Api\CommentsController@loadComments'
@@ -479,7 +500,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\CommentsController@deleteComment'
     ]);
 
-    //UserFollowsController
+//UserFollowsController
     Route::post('follow/add', [
         'as' => 'follow.add',
         'uses' => 'Api\UserFollowsController@follow'
@@ -497,7 +518,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'follow.follows',
         'uses' => 'Api\UserFollowsController@getMyFollowings'
     ]);
-    //UserFriendsController
+//UserFriendsController
     Route::post('connect/connectFriends', [
         'as' => 'connect.phone',
         'uses' => 'Api\UserFriendsController@connectFriends'
@@ -506,12 +527,12 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'connect.invite',
         'uses' => 'Api\UserFriendsController@inviteFriends'
     ]);
-    //SubscriptionsController
+//SubscriptionsController
     Route::post('subscription/update', [
         'as' => 'subscription.update',
         'uses' => 'Api\SubscriptionsController@updateSubscription'
     ]);
-    //ExercisesController
+//ExercisesController
     Route::post('exercise/list', [
         'as' => 'exercise.list',
         'uses' => 'Api\ExercisesController@loadExercises'
@@ -526,7 +547,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'exercise.get',
         'uses' => 'Api\ExercisesController@getExerciseWithUsers'
     ]);
-    //WorkoutsController
+//WorkoutsController
     Route::post('workout/list', [
         'as' => 'workout.list',
         'uses' => 'Api\WorkoutsController@loadWorkouts'
@@ -546,7 +567,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\WorkoutsController@addStar'
     ]);
 
-    //SearchController
+//SearchController
     Route::post('/search/searchUser', [
         'as' => 'user.search',
         'uses' => 'Api\SearchController@userSearch'
@@ -562,7 +583,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\SearchController@cityUsers'
     ]);
 
-    //UserSettingsController
+//UserSettingsController
     Route::post('user/settings', [
         'as' => 'user.settings',
         'uses' => 'Api\UserSettingsController@userSettings'
@@ -576,7 +597,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\UserSettingsController@updateDeviceToken'
     ]);
 
-    //SkillsController
+//SkillsController
     Route::post('/skills/list', [
         'as' => 'skill.list',
         'uses' => 'Api\SkillsController@loadSkills'
@@ -622,7 +643,7 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'coach.finishday',
         'uses' => 'Api\CoachesController@finishCoachDayWorkouts'
     ]);
-    
+
     Route::post('/coach/finishweek', [
         'as' => 'coach.finishweek',
         'uses' => 'Api\CoachesController@finishCoachWeekWorkouts'
@@ -643,7 +664,7 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\CoachesController@resetCoach'
     ]);
 
-    //MessageController
+//MessageController
     Route::post('/user/listNotifications', [
         'as' => 'user.listNotifications',
         'uses' => 'Api\MessageController@listNotifications'
@@ -653,8 +674,6 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'message.updateReadStatus',
         'uses' => 'Api\MessageController@updateReadStatus'
     ]);
-    
-    
 });
 
 // Authentication routes...
