@@ -10,6 +10,14 @@ Refferals
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -38,35 +46,17 @@ Refferals
             </div>
             <br />
             <div class="panel-body">
-                <table class="table table-bordered " id="table">
+                <table class="table table-bordered data" id="table">
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
                             <th>UserId</th>
                             <th>Email</th>
-                            <th>Marketing Title</th>
-                            <th>Is Coach Subscribed</th>
+                            <th>Marketing Title</th>                            
                             <th>Parameters</th>
-                            
+                            <th>Is Coach Subscribed</th>                            
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($refferalsList as $list)
-                        <tr>
-                            <td>{{{ $list->id }}}</td>
-                            <td>{{{ $list->user_id }}}</td>
-                            <td>{{{ $list->email }}}</td>
-                            <td>{{{ $list->marketing_title }}}</td>
-                            @if($list->is_coach_subscribed == 1)
-                             <td>Yes</td>
-                            @else
-                             <td>No</td>
-                            @endif
-                            <td>{{{ $list->parameters }}}</td>
-                            
-                        </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -79,22 +69,35 @@ Refferals
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.js') }}"></script>
 
-<script>
-$(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
-
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content"></div>
     </div>
 </div>
 <script>
-    $(function () {
-        $('body').on('hidden.bs.modal', '.modal', function () {
-            $(this).removeData('bs.modal');
-        });
+$(function () {
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
     });
+});
+$('#table').DataTable({
+    processing: true,
+    serverSide: true,
+    "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page",
+                "sEmptyTable": "No Users found!",
+                "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+            },
+    ajax: '{!! route("admin.refferals.data") !!}',
+    columns: [
+        {data: 'id', name: 'id'},
+        {data: 'user_id', name: 'user_id'},
+        {data: 'email', name: 'email'},
+        {data: 'marketing_title', name: 'marketing_title'},
+        {data: 'parameters', name: 'parameters'},
+        {data: 'is_coach_subscribed', name: 'is_coach_subscribed'}
+    ],
+    order: [[0, 'desc']]
+});
 </script>
 @stop

@@ -30,8 +30,6 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'Admin\AdminController@logout'
     ]);
 
-
-
     # User Management
     Route::group(array('prefix' => 'user'), function () {
         Route::controller('/', 'Admin\UsersController', [
@@ -321,9 +319,12 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));
     });
+    
     Route::group(array('prefix' => 'refferals'), function () {
         Route::get('/', array('as' => 'admin.refferals', 'uses' => 'Admin\SettingController@refferalIndex'));
+        Route::get('data', array('as' => 'admin.refferals.data', 'uses' => 'Admin\SettingController@anyData'));
     });
+    
 });
 
 Route::group(['prefix' => 'api'], function() {
@@ -628,7 +629,6 @@ Route::group(['prefix' => 'api'], function() {
         'uses' => 'Api\CoachesController@getDescription'
     ]);
 
-
     Route::post('/coach/preparecoach', [
         'as' => 'coach.preparecoach',
         'uses' => 'Api\CoachesController@prepareCoach'
@@ -698,6 +698,16 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
+
+Route::get('/exportsubscribers', [
+        'as' => 'exportsubscribers',
+        'uses' => 'Admin\UsersController@exportsubscribers'
+    ]);
+
+Route::get('/exportusers', [
+        'as' => 'exportusers',
+        'uses' => 'Admin\UsersController@exportusers'
+    ]);
 
 
 Route::get('/', ['as' => 'index', function () {

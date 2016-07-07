@@ -1411,10 +1411,12 @@ class UsersController extends Controller
             if ($user) {
                 $userHistory = Feeds::where('user_id', '=', $request->user_id)
                     ->where('item_type', '=', 'exercise')
-                    ->whereOr('item_type', '=', 'workout')
-                    ->whereOr('item_type', '=', 'hiit')
+                    ->orWhere('item_type', '=', 'workout')
+                    ->orWhere('item_type', '=', 'hiit')
                     ->orderBy('created_at', 'DESC')
                     ->get();
+                
+                $userHistoryResponse = array();
 
                 if (count($userHistory) > 0) {
                     $userHistoryResponse = $this->AdditionalFeedsDetails($userHistory);
@@ -1437,7 +1439,6 @@ class UsersController extends Controller
     {
         foreach ($userHistory as $history) {
             if ($history->item_type == 'workout') {
-
                 $workout = Workout::where('id', '=', $history->item_id)->first();
                 if (!is_null($workout)) {
                     if ($workout->category == 1) {

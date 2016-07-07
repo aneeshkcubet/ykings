@@ -1522,7 +1522,7 @@ class FeedController extends Controller
             if ($user) {
                 $feedsArray = Feeds::where('id', '=', $request->input('feed_id'))
                         ->with(['profile'])->first();
-                if ($feedsArray) {
+                if (!empty($feedsArray)) {
                     $images = Images::where('parent_id', $feedsArray['id'])->where('parent_type', '=', 2)->get();
 
                     foreach ($images as $iKey => $image) {
@@ -1685,17 +1685,18 @@ class FeedController extends Controller
                         $feedsArray['category'] = "";
                         $feedsArray['item_name'] = "";
                     }
-                    $json = json_encode($feedsArray);
-
-                    $json = json_encode($feedsResponse);
+                    $json = json_encode($feedsArray);                    
 
                     $feedsArray = str_replace('\r', '', $json);
 
                     $feedsArray = json_decode($feedsArray, true);
 
                     $feedsResponse[] = $feedsArray;
+                    
+                    return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
+                } else {
+                    return response()->json(['status' => 0, 'error' => 'Feed not found'], 500);
                 }
-                return response()->json(['status' => 1, 'success' => 'Details', 'feed_details' => $this->removeNullfromArray($feedsResponse), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }

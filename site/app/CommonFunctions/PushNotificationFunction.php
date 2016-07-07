@@ -12,6 +12,7 @@ use App\Message as Notification;
 use App\PushNotification;
 use App\Profile;
 use App\Settings;
+use DB;
 
 /**
  * Push notification
@@ -94,6 +95,10 @@ class PushNotificationFunction
                         'message' => $notfyMessage,
                         'read' => 0
                 ]);
+                
+                $unreadNotificationCnt = Notification::where('message.friend_id', '=', $request['friend_id'])
+                    ->where('message.read', 0)                    
+                    ->count();
 
                 $pushMessage = [
                     'id' => $notification->id,
@@ -101,7 +106,8 @@ class PushNotificationFunction
                     'feed_id' => $request['type_id'],
                     'type' => $request['type'],
                     'user_id' => $request['user_id'],
-                    'friend_id' => $request['friend_id']
+                    'friend_id' => $request['friend_id'],
+                    'unread_notification_count' => $unreadNotificationCnt
                 ];
 
                 //Android Push

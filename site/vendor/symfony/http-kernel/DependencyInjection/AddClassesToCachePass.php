@@ -1,4 +1,4 @@
-<?php namespace Symfony\Component\HttpKernel\DependencyInjection;
+<?php
 
 /*
  * This file is part of the Symfony package.
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-
+namespace Symfony\Component\HttpKernel\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

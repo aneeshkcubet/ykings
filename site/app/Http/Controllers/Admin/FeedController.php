@@ -45,7 +45,6 @@ class FeedController extends Controller {
         $this->middleware('admin');
     }
 
-//
     public function getIndex() {
         $feeds = array();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
@@ -55,10 +54,9 @@ class FeedController extends Controller {
     public function anyData() {
         $feeds = DB::table('feeds')
                 ->join('user_profiles', 'feed.user_id', '=', 'user_profiles.user_id')
-                ->select(['feeds.id,feeds.feed_text,user_profiles.user_id', 'user_profiles.first_name', 'user_profiles.last_name', 'user_profiles.image', 'user_profiles.quote', 'user_profiles.gender'])
-                ->orderBy('created_at', 'DESC');
+                ->select(['feeds.id,feeds.feed_text,user_profiles.user_id', 'user_profiles.first_name', 'user_profiles.last_name', 'user_profiles.image', 'user_profiles.quote', 'user_profiles.gender']);
 
-        return Datatables::of(Feeds::with(['profile'])->orderBy('created_at', 'DESC'))
+        return Datatables::of(Feeds::with(['profile']))
                         ->edit_column('image', function ($list) {
                             if (!empty($list->image)) {
                                 return '<img width="50" height="50" src="/uploads/images/feed/small/' . $list->image . '" />';
@@ -133,7 +131,7 @@ class FeedController extends Controller {
                         ->edit_column('claps', function($claps) {
                             return Clap::clapCount($claps->id, 'feed');
                         })
-                        ->edit_column('action', function($action) {
+                        ->add_column('action', function($action) {
                             $htmlActions = '<td>                                               
                                             <a href=\'' . route("admin.confirm-delete.feed", $action['id']) . '\' data-toggle="modal" data-target="#delete_confirm">
                                             <i class="glyphicon glyphicon-remove" data-name="comment-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete comment.">

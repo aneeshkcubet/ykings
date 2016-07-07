@@ -382,6 +382,212 @@ class Coach extends Model
         $userWorkouts['strength'] = DB::select(self::getUserMatchedWorkoutsQuery(1, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
 
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $data['user_id'], $data, $intenseFactor, $fundumentalArray));
+        if ($userLevel == 'beginer') {
+            if ($data['focus'] == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                }
+            }
+        } elseif ($userLevel == 'advanced') {
+            if ($data['focus'] == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 4 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 5) {
+                        return false;
+                    }
+                }
+            }
+        } elseif ($userLevel == 'professional') {
+            if ($data['focus'] == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 4 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                }
+            } elseif ($data['focus'] == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 5) {
+                        return false;
+                    }
+                }
+            }
+        }
+
 
         list($coach, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $data['focus'], $userLevel, 1);
 
@@ -423,7 +629,7 @@ class Coach extends Model
 
         $hiitReplacements = [
             1 => [
-                [ 'round1' => [
+                ['round1' => [
                         ['name' => 'Burpee', 'duration' => 15, 'unit' => 'times'],
                         ['name' => 'Plank', 'duration' => 30, 'unit' => 'seconds']
                     ],
@@ -434,7 +640,7 @@ class Coach extends Model
                 ]
             ],
             2 => [
-                [ 'round1' => [
+                ['round1' => [
                         ['name' => 'Burpee', 'duration' => 10, 'unit' => 'times'],
                         ['name' => 'Rest', 'duration' => 10, 'unit' => 'seconds']
                     ],
@@ -449,7 +655,7 @@ class Coach extends Model
                 ]
             ],
             3 => [
-                [ 'round1' => [
+                ['round1' => [
                         ['name' => 'Burpee', 'duration' => 25, 'unit' => 'times'],
                         ['name' => 'Climbers', 'duration' => 50, 'unit' => 'times'],
                         ['name' => 'High Jumps', 'duration' => 100, 'unit' => 'times']
@@ -476,10 +682,9 @@ class Coach extends Model
 
                 return $roundExercises;
             }, $hiitReplacement);
-
             return $hiitReplacement;
         }, $hiitReplacements);
-        // hiit 1 - 30/30, 2 - 20/10, 3 - 60/120
+// hiit 1 - 30/30, 2 - 20/10, 3 - 60/120
         if (isset($data['week'])) {
             if ($data['week'] % 24 > 0 && $data['week'] % 24 <= 4) {
                 $hiit = [['id' => 2, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[2], 'replacement_round_count' => count($hiitReplacements[2][0])]];
@@ -498,8 +703,6 @@ class Coach extends Model
 
         $exerciseCat = self::userWorkoutCategory($data['user_id'], $userWorkouts);
 
-//        die;
-
         $basicSkills = self::getUserBasicSkills($data['user_id'], $data['muscle_groups'], $data['limitations']);
 
         $exercises = [];
@@ -513,26 +716,10 @@ class Coach extends Model
 
 
         if ($userLevel == 'beginer') {
-
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
             if ($focus == 1) {
 
                 if ($data['days'] == 2) {
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -557,6 +744,8 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -592,6 +781,9 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -640,6 +832,12 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -656,7 +854,7 @@ class Coach extends Model
                     $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
-                    $coach['day2']['workout'] = $sWorkout1;
+                    $coach['day2']['workout'] = $exercises;
                     $coach['day2']['coach_workout_rounds'] = count($sWorkout1['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [];
@@ -678,7 +876,7 @@ class Coach extends Model
                     $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
-                    $coach['day4']['workout'] = $sWorkout2;
+                    $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($sWorkout2['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [];
@@ -695,6 +893,15 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -764,6 +971,8 @@ class Coach extends Model
 
                 if ($data['days'] == 2) {
 
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -786,6 +995,10 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -819,6 +1032,10 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -865,6 +1082,14 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -921,6 +1146,16 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -991,6 +1226,8 @@ class Coach extends Model
 
                 if ($data['days'] == 2) {
 
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1013,6 +1250,9 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1046,6 +1286,11 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1091,6 +1336,15 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1107,7 +1361,7 @@ class Coach extends Model
                     $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day2']['exercises'] = [];
-                    $coach['day2']['workout'] = $ssWorkout1;
+                    $coach['day2']['workout'] = $sWorkout1;
                     $coach['day2']['coach_workout_rounds'] = count($sWorkout1['exercises']);
                     $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = [];
@@ -1146,6 +1400,16 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1215,29 +1479,13 @@ class Coach extends Model
                 }
             }
         } elseif ($userLevel == 'advanced') {
-
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
             if ($focus == 1) {
                 if ($data['days'] == 2) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1253,13 +1501,19 @@ class Coach extends Model
                     $coach['day2']['warmup'] = $warmUps;
                     $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
-                    $coach['day2']['exercises'] = $exercises;
+                    $coach['day2']['exercises'] = $sWorkout1;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
                     $coach['day2']['workout_intensity'] = 1;
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1294,6 +1548,13 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1339,6 +1600,16 @@ class Coach extends Model
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
 
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1377,7 +1648,7 @@ class Coach extends Model
                     $coach['day4']['is_completed'] = 0;
                     $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day4']['exercises'] = [];
-                    $coach['day4']['workout'] = $sWorkout2;
+                    $coach['day4']['workout'] = $sWorkout1;
                     $coach['day4']['coach_workout_rounds'] = count($coach['day4']['workout']['exercises']);
                     $coach['day4']['workout_intensity'] = 1;
                     $coach['day4']['hiit'] = [];
@@ -1388,12 +1659,25 @@ class Coach extends Model
                     $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
-                    $coach['day5']['workout'] = $sWorkout1;
+                    $coach['day5']['workout'] = $sWorkout2;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1444,7 +1728,7 @@ class Coach extends Model
                     $coach['day5']['is_completed'] = 0;
                     $coach['day5']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day5']['exercises'] = [];
-                    $coach['day5']['workout'] = $sWorkout2;
+                    $coach['day5']['workout'] = $sWorkout1;
                     $coach['day5']['coach_workout_rounds'] = count($coach['day5']['workout']['exercises']);
                     $coach['day5']['workout_intensity'] = 1;
                     $coach['day5']['hiit'] = [];
@@ -1455,7 +1739,7 @@ class Coach extends Model
                     $coach['day6']['is_completed'] = 0;
                     $coach['day6']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
                     $coach['day6']['exercises'] = [];
-                    $coach['day6']['workout'] = $sWorkout1;
+                    $coach['day6']['workout'] = $sWorkout2;
                     $coach['day6']['coach_workout_rounds'] = count($coach['day6']['workout']['exercises']);
                     $coach['day6']['workout_intensity'] = 1;
                     $coach['day6']['hiit'] = $hiit;
@@ -1464,6 +1748,11 @@ class Coach extends Model
             } elseif ($focus == 2) {
 
                 if ($data['days'] == 2) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1486,6 +1775,12 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1520,6 +1815,16 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1564,6 +1869,16 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1619,6 +1934,18 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1689,6 +2016,11 @@ class Coach extends Model
             } elseif ($focus == 3) {
 
                 if ($data['days'] == 2) {
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1711,6 +2043,12 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1745,6 +2083,14 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1789,6 +2135,16 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1844,6 +2200,18 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1914,27 +2282,13 @@ class Coach extends Model
             }
         } elseif ($userLevel == 'professional') {
 
-            $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $csWorkout5 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
-
-            $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week, $exerciseCat);
             if ($focus == 1) {
                 if ($data['days'] == 2) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -1950,7 +2304,7 @@ class Coach extends Model
                     $coach['day2']['warmup'] = $warmUps;
                     $coach['day2']['is_completed'] = 0;
                     $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
-                    $coach['day2']['exercises'] = $exercises;
+                    $coach['day2']['exercises'] = $sWorkout1;
                     ;
                     $coach['day2']['workout'] = [];
                     $coach['day2']['coach_workout_rounds'] = 0;
@@ -1958,6 +2312,12 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -1992,6 +2352,14 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -2036,6 +2404,16 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2092,6 +2470,18 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout4 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][3]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2163,6 +2553,10 @@ class Coach extends Model
 
                 if ($data['days'] == 2) {
 
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -2185,6 +2579,12 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2219,6 +2619,14 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2264,6 +2672,16 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2320,6 +2738,18 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout2 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $csWorkout3 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2391,6 +2821,10 @@ class Coach extends Model
 
                 if ($data['days'] == 2) {
 
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -2413,6 +2847,12 @@ class Coach extends Model
                     $coach['day2']['hiit'] = $hiit;
                     $coach['day2']['stretching'] = $stretches;
                 } elseif ($data['days'] == 3) {
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2447,6 +2887,15 @@ class Coach extends Model
                     $coach['day3']['hiit'] = $hiit;
                     $coach['day3']['stretching'] = $stretches;
                 } elseif ($data['days'] == 4) {
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
+
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
                     $coach['day1']['is_completed'] = 0;
@@ -2491,6 +2940,16 @@ class Coach extends Model
                     $coach['day4']['hiit'] = $hiit;
                     $coach['day4']['stretching'] = $stretches;
                 } elseif ($data['days'] == 5) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2547,6 +3006,18 @@ class Coach extends Model
                     $coach['day5']['hiit'] = $hiit;
                     $coach['day5']['stretching'] = $stretches;
                 } elseif ($data['days'] == 6) {
+
+                    $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout2 = self::getWorkoutWithExercises($userWorkouts['strength'][1]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout3 = self::getWorkoutWithExercises($userWorkouts['strength'][2]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout4 = self::getWorkoutWithExercises($userWorkouts['strength'][3]->id, $intenseFactor, $data['user_id'], $week);
+
+                    $sWorkout5 = self::getWorkoutWithExercises($userWorkouts['strength'][4]->id, $intenseFactor, $data['user_id'], $week);
 
 //                  Day1 exercise set
                     $coach['day1']['warmup'] = $warmUps;
@@ -2617,8 +3088,6 @@ class Coach extends Model
             }
         }
 
-
-
         return array($coach, $exerciseCat);
     }
 
@@ -2665,8 +3134,6 @@ class Coach extends Model
             $workoutExercisesArray2[] = $workoutExercise->exercise_id;
         }
 
-
-
         $workoutExercises3 = DB::table('workout_exercises')
             ->select('exercise_id')
             ->whereRaw('category = 3')
@@ -2698,12 +3165,10 @@ class Coach extends Model
             ->where('exercises.category', 3)
             ->count();
 
-
+        $category = 3;
 
         if ($categoryArray[3] > 0) {
-            $category = 3;
             foreach ($workoutExercisesArray3 as $workoutExercise) {
-
                 if ($category > 2) {
                     $exercise = Exercise::where('id', $workoutExercise)->first();
 
@@ -2712,11 +3177,11 @@ class Coach extends Model
                         ->first();
 
                     if (count($unLocked) <= 0) {
-                        //Not unlocked the skill
+//Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
                         if ($skill->substitute > 0) {
-                            //Skill has substitute
+//Skill has substitute
                             $substitute = DB::table('skills')->where('row', $skill->row)
                                 ->where('progression_id', $skill->progression_id)
                                 ->where('exercise_id', '=', $skill->substitute)
@@ -2728,11 +3193,11 @@ class Coach extends Model
                                 ->count();
 
                             if ($unLockCount <= 0) {
-                                //Unlocked substitute then replace the workout exercise with new one.
+//Unlocked substitute then replace the workout exercise with new one.
                                 $category = 2;
                             }
                         } else {
-                            //Skill doesn't have substitute, down the difficulty level
+//Skill doesn't have substitute, down the difficulty level
                             $category = 2;
                         }
                     }
@@ -2759,11 +3224,11 @@ class Coach extends Model
                     if (count($unLocked) <= 0) {
 
 
-                        //Not unlocked the skill
+//Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
                         if ($skill->substitute > 0) {
-                            //Skill has substitute
+//Skill has substitute
                             $substitute = DB::table('skills')->where('row', $skill->row)
                                 ->where('progression_id', $skill->progression_id)
                                 ->where('exercise_id', '=', $skill->substitute)
@@ -2775,11 +3240,11 @@ class Coach extends Model
                                 ->count();
 
                             if ($unLockCount == 0) {
-                                //Unlocked substitute then replace the workout exercise with new one.
+//Unlocked substitute then replace the workout exercise with new one.
                                 $category = 1;
                             }
                         } else {
-                            //Skill doesn't have substitute, down the difficulty level
+//Skill doesn't have substitute, down the difficulty level
                             $category = 1;
                         }
                     }
@@ -2809,7 +3274,7 @@ class Coach extends Model
      * @return type
      * @author Aneesh K<aneeshk@cubettech.com>
      */
-    public static function getWorkoutWithExercises($workoutId, $intenseFactor, $userId, $week, $category)
+    public static function getWorkoutWithExercises($workoutId, $intenseFactor, $userId, $week)
     {
         $workout = Workout::where('id', '=', $workoutId)->first();
 
@@ -2853,9 +3318,11 @@ class Coach extends Model
                 ->with(['exercise'])
                 ->get();
 
-            foreach ($roundExercises as $roundExercise) {
+            $roundExerciseArray = $roundExercises->toArray();
+
+            foreach ($roundExerciseArray as $roundExercise) {
                 $skill = DB::table('skills')
-                    ->where('exercise_id', $roundExercise->exercise_id)
+                    ->where('exercise_id', $roundExercise['exercise_id'])
                     ->first();
 
                 if (!is_null($skill)) {
@@ -2875,13 +3342,13 @@ class Coach extends Model
                         } else {
                             $categoryArray[3] ++;
                         }
-                        $roundExercise->exercise_id = $highestUnlockedSkill->exercise_id;
+                        $roundExercise['exercise_id'] = $highestUnlockedSkill->exercise_id;
 
                         $exercise = Exercise::where('id', $highestUnlockedSkill->exercise_id)->with(['video'])->first();
 
-                        $roundExercise->unit = $exercise->unit;
+                        $roundExercise['unit'] = $exercise->unit;
 
-                        $roundExercise->exercise = $exercise;
+                        $roundExercise['exercise'] = $exercise->toArray();
                     } else {
                         if ($skill->level <= 2) {
                             $categoryArray[1] ++;
@@ -2890,23 +3357,23 @@ class Coach extends Model
                         } else {
                             $categoryArray[3] ++;
                         }
-                        $exercise = Exercise::where('id', $roundExercise->exercise_id)->with(['video'])->first();
+                        $exercise = Exercise::where('id', $roundExercise['exercise_id'])->with(['video'])->first();
 
-                        $roundExercise->unit = $exercise->unit;
+                        $roundExercise['unit'] = $exercise->unit;
 
-                        $roundExercise->exercise = $exercise;
+                        $roundExercise['exercise'] = $exercise->toArray();
                     }
                 } else {
 
-                    $exercise = Exercise::where('id', $roundExercise->exercise_id)->with(['video'])->first();
+                    $exercise = Exercise::where('id', $roundExercise['exercise_id'])->with(['video'])->first();
 
-                    $roundExercise->unit = $exercise->unit;
+                    $roundExercise['unit'] = $exercise->unit;
 
-                    $roundExercise->exercise = $exercise;
+                    $roundExercise['exercise'] = $exercise->toArray();
                 }
 
-                $roundExercise->is_completed = 0;
-                $newExercises[] = $roundExercise->toArray();
+                $roundExercise['is_completed'] = 0;
+                $newExercises[] = $roundExercise;
             }
 
             $exercises['round' . $count] = $newExercises;
@@ -2994,8 +3461,11 @@ class Coach extends Model
 
         $exercises = self::updateCoachExercises($coach, $assessment, $focus, $days);
 
-
-        return $exercises;
+        if ($exercises) {
+            return $exercises;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -3015,7 +3485,7 @@ class Coach extends Model
 
         $coachStatus = DB::table('coach_status')->where('coach_id', $coach->id)->first();
 
-        //Restructure coach and get new exercises and add exercises to existing workouts according to user feedback
+//Restructure coach and get new exercises and add exercises to existing workouts according to user feedback
         $i = 1;
 
         do {
@@ -3130,21 +3600,222 @@ class Coach extends Model
 
         $userWorkouts['cardio_strength'] = DB::select(self::getUserMatchedWorkoutsQuery(2, $coach->user_id, $data, $intenseFactor, $fundumentalArray));
 
+        if ($userLevel == 'beginer') {
+            if ($focus == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                }
+            }
+        } elseif ($userLevel == 'advanced') {
+            if ($focus == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 4 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 5) {
+                        return false;
+                    }
+                }
+            }
+        } elseif ($userLevel == 'professional') {
+            if ($focus == 1) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 4 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 2) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 1) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 2 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 3 && count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                }
+            } elseif ($focus == 3) {
+                if ($data['days'] == 2) {
+                    if (count($userWorkouts['strength']) < 2) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 3) {
+                    if (count($userWorkouts['strength']) < 3) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 4) {
+                    if (count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 5) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 4) {
+                        return false;
+                    }
+                } elseif ($data['days'] == 6) {
+                    if (count($userWorkouts['cardio_strength']) < 1 && count($userWorkouts['strength']) < 5) {
+                        return false;
+                    }
+                }
+            }
+        }
+
         list($exercises, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $focus, $userLevel, $coachStatus->week + 1);
 
-        if ($coachStatus->week + 1 <= 2) {
-            if ($assessment == 3) {
-                return $exercises;
-            }
-            //Just Increse the workout exercise amount by percentage
-            $exercises = self::increaseWorkoutBypercentage($exercises, $assessment);
-
-            return $exercises;
-        } else {
-            $exercises = self::addExerciseToWorkout($coach, $exercises, $assessment, $coachStatus->week + 1);
-
+        if ($assessment == 3) {
             return $exercises;
         }
+
+        $exercises = self::addExerciseToWorkout($coach, $exercises, $assessment, $coachStatus->week + 1);
+
+        return $exercises;
+
 
         return $exercises;
     }
@@ -3643,7 +4314,7 @@ class Coach extends Model
             }
 
             if ($slab < 2) {
-                //Add rounds as per slab and add exercise to all rounds according to the user options
+//Add rounds as per slab and add exercise to all rounds according to the user options
                 if ($rounds > 0 && $workoutId != 18) {
                     for ($i = 1; $i <= $rounds; $i++) {
                         $newRoundExercises = Workoutexercise::where('round', '=', $i)
@@ -3681,7 +4352,6 @@ class Coach extends Model
                         $roundExercises['round' . $i] = $newRoundExercisesArray;
                     }
                 } elseif ($rounds > 0 && $workoutId == 18) {
-
                     $roundCount = $rounds;
                     $actualRoundCount = DB::table('workouts')->where('id', $workoutId)->pluck('rounds');
                     if ($roundCount >= $actualRoundCount) {
@@ -3713,7 +4383,6 @@ class Coach extends Model
                         $roundExercises['round' . $i] = $newRoundExercises->toArray();
                     }
                 } elseif ($rounds > 0 && $workoutId == 18) {
-
                     $roundCount = $rounds;
                     $actualRoundCount = DB::table('workouts')->where('id', $workoutId)->pluck('rounds');
                     if ($roundCount > $actualRoundCount) {
@@ -3809,7 +4478,7 @@ class Coach extends Model
             }
 
             if ($slab < 2) {
-                //Add rounds as per slab and add exercise to all rounds according to the user options
+//Add rounds as per slab and add exercise to all rounds according to the user options
                 if ($rounds > 0 && $workoutId != 18) {
                     for ($i = 1; $i <= $rounds; $i++) {
                         $newRoundExercises = Workoutexercise::where('round', '=', $i)
@@ -4141,7 +4810,6 @@ class Coach extends Model
                             ->where('skills.row', $skill->row)
                             ->where('unlocked_skills.user_id', $userId)
                             ->where('skills.progression_id', $skill->progression_id)
-                            ->orderBy('skills.level', 'ASC')
                             ->count();
                         if ($unlockedCnt > 0) {
                             $unlocked = DB::table('unlocked_skills')
@@ -4149,9 +4817,8 @@ class Coach extends Model
                                 ->leftJoin('exercises', 'unlocked_skills.exercise_id', '=', 'exercises.id')
                                 ->where('skills.row', $skill->row)
                                 ->where('skills.progression_id', $skill->progression_id)
-                                ->where('exercises.category', $exerciseCat)
                                 ->where('unlocked_skills.user_id', $userId)
-                                ->orderBy('skills.level', 'ASC')
+                                ->orderBy('skills.level', 'DESC')
                                 ->get();
 
                             $roundCount = count($coachExercise['workout']['exercises']);
@@ -4190,11 +4857,11 @@ class Coach extends Model
                                     }
                                 }
                             } elseif ($roundCount > 1) {
-                                foreach ($unlocked as $uKey => $unlockedExercise) {
-                                    $exercise = Exercise::where('id', $unlockedExercise->exercise_id)->with(['video'])->first();
-                                    for ($i = 1; $i <= $roundCount; $i++) {
-                                        if ($unlockedCnt == 1) {
+                                for ($i = 1; $i <= $roundCount; $i++) {
+                                    if ($unlockedCnt == 1) {
+                                        foreach ($unlocked as $uKey => $unlockedExercise) {
                                             for ($j = 0; $j < 2; $j++) {
+                                                $exercise = Exercise::where('id', $unlockedExercise->exercise_id)->with(['video'])->first();
                                                 $exerciseArray = $exercise->toArray();
                                                 $coachExercises[$day]['workout']['exercises']['round' . $i][] = [
                                                     'workout_id' => $coachExercise['workout']['id'],
@@ -4208,26 +4875,26 @@ class Coach extends Model
                                                     'video' => $exerciseArray['video'][0]
                                                 ];
                                             }
-                                        } elseif ($unlockedCnt > 1) {
-                                            $reps = floor(50 / $unlockedCnt);
-                                            $exerciseArray = $exercise->toArray();
-                                            $coachExercises[$day]['workout']['exercises']['round' . $i][] = [
-                                                'workout_id' => $coachExercise['workout']['id'],
-                                                'exercise' => $exercise->toArray(),
-                                                'category' => $exercise->category,
-                                                'repititions' => $reps,
-                                                'exercise_id' => $exercise->id,
-                                                'unit' => $exercise->unit,
-                                                'round' => $i,
-                                                'is_completed' => 0,
-                                                'video' => $exerciseArray['video'][0]
-                                            ];
                                         }
+                                    } elseif ($unlockedCnt > 1) {
+                                        $unlockedExercise = array_values($unlocked)[0];
+                                        $exercise = Exercise::where('id', $unlockedExercise->exercise_id)->with(['video'])->first();
+                                        $exerciseArray = $exercise->toArray();
+                                        $coachExercises[$day]['workout']['exercises']['round' . $i][] = [
+                                            'workout_id' => $coachExercise['workout']['id'],
+                                            'exercise' => $exercise->toArray(),
+                                            'category' => $exercise->category,
+                                            'repititions' => 25,
+                                            'exercise_id' => $exercise->id,
+                                            'unit' => $exercise->unit,
+                                            'round' => $i,
+                                            'is_completed' => 0,
+                                            'video' => $exerciseArray['video'][0]
+                                        ];
                                     }
                                 }
                             }
                         }
-                        break;
                     }
                 }
             }

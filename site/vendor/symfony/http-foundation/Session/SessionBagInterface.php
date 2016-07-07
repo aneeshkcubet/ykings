@@ -1,4 +1,4 @@
-<?php namespace Symfony\Component\HttpFoundation\Session;
+<?php
 
 /*
  * This file is part of the Symfony package.
@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\HttpFoundation\Session;
+
 /**
  * Session Bag store.
  *
@@ -16,7 +18,6 @@
  */
 interface SessionBagInterface
 {
-
     /**
      * Gets this bag's name.
      *
@@ -41,7 +42,7 @@ interface SessionBagInterface
     /**
      * Clears out data from bag.
      *
-     * @return mixed Whatever data was contained.
+     * @return mixed Whatever data was contained
      */
     public function clear();
 }

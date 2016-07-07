@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
 use App\Skill;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
@@ -27,7 +26,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         static::created(function($user) {
             Event::fire('user.created', $user);
         });
-        
+
         static::updated(function($user) {
             Event::fire('user.updated', $user);
         });
@@ -137,7 +136,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
         return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
     }
-    
+
     public function getNeedRenewAttribute()
     {
 
@@ -147,50 +146,54 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function isSubscribed($userId)
     {
         $time = time();
-        
+
         $adminSubscribed = DB::table('users')
             ->select('*')
             ->where('id', $userId)
             ->where('is_subscribed_backend', 1)
             ->first();
-        
+
         if (!is_null($adminSubscribed)) {
             return 1;
         }
-        
+
         $subscription = DB::table('subscriptions')
             ->select('*')
             ->where('user_id', '=', $userId)
             ->orderBy('id', 'DESC')
             ->first();
-        
+
         if (is_null($subscription)) {
             return 0;
         } else {
-            return 1;
+            if ($subscription->end_time <= $time) {
+                return 0;
+            } else {
+                return 1;
+            }
         }
     }
-    
+
     public function needToUpdate($userId)
     {
         $time = time();
-        
+
         $adminSubscribed = DB::table('users')
             ->select('*')
             ->where('id', $userId)
-            ->where('is_subscribed_backend', 1)            
+            ->where('is_subscribed_backend', 1)
             ->first();
-        
+
         if (!is_null($adminSubscribed)) {
             return 0;
         }
-        
+
         $subscription = DB::table('subscriptions')
             ->select('*')
             ->where('user_id', '=', $userId)
             ->orderBy('id', 'DESC')
             ->first();
-        
+
         if (is_null($subscription)) {
             return 0;
         }
@@ -204,7 +207,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getUserRaidAttribute()
     {
-
         return $this->attributes['user_raid'] = $this->userRaid($this->id);
     }
 
@@ -222,11 +224,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $raidSkill = Skill::where('id', '=', $userRaid->goal_options)
                 ->with(['exercise'])
                 ->first();
-            
+
             if (is_null($userRaid)) {
                 return [];
             }
-            
+
             return ['id' => $raidSkill->id, 'name' => $raidSkill['exercise']->name];
         }
     }

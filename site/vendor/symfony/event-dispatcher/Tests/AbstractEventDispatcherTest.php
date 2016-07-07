@@ -1,4 +1,4 @@
-<?php namespace Symfony\Component\EventDispatcher\Tests;
+<?php
 
 /*
  * This file is part of the Symfony package.
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-
+namespace Symfony\Component\EventDispatcher\Tests;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;

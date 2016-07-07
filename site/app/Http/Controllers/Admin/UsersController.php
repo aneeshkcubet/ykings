@@ -10,7 +10,8 @@ use Validator,
     Redirect,
     DB,
     Input,
-    Lang;
+    Lang,
+    Response;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,7 @@ use Yajra\Datatables\Datatables;
 class UsersController extends Controller {
 
     public function __construct() {
-        $this->middleware('admin');
+        $this->middleware('admin', ['except' => ['exportsubscribers', 'exportusers']]);
     }
 
     /**
@@ -50,34 +51,33 @@ class UsersController extends Controller {
 
         $posts = DB::table('users')
                 ->join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
-                ->select(['users.id', 'user_profiles.first_name', 'user_profiles.last_name', 'users.email', 'users.status', 'users.is_featured', 'users.is_subscribed_backend'])
-                ->orderBy('users.id', 'desc');
+                ->select(['users.id', 'user_profiles.first_name', 'user_profiles.last_name', 'users.email', 'users.status', 'users.is_featured', 'users.is_subscribed_backend']);
 
         return Datatables::of($posts)
                         ->addColumn('action', function ($list) {
                             $html = ' <a href=\'' . route("admin.user.show", $list->id) . '\'><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                      <a href="/admin/users/' . $list->id . '/edit"><i class="glyphicon glyphicon-edit"></i></a>';
+                                      <a href="'. route("admin.user.update", $list->id). '"><i class="glyphicon glyphicon-edit"></i></a>';
                             if ($list->id != 1) {
-                                $html.='<a href="/admin/users/' . $list->id . '/confirm-delete-user" data-toggle="modal" data-target="#delete_confirm">
+                                $html.='<a href="'. route("admin.confirm-delete.user", $list->id). '" data-toggle="modal" data-target="#delete_confirm">
                                         <i class="glyphicon glyphicon-remove" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
                                          </i>
                                         </a>';
                             }
                             if ($list->is_featured != 1) {
-                                $html.='<a href = "/admin/users/' . $list->id . '/setfeatured" title = "Set as Featured User">
+                                $html.='<a href = "'. route("admin.user.setfeatured", $list->id). '" title = "Set as Featured User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Featured User"></i>
                                         </a>';
                             } else {
-                                $html.='<a href = "/admin/users/' . $list->id . '/unsetfeatured" title = "Remove Featured">
+                                $html.='<a href = "'. route("admin.user.unsetfeatured", $list->id). '" title = "Remove Featured">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Featured"></i>
                                         </a>';
                             }
                             if ($list->is_subscribed_backend != 1) {
-                                $html.='<a href = "/admin/users/' . $list->id . '/setsubscribed" title = "Set as Subscribed User">
+                                $html.='<a href = "'. route("admin.user.setsubscribed", $list->id). '" title = "Set as Subscribed User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Subscribed User"></i>
                                         </a>';
                             } else {
-                                $html.='<a href = "/admin/users/' . $list->id . '/unsetsubscribed" title = "Remove Subscribed">
+                                $html.='<a href = "'. route("admin.user.unsetsubscribed", $list->id). '" title = "Remove Subscribed">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Subscribed"></i>
                                         </a>
                                         ';
@@ -94,9 +94,6 @@ class UsersController extends Controller {
                             }
                         })
                         ->blacklist(['action'])
-//            ->editColumn('name', function ($model) {
-//                return \HTML::mailto($model->email, $model->name);
-//            })
                         ->make(true);
 
 //return Datatables::of(User::query())->make(true);
@@ -596,6 +593,75 @@ class UsersController extends Controller {
 // Redirect to the home page with success message
 
         return Redirect::route("admin.feeds")->with('success', 'Successfully added message.');
+    }
+    
+    public function exportsubscribers()
+    {
+        $subscribers = DB::table('user_settings')->where('user_settings.key', '=', 'subscription')
+            ->where('user_settings.value', '=', 1)->distinct()->lists('user_id');
+        
+        $table = User::leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+            ->select(['user_profiles.first_name', 'user_profiles.last_name','users.email'])
+            ->whereIn('users.id', $subscribers)
+            ->where('users.is_admin', '!=', 1)
+            ->where('users.status', '=', 1)
+            ->get();
+        
+        $filename = public_path()."/subscribers.xls";
+        if(!is_file($filename)){
+            touch($filename, time());
+            chmod($filename, 0777);
+        }
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('Sl No.', 'First Name', 'Last name', 'email'));
+        
+        $rowCount = 1;
+
+        foreach($table as $row) {            
+            fputcsv($handle, array($rowCount, $row['first_name'], $row['last_name'], $row['email']));
+            $rowCount++;
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'application/vnd.ms-excel; name=excel'
+        );
+
+        return Response::download($filename, 'subscribers'.time().'.xls', $headers);
+        return view('welcome');
+    }
+    
+    public function exportusers()
+    {
+        
+        $table = User::leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+            ->select(['user_profiles.first_name', 'user_profiles.last_name','users.email']) 
+            ->get();
+        
+        $filename = public_path()."/users.xls";
+        if(!is_file($filename)){
+            touch($filename, time());
+            chmod($filename, 0777);
+        }
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('Sl No.', 'First Name', 'Last name', 'email'));
+        
+        $rowCount = 1;
+
+        foreach($table as $row) {            
+            fputcsv($handle, array($rowCount, $row['first_name'], $row['last_name'], $row['email']));
+            $rowCount++;
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'application/vnd.ms-excel; name=excel'
+        );
+
+        return Response::download($filename, 'users_'.time().'.xls', $headers);
+        return view('welcome');
     }
 
 }

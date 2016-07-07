@@ -10,6 +10,14 @@ Feeds
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -82,16 +90,23 @@ Feeds
         $('#table').DataTable({
             processing: true,
             serverSide: true,
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ records per page",
+                "sEmptyTable": "No Users found!",
+                "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+            },
             ajax: '{!! route("admin.feeds.data") !!}',
             columns: [
                 {data: 'id', name: 'feeds.id'},
-                {data: 'image', name: 'image'},
+                {data: 'image', name: 'image', orderable: false, searchable: false},
                 {data: 'feed_text', name: 'feed_text'},
-                {data: 'comments', name: 'comments'},
-                {data: 'author', name: 'author'},
-                {data: 'claps', name: 'claps'},
-                {data: 'action', name: 'action'}
+                {data: 'comments', name: 'comments', orderable: false, searchable: false},
+                {data: 'author', name: 'author', orderable: false, searchable: false},
+                {data: 'claps', name: 'claps', orderable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
+            ,
+            order: [[0, 'desc']]
         });
     });
 </script>

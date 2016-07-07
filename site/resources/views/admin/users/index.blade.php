@@ -10,6 +10,14 @@ Users
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -72,6 +80,11 @@ $(function () {
     $('#table').DataTable({
         processing: true,
         serverSide: true,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page",
+            "sEmptyTable": "No Users found!",
+            "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+        },
         ajax: '{!! route("admin.users.data") !!}',
         columns: [
             {data: 'id', name: 'users.id'},
@@ -79,8 +92,9 @@ $(function () {
             {data: 'last_name', name: 'last_name'},
             {data: 'email', name: 'email'},
             {data: 'status', name: 'status'},
-            {data: 'action', name: 'action'}
-        ]
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+        ],
+        order: [[0, 'desc']]
     });
 });
 
