@@ -10,6 +10,14 @@ Workouts
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -48,52 +56,11 @@ Workouts
                             <th>Category</th>
                             <th>Free/Paid</th>
                             <th>Rewards</th>
-                            <th>Duration</th>
                             <th>Equipments</th>
                             <th>Created</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($workouts as $list)
-                        <tr>
-                            <td>{{ $list->id }}</td>
-                            <td>{{ $list->name }}</td>
-                            <td>{{ $list->description }}</td>
-                            <td>{{ $list->rounds }}</td>
-                            <td>
-                                @if($list->category == 1)
-                                Strength
-                                @elseif($list->category == 2)
-                                Cardio-Strength
-                                @endif
-                            </td>
-                            <td>
-                                @if($list->type == 1)
-                                Free
-                                @elseif($list->type == 2)
-                                Paid                                
-                                @endif
-                            </td>
-                            <?php
-                            $rewardsArray = json_decode($list->rewards);
-
-                            ?>
-                            <td>Lean - {{ $rewardsArray->lean }}, Athletic - {{$rewardsArray->athletic}}, Strength - {{$rewardsArray->strength}}</td>                            
-                            <td>{{ $list->duration }}</td>
-                            <td>{{ $list->equipments }}</td>
-                            <td>{{ $list->created_at }}</td>
-                            <td>
-                                <a href="{{ route('admin.workout.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view workout"></i></a>
-                                <a href="{{ route('admin.workout.edit', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update workout"></i></a>
-                                <a href="{{ route('admin.confirm-delete.workout', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
-                                    <i class="livicon" data-name="workout-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete workout.">
-                                    </i>
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -105,12 +72,6 @@ Workouts
 @section('footer_scripts')
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.js') }}"></script>
-
-<script>
-$(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content"></div>
@@ -121,6 +82,29 @@ $(document).ready(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
+    });
+    $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page",
+            "sEmptyTable": "No Workouts found!",
+            "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+        },
+        ajax: '{!! route("admin.workouts.data") !!}',
+        columns: [
+            {data: 'id', name: 'workouts.id'},
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'description'},
+            {data: 'rounds', name: 'rounds'},
+            {data: 'category', name: 'category', searchable: false},
+            {data: 'type', name: 'type', searchable: false},
+            {data: 'rewards', name: 'rewards', orderable: false},
+            {data: 'equipments', name: 'equipments'},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+        ],
+        order: [[0, 'desc']]   
     });
 </script>
 @stop

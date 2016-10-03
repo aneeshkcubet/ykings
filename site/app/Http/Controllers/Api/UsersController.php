@@ -31,6 +31,8 @@ use App\Point;
 use App\Skill;
 use App\Musclegroup;
 use App\CommonFunctions\PushNotificationFunction;
+use App\Skilltraining;
+use App\Skilltraininguser;
 
 class UsersController extends Controller
 {
@@ -351,12 +353,7 @@ class UsersController extends Controller
                 'confirmation_code' => $confirmation_code,
                 'status' => 0,
                 'referral_code' => isset($data['referral_code']) ? $data['referral_code'] : 0
-        ]);
-
-        Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
-            $message->to($data['email'], $data['first_name'] . ' ' . $data['last_name'])
-                ->subject('Verify your email address');
-        });
+        ]);        
 
         $profile = new Profile([
             'first_name' => $data['first_name'],
@@ -375,6 +372,11 @@ class UsersController extends Controller
         $userProfile = $user->profile()->save($profile);
 
         $user = User::where('email', '=', $data['email'])->with([ 'profile'])->first();
+        
+        Mail::send('email.verify', ['confirmation_code' => $confirmation_code, 'first_name' => $data['first_name'], 'last_name' => $data['last_name']], function($message) use ($data) {
+            $message->to($data['email'], $data['first_name'] . ' ' . $data['last_name'])
+                ->subject('Verify your email address');
+        });
 
         if (isset($data['subscription'])) {
             Settings::create(['user_id' => $user->id,
@@ -899,15 +901,17 @@ class UsersController extends Controller
                 //Code added by <ansa@cubettech.com> on 31-12-2015
                 //To save device token
                 if (isset($request->device_token) && isset($request->device_type) && $request->device_token != null && $request->device_token != '(null)') {
-                    $userDeviceToken = PushNotification::where('user_id', '=', Auth::user()->id)
+                    $userDeviceToken = PushNotification::where('device_token', '=', $request->device_token)
                         ->where('type', '=', $request->device_type)
                         ->first();
                     if (is_null($userDeviceToken)) {
-                        $deviceToken = PushNotification::create(['user_id' => Auth::user()->id,
+                        $deviceToken = PushNotification::create([
+                                'user_id' => Auth::user()->id,
                                 'type' => $request->device_type,
                                 'device_token' => $request->device_token
                         ]);
                     } else {
+                        $userDeviceToken->user_id = Auth::user()->id;
                         $userDeviceToken->device_token = $request->device_token;
                         $userDeviceToken->update();
                     }
@@ -925,12 +929,12 @@ class UsersController extends Controller
                 //Added by ansa@cubettech.com on 27-11-2015
                 $userArray['facebook_connected'] = Social::isFacebookConnect($userArray['id']);
                 $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->first();
-                if(!is_null($coachStatus)){
+                if (!is_null($coachStatus)) {
                     $userArray['coach_week'] = $coachStatus->week;
                 } else {
                     $userArray['coach_week'] = 0;
                 }
-                
+
                 // if no errors are encountered we can return a JWT
                 return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'token' => $token, 'user' => $userArray, 'urls' => config('urls.urls')], 200);
             } else {
@@ -1125,6 +1129,11 @@ class UsersController extends Controller
             $userArray['workout_count'] = DB::table('workout_users')
                 ->where('user_id', '=', $user['id'])
                 ->where('status', '=', 1)
+                ->distinct()
+                ->count() + DB::table('skilltraining_users')
+                ->where('user_id', '=', $user['id'])
+                ->where('status', '=', 1)
+                ->distinct()
                 ->count();
 
             $userArray['level'] = Point::userLevel($user['id']);
@@ -1222,8 +1231,16 @@ class UsersController extends Controller
         if ($user->status == 1) {
             return response()->json(['status' => 0, 'error' => 'email already verified'], 422);
         }
+        
+        $profile = Profile::where('user_id', $user->id)->first();
+        
+        $confirmation_code = DB::table('password_resets')->where('email', $request->email)->pluck('token');
+        
+        if(is_null($confirmation_code)){
+            return response()->json(['status' => 0, 'error' => 'Invalid user.'], 422);
+        }
 
-        Mail::send('email.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user, $request) {
+        Mail::send('email.verify', ['confirmation_code' => $confirmation_code, 'first_name' => $profile->first_name, 'last_name' => $profile->last_name], function($message) use ($user, $request) {
             $message->to($request->email, $user->profile[0]['first_name'] . ' ' . $user->profile[0]['last_name'])
                 ->subject('Verify your email address');
         });
@@ -1236,129 +1253,194 @@ class UsersController extends Controller
      * @apiName getUserRecentHistory
      * @apiGroup User
      * @apiParam {integer} user_id id of loggedin user *required
+     * @apiParam {integer} [last_history_id] id last history id *required
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "history",
-      "history": [
-      {
-      "id": "25",
-      "user_id": "96",
+  "status": 1,
+  "success": "history",
+  "history": [
+    {
+      "id": "1497",
+      "user_id": "100",
       "item_type": "exercise",
-      "item_id": "35",
-      "feed_text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pulvinar suscipit ante vitae ultricies.",
-      "created_at": "2016-01-08 05:43:32",
-      "updated_at": "2016-01-08 05:43:32",
-      "category": "Athletic",
-      "item_name": "One Leg Back Lever",
-      "duration": "100",
-      "volume": "10",
-      "points": "60.00"
-      },
-      {
-      "id": "24",
-      "user_id": "96",
-      "item_type": "exercise",
-      "item_id": "8",
-      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
-      "created_at": "2016-01-08 05:42:12",
-      "updated_at": "2016-01-08 05:42:12",
-      "category": "Lean",
-      "item_name": "Single Leg Deadlift",
-      "duration": "100",
-      "volume": "100",
-      "points": "60.00"
-      },
-      {
-      "id": "23",
-      "user_id": "96",
-      "item_type": "exercise",
-      "item_id": "4",
-      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
-      "created_at": "2016-01-08 05:41:35",
-      "updated_at": "2016-01-08 05:41:35",
-      "category": "Lean",
-      "item_name": "Skin the cat",
-      "duration": "30",
-      "volume": "100",
-      "points": "60.00"
-      },
-      {
-      "id": "22",
-      "user_id": "96",
-      "item_type": "exercise",
-      "item_id": "4",
-      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
-      "created_at": "2016-01-08 05:41:06",
-      "updated_at": "2016-01-08 05:41:06",
-      "category": "Lean",
-      "item_name": "Skin the cat",
-      "duration": "30",
-      "volume": "50",
-      "points": "30.00"
-      },
-      {
-      "id": "21",
-      "user_id": "96",
-      "item_type": "exercise",
-      "item_id": "2",
-      "feed_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget orci fringilla, tempor nibh quis, varius lectus. Nunc maximus diam ac lacus dictum pulvinar.",
-      "created_at": "2016-01-08 05:40:20",
-      "updated_at": "2016-01-08 05:40:20",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-27 06:33:55",
+      "updated_at": "2016-07-27 06:33:55",
       "category": "Lean",
       "item_name": "Australian Pullups",
-      "duration": "30",
-      "volume": "3",
-      "points": "1.80"
-      },
-      {
-      "id": "2",
-      "user_id": "96",
+      "duration": "5",
+      "volume": "max",
+      "sets": "8",
+      "points": "96.00"
+    },
+    {
+      "id": "1469",
+      "user_id": "100",
       "item_type": "exercise",
-      "item_id": "1",
-      "feed_text": "not bad",
-      "created_at": "2016-01-07 10:25:18",
-      "updated_at": "2016-01-07 10:25:18",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:53:04",
+      "updated_at": "2016-07-20 06:53:04",
       "category": "Lean",
-      "item_name": "Jumping Pullups",
-      "duration": "29",
-      "volume": "25",
-      "points": "25.00"
-      },
-      {
-      "id": "1",
-      "user_id": "96",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "15",
+      "sets": "8",
+      "points": "72.00"
+    },
+    {
+      "id": "1468",
+      "user_id": "100",
       "item_type": "exercise",
-      "item_id": "1",
-      "feed_text": "its cool",
-      "created_at": "2016-01-07 10:23:02",
-      "updated_at": "2016-01-07 10:23:02",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:52:37",
+      "updated_at": "2016-07-20 06:52:37",
       "category": "Lean",
-      "item_name": "Jumping Pullups",
-      "duration": "57",
-      "volume": "50",
-      "points": "50.00"
-      }
-      ],
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
-      }
-      }
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "15",
+      "sets": "3",
+      "points": "27.00"
+    },
+    {
+      "id": "1467",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:52:33",
+      "updated_at": "2016-07-20 06:52:33",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "15",
+      "sets": "1",
+      "points": "9.00"
+    },
+    {
+      "id": "1466",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:52:07",
+      "updated_at": "2016-07-20 06:52:07",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "5",
+      "sets": "10",
+      "points": "30.00"
+    },
+    {
+      "id": "1465",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "10",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:51:19",
+      "updated_at": "2016-07-20 06:51:19",
+      "category": "Strength",
+      "item_name": "One Arm Pushups",
+      "duration": "5",
+      "volume": "5",
+      "sets": "5",
+      "points": "22.50"
+    },
+    {
+      "id": "1464",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "8",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:51:13",
+      "updated_at": "2016-07-20 06:51:13",
+      "category": "Athletic",
+      "item_name": "Bicycle",
+      "duration": "5",
+      "volume": "5",
+      "sets": "5",
+      "points": "17.50"
+    },
+    {
+      "id": "1463",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:51:08",
+      "updated_at": "2016-07-20 06:51:08",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "5",
+      "sets": "5",
+      "points": "15.00"
+    },
+    {
+      "id": "1462",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:51:02",
+      "updated_at": "2016-07-20 06:51:02",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "5",
+      "sets": "3",
+      "points": "9.00"
+    },
+    {
+      "id": "1461",
+      "user_id": "100",
+      "item_type": "exercise",
+      "item_id": "78",
+      "feed_text": "This is the Third test on V2",
+      "image": "",
+      "created_at": "2016-07-20 06:50:58",
+      "updated_at": "2016-07-20 06:50:58",
+      "category": "Lean",
+      "item_name": "Australian Pullups",
+      "duration": "5",
+      "volume": "5",
+      "sets": "2",
+      "points": "6.00"
+    }
+  ],
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  },
+  "last_history_id": "1461",
+  "view_more": 1
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -1409,20 +1491,31 @@ class UsersController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-                $userHistory = Feeds::where('user_id', '=', $request->user_id)
-                    ->where('item_type', '=', 'exercise')
-                    ->orWhere('item_type', '=', 'workout')
-                    ->orWhere('item_type', '=', 'hiit')
-                    ->orderBy('created_at', 'DESC')
-                    ->get();
-                
+                $userHistoryQuery = Feeds::where('user_id', '=', $request->user_id);
+                $whereRawQuery = '(item_type = "exercise" OR item_type = "workout" OR item_type = "hiit") ';
+                if (isset($request->last_history_id) && $request->last_history_id != null && $request->last_history_id != '(null)') {
+                    $whereRawQuery .= 'AND id < ' . $request->last_history_id;
+                }
+
+                $userHistory = $userHistoryQuery->whereRaw($whereRawQuery)->orderBy('id', 'DESC')->take(10)->get();
+
                 $userHistoryResponse = array();
+                $viewMore = 1;
 
                 if (count($userHistory) > 0) {
                     $userHistoryResponse = $this->AdditionalFeedsDetails($userHistory);
+                    $lastActivity = end($userHistoryResponse);
+                    $lastActivityId = $lastActivity->id;
+                    $viewMore = (count($userHistory) >= 10) ? 1 : 0;
+                    $viewMoreCount = Feeds::where('user_id', '=', $request->user_id)->whereRaw('(item_type = "exercise" OR item_type = "workout" OR item_type = "hiit") AND id < ' . $lastActivityId)->orderBy('id', 'DESC')->count();
+                    if ($viewMoreCount > 0) {
+                        $viewMore = 1;
+                    }
+                } else {
+                    $lastActivityId = 0;
+                    $viewMore = 0;
                 }
-
-                return response()->json(['status' => 1, 'success' => 'history', 'history' => $userHistoryResponse, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'success' => 'history', 'history' => $userHistoryResponse, 'urls' => config('urls.urls'), 'last_history_id' => $lastActivityId, 'view_more' => $viewMore], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -1478,6 +1571,7 @@ class UsersController extends Controller
 
                 $history->duration = $exerciseUserDet->time;
                 $history->volume = $exerciseUserDet->volume;
+                $history->sets = $exerciseUserDet->sets;
                 $history->points = DB::table('points')->where('item_id', $exerciseUserDet->id)->where('activity', 'exercise_completed')->pluck('points');
             } elseif ($history->item_type == 'hiit') {
 
@@ -1508,400 +1602,11088 @@ class UsersController extends Controller
      * @apiSuccess {String} success.
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
-     * 
      * {
-      "status": 1,
-      "success": "history",
-      "exercise_history": [
-      {
+  "status": 1,
+  "success": "history",
+  "exercise_history": [
+    {
       "id": "1",
-      "name": "Jumping Pullups",
-      "description": "The jumping pull-up is a challenging full body exercise that targets the back, legs and arms.",
-      "category": "1",
+      "name": "Side Plank",
+      "description": "Achieve superior body control, strengthen your shoulders, and improve lateral torso stability.",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "scores": {
-      "10": [],
-      "20": [],
-      "25": [
-      {
-      "id": "2",
-      "user_id": "96",
-      "exercise_id": "1",
-      "status": "1",
-      "time": "29",
-      "is_starred": "0",
-      "volume": "25",
-      "feed_id": "2",
-      "created_at": "2016-01-07 10:25:18",
-      "updated_at": "2016-01-07 10:25:18"
-      }
-      ],
-      "30": [],
-      "50": [
-      {
-      "id": "1",
-      "user_id": "96",
-      "exercise_id": "1",
-      "status": "1",
-      "time": "57",
-      "is_starred": "0",
-      "volume": "50",
-      "feed_id": "1",
-      "created_at": "2016-01-07 10:23:02",
-      "updated_at": "2016-01-07 10:23:02"
-      }
-      ],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
-      "id": "4",
-      "name": "Skin the cat",
-      "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "1,4,6,8",
+      "rewards": "9.00",
       "repititions": "10",
       "duration": "10",
-      "unit": "times",
+      "unit": "seconds",
       "equipment": "",
+      "range_of_motion": "1. Start seated on the right hip with the knees slightly bent.\r\n2. Place supporting elbow on the floor and push your body up, so that it forms a perfect triangle with the floor.\r\n3. Hold the position while resting the other arm along side the body.\r\n4. Return slowly to starting position and switch sides.\r\n",
+      "video_tips": "",
+      "pro_tips": "\r\nTry advanced variations with fully extended support arm.\r\nLift up the non-supporting leg and arm while in the plank to work for more strength and balance.\r\nPay attention to push your inner thighs to the ceilings.\r\nGo slowly and controlled in and out of the side plank.\r\n",
+      "video_tips_html": "",
+      "pro_tips_html": "<ul><li>Try advanced variations with fully extended support arm.</li><li>Lift up the non-supporting leg and arm while in the plank to work for more strength and balance.</li><li>Pay attention to push your inner thighs to the ceilings.</li><li>Go slowly and controlled in and out of the side plank.</li></ul>",
+      "range_of_motion_html": "<ol><li>Start seated on the right hip with the knees slightly bent.</li><li>Place supporting elbow on the floor and push your body up, so that it forms a perfect triangle with the floor.</li><li>Hold the position while resting the other arm along side the body.</li><li>Return slowly to starting position and switch sides.</li></ol>",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Core, Full Body",
       "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [
-      {
-      "id": "10",
-      "user_id": "96",
-      "exercise_id": "4",
-      "status": "1",
-      "time": "30",
-      "is_starred": "0",
-      "volume": "50",
-      "feed_id": "22",
-      "created_at": "2016-01-08 05:41:06",
-      "updated_at": "2016-01-08 05:41:06"
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
       }
-      ],
-      "60": [],
-      "100": [
-      {
-      "id": "11",
-      "user_id": "96",
-      "exercise_id": "4",
-      "status": "1",
-      "time": "30",
-      "is_starred": "0",
-      "volume": "100",
-      "feed_id": "23",
-      "created_at": "2016-01-08 05:41:35",
-      "updated_at": "2016-01-08 05:41:35"
+    },
+    {
+      "id": "2",
+      "name": "Decline Plank",
+      "description": "Strengthen and tone your abs",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,4,6,8",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "1. Get into pushup position on the floor with your legs positioned on higher ground (box).\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms.\r\n3. Hold the position for as long as you can while keeping a straight line.\r\n",
+      "video_tips": "",
+      "pro_tips": "\r\nFeet slightly raised above the level of the elbows is sufficient.\r\nTry variations with fully extended arms.\r\nKeeping the spine from moving teaches creating stability through the spine, hips and shoulders while extending the hip or flexing the shoulder.\r\n",
+      "video_tips_html": "",
+      "pro_tips_html": "<ul>\r\n<li>Feet slightly raised above the level of the elbows is sufficient.</li>\r\n<li>Try variations with fully extended arms.</li>\r\n<li>Keeping the spine from moving teaches creating stability through the spine, hips and shoulders while extending the hip or flexing the shoulder.</li>\r\n</ul>",
+      "range_of_motion_html": "<ol>\r\n<li>Get into pushup position on the floor with your legs positioned on higher ground (box).</li>\r\n<li>Now bend your elbows 90 degrees and rest your weight on your forearms.</li>\r\n<li>Hold the position for as long as you can while keeping a straight line.</li>\r\n</ol>",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Core, Full Body",
+      "scores": {
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
       }
-      ],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
+    },
+    {
+      "id": "3",
+      "name": "Tucked Plank",
+      "description": "Put an emphasis on your shoulders and your posture.",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,4,6,8",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Arms stay fully extended. Rest your weight on your arms. \r\n3. Bring one leg to the chest while maintaining the postion.\r\n4. Alternate the legs for as long as you can. ",
+      "video_tips": "      ",
+      "pro_tips": "Keep your neck long and in line with your spine. \r\nDon't look ahead and don't look at your feet, look slightly ahead of yourself.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Core, Full Body",
+      "scores": {
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
       }
-      },
-      {
-      "id": "5",
-      "name": "Side Trizeps",
-      "description": "",
+    },
+    {
+      "id": "4",
+      "name": "Plank",
+      "description": "The plank builds your isometric strength and helps sculpt your waistline.",
       "category": "1",
       "type": "1",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "30",
-      "unit": "times",
-      "equipment": "",
-      "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
-      "id": "6",
-      "name": "Trizeps Extension",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1",
-      "unit": "times",
-      "equipment": "",
-      "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
-      "id": "7",
-      "name": "Wall Sits",
-      "description": "",
-      "category": "1",
-      "type": "1",
+      "muscle_groups": "1,4,6,8",
       "rewards": "6.00",
       "repititions": "10",
       "duration": "10",
       "unit": "seconds",
       "equipment": "",
+      "range_of_motion": "1. Get into pushup position on the floor.\r\n2. Now bend your elbows 90 degrees and rest your weight on your forearms. \r\n3. Hold the position for as long as you can.   ",
+      "video_tips": "        ",
+      "pro_tips": "Drive your chest away from the ground and spread your shoulder blades as much as you can.\r\nKeep a straight line, from head to toe. \r\nDon't collapse your lower back or reach your butt to the sky. Add movement to your plank, rock back and forth on your forearms and toes or shift from side to side.\r\nTry advanced variations with alternating sinlge leg support. \r\nStart with an incline plank if a straight plank is too hard in the beginning.  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Core, Full Body",
       "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
       }
-      },
-      {
+    },
+    {
+      "id": "5",
+      "name": "Jackknives",
+      "description": "Build your abs and obliques",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Lie straight on an exercise mat and extend your arms straight back behind your head.\r\n2. Elevate your legs and arms and bend your waist at the same time and touch your feet when they are totally vertical.\r\n3. Keep your arms fully extended, totally parallel to your legs. Go back down, repeat.\r\n   ",
+      "video_tips": "      ",
+      "pro_tips": "Fight for inches and hold in upper position for even more core strength.\r\nKeep track on good form and keep your upper body elevated from the floor.\r\n   ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "6",
+      "name": "V-up Rollup",
+      "description": "Coordinate a harder variation of core body strength & control.",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Lie on your back on the floor with arms by your sides and your legs extended out.\r\n2. Lift your upper body up off the floor and reach out with your hands towards your toes.\r\n3. As you roll down, extend your arms above your head and let your legs lift off the floor. \r\n4. As soon as your back touches the floor, perform the v-up.",
+      "video_tips": "      ",
+      "pro_tips": "Keep your chin away from your chest, and make sure the movement is done in a controlled manner.\r\nWhile doing this exercise, your legs should be fully extended near about 30-45 degrees from the floor.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "7",
+      "name": "Situps",
+      "description": "Build a strong core and fight for real abs.",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Lying on back with knees bent\r\n2. Pull torso upwards and touch the floor in front of feet\r\n3. Lower your torso to the floor\r\n4. Quickly touch the floor behind your head and go back up\r\n",
+      "video_tips": "    ",
+      "pro_tips": "If you experience any back pain then perform the same exercise on a gym ball to comfort your spine.\r\nDo the situp without using the swing of your arms.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
       "id": "8",
-      "name": "Single Leg Deadlift",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
+      "name": "Bicycle",
+      "description": "Strengthen your side-ab muscle and stabilize your torso rotation",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "6",
+      "rewards": "7.00",
       "repititions": "10",
-      "duration": "1",
+      "duration": "10",
       "unit": "times",
       "equipment": "",
+      "range_of_motion": "1. Lie flat on the floor with the lower back pressed into the floor\r\n2. Place your hands slightly behind your head\r\n3. Move one knee and its opposite elbow toward each other while straightening the other leg\r\n4. Repeat with other side",
+      "video_tips": "      ",
+      "pro_tips": "Keep elbows back and don't push your head or neck up with your hands. \r\nConcentrate to work with your core. The slower, the better.\r\nFocus on getting your shoulder blades of the ground. Think shoulder to knee instead of elbow to knee.\r\nKeep the rhythm of changing sides for continuous alternate crunches maintained and do as many reps as your body allows.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
       "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [
-      {
-      "id": "12",
-      "user_id": "96",
-      "exercise_id": "8",
-      "status": "1",
-      "time": "100",
-      "is_starred": "0",
-      "volume": "100",
-      "feed_id": "24",
-      "created_at": "2016-01-08 05:42:12",
-      "updated_at": "2016-01-08 05:42:12"
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [
+            {
+              "id": "859",
+              "user_id": "100",
+              "exercise_id": "8",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1464",
+              "sets": "5",
+              "created_at": "2016-07-20 06:51:13",
+              "updated_at": "2016-07-20 06:51:13"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
       }
-      ],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
-      }
-      },
-      {
+    },
+    {
       "id": "9",
-      "name": "Climbers",
-      "description": "",
+      "name": "Crunches",
+      "description": "Do the most admired sixpack exercise in the world",
       "category": "1",
-      "type": "2",
+      "type": "1",
+      "muscle_groups": "6",
       "rewards": "6.00",
       "repititions": "10",
-      "duration": "1",
+      "duration": "10",
       "unit": "times",
       "equipment": "",
+      "range_of_motion": "1. Starting position is with lying face up on the floor with knees bent. \r\n2. Move torso up and touch your knees with your hands\r\n3. Lower body to the floor and repeat\r\n  ",
+      "video_tips": "    ",
+      "pro_tips": "Do variations in tempo. Aim for one count up and three counts down.\r\nIf you have a tendency to interlace your fingers and yank your head, place your hands cross-chest.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
       "scores": {
-      "10": [],
-      "20": [],
-      "25": [],
-      "30": [],
-      "50": [],
-      "60": [],
-      "100": [],
-      "120": [],
-      "180": [],
-      "240": [],
-      "250": [],
-      "300": [],
-      "360": [],
-      "420": [],
-      "480": [],
-      "500": [],
-      "540": [],
-      "600": [],
-      "750": [],
-      "1000": []
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
       }
+    },
+    {
+      "id": "10",
+      "name": "One Arm Pushups",
+      "description": "Master one of the most demanding and rewarding exercises in calisthenics.",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,2,3,5",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1.Get in a pushup position and place one hand on the floor centered.\r\n2. Next, lower yourself downward until your chest almost touches the floor.\r\n3. Press your upper body back up to the starting position with the other hand on your back.\r\n4. Repeat and switch hands for a balanced workout ",
+      "video_tips": "      ",
+      "pro_tips": " Try a straddle stance for better balance. The wider you go, the easier the move becomes. So feel free to start wide, but aim to get narrower over time. \r\nAim also for shoulders parallel to the ground.\r\n   ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [
+            {
+              "id": "860",
+              "user_id": "100",
+              "exercise_id": "10",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1465",
+              "sets": "5",
+              "created_at": "2016-07-20 06:51:19",
+              "updated_at": "2016-07-20 06:51:19"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
       }
-      ],
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+    },
+    {
+      "id": "11",
+      "name": "Incline One Arm Pushups",
+      "description": "Build pure one arm and body power",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,2,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Place one hand on edge of bench or bar at waist height, and put the other behind your back\r\n2. Start lowering your body until the chest almost touches the bench or bar. \r\n3. Bring your body up in a controlled manner and repeat.\r\n   ",
+      "video_tips": "      ",
+      "pro_tips": " Remember to think about squeezing your whole body, especially your abs and glutes, in order to create full-body tension when practicing toward one-arm push-ups.\r\nTwist of the body should be minimal\r\nBody should be straight (looking from the side)\r\nYou should lower down until there is no more than 10 cm between the ground and your chest",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
       }
+    },
+    {
+      "id": "12",
+      "name": "Pushups",
+      "description": "Perform the most popular exercise of all time with real strength",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,2,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Lie on the floor face down and place your hands in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n 4. Repeat, after a brief pause at the top contracted position.\r\n",
+      "video_tips": "      ",
+      "pro_tips": "Do them extra slow and hold it in highest and lowest position to get strength.\r\nOne of the most common push-up mistakes is flaring out the elbows out instead of keeping them at your sides.\r\nIf too easy, try Spiderman and Diamond Pushups or wear a weigthed vest.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
       }
+    },
+    {
+      "id": "13",
+      "name": "Ball Pushups",
+      "description": "Balance your body and develop wrist strength.",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,2,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Get into a pushup position resting both hand on ball.\r\n2. Fight the balance as you perform a pushup with the chest to the ball",
+      "video_tips": "      ",
+      "pro_tips": "Work your wrist mobility thoroughly before attempting ball pushups.\r\nTry a variations resting one arm on the ball and the other on the floor to shift the muscle focus more to your shoulders.\r\nGet into a straddle stance if too tough in the beginning.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "14",
+      "name": "Incline Pushups",
+      "description": "Start your journey with the simplest way to develop an athletic physique",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "1,2,3",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Place hands on edge of bench, bar or rings at waist height, slightly wider than shoulder width \r\n2. Perform regular pushup. Arms should be perpendicular to body. \r\n  ",
+      "video_tips": "    ",
+      "pro_tips": "Resistance can be de- or increased by performing movement on different angles.\r\nAvoid rounding your spine and doing ?banana back? pushups, try squeezing your core.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "15",
+      "name": "Handstand Pushups",
+      "description": "Master one of the hardest calisthenics movements out there",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,3,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Walk up a wall or kick into a wall for an assisted wall handstand\r\n2. Lower yourself slowly and in full controll till your head almost touches the floor \r\n3. Press up in the standard handstand position and repeat. ",
+      "video_tips": "      ",
+      "pro_tips": " When doing this exercise, you must keep the lower body activated to keep balance and keep the body in a straight line. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "16",
+      "name": "Handstand",
+      "description": "Improve your overall strength, body control, and spatial awareness",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Walk up a wall or kick into a wall for an assisted wall handstand\r\n2. Lower yourself slowly and in full controll till your head almost touches the floor \r\n3. Press up in the standard handstand position and repeat. ",
+      "video_tips": "          ",
+      "pro_tips": " The two areas that will take the brunt of the force when you?re upside down are your wrists and your shoulders. \r\nWarmup your wrists before handstand training and spread your fingers for better balance.\r\nImprove your shoulder strength and flexibility before attempting handstands.\r\nWork on a hollow body hold for core strength and control. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "17",
+      "name": "Crow Pose",
+      "description": "Learn the essential static hold to challenge your strength, flexibility, and coordination",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Squat down\r\n2. Hands on the floor shoulder width apart\r\n3. Leaning forward bending at the elbows",
+      "video_tips": "        ",
+      "pro_tips": "Do tippy toes supported crow pose in the beginning.\r\nAlthough the advanced version of Crow is done with straight arms, try it first with bent elbows.\r\nHold for a breath or two and then with control, lower your feet to the floor. Repeat rocking in and out of Crow to strengthen your core, upper body, and the muscles in your hands.\r\n",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "18",
+      "name": "Elevated Pike Pushups",
+      "description": "Create more body awareness while feeling the power in your shoulders",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Put your hands in front of you and place your toes on an elevated position\r\n2. Arms and back to form one line\r\n3. Bring body down and engage should muscles\r\n4. Press back up to starting position",
+      "video_tips": "      ",
+      "pro_tips": "Your body should resemble more of a right angle than a V-shape.\r\nElevating your feet increases the difficulty of the pike push-up by changing the leverage and placing more of your weight onto your hands. This forces you to use the strength of your upper body to perform a rep.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "19",
+      "name": "Military Press",
+      "description": "Your ?go to? exercise while working your way up to the Handstand Push-Up.",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "1,3",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Put your hands in front of you and stand on your toes\r\n2. Arms and back to form one line\r\n3. Bring body down and engage should muscles\r\n4. Press back up to starting position",
+      "video_tips": "      ",
+      "pro_tips": "The key is to keep the hips as high above the shoulders, with straight knees and a flat back.\r\nForm an \"A\" over time and start with static holds if you have trouble doing the pushups in the beginning.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "20",
+      "name": "Atztec Pushups",
+      "description": "The ultimate combination of explosiveness and flexibility",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,2,5,6,8",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start in a standard pushup position.\r\n2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n3. Press up explosively and touch your toes with your hands in the air\r\n4. Land as softly as you can on your hands and toes back in the push-up position. ",
+      "video_tips": "        ",
+      "pro_tips": " Warm up and stretch before attempting any explosive kind of exercise such as Aztect Pushups.\r\nFocus to bring your butt up high in the air.\r\nDo this on a padded surface to prevent injury.\r\nIf you can't complete one, try it without touching your toes first. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Arms, Core, Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "21",
+      "name": "Explosive Pushups",
+      "description": "Start developing explosive power that adds up to your ballistic strength",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,2,3,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Press up explosively and get your upper body off the floor ",
+      "video_tips": "      ",
+      "pro_tips": " If you can't complete one, try it in an incline variation.\r\nPay attention to don't round your back when pushing up.  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "22",
+      "name": "Spiderman Pushups",
+      "description": "Learn to control your body and create body awareness",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "2,3,5,6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "  1. Start in a standard pushup position.\r\n 2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n 3. Bring your knees to your elbows as you go down and alternate with next repition. ",
+      "video_tips": "      ",
+      "pro_tips": " Pretend you are balancing something on your tailbone as you do the Spiderman pushup to maintain the correct plank position. This keeps your hips from rotating. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Chest, Triceps, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "23",
+      "name": "Bruce Lee Pushups",
+      "description": "Master the tough variation of pike pushups",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,3",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a standard pushup position with your hands forming a diamond below your chest and feet elevated\r\n2. Next, lower yourself downward until your head almost touches the floor.\r\n3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n4. Repeat, after a brief pause at the top contracted position.",
+      "video_tips": "    ",
+      "pro_tips": "  Try with straddled feet if to difficult.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "24",
+      "name": "Diamond Pushups",
+      "description": "Develop your arm, chest and shoulder strength",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,2,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a standard pushup position with your hands forming a diamond below your chest.\r\n2. Next, lower yourself downward until your chest almost touches your hands.\r\n3. Exhale and press your upper body back up to the starting position while squeezing your chest.\r\n4. Repeat, after a brief pause at the top contracted position.",
+      "video_tips": "    ",
+      "pro_tips": "Try with straddled feet if to difficult.\r\nIf you can?t do 1 diamond push up, get strong enough for 20 regular push ups, then gradually move your hands closer until you can do 1 rep with your thumbs touching.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "25",
+      "name": "Decline Pushups",
+      "description": "Increase the intensity and difficulty of a standard push ups and help you build shoulder strength fast",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "2,5",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start in a standard pushup position with your feet elevated.\r\n2. Next, lower yourself downward until your chest almost touches the floor as you inhale.\r\n3. Press up and repeat movement.\r\n   ",
+      "video_tips": "      ",
+      "pro_tips": " Start slowly and perform decline pushups in a slow and controlled manner.\r\nGradually increase the angle of the decline as you get stronger. \r\nTo increase the challenge of a decline pushup even more, lift one leg off the bench as you go into your pushup and leave it elevated for a few repetitions. Then switch sides, elevating your other leg.\r\n ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Chest, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "26",
+      "name": "Dragon Flag",
+      "description": "Master Bruce Lee's go-to abs move",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "3,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Swing your feet upward until your body is almost vertical (your shoulder blades will stay planted on the bench).\r\n3. Slowly lower your feet under control until they are just above the bench, or as far as you can to start. \r\n4. Lift your legs back up in the air again to complete a rep.  ",
+      "video_tips": "        ",
+      "pro_tips": " Work with a declined bench in the beginning.\r\nAvoid a hollow back.\r\nThe key is to work it slowly. Incorporate Leg Raises and do all progressions properly.\r\n    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Triceps, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "27",
+      "name": "Negative Dragon Flag",
+      "description": "Let's work on core and torso to build a serious midsection",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Swing your feet upward until your body is almost vertical (your shoulder blades will stay planted on the bench).\r\n3. Slowly lower your feet under control until starting position. \r\n4. Lift your legs back up in the air again and repeat the movement.  ",
+      "video_tips": "          ",
+      "pro_tips": " Try with one leg if to difficult with instead of both in the beginning.\r\nAnother good variation are straddled legs.\r\n     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "28",
+      "name": "Bend Knee DF",
+      "description": "Find your balance and get ripped while progressing",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Swing your feet upward until your body is almost vertical (your shoulder blades will stay planted on the bench).\r\n3. Slowly lower bend legs as far as you can go. \r\n4. Lift your bend legs back up in the air again to complete a rep.  ",
+      "video_tips": "          ",
+      "pro_tips": " Stay in the static postion as you progress and hold your max to build more strength.\r\n     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "29",
+      "name": "Tucked DF",
+      "description": "Develop your core strength on the path to the hardest core exercise in history",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Lie on a decline or flat bench and grab the edge of it behind your head with both hands. \r\n2. Tuck your knees to your chest.\r\n3. Slowly try to extend to bend legs and hold position as long as you can \r\n4. Repeat movement. ",
+      "video_tips": "          ",
+      "pro_tips": " Work it slowly and controlled.\r\nFocus to engage your core and lower back in all progressions. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "30",
+      "name": "Burpee Squat Jumps",
+      "description": "Master an elite cardio and plymetric exercise",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "8",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a standing position\r\n2. Go down and bring your body down to the floor\r\n3. Get up and do a high jump with the knees to your chest",
+      "video_tips": "    ",
+      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "31",
+      "name": "Burpee",
+      "description": "Test your fitness with the original burpee",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "8",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a standing position\r\n2. Go down and bring your body down to the floor\r\n3. Jump back up with your hands behind your head",
+      "video_tips": "    ",
+      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "32",
+      "name": "Sprawl",
+      "description": "Boost your cardio and strength with sprawls",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "8",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a standing position\r\n2. Go into a straight arm plank position\r\n3. Go back up and jump with your hands above your head",
+      "video_tips": "    ",
+      "pro_tips": "Avoid a hollow back during the movement. \r\nKeep the core and lower back engaged at all times.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [
+            {
+              "id": "839",
+              "user_id": "100",
+              "exercise_id": "32",
+              "status": "1",
+              "time": "60",
+              "is_starred": "0",
+              "volume": "10",
+              "feed_id": "1444",
+              "sets": "2",
+              "created_at": "2016-07-19 06:25:34",
+              "updated_at": "2016-07-19 06:25:34"
+            }
+          ],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "33",
+      "name": "Pistol Jumps",
+      "description": "Challenge yourself on balance, strength and coordination",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Go down in a single leg squat with one leg extended\r\n3. Keep your hands in front of you and jump back up",
+      "video_tips": "    ",
+      "pro_tips": "Try an advanced movement flow and jump right into the next pistol instead of stopping in the starting position.    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "34",
+      "name": "One Leg Squat Jumps",
+      "description": "Build plyometric strength in your legs",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Go down in a single leg squat with the other leg bend\r\n3. Keep your hands in front of you and jump back up",
+      "video_tips": "      ",
+      "pro_tips": "Fight for height on each repetition.\r\n   ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "35",
+      "name": "Squat Jumps",
+      "description": "Get your  heart pumping and strengthen your legs and glutes",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Start by doing a regular squat, then engage your core\r\n3. Jump up explosively and land softly, repeat.",
+      "video_tips": "    ",
+      "pro_tips": "Ensure that you avoid allowing the chest to tip over.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "36",
+      "name": "High Jumps",
+      "description": "Do high jumps as a part of restless HIIT workouts",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Jump up and bring your knees to your chest",
+      "video_tips": "    ",
+      "pro_tips": "Land softly and exhale when the knees are up.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "37",
+      "name": "Iron Mike",
+      "description": "Build plyometric leg power",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a lunge position\r\n2. Go down in the lunge\r\n3. Jump up from a lunge and alternate stance\r\n4. Repeat",
+      "video_tips": "    ",
+      "pro_tips": "Avoid using your upper body to push off of your leg as you return to the standing position.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "38",
+      "name": "Lunge",
+      "description": "Work on your posture and get shapely toned legs",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in a lunge position\r\n2. Go down in the lunge\r\n3. Press up and switch legs\r\n4. Repeat",
+      "video_tips": "    ",
+      "pro_tips": "Go slow and steady, concentrating on the muscles being engaged included all of those tiny stabilizing muscles that are helping you keep your balance.\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "39",
+      "name": "Climbers",
+      "description": "Increase your energy, health and endurance",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start in pushup position\r\n2. Alternate your legs up to hand level\r\n3. Repeat",
+      "video_tips": "    ",
+      "pro_tips": "If you are new to mountain climbers perform the knee to chest motion slow and steadily then build it up to a faster pace for a better cardio effect.    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "40",
+      "name": "Shrimp Squats",
+      "description": "Master body balance, gain control and pure leg power",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Go down in a squat holding one leg \r\n3. Keep the other hand in front of you and press your body up again",
+      "video_tips": "    ",
+      "pro_tips": "Avoid letting your knees track past your toes and not rounding your back in order to keep your balance.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "41",
+      "name": "Bulgarian Lunge",
+      "description": "Start to get more balance and leg strength",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position with one leg on a chair or bench\r\n2. Go down in a single leg squat \r\n3. Press your body and repeat",
+      "video_tips": "    ",
+      "pro_tips": "Avoid letting your knees track past your toes and not rounding your back in order to keep your balance.    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "42",
+      "name": "Single Leg Deadlift",
+      "description": "Get your hips mobile and control your balance",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "7",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a standing position\r\n2. Keeping that knee slightly bent, perform a stiff-legged deadlift by bending at the hip.\r\n3. Continue lowering yourself until your upper body is parallel to the ground, and then return to the upright position. \r\n4. Repeat for the desired number of repetitions.",
+      "video_tips": "    ",
+      "pro_tips": "Avoid bending your supporting leg.\r\nKeep your non-supporting leg extended behind you for balance.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "43",
+      "name": "Pistols",
+      "description": "Master the elite one leg power move",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "7",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a single leg squat with one leg extended\r\n3. Keep your hands in front of you and press yourself up again ",
+      "video_tips": "      ",
+      "pro_tips": " Avoid letting your knees track past your toes.\r\nFocus to straighten the non-supporting leg to get more out of pistols.     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "44",
+      "name": "Assisted Pistols",
+      "description": "Combine flexibility, strength and grace for this exercise",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a single leg squat with one leg extended\r\n3. Support the exercise with one hand as you go down and press up ",
+      "video_tips": "        ",
+      "pro_tips": " Avoid letting your knees track past your toes.\r\nFocus to straighten the non-supporting leg to get more out of the exercise.\r\nWarmup and stretch your lower if you are stiff in these areas.    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "45",
+      "name": "Squats",
+      "description": "Get strong with a world class full body compound exercise",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a standing position\r\n2. Go down in a squat \r\n3. Keep your hands in front of you and press yourself up ",
+      "video_tips": "      ",
+      "pro_tips": " Lock the knees out while squeezing the glutes to execute properly.\r\nSquat deep and hold for 1-2 secs, ass to the grass!     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "46",
+      "name": "Wall Sits",
+      "description": "Hold the static position to build isometric strength",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "7",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": " 1. Start with standing close to a wall\r\n2. Go down in a squat with your back pressed against the wall \r\n3. Stay in a 90 angle with your squat ",
+      "video_tips": "        ",
+      "pro_tips": " Focus to have wall contact with your head, shoulders and lower back.\r\nTry to keep your hands to the side or on your chest while in the wall sit. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs",
+      "scores": {
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "47",
+      "name": "Elevated Dips",
+      "description": "Feel the stretch and overcome your last limits to advanced dip exercises",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "3,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from lying on your side\r\n2. Put one hand to your shoulder \r\n3. Press up with the other arm and hold in extension ",
+      "video_tips": "        ",
+      "pro_tips": " As you build strength, progress to single leg assisted dips, supporting only one leg instead of two\r\n    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Triceps, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "48",
+      "name": "Bench Dips",
+      "description": "Develop more strength as you increase resistance with your bodyweight",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Sit on side of bench. \r\n2. Place hands on edge of bench. Position feet away from bench and rest heels on floor with legs straight. \r\n3. Lower your body with the feet in front of you\r\n4. Press your body up and hold in extension ",
+      "video_tips": "      ",
+      "pro_tips": " Don?t rush through your movements to make things easier on yourself. You will sacrifice your form, and in the end, you won?t actually get good at the skills you?re working on.\r\nThe closer you put your hands together, the tougher the bench dip becomes. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "49",
+      "name": "Side Triceps",
+      "description": "Start with the basics of building triceps strength",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "3",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start with the body on your side\r\n2. Put one hand on your shoulder \r\n3. Press up with the other arm and hold in extension ",
+      "video_tips": "          ",
+      "pro_tips": " Avoid supporting the movement with your core muscle.      ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "50",
+      "name": "Triceps Extensions",
+      "description": "Your go-to exercise for core and triceps ",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "3,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Grab a bar or rings and keep your body straight\r\n2. Lower your body until head is beneath bar level\r\n3. Press your body up and hold in triceps extension  ",
+      "video_tips": "      ",
+      "pro_tips": " Keep whole body in line and engaged throughout the exercise.\r\nThe lower the bar/rings the tougher the exercise.     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Triceps, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "51",
+      "name": "Parallettes/Ring Dips",
+      "description": "Gradually test and exceed your boudaries as you build strength in your arms",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,2,3,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Support your body weight in an upright position.\r\n2. Lower your body by bending at the elbows. Upper and lower arm to form a 90? angle.\r\n3. Press your body back up to the original starting position so that your arms are nearly straight but not quite locked. Repeat. ",
+      "video_tips": "            ",
+      "pro_tips": " Leg position can be bent or straight during the exercise. Avoid crossed legs.\r\nTo work your triceps efficiently, ensure your body is straight. \r\nLeaning over will apply emphasis to the chest muscles. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "52",
+      "name": "Korean Dips",
+      "description": "Work your arms with your whole bodyweight",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,3,4",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start sitting on a bar\r\n2. Lower yourself down to the front while maintaining a strong grip with both hands\r\n3. Keep upper body and core straight and engaged\r\n4. Lower yourself slowly and controlled and push back up ",
+      "video_tips": "          ",
+      "pro_tips": " Try descending as slow as possible as you progress.\r\n     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps, Back",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "53",
+      "name": "Straight Bar Dips",
+      "description": "Expose yourself to more balance and body control that will help you also in many other exercises",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,2,3",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start lowering yourself from top position of the bar.\r\n2. Put your legs forward while descending\r\n3. Almost touch the bar with your chest and go back up again.\r\n4. Hold arms in extended position. ",
+      "video_tips": "            ",
+      "pro_tips": " Place your arms at shoulder width.          ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Chest, Triceps",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "54",
+      "name": "Toe Touches",
+      "description": "Engage your whole body in this elite exercise",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,4,5,6,7,8",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a deadhang position\r\n2. Bring your legs up to bar level\r\n3. Slowly return to deadhang position",
+      "video_tips": "      ",
+      "pro_tips": "Fight for height and touch the bar with your shin over time\r\n  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Arms, Core, Legs, Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "55",
+      "name": "L-Sit",
+      "description": "Learn one of the most popular and wanted static holds in the game. At the bar, on the floor",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,4,5,6,7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Hang from the bar \r\n2. Raise legs into an L-sit position (90 degrees)",
+      "video_tips": "      ",
+      "pro_tips": "Do L-Sits constantly also in your stretching routine on the floor\r\nFight for pure strength rather than momentum\r\n    \r\n   ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Arms, Core, Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "56",
+      "name": "Leg Raises",
+      "description": "Fight for your hip mobility, core strength and leg flexibility",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "4,6,7",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Dead Hang from a pull-up bar with a grip that's comfortable and feet off the ground.  \r\n2. Raise your Legs up towards 90 degree\r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+      "video_tips": "      ",
+      "pro_tips": "Increase the holding time to move on to the L-Sit.\r\nUse Knee Raises to always finish your set.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Back, Core, Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [
+            {
+              "id": "840",
+              "user_id": "100",
+              "exercise_id": "56",
+              "status": "1",
+              "time": "60",
+              "is_starred": "0",
+              "volume": "10",
+              "feed_id": "1445",
+              "sets": "2",
+              "created_at": "2016-07-19 06:26:45",
+              "updated_at": "2016-07-19 06:26:45"
+            },
+            {
+              "id": "841",
+              "user_id": "100",
+              "exercise_id": "56",
+              "status": "1",
+              "time": "60",
+              "is_starred": "1",
+              "volume": "10",
+              "feed_id": "1446",
+              "sets": "2",
+              "created_at": "2016-07-19 06:28:59",
+              "updated_at": "2016-07-19 06:28:59"
+            }
+          ],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "57",
+      "name": "Knee Raises",
+      "description": "Develop grip and core strength and get used to slow and controlled moves",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "4,6,7",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Start from a deadhang position with your arms and legs fully extended, and feet off the ground.  \r\n2. Raise your knees up towards your chest as high as possible. \r\n3. Hold for a brief moment and slowly return to the starting position. \r\n4. Repeat for required repetitions. ",
+      "video_tips": "    ",
+      "pro_tips": "Avoid using momentum or swinging during the exercise. \r\nPerform the knee raise slowly and controlled.",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Back, Core, Legs",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "58",
+      "name": "Pullover",
+      "description": "Master the pullover to start with the coolest combos at the bar",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "5,6,8",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Stand facing the bar and grip it with both hands in an overhand grip. Starting Position: retracted Deadhang\r\n2. Pull the body up toward the bar\r\n3. During the pull-up, begin to move the legs and hips up and over the bar.\r\n4. Continue moving around the bar and finish the exercise with the body in a front support position ",
+      "video_tips": "        ",
+      "pro_tips": " To challenge yourself, use each postion to do a static hold of other elite skills as you go around\r\nKeep legs straight and together throughout the movement\r\n    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Arms, Core, Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "59",
+      "name": "Head Banger Pull-ups",
+      "description": "Get comfortable to full body control at the bar",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Grip the bar with both hands in an underhand grip.\r\n2. Bring your chin to bar level \r\n3. Extend your arms and push your body away from the bar\r\n4. Get back to chin to the bar position ",
+      "video_tips": "            ",
+      "pro_tips": " You might want to try this with different grip widths and forms.\r\nAs you move away from the bar simultaneously move your legs in the opposite direction to counter-balance effectively.\r\n      ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "60",
+      "name": "Back Lever",
+      "description": "Gain ultimate core power with this elite exercise.",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Raise your legs up so that you're hanging upside down (inverted hang). \r\n2. Lower the body, leading from the toes down to a horizontal hold, parallel to the ground. \r\n3. Hold this position.\r\n4. Raise the legs back to the starting inverted hang position. ",
+      "video_tips": "          ",
+      "pro_tips": " To challenge yourself go into the back lever from a tucked knees position. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "61",
+      "name": "Half Back Lever",
+      "description": "Experience to overcome limits as you progress and push through",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise knees to chest\r\n3. Go into a horizontal postion and both legs out with knees bend\r\n4. Hold postion as long as you can ",
+      "video_tips": "            ",
+      "pro_tips": " Two alternatives for doing this exercise:\r\n1) Start from inverted hang and lower yourself over time.\r\n2) Try the same movement with straddled legs ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "62",
+      "name": "One Leg Back Lever",
+      "description": "Learn maintaining aestetics while progressing with your static hold",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise knees to chest\r\n3. Go into a horizontal postion and slowly kick one leg out\r\n4. Hold postion as long as you can and alternate legs ",
+      "video_tips": "            ",
+      "pro_tips": " Fight for a straight back and keep your neck in a neutral position.           ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "63",
+      "name": "Tuck Back Lever",
+      "description": "Use your grip and body strength to get familiar holding yourself controlled above the floor",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise knees to chest\r\n3. Go into an upside down horizontal postion with tucked knees\r\n4. Hold postion as long as you can ",
+      "video_tips": "              ",
+      "pro_tips": " Keep the body tight with muscles engaged at all times.\r\nAim for 30 seconds in your static hold. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "64",
+      "name": "Skin the cat",
+      "description": "Develop your joints mobility and expose yourself to new movement layers",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Hands a little more than shoulder width apart\r\n2. Raise your knees to the chest\r\n3. continuing the movement until the feet pass up through the arms and over head into an inverted hang position.\r\n4. Continue to pass the feet round and down toward the ground into the extended 'skin the cat' position.\r\n5. Lift your hips and raise the legs back and over to the starting hang position. ",
+      "video_tips": "        ",
+      "pro_tips": " Put your hands closer together to ease up all back lever progressions.\r\nDo only half of the movement in the beginning, but fight for completion over time.\r\nIncorporate other static elements to challenge yourself during the movement as you master other skills.\r\n    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "65",
+      "name": "Muscleups",
+      "description": "Engage in the most popular calisthenics exercise",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,3,5,8",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Keep neck in neutral position at all times\r\n4. Explosive Pullup\r\n5. Move wrists at the bar and straight bar dip\r\n6. Go back into starting position in controlled manner ",
+      "video_tips": "      ",
+      "pro_tips": " You may find it easier to start with a flexband to support you making the transition.?\r\nChallenge yourself and try the same with rings.\r\nWork with the false grip when you are stuck at the transistion spot. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Triceps, Arms, Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "66",
+      "name": "Explosive Pullups",
+      "description": "Build explosiveness in order to build the strength and muscle memory to go the final step",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "1,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "  1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Explosive Pull up till chest is at bar level\r\n4. Go down controlled  ",
+      "video_tips": "          ",
+      "pro_tips": "You may find it easier with the kick but do them strict as you progress.\nFight for height. Use a resistance band if needed to build explosive power.  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "67",
+      "name": "Pullups/Chinups",
+      "description": "Experience the beauty of strict pullups to build insane upper body strength",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a retracted deadhang position\r\n2. Legs are in line with your body, don't swing\r\n3. Pull up till chin is above the bar\r\n4. Pause at the top of the exercise and then lower back down under control. \r\n5. Return to the starting position and repeat. ",
+      "video_tips": "      ",
+      "pro_tips": "You might switch grips to build all muscles simultaneously. Try close and wide grips. \nDo underhand chinups and overhand pullups.\nYou want to go up fast but slowly and controlled into the deadhang.\nDo weighted pullups and chinups when you are more advanced (5kg,8kg,10kg) ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "68",
+      "name": "Supported Pullups",
+      "description": "Develop your back strength with slow, controlled and strict movements",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "1,5",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from a retracted deadhang position\r\n2. Keep neck in neutral position at all times\r\n3. Pull up till chin is above the bar\r\n4. Go down controlled ",
+      "video_tips": "            ",
+      "pro_tips": "Use a partner, bench or resistance bands to help you during the exercise.\n      ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "69",
+      "name": "Jumping Pullups",
+      "description": "Expose yourself to packed shoulders and hang time",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "1,5",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position ",
+      "video_tips": "        ",
+      "pro_tips": " A deadhang postion requires your shoulder blades down and towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Arms",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "70",
+      "name": "Human Flag",
+      "description": "Master full body control and core power",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "1,5,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Establish the grip and set the hands in position, ensuring that they're in a straight line and perpendicular to the ground.\r\n2. With the body in position and in a straight line, first lift the outside leg off the ground. This will help maintain your alignment and make the coming press into the flag a little easier to execute.\r\n3. Press with as much force as possible with the lower arm and bring the legs together, raising the body to horizontal. ",
+      "video_tips": "          ",
+      "pro_tips": " Aim to turn your body fully out for a perfect form.\r\nStraighten your hip and align with body.\r\n     ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "71",
+      "name": "Negative Human Flag",
+      "description": "Feel pure arm and body strength and get used to a static hold.",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization.\r\n3. Pull your body with your upper arm up and start slowly descending from high human flag posdtion\r\n      ",
+      "video_tips": "              ",
+      "pro_tips": "You might want to challenge yourself and stop at certain angles while descending.\n      ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "72",
+      "name": "High Human Flag",
+      "description": "Develop the balance to use your core to get your legs up",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and get your legs up vertically. ",
+      "video_tips": "            ",
+      "pro_tips": " Try descending as slow as possible and try to go up again as you progress.\r\nStraighten your hip and align with body. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "73",
+      "name": "Tucked Human Flag",
+      "description": "Start securing your anchoring point and learn to fully lock out your support",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "1,5,6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Place your hands so that palms face each other.\r\n2. Lock lower arm out for stabilization. (Hands, elbows and shoulders are in line) \r\n3. Pull your body with your upper arm up and tuck your knees to chest. ",
+      "video_tips": "          ",
+      "pro_tips": " If you begin to fall out of position it's important to land on your feet and let go of the anchor point to protect the shoulders.\r\nStraighten your hip and align with body.\r\nGet somebody to assist you in the beginning to stay in position. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "74",
+      "name": "Front Lever",
+      "description": "Master full body control and core power",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "9.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Start from an inverted hang position on a pull-up bar.\r\n2. Lower the body slowly down until completely horizontal (your body facing upwards). \r\n3. Maintain the hold as long as good form will allow.\r\n    ",
+      "video_tips": "        ",
+      "pro_tips": "You might want to try to get into the front lever from the floor and hold as long as you can.\n    ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "75",
+      "name": "Front Lever Top",
+      "description": "Feel the power of slow and controlled movement",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": " 1. Bring the body up into an inverted hang\r\n2. Slowly release the body into the front lever position ",
+      "video_tips": "              ",
+      "pro_tips": " You might want to extend the hips and straddle the legs apart. The wider the legs, the easier the hold. ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "76",
+      "name": "One Leg Front Lever",
+      "description": "Develop your core and back strength to increase your hanging",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "4,5,6",
+      "rewards": "7.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "  1. Go into a tuck front lever position\r\n2. Keep one leg tucked into the chest while you slowly kick the other leg out. (Tippy toes forward)\r\n3. Alternate legs during the hold.?  ",
+      "video_tips": "            ",
+      "pro_tips": "An easier variation is to alternate legs constantly till you can't hold the position anymore.  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "77",
+      "name": "Tuck Front Lever",
+      "description": "Start feeling getting control over your body at a bar or rings.",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "1,4,5,6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "  1. The arms should be around shoulder width apart. Palm of the hands facing downwards.\r\n2. Squeeze the glutes and leg muscles, bring the body in horizontal position\r\n3. Bring the legs up to the chest into a tuck position    ",
+      "video_tips": "              ",
+      "pro_tips": "  Challenge yourself and move from tucked knees chest to knees in front of the bar  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "Shoulders, Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "78",
+      "name": "Australian Pullups",
+      "description": "Get started with developing your grip and back strength",
+      "category": "1",
+      "type": "2",
+      "muscle_groups": "1,4,5,6",
+      "rewards": "6.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1. Grip a bar that is suspended at around waist height, with the feet resting on the ground.\r\n2. Squeeze the shoulder blades together and pull your chest up to the bar",
+      "video_tips": "    ",
+      "pro_tips": "The closer the body is to horizontal the more difficult the exercise becomes.?\r\nA set of height adjustable gymnastics rings are a good alternative.\r\nKeep whole body engaged and keep your butt in line with your body.?  ",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Shoulders, Back, Arms, Core",
+      "scores": {
+        "1": {
+          "1": [
+            {
+              "id": "842",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1447",
+              "sets": "1",
+              "created_at": "2016-07-20 06:48:48",
+              "updated_at": "2016-07-20 06:48:48"
+            }
+          ],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [
+            {
+              "id": "862",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "15",
+              "feed_id": "1467",
+              "sets": "1",
+              "created_at": "2016-07-20 06:52:33",
+              "updated_at": "2016-07-20 06:52:33"
+            }
+          ],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [
+            {
+              "id": "843",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1448",
+              "sets": "2",
+              "created_at": "2016-07-20 06:48:57",
+              "updated_at": "2016-07-20 06:48:57"
+            }
+          ],
+          "3": [],
+          "5": [
+            {
+              "id": "856",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1461",
+              "sets": "2",
+              "created_at": "2016-07-20 06:50:58",
+              "updated_at": "2016-07-20 06:50:58"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [
+            {
+              "id": "844",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1449",
+              "sets": "3",
+              "created_at": "2016-07-20 06:49:01",
+              "updated_at": "2016-07-20 06:49:01"
+            }
+          ],
+          "3": [
+            {
+              "id": "850",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1455",
+              "sets": "3",
+              "created_at": "2016-07-20 06:49:49",
+              "updated_at": "2016-07-20 06:49:49"
+            }
+          ],
+          "5": [
+            {
+              "id": "857",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1462",
+              "sets": "3",
+              "created_at": "2016-07-20 06:51:02",
+              "updated_at": "2016-07-20 06:51:02"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [
+            {
+              "id": "863",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "15",
+              "feed_id": "1468",
+              "sets": "3",
+              "created_at": "2016-07-20 06:52:37",
+              "updated_at": "2016-07-20 06:52:37"
+            }
+          ],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [
+            {
+              "id": "845",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1450",
+              "sets": "5",
+              "created_at": "2016-07-20 06:49:07",
+              "updated_at": "2016-07-20 06:49:07"
+            }
+          ],
+          "3": [
+            {
+              "id": "851",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1456",
+              "sets": "5",
+              "created_at": "2016-07-20 06:49:55",
+              "updated_at": "2016-07-20 06:49:55"
+            },
+            {
+              "id": "852",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1457",
+              "sets": "5",
+              "created_at": "2016-07-20 06:49:57",
+              "updated_at": "2016-07-20 06:49:57"
+            }
+          ],
+          "5": [
+            {
+              "id": "858",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1463",
+              "sets": "5",
+              "created_at": "2016-07-20 06:51:08",
+              "updated_at": "2016-07-20 06:51:08"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [
+            {
+              "id": "846",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1451",
+              "sets": "6",
+              "created_at": "2016-07-20 06:49:13",
+              "updated_at": "2016-07-20 06:49:13"
+            }
+          ],
+          "3": [
+            {
+              "id": "853",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1458",
+              "sets": "6",
+              "created_at": "2016-07-20 06:50:05",
+              "updated_at": "2016-07-20 06:50:05"
+            }
+          ],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [
+            {
+              "id": "847",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1452",
+              "sets": "8",
+              "created_at": "2016-07-20 06:49:18",
+              "updated_at": "2016-07-20 06:49:18"
+            }
+          ],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [
+            {
+              "id": "864",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "15",
+              "feed_id": "1469",
+              "sets": "8",
+              "created_at": "2016-07-20 06:53:04",
+              "updated_at": "2016-07-20 06:53:04"
+            }
+          ],
+          "20": [],
+          "max": [
+            {
+              "id": "890",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "max",
+              "feed_id": "1497",
+              "sets": "8",
+              "created_at": "2016-07-27 06:33:55",
+              "updated_at": "2016-07-27 06:33:55"
+            }
+          ]
+        },
+        "9": {
+          "1": [
+            {
+              "id": "848",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1453",
+              "sets": "9",
+              "created_at": "2016-07-20 06:49:28",
+              "updated_at": "2016-07-20 06:49:28"
+            }
+          ],
+          "3": [
+            {
+              "id": "854",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1459",
+              "sets": "9",
+              "created_at": "2016-07-20 06:50:09",
+              "updated_at": "2016-07-20 06:50:09"
+            }
+          ],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [
+            {
+              "id": "849",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "1",
+              "feed_id": "1454",
+              "sets": "10",
+              "created_at": "2016-07-20 06:49:33",
+              "updated_at": "2016-07-20 06:49:33"
+            }
+          ],
+          "3": [
+            {
+              "id": "855",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "3",
+              "feed_id": "1460",
+              "sets": "10",
+              "created_at": "2016-07-20 06:50:14",
+              "updated_at": "2016-07-20 06:50:14"
+            }
+          ],
+          "5": [
+            {
+              "id": "861",
+              "user_id": "100",
+              "exercise_id": "78",
+              "status": "1",
+              "time": "5",
+              "is_starred": "1",
+              "volume": "5",
+              "feed_id": "1466",
+              "sets": "10",
+              "created_at": "2016-07-20 06:52:07",
+              "updated_at": "2016-07-20 06:52:07"
+            }
+          ],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "80",
+      "name": "Jumping Jacks",
+      "description": "Jumping Jacks",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "7,8",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Legs, Full Body",
+      "scores": {
+        "1": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "2": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "3": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "4": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "5": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "6": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "7": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "8": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "9": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        },
+        "10": {
+          "1": [],
+          "3": [],
+          "5": [],
+          "8": [],
+          "10": [],
+          "12": [],
+          "15": [],
+          "20": [],
+          "max": []
+        }
+      }
+    },
+    {
+      "id": "83",
+      "name": "Jumping Jacks",
+      "description": "Jumping Jacks",
+      "category": "2",
+      "type": "2",
+      "muscle_groups": "2,3",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "\r\nsefsdf esssedg\r\nfhfgjhfgjfgj\r\ngyjhgjgh\r\nfhfghfjh \r\n\r\nhjghjghkn fgjhnlkhj lkdflldfjh lkfghllfghlk lkfghlnfghlnl.\r\n1. fdxgdfhg dfgdfghsf fgghdfh\r\n2. gjgfj ghjygjh yjggjghj\r\n3. ghhjhk hgjkhujkj ghjkghj hgjghj\r\n",
+      "video_tips_html": "",
+      "pro_tips_html": "<ul>\r\n<li>sefsdf esssedg</li>\r\n<li>fhfgjhfgjfgj</li>\r\n<li>gyjhgjgh</li>\r\n<li>fhfghfjh&nbsp;</li>\r\n</ul>\r\n<p>hjghjghkn fgjhnlkhj lkdflldfjh lkfghllfghlk lkfghlnfghlnl.</p>\r\n<ol>\r\n<li>fdxgdfhg dfgdfghsf fgghdfh</li>\r\n<li>gjgfj ghjygjh yjggjghj</li>\r\n<li>ghhjhk hgjkhujkj ghjkghj hgjghj</li>\r\n</ol>",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "Chest, Triceps",
+      "scores": {
+        "1": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "2": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "3": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "4": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "5": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "6": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "7": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "8": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "9": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        },
+        "10": {
+          "5": [],
+          "10": [],
+          "15": [],
+          "20": [],
+          "30": [],
+          "45": [],
+          "60": [],
+          "90": [],
+          "120": [],
+          "max": []
+        }
+      }
+    }
+  ]
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -1951,9 +12733,9 @@ class UsersController extends Controller
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
-            $arr1 = Array(5, 10, 15, 20, 25, 30, 45, 60, 90, 120, 150, 180, 240, 300);
+            $arr1 = Array(1, 3, 5, 8, 10, 12, 15, 20, 'max');
 
-            $arr2 = Array(7, 10, 15, 20, 25, 30, 40, 50, 60, 100, 120, 180, 240, 250, 300, 360, 420, 480, 500, 540, 600, 750, 1000);
+            $arr2 = Array(5, 10, 15, 20, 30, 45, 60, 90, 120, 'max');
 
             if ($user) {
                 $exercises = Exercise::where('name', '!=', 'Rest')->get();
@@ -1962,20 +12744,28 @@ class UsersController extends Controller
                 foreach ($exerciseArray as $eKey => $exercise) {
 
                     if ($exercise['unit'] == 'seconds') {
-                        $volumeArray = $arr1;
-                    } else {
                         $volumeArray = $arr2;
+                    } else {
+                        $volumeArray = $arr1;
                     }
 
-                    foreach ($volumeArray as $vKey => $volume1) {
-                        $exerciseUserDet[$volume1] = DB::table('exercise_users')
-                            ->where('exercise_id', $exercise['id'])
-                            ->where('user_id', $request->user_id)
-                            ->where('volume', $volume1)
-                            ->get();
+                    $exerciseUserDet = Array();
+
+                    for ($i = 1; $i <= 10; $i++) {
+                        foreach ($volumeArray as $vKey => $volume1) {
+                            $exerciseUserDet[$i][$volume1] = DB::table('exercise_users')
+                                ->where('exercise_id', $exercise['id'])
+                                ->where('user_id', $request->user_id)
+                                ->where('volume', $volume1)
+                                ->where('sets', '=', $i)
+                                ->get();
+                        }
                     }
+
 
                     $exerciseArray[$eKey]['scores'] = $exerciseUserDet;
+                    unset($volumeArray);
+                    unset($exerciseUserDet);
                 }
                 return response()->json(['status' => 1, 'success' => 'history', 'exercise_history' => $exerciseArray], 200);
             } else {
@@ -1993,882 +12783,1116 @@ class UsersController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "success": "history",
-      "workout_history": [
-      {
+  "status": 1,
+  "success": "history",
+  "workout_history": [
+    {
       "id": "1",
-      "name": "Baldur",
-      "description": "Baldur Baldur",
+      "name": "Hel",
+      "description": "",
       "rounds": "5",
       "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1680.00",
-      "equipments": "",
+      "type": "1",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "BAR/RINGS",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-03 06:19:40",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [
+            {
+              "id": "70",
+              "workout_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "24",
+              "is_starred": "0",
+              "volume": "1",
+              "focus": "1",
+              "feed_id": "144",
+              "is_coach": "0",
+              "coach_rounds": "0",
+              "created_at": "2016-09-02 08:33:53",
+              "updated_at": "2016-09-02 08:33:53",
+              "category": "1"
+            }
+          ],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": [
+            {
+              "id": "11",
+              "workout_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "21",
+              "is_starred": "0",
+              "volume": "3",
+              "focus": "2",
+              "feed_id": "53",
+              "is_coach": "0",
+              "coach_rounds": "0",
+              "created_at": "2016-08-30 07:28:44",
+              "updated_at": "2016-08-30 07:28:44",
+              "category": "1"
+            }
+          ]
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
+    },
+    {
       "id": "2",
-      "name": "Borr",
-      "description": "Borr Borr Borr",
+      "name": "Vali",
+      "description": "",
       "rounds": "3",
       "category": "2",
       "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1140.00",
-      "equipments": "Bar",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "BAR/RINGS",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-03 06:24:47",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [
-      {
-      "id": "7",
-      "workout_id": "2",
-      "user_id": "96",
-      "status": "1",
-      "time": "2900",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "1",
-      "feed_id": "14",
-      "created_at": "2016-01-07 13:01:07",
-      "updated_at": "2016-01-12 04:42:26",
-      "category": "1"
-      },
-      {
-      "id": "8",
-      "workout_id": "2",
-      "user_id": "96",
-      "status": "1",
-      "time": "2900",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "1",
-      "feed_id": "15",
-      "created_at": "2016-01-07 13:02:08",
-      "updated_at": "2016-01-12 04:42:30",
-      "category": "1"
-      },
-      {
-      "id": "9",
-      "workout_id": "2",
-      "user_id": "96",
-      "status": "1",
-      "time": "2900",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "1",
-      "feed_id": "16",
-      "created_at": "2016-01-07 13:02:22",
-      "updated_at": "2016-01-12 04:42:36",
-      "category": "1"
-      }
-      ],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
+    },
+    {
       "id": "3",
       "name": "Bragi",
-      "description": "Bragi",
+      "description": "",
       "rounds": "5",
       "category": "2",
       "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "840.00",
-      "equipments": "Low Bar",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "BAR/RINGS",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-03 06:33:11",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
+    },
+    {
       "id": "4",
-      "name": "Buri",
-      "description": "Buri",
+      "name": "Thor",
+      "description": "",
       "rounds": "1",
       "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1440.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "5",
-      "name": "Dagur",
-      "description": "Dagur",
-      "rounds": "3",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1260.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "6",
-      "name": "Delling",
-      "description": "Delling",
-      "rounds": "1",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1140.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [
-      {
-      "id": "15",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "1",
-      "focus": "1",
-      "feed_id": "29",
-      "created_at": "2016-01-08 05:46:46",
-      "updated_at": "2016-01-12 04:43:33",
-      "category": "1"
-      }
-      ],
-      "2": [
-      {
-      "id": "16",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "1",
-      "feed_id": "30",
-      "created_at": "2016-01-08 05:46:55",
-      "updated_at": "2016-01-12 04:43:37",
-      "category": "1"
-      }
-      ],
-      "3": [
-      {
-      "id": "17",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "3",
-      "focus": "1",
-      "feed_id": "31",
-      "created_at": "2016-01-08 05:47:00",
-      "updated_at": "2016-01-12 04:43:40",
-      "category": "1"
-      }
-      ]
-      },
-      "athletic": {
-      "1": [],
-      "2": [
-      {
-      "id": "12",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "2",
-      "feed_id": "26",
-      "created_at": "2016-01-08 05:45:46",
-      "updated_at": "2016-01-12 04:43:02",
-      "category": "2"
-      },
-      {
-      "id": "13",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "2",
-      "feed_id": "27",
-      "created_at": "2016-01-08 05:45:56",
-      "updated_at": "2016-01-12 04:43:06",
-      "category": "1"
-      },
-      {
-      "id": "14",
-      "workout_id": "6",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "2",
-      "feed_id": "28",
-      "created_at": "2016-01-08 05:46:02",
-      "updated_at": "2016-01-12 04:43:09",
-      "category": "3"
-      }
-      ],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "7",
-      "name": "Eir",
-      "description": "Eir",
-      "rounds": "1",
-      "category": "2",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1020.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "8",
-      "name": "Eostre",
-      "description": "Eostre",
-      "rounds": "5",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1260.00",
-      "equipments": "Ball,Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "9",
-      "name": "Elli",
-      "description": "Elli",
-      "rounds": "3",
-      "category": "2",
       "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1380.00",
-      "equipments": "Bar",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "1",
+      "created_at": "2016-08-03 06:34:38",
+      "progression_string": "",
       "lean": {
-      "1": [
-      {
-      "id": "18",
-      "workout_id": "9",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "1",
-      "focus": "1",
-      "feed_id": "32",
-      "created_at": "2016-01-08 05:48:32",
-      "updated_at": "2016-01-12 04:43:44",
-      "category": "1"
-      }
-      ],
-      "2": [
-      {
-      "id": "19",
-      "workout_id": "9",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "1",
-      "feed_id": "33",
-      "created_at": "2016-01-08 05:48:45",
-      "updated_at": "2016-01-12 04:43:47",
-      "category": "1"
-      }
-      ],
-      "3": [
-      {
-      "id": "20",
-      "workout_id": "9",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "3",
-      "focus": "1",
-      "feed_id": "34",
-      "created_at": "2016-01-08 05:49:00",
-      "updated_at": "2016-01-12 04:43:51",
-      "category": "1"
-      }
-      ]
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [
-      {
-      "id": "21",
-      "workout_id": "9",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "1",
-      "focus": "2",
-      "feed_id": "35",
-      "created_at": "2016-01-08 05:49:19",
-      "updated_at": "2016-01-12 04:44:06",
-      "category": "2"
-      }
-      ],
-      "2": [
-      {
-      "id": "22",
-      "workout_id": "9",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "2",
-      "feed_id": "36",
-      "created_at": "2016-01-08 05:49:27",
-      "updated_at": "2016-01-12 04:44:09",
-      "category": "2"
-      }
-      ],
-      "3": []
+        "scores": {
+          "1": [
+            {
+              "id": "65",
+              "workout_id": "4",
+              "user_id": "100",
+              "status": "1",
+              "time": "7",
+              "is_starred": "0",
+              "volume": "1",
+              "focus": "2",
+              "feed_id": "134",
+              "is_coach": "0",
+              "coach_rounds": "0",
+              "created_at": "2016-09-01 11:10:03",
+              "updated_at": "2016-09-01 11:10:03",
+              "category": "1"
+            }
+          ],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "10",
-      "name": "Loki",
-      "description": "Loki",
+    },
+    {
+      "id": "6",
+      "name": "Odin",
+      "description": "",
       "rounds": "1",
       "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1440.00",
-      "equipments": "Bar, Bench",
+      "type": "1",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "",
+      "is_repsandsets": "1",
+      "created_at": "2016-08-04 19:18:21",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "11",
-      "name": "Hermodur",
-      "description": "Hermodur",
-      "rounds": "4",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1740.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "12",
+    },
+    {
+      "id": "7",
       "name": "Forseti",
       "description": "Forseti",
       "rounds": "6",
       "category": "2",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "2280.00",
-      "equipments": "Bar",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-05 06:19:34",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "13",
-      "name": "Magni",
-      "description": "Magni",
-      "rounds": "4",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1380.00",
-      "equipments": "Low bar, Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "14",
-      "name": "Odin",
-      "description": "Odin",
-      "rounds": "1",
-      "category": "1",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1200.00",
-      "equipments": "Ball, Bar, Low bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "15",
+    },
+    {
+      "id": "8",
       "name": "Mimir",
-      "description": "mimir",
+      "description": "Mimir",
       "rounds": "4",
       "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "920.00",
-      "equipments": "",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [
-      {
-      "id": "23",
-      "workout_id": "15",
-      "user_id": "96",
-      "status": "1",
-      "time": "1500",
-      "is_starred": "0",
-      "volume": "2",
-      "focus": "2",
-      "feed_id": "37",
-      "created_at": "2016-01-08 05:49:36",
-      "updated_at": "2016-01-12 04:44:12",
-      "category": "2"
-      }
-      ],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "16",
-      "name": "Tyr ",
-      "description": "Tyr Tyr",
-      "rounds": "3",
-      "category": "1",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1560.00",
-      "equipments": "Bar, Bench",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "No Equipment",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-05 06:44:19",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "17",
-      "name": "Thor",
-      "description": "Thor Thor",
-      "rounds": "1",
-      "category": "1",
+    },
+    {
+      "id": "9",
+      "name": "Nerþus",
+      "description": "Nerþus",
+      "rounds": "4",
+      "category": "2",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1560.00",
-      "equipments": "Bar/Bench",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-05 06:51:17",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "18",
+    },
+    {
+      "id": "10",
       "name": "Sif",
       "description": "Sif",
       "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "0.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "19",
-      "name": "Hœnir",
-      "description": "Hœnir Hœnir",
-      "rounds": "3",
       "category": "1",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1740.00",
-      "equipments": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "No Equipment",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-05 06:57:17",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [
+            {
+              "id": "72",
+              "workout_id": "10",
+              "user_id": "100",
+              "status": "1",
+              "time": "206",
+              "is_starred": "1",
+              "volume": "1",
+              "focus": "2",
+              "feed_id": "147",
+              "is_coach": "1",
+              "coach_rounds": "3",
+              "created_at": "2016-09-02 09:12:15",
+              "updated_at": "2016-09-02 09:12:15",
+              "category": "1"
+            }
+          ],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "20",
+    },
+    {
+      "id": "11",
       "name": "Snotra",
-      "description": "Snotra Snotra",
-      "rounds": "3",
-      "category": "2",
-      "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1620.00",
-      "equipments": "Ball, Bar, Post",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "21",
-      "name": "Váli",
-      "description": "Váli Váli",
+      "description": "Snotra",
       "rounds": "3",
       "category": "1",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1620.00",
-      "equipments": "Bar, Post",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "0",
+      "created_at": "2016-08-05 07:19:18",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "22",
-      "name": "Hel",
-      "description": "Hel Hel",
-      "rounds": "3",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1080.00",
-      "equipments": "Bar",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
-      },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
-      }
-      },
-      {
-      "id": "23",
-      "name": "Yggdrasil",
-      "description": "Yggdrasil Yggdrasil",
-      "rounds": "3",
+    },
+    {
+      "id": "12",
+      "name": "Loki",
+      "description": "Loki",
+      "rounds": "1",
       "category": "1",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "0.00",
-      "equipments": "Bar, Post",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "1",
+      "created_at": "2016-08-05 07:28:06",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
-      },
-      {
-      "id": "24",
-      "name": "Nerþus",
-      "description": "Nerþus Nerþus",
-      "rounds": "3",
+    },
+    {
+      "id": "13",
+      "name": "Baldur",
+      "description": "Baldur",
+      "rounds": "1",
       "category": "1",
       "type": "2",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "0.00",
-      "equipments": "Bar, Ball, Low Bar",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "duration": "100.00",
+      "equipments": "Bar/Rings",
+      "is_repsandsets": "1",
+      "created_at": "2016-08-05 07:37:24",
+      "progression_string": "",
       "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       },
       "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+        "scores": {
+          "1": [],
+          "2": [],
+          "3": []
+        }
       }
+    }
+  ],
+  "skill_training_history": [
+    {
+      "id": "1",
+      "name": "Muscleups (MU)",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
       },
-      {
-      "id": "25",
-      "name": "Jörð",
-      "description": "Jörð Jörð",
-      "rounds": "4",
-      "category": "2",
-      "type": "1",
-      "rewards": "{\"lean\":330,\"athletic\":440,\"strength\":550}",
-      "duration": "1680.00",
       "equipments": "",
-      "lean": {
-      "1": [],
-      "2": [],
-      "3": []
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:56:33",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": [
+            {
+              "id": "225",
+              "skilltraining_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "39",
+              "is_starred": "1",
+              "volume": "1",
+              "focus": "1",
+              "feed_id": "698",
+              "is_coach": "0",
+              "created_at": "2016-09-23 08:58:02",
+              "updated_at": "2016-09-23 08:58:02"
+            }
+          ]
+        }
       },
-      "athletic": {
-      "1": [],
-      "2": [],
-      "3": []
+      "barzerker": {
+        "scores": {
+          "1": [
+            {
+              "id": "226",
+              "skilltraining_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "29",
+              "is_starred": "1",
+              "volume": "1",
+              "focus": "2",
+              "feed_id": "699",
+              "is_coach": "0",
+              "created_at": "2016-09-23 08:59:30",
+              "updated_at": "2016-09-23 08:59:30"
+            }
+          ]
+        }
       },
-      "strength": {
-      "1": [],
-      "2": [],
-      "3": []
+      "legend": {
+        "scores": {
+          "1": [
+            {
+              "id": "22",
+              "skilltraining_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "17",
+              "is_starred": "0",
+              "volume": "1",
+              "focus": "3",
+              "feed_id": "47",
+              "is_coach": "0",
+              "created_at": "2016-08-30 05:35:58",
+              "updated_at": "2016-08-30 05:35:58"
+            },
+            {
+              "id": "227",
+              "skilltraining_id": "1",
+              "user_id": "100",
+              "status": "1",
+              "time": "29",
+              "is_starred": "0",
+              "volume": "1",
+              "focus": "3",
+              "feed_id": "700",
+              "is_coach": "0",
+              "created_at": "2016-09-23 09:00:52",
+              "updated_at": "2016-09-23 09:00:52"
+            }
+          ]
+        }
       }
+    },
+    {
+      "id": "2",
+      "name": "Front Lever (FL)",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar/Rings",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:57:05",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
       }
-      ]
+    },
+    {
+      "id": "3",
+      "name": "Back Lever (BL)",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:57:36",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
       }
+    },
+    {
+      "id": "4",
+      "name": "Triceps Extensions",
+      "description": "Triceps Extensions",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar/Rings",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:58:09",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "5",
+      "name": "Hefesto",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:58:36",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "6",
+      "name": "Impossible Dips",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Paralettes, Parallel Bars",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 10:59:02",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "7",
+      "name": "1- Arm Pushups",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:00:24",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "8",
+      "name": "Handstand Pushups",
+      "description": "Handstand Pushups",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:00:49",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "9",
+      "name": "Planche",
+      "description": "Planche",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Paralettes, Parallel Bars",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:02:03",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "10",
+      "name": "Hollow Body Rock ",
+      "description": "Hollow Body Rock",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:02:33",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": [
+            {
+              "id": "161",
+              "skilltraining_id": "10",
+              "user_id": "100",
+              "status": "1",
+              "time": "41",
+              "is_starred": "0",
+              "volume": "1",
+              "focus": "2",
+              "feed_id": "494",
+              "is_coach": "0",
+              "created_at": "2016-09-19 17:26:40",
+              "updated_at": "2016-09-19 17:26:40"
+            }
+          ]
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "11",
+      "name": "Side Plank",
+      "description": "Side Plank (all Core related exercises)",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar/Rings",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:02:55",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "12",
+      "name": "Human Flag",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar/Rings, Post, Vertical Bar",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:03:23",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "13",
+      "name": "Shoulder & Dragon Flag",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Post, Vertical Bar, Bench",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:04:01",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "14",
+      "name": "Pullover",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "Bar/Rings",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:04:38",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "15",
+      "name": "Legs",
+      "description": "",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "1",
+      "created_at": "2016-08-02 11:29:01",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "16",
+      "name": "Double Clap Pushups",
+      "description": "Double Clap Pushups",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "0",
+      "created_at": "2016-08-02 11:37:29",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    },
+    {
+      "id": "18",
+      "name": "Clap Pushup Burpees",
+      "description": "Clap Pushup Burpees",
+      "rewards": {
+        "lean": "330",
+        "athletic": "440",
+        "strength": "550"
+      },
+      "equipments": "No Equipment",
+      "is_circuit": "0",
+      "created_at": "2016-08-12 10:37:02",
+      "progression_string": "",
+      "hero": {
+        "scores": {
+          "1": []
+        }
+      },
+      "barzerker": {
+        "scores": {
+          "1": []
+        }
+      },
+      "legend": {
+        "scores": {
+          "1": []
+        }
+      }
+    }
+  ]
+}
      * 
      * 
      * @apiError error Message token_invalid.
@@ -2920,7 +13944,9 @@ class UsersController extends Controller
             if ($user) {
                 $workouts = Workout::all();
                 $workoutArray = $workouts->toArray();
+                
                 foreach ($workoutArray as $eKey => $workout) {
+                    $workoutArray[$eKey]['rewards'] = json_decode($workoutArray[$eKey]['rewards'], true);
 
                     for ($i = 1; $i <= 3; $i++) {
                         $exerciseUserDetLean[$i] = DB::table('workout_users')
@@ -2955,8 +13981,47 @@ class UsersController extends Controller
 
                     $workoutArray[$eKey]['strength']['scores'] = $exerciseUserDetStrength;
                 }
+                
+                $skillTrainings = Skilltraining::all();
+                
+                $skillTrainingsArray = $skillTrainings->toArray();                
+                foreach ($skillTrainingsArray as $sKey => $skillTraining) {
+                    $skillTrainingsArray[$sKey]['rewards'] = json_decode($skillTrainingsArray[$sKey]['rewards'], true);
+                    for ($i = 1; $i <= 1; $i++) {
+                        $skillTrainingUserDetLean[$i] = DB::table('skilltraining_users')
+                            ->where('skilltraining_id', $skillTraining['id'])
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $i)
+                            ->where('focus', 1)
+                            ->get();
+                    }
 
-                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workoutArray], 200);
+                    $skillTrainingsArray[$sKey]['hero']['scores'] = $skillTrainingUserDetLean;
+
+                    for ($i = 1; $i <= 1; $i++) {
+                        $skillTrainingUserDetAthletic[$i] = DB::table('skilltraining_users')
+                            ->where('skilltraining_id', $skillTraining['id'])
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $i)
+                            ->where('focus', 2)
+                            ->get();
+                    }
+
+                    $skillTrainingsArray[$sKey]['barzerker']['scores'] = $skillTrainingUserDetAthletic;
+
+                    for ($i = 1; $i <= 1; $i++) {
+                        $skillTrainingUserDetStrength[$i] = DB::table('skilltraining_users')
+                            ->where('skilltraining_id', $skillTraining['id'])
+                            ->where('user_id', $request->user_id)
+                            ->where('volume', $i)
+                            ->where('focus', 3)
+                            ->get();
+                    }
+
+                    $skillTrainingsArray[$sKey]['legend']['scores'] = $skillTrainingUserDetStrength;
+                }
+
+                return response()->json(['status' => 1, 'success' => 'history', 'workout_history' => $workoutArray, 'skill_training_history' => $skillTrainingsArray], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
             }
@@ -3246,13 +14311,60 @@ class UsersController extends Controller
         return Redirect::to('/')->with('error', $error);
     }
 
+    /**
+     * @api {post} /user/logout Logout
+     * @apiName Logout
+     * @apiGroup User
+     * @apiParam {integer} user_id id of loggedin user *required
+     * @apiSuccess {String} success.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+      "status": 1,
+      "success": "user_successfully_logged_out"
+      }
+     * 
+     * 
+     * @apiError error Message token_invalid.
+     * @apiError error Message token_expired.
+     * @apiError error Message token_not_provided.
+     * @apiError error Validation error.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Invalid Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_invalid"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 401 Unauthorised
+     *     {
+     *       "status":"0",
+     *       "error": "token_expired"
+     *     }
+     * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "status":"0",
+     *       "error": "token_not_provided"
+     *     }
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422 Validation error
+     *     {
+     *       "status" : 0,
+     *       "error": "The user_id field is required"
+     *     }
+     */
     public function logout(Request $request)
     {
-        if (Auth::user()) {
+        if (!isset($request->user_id) || ($request->user_id == null)) {
+            return response()->json(["status" => "0", "error" => "The user_id field is required"]);
+        } else {
+            PushNotification::where('user_id', '=', $request->user_id)->delete();
             Auth::logout();
             return response()->json(['status' => 1, 'success' => 'user_successfully_logged_out'], 200);
-        } else {
-            return response()->json(['status' => 0, 'error' => 'user_already_logged_out'], 401);
         }
     }
 
@@ -3995,14 +15107,6 @@ class UsersController extends Controller
                 }
 
                 $userOptionsArray = explode(',', $request->physique_options);
-                $whereNotInQuery = '';
-                if (count($userOptionsArray) > 0) {
-                    foreach ($userOptionsArray as $userOption) {
-                        $skillsInthisRowQuery = DB::table('exercises')->select('exercises.id')
-                                ->whereRaw('exercises.muscle_groups LIKE "%' . $userOption . '%"')->toSql();
-                        $whereNotInQuery .= ' AND skills.exercise_id NOT IN(' . $skillsInthisRowQuery . ')';
-                    }
-                }
 
                 $muscleGroups = array_map(function($muscleGroup) use ($userOptionsArray) {
                     if (count($userOptionsArray) >= 1) {
@@ -4020,11 +15124,6 @@ class UsersController extends Controller
                     }
                     return $muscleGroup;
                 }, $muscleGroups);
-
-                $skillsShouldLockedQuery = DB::table('skills')->select('skills.id')
-                        ->whereRaw('skills.level != 1' . $whereNotInQuery)->toSql();
-
-                DB::table('unlocked_skills')->whereRaw('skill_id IN (' . $skillsShouldLockedQuery . ')')->delete();
 
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
 
@@ -4104,7 +15203,7 @@ class UsersController extends Controller
             $user = User::where('id', $request->user_id)->with(['followers'])->first();
 
             if ($user) {
-                
+
                 Profile::where('user_id', $request->user_id)->update(['quote' => $request->quote]);
 
 
@@ -4222,7 +15321,7 @@ class UsersController extends Controller
                     'status' => 0
                 ]);
 
-                Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
+                Mail::send('email.verify', ['confirmation_code' => $confirmation_code, 'first_name' => $data['first_name'], 'last_name' => $data['last_name']], function($message) use ($data) {
                     $message->to($data['email'], $data['first_name'] . ' ' . $data['last_name'])
                         ->subject('Verify your email address');
                 });

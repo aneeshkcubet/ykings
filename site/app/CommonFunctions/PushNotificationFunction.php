@@ -129,7 +129,7 @@ class PushNotificationFunction
 
                 if (!is_null($iosDevicetoken) && ($iosDevicetoken->device_token != '(null)')) {
                     $iosArray = array('deviceToken' => $iosDevicetoken->device_token, 'message' => json_encode($pushMessage), 'messageArray' => $pushMessage);
-                    PushNotificationFunction::iosNotification($iosArray);
+//                    PushNotificationFunction::iosNotification($iosArray);
                 }
             }
         }

@@ -21,15 +21,16 @@ class Exercise extends Model
         'category',
         'type',
         'rewards',
-        'repititions',
-        'duration',
         'unit',
         'equipment',
         'muscle_groups',
         'range_of_motion',
         'video_tips',
         'pro_tips',
-        'is_static'
+        'is_static',
+        'pro_tips_html',
+        'video_tips_html',
+        'range_of_motion_html'
     ];
     
     protected $hidden = [
@@ -88,7 +89,7 @@ class Exercise extends Model
      */
     public function video()
     {
-        return $this->hasMany('App\Video', 'parent_id', 'id')->where('parent_type', '=', 1);
+        return $this->hasMany('App\Video', 'parent_id', 'id');
     }
 
     /**

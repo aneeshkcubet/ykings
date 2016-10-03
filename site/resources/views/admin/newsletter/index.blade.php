@@ -10,6 +10,14 @@ Newsletters
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -47,29 +55,6 @@ Newsletters
                             <th width="5%">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($newsletter as $list)
-                        <tr>
-                            <td>{{ $list->id }}</td>
-                            <td>{{ $list->subject }}</td>                            
-                            <td>
-                                {{ str_limit($list->content,200) }}
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.newsletter.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Newsletter Details"></i></a>
-                                @if($list->status == 0)
-                                <a href="{{ route('admin.newsletter.edit', $list->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Newsletter Details"></i></a>
-                                @endif
-                                <a href="{{ route('admin.confirm-delete.newsletter', $list->id) }}" data-toggle="modal" data-target="#delete_confirm">
-                                    <i class="livicon" data-name="newsletter-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete newsletter">
-                                    </i>
-                                </a>
-
-                            </td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -81,13 +66,6 @@ Newsletters
 @section('footer_scripts')
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.js') }}"></script>
-
-<script>
-$(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
-
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content"></div>
@@ -98,6 +76,23 @@ $(document).ready(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
+    });
+    $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page",
+            "sEmptyTable": "No Workouts found!",
+            "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+        },
+        ajax: '{!! route("admin.newsletters.data") !!}',
+        columns: [
+            {data: 'id', name: 'newsletters.id'},
+            {data: 'subject', name: 'subject'},
+            {data: 'content', name: 'content', orderable: false},            
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+        ],
+        order: [[0, 'desc']]   
     });
 </script>
 @stop

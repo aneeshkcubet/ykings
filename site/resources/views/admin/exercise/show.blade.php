@@ -115,20 +115,7 @@ View Exercise - {{ $exercise->name }}
                                                         {{ $exercise->rewards }}
 
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Repetitions/Duration</td>
-                                                    <td>
-                                                        @if($exercise->unit == 'seconds')
-                                                        {{ $exercise->duration }}
-                                                        @else
-
-                                                        {{ $exercise->repititions }}
-
-                                                        @endif
-
-                                                    </td>
-                                                </tr>                                                
+                                                </tr>                                             
                                                 <tr>
                                                     <td>Unit</td>
                                                     <td>
@@ -202,14 +189,14 @@ View Exercise - {{ $exercise->name }}
                                                 <tr>
                                                     <td>Range of Motion</td>
                                                     <td>
-                                                        {{ $exercise->range_of_motion }}
+                                                        {!! $exercise->range_of_motion_html !!}
                                                     </td>
 
                                                 </tr>
                                                 <tr>
                                                     <td>Pro Tips</td>
                                                     <td>
-                                                        {{ $exercise->pro_tips }}
+                                                        {!! $exercise->pro_tips_html !!}
                                                     </td>
                                                 </tr> 
                                             </table>

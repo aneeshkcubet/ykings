@@ -45,7 +45,7 @@ class SkillController extends Controller
 
             $skill = Skill::where('row', $i)->where('progression_id', 1)->with(['exercise'])->orderBy('skills.level', 'DESC')->get();
 
-            $skills['pull']['row_' . $i] = $skill->toArray();
+            $skills['pull'][$i] = $skill->toArray();
 
             $i++;
         } while ($i <= $pullRowCount);
@@ -57,7 +57,7 @@ class SkillController extends Controller
         do {
             $skill = Skill::where('row', $i)->where('progression_id', 2)->with(['exercise'])->orderBy('skills.level', 'DESC')->get();
 
-            $skills['dip']['row_' . $i] = $skill->toArray();
+            $skills['dip'][$i] = $skill->toArray();
             $i++;
             unset($skill);
         } while ($i <= $dipRowCount);
@@ -70,7 +70,7 @@ class SkillController extends Controller
 
             $skill = Skill::where('row', $i)->where('progression_id', 3)->with(['exercise'])->orderBy('skills.level', 'DESC')->get();
 
-            $skills['full_body']['row_' . $i] = $skill->toArray();
+            $skills['full_body'][$i] = $skill->toArray();
             $i++;
             unset($skill);
         } while ($i <= $fullBodyRowCount);
@@ -84,7 +84,7 @@ class SkillController extends Controller
 
             $skill = Skill::where('row', $i)->where('progression_id', 4)->with(['exercise'])->orderBy('skills.level', 'DESC')->get();
 
-            $skills['push']['row_' . $i] = $skill->toArray();
+            $skills['push'][$i] = $skill->toArray();
             $i++;
             unset($skill);
         } while ($i <= $pushRowCount);
@@ -97,23 +97,13 @@ class SkillController extends Controller
 
             $skill = Skill::where('row', $i)->where('progression_id', 5)->with(['exercise'])->orderBy('skills.level', 'DESC')->get();
 
-            $skills['core']['row_' . $i] = $skill->toArray();
+            $skills['core'][$i] = $skill->toArray();
             $i++;
             unset($skill);
         } while ($i <= $coreRowCount);
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
-//        foreach ($skills['pull'] as $sKey => $skill) {
-//
-//            foreach ($skill as $rKey => $row) {
-//                echo '<pre>';
-//                print_r($row);
-//            }
-//        }
-//
-//
-//        die;
         // Show the page
         return View('admin.skill.index', compact('skills', 'user'));
     }
@@ -150,7 +140,7 @@ class SkillController extends Controller
                 'level' => Input::get('level'),
                 'row' => Input::get('row'),
                 'exercise_id' => Input::get('exercise_id'),
-                'substitute' => Input::get('substitute'),
+                'is_allies' => Input::get('is_allies')
         ]);
 
         if (!is_null($skill)) {
@@ -231,7 +221,7 @@ class SkillController extends Controller
                 'level' => Input::get('level'),
                 'row' => Input::get('row'),
                 'exercise_id' => Input::get('exercise_id'),
-                'substitute' => Input::get('substitute'),
+                'is_allies' => Input::get('is_allies'),
         ]);
 
 

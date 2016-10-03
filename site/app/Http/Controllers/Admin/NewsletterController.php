@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Newsletter;
 use App\User;
 use App\Profile;
+use Yajra\Datatables\Datatables;
 
 class NewsletterController extends Controller
 {
@@ -39,6 +40,32 @@ class NewsletterController extends Controller
 
         // Show the page
         return View('admin.newsletter.index', compact('newsletter', 'user'));
+    }
+    
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function anyData()
+    {
+        $posts = Newsletter::select('newsletters.*');
+        return Datatables::of($posts)
+                ->addColumn('action', function ($list) {
+                    $html = '<a href="' . route('admin.newsletter.show', $list->id) . '"><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Newsletter Details"></i></a>
+                                <a href="' . route('admin.newsletter.edit', $list->id) . '"><i class="glyphicon glyphicon-edit" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Newsletter Details"></i></a>
+
+                                <a href="' . route('admin.confirm-delete.newsletter', $list->id) . '" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="glyphicon glyphicon-remove" data-name="newsletter-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete newsletter">
+                                    </i>
+                                </a>';
+                    return $html;
+                })
+                ->editColumn('content', function ($list) {
+                    return str_limit($list->content,200);
+                })                
+                ->blacklist(['action'])
+                ->make(true); 
     }
 
     /**

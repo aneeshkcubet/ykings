@@ -21,7 +21,7 @@ class Skill extends Model
         'level',
         'row',
         'exercise_id',
-        'substitute'
+        'is_allies'
     ]; 
     
     /**

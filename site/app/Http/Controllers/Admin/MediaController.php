@@ -14,6 +14,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\User;
+use Yajra\Datatables\Datatables;
 
 class MediaController extends Controller
 {
@@ -37,6 +38,30 @@ class MediaController extends Controller
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
         return View('admin.media.index', compact('medias', 'user'));
+    }
+    
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function anyData()
+    {
+        $posts = Media::select('medias.*');
+        return Datatables::of($posts)
+                ->addColumn('action', function ($list) {
+                    $html = '<a href="' . route('admin.media.show', $list->id) . '"><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Media Details"></i></a>'
+                        . '<a href="' . route('admin.confirm-delete.media', $list->id) . '" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="glyphicon glyphicon-remove" data-name="media-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete media">
+                                    </i>
+                                </a>';
+                    return $html;
+                })
+                ->editColumn('content', function ($list) {
+                    return '<img width="100%" src="'.asset('uploads/images/media/small/'.$list->path).'" alt="'.$list->name.'" />';
+                })                
+                ->blacklist(['action'])
+                ->make(true); 
     }
 
     /**

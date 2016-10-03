@@ -43,7 +43,6 @@ Edit Workout - {{  $workout->name }}
                     </span>
                 </div>
                 <div class="panel-body">
-
                     <!--main content-->
                     <div class="row">
                         <div class="col-md-12">
@@ -55,17 +54,17 @@ Edit Workout - {{  $workout->name }}
                                 </li>
                                 <li>
                                     <a href="#tab2" data-toggle="tab"> 
-                                        Lean Exercises
+                                        Strength Endurance Exercises
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#tab3" data-toggle="tab"> 
-                                        Athletic Exercises
+                                        Speed Strength Exercises
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#tab4" data-toggle="tab"> 
-                                        Strength Exercises
+                                        Absolute Strength Exercises
                                     </a>
                                 </li>
                             </ul>
@@ -120,7 +119,7 @@ Edit Workout - {{  $workout->name }}
                                                                         <select id="category" name="category" class="form-control required">
                                                                             <option value="">Select a category</option>
                                                                             <option value="1" @if(Input::old('category', $workout->category) == 1) selected="selected" @endif>Strength</option>
-                                                                            <option value="2" @if(Input::old('category', $workout->category) == 2) selected="selected" @endif>Cardio Strength</option>
+                                                                            <option value="2" @if(Input::old('category', $workout->category) == 2) selected="selected" @endif>HIIT Strength</option>
                                                                         </select>                                            
                                                                     </div>
                                                                 </div>
@@ -138,9 +137,9 @@ Edit Workout - {{  $workout->name }}
                                                                 <div class="form-group">
                                                                     <label for="rewards" class="col-sm-2 control-label">Rewards *</label>
 
-                                                                    <div class="col-sm-3">Lean</div>
-                                                                    <div class="col-sm-3">Athletic</div>
-                                                                    <div class="col-sm-3">Strength</div>
+                                                                    <div class="col-sm-3">Strength Endurance</div>
+                                                                    <div class="col-sm-3">Speed Strength</div>
+                                                                    <div class="col-sm-3">Absolute Strength</div>
                                                                     <?php
                                                                     $rewardsArray = json_decode($workout->rewards);
 //                                                                    print_r($rewardsArray);
@@ -156,18 +155,21 @@ Edit Workout - {{  $workout->name }}
                                                                     <div class="col-sm-3">
                                                                         <input id="strength-rewards" name="strength-rewards" type="text" placeholder="rewards for strength exercises" class="form-control required number" value="{{{ Input::old('strength', $rewardsArray->strength) }}}" />
                                                                     </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="duration" class="col-sm-2 control-label">Duration</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input id="duration" name="duration" type="text" placeholder="Duration in seconds" class="form-control number" value="{{{ Input::old('duration', $workout->duration) }}}" />
-                                                                    </div>
-                                                                </div>                                    
+                                                                </div>                                  
                                                                 <div class="form-group">
                                                                     <label for="equipments" class="col-sm-2 control-label">Equipments</label>
                                                                     <div class="col-sm-10">
-                                                                        <input id="equipments" name="equipments" type="text" placeholder="Equipment" class="form-control" value="{{{ Input::old('equipments', $workout->equipments) }}}" />
+                                                                        <input id="equipments" name="equipments" type="text" placeholder="Equipment" class="form-control required" value="{{{ Input::old('equipments', $workout->equipments) }}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="type" class="col-sm-2 control-label">Is Reps & Sets *</label>
+                                                                    <div class="col-sm-3">
+                                                                        <select id="type" name="is_repsandsets" class="form-control required">
+                                                                            <option value="">Select No/Yes</option>
+                                                                            <option value="0" @if(Input::old('is_repsandsets', $workout->is_repsandsets) == 0) selected="selected" @endif>No</option>
+                                                                            <option value="1" @if(Input::old('is_repsandsets', $workout->is_repsandsets) == 1) selected="selected" @endif>Yes</option>                                                
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <p>(*) Mandatory</p>
@@ -192,8 +194,9 @@ Edit Workout - {{  $workout->name }}
                                                             <div class="table-responsive">
                                                                 <table class="table table-bordered table-striped" id="users">
                                                                     <thead>
-                                                                    <th width='50%'>Exercices</th>
-                                                                    <th width='35%'>Value</th>
+                                                                    <th width='40%'>Exercices</th>
+                                                                    <th width='30%'>Value</th>
+                                                                    @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif
                                                                     <th width='15%'>Actions</th>
                                                                     </thead>
                                                                     @foreach($workoutExercise as $wKey => $exercise)
@@ -201,11 +204,16 @@ Edit Workout - {{  $workout->name }}
                                                                         <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
                                                                         <td>
                                                                             @if($exercise->unit == 'times')
-                                                                            {{$exercise->repititions}} Repetitions
+                                                                            {{$exercise->repititions}} Reps
                                                                             @else
                                                                             {{$exercise->repititions}} Seconds
                                                                             @endif
                                                                         </td>
+                                                                        @if($workout->is_repsandsets == 1)
+                                                                        <td width='15%'>
+                                                                            {{$exercise->sets}}
+                                                                        </td>
+                                                                        @endif
                                                                         <td>
                                                                             <a href="{{ route('admin.workout.workoutexercise.edit', $exercise->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Exercise"></i></a>
                                                                             <a href="{{ route('admin.workout.workoutexercise.delete', $exercise->id) }}">
@@ -244,6 +252,7 @@ Edit Workout - {{  $workout->name }}
                                                                     <thead>
                                                                     <th width='50%'>Exercices</th>
                                                                     <th width='35%'>Value</th>
+                                                                    @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif
                                                                     <th width='15%'>Actions</th>
                                                                     </thead>
                                                                     @foreach($workoutExercise as $wKey => $exercise)
@@ -251,12 +260,12 @@ Edit Workout - {{  $workout->name }}
                                                                         <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
                                                                         <td>
                                                                             @if($exercise->unit == 'times')
-                                                                            {{$exercise->repititions}} Repetitions
+                                                                            {{$exercise->repititions}} Reps
                                                                             @else
                                                                             {{$exercise->repititions}} Seconds
                                                                             @endif
-
                                                                         </td>
+                                                                        @if($workout->is_repsandsets == 1)<td width='15%'>{{$exercise->sets}}</td>@endif
                                                                         <td>
                                                                             <a href="{{ route('admin.workout.workoutexercise.edit', $exercise->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Exercise"></i></a>
                                                                             <a href="{{ route('admin.workout.workoutexercise.delete', $exercise->id) }}">
@@ -295,6 +304,7 @@ Edit Workout - {{  $workout->name }}
                                                                     <thead>
                                                                     <th width='50%'>Exercices</th>
                                                                     <th width='35%'>Value</th>
+                                                                    @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif
                                                                     <th width='15%'>Actions</th>
                                                                     </thead>
                                                                     @foreach($workoutExercise as $wKey => $exercise)
@@ -302,11 +312,12 @@ Edit Workout - {{  $workout->name }}
                                                                         <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
                                                                         <td>
                                                                             @if($exercise->unit == 'times')
-                                                                            {{$exercise->repititions}} Repetitions
+                                                                            {{$exercise->repititions}} Reps
                                                                             @else
                                                                             {{$exercise->repititions}} Seconds
                                                                             @endif                                                           
                                                                         </td>
+                                                                        @if($workout->is_repsandsets == 1)<td width='15%'>{{$exercise->sets}}</td>@endif
                                                                         <td>
                                                                             <a href="{{ route('admin.workout.workoutexercise.edit', $exercise->id) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Exercise"></i></a>
                                                                             <a href="{{ route('admin.workout.workoutexercise.delete', $exercise->id) }}">

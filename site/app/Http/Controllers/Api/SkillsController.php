@@ -48,493 +48,661 @@ class SkillsController extends Controller
       "skills": {
       "pull": [
       {
-      "id": "3",
-      "progression_id": "1",
-      "level": "3",
-      "row": "1",
-      "substitute": "53",
-      "exercise_id": "32",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "32",
-      "name": "Pull ups / Chin ups",
+      "id": "87",
       "description": "",
-      "category": "2",
+      "progression_id": "1",
+      "level": "5",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "89",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:15:30",
+      "updated_at": "2016-08-02 06:15:30",
+      "exercise": {
+      "id": "89",
+      "name": "Muscleups",
+      "description": "Muscleups",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "6",
+      "id": "92",
+      "description": "",
       "progression_id": "1",
-      "level": "1",
+      "level": "5",
       "row": "2",
-      "substitute": "22",
-      "exercise_id": "2",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "94",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:19:08",
+      "updated_at": "2016-08-02 06:19:08",
       "exercise": {
-      "id": "2",
-      "name": "Australian Pullups",
-      "description": "Australian pull-ups are becoming a very popular exercise. Like all types of pull-ups (and all types of exercises for that matter) there are many different ways to do the Australian, and it can be incorporated into a number of different contexts within a workout.",
-      "category": "1",
+      "id": "94",
+      "name": "Front Lever (SH)",
+      "description": "Front Lever (SH)",
+      "category": "3",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "11",
+      "id": "97",
+      "description": "",
       "progression_id": "1",
-      "level": "1",
+      "level": "5",
       "row": "3",
-      "substitute": "23",
-      "exercise_id": "3",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "99",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:21:34",
+      "updated_at": "2016-08-02 06:21:34",
       "exercise": {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
+      "id": "99",
+      "name": "Back Lever (SH)",
+      "description": "Back Lever (SH)",
+      "category": "3",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "",
+      "video": []
       },
-      {
-      "id": "16",
-      "progression_id": "1",
-      "level": "1",
-      "row": "4",
-      "substitute": "24",
-      "exercise_id": "4",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "4",
-      "name": "Skin the cat",
-      "description": "A good upper body stretching exercise, especially for achieving full range of motion in the shoulder. The skin the cat exercise is a fundamental movement performed on gymnastics rings.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "is_selected": 0
       }
       ],
       "dip": [
       {
-      "id": "22",
-      "progression_id": "2",
-      "level": "2",
-      "row": "1",
-      "substitute": "57",
-      "exercise_id": "36",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "36",
-      "name": "Dips (Bench)",
+      "id": "102",
       "description": "",
-      "category": "2",
+      "progression_id": "2",
+      "level": "5",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "104",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:24:47",
+      "updated_at": "2016-08-02 06:24:47",
+      "exercise": {
+      "id": "104",
+      "name": "Triceps Extensions",
+      "description": "Triceps Extensions",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "25",
-      "progression_id": "2",
-      "level": "1",
-      "row": "2",
-      "substitute": 0,
-      "exercise_id": "6",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "6",
-      "name": "Trizeps Extension",
+      "id": "109",
       "description": "",
-      "category": "1",
+      "progression_id": "2",
+      "level": "5",
+      "row": "2",
+      "substitute": "0",
+      "exercise_id": "110",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:49:50",
+      "updated_at": "2016-08-02 06:49:50",
+      "exercise": {
+      "id": "110",
+      "name": "Hefesto",
+      "description": "Hefesto",
+      "category": "3",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
+      },
+      {
+      "id": "114",
+      "description": "",
+      "progression_id": "2",
+      "level": "5",
+      "row": "3",
+      "substitute": "0",
+      "exercise_id": "115",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:52:30",
+      "updated_at": "2016-08-02 10:13:35",
+      "exercise": {
+      "id": "115",
+      "name": "Impossible Dips",
+      "description": "Impossible Dips",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       }
       ],
       "full_body": [
       {
-      "id": "29",
+      "id": "119",
+      "description": "",
       "progression_id": "3",
-      "level": "1",
+      "level": "5",
       "row": "1",
-      "substitute": 0,
-      "exercise_id": "7",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "120",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:00:56",
+      "updated_at": "2016-08-02 07:00:56",
       "exercise": {
-      "id": "7",
-      "name": "Wall Sits",
-      "description": "",
-      "category": "1",
+      "id": "120",
+      "name": "Pistols",
+      "description": "Pistols",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "33",
+      "id": "124",
+      "description": "",
       "progression_id": "3",
-      "level": "1",
+      "level": "5",
       "row": "2",
-      "substitute": 0,
-      "exercise_id": "8",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "125",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:03:25",
+      "updated_at": "2016-08-02 07:03:25",
       "exercise": {
-      "id": "8",
-      "name": "Single Leg Deadlift",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "36",
-      "progression_id": "3",
-      "level": "1",
-      "row": "3",
-      "substitute": 0,
-      "exercise_id": "9",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "9",
-      "name": "Climbers",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "39",
-      "progression_id": "3",
-      "level": "1",
-      "row": "4",
-      "substitute": 0,
-      "exercise_id": "10",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "10",
-      "name": "High Jumps",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "43",
-      "progression_id": "3",
-      "level": "1",
-      "row": "5",
-      "substitute": 0,
-      "exercise_id": "11",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "11",
-      "name": "Sprawl",
-      "description": "",
-      "category": "1",
+      "id": "125",
+      "name": "Jumping Lunges",
+      "description": "Jumping Lunges",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
+      },
+      {
+      "id": "129",
+      "description": "",
+      "progression_id": "3",
+      "level": "5",
+      "row": "3",
+      "substitute": "0",
+      "exercise_id": "130",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:06:11",
+      "updated_at": "2016-08-02 07:06:11",
+      "exercise": {
+      "id": "130",
+      "name": "Clap Pushup Burpee",
+      "description": "Clap Pushup Burpee",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
+      "repititions": "10",
+      "duration": "10",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       }
       ],
       "push": [
       {
-      "id": "46",
+      "id": "135",
+      "description": "",
       "progression_id": "4",
-      "level": "1",
+      "level": "5",
       "row": "1",
-      "substitute": "25",
-      "exercise_id": "12",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "135",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:10:42",
+      "updated_at": "2016-08-02 07:10:42",
       "exercise": {
-      "id": "12",
-      "name": "Incline Pushups",
-      "description": "",
-      "category": "1",
+      "id": "135",
+      "name": "One Arm Pushups",
+      "description": "One Arm Pushups",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "66",
+      "id": "140",
+      "description": "",
       "progression_id": "4",
-      "level": "1",
+      "level": "5",
       "row": "2",
-      "substitute": "26",
-      "exercise_id": "13",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "140",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:13:18",
+      "updated_at": "2016-08-02 07:13:18",
       "exercise": {
-      "id": "13",
-      "name": "Military Press",
-      "description": "",
-      "category": "1",
+      "id": "140",
+      "name": "Handstand Pushups",
+      "description": "Handstand Pushups",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "71",
+      "id": "145",
+      "description": "",
       "progression_id": "4",
-      "level": "1",
+      "level": "5",
       "row": "3",
-      "substitute": 0,
-      "exercise_id": "14",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "145",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:17:01",
+      "updated_at": "2016-08-02 11:34:12",
       "exercise": {
-      "id": "14",
-      "name": "Decline Pushups",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
+      "id": "145",
+      "name": "Double Clap Pushups",
+      "description": "Double Clap Pushups",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "74",
-      "progression_id": "4",
-      "level": "1",
-      "row": "4",
-      "substitute": 0,
-      "exercise_id": "15",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "15",
-      "name": "Explosive Pushups",
+      "id": "150",
       "description": "",
-      "category": "1",
+      "progression_id": "4",
+      "level": "5",
+      "row": "4",
+      "substitute": "0",
+      "exercise_id": "150",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:23:55",
+      "updated_at": "2016-08-02 07:23:55",
+      "exercise": {
+      "id": "150",
+      "name": "Planche (SH)",
+      "description": "Planche (SH)",
+      "category": "3",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       }
       ],
       "core": [
       {
-      "id": "78",
+      "id": "155",
+      "description": "",
       "progression_id": "5",
-      "level": "1",
+      "level": "5",
       "row": "1",
-      "substitute": "27",
-      "exercise_id": "16",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "155",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:27:53",
+      "updated_at": "2016-08-02 07:27:53",
       "exercise": {
-      "id": "16",
-      "name": "Crunches",
-      "description": "",
-      "category": "1",
+      "id": "155",
+      "name": "Hollow Body Rock",
+      "description": "Hollow Body Rock",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "107",
+      "id": "160",
+      "description": "",
       "progression_id": "5",
-      "level": "1",
+      "level": "5",
       "row": "2",
-      "substitute": 0,
-      "exercise_id": "17",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "160",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:33:01",
+      "updated_at": "2016-08-02 07:33:01",
       "exercise": {
-      "id": "17",
-      "name": "Plank",
-      "description": "",
-      "category": "1",
+      "id": "160",
+      "name": "Side Plank (SH)",
+      "description": "Side Plank (SH)",
+      "category": "3",
       "type": "1",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "111",
+      "id": "165",
+      "description": "",
       "progression_id": "5",
-      "level": "1",
+      "level": "5",
       "row": "3",
-      "substitute": "23",
-      "exercise_id": "3",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "165",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:37:43",
+      "updated_at": "2016-08-02 07:37:43",
       "exercise": {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
+      "id": "165",
+      "name": "Human Flag ",
+      "description": "Human Flag ",
+      "category": "3",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
+      "duration": "10",
+      "unit": "seconds",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "1",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "116",
+      "id": "169",
+      "description": "",
       "progression_id": "5",
-      "level": "1",
+      "level": "4",
       "row": "4",
-      "substitute": "29",
-      "exercise_id": "18",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "substitute": "0",
+      "exercise_id": "169",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:41:21",
+      "updated_at": "2016-08-02 07:41:21",
       "exercise": {
-      "id": "18",
-      "name": "Tucked Human Flag",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "122",
-      "progression_id": "5",
-      "level": "3",
-      "row": "5",
-      "substitute": "67",
-      "exercise_id": "51",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "51",
-      "name": "One Leg Dragon Flag",
-      "description": "",
+      "id": "169",
+      "name": "Dragon Flag",
+      "description": "Dragon Flag",
       "category": "2",
       "type": "2",
-      "rewards": "6.00",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       },
       {
-      "id": "125",
-      "progression_id": "5",
-      "level": "1",
-      "row": "6",
-      "substitute": "31",
-      "exercise_id": "20",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "exercise": {
-      "id": "20",
-      "name": "Tuck Planche",
+      "id": "174",
       "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
+      "progression_id": "5",
+      "level": "5",
+      "row": "5",
+      "substitute": "0",
+      "exercise_id": "174",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:45:06",
+      "updated_at": "2016-08-02 07:45:06",
+      "exercise": {
+      "id": "174",
+      "name": "Pullover",
+      "description": "Pullover",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
       "repititions": "10",
-      "duration": "1.00",
+      "duration": "10",
       "unit": "times",
-      "equipment": ""
-      }
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
+      },
+      "is_selected": 0
       }
       ]
       },
-      "is_subscribed": 0,
+      "is_subscribed": 1,
       "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+      "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+      "video": "http://testing.ykings.com/uploads/videos",
+      "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
       }
       }
      * 
@@ -589,11 +757,6 @@ class SkillsController extends Controller
             if (!is_null($user)) {
                 $skills = [];
 
-                $unlockedSkillsQuery = DB::table('unlocked_skills')
-                    ->select('exercise_id')
-                    ->whereRaw('user_id = ' . $request->user_id)
-                    ->toSql();
-
                 //need to find how many rows in each progression and need to find the exercise to be unlocked 
                 //by the user in that row.
                 //Get pull progression row count.
@@ -604,7 +767,6 @@ class SkillsController extends Controller
                 $i = 1;
 
                 do {
-
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 1)->orderBy('skills.level', 'DESC')->first();
 
                     $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
@@ -662,8 +824,6 @@ class SkillsController extends Controller
                 $pushRowCount = count(Skill::where('progression_id', 4)->groupBy('row')->get());
 
                 do {
-
-
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 4)->orderBy('skills.level', 'DESC')->first();
                     $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
@@ -682,7 +842,6 @@ class SkillsController extends Controller
                 $coreRowCount = count(Skill::where('progression_id', 5)->groupBy('row')->get());
 
                 do {
-
                     $skill = DB::table('skills')->where('row', $i)->where('progression_id', 5)->orderBy('skills.level', 'DESC')->first();
                     $skill->exercise = Exercise::where('id', $skill->exercise_id)->with(['video'])->first();
                     $skill->is_selected = 0;
@@ -717,232 +876,482 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "skills": [
-      {
-      "id": "5",
-      "description": "Expose yourself to packed shoulders and hang time.",
+  "status": 1,
+  "skills": [
+    {
+      "id": "83",
+      "description": "",
       "progression_id": "1",
       "level": "1",
       "row": "1",
-      "substitute": "68",
-      "exercise_id": "69",
-      "created_at": "2023-01-16 06:06:00",
-      "updated_at": "2023-01-16 06:06:00",
+      "substitute": "0",
+      "exercise_id": "84",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:08:13",
+      "updated_at": "2016-08-04 15:35:12",
       "is_selected": 0,
       "isLocked": 0,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "69",
-      "name": "Jumping Pullups",
-      "description": "Expose yourself to packed shoulders and hang time.",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": " \"1. Grip a bar and jump into the top position of the pull-up exercise\r\n2. Straight legs in front of you. \r\n3. Slowly go down into a deadhang position\"\r\n ",
-      "video_tips": "  ",
-      "pro_tips": " \"A deadhang postion requires your shoulder blades down or towards the spine with arms being straight (retraction)\r\nAim for three second holds at the top and go down slowly\"\r\n ",
-      "is_static": "0",
-      "musclegroup_string": "",
-      "video": [
-      {
-      "id": "74",
-      "path": "69_1454045392.mp4",
-      "videothumbnail": "69_1454045392.jpg",
-      "description": ""
+        "id": "84",
+        "name": "Eccentric Pull-ups",
+        "description": "Eccentric Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      ]
-      }
-      },
-      {
-      "id": "4",
-      "description": "Develop your back strength with slow, controlled and strict movements.",
+    },
+    {
+      "id": "176",
+      "description": "",
       "progression_id": "1",
       "level": "2",
       "row": "1",
       "substitute": "0",
-      "exercise_id": "68",
-      "created_at": "2022-01-16 06:06:00",
-      "updated_at": "2022-01-16 06:06:00",
+      "exercise_id": "85",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:53:44",
+      "updated_at": "2016-08-04 15:34:42",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "85",
+        "name": "Assisted Pull-ups",
+        "description": "Assisted Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "6.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "85",
+      "description": "",
+      "progression_id": "1",
+      "level": "3",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "86",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:13:26",
+      "updated_at": "2016-08-04 15:34:16",
       "is_selected": 0,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-      "id": "68",
-      "name": "Supported Pullups",
-      "description": "Develop your back strength with slow, controlled and strict movements.",
-      "category": "1",
-      "type": "1",
-      "muscle_groups": "",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Keep neck in neutral position at all times\r\n3. Pull up till chin is above the bar\r\n4. Go down controlled\"\r\n ",
-      "video_tips": "  ",
-      "pro_tips": " Use a partner, bench or resistance bands to help you during the exercise.\r\n ",
-      "is_static": "0",
-      "musclegroup_string": "",
-      "video": [
-      {
-      "id": "73",
-      "path": "68_1454045293.mp4",
-      "videothumbnail": "68_1454045293.jpg",
-      "description": ""
+        "id": "86",
+        "name": "Pull-ups ",
+        "description": "Pull-ups ",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "81",
+            "path": "86_1470654172.mp4",
+            "videothumbnail": "86_1470654172.jpg",
+            "description": "Pull-ups "
+          }
+        ]
       }
-      ]
-      }
-      },
-      {
-      "id": "3",
-      "description": "Experience the beauty of strict pullups to build insane upper body strength.",
-      "progression_id": "1",
-      "level": "3",
-      "row": "1",
-      "substitute": "66",
-      "exercise_id": "67",
-      "created_at": "2021-01-16 06:06:00",
-      "updated_at": "2021-01-16 06:06:00",
-      "is_selected": 0,
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 0,
-      "exercise": {
-      "id": "67",
-      "name": "Pullups/Chinups",
-      "description": "Experience the beauty of strict pullups to build insane upper body strength.",
-      "category": "2",
-      "type": "1",
-      "muscle_groups": "",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Pull up till chin is above the bar\r\n4. Pause at the top of the exercise and then lower back down under control. \r\n5. Return to the starting position and repeat.\"\r\n ",
-      "video_tips": "  ",
-      "pro_tips": " \"You might switch grips to build all muscles simultaneously. Try close and wide grip and underhand and overhand pullups.\r\nYou want to go up fast but slowly and controlled into the deadhang.\"\r\n ",
-      "is_static": "0",
-      "musclegroup_string": "",
-      "video": [
-      {
-      "id": "72",
-      "path": "67_1454045247.mp4",
-      "videothumbnail": "67_1454045247.jpg",
-      "description": ""
-      }
-      ]
-      }
-      },
-      {
-      "id": "2",
-      "description": "Do your first explosive and dynamic element in order to build the strength and muscle memory to master one more step.",
+    },
+    {
+      "id": "86",
+      "description": "",
       "progression_id": "1",
       "level": "4",
       "row": "1",
       "substitute": "0",
-      "exercise_id": "66",
-      "created_at": "2020-01-16 06:06:00",
-      "updated_at": "2020-01-16 06:06:00",
+      "exercise_id": "88",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:14:38",
+      "updated_at": "2016-08-09 05:12:23",
       "is_selected": 0,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "66",
-      "name": "Explosive Pullups",
-      "description": "Do your first explosive and dynamic element in order to build the strength and muscle memory to master one more step.",
-      "category": "2",
-      "type": "1",
-      "muscle_groups": "",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Explosive Pull up till chin is above the bar\r\n4. Go down controlled\"\r\n ",
-      "video_tips": "  ",
-      "pro_tips": " You may find it easier with the kick but do them strict as you progress.\r\n ",
-      "is_static": "0",
-      "musclegroup_string": "",
-      "video": [
-      {
-      "id": "51",
-      "path": "66_1454045197.mp4",
-      "videothumbnail": "66_1454045197.jpg",
-      "description": "Explosive Pullups"
+        "id": "88",
+        "name": "High Chest Pull-ups",
+        "description": "High Chest Pull-ups",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      ]
-      }
-      },
-      {
-      "id": "1",
-      "description": "You mastered the muscleup. Congratulations",
+    },
+    {
+      "id": "87",
+      "description": "",
       "progression_id": "1",
       "level": "5",
       "row": "1",
       "substitute": "0",
-      "exercise_id": "65",
-      "created_at": "2019-01-16 06:06:00",
-      "updated_at": "2019-01-16 06:06:00",
+      "exercise_id": "89",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:15:30",
+      "updated_at": "2016-08-04 14:47:41",
       "is_selected": 1,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "65",
-      "name": "Muscleups",
-      "description": "You mastered the muscleup. Congratulations",
-      "category": "3",
-      "type": "1",
-      "muscle_groups": "",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "10",
-      "unit": "times",
-      "equipment": "",
-      "range_of_motion": " \"1. Start from a retracted deadhang position\r\n2. Legs in front of you, don't swing\r\n3. Keep neck in neutral position at all times\"\r\n ",
-      "video_tips": "  ",
-      "pro_tips": " \"You may find it easier to start with a flexband to support you making the transition. \r\nChallenge yourself and try the same with rings.\"\r\n ",
-      "is_static": "0",
-      "musclegroup_string": "",
-      "video": [
-      {
-      "id": "50",
-      "path": "65_1454045132.mp4",
-      "videothumbnail": "65_1454045132.jpg",
-      "description": "Muscleups"
+        "id": "89",
+        "name": "Muscleups",
+        "description": "Muscleups",
+        "category": "3",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "10.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "79",
+            "path": "89_1470649283.mp4",
+            "videothumbnail": "89_1470649283.jpg",
+            "description": ""
+          }
+        ]
       }
-      ]
+    }
+  ],
+  "allies": [
+    {
+      "id": "177",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "193",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:03:41",
+      "updated_at": "2016-08-04 15:35:36",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "193",
+        "name": "Jump 2 MU",
+        "description": "Jump 2 MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "80",
+            "path": "193_1470649743.mp4",
+            "videothumbnail": "193_1470649743.jpg",
+            "description": ""
+          }
+        ]
       }
+    },
+    {
+      "id": "178",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "194",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:08:06",
+      "updated_at": "2016-08-04 15:36:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "194",
+        "name": "Assisted MU",
+        "description": "Assisted MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      ],
-      "is_subscribed": 1,
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+    },
+    {
+      "id": "179",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "195",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:10:20",
+      "updated_at": "2016-08-04 15:36:31",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "195",
+        "name": "Gripchange Pull-ups",
+        "description": "Gripchange Pull-ups",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
+    },
+    {
+      "id": "180",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "196",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:17",
+      "updated_at": "2016-08-04 15:37:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "196",
+        "name": "Pullover  to ecc. MU",
+        "description": "Pullover  to ecc. MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
+    },
+    {
+      "id": "181",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "197",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:39",
+      "updated_at": "2016-08-04 15:38:14",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "197",
+        "name": "10s DH to High Chest Pull-up",
+        "description": "10s DH to High Chest Pull-up",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "182",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "198",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:13:18",
+      "updated_at": "2016-08-04 15:38:55",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "198",
+        "name": "Pull-up / MU / Straight Bar Dip ",
+        "description": "Pull-up / MU / Straight Bar Dip ",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "183",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "199",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:14:04",
+      "updated_at": "2016-08-04 15:39:28",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "199",
+        "name": "10s DH to MU",
+        "description": "10s DH to MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    }
+  ],
+  "is_subscribed": 1,
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * 
      * 
@@ -1007,11 +1416,12 @@ class SkillsController extends Controller
 
                 $skill = Skill::where('id', $request->skill_id)->first();
 
-                $skills = Skill::where('row', $skill->row)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+                $skills = Skill::where('row', $skill->row)->where('is_allies', '=', 0)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+                
 
                 foreach ($skills as $sKey => $sValue) {
-                    $unlockCount = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
-                    if ($unlockCount > 0) {
+                    $isRaidActive = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
+                    if ($isRaidActive > 0) {
                         $skills[$sKey]->is_selected = 1;
                     } else {
                         $skills[$sKey]->is_selected = 0;
@@ -1020,6 +1430,16 @@ class SkillsController extends Controller
                     $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
                     $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
                 }
+
+                $allies = Skill::where('row', $skill->row)->where('is_allies', '=', 1)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
+                foreach ($allies as $aKey => $aValue) {
+
+                    $allies[$aKey]->is_selected = 0;
+                    $allies[$aKey]->isLocked = $this->isLocked($aValue, $request->user_id);
+                    $allies[$aKey]->isLockable = $this->isLockable($aValue, $request->user_id);
+                    $allies[$aKey]->isUnlockable = $this->isUnlockable($aValue, $request->user_id);
+                }
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
             }
@@ -1027,6 +1447,7 @@ class SkillsController extends Controller
             return response()->json([
                     'status' => 1,
                     'skills' => $skills,
+                    'allies' => $allies,
                     'is_subscribed' => $user->is_subscribed,
                     'urls' => config('urls.urls')], 200);
         }
@@ -1039,7 +1460,7 @@ class SkillsController extends Controller
             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
             ->count();
 
-        if ($unLockCount > 0 || $skill->level < 2) {
+        if ($unLockCount > 0 || ($skill->level < 2 && $skill->level != 0)) {
             return 0;
         }
 
@@ -1048,9 +1469,10 @@ class SkillsController extends Controller
 
     public function isLockable($skill, $userId)
     {
-        if ($skill->level < 2) {
+        if ($skill->level < 2 && $skill->level != 0) {
             return 0;
         }
+
         $unLockCount = DB::table('unlocked_skills')
             ->select('exercise_id')
             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
@@ -1078,21 +1500,35 @@ class SkillsController extends Controller
                 //get previous level skill
 
                 $skill = Skill::where('id', $skill->id)->first();
+                if ($skill->level != 2) {
+                    $prevSkill = Skill::where('row', $skill->row)
+                        ->where('progression_id', $skill->progression_id)
+                        ->where('level', '=', $skill->level - 1)
+                        ->first();
+                    if (!is_null($prevSkill)) {
 
-                $prevSkill = Skill::where('row', $skill->row)
-                    ->where('progression_id', $skill->progression_id)
-                    ->where('level', '<', $skill->level)
-                    ->first();
+                        $unLockCount = DB::table('unlocked_skills')
+                            ->select('exercise_id')
+                            ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
+                            ->count();
 
-                if (!is_null($prevSkill)) {
-                    $unLockCount = DB::table('unlocked_skills')
-                        ->select('exercise_id')
-                        ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
-                        ->count();
-                    if ($unLockCount > 0) {
-                        return 1;
+                        if ($unLockCount > 0) {
+                            return 1;
+                        }
                     }
+                } else {
+                    return 1;
                 }
+            }
+        } elseif ($skill->level == 0) {
+            $unLockCount = DB::table('unlocked_skills')
+                ->select('exercise_id')
+                ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $skill->id)
+                ->count();
+            if ($unLockCount > 0) {
+                return 0;
+            } else {
+                return 1;
             }
         }
         return 0;
@@ -1108,153 +1544,483 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "message": "successfully unlocked the skill",
-      "skills": [
-      {
-      "id": "11",
+  "status": 1,
+  "message": "successfully unlocked the skill",
+  "skills": [
+    {
+      "id": "83",
+      "description": "",
       "progression_id": "1",
       "level": "1",
-      "row": "3",
-      "substitute": "23",
-      "exercise_id": "3",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "84",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:08:13",
+      "updated_at": "2016-08-04 15:35:12",
+      "is_selected": 0,
       "isLocked": 0,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+        "id": "84",
+        "name": "Eccentric Pull-ups",
+        "description": "Eccentric Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      },
-      {
-      "id": "12",
+    },
+    {
+      "id": "176",
+      "description": "",
       "progression_id": "1",
       "level": "2",
-      "row": "3",
+      "row": "1",
       "substitute": "0",
-      "exercise_id": "23",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2016-01-04 10:24:35",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 1,
-      "exercise": {
-      "id": "23",
-      "name": "Leg Raises",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "13",
-      "progression_id": "1",
-      "level": "3",
-      "row": "3",
-      "substitute": "55",
-      "exercise_id": "34",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 0,
-      "exercise": {
-      "id": "34",
-      "name": "L-Sit",
-      "description": "",
-      "category": "2",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "14",
-      "progression_id": "1",
-      "level": "4",
-      "row": "3",
-      "substitute": "0",
-      "exercise_id": "55",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2016-01-04 10:24:44",
-      "isLocked": 1,
-      "isLockable": 0,
-      "isUnlockable": 0,
-      "exercise": {
-      "id": "55",
-      "name": "L-Sit Pullup",
-      "description": "",
-      "category": "2",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
-      }
-      },
-      {
-      "id": "15",
-      "progression_id": "1",
-      "level": "5",
-      "row": "3",
-      "substitute": "0",
-      "exercise_id": "78",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "exercise_id": "85",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:53:44",
+      "updated_at": "2016-08-04 15:34:42",
+      "is_selected": 0,
       "isLocked": 0,
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-      "id": "78",
-      "name": "Pullover",
+        "id": "85",
+        "name": "Assisted Pull-ups",
+        "description": "Assisted Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "6.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "85",
       "description": "",
-      "category": "3",
-      "type": "2",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+      "progression_id": "1",
+      "level": "3",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "86",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:13:26",
+      "updated_at": "2016-08-04 15:34:16",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "86",
+        "name": "Pull-ups ",
+        "description": "Pull-ups ",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "81",
+            "path": "86_1470654172.mp4",
+            "videothumbnail": "86_1470654172.jpg",
+            "description": "Pull-ups "
+          }
+        ]
       }
+    },
+    {
+      "id": "86",
+      "description": "",
+      "progression_id": "1",
+      "level": "4",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "88",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:14:38",
+      "updated_at": "2016-08-09 05:12:23",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "88",
+        "name": "High Chest Pull-ups",
+        "description": "High Chest Pull-ups",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      ],
-      "is_subscribed": 0,
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+    },
+    {
+      "id": "87",
+      "description": "",
+      "progression_id": "1",
+      "level": "5",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "89",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:15:30",
+      "updated_at": "2016-08-04 14:47:41",
+      "is_selected": 1,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "89",
+        "name": "Muscleups",
+        "description": "Muscleups",
+        "category": "3",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "10.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "79",
+            "path": "89_1470649283.mp4",
+            "videothumbnail": "89_1470649283.jpg",
+            "description": ""
+          }
+        ]
       }
+    }
+  ],
+  "allies": [
+    {
+      "id": "177",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "193",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:03:41",
+      "updated_at": "2016-08-04 15:35:36",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "193",
+        "name": "Jump 2 MU",
+        "description": "Jump 2 MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "80",
+            "path": "193_1470649743.mp4",
+            "videothumbnail": "193_1470649743.jpg",
+            "description": ""
+          }
+        ]
       }
+    },
+    {
+      "id": "178",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "194",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:08:06",
+      "updated_at": "2016-08-04 15:36:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "194",
+        "name": "Assisted MU",
+        "description": "Assisted MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "179",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "195",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:10:20",
+      "updated_at": "2016-08-04 15:36:31",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "195",
+        "name": "Gripchange Pull-ups",
+        "description": "Gripchange Pull-ups",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "180",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "196",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:17",
+      "updated_at": "2016-08-04 15:37:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "196",
+        "name": "Pullover  to ecc. MU",
+        "description": "Pullover  to ecc. MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "181",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "197",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:39",
+      "updated_at": "2016-08-04 15:38:14",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "197",
+        "name": "10s DH to High Chest Pull-up",
+        "description": "10s DH to High Chest Pull-up",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "182",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "198",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:13:18",
+      "updated_at": "2016-08-04 15:38:55",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "198",
+        "name": "Pull-up / MU / Straight Bar Dip ",
+        "description": "Pull-up / MU / Straight Bar Dip ",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "183",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "199",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:14:04",
+      "updated_at": "2016-08-04 15:39:28",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "199",
+        "name": "10s DH to MU",
+        "description": "10s DH to MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    }
+  ],
+  "is_subscribed": 1,
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * 
      * 
@@ -1334,17 +2100,36 @@ class SkillsController extends Controller
                         'user_id' => $request->user_id
                     ]);
 
-                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('is_allies', '=', 0)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
                     foreach ($skills as $sKey => $sValue) {
+                        $isRaidActive = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
+                        if ($isRaidActive > 0) {
+                            $skills[$sKey]->is_selected = 1;
+                        } else {
+                            $skills[$sKey]->is_selected = 0;
+                        }
                         $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                         $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
                         $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
+                    }
+
+                    $allies = Skill::where('row', $unlockedSkill->row)->where('is_allies', '=', 1)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
+                    foreach ($allies as $aKey => $aValue) {
+
+                        $allies[$aKey]->is_selected = 0;
+                        $allies[$aKey]->isLocked = $this->isLocked($aValue, $request->user_id);
+                        $allies[$aKey]->isLockable = $this->isLockable($aValue, $request->user_id);
+                        $allies[$aKey]->isUnlockable = $this->isUnlockable($aValue, $request->user_id);
                     }
 
                     return response()->json([
                             'status' => 1,
                             'message' => 'successfully unlocked the skill',
                             'skills' => $skills,
+                            'allies' => $allies,
                             'is_subscribed' => $user->is_subscribed,
                             'urls' => config('urls.urls')], 200);
                 }
@@ -1364,153 +2149,483 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-      "status": 1,
-      "message": "successfully locked the skill",
-      "skills": [
-      {
-      "id": "11",
+  "status": 1,
+  "message": "successfully locked the skill",
+  "skills": [
+    {
+      "id": "83",
+      "description": "",
       "progression_id": "1",
       "level": "1",
-      "row": "3",
-      "substitute": "23",
-      "exercise_id": "3",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "84",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:08:13",
+      "updated_at": "2016-08-04 15:35:12",
+      "is_selected": 0,
       "isLocked": 0,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "3",
-      "name": "Knee Raises",
-      "description": "Standing Knee Raises (also known as standing knee crunches and standing knee pulls) is a functional abdominal exercise for boosting strength throughout the core. Unlike standard ab exercises, they don’t isolate abdominal muscles. Instead they work your upper abs and lower abs in conjunction with other important muscles such as hips, back and shoulders.",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+        "id": "84",
+        "name": "Eccentric Pull-ups",
+        "description": "Eccentric Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      },
-      {
-      "id": "12",
+    },
+    {
+      "id": "176",
+      "description": "",
       "progression_id": "1",
       "level": "2",
-      "row": "3",
+      "row": "1",
       "substitute": "0",
-      "exercise_id": "23",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2016-01-04 10:24:35",
+      "exercise_id": "85",
+      "is_allies": "0",
+      "created_at": "2016-08-02 07:53:44",
+      "updated_at": "2016-08-04 15:34:42",
+      "is_selected": 0,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-      "id": "23",
-      "name": "Leg Raises",
-      "description": "",
-      "category": "1",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+        "id": "85",
+        "name": "Assisted Pull-ups",
+        "description": "Assisted Pull-ups",
+        "category": "1",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "6.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      },
-      {
-      "id": "13",
+    },
+    {
+      "id": "85",
+      "description": "",
       "progression_id": "1",
       "level": "3",
-      "row": "3",
-      "substitute": "55",
-      "exercise_id": "34",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "86",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:13:26",
+      "updated_at": "2016-08-04 15:34:16",
+      "is_selected": 0,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "34",
-      "name": "L-Sit",
-      "description": "",
-      "category": "2",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+        "id": "86",
+        "name": "Pull-ups ",
+        "description": "Pull-ups ",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "81",
+            "path": "86_1470654172.mp4",
+            "videothumbnail": "86_1470654172.jpg",
+            "description": "Pull-ups "
+          }
+        ]
       }
-      },
-      {
-      "id": "14",
+    },
+    {
+      "id": "86",
+      "description": "",
       "progression_id": "1",
       "level": "4",
-      "row": "3",
+      "row": "1",
       "substitute": "0",
-      "exercise_id": "55",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2016-01-04 10:24:44",
+      "exercise_id": "88",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:14:38",
+      "updated_at": "2016-08-09 05:12:23",
+      "is_selected": 0,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "55",
-      "name": "L-Sit Pullup",
-      "description": "",
-      "category": "2",
-      "type": "2",
-      "rewards": "6.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+        "id": "88",
+        "name": "High Chest Pull-ups",
+        "description": "High Chest Pull-ups",
+        "category": "2",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "7.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      },
-      {
-      "id": "15",
+    },
+    {
+      "id": "87",
+      "description": "",
       "progression_id": "1",
       "level": "5",
-      "row": "3",
+      "row": "1",
       "substitute": "0",
-      "exercise_id": "78",
-      "created_at": "2015-12-14 03:04:45",
-      "updated_at": "2015-12-15 05:48:46",
+      "exercise_id": "89",
+      "is_allies": "0",
+      "created_at": "2016-08-02 06:15:30",
+      "updated_at": "2016-08-04 14:47:41",
+      "is_selected": 1,
       "isLocked": 1,
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-      "id": "78",
-      "name": "Pullover",
+        "id": "89",
+        "name": "Muscleups",
+        "description": "Muscleups",
+        "category": "3",
+        "type": "1",
+        "muscle_groups": "",
+        "rewards": "10.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "79",
+            "path": "89_1470649283.mp4",
+            "videothumbnail": "89_1470649283.jpg",
+            "description": ""
+          }
+        ]
+      }
+    }
+  ],
+  "allies": [
+    {
+      "id": "177",
       "description": "",
-      "category": "3",
-      "type": "2",
-      "rewards": "10.00",
-      "repititions": "10",
-      "duration": "1.00",
-      "unit": "times",
-      "equipment": ""
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "193",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:03:41",
+      "updated_at": "2016-08-04 15:35:36",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "193",
+        "name": "Jump 2 MU",
+        "description": "Jump 2 MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": [
+          {
+            "id": "80",
+            "path": "193_1470649743.mp4",
+            "videothumbnail": "193_1470649743.jpg",
+            "description": ""
+          }
+        ]
       }
+    },
+    {
+      "id": "178",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "194",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:08:06",
+      "updated_at": "2016-08-04 15:36:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "194",
+        "name": "Assisted MU",
+        "description": "Assisted MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
-      ],
-      "is_subscribed": 0,
-      "urls": {
-      "profileImageSmall": "http://sandbox.ykings.com/uploads/images/profile/small",
-      "profileImageMedium": "http://sandbox.ykings.com/uploads/images/profile/medium",
-      "profileImageLarge": "http://sandbox.ykings.com/uploads/images/profile/large",
-      "profileImageOriginal": "http://sandbox.ykings.com/uploads/images/profile/original",
-      "video": "http://sandbox.ykings.com/uploads/videos",
-      "videothumbnail": "http://sandbox.ykings.com/uploads/images/videothumbnails",
-      "feedImageSmall": "http://sandbox.ykings.com/uploads/images/feed/small",
-      "feedImageMedium": "http://sandbox.ykings.com/uploads/images/feed/medium",
-      "feedImageLarge": "http://sandbox.ykings.com/uploads/images/feed/large",
-      "feedImageOriginal": "http://sandbox.ykings.com/uploads/images/feed/original",
-      "coverImageSmall": "http://sandbox.ykings.com/uploads/images/cover_image/small",
-      "coverImageMedium": "http://sandbox.ykings.com/uploads/images/cover_image/medium",
-      "coverImageLarge": "http://sandbox.ykings.com/uploads/images/cover_image/large",
-      "coverImageOriginal": "http://sandbox.ykings.com/uploads/images/cover_image/original"
+    },
+    {
+      "id": "179",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "195",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:10:20",
+      "updated_at": "2016-08-04 15:36:31",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "195",
+        "name": "Gripchange Pull-ups",
+        "description": "Gripchange Pull-ups",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
+    },
+    {
+      "id": "180",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "196",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:17",
+      "updated_at": "2016-08-04 15:37:07",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "196",
+        "name": "Pullover  to ecc. MU",
+        "description": "Pullover  to ecc. MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
       }
+    },
+    {
+      "id": "181",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "197",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:11:39",
+      "updated_at": "2016-08-04 15:38:14",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "197",
+        "name": "10s DH to High Chest Pull-up",
+        "description": "10s DH to High Chest Pull-up",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "182",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "198",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:13:18",
+      "updated_at": "2016-08-04 15:38:55",
+      "is_selected": 0,
+      "isLocked": 1,
+      "isLockable": 0,
+      "isUnlockable": 1,
+      "exercise": {
+        "id": "198",
+        "name": "Pull-up / MU / Straight Bar Dip ",
+        "description": "Pull-up / MU / Straight Bar Dip ",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    },
+    {
+      "id": "183",
+      "description": "",
+      "progression_id": "1",
+      "level": "0",
+      "row": "1",
+      "substitute": "0",
+      "exercise_id": "199",
+      "is_allies": "1",
+      "created_at": "2016-08-02 09:14:04",
+      "updated_at": "2016-08-04 15:39:28",
+      "is_selected": 0,
+      "isLocked": 0,
+      "isLockable": 1,
+      "isUnlockable": 0,
+      "exercise": {
+        "id": "199",
+        "name": "10s DH to MU",
+        "description": "10s DH to MU",
+        "category": "3",
+        "type": "2",
+        "muscle_groups": "",
+        "rewards": "5.00",
+        "unit": "times",
+        "equipment": "",
+        "range_of_motion": "",
+        "video_tips": "",
+        "pro_tips": "",
+        "video_tips_html": "",
+        "pro_tips_html": "",
+        "range_of_motion_html": "",
+        "is_static": "0",
+        "musclegroup_string": "",
+        "video": []
+      }
+    }
+  ],
+  "is_subscribed": 1,
+  "urls": {
+    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+    "video": "http://testing.ykings.com/uploads/videos",
+    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+  }
+}
      * 
      * 
      * 
@@ -1588,17 +2703,35 @@ class SkillsController extends Controller
 
                     Unlockedexercise::whereRaw('skill_id IN (' . $higherLevelSkills . ') AND user_id = ' . $request->user_id)->delete();
 
-                    $skills = Skill::where('row', $unlockedSkill->row)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+                    $skills = Skill::where('row', $unlockedSkill->row)->where('is_allies', '=', 0)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
                     foreach ($skills as $sKey => $sValue) {
+                        $isRaidActive = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
+                        if ($isRaidActive > 0) {
+                            $skills[$sKey]->is_selected = 1;
+                        } else {
+                            $skills[$sKey]->is_selected = 0;
+                        }
                         $skills[$sKey]->isLocked = $this->isLocked($sValue, $request->user_id);
                         $skills[$sKey]->isLockable = $this->isLockable($sValue, $request->user_id);
                         $skills[$sKey]->isUnlockable = $this->isUnlockable($sValue, $request->user_id);
+                    }
+
+                    $allies = Skill::where('row', $unlockedSkill->row)->where('is_allies', '=', 1)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
+
+                    foreach ($allies as $aKey => $aValue) {
+
+                        $allies[$aKey]->is_selected = 0;
+                        $allies[$aKey]->isLocked = $this->isLocked($aValue, $request->user_id);
+                        $allies[$aKey]->isLockable = $this->isLockable($aValue, $request->user_id);
+                        $allies[$aKey]->isUnlockable = $this->isUnlockable($aValue, $request->user_id);
                     }
 
                     return response()->json([
                             'status' => 1,
                             'message' => 'successfully locked the skill',
                             'skills' => $skills,
+                            'allies' => $allies,
                             'is_subscribed' => $user->is_subscribed,
                             'urls' => config('urls.urls')], 200);
                 } else {

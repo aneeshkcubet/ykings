@@ -56,8 +56,7 @@ Edit Skill - {{  $skill['exercise']->name }}
                                 <!-- first tab -->
                                 <h1>Basic Details</h1>
 
-                                <section>
-                                    
+                                <section>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="progression_id">Select Progression *</label>
                                         <div class="col-sm-4">
@@ -67,8 +66,7 @@ Edit Skill - {{  $skill['exercise']->name }}
                                                 @endforeach                                                
                                             </select>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="exercise_id">Select Exercise *</label>
                                         <div class="col-sm-4">
@@ -86,10 +84,11 @@ Edit Skill - {{  $skill['exercise']->name }}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="level" class="col-sm-2 control-label">Level *</label>
+                                        <label for="level" class="col-sm-2 control-label">Progression Level *</label>
                                         <div class="col-sm-4">
                                             <select id="level" name="level" class="form-control required" readonly>
                                                 <option value="">Select Level of Progression</option>
+                                                <option value="0" @if(Input::old('level', $skill->level) == 0) selected="selected" @endif>0(Allies)</option>
                                                 <option value="1" @if(Input::old('level', $skill->level) == 1) selected="selected" @endif>1</option>
                                                 <option value="2" @if(Input::old('level', $skill->level) == 2) selected="selected" @endif>2</option>
                                                 <option value="3" @if(Input::old('level', $skill->level) == 3) selected="selected" @endif>3</option>
@@ -99,7 +98,7 @@ Edit Skill - {{  $skill['exercise']->name }}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="level" class="col-sm-2 control-label">Row *</label>
+                                        <label for="level" class="col-sm-2 control-label">Skill Column *</label>
                                         <div class="col-sm-4">
                                             <select id="row" name="row" class="form-control required" readonly>
                                                 <option value="">Select Row in Progression</option>
@@ -112,13 +111,11 @@ Edit Skill - {{  $skill['exercise']->name }}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="substitute">Select Sustitute</label>
+                                        <label class="col-sm-2 control-label" for="is_allies">Is Allies</label>
                                         <div class="col-sm-4">
-                                            <select id="exercise_id" name="substitute" class="form-control required">
-                                                <option value="0">Select Substitute</option>
-                                                @foreach ($exercises as $mKey => $exercise)
-                                                <option @if(Input::old('substitute', $skill->substitute) == $exercise->id) selected="selected" @endif value="{{ $exercise->id }}">{{ $exercise->name }}</option>
-                                                @endforeach                                                
+                                            <select id="is_allies" name="is_allies" class="form-control">
+                                                <option value="0" @if(Input::old('is_allies', $skill->is_allies) == 0) selected="selected" @endif>No</option>                                                
+                                                <option value="1" @if(Input::old('is_allies', $skill->is_allies) == 1) selected="selected" @endif>Yes</option>                                             
                                             </select>
                                         </div>
                                     </div>

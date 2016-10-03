@@ -21,7 +21,8 @@ class Workoutexercise extends Model
         'repititions',
         'exercise_id',
         'round',
-        'unit'
+        'unit',
+        'sets'
     ];
     
 //    protected $hidden = [
@@ -40,7 +41,7 @@ class Workoutexercise extends Model
      */
     public function video()
     {
-        return $this->hasOne('App\Video', 'parent_id', 'exercise_id')->where('parent_type', '=', 1);
+        return $this->hasOne('App\Video', 'parent_id', 'exercise_id');
     }
     
     /**

@@ -61,11 +61,12 @@ class CollectionEngine extends BaseEngine
      * Overrides global search.
      *
      * @param \Closure $callback
+     * @param bool $globalSearch
      * @return $this
      */
-    public function filter(Closure $callback)
+    public function filter(Closure $callback, $globalSearch = false)
     {
-        $this->overrideGlobalSearch($callback, $this);
+        $this->overrideGlobalSearch($callback, $this, $globalSearch);
 
         return $this;
     }
@@ -90,7 +91,7 @@ class CollectionEngine extends BaseEngine
      */
     public function totalCount()
     {
-        return $this->count();
+        return $this->totalRecords ? $this->totalRecords : $this->collection->count();
     }
 
     /**
@@ -100,7 +101,7 @@ class CollectionEngine extends BaseEngine
      */
     public function count()
     {
-        return $this->collection->count();
+        return $this->collection->count() > $this->totalRecords ? $this->totalRecords : $this->collection->count();
     }
 
     /**
@@ -206,7 +207,7 @@ class CollectionEngine extends BaseEngine
     {
         $this->collection = $this->collection->slice(
             $this->request['start'],
-            (int) $this->request['length'] > 0 ? $this->request['length'] : 10
+            (int)$this->request['length'] > 0 ? $this->request['length'] : 10
         );
     }
 

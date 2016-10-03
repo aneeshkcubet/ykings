@@ -1,5 +1,4 @@
 <?php
-
 /*
   |--------------------------------------------------------------------------
   | Application Routes
@@ -12,7 +11,7 @@
  */
 
 //Admin Routes
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin2'], function () {
     Route::get('/', [
         'as' => 'admin.index',
         'uses' => 'Admin\AdminController@index'
@@ -29,6 +28,11 @@ Route::group(['prefix' => 'admin'], function () {
         'as' => 'admin.logout',
         'uses' => 'Admin\AdminController@logout'
     ]);
+    
+    Route::get('/migrateusers', [
+        'as' => 'admin.migrate',
+        'uses' => 'Admin\AdminController@migrateUsers'
+    ]);
 
     # User Management
     Route::group(array('prefix' => 'user'), function () {
@@ -38,11 +42,58 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
+    Route::group(array('prefix' => 'exercise'), function () {
+        Route::controller('/', 'Admin\ExerciseController', [
+            'anyData' => 'admin.exercises.data',
+            'getIndex' => 'admin.exercises',
+        ]);
+    });
+    
+    Route::group(array('prefix' => 'workout'), function () {
+        Route::controller('/', 'Admin\WorkoutController', [
+            'anyData' => 'admin.workouts.data',
+            'getIndex' => 'admin.workouts',
+        ]);
+    });
+    
+    Route::group(array('prefix' => 'skilltraining'), function () {
+        Route::controller('/', 'Admin\SkilltrainingController', [
+            'anyData' => 'admin.skilltrainings.data',
+            'getIndex' => 'admin.skilltrainings',
+        ]);
+    });
+    
+    # Feed Management
+    Route::group(array('prefix' => 'feed'), function () {
+        Route::controller('/', 'Admin\FeedController', [
+            'anyData' => 'admin.feeds.data',
+            'getIndex' => 'admin.feeds',
+        ]);
+    });
+    
+    Route::group(array('prefix' => 'newsletter'), function () {
+        Route::controller('/', 'Admin\NewsletterController', [
+            'anyData' => 'admin.newsletters.data',
+            'getIndex' => 'admin.newsletters',
+        ]);
+    });
+    
+    Route::group(array('prefix' => 'media'), function () {
+        Route::controller('/', 'Admin\MediaController', [
+            'anyData' => 'admin.medias.data',
+            'getIndex' => 'admin.medias',
+        ]);
+    });
+    
+    Route::group(array('prefix' => 'coach'), function () {
+        Route::controller('/', 'Admin\CoachController', [
+            'anyData' => 'admin.coaches.data',
+            'getIndex' => 'admin.coaches',
+        ]);
+    });
+
 
     Route::group(array('prefix' => 'users'), function () {
-
-
-        //Route::get('/', array('as' => 'admin.users', 'uses' => 'Admin\UsersController@getIndex'));
 
         Route::get('create', array('as' => 'admin.user.create', 'uses' => 'Admin\UsersController@getCreate'));
 
@@ -71,7 +122,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 # Exercise Management
     Route::group(array('prefix' => 'exercises'), function () {
-        Route::get('/', array('as' => 'admin.exercises', 'uses' => 'Admin\ExerciseController@getIndex'));
 
         Route::get('create', array('as' => 'admin.exercise.create', 'uses' => 'Admin\ExerciseController@getCreate'));
 
@@ -108,9 +158,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
 # Workout Management
-    Route::group(array('prefix' => 'workouts'), function () {
-
-        Route::get('/', array('as' => 'admin.workouts', 'uses' => 'Admin\WorkoutController@getIndex'));
+    Route::group(array('prefix' => 'workouts'), function () {        
 
         Route::get('create', array('as' => 'admin.workout.create', 'uses' => 'Admin\WorkoutController@getCreate'));
 
@@ -137,6 +185,35 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('workoutexercise/{workoutExerciseId}/delete', array('as' => 'admin.workout.workoutexercise.delete', 'uses' => 'Admin\WorkoutController@getExerciseDelete'));
     });
+    
+    # Skilltraining Management
+    Route::group(array('prefix' => 'skilltrainings'), function () {        
+
+        Route::get('create', array('as' => 'admin.skilltraining.create', 'uses' => 'Admin\SkilltrainingController@getCreate'));
+
+        Route::post('create', array('as' => 'admin.skilltraining.postcreate', 'uses' => 'Admin\SkilltrainingController@postCreate'));
+
+        Route::get('{skilltrainingId}/edit', array('as' => 'admin.skilltraining.edit', 'uses' => 'Admin\SkilltrainingController@getEdit'))->where('skilltrainingId', '[0-9]+');
+
+        Route::post('{skilltrainingId}/edit', array('as' => 'admin.skilltraining.postedit', 'uses' => 'Admin\SkilltrainingController@postEdit'))->where('skilltrainingId', '[0-9]+');
+
+        Route::get('{skilltrainingId}', array('as' => 'admin.skilltraining.show', 'uses' => 'Admin\SkilltrainingController@show'))->where('skilltrainingId', '[0-9]+');
+
+        Route::get('{skilltrainingId}/delete', array('as' => 'admin.skilltraining.delete', 'uses' => 'Admin\SkilltrainingController@getDelete'))->where('skilltrainingId', '[0-9]+');
+
+        Route::get('{skilltrainingId}/confirm-delete-skilltraining', array('as' => 'admin.confirm-delete.skilltraining', 'uses' => 'Admin\SkilltrainingController@getModalDelete'))->where('skilltrainingId', '[0-9]+');
+
+        #Skilltraining Exercise Management        
+        Route::get('skilltrainingexercise/create/{skilltrainingId}', array('as' => 'admin.skilltraining.skilltrainingexercise.create', 'uses' => 'Admin\SkilltrainingController@getExerciseCreate'));
+
+        Route::post('skilltrainingexercise/create/{skilltrainingId}', array('as' => 'admin.skilltraining.skilltrainingexercise.postcreate', 'uses' => 'Admin\SkilltrainingController@postExerciseCreate'));
+
+        Route::get('skilltrainingexercise/{skilltrainingExerciseId}/edit', array('as' => 'admin.skilltraining.skilltrainingexercise.edit', 'uses' => 'Admin\SkilltrainingController@getExerciseEdit'));
+
+        Route::post('skilltrainingexercise/{skilltrainingExerciseId}/edit', array('as' => 'admin.skilltraining.skilltrainingexercise.postedit', 'uses' => 'Admin\SkilltrainingController@postExerciseEdit'));
+
+        Route::get('skilltrainingexercise/{skilltrainingExerciseId}/delete', array('as' => 'admin.skilltraining.skilltrainingexercise.delete', 'uses' => 'Admin\SkilltrainingController@getExerciseDelete'));
+    });
 
 # Skill Management
     Route::group(array('prefix' => 'skills'), function () {
@@ -157,19 +234,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{skillId}/confirm-delete-skill', array('as' => 'admin.confirm-delete.skill', 'uses' => 'Admin\SkillController@getModalDelete'));
     });
 
-# Feed Management
-    Route::group(array('prefix' => 'feed'), function () {
-        Route::controller('/', 'Admin\FeedController', [
-            'anyData' => 'admin.feeds.data',
-            'getIndex' => 'admin.feeds',
-        ]);
-    });
-
-
-
     Route::group(array('prefix' => 'feeds'), function () {
-        // Route::get('/', array('as' => 'admin.feeds', 'uses' => 'Admin\FeedController@getIndex'));
-
 
         Route::get('{feedId}', array('as' => 'admin.feed.edit', 'uses' => 'Admin\FeedController@getEdit'));
 
@@ -187,8 +252,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
 # Coach Management
-    Route::group(array('prefix' => 'coaches'), function () {
-        Route::get('/', array('as' => 'admin.coaches', 'uses' => 'Admin\CoachController@getIndex'));
+    Route::group(array('prefix' => 'coaches'), function () {        
 
         Route::get('{coachId}', array('as' => 'admin.coach.delete', 'uses' => 'Admin\CoachController@getDelete'));
 
@@ -216,7 +280,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('{warmupId}/confirm-delete-warmup', array('as' => 'admin.confirm-delete.warmup', 'uses' => 'Admin\WarmupController@getModalDelete'));
     });
 
-# Fundumental Exercise Management
+# Fundamental Exercise Management
     Route::group(array('prefix' => 'fundumentals'), function () {
         Route::get('/', array('as' => 'admin.fundumentals', 'uses' => 'Admin\FundumentalController@getIndex'));
 
@@ -256,8 +320,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 # Newsletter Management
     Route::group(array('prefix' => 'newsletters'), function () {
-        Route::get('/', array('as' => 'admin.newsletters', 'uses' => 'Admin\NewsletterController@getIndex'));
-
         Route::get('create', array('as' => 'admin.newsletter.create', 'uses' => 'Admin\NewsletterController@getCreate'));
 
         Route::post('create', array('as' => 'admin.newsletter.postcreate', 'uses' => 'Admin\NewsletterController@postCreate'));
@@ -283,7 +345,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 # Media Management
     Route::group(array('prefix' => 'medias'), function () {
-        Route::get('/', array('as' => 'admin.medias', 'uses' => 'Admin\MediaController@getIndex'));
 
         Route::get('create', array('as' => 'admin.media.create', 'uses' => 'Admin\MediaController@getCreate'));
 
@@ -319,18 +380,20 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('edit', array('as' => 'admin.settings.postedit', 'uses' => 'Admin\SettingController@postEdit'));
     });
-    
+
     Route::group(array('prefix' => 'refferals'), function () {
         Route::get('/', array('as' => 'admin.refferals', 'uses' => 'Admin\SettingController@refferalIndex'));
         Route::get('data', array('as' => 'admin.refferals.data', 'uses' => 'Admin\SettingController@anyData'));
     });
-    
 });
 
 Route::group(['prefix' => 'api'], function() {
+
     Route::resource('authenticate', 'Api\AuthenticateController', ['only' => ['index']]);
 
     Route::post('authenticate', 'Api\AuthenticateController@authenticate');
+
+    Route::post('test', 'Api\CoachesController@test');
 
     Route::get('users', 'Api\AuthenticateController@index');
 //UsersController
@@ -567,6 +630,23 @@ Route::group(['prefix' => 'api'], function() {
         'as' => 'workout.addstar',
         'uses' => 'Api\WorkoutsController@addStar'
     ]);
+    
+    
+    //SkilltrainingsController
+    Route::post('skilltraining/list', [
+        'as' => 'skilltraining.list',
+        'uses' => 'Api\SkilltrainingsController@loadSkilltrainings'
+    ]);
+
+    Route::post('skilltraining/getlevels', [
+        'as' => 'skilltraining.getlevels',
+        'uses' => 'Api\SkilltrainingsController@getSkilltrainingWithLevels'
+    ]);
+    Route::post('skilltraining/getexercises', [
+        'as' => 'skilltraining.getexercises',
+        'uses' => 'Api\SkilltrainingsController@getSkilltrainingWithExercises'
+    ]);
+
 
 //SearchController
     Route::post('/search/searchUser', [
@@ -700,14 +780,14 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('newsletter/unsubscribe/{code}', array('as' => 'newsletter.unsubscribe', 'uses' => 'Auth\NewsletterController@unsubscribe'));
 
 Route::get('/exportsubscribers', [
-        'as' => 'exportsubscribers',
-        'uses' => 'Admin\UsersController@exportsubscribers'
-    ]);
+    'as' => 'exportsubscribers',
+    'uses' => 'Admin\UsersController@exportsubscribers'
+]);
 
 Route::get('/exportusers', [
-        'as' => 'exportusers',
-        'uses' => 'Admin\UsersController@exportusers'
-    ]);
+    'as' => 'exportusers',
+    'uses' => 'Admin\UsersController@exportusers'
+]);
 
 
 Route::get('/', ['as' => 'index', function () {

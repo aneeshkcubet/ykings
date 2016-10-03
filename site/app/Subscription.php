@@ -23,8 +23,8 @@ class Subscription extends Model
         'start_time',
         'end_time',
         'details',
-        'status',
-        'process_time'
+        'status'
+       
     ];
 
     /**

@@ -55,5 +55,6 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "files": ["app/Http/helpers.php"]
 }

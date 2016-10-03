@@ -81,7 +81,10 @@ View Skill - {{ $skill['exercise']->name }}
                                                     <td>
                                                         {{ $skill->description }}
                                                     </td>
-                                                </tr>                                               
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">@if($skill->is_allies == 1) Allies Skill @else Standard Skill @endif</td>
+                                                </tr>
                                             </table>
                                         </form>
                                     </div>

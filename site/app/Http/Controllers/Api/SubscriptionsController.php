@@ -166,7 +166,7 @@ class SubscriptionsController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
             if (!is_null($user)) {
 
-                 $planId = Plan::where('inapp_id', $data['inapp_id'])->first();
+                $planId = Plan::where('inapp_id', $data['inapp_id'])->first();
 
                 if (isset($data['is_renew']) && $data['is_renew'] != 0 && $data['is_renew'] != '' && $data['is_renew'] != NULL && $data['is_renew'] != '(null)') {
                     $subscription = DB::table('subscriptions')
@@ -178,7 +178,7 @@ class SubscriptionsController extends Controller
                     Subscription::where('user_id', $data['user_id'])->update([
                         'amount' => $data['amount'],
                         'currency' => $data['currency'],
-                       // 'process_time' => time(),
+                        // 'process_time' => time(),
                         'transaction_id' => $data['transaction_id'],
                         'plan_id' => $planId->id,
                         'status' => $data['status'],
@@ -199,13 +199,13 @@ class SubscriptionsController extends Controller
                     ]);
                 }
 //code modified by ansa@cubettech.co on 09-05-2016.$data['user_id']
-                   $coach = DB::table('coaches')->where('user_id', $data['user_id'])->first();
+                $coach = DB::table('coaches')->where('user_id', $data['user_id'])->first();
 
                 if (!is_null($coach)) {
 
                     $coach->musclegroup_string = Coach::musclegroupString($coach->muscle_groups);
 
-		    $coach->limitations = Coach::musclegroupString($coach->limitations);
+                    $coach->limitations = Coach::musclegroupString($coach->limitations);
 
                     $coach->goaloption_string = Coach::goaloptionString($coach->goal_option);
 
@@ -324,7 +324,7 @@ class SubscriptionsController extends Controller
                         'coach' => [],
                         'urls' => config('urls.urls')];
                 }
-                
+
                 return response()->json($coachDet, 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);

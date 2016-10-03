@@ -23,7 +23,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => 'http://localhost:8000',
+    'url' => 'http://sandbox.ykings.com',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -181,8 +181,6 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'PushNotification' => Davibennun\LaravelPushNotification\Facades\PushNotification::class,
-        'Datatables' => Yajra\Datatables\Facades\Datatables::class
         
     ],
 ];

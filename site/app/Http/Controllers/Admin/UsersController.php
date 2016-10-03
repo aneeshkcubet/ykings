@@ -49,35 +49,33 @@ class UsersController extends Controller {
     public function anyData() {
 
 
-        $posts = DB::table('users')
-                ->join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
-                ->select(['users.id', 'user_profiles.first_name', 'user_profiles.last_name', 'users.email', 'users.status', 'users.is_featured', 'users.is_subscribed_backend']);
+        $posts = User::join('user_profiles', 'users.id', '=', 'user_profiles.user_id');
 
         return Datatables::of($posts)
                         ->addColumn('action', function ($list) {
-                            $html = ' <a href=\'' . route("admin.user.show", $list->id) . '\'><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                      <a href="'. route("admin.user.update", $list->id). '"><i class="glyphicon glyphicon-edit"></i></a>';
-                            if ($list->id != 1) {
-                                $html.='<a href="'. route("admin.confirm-delete.user", $list->id). '" data-toggle="modal" data-target="#delete_confirm">
+                            $html = ' <a href=\'' . route("admin.user.show", $list->user_id) . '\'><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
+                                      <a href="'. route("admin.user.update", $list->user_id). '"><i class="glyphicon glyphicon-edit"></i></a>';
+                            if ($list->user_id != 1) {
+                                $html.='<a href="'. route("admin.confirm-delete.user", $list->user_id). '" data-toggle="modal" data-target="#delete_confirm">
                                         <i class="glyphicon glyphicon-remove" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
                                          </i>
                                         </a>';
                             }
                             if ($list->is_featured != 1) {
-                                $html.='<a href = "'. route("admin.user.setfeatured", $list->id). '" title = "Set as Featured User">
+                                $html.='<a href = "'. route("admin.user.setfeatured", $list->user_id). '" title = "Set as Featured User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Featured User"></i>
                                         </a>';
                             } else {
-                                $html.='<a href = "'. route("admin.user.unsetfeatured", $list->id). '" title = "Remove Featured">
+                                $html.='<a href = "'. route("admin.user.unsetfeatured", $list->user_id). '" title = "Remove Featured">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Featured"></i>
                                         </a>';
                             }
                             if ($list->is_subscribed_backend != 1) {
-                                $html.='<a href = "'. route("admin.user.setsubscribed", $list->id). '" title = "Set as Subscribed User">
+                                $html.='<a href = "'. route("admin.user.setsubscribed", $list->user_id). '" title = "Set as Subscribed User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Subscribed User"></i>
                                         </a>';
                             } else {
-                                $html.='<a href = "'. route("admin.user.unsetsubscribed", $list->id). '" title = "Remove Subscribed">
+                                $html.='<a href = "'. route("admin.user.unsetsubscribed", $list->user_id). '" title = "Remove Subscribed">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Subscribed"></i>
                                         </a>
                                         ';
@@ -85,12 +83,19 @@ class UsersController extends Controller {
 
 
                             return $html;
-                        })
+                        })                        
                         ->editColumn('status', function ($list) {
                             if ($list->status == '1') {
                                 return 'Active';
                             } else {
                                 return 'Not Verified';
+                            }
+                        })
+                        ->addColumn('is_subscribed', function ($list) {
+                            if($list->is_subscribed_backend == 1 || $list->is_subscribed == 1){
+                                return 'Yes';
+                            } else {
+                                return 'No';
                             }
                         })
                         ->blacklist(['action'])
@@ -175,19 +180,7 @@ class UsersController extends Controller {
 
         $data['password'] = Input::get('password');
 
-//If user verification required
-        if (!isset($isActivated)) {
-            Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
-                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
-                        ->subject('Verify your email address');
-            });
-        } else {
-//If already activated by Administrator
-            Mail::send('email.welcome', ['password' => Input::get('password')], function($message) use ($data) {
-                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
-                        ->subject('Welcome to Ykings App');
-            });
-        }
+
 
 // Register the user
         $profile = new Profile(array(
@@ -203,19 +196,29 @@ class UsersController extends Controller {
         ));
 
         $userProfile = $user->profile()->save($profile);
-
-        $user = User::where('email', ' = ', $request->input('email'))->with(['profile', 'videos'])->first();
-
-//If user uploaded image
+        
+        //If user verification required
+        if (!isset($isActivated)) {
+            Mail::send('email.verify', ['confirmation_code' => $confirmation_code, 'first_name' => $profile['first_name'], 'last_name' => $profile['last_name']], function($message) use ($data) {
+                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
+                        ->subject('Verify your email address');
+            });
+        } else {
+//If already activated by Administrator
+            Mail::send('email.welcome', ['first_name' => $profile['first_name'], 'last_name' => $profile['last_name']], function($message) use ($data) {
+                $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
+                        ->subject('Welcome to Ykings App');
+            });
+        }
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-            $image = Image::make($_FILES['image']['tmp_name']);
+            $image = Image::make($_FILES['image']['tmp_name']);            
 
-            $image->encode('jpeg');
+            $image->encode('jpeg');            
 
             $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
-
+            
             $image->crop(400, 400);
 
             $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
@@ -228,7 +231,7 @@ class UsersController extends Controller {
 
             $image->save(config('image.profileSmallPath') . $user->id . '_' . time() . '.jpg');
 
-            $user->profile()->update(['image' => $user->id . '_' . time() . '.jpg']);
+            Profile::where('user_id', $user->id)->update(['image' => $user->id . '_' . time() . '.jpg']);
         }
 
 // Redirect to the home page with success message

@@ -16,12 +16,13 @@ use App\Exercise;
 use App\Workoutexercise;
 use App\Profile;
 use App\User;
+use Yajra\Datatables\Datatables;
 
 class WorkoutController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -38,6 +39,48 @@ class WorkoutController extends Controller
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         // Show the page
         return View('admin.workout.index', compact('workouts', 'user'));
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function anyData()
+    {
+        $posts = Workout::select('workouts.*');
+        return Datatables::of($posts)
+                ->addColumn('action', function ($list) {
+                    $html = '<a href="' . route('admin.workout.show', $list->id) . '"><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Workout Details"></i></a>
+                                <a href="' . route('admin.workout.edit', $list->id) . '"><i class="glyphicon glyphicon-edit" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Edit Workout Details"></i></a>
+
+                                <a href="' . route('admin.confirm-delete.workout', $list->id) . '" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="glyphicon glyphicon-remove" data-name="workout-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete workout">
+                                    </i>
+                                </a>';
+                    return $html;
+                })
+                ->editColumn('category', function ($list) {
+                    if ($list->category == 1) {
+                        return 'Strength';
+                    } elseif ($list->category == 2) {
+                        return 'HIIT-Strength';
+                    }
+                })
+                ->editColumn('type', function ($list) {
+                    if ($list->type == 1) {
+                        return 'Free';
+                    } else {
+                        return 'Paid';
+                    }
+                })
+                ->editColumn('rewards', function ($list) {
+                    $rewardsArray = json_decode($list->rewards);
+
+                    return 'Strength Endurance - ' . $rewardsArray->lean . ', Speed Strength - ' . $rewardsArray->athletic . ', Absolute Strength - ' . $rewardsArray->strength;
+                })
+                ->blacklist(['action'])
+                ->make(true);
     }
 
     /**
@@ -75,8 +118,8 @@ class WorkoutController extends Controller
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
                 'rewards' => json_encode($rewardsArray),
-                'duration' => Input::get('duration'),
-                'equipments' => Input::get('equipments')
+                'equipments' => Input::get('equipments'),
+                'is_repsandsets' => Input::get('is_repsandsets')
         ]);
 
         if (!is_null($workout)) {
@@ -224,8 +267,8 @@ class WorkoutController extends Controller
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
                 'rewards' => json_encode($rewardsArray),
-                'duration' => Input::get('duration'),
-                'equipments' => Input::get('equipments')
+                'equipments' => Input::get('equipments'),
+                'is_repsandsets' => Input::get('is_repsandsets')
             ]);
             return Redirect::route('admin.workouts')->with('success', 'Successfully updated the workout.');
         } else {
@@ -295,10 +338,8 @@ class WorkoutController extends Controller
     {
         $workout = workout::where('id', $id)->first();
         if (!is_null($workout)) {
-
-            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-
             $exercises = Exercise::all();
+            $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         } else {
             // Redirect to the user management page
             return Redirect::route('admin.workouts')->with('error', 'Workout not found!!');
@@ -322,18 +363,31 @@ class WorkoutController extends Controller
         $category = Input::get('category');
         $repetitions = Input::get('repititions');
         $exerciseId = Input::get('exercise_id');
+        $sets = Input::get('sets');
         if (!is_null($workout)) {
-            foreach (Input::get('rounds') as $val) {
+            if ($workout->is_repsandsets == 1) {
                 $workoutExercise = Workoutexercise::create([
                         'workout_id' => $workoutId,
                         'category' => $category,
                         'repititions' => $repetitions,
                         'exercise_id' => $exerciseId,
                         'unit' => $exercise->unit,
-                        'round' => $val
+                        'round' => Input::get('round'),
+                        'sets' => $sets
                 ]);
+            } else {
+                foreach (Input::get('rounds') as $val) {
+                    $workoutExercise = Workoutexercise::create([
+                            'workout_id' => $workoutId,
+                            'category' => $category,
+                            'repititions' => $repetitions,
+                            'exercise_id' => $exerciseId,
+                            'unit' => $exercise->unit,
+                            'round' => $val,
+                            'sets' => $sets
+                    ]);
+                }
             }
-
             // Redirect to the home page with success menu
             return Redirect::route("admin.workout.edit", $workout->id)->with('success', 'Successfully added exercise to workout.');
         }
@@ -385,7 +439,8 @@ class WorkoutController extends Controller
                 ->update([
                 'repititions' => Input::get('repititions'),
                 'exercise_id' => Input::get('exercise_id'),
-                'unit' => $exercise->unit
+                'unit' => $exercise->unit,
+                'sets' => Input::get('sets')
             ]);
 
             return Redirect::route("admin.workout.edit", $workout->id)->with('success', 'Successfully edited exercise in workout.');

@@ -190,6 +190,27 @@
                                     </li>
                                 </ul>
                             </li>
+                            <!-- BEGIN SKILL TRAINING MENU -->
+                            <li>
+                                <a href="{{ route('admin.skilltrainings') }}"> <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
+                                    <span class="title">Skilltrainings</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li {!! (Request::is('admin.skilltrainings') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skilltrainings') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Skilltrainings
+                                        </a>
+                                    </li>
+                                    <li {!! (Request::is('admin.skilltraining.create') ? 'class="active" id="active"' : '') !!}>
+                                        <a href="{{ route('admin.skilltraining.create') }}">
+                                            <i class="fa fa-angle-double-right"></i>
+                                            Add New Skilltraining
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <!-- END WORKOUT MENU -->
 
                             <!-- BEGIN SKILL MENU -->

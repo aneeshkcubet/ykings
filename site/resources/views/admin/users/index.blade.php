@@ -54,6 +54,7 @@ Users
                             <th>Last Name</th>
                             <th>User E-mail</th>
                             <th>Status</th>
+                            <th>Subscribed</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,11 +88,12 @@ $(function () {
         },
         ajax: '{!! route("admin.users.data") !!}',
         columns: [
-            {data: 'id', name: 'users.id'},
+            {data: 'user_id', name: 'user_id'},
             {data: 'first_name', name: 'first_name'},
             {data: 'last_name', name: 'last_name'},
             {data: 'email', name: 'email'},
             {data: 'status', name: 'status'},
+            {data: 'is_subscribed', name: 'is_subscribed', orderable: false, searchable: false},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         order: [[0, 'desc']]

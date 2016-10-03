@@ -74,26 +74,40 @@ Edit Workout Exercise - {{  $workoutExercise['exercise']->name }}
                                     <div class="form-group">
                                         <label for="category" class="col-sm-2 control-label">Category *</label>
                                         <div class="col-sm-3">
-                                            <select id="category" name="category" class="form-control required" readonly>
+                                            <select id="category" name="category" class="form-control required">
                                                 <option value="">Select a category</option>
-                                                <option value="1" @if(Input::old('category', $workoutExercise->category) == 1) selected="selected" @endif>Lean</option>
-                                                <option value="2" @if(Input::old('category', $workoutExercise->category) == 2) selected="selected" @endif>Athletic</option>
-                                                <option value="3" @if(Input::old('category', $workoutExercise->category) == 3) selected="selected" @endif>Strength</option>
+                                                <option value="1" @if(Input::old('category', $workoutExercise->category) == 1) selected="selected" @endif>Strength Endurance</option>
+                                                <option value="2" @if(Input::old('category', $workoutExercise->category) == 2) selected="selected" @endif>Speed Strength</option>
+                                                <option value="3" @if(Input::old('category', $workoutExercise->category) == 3) selected="selected" @endif>Absolute Strength</option>
                                             </select>                                            
                                         </div>
                                     </div>
+                                    @if($workout->is_repsandsets == 0)
                                     <div class="form-group">
-                                        <label for="category" class="col-sm-2 control-label">Rounds *</label>                                        
+                                        <label for="round" class="col-sm-2 control-label">Round *</label>                                        
                                         <div class="col-sm-3">
-                                            <input type="text" id="round" name="round" class="form-control required" value="{{Input::old('round', $workoutExercise->round)}}" readonly=""/>                                       
+                                            <input type="text" id="round" name="round" class="form-control required" value="{{Input::old('round', $workoutExercise->round)}}" />                                       
                                         </div>
                                     </div>
+                                    @else
+                                    <input type="hidden" name="round" value="1" />
+                                    @endif
                                     <div class="form-group">
-                                        <label for="category" class="col-sm-2 control-label">Repetitions / Duration</label>                                        
+                                        <label for="repititions" class="col-sm-2 control-label">Repetitions / Duration *</label>                                        
                                         <div class="col-sm-3">
                                             <input type="text" name='repititions' id='repititions' placeholder="Repetitions/Duration" class="form-control required" value="{{Input::old('repitations', $workoutExercise->repititions)}}" />                                          
                                         </div>
                                     </div>
+                                    @if($workout->is_repsandsets == 1)
+                                    <div class="form-group">
+                                        <label for="sets" class="col-sm-2 control-label">Sets *</label>                                        
+                                        <div class="col-sm-3">
+                                            <input type="text" name='sets' id='sets' placeholder="Sets" class="form-control required" value="{{Input::old('sets', $workoutExercise->sets)}}" />                                          
+                                        </div>
+                                    </div>
+                                    @else
+                                    <input type="hidden" name="sets" value="0" />
+                                    @endif
                                     <p>(*) Mandatory</p>
                                 </section>
                             </form>

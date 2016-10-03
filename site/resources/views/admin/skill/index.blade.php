@@ -77,11 +77,12 @@ Skills
                             </div>
                             <div class="panel-body">
                                 @foreach($skills['pull'] as $sKey => $skill)
-                                <div class="row">
+                                <div class="row pt15 @if(((int)$sKey%2) == 0) even @else odd @endif">
+                                    <h4>{{{$skill[0]['exercise']['name']}}}</h4>
                                     @foreach($skill as $rKey => $row)
                                     <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                            <div class="panel-heading"><h6>{{{$row['exercise']['name']}}}</h6>
                                                 <div style="position: absolute;right: 24px;top: 13px;">
                                                     <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
                                                     <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
@@ -98,7 +99,10 @@ Skills
                                                 @elseif($row['exercise']['category'] == 2)
                                                 Difficulty: <b>Advanced</b>
                                                 @else
-                                                Difficulty: <b>Professional</b>
+                                                Difficulty: <b>Professional
+                                                    @if($row['is_allies'] == 1) 
+                                                    (Allies) 
+                                                    @endif</b>
                                                 @endif
                                                 <br />
                                                 <br />
@@ -124,11 +128,12 @@ Skills
                             </div>
                             <div class="panel-body">
                                 @foreach($skills['dip'] as $sKey => $skill)
-                                <div class="row">
+                                <div class="row pt15 @if(((int)$sKey%2) == 0) even @else odd @endif">
+                                    <h4>{{{$skill[0]['exercise']['name']}}}</h4>
                                     @foreach($skill as $rKey => $row)
                                     <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                            <div class="panel-heading"><h6>{{{$row['exercise']['name']}}}</h6>
                                                 <div style="position: absolute;right: 24px;top: 13px;">
                                                     <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
                                                     <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
@@ -145,7 +150,10 @@ Skills
                                                 @elseif($row['exercise']['category'] == 2)
                                                 Difficulty: <b>Advanced</b>
                                                 @else
-                                                Difficulty: <b>Professional</b>
+                                                Difficulty: <b>Professional
+                                                    @if($row['is_allies'] == 1) 
+                                                    (Allies) 
+                                                    @endif</b>
                                                 @endif
                                                 <br />
                                                 <br />
@@ -171,11 +179,12 @@ Skills
                             </div>
                             <div class="panel-body">
                                 @foreach($skills['full_body'] as $sKey => $skill)
-                                <div class="row">
+                                <div class="row pt15 @if(((int)$sKey%2) == 0) even @else odd @endif">
+                                    <h4>{{{$skill[0]['exercise']['name']}}}</h4>
                                     @foreach($skill as $rKey => $row)
                                     <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                            <div class="panel-heading"><h6>{{{$row['exercise']['name']}}}</h6>
                                                 <div style="position: absolute;right: 24px;top: 13px;">
                                                     <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
                                                     <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
@@ -192,7 +201,11 @@ Skills
                                                 @elseif($row['exercise']['category'] == 2)
                                                 Difficulty: <b>Advanced</b>
                                                 @else
-                                                Difficulty: <b>Professional</b>
+                                                Difficulty: <b>Professional
+                                                    @if($row['is_allies'] == 1) 
+                                                    (Allies) 
+                                                    @endif
+                                                </b>
                                                 @endif
                                                 <br />
                                                 <br />
@@ -218,11 +231,12 @@ Skills
                             </div>
                             <div class="panel-body">
                                 @foreach($skills['push'] as $sKey => $skill)
-                                <div class="row">
+                                <div class="row pt15 @if(((int)$sKey%2) == 0) even @else odd @endif">
+                                    <h4>{{{$skill[0]['exercise']['name']}}}</h4>
                                     @foreach($skill as $rKey => $row)
                                     <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                            <div class="panel-heading"><h6>{{{$row['exercise']['name']}}}</h6>
                                                 <div style="position: absolute;right: 24px;top: 13px;">
                                                     <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
                                                     <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
@@ -239,7 +253,10 @@ Skills
                                                 @elseif($row['exercise']['category'] == 2)
                                                 Difficulty: <b>Advanced</b>
                                                 @else
-                                                Difficulty: <b>Professional</b>
+                                                Difficulty: <b>Professional
+                                                    @if($row['is_allies'] == 1) 
+                                                    (Allies) 
+                                                    @endif</b>
                                                 @endif
                                                 <br />
                                                 <br />
@@ -265,11 +282,12 @@ Skills
                             </div>
                             <div class="panel-body">
                                 @foreach($skills['core'] as $sKey => $skill)
-                                <div class="row">
+                                <div class="row pt15 @if(((int)$sKey%2) == 0) even @else odd @endif">
+                                    <h4>{{{$skill[0]['exercise']['name']}}}</h4>
                                     @foreach($skill as $rKey => $row)
                                     <div class="col-xs-12  col-sm-3 col-md-3 col-lg-3 pull-left skill-card">
                                         <div class="panel panel-primary height">
-                                            <div class="panel-heading">{{{$row['exercise']['name']}}}
+                                            <div class="panel-heading"><h6>{{{$row['exercise']['name']}}}@if($row['is_allies']== 1) (Allies) @endif</h6>
                                                 <div style="position: absolute;right: 24px;top: 13px;">
                                                     <a href="{{ route('admin.skill.show', $row['id']) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="View Skill Details"></i></a>
                                                     <a href="{{ route('admin.skill.edit', $row['id']) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#FFF" data-hc="#FFF" title="Edit Skill Details"></i></a>
@@ -286,7 +304,10 @@ Skills
                                                 @elseif($row['exercise']['category'] == 2)
                                                 Difficulty: <b>Advanced</b>
                                                 @else
-                                                Difficulty: <b>Professional</b>
+                                                Difficulty: <b>Professional
+                                                    @if($row['is_allies'] == 1) 
+                                                    (Allies) 
+                                                    @endif</b>
                                                 @endif
                                                 <br />
                                                 <br />

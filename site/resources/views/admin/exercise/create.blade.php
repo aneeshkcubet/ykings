@@ -80,9 +80,9 @@ Add New Exercise
                                         <div class="col-sm-3">
                                             <select id="category" name="category" class="form-control required">
                                                 <option value="">Select a categoty</option>
-                                                <option value="1" @if(Input::old('category') == 1) selected="selected" @endif>Lean</option>
-                                                <option value="2" @if(Input::old('category') == 2) selected="selected" @endif>Athletic</option>
-                                                <option value="3" @if(Input::old('category') == 3) selected="selected" @endif>Strength</option>
+                                                <option value="1" @if(Input::old('category') == 1) selected="selected" @endif>Strength Endurance</option>
+                                                <option value="2" @if(Input::old('category') == 2) selected="selected" @endif>Speed Strength</option>
+                                                <option value="3" @if(Input::old('category') == 3) selected="selected" @endif>Absolute Strength</option>
                                             </select>                                            
                                         </div>
                                     </div>
@@ -104,19 +104,12 @@ Add New Exercise
                                             <input id="rewards" name="rewards" type="text" placeholder="Rewards" class="form-control required number" value="{{{ Input::old('rewards') }}}" />
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="repititions" class="col-sm-2 control-label">Repititions/Duration *</label>
-                                        <div class="col-sm-10">
-                                            <input id="repetitions" name="repetitions" type="text" placeholder="Repetitions" class="form-control required number" value="{{{ Input::old('repetitions') }}}" />
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label for="unit" class="col-sm-2 control-label">Unit *</label>
                                         <div class="col-sm-3">
                                             <select id="unit" name="unit" class="form-control required">
                                                 <option value="">Select unit</option>
-                                                <option value="times" @if(Input::old('type') == "times") selected="selected" @endif>Repetitions</option>
+                                                <option value="times" @if(Input::old('type') == "times") selected="selected" @endif>Reps</option>
                                                 <option value="seconds" @if(Input::old('type') == "seconds") selected="selected" @endif>Seconds</option>                                                
                                             </select>                                            
                                         </div>
@@ -172,7 +165,7 @@ Add New Exercise
                                     <div class="form-group">
                                         <div class="col-sm-12 control-label">Video Tips</div>
                                         <div class="col-sm-12">
-                                            <textarea name="video_tips" placeholder="Type the video tips of this exercise here" id="video_tips" class="form-control">@if(Input::old('video_tips') != '') Input::old('video_tips') @endif</textarea>
+                                            <textarea name="video_tips" placeholder="Type the video tips of this exercise here" id="video_tips" class="form-control editor">@if(Input::old('video_tips') != '') Input::old('video_tips') @endif</textarea>
                                         </div>
                                     </div>
                                 </section>
@@ -180,14 +173,16 @@ Add New Exercise
                                 <!-- Third tab -->
                                 <h1>Additional Details</h1>                                
                                 <section>
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
+                                        <div class="col-sm-12 control-label">Range of Motion</div>
                                         <div class="col-sm-12">
-                                            <textarea name="range_of_motion" placeholder=" Type the range of motion of this exercise here " id="range_of_motion" class="form-control">@if(Input::old('range_of_motion') != '') Input::old('range_of_motion') @endif</textarea>
+                                            <textarea name="range_of_motion" placeholder=" Type the range of motion of this exercise here " id="range_of_motion" class="form-control editor">@if(Input::old('range_of_motion') != '') Input::old('range_of_motion') @endif</textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
+                                        <div class="col-sm-12 control-label">Pro Tips</div>
                                         <div class="col-sm-12">
-                                            <textarea name="pro_tips" placeholder="Type the pro tips for this exercise here" id="pro_tips" class="form-control">@if(Input::old('pro_tips') != '') Input::old('pro_tips') @endif</textarea>
+                                            <textarea name="pro_tips" placeholder="Type the pro tips for this exercise here" id="pro_tips" class="form-control editor">@if(Input::old('pro_tips') != '') Input::old('pro_tips') @endif</textarea>
                                         </div>
                                     </div>
 
@@ -211,4 +206,18 @@ Add New Exercise
 <script src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
 <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/pages/add_user.js') }}"></script>
+<script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
+<script type="text/javascript">
+tinymce.init({selector: 'textarea.editor',
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+});
+</script>
 @stop

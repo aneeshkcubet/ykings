@@ -234,7 +234,7 @@
                                                                     <span style="font-size:11px;color:#555;font-family:Helvetica, Arial, sans-serif;line-height:200%;">Put your address here</span>
                                                                     <br/>
                                                                     <span style="font-size:13px;color:#181818;font-family:Helvetica, Arial, sans-serif;line-height:200%;">
-                                                                        <a target='_blank' href="{{ 'http://sandbox.ykings.com/newsletter/unsubscribe/'. $code }}" style="text-decoration:none;color:#555">click here to un-subscribe</a></span>
+                                                                        <a target='_blank' href="{{ asset('newsletter/unsubscribe/'. $code) }}" style="text-decoration:none;color:#555">click here to un-subscribe</a></span>
                                                                 </div>
                                                             </div>
                                                         </td>

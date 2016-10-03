@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mandrillapp.com'),
+    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'support@ykings.com', 'name' => 'Ykings'],
+    'from' => ['address' => 'no-reply@ykings.com', 'name' => 'Ykings'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'aneeshshoranur@gmail.com'),
+    'username' => env('MAIL_USERNAME', 'teamykings'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', 'N5JjKm5kxIUYCKgpV_vCnQ'),
+    'password' => env('MAIL_PASSWORD', 'Ykings7658'),
 
     /*
     |--------------------------------------------------------------------------

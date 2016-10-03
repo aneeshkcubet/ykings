@@ -48,17 +48,17 @@ View Workout - {{ $workout->name }}
                 </li>
                 <li>
                     <a href="#tab2" data-toggle="tab"> 
-                        Lean Exercises
+                        Strength Endurance Exercises
                     </a>
                 </li>
                 <li>
                     <a href="#tab3" data-toggle="tab"> 
-                        Athletic Exercises
+                        Speed Strength Exercises
                     </a>
                 </li>
                 <li>
                     <a href="#tab4" data-toggle="tab"> 
-                        Strength Exercises
+                        Absolute Strength Exercises
                     </a>
                 </li>
             </ul>
@@ -127,16 +127,15 @@ View Workout - {{ $workout->name }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Duration</td>
-                                                    <td>
-                                                        {{ $workout->duration }} Seconds
-                                                    </td>
-                                                </tr>                                                
-
-                                                <tr>
                                                     <td>Equipments</td>
                                                     <td>
                                                         {{ $workout->equipments }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Is Reps & Sets Workout?</td>
+                                                    <td>
+                                                        @if($workout->is_repsandsets == 0) No @else Yes @endif
                                                     </td>
                                                 </tr>
                                             </table>
@@ -156,32 +155,31 @@ View Workout - {{ $workout->name }}
                                         @foreach ($exercises['lean'] as $eKey => $workoutExercise)
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="workout_exercises_lean">
-                                                    <thead>
-                                                    <th width='70%'>Exercices</th>
-                                                    <th>Value</th>
-                                                    </thead>
-                                                    @foreach($workoutExercise as $wKey => $exercise)
-                                                    <tr>
-                                                        <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
-                                                        <td>
-                                                            @if($exercise->unit == 'times')
-                                                                {{$exercise->repititions}} Repetitions
-                                                            @else
-                                                                {{$exercise->repititions}} Seconds
-                                                            @endif
-                                                           
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach 
-                                                </table>
-                                            </div>
+                                            <table class="table table-bordered table-striped" id="users">
+                                                <thead>
+                                                <th width='50%'>Exercices</th>
+                                                <th width='35%'>Value</th>
+                                                @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif                                                
+                                                </thead>
+                                                @foreach($workoutExercise as $wKey => $exercise)
+                                                <tr>
+                                                    <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
+                                                    <td>
+                                                        @if($exercise->unit == 'times')
+                                                        {{$exercise->repititions}} Reps
+                                                        @else
+                                                        {{$exercise->repititions}} Seconds
+                                                        @endif                                                           
+                                                    </td>
+                                                    @if($workout->is_repsandsets == 1)<td width='15%'>{{$exercise->sets}}</td>@endif
+                                                </tr>
+                                                @endforeach 
+                                            </table>
                                         </div>
-                                        @endforeach
+                                    </div>
+                                    @endforeach
 
-                                    </div>                                    
-                                </div>
+                                </div>                                    
                             </div>
                         </div>
                     </div>
@@ -196,22 +194,23 @@ View Workout - {{ $workout->name }}
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="workout_exercises_athletic">
+                                                <table class="table table-bordered table-striped" id="users">
                                                     <thead>
-                                                    <th width='70%'>Exercices</th>
-                                                    <th>Value</th>
+                                                    <th width='50%'>Exercices</th>
+                                                    <th width='35%'>Value</th>
+                                                    @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif                                                
                                                     </thead>
                                                     @foreach($workoutExercise as $wKey => $exercise)
                                                     <tr>
                                                         <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
                                                         <td>
                                                             @if($exercise->unit == 'times')
-                                                                {{$exercise->repititions}} Repetitions
+                                                            {{$exercise->repititions}} Reps
                                                             @else
-                                                                {{$exercise->repititions}} Seconds
-                                                            @endif
-                                                           
+                                                            {{$exercise->repititions}} Seconds
+                                                            @endif                                                           
                                                         </td>
+                                                        @if($workout->is_repsandsets == 1)<td width='15%'>{{$exercise->sets}}</td>@endif
                                                     </tr>
                                                     @endforeach 
                                                 </table>
@@ -234,21 +233,23 @@ View Workout - {{ $workout->name }}
                                         <div class="col-sm-6">
                                             <h3>{{ucfirst($eKey)}}</h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped" id="workout_exercises_strength">
+                                                <table class="table table-bordered table-striped" id="users">
                                                     <thead>
-                                                    <th width='70%'>Exercices</th>
-                                                    <th>Value</th>
+                                                    <th width='50%'>Exercices</th>
+                                                    <th width='35%'>Value</th>
+                                                    @if($workout->is_repsandsets == 1)<th width='15%'>Sets</th>@endif                                                
                                                     </thead>
                                                     @foreach($workoutExercise as $wKey => $exercise)
                                                     <tr>
                                                         <td><a href="{{ route('admin.exercise.show', $exercise->exercise_id) }}">{{$exercise['exercise']->name}}</a></td>
                                                         <td>
                                                             @if($exercise->unit == 'times')
-                                                                {{$exercise->repititions}} Repetitions
+                                                            {{$exercise->repititions}} Reps
                                                             @else
-                                                                {{$exercise->repititions}} Seconds
+                                                            {{$exercise->repititions}} Seconds
                                                             @endif                                                           
                                                         </td>
+                                                        @if($workout->is_repsandsets == 1)<td width='15%'>{{$exercise->sets}}</td>@endif
                                                     </tr>
                                                     @endforeach 
                                                 </table>
@@ -261,7 +262,6 @@ View Workout - {{ $workout->name }}
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

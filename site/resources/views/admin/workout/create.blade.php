@@ -77,7 +77,7 @@ Add New Workout
                                         <label for="rounds" class="col-sm-2 control-label">Rounds *</label>
                                         <div class="col-sm-3">
                                             <select id="unit" name="rounds" class="form-control required">
-                                                <option value="">Select unit</option>
+                                                <option value="">Select Rounds</option>
                                                 <option value="1" @if(Input::old('type') == 1) selected="selected" @endif>1</option>
                                                 <option value="2" @if(Input::old('type') == 2) selected="selected" @endif>2</option>
                                                 <option value="3" @if(Input::old('type') == 3) selected="selected" @endif>3</option>
@@ -95,7 +95,7 @@ Add New Workout
                                             <select id="category" name="category" class="form-control required">
                                                 <option value="">Select a category</option>
                                                 <option value="1" @if(Input::old('category') == 1) selected="selected" @endif>Strength</option>
-                                                <option value="2" @if(Input::old('category') == 2) selected="selected" @endif>Cardio Strength</option>
+                                                <option value="2" @if(Input::old('category') == 2) selected="selected" @endif>HIIT Strength</option>
                                             </select>                                            
                                         </div>
                                     </div>
@@ -130,9 +130,19 @@ Add New Workout
                                         </div>
                                     </div>                                    
                                     <div class="form-group">
-                                        <label for="equipments" class="col-sm-2 control-label">Equipments (Use Comma separated values)</label>
+                                        <label for="equipments" class="col-sm-2 control-label">Equipments (Use Comma separated values) *</label>
                                         <div class="col-sm-10">
-                                            <input id="equipments" name="equipments" type="text" placeholder="Equipment" class="form-control" value="{{{ Input::old('equipments') }}}" />
+                                            <input id="equipments" name="equipments" type="text" placeholder="Equipment" class="form-control required" value="{{{ Input::old('equipments') }}}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type" class="col-sm-2 control-label">Is Reps & Sets *</label>
+                                        <div class="col-sm-3">
+                                            <select id="type" name="is_repsandsets" class="form-control required">
+                                                <option value="">Select No/Yes</option>
+                                                <option value="0" @if(Input::old('is_repsandsets') == 0) selected="selected" @endif>No</option>
+                                                <option value="1" @if(Input::old('is_repsandsets') == 1) selected="selected" @endif>Yes</option>                                                
+                                            </select>
                                         </div>
                                     </div>
                                     <p>(*) Mandatory</p>

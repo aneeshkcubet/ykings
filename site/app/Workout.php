@@ -23,13 +23,45 @@ class Workout extends Model
         'category',
         'type',
         'rewards',
-        'duration',
-        'equipments'
+        'equipments',
+        'is_repsandsets'
     ];
     protected $hidden = [
-        'updated_at',
-        'created_at'
+        'updated_at'
     ];
+    
+    protected $appends = ['progression_string'];
+
+    /**
+     * Function to stringify muscle groups related to an exercise.
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
+    public function getProgressionStringAttribute()
+    {
+        return $this->attributes['progression_string'] = self::progressionString($this->description);
+    }
+
+    public static function progressionString($progressions)
+    {
+        $progressionArray = Array(
+            "a" => 'Pull',
+            "b" => 'Dip',
+            "c" => 'Full Body',
+            "d" => 'Push',
+            "e" => 'Core'
+        );
+        $progrArray = explode(',', $progressions);
+        $progrsArray = [];
+        foreach($progrArray as $progr){
+            if(array_key_exists(strtolower($progr), $progressionArray)){
+                $progrsArray[] = $progressionArray[strtolower($progr)];
+            }
+        }
+        
+        return implode(', ', $progrsArray);  
+//        return $progressions;
+    }
 
     /**
      * Function to find user workout points.
@@ -39,11 +71,10 @@ class Workout extends Model
     public static function workoutCount($userId)
     {
         $count = DB::table('workout_users')
-                    ->where('user_id', '=', $userId)
-                    ->where('status', '=', 1)
-                    ->count();
+            ->where('user_id', '=', $userId)
+            ->where('status', '=', 1)
+            ->count();
 
         return $workoutCount = (int) $count;
-       
     }
 }

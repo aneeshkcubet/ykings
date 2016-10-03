@@ -18,12 +18,13 @@ use App\Workout;
 use App\Coach;
 use App\User;
 use App\Musclegroup;
+use Yajra\Datatables\Datatables;
 
 class CoachController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -35,19 +36,19 @@ class CoachController extends Controller
      */
     public function getIndex()
     {
-        $muscleGroups = DB::table('muscle_groups')->lists('name','id');
-        
+        $muscleGroups = DB::table('muscle_groups')->lists('name', 'id');
+
         // Grab all the users
         $coaches = Coach::with(['profile'])->get();
 
         $coachArray = $coaches->toArray();
-        
-        $coachArray = array_map(function($coach) use ($muscleGroups){
+
+        $coachArray = array_map(function($coach) use ($muscleGroups) {
             $coachMuscleGroups = explode(',', $coach['muscle_groups']);
             $muscles = [];
-            if(count($coachMuscleGroups)>0){
-                foreach($coachMuscleGroups as $cKey => $coachMuscleGroup){
-                    if(array_key_exists($coachMuscleGroup, $muscleGroups)){
+            if (count($coachMuscleGroups) > 0) {
+                foreach ($coachMuscleGroups as $cKey => $coachMuscleGroup) {
+                    if (array_key_exists($coachMuscleGroup, $muscleGroups)) {
                         $muscles[] = $muscleGroups[$coachMuscleGroup];
                     }
                 }
@@ -56,14 +57,72 @@ class CoachController extends Controller
                 $coach['muscle_groups'] = 'No muscle group selected by user.';
             }
             return $coach;
-        }, $coachArray);     
+        }, $coachArray);
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         // Show the page
         return View('admin.coach.index', compact('coachArray', 'user'));
     }
-    
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function anyData()
+    {
+        $posts = Coach::select('coaches.*')->with(['profile']);
+        return Datatables::of($posts)
+                ->addColumn('action', function ($list) {
+                    $html = '<a href="' . route('admin.confirm-delete.coach', $list->id) . '" data-toggle="modal" data-target="#delete_confirm">
+                                    <i class="glyphicon glyphicon-remove" data-name="coach-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete coach">
+                                    </i>
+                                </a>';
+                    return $html;
+                })
+                ->addColumn('user', function ($list) {
+                    if (is_object($list['profile'])) {
+                        $html = '<a href="' . route("admin.user.show", $list->user_id) . '" title="' . $list['profile']->first_name . ' ' . $list['profile']->last_name . '">';
+
+                        if ($list['profile']['image'] != '') {
+                            $html.= '<img width="50" height="50" src="' . asset('/uploads/images/profile/small/' . $list['profile']->image) . '" />';
+                        } else {
+                            if ($list['profile']['gender'] < 2) {
+                                $html.='<img width="50" height="50" src="' . asset("/img/avatar04.png") . '" />';
+                            } else {
+                                $html.='<img width="50" height="50" src="' . asset("/img/avatar3.png") . '" />';
+                            }
+                        }
+                        $html.= '<br />' . $list['profile']->first_name . ' ' . $list['profile']->last_name . '</a>';
+                    } else {
+                        $html = '<a href="' . route("admin.user.show", $list->user_id) . '" title="No Profile">';
+                        $html.='<img width="50" height="50" src="' . asset("/img/avatar3.png") . '" />';
+                        $html.= '<br />No Profile</a>';
+                    }
+
+                    return $html;
+                })
+                ->editColumn('category', function ($list) {
+                    if ($list->focus == 1) {
+                        return 'Lean';
+                    } elseif ($list->focus == 2) {
+                        return 'Athletic';
+                    } else {
+                        return 'Strength';
+                    }
+                })
+                ->editColumn('musclegroup_string', function ($list) {
+                    if ($list->musclegroup_string == "") {
+                        return 'No muscle group selected.';
+                    } else {
+                        return $list->musclegroup_string;
+                    }
+                })
+                ->blacklist(['action'])
+                ->make(true);
+    }
+
     /**
      * View page
      * @since 21/01/2015

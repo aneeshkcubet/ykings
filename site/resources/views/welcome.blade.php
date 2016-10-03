@@ -33,12 +33,12 @@
         </style>
 
         <meta name='robots' content='noindex,follow' />
-        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Feed" href="http://ykings.com/index.php/feed/" />
-        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Comments Feed" href="http://ykings.com/index.php/comments/feed/" />
-        <link rel="alternate" type="text/calendar" title="Ykings &raquo; iCal Feed" href="http://ykings.com/index.php/events/?ical=1" />
-        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Home Comments Feed" href="http://ykings.com/index.php/home-page/feed/" />
+        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Feed" href="http://ykings.com/feed/" />
+        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Comments Feed" href="http://ykings.com/comments/feed/" />
+        <link rel="alternate" type="text/calendar" title="Ykings &raquo; iCal Feed" href="http://ykings.com/events/?ical=1" />
+        <link rel="alternate" type="application/rss+xml" title="Ykings &raquo; Home Comments Feed" href="http://ykings.com/home-page/feed/" />
         <script type="text/javascript">
-            window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/", "ext":".png", "source":{"concatemoji":"http:\/\/ykings.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.2"}};
+            window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/", "ext":".png", "source":{"concatemoji":"http:\/\/ykings.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.3"}};
             !function(a, b, c){function d(a){var c, d, e, f = b.createElement("canvas"), g = f.getContext && f.getContext("2d"), h = String.fromCharCode; if (!g || !g.fillText)return!1; switch (g.textBaseline = "top", g.font = "600 32px Arial", a){case"flag":return g.fillText(h(55356, 56806, 55356, 56826), 0, 0), f.toDataURL().length > 3e3; case"diversity":return g.fillText(h(55356, 57221), 0, 0), c = g.getImageData(16, 16, 1, 1).data, d = c[0] + "," + c[1] + "," + c[2] + "," + c[3], g.fillText(h(55356, 57221, 55356, 57343), 0, 0), c = g.getImageData(16, 16, 1, 1).data, e = c[0] + "," + c[1] + "," + c[2] + "," + c[3], d !== e; case"simple":return g.fillText(h(55357, 56835), 0, 0), 0 !== g.getImageData(16, 16, 1, 1).data[0]; case"unicode8":return g.fillText(h(55356, 57135), 0, 0), 0 !== g.getImageData(16, 16, 1, 1).data[0]}return!1}function e(a){var c = b.createElement("script"); c.src = a, c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c)}var f, g, h, i; for (i = Array("simple", "flag", "unicode8", "diversity"), c.supports = {everything:!0, everythingExceptFlag:!0}, h = 0; h < i.length; h++)c.supports[i[h]] = d(i[h]), c.supports.everything = c.supports.everything && c.supports[i[h]], "flag" !== i[h] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[i[h]]); c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function(){c.DOMReady = !0}, c.supports.everything || (g = function(){c.readyCallback()}, b.addEventListener?(b.addEventListener("DOMContentLoaded", g, !1), a.addEventListener("load", g, !1)):(a.attachEvent("onload", g), b.attachEvent("onreadystatechange", function(){"complete" === b.readyState && c.readyCallback()})), f = c.source || {}, f.concatemoji?e(f.concatemoji):f.wpemoji && f.twemoji && (e(f.twemoji), e(f.wpemoji)))}(window, document, window._wpemojiSettings);
         </script>
         <style type="text/css">
@@ -60,38 +60,37 @@
         <style id='rs-plugin-settings-inline-css' type='text/css'>
             #rs-demo-id {}
         </style>
-        <link rel='stylesheet' id='ewd-ufaq-style-css'  href='http://ykings.com/wp-content/plugins/ultimate-faqs/css/ewd-ufaq-styles.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='ewd-ufaq-rrssb-css'  href='http://ykings.com/wp-content/plugins/ultimate-faqs/css/rrssb-min.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='ewd-ufaq-style-css'  href='http://ykings.com/wp-content/plugins/ultimate-faqs/css/ewd-ufaq-styles.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='ewd-ufaq-rrssb-css'  href='http://ykings.com/wp-content/plugins/ultimate-faqs/css/rrssb-min.css?ver=4.5.3' type='text/css' media='all' />
         <link rel='stylesheet' id='wp-pagenavi-css'  href='http://ykings.com/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
-        <link rel='stylesheet' id='google-font-css'  href='//fonts.googleapis.com/css?family=Lato%7CGotham_Bold%7COpen+Sans&#038;ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='bootstrap-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap.min.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='bootstrap-responsive-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap-responsive.min.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='bootstrap-no-icons-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap.no-icons.min.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='flipclock-css'  href='http://ykings.com/wp-content/themes/gameplan/css/flipclock.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='gameplan-font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='prettyPhoto-css'  href='http://ykings.com/wp-content/themes/gameplan/css/prettyPhoto.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='parent-style-css'  href='http://ykings.com/wp-content/themes/gameplan/style.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='google-font-css'  href='//fonts.googleapis.com/css?family=Lato%7CGotham_Bold%7COpen+Sans&#038;ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='bootstrap-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap.min.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='bootstrap-responsive-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap-responsive.min.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='bootstrap-no-icons-css'  href='http://ykings.com/wp-content/themes/gameplan/css/bootstrap.no-icons.min.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='flipclock-css'  href='http://ykings.com/wp-content/themes/gameplan/css/flipclock.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='gameplan-font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='prettyPhoto-css'  href='http://ykings.com/wp-content/themes/gameplan/css/prettyPhoto.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='parent-style-css'  href='http://ykings.com/wp-content/themes/gameplan/style.css?ver=4.5.3' type='text/css' media='all' />
         <link rel='stylesheet' id='gameplan-style-css'  href='http://ykings.com/wp-content/themes/gameplan-child/style.css?ver=20131023' type='text/css' media='all' />
-        <link rel='stylesheet' id='icon-effect-css'  href='http://ykings.com/wp-content/themes/gameplan/css/icon-effect.css?ver=4.5.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='dark-style-css'  href='http://ykings.com/wp-content/themes/gameplan/css/dark-style.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='icon-effect-css'  href='http://ykings.com/wp-content/themes/gameplan/css/icon-effect.css?ver=4.5.3' type='text/css' media='all' />
+        <link rel='stylesheet' id='dark-style-css'  href='http://ykings.com/wp-content/themes/gameplan/css/dark-style.css?ver=4.5.3' type='text/css' media='all' />
         <link rel='stylesheet' id='js_composer_front-css'  href='http://ykings.com/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=4.11.2.1' type='text/css' media='all' />
-        <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/jquery.js?ver=1.12.3'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.0'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.2.5'></script>
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.2.5'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/plugins/ultimate-faqs/js/ewd-ufaq-js.js?ver=4.5.2'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/plugins/ultimate-faqs/js/ewd-ufaq-js.js?ver=4.5.3'></script>
         <link rel='https://api.w.org/' href='http://ykings.com/wp-json/' />
         <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ykings.com/xmlrpc.php?rsd" />
         <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ykings.com/wp-includes/wlwmanifest.xml" /> 
-        <meta name="generator" content="WordPress 4.5.2" />
+        <meta name="generator" content="WordPress 4.5.3" />
         <link rel="canonical" href="http://ykings.com/" />
         <link rel='shortlink' href='http://ykings.com/' />
         <link rel="alternate" type="application/json+oembed" href="http://ykings.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fykings.com%2F" />
         <link rel="alternate" type="text/xml+oembed" href="http://ykings.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fykings.com%2F&#038;format=xml" />
         <script type="text/javascript">
-                var ajaxurl = 'http://ykings.com/wp-admin/admin-ajax.php';
+            var ajaxurl = 'http://ykings.com/wp-admin/admin-ajax.php';
         </script>
-        <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
         <meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress."/>
         <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="http://ykings.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><!--[if IE  8]><link rel="stylesheet" type="text/css" href="http://ykings.com/wp-content/plugins/js_composer/assets/css/vc-ie8.min.css" media="screen"><![endif]-->
         <style type="text/css"></style>
@@ -518,25 +517,26 @@
                                             <div class="current-menu"></div>                            
                                             <div class="menu-main-menu-container"><ul id="menu-footer-menu" class="menu"><li id="nav-menu-item-1325" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-401 current_page_item menu-item-has-children parent"><a href="http://ykings.com/" class="menu-link main-menu-link">Home <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1319" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/ykings-2/" class="menu-link sub-menu-link">The sport behind Ykings <i class="icon-angle-right"></i></a>
+                                                                <li id="nav-menu-item-1319" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/ykings-2/" class="menu-link sub-menu-link">The sport behind Ykings <i class="icon-angle-right"></i></a>
                                                                     <div class="div-sub-menu"><ul class="sub-menu sub-sub-menu menu-depth-2">
-                                                                            <li id="nav-menu-item-1530" class="sub-menu-item sub-sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/what-is-calisthenics/" class="menu-link sub-menu-link">What is Calisthenics? </a></li>
+                                                                            <li id="nav-menu-item-1683" class="sub-menu-item sub-sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/competitive-gymnastics/" class="menu-link sub-menu-link">Competitive Gymnastics </a></li>
+                                                                            <li id="nav-menu-item-1530" class="sub-menu-item sub-sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/what-is-calisthenics/" class="menu-link sub-menu-link">Calisthenics </a></li>
 
                                                                         </ul></div>
                                                                 </li>
-                                                                <li id="nav-menu-item-1529" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/smartphone-application/" class="menu-link sub-menu-link">Ykings Smartphone Apps <i class="icon-angle-right"></i></a>
+                                                                <li id="nav-menu-item-1529" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/smartphone-application/" class="menu-link sub-menu-link">Ykings Smartphone Apps <i class="icon-angle-right"></i></a>
                                                                     <div class="div-sub-menu"><ul class="sub-menu sub-sub-menu menu-depth-2">
-                                                                            <li id="nav-menu-item-1544" class="sub-menu-item sub-sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/coach/" class="menu-link sub-menu-link">What to expect from the app? </a></li>
+                                                                            <li id="nav-menu-item-1544" class="sub-menu-item sub-sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/coach/" class="menu-link sub-menu-link">What to expect from the app? </a></li>
 
                                                                         </ul></div>
                                                                 </li>
-                                                                <li id="nav-menu-item-1329" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/coach-philosophy/" class="menu-link sub-menu-link">Coach Philosophy </a></li>
+                                                                <li id="nav-menu-item-1329" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/coach-philosophy/" class="menu-link sub-menu-link">Coach Philosophy </a></li>
 
                                                             </ul></div>
                                                     </li>
-                                                    <li id="nav-menu-item-1531" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/blog/" class="menu-link main-menu-link">Social <i class="icon-angle-down"></i></a>
+                                                    <li id="nav-menu-item-1531" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/blog/" class="menu-link main-menu-link">Social <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1532" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/blog/" class="menu-link sub-menu-link">Blog </a></li>
+                                                                <li id="nav-menu-item-1532" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/blog/" class="menu-link sub-menu-link">Blog </a></li>
                                                                 <li id="nav-menu-item-1271" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.facebook.com/official.ykings/" class="menu-link sub-menu-link">Facebook </a></li>
                                                                 <li id="nav-menu-item-1272" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="https://plus.google.com/u/0/114761796933743030304/about" class="menu-link sub-menu-link">Google Plus </a></li>
                                                                 <li id="nav-menu-item-1274" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.pinterest.com/kings0325/" class="menu-link sub-menu-link">Pinterest </a></li>
@@ -545,37 +545,37 @@
 
                                                             </ul></div>
                                                     </li>
-                                                    <li id="nav-menu-item-1533" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/help-support/" class="menu-link main-menu-link">Support <i class="icon-angle-down"></i></a>
+                                                    <li id="nav-menu-item-1533" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/help-support/" class="menu-link main-menu-link">Support <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1613" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/overview/" class="menu-link sub-menu-link">Community </a></li>
-                                                                <li id="nav-menu-item-1323" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/help-support/" class="menu-link sub-menu-link">Help &#038; Support </a></li>
-                                                                <li id="nav-menu-item-1327" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/faq/" class="menu-link sub-menu-link">FAQs </a></li>
+                                                                <li id="nav-menu-item-1613" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/overview/" class="menu-link sub-menu-link">Community </a></li>
+                                                                <li id="nav-menu-item-1323" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/help-support/" class="menu-link sub-menu-link">Help &#038; Support </a></li>
+                                                                <li id="nav-menu-item-1327" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/faq/" class="menu-link sub-menu-link">FAQs </a></li>
 
                                                             </ul></div>
                                                     </li>
-                                                    <li id="nav-menu-item-1625" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/partner/" class="menu-link main-menu-link">Partner <i class="icon-angle-down"></i></a>
+                                                    <li id="nav-menu-item-1625" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/partner/" class="menu-link main-menu-link">Partner <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1506" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/barliner-workout-berlin/" class="menu-link sub-menu-link">Barliner Workout Berlin </a></li>
-                                                                <li id="nav-menu-item-1508" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/via-fortis/" class="menu-link sub-menu-link">VIA FORTIS </a></li>
-                                                                <li id="nav-menu-item-1507" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/turnbar-by-eidenwagner-metallbau-gmbh/" class="menu-link sub-menu-link">TURNBAR by Eiden&#038;Wagner </a></li>
-                                                                <li id="nav-menu-item-1509" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/calisthenics-parks-com/" class="menu-link sub-menu-link">Calisthenics Parks.com </a></li>
+                                                                <li id="nav-menu-item-1506" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/barliner-workout-berlin/" class="menu-link sub-menu-link">Barliner Workout Berlin </a></li>
+                                                                <li id="nav-menu-item-1508" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/via-fortis/" class="menu-link sub-menu-link">VIA FORTIS </a></li>
+                                                                <li id="nav-menu-item-1507" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/turnbar-by-eidenwagner-metallbau-gmbh/" class="menu-link sub-menu-link">TURNBAR by Eiden&#038;Wagner </a></li>
+                                                                <li id="nav-menu-item-1509" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/calisthenics-parks-com/" class="menu-link sub-menu-link">Calisthenics Parks.com </a></li>
 
                                                             </ul></div>
                                                     </li>
-                                                    <li id="nav-menu-item-1541" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/our-events/" class="menu-link main-menu-link">Events <i class="icon-angle-down"></i></a>
+                                                    <li id="nav-menu-item-1541" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/our-events/" class="menu-link main-menu-link">Events <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1581" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/ykms/" class="menu-link sub-menu-link">YKMS </a></li>
+                                                                <li id="nav-menu-item-1581" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/ykms/" class="menu-link sub-menu-link">YKMS </a></li>
 
                                                             </ul></div>
                                                     </li>
-                                                    <li id="nav-menu-item-1542" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/index.php/policy/" class="menu-link main-menu-link">About us <i class="icon-angle-down"></i></a>
+                                                    <li id="nav-menu-item-1542" class="main-menu-item  menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent"><a href="http://ykings.com/policy/" class="menu-link main-menu-link">About us <i class="icon-angle-down"></i></a>
                                                         <div class="div-sub-menu"><ul class="sub-menu  menu-depth-1">
-                                                                <li id="nav-menu-item-1326" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/imprint/" class="menu-link sub-menu-link">Imprint </a></li>
-                                                                <li id="nav-menu-item-1317" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/contact/" class="menu-link sub-menu-link">Contact </a></li>
-                                                                <li id="nav-menu-item-1515" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/career/" class="menu-link sub-menu-link">Career </a></li>
-                                                                <li id="nav-menu-item-1516" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/press/" class="menu-link sub-menu-link">Press </a></li>
-                                                                <li id="nav-menu-item-1328" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/terms-of-use/" class="menu-link sub-menu-link">Terms of Use </a></li>
-                                                                <li id="nav-menu-item-1324" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/index.php/private-policy/" class="menu-link sub-menu-link">Privacy Policy </a></li>
+                                                                <li id="nav-menu-item-1326" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/imprint/" class="menu-link sub-menu-link">Imprint </a></li>
+                                                                <li id="nav-menu-item-1317" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/contact/" class="menu-link sub-menu-link">Contact </a></li>
+                                                                <li id="nav-menu-item-1515" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/career/" class="menu-link sub-menu-link">Career </a></li>
+                                                                <li id="nav-menu-item-1516" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/press/" class="menu-link sub-menu-link">Press </a></li>
+                                                                <li id="nav-menu-item-1328" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/terms-of-use/" class="menu-link sub-menu-link">Terms of Use </a></li>
+                                                                <li id="nav-menu-item-1324" class="sub-menu-item  menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="http://ykings.com/private-policy/" class="menu-link sub-menu-link">Privacy Policy </a></li>
 
                                                             </ul></div>
                                                     </li>
@@ -583,36 +583,37 @@
                                         </div>
                                         <div id="navigation-menu-mobile" class="hide">
                                             <div class="menu-main-menu-container"><div class="divselect"><select onchange="if (this.value != '' && this.value != '#') location.href = this.value" id="menu-footer-menu-1" class="menu-mobile"><option value="#" style=" display:none"></option><option value="http://ykings.com/" selected="selected">Home</option>
-                                                        <option value="http://ykings.com/index.php/ykings-2/">&#8211; The sport behind Ykings</option>
-                                                        <option value="http://ykings.com/index.php/what-is-calisthenics/">&#8211;  &#8211; What is Calisthenics?</option>
-                                                        <option value="http://ykings.com/index.php/smartphone-application/">&#8211; Ykings Smartphone Apps</option>
-                                                        <option value="http://ykings.com/index.php/coach/">&#8211;  &#8211; What to expect from the app?</option>
-                                                        <option value="http://ykings.com/index.php/coach-philosophy/">&#8211; Coach Philosophy</option>
-                                                        <option value="http://ykings.com/index.php/blog/">Social</option>
-                                                        <option value="http://ykings.com/index.php/blog/">&#8211; Blog</option>
+                                                        <option value="http://ykings.com/ykings-2/">&#8211; The sport behind Ykings</option>
+                                                        <option value="http://ykings.com/competitive-gymnastics/">&#8211;  &#8211; Competitive Gymnastics</option>
+                                                        <option value="http://ykings.com/what-is-calisthenics/">&#8211;  &#8211; Calisthenics</option>
+                                                        <option value="http://ykings.com/smartphone-application/">&#8211; Ykings Smartphone Apps</option>
+                                                        <option value="http://ykings.com/coach/">&#8211;  &#8211; What to expect from the app?</option>
+                                                        <option value="http://ykings.com/coach-philosophy/">&#8211; Coach Philosophy</option>
+                                                        <option value="http://ykings.com/blog/">Social</option>
+                                                        <option value="http://ykings.com/blog/">&#8211; Blog</option>
                                                         <option value="https://www.facebook.com/official.ykings/">&#8211; Facebook</option>
                                                         <option value="https://plus.google.com/u/0/114761796933743030304/about">&#8211; Google Plus</option>
                                                         <option value="https://www.pinterest.com/kings0325/">&#8211; Pinterest</option>
                                                         <option value="https://www.instagram.com/official_ykings/">&#8211; Instagram</option>
                                                         <option value="https://www.youtube.com/channel/UC8ttoHZSNT3XXhAxc17BKEg">&#8211; Youtube</option>
-                                                        <option value="http://ykings.com/index.php/help-support/">Support</option>
-                                                        <option value="http://ykings.com/index.php/overview/">&#8211; Community</option>
-                                                        <option value="http://ykings.com/index.php/help-support/">&#8211; Help &#038; Support</option>
-                                                        <option value="http://ykings.com/index.php/faq/">&#8211; FAQs</option>
-                                                        <option value="http://ykings.com/index.php/partner/">Partner</option>
-                                                        <option value="http://ykings.com/index.php/barliner-workout-berlin/">&#8211; Barliner Workout Berlin</option>
-                                                        <option value="http://ykings.com/index.php/via-fortis/">&#8211; VIA FORTIS</option>
-                                                        <option value="http://ykings.com/index.php/turnbar-by-eidenwagner-metallbau-gmbh/">&#8211; TURNBAR by Eiden&#038;Wagner</option>
-                                                        <option value="http://ykings.com/index.php/calisthenics-parks-com/">&#8211; Calisthenics Parks.com</option>
-                                                        <option value="http://ykings.com/index.php/our-events/">Events</option>
-                                                        <option value="http://ykings.com/index.php/ykms/">&#8211; YKMS</option>
-                                                        <option value="http://ykings.com/index.php/policy/">About us</option>
-                                                        <option value="http://ykings.com/index.php/imprint/">&#8211; Imprint</option>
-                                                        <option value="http://ykings.com/index.php/contact/">&#8211; Contact</option>
-                                                        <option value="http://ykings.com/index.php/career/">&#8211; Career</option>
-                                                        <option value="http://ykings.com/index.php/press/">&#8211; Press</option>
-                                                        <option value="http://ykings.com/index.php/terms-of-use/">&#8211; Terms of Use</option>
-                                                        <option value="http://ykings.com/index.php/private-policy/">&#8211; Privacy Policy</option>
+                                                        <option value="http://ykings.com/help-support/">Support</option>
+                                                        <option value="http://ykings.com/overview/">&#8211; Community</option>
+                                                        <option value="http://ykings.com/help-support/">&#8211; Help &#038; Support</option>
+                                                        <option value="http://ykings.com/faq/">&#8211; FAQs</option>
+                                                        <option value="http://ykings.com/partner/">Partner</option>
+                                                        <option value="http://ykings.com/barliner-workout-berlin/">&#8211; Barliner Workout Berlin</option>
+                                                        <option value="http://ykings.com/via-fortis/">&#8211; VIA FORTIS</option>
+                                                        <option value="http://ykings.com/turnbar-by-eidenwagner-metallbau-gmbh/">&#8211; TURNBAR by Eiden&#038;Wagner</option>
+                                                        <option value="http://ykings.com/calisthenics-parks-com/">&#8211; Calisthenics Parks.com</option>
+                                                        <option value="http://ykings.com/our-events/">Events</option>
+                                                        <option value="http://ykings.com/ykms/">&#8211; YKMS</option>
+                                                        <option value="http://ykings.com/policy/">About us</option>
+                                                        <option value="http://ykings.com/imprint/">&#8211; Imprint</option>
+                                                        <option value="http://ykings.com/contact/">&#8211; Contact</option>
+                                                        <option value="http://ykings.com/career/">&#8211; Career</option>
+                                                        <option value="http://ykings.com/press/">&#8211; Press</option>
+                                                        <option value="http://ykings.com/terms-of-use/">&#8211; Terms of Use</option>
+                                                        <option value="http://ykings.com/private-policy/">&#8211; Privacy Policy</option>
                                                     </select><span class="spanselect"></span><i class="icon-reorder "></i></div></div>                                    </div>
                                         <div class="clear"></div>
                                     </div>
@@ -636,9 +637,11 @@
                     });
                 </script>
             </div>
-            <div class="row-fluid">
+            <div class="clear"></div>
+            <div class="wide">
                 @include('notifications')
             </div>
+            <div class="clear"></div>
             <div id="slider" class="wide" style="height:738px">
                 <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullscreen-container" style="background-color:transparent;padding:0px;">
                     <!-- START REVOLUTION SLIDER 5.2.5 fullscreen mode -->
@@ -938,7 +941,8 @@
                         }
                         }); /*ready*/
                     </script>
-                </div><!-- END REVOLUTION SLIDER -->            <div class="clear"></div>
+                </div><!-- END REVOLUTION SLIDER -->            
+                <div class="clear"></div>
             </div>
         </header>
         <div class="clear"></div>
@@ -1015,14 +1019,14 @@
                                                 </div>
                                             </div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper"><div>
                                                     <div class="row-fluid">
-                                                        <div class="divider " id="divider96320727">
+                                                        <div class="divider " id="divider233300445">
                                                             <div class="dotteddark"><!-- --></div>
                                                         </div>
                                                     </div>
-                                                </div><div style="margin-top:0px;margin-bottom:0px;height:1px;line-height:0px"><!-- padding element --></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid vc_custom_1465564896555 vc_row-has-fill vc_row-o-full-height vc_row-o-columns-middle vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper"></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1357172346" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                .boxed-icon.style-3 #boxed-119043493:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                            .boxed-icon.style-3 #boxed-119043493:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-119043493">
+                                                </div><div style="margin-top:0px;margin-bottom:0px;height:1px;line-height:0px"><!-- padding element --></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid vc_custom_1465564896555 vc_row-has-fill vc_row-o-full-height vc_row-o-columns-middle vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper"></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1869288930" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                .boxed-icon.style-3 #boxed-1042514096:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                            .boxed-icon.style-3 #boxed-1042514096:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-1042514096">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-thumbs-up-alt icon_ct" ></i><span class="boxed_title">Anywhere, anytime</span></div>
@@ -1030,10 +1034,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-705932610" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-896016178:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-896016178:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-896016178">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-2029901598" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-352072421:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-352072421:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-352072421">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-mobile-phone icon_ct" ></i><span class="boxed_title">Video Tutorials &amp; ProTips</span></div>
@@ -1041,10 +1045,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1261765243" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-1880715996:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-1880715996:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-1880715996">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1891201883" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-376710479:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-376710479:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-376710479">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-thumbs-up-alt icon_ct" ></i><span class="boxed_title">Individualized coaching experience</span></div>
@@ -1052,10 +1056,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1340168508" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-837779144:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-837779144:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-837779144">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1644110345" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-1698311638:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-1698311638:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-1698311638">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-star icon_ct" ></i><span class="boxed_title">Skill Raids</span></div>
@@ -1063,10 +1067,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-652323373" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-1662245821:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                            .boxed-icon.style-3 #boxed-1662245821:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-1662245821">
+                                                            </div> </div> </div> </div> </div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1943357187" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-2014958050:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                            .boxed-icon.style-3 #boxed-2014958050:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-2014958050">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-thumbs-up-alt icon_ct" ></i><span class="boxed_title">Circuit training + sets &amp; reps</span></div>
@@ -1074,10 +1078,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-852457664" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-1758306183:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-1758306183:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-1758306183">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1568839150" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-1531831203:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-1531831203:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-1531831203">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-mobile-phone icon_ct" ></i><span class="boxed_title">HIIT runs &amp; tabata</span></div>
@@ -1085,10 +1089,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1641607462" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-13108149:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-13108149:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-13108149">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1937028570" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-1294945090:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-1294945090:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-1294945090">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-thumbs-up-alt icon_ct" ></i><span class="boxed_title">Community + featured athletes</span></div>
@@ -1096,10 +1100,10 @@
                                                                         <div class="contain-content"><div></div></div>
                                                                     </div>
                                                                 </div>
-                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-1207825741" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
-                                                            .boxed-icon.style-3 #boxed-83744866:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
-                                                                                        .boxed-icon.style-3 #boxed-83744866:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
-                                                            <div class="boxed-item" id="boxed-83744866">
+                                                            </div> </div> </div> </div> </div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"><div class="wpb_content_element not-column-inherit boxed"><div class="wpb_wrapper wpb_accordion_wrapper ui-accordion boxedicon"><div id="box-311960411" class="boxed-icon style-3 item_1  "><style type="text/css" scoped="scoped">
+                                                            .boxed-icon.style-3 #boxed-1782545144:hover .heading{position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}
+                                                                                        .boxed-icon.style-3 #boxed-1782545144:hover .contain-content{ position: relative; color:#f5b21f !important; transition: color 0.4s ease !important; -moz-transition: color 0.4s ease !important;-webkit-transition: color 0.4s ease!important;}</style>
+                                                            <div class="boxed-item" id="boxed-1782545144">
                                                                 <div class="margin-left">
                                                                     <div class="boxed-item-s2"></div>
                                                                     <div class="heading" style=" "><i class="icon-caret-left " style="color:#f5b21f;" ></i><i class="fa icon-mobile-phone icon_ct" ></i><span class="boxed_title">Progressive Bodyweight Training</span></div>
@@ -1188,18 +1192,20 @@
                                                         <span class='title-text'>
                                                             <span class='firstword'>Tags</span> 
                                                         </span>
-                                                    </span></h2><span class="dotted">&nbsp;</span></div><div class="tagcloud"><a href='http://ykings.com/index.php/category/blog/staff-picks/advice/' class='tag-link-12 tag-link-position-1' title='4 topics' style='font-size: 18.315789473684pt;'>Advice</a>
-                                                <a href='http://ykings.com/index.php/category/blog/' class='tag-link-2 tag-link-position-2' title='0 topics' style='font-size: 8pt;'>All Categories</a>
-                                                <a href='http://ykings.com/index.php/category/blog/workouts/exercise/' class='tag-link-13 tag-link-position-3' title='1 topic' style='font-size: 12.421052631579pt;'>Exercise</a>
-                                                <a href='http://ykings.com/index.php/category/blog/workouts/hiit/' class='tag-link-14 tag-link-position-4' title='1 topic' style='font-size: 12.421052631579pt;'>HIIT</a>
-                                                <a href='http://ykings.com/index.php/category/movement-culture/' class='tag-link-5 tag-link-position-5' title='1 topic' style='font-size: 12.421052631579pt;'>Movement culture</a>
-                                                <a href='http://ykings.com/index.php/category/blog/our-recipes/' class='tag-link-7 tag-link-position-6' title='1 topic' style='font-size: 12.421052631579pt;'>Our Recipes</a>
-                                                <a href='http://ykings.com/index.php/category/blog/staff-picks/recommendations/' class='tag-link-15 tag-link-position-7' title='8 topics' style='font-size: 22pt;'>Recommendations</a>
-                                                <a href='http://ykings.com/index.php/category/blog/staff-picks/' class='tag-link-9 tag-link-position-8' title='8 topics' style='font-size: 22pt;'>Staff Picks</a>
-                                                <a href='http://ykings.com/index.php/category/blog/workouts/streetworkout/' class='tag-link-16 tag-link-position-9' title='2 topics' style='font-size: 15.073684210526pt;'>Streetworkout</a>
-                                                <a href='http://ykings.com/index.php/category/stretching/' class='tag-link-10 tag-link-position-10' title='1 topic' style='font-size: 12.421052631579pt;'>Stretching</a>
-                                                <a href='http://ykings.com/index.php/category/uncategorized/' class='tag-link-1 tag-link-position-11' title='1 topic' style='font-size: 12.421052631579pt;'>Uncategorized</a>
-                                                <a href='http://ykings.com/index.php/category/blog/workouts/' class='tag-link-11 tag-link-position-12' title='8 topics' style='font-size: 22pt;'>Workouts</a></div>
+                                                    </span></h2><span class="dotted">&nbsp;</span></div><div class="tagcloud"><a href='http://ykings.com/category/blog/staff-picks/advice/' class='tag-link-12 tag-link-position-1' title='5 topics' style='font-size: 18.5pt;'>Advice</a>
+                                                <a href='http://ykings.com/category/blog/' class='tag-link-2 tag-link-position-2' title='0 topics' style='font-size: 8pt;'>All Categories</a>
+                                                <a href='http://ykings.com/category/blog/workouts/exercise/' class='tag-link-13 tag-link-position-3' title='1 topic' style='font-size: 12.038461538462pt;'>Exercise</a>
+                                                <a href='http://ykings.com/category/blog/workouts/hiit/' class='tag-link-14 tag-link-position-4' title='1 topic' style='font-size: 12.038461538462pt;'>HIIT</a>
+                                                <a href='http://ykings.com/category/movement-culture/' class='tag-link-5 tag-link-position-5' title='1 topic' style='font-size: 12.038461538462pt;'>Movement culture</a>
+                                                <a href='http://ykings.com/category/blog/news/' class='tag-link-6 tag-link-position-6' title='1 topic' style='font-size: 12.038461538462pt;'>News</a>
+                                                <a href='http://ykings.com/category/blog/our-recipes/' class='tag-link-7 tag-link-position-7' title='1 topic' style='font-size: 12.038461538462pt;'>Our Recipes</a>
+                                                <a href='http://ykings.com/category/blog/staff-picks/recommendations/' class='tag-link-15 tag-link-position-8' title='8 topics' style='font-size: 20.788461538462pt;'>Recommendations</a>
+                                                <a href='http://ykings.com/category/blog/staff-picks/' class='tag-link-9 tag-link-position-9' title='10 topics' style='font-size: 22pt;'>Staff Picks</a>
+                                                <a href='http://ykings.com/category/blog/workouts/streetworkout/' class='tag-link-16 tag-link-position-10' title='2 topics' style='font-size: 14.461538461538pt;'>Streetworkout</a>
+                                                <a href='http://ykings.com/category/strength/' class='tag-link-110 tag-link-position-11' title='1 topic' style='font-size: 12.038461538462pt;'>Strength</a>
+                                                <a href='http://ykings.com/category/stretching/' class='tag-link-10 tag-link-position-12' title='1 topic' style='font-size: 12.038461538462pt;'>Stretching</a>
+                                                <a href='http://ykings.com/category/uncategorized/' class='tag-link-1 tag-link-position-13' title='1 topic' style='font-size: 12.038461538462pt;'>Uncategorized</a>
+                                                <a href='http://ykings.com/category/blog/workouts/' class='tag-link-11 tag-link-position-14' title='8 topics' style='font-size: 20.788461538462pt;'>Workouts</a></div>
                                         </div></div><div class="span3"><div id="text-3" class=" widget box-style-3 widget_text"><div class="module-title"><h2 class="title"><span class='title def_style'>
                                                         <span class='title-text'>
                                                             <span class='firstword'>Contact</span> Us
@@ -1217,19 +1223,19 @@
                                                         </span>
                                                     </span></h2><span class="dotted">&nbsp;</span></div>		<ul>
                                                 <li>
-                                                    <a href="http://ykings.com/index.php/2016/04/15/everything-you-need-to-know-about-a-proper-pullup/">Everything you need to know about a proper pullup</a>
+                                                    <a href="http://ykings.com/what-can-be-learned-from-motivational-sport-quotes/">What can be learned from motivational sport quotes?</a>
                                                 </li>
                                                 <li>
-                                                    <a href="http://ykings.com/index.php/2016/03/22/the-reasons-to-engage-rather-with-a-workout-concept-than-a-workout-program/">The reasons to engage rather with a workout concept than a workout program</a>
+                                                    <a href="http://ykings.com/a-quick-guide-about-strength/">A quick guide about strength types</a>
                                                 </li>
                                                 <li>
-                                                    <a href="http://ykings.com/index.php/2016/02/28/all-about-high-intensity-interval-training-hiit/">How to utilize High Intensity Interval Training (HIIT)</a>
+                                                    <a href="http://ykings.com/working-out-alone-versus-working-out-with-others/">Working out alone versus working out with others</a>
                                                 </li>
                                                 <li>
-                                                    <a href="http://ykings.com/index.php/2016/02/21/the-simple-rules-of-making-time-to-learn-specific-skills/">The simple rules of making time to learn specific skills</a>
+                                                    <a href="http://ykings.com/everything-you-need-to-know-about-a-proper-pullup/">Everything you need to know about a proper pullup</a>
                                                 </li>
                                                 <li>
-                                                    <a href="http://ykings.com/index.php/2016/02/08/the-importance-of-mental-strength-in-sports-how-to-build-it/">The importance of mental strength in sports &amp; how to build it</a>
+                                                    <a href="http://ykings.com/the-reasons-to-engage-rather-with-a-workout-concept-than-a-workout-program/">The reasons to engage rather with a workout concept than a workout program</a>
                                                 </li>
                                             </ul>
                                         </div></div>		            </div>
@@ -1264,12 +1270,12 @@
             jQuery(sliderID).show().html(errorMessage);
             }
         </script>
-        <link rel='stylesheet' id='vc_google_fonts_abril_fatfaceregular-css'  href='//fonts.googleapis.com/css?family=Abril+Fatface%3Aregular&#038;ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='vc_google_fonts_abril_fatfaceregular-css'  href='//fonts.googleapis.com/css?family=Abril+Fatface%3Aregular&#038;ver=4.5.3' type='text/css' media='all' />
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
         <script type='text/javascript'>
-                    /* <![CDATA[ */
-                    var _wpcf7 = {"loaderUrl":"http:\/\/ykings.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif", "recaptchaEmpty":"Please verify that you are not a robot.", "sending":"Sending ..."};
-                    /* ]]> */
+            /* <![CDATA[ */
+            var _wpcf7 = {"loaderUrl":"http:\/\/ykings.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif", "recaptchaEmpty":"Please verify that you are not a robot.", "sending":"Sending ..."};
+            /* ]]> */
         </script>
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.4.2'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
@@ -1277,11 +1283,11 @@
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/menu.min.js?ver=1.11.4'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-includes/js/wp-a11y.min.js?ver=4.5.2'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-includes/js/wp-a11y.min.js?ver=4.5.3'></script>
         <script type='text/javascript'>
-                    /* <![CDATA[ */
-                    var uiAutocompleteL10n = {"noResults":"No search results.", "oneResult":"1 result found. Use up and down arrow keys to navigate.", "manyResults":"%d results found. Use up and down arrow keys to navigate."};
-                    /* ]]> */
+            /* <![CDATA[ */
+            var uiAutocompleteL10n = {"noResults":"No search results.", "oneResult":"1 result found. Use up and down arrow keys to navigate.", "manyResults":"%d results found. Use up and down arrow keys to navigate."};
+            /* ]]> */
         </script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/autocomplete.min.js?ver=1.11.4'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/effect-blind.min.js?ver=1.11.4'></script>
@@ -1298,14 +1304,14 @@
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/effect-shake.min.js?ver=1.11.4'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/effect-slide.min.js?ver=1.11.4'></script>
         <script type='text/javascript' src='http://ykings.com/wp-includes/js/jquery/ui/effect-transfer.min.js?ver=1.11.4'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/bootstrap.min.js?ver=4.5.2'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/jquery-easing-1.3.js?ver=4.5.2'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/modernizr.custom.97074.js?ver=4.5.2'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/jquery.caroufredsel-6.2.1.min.js?ver=4.5.2'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/template.js?ver=4.5.2'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/bootstrap.min.js?ver=4.5.3'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/jquery-easing-1.3.js?ver=4.5.3'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/modernizr.custom.97074.js?ver=4.5.3'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/jquery.caroufredsel-6.2.1.min.js?ver=4.5.3'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-content/themes/gameplan/js/template.js?ver=4.5.3'></script>
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/js_composer/assets/lib/waypoints/waypoints.min.js?ver=4.11.2.1'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-includes/js/comment-reply.min.js?ver=4.5.2'></script>
-        <script type='text/javascript' src='http://ykings.com/wp-includes/js/wp-embed.min.js?ver=4.5.2'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-includes/js/comment-reply.min.js?ver=4.5.3'></script>
+        <script type='text/javascript' src='http://ykings.com/wp-includes/js/wp-embed.min.js?ver=4.5.3'></script>
         <script type='text/javascript' src='http://ykings.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=4.11.2.1'></script>
     </body>
 </html>

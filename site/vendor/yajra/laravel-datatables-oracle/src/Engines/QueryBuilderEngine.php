@@ -53,11 +53,12 @@ class QueryBuilderEngine extends BaseEngine
      * Overrides global search
      *
      * @param \Closure $callback
+     * @param bool $globalSearch
      * @return $this
      */
-    public function filter(Closure $callback)
+    public function filter(Closure $callback, $globalSearch = false)
     {
-        $this->overrideGlobalSearch($callback, $this->query);
+        $this->overrideGlobalSearch($callback, $this->query, $globalSearch);
 
         return $this;
     }
@@ -109,7 +110,8 @@ class QueryBuilderEngine extends BaseEngine
      * @param string $column
      * @return string
      */
-    protected function wrap($column) {
+    protected function wrap($column)
+    {
         return $this->connection->getQueryGrammar()->wrap($column);
     }
 
@@ -122,7 +124,7 @@ class QueryBuilderEngine extends BaseEngine
     {
         $this->query->where(
             function ($query) {
-                $globalKeyword = $this->setupKeyword($this->request->keyword());
+                $globalKeyword = $this->request->keyword();
                 $queryBuilder  = $this->getQueryBuilder($query);
 
                 foreach ($this->request->searchableColumnIndex() as $index) {
@@ -142,7 +144,7 @@ class QueryBuilderEngine extends BaseEngine
 
                         if ($columnDef['method'] instanceof Closure) {
                             $whereQuery = $queryBuilder->newQuery();
-                            call_user_func_array($columnDef['method'], [$whereQuery, $this->request->keyword()]);
+                            call_user_func_array($columnDef['method'], [$whereQuery, $globalKeyword]);
                             $queryBuilder->addNestedWhereQuery($whereQuery, 'or');
                         } else {
                             $this->compileColumnQuery(
@@ -150,7 +152,7 @@ class QueryBuilderEngine extends BaseEngine
                                 Helper::getOrMethod($columnDef['method']),
                                 $columnDef['parameters'],
                                 $columnName,
-                                $this->request->keyword()
+                                $globalKeyword
                             );
                         }
                     } else {
@@ -255,7 +257,7 @@ class QueryBuilderEngine extends BaseEngine
             $this->compileQuerySearch($builder, $column, $keyword, '');
             $builder = "({$builder->toSql()}) >= 1";
 
-            $query->orWhereRaw($builder, [$keyword]);
+            $query->orWhereRaw($builder, [$this->prepareKeyword($keyword)]);
         });
     }
 
@@ -274,19 +276,10 @@ class QueryBuilderEngine extends BaseEngine
         $sql    = $column . ' LIKE ?';
 
         if ($this->isCaseInsensitive()) {
-            $sql     = 'LOWER(' . $column . ') LIKE ?';
-            $keyword = Str::lower($keyword);
+            $sql = 'LOWER(' . $column . ') LIKE ?';
         }
 
-        if ($this->isWildcard()) {
-            $keyword = $this->wildcardLikeString($keyword);
-        }
-
-        if ($this->isSmartSearch()) {
-            $keyword = "%$keyword%";
-        }
-
-        $query->{$relation .'WhereRaw'}($sql, [$keyword]);
+        $query->{$relation . 'WhereRaw'}($sql, [$this->prepareKeyword($keyword)]);
     }
 
     /**
@@ -305,6 +298,29 @@ class QueryBuilderEngine extends BaseEngine
         }
 
         return $column;
+    }
+
+    /**
+     * Prepare search keyword based on configurations.
+     *
+     * @param string $keyword
+     * @return string
+     */
+    protected function prepareKeyword($keyword)
+    {
+        if ($this->isCaseInsensitive()) {
+            $keyword = Str::lower($keyword);
+        }
+
+        if ($this->isWildcard()) {
+            $keyword = $this->wildcardLikeString($keyword);
+        }
+
+        if ($this->isSmartSearch()) {
+            $keyword = "%$keyword%";
+        }
+
+        return $keyword;
     }
 
     /**
@@ -376,6 +392,58 @@ class QueryBuilderEngine extends BaseEngine
         }
 
         return $this->setupKeyword($keyword);
+    }
+
+    /**
+     * Join eager loaded relation and get the related column name.
+     *
+     * @param string $relation
+     * @param string $relationColumn
+     * @return string
+     */
+    protected function joinEagerLoadedColumn($relation, $relationColumn)
+    {
+        $joins = [];
+        foreach ((array) $this->getQueryBuilder()->joins as $key => $join) {
+            $joins[] = $join->table;
+        }
+
+        $model = $this->query->getRelation($relation);
+        if ($model instanceof BelongsToMany) {
+            $pivot   = $model->getTable();
+            $pivotPK = $model->getForeignKey();
+            $pivotFK = $model->getQualifiedParentKeyName();
+
+            if (! in_array($pivot, $joins)) {
+                $this->getQueryBuilder()->leftJoin($pivot, $pivotPK, '=', $pivotFK);
+            }
+
+            $related = $model->getRelated();
+            $table   = $related->getTable();
+            $tablePK = $related->getForeignKey();
+            $tableFK = $related->getQualifiedKeyName();
+
+            if (! in_array($table, $joins)) {
+                $this->getQueryBuilder()->leftJoin($table, $pivot . '.' . $tablePK, '=', $tableFK);
+            }
+        } else {
+            $table = $model->getRelated()->getTable();
+            if ($model instanceof HasOne) {
+                $foreign = $model->getForeignKey();
+                $other   = $model->getQualifiedParentKeyName();
+            } else {
+                $foreign = $model->getQualifiedForeignKey();
+                $other   = $model->getQualifiedOtherKeyName();
+            }
+
+            if (! in_array($table, $joins)) {
+                $this->getQueryBuilder()->leftJoin($table, $foreign, '=', $other);
+            }
+        }
+
+        $column = $table . '.' . $relationColumn;
+
+        return $column;
     }
 
     /**
@@ -457,58 +525,6 @@ class QueryBuilderEngine extends BaseEngine
                 $this->getQueryBuilder()->orderBy($column, $orderable['direction']);
             }
         }
-    }
-
-    /**
-     * Join eager loaded relation and get the related column name.
-     *
-     * @param string $relation
-     * @param string $relationColumn
-     * @return string
-     */
-    protected function joinEagerLoadedColumn($relation, $relationColumn)
-    {
-        $joins = [];
-        foreach ((array) $this->getQueryBuilder()->joins as $key => $join) {
-            $joins[] = $join->table;
-        }
-
-        $model = $this->query->getRelation($relation);
-        if ($model instanceof BelongsToMany) {
-            $pivot   = $model->getTable();
-            $pivotPK = $model->getForeignKey();
-            $pivotFK = $model->getQualifiedParentKeyName();
-
-            if (! in_array($pivot, $joins)) {
-                $this->getQueryBuilder()->leftJoin($pivot, $pivotPK, '=', $pivotFK);
-            }
-
-            $related = $model->getRelated();
-            $table   = $related->getTable();
-            $tablePK = $related->getForeignKey();
-            $tableFK = $related->getQualifiedKeyName();
-
-            if (! in_array($table, $joins)) {
-                $this->getQueryBuilder()->leftJoin($table, $pivot . '.' . $tablePK, '=', $tableFK);
-            }
-        } else {
-            $table = $model->getRelated()->getTable();
-            if ($model instanceof HasOne) {
-                $foreign = $model->getForeignKey();
-                $other   = $model->getQualifiedParentKeyName();
-            } else {
-                $foreign = $model->getQualifiedForeignKey();
-                $other   = $model->getQualifiedOtherKeyName();
-            }
-
-            if (! in_array($table, $joins)) {
-                $this->getQueryBuilder()->leftJoin($table, $foreign, '=', $other);
-            }
-        }
-
-        $column = $table . '.' . $relationColumn;
-
-        return $column;
     }
 
     /**

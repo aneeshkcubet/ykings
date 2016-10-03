@@ -43,7 +43,7 @@ class PasswordController extends Controller
      *     HTTP/1.1 200 OK
      *     {
      *          "status" : 1,
-     *          "success": "successfully_sent_email_to_your_email_address",
+     *          "success": "Successfully sent verification email.",
      *          "email": "aneeshk@cubettech.com"
      *      }
      *
@@ -84,7 +84,7 @@ class PasswordController extends Controller
      *     HTTP/1.1 500 invalid_email
      *     {
      *          "status" : 0,
-     *          "error": "invalid_email"
+     *          "error": "Invalid email address."
      *          "email": "aneeshk@cubettech.com"
      *     }
      *      
@@ -101,10 +101,10 @@ class PasswordController extends Controller
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return response()->json(['status' => 1, 'success' => 'Successfully sent email to your email.', 'email' => $request->input('email')], 200);
+                return response()->json(['status' => 1, 'success' => 'Successfully sent verification email.', 'email' => $request->input('email')], 200);
 
             case Password::INVALID_USER:
-                return response()->json(['status' => 0, 'error' => 'invalid_email', 'email' => $request->input('email')], 500);
+                return response()->json(['status' => 0, 'error' => 'Invalid email address.', 'email' => $request->input('email')], 500);
         }
     }
 

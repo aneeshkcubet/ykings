@@ -47,6 +47,7 @@ Plans
                             <th>Currency</th>
                             <th>Duration</th>
                             <th>App Purchase Id</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@ Plans
                             <td>{{ $list->name }}</td>                            
                             <td>{{$list->amount}}</td>
                             <td>{{$currencyCodes[$list->currency]}}</td>
+                            <td>{{$list->duration}} Months</td>
                             <td>{{$list->inapp_id}}</td>
                             <td>
                                 <a href="{{ route('admin.plan.show', $list->id) }}"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="View Plan Details"></i></a>

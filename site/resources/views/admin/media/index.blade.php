@@ -10,6 +10,14 @@ Media
 @section('header_styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
 <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .dataTables_wrapper .dataTables_processing{
+        border:none;
+        padding: 0;
+        background: none;
+        height:0;        
+    }
+</style>
 @stop
 
 
@@ -82,13 +90,6 @@ Media
 @section('footer_scripts')
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/dataTables.bootstrap.js') }}"></script>
-
-<script>
-$(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
-
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content"></div>
@@ -99,6 +100,24 @@ $(document).ready(function () {
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
+    });
+    $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page",
+            "sEmptyTable": "No Workouts found!",
+            "sProcessing": "<img src='{{asset('img/ajax-loader.gif')}}' />"
+        },
+        ajax: '{!! route("admin.medias.data") !!}',
+        columns: [
+            {data: 'id', name: 'medias.id'},
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'description'},
+            {data: 'content', name: 'content', orderable: false, searchable: false},            
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+        ],
+        order: [[0, 'desc']]   
     });
 </script>
 @stop

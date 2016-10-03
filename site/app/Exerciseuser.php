@@ -22,7 +22,8 @@ class Exerciseuser extends Model
         'time',
         'is_starred',
         'volume',
-        'feed_id'
+        'feed_id',
+        'sets'
     ];
 
     /**

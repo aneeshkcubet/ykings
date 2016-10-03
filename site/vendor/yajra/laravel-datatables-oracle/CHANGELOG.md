@@ -8,6 +8,38 @@
 
 ##Change Log
 
+### v6.18.0 - 2016-08-25
+- Fix eager loaded model searching function. Fix #698 and #710.
+- Add method to skip pagination. Credits to @Nks PR #707
+- Fix collection filtered total records. If filtered total > total records, use total records.
+
+### v6.17.1 - 2016-08-23
+- Use dompdf v0.7.x.
+- Implement/fix setTotalRecords on collection engine.
+
+### v6.17.0 - 2016-08-10
+- Add setter and getter for table attributes.
+- PR #688, credits to @ssipos90.
+
+### v6.16.1 - 2016-08-03
+- Add orderColumns api helper. PR #679
+- Fix double percent sign in query. PR #678
+
+### v6.16.0 - 2016-07-19
+- Allow global search to work with custom filter callback. #644
+- Transformer instance is kept, otherwise new instance is created. #649
+- Remove unused import and fix cs.
+
+### v6.15.2 - 2016-07-14
+- Fix the issue where a record is being deleted by LDT when column name used is delete.
+- Fix helper doc blocks.
+- Fix #565 and #640.
+- Allow travis-ci failure on HHVM. Mostly due to execution timestamp.
+
+### v6.15.1 - 2016-07-13
+- Decouple fractal for better integration. #636
+- Fractal manager instance can be accessed via app('datatables.fractal').
+
 ### v6.15.0 - 2016-07-05
 - Add support for snappy pdf via config.
 - Add laravel-snappy on suggested packages.
