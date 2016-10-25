@@ -14,7 +14,6 @@ use App\Social;
 use App\Follow;
 use Carbon\Carbon;
 
-
 class UserFriendsController extends Controller
 {
     /*
@@ -329,5 +328,4 @@ class UserFriendsController extends Controller
             }
         }
     }
-    
 }

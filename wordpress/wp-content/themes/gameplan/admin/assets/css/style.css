@@ -1,0 +1,131 @@
+/* CSS Document */
+
+
+/* Icon shortcode */
+.updated.vc-license-activation-notice{display:none !important}
+.mce-ico.mce-i-icon-compare-table{background-image:url('../images/compare_table.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-button{background-image:url('../images/button-shortcode.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-icon{background-image:url('../images/icons-shortcode.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-dropcap{background-image:url('../images/icon-dropcap.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-heading{background-image:url('../images/009-VC-Headings.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-checklist{background-image:url('../images/icons-checklist.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-facebook-like{background-image:url('../images/icons-social-button.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-tooltip{background-image:url('../images/icon-tooltip.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-testimonial{background-image:url('../images/003-VC-Testimonials.png') !important; background-position:center;}
+.wpb_bootstrap_modals option.accordion{margin-bottom:0;}
+.mce-ico.mce-i-icon-alert{background-image:url('../images/014-VC-Alert.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-boxed-icon{background-image:url('../images/012-VC-Boxes.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-carousel{background-image:url('../images/007-VC-Timeline-Carousel.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-divider{background-image:url('../images/015-VC-Divider.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-timeline{background-image:url('../images/004-VC-Timeline.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-timeline-event{background-image:url('../images/006-VC-Timeline-Event-Listing.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-portfolio{background-image:url('../images/001-VC-Portfolio.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-member{background-image:url('../images/002-VC-member.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-countdown{background-image:url('../images/010-VC-Countdown.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-headline{background-image:url('../images/013-VC-Headlines.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-promobox{background-image:url('../images/004-VC-Promotion-Box.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-recentpost{background-image:url('../images/011-VC-Recent-Post.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-skill{background-image:url('../images/008-VC-Countter.png') !important; background-position:center;}
+.mce-ico.mce-i-icon-padding{background-image:url('../images/018-VC-Margin.png') !important; background-position:center;}
+.wp_themeSkin .mceSplitButton span.mce_shortcode_promoboxnew{background-image:url('../images/004-VC-Promotion-Box.png') !important; background-position:center;}
+
+
+
+#boxed .vc_element-icon{background-image:url('../images/012-VC-Boxes.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#headline .vc_element-icon{background-image:url('../images/013-VC-Headlines.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#heading .vc_element-icon{background-image:url('../images/009-VC-Headings.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+
+#alert .vc_element-icon{background-image:url('../images/014-VC-Alert.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#promobox, #promoboxnew .vc_element-icon{background-image:url('../images/004-VC-Promotion-Box.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#divider .vc_element-icon{background-image:url('../images/015-VC-Divider.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#skill .vc_element-icon{background-image:url('../images/008-VC-Countter.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#countdown .vc_element-icon{background-image:url('../images/010-VC-Countdown.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#flipper .vc_element-icon{background-image:url('../images/icons-flipper.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#portfolio .vc_element-icon{background-image:url('../images/001-VC-Portfolio.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#recent-post .vc_element-icon{background-image:url('../images/011-VC-Recent-Post.png');background-position: 0px 0px; background-repeat:no-repeat;   padding-top: 0px;text-align: left; padding-left: 48px;}
+#member .vc_element-icon{background-image:url('../images/002-VC-member.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#socia .vc_element-iconl{background-image:url('../images/icons-social-button.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#googlemaps .vc_element-icon{background-image:url('../images/icons-google-map.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#imageframe .vc_element-icon{background-image:url('../images/017-VC-Image-Frame.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#timeline .vc_element-icon{background-image:url('../images/004-VC-Timeline.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#testimonial .vc_element-icon{background-image:url('../images/003-VC-Testimonials.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#timeline_event .vc_element-icon{background-image:url('../images/006-VC-Timeline-Event-Listing.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#carousel .vc_element-icon{background-image:url('../images/007-VC-Timeline-Carousel.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#posts_carousel .vc_element-icon{background-image:url('../images/icons-post-carousel.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+#margin .vc_element-icon{background-image:url('../images/018-VC-Margin.png');background-position: 0px 0px; background-repeat:no-repeat;  padding-top: 0px;text-align: left; padding-left: 48px;}
+#modern-event-listing .vc_element-icon{background-image:url('../images/005-VC-Modern-Event-Listing.png');background-position: 0px 0px; background-repeat:no-repeat; padding-top: 0px;text-align: left; padding-left: 48px;}
+.wpb_bootstrap_modals #vc_wp_search .vc-element-icon{background-image:url('../images/019-VC-WP-Search.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_meta .vc-element-icon{background-image:url('../images/020-VC-WP-Meta.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_recentcomments .vc-element-icon{background-image:url('../images/021-VC-WP-Recent-comments.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_calendar .vc-element-icon{background-image:url('../images/022-VC-WP-Calendar.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_pages .vc-element-icon{background-image:url('../images/023-VC-WP-Pages.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_tagcloud .vc-element-icon{background-image:url('../images/02$-VC-WP-Tag-cloud.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_custommenu .vc-element-icon{background-image:url('../images/024-VC-WP-Custom-Menu.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_text .vc-element-icon{background-image:url('../images/025-VC-WP-Text.png');background-position: initial;}
+
+.wpb_bootstrap_modals #vc_wp_links .vc-element-icon{background-image:url('../images/026-VC-WP-Link.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_categories .vc-element-icon{background-image:url('../images/027-VC-WP-Categories.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_archives .vc-element-icon{background-image:url('../images/028-VC-WP-Archives.png');background-position: initial;}
+.wpb_bootstrap_modals #vc_wp_rss .vc-element-icon{background-image:url('../images/028-VC-WP-Rss.png');background-position: initial;}
+
+
+.wp_themeSkin table.mceToolbar{ margin-bottom:0 !important; margin-left:0  !important; margin-right:0 !important; margin-top:0 !important}
+
+/* Themes option*/
+.wrap.settings-wrap .ui-tabs-nav{ width:174px}
+.wrap.settings-wrap .ui-tabs-nav li a{ padding-top:10px; padding-bottom:10px; padding-right:0; padding-left:15px}
+.gp_general{ background-image:url(../images/1-General.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:7px; padding-top:6px; background-position:left center}
+.gp_color_setting{ background-image:url(../images/5-Color-Settings.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:8px; padding-top:6px; background-position:left center}
+
+.gp_font_setting{ background-image:url(../images/6-Font.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_social_account{ background-image:url(../images/13-Social-Accounts.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_topmenu{ background-image:url(../images/2-Top-Menu.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_main_mavi{ background-image:url(../images/3-Main-Navigation.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_home_page{ background-image:url(../images/Homepage20Setting.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_blog{ background-image:url(../images/7-Blog.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+
+.gp_single_post{ background-image:url(../images/9-Single%20Post.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_single_page{ background-image:url(../images/10-Single-Page.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_404{ background-image:url(../images/404.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_search{ background-image:url(../images/Search.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:7px; background-position:left center}
+
+
+.gp_portfolio{ background-image:url(../images/11-Portfolio.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_singe_post_portfolio{ background-image:url(../images/Single-20Project.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_event{ background-image:url(../images/8-Event.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+.gp_auto_update{ background-image:url(../images/auto-update.png); background-repeat:no-repeat; padding-left:30px; padding-bottom:6px; padding-top:6px; background-position:left center}
+
+.toplevel_page_revslider .ui-widget-overlay {z-index: 100;}
+
+/* Themes option*/
+#option-tree-sub-header span.option-tree-ui-button.image{ border:0; background: url('../../../images/theme-option-gp.png') no-repeat;background-size:contain; width:107px;height:23px; margin:10px;}
+#option-tree-sub-header span.option-tree-ui-button.version           { background-image:none; background-color:transparent; width:100px; height:20px; border:0; background-repeat:no-repeat; margin:0 !important; top:8px; padding-left:0; padding-top:13px; top:13px; color:#000; text-shadow:none;display:inline-block;float:left}
+
+.option-tree-ui-button.document a,.option-tree-ui-button.support a{color:#FFF;text-decoration:none}
+.option-tree-ui-button.image{display:inline-block;float:left}
+#option-tree-sub-header{background:#FFF}
+#option-tree-header{display:none}
+#option-tree-header-wrap{margin:20px 0 0 0}
+#option-tree-settings-api > .ui-tabs{box-shadow:inset 169px 0 0 #f1f1f1, inset 170px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05)}
+
+/*fix datepicker*/
+.events-cal .ui-datepicker td span, .ui-datepicker td a {
+     display: block; 
+     font-size: 13px;
+     width: auto;
+     height: auto; 
+     line-height: inherit;
+}
+.events-cal .ui-datepicker-calendar tr:last-child .ui-state-active {
+    height: auto;
+}
+.events-cal .ui-datepicker-prev:before {
+    border-right: none;
+    content: "";
+    display: none;
+}
+.events-cal .ui-datepicker-next:before {
+    border-left: none;
+    content: "";
+    display: none;
+}

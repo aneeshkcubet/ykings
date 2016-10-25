@@ -33,7 +33,7 @@ class Workout extends Model
     protected $appends = ['progression_string'];
 
     /**
-     * Function to stringify muscle groups related to an exercise.
+     * Function to set progression_string attribute
      * @return type
      * @author Aneesh K<aneeshk@cubettech.com>
      */
@@ -42,6 +42,12 @@ class Workout extends Model
         return $this->attributes['progression_string'] = self::progressionString($this->description);
     }
 
+    /**
+     * Function to stringify muscle groups related to an exercise.
+     * @param type $progressions
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public static function progressionString($progressions)
     {
         $progressionArray = Array(

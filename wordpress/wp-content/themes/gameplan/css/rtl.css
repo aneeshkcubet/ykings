@@ -1,0 +1,113 @@
+@charset "utf-8";
+*{
+	text-align:right;
+}
+.event_listing .custom-pot-1 .date-counter {
+	float: right;
+	margin-right: 0px;
+	margin-left: 20px;
+}
+.event-listing-modern .modern_style .custom-pot-1{ width:100%;}
+.event-listing-modern .modern_style .custom-pot-1 .date-counter{ margin-left:20px; margin-right:0; float:right}
+.event-listing-modern .modern_style .custom-pot-1 .date-counter span{ text-align:center; float:none}
+.event-listing-modern .modern_style .custom-pot-1 span{ display:inline-block; margin-left:0; float:right; max-width:160px}
+
+.event_listing .custom-pot-1 .date-counter span {
+	text-align:center;
+}
+#navigation .nav-contact *{text-align:left}
+.dropcap{ float:right; padding-left:8px; padding-right:3px}
+.portfolio-modern .center .project-tags{ text-align:center}
+.portfolio-modern .portfolio-container div a{ text-align:center}
+.portfolio-modern .portfolio-container .isotope-item div{ text-align:center; }
+.slides-control div.dotted{ text-align:center}
+
+.timeline .row-fluid .col11 .dot span{ margin-left:-15px !important}
+.timeline1 .row-fluid .span9 .dot span{ margin-left:-15px !important}
+.timeline1 .row-fluid .span12 .dot span{ margin-left:-15px !important}
+.headline .htitle .hicon i{ margin-left:0; left:-45px}
+#navigation .nav-bottom { text-align:left}
+#navigation ul.menu li:hover .div-sub-menu li .div-sub-menu, #navigation ul.menu li:hover .div-sub-menu li:hover .div-sub-menu li .div-sub-menu,#navigation li.multi-cols:hover .div-sub-menu li .div-sub-menu{ left:auto !important; right:160px !important}
+#navigation .div-sub-menu{ left:auto; right:-5px}
+#navigation .multi-cols>.div-sub-menu{margin-right:-150px}
+#navigation .multi-cols>.div-sub-menu>.sub-menu>li{}
+
+#navigation ul.menu li.parent .sub-menu a:hover{padding-left:0;padding-right:15px}
+#navigation .menu>li>a>i:first-child, #navigation .menu>ul>li>a>i:first-child {
+	margin-left: 8px;
+}
+#navigation ul.menu, .wpb_tabs .ui-tabs-nav, .ok-sign, .project-tags{ text-align:center}
+.portfolio-container .element, .portfolio-container .element .wp-post-image{ text-align:center}
+.portfolio-container .element div{ text-align:center}
+.portfolio-2 .portfolio-column-4 .element h3{ text-align:center}
+.portfolio-1 .portfolio-column-5 .element h3{ text-align:center}
+.events_plug .postleft{ float:right}
+.events_plug .postleft .rt-image{ margin-left:20px; margin-right:0}
+.events_plug{ float:right;}
+.recent-post .events_plug .postleft{ margin-left:0}
+.recent-post .rt-articleinfo .rt-comment-block{ margin-left:0; max-width:200px}
+.recent-post .postleft{ float:right; margin-left:20px; margin-right:0}
+.recent-post .rt-image{margin-right:0}
+.timeline1 .row-fluid .span3{ float:right}
+.timeline1 .row-fluid .span9 .title,
+.timeline-event .timeline1 .row-fluid .span9 .title{ padding-right:0}
+
+.timeline .row-fluid .col11 .title{ padding-right:20px}
+.timeline .row-fluid .col11 .content{ padding-right:20px}
+.portfolio-1 .portfolio-column-5 .element h3{ text-align:center}
+
+.module-title h2{padding-right:0;padding-left:10px}
+.box-style-1 .module-title {
+	direction: ltr;
+}
+.box-style-3 .module-title [class^="icon-"]:before, .box-style-3 .module-title [class*=" icon-"]:before{margin:-4px 0 0 8px}
+.meta-table .custom-pot-1 .meta-row{ vertical-align:baseline; display:inline; float:right}
+.meta-table .custom-pot-1 .meta-row.meta-data{ width:65%; margin-right:7%}
+.meta-table .custom-pot-1 .date-counter{margin-right:0}
+
+.box-style-1 .module-title [class^="icon-"], .box-style-1 .module-title [class*=" icon-"]{margin-left:8px; margin-right:0;}
+.flip-clock-wrapper{text-align:right;}
+.counter-circle-wrapper, .counter-box-wrapper{float:right; margin-right:0; margin-left:20px;}
+#mainsidebar .widget ul .cat-item:before{float:right; content:"\f0d9"; margin-right:0; margin-left:6px;}
+.table-transparent tr:first-child td, .table-soid tr:first-child td{text-align:right;}
+#navigation-menu-mobile .divselect select, #navigation-menu-mobile .divselect select option {direction: rtl;}
+
+.timeline1 .row-fluid .span9 .rt-date-posted{ float:right}
+.timeline1 .row-fluid .span12 .rt-date-posted, .timeline1 .row-fluid .span12 .title .cte{ float:right}
+.wpb_gallery_slides .flex-control-paging li a{ text-indent:9999px}
+#author-bio .dotted-title h3, #related-posts .dotted-title h3, #related-posts .dotted-title .dotted{ padding-right:0; padding-left:10px}
+.posts-carousel .postleft{ float:right; margin-right:0; margin-left:15px}
+#author-bio #author-avatar{ float:right; margin-left:20px; margin-right:0}
+a.pp_previous,
+a.pp_expand, a.pp_contract,
+.pp_nav .pp_play, .pp_nav .pp_pause,
+a.pp_close,
+a.pp_arrow_previous, a.pp_arrow_next{text-indent:10000px;}
+.wpb_gallery_slides .flex-direction-nav a{text-indent:9999px}
+@media (max-width: 767px) {	
+	.timeline1 .row-fluid .span9 .title,
+	.timeline-event .timeline1 .row-fluid .span9 .title{padding-right:20px}
+	
+	#navigation .nav-contact *{text-align:center;}
+	
+	#search .my_search{width:34px;}
+	
+	.blog-listing .rt-image{margin-top:20px; margin-bottom:0;}
+}
+.meta-table .custom-pot-1{ width:100%}
+.event_pos .events_plug .recentpost-content{ margin-right:68px !important; float:right; margin-top:0; width:auto}
+.wpb_widgetised_column .widget .recent-post .rt-articleinfo{ float:right; margin-bottom:10px}
+.wpb_widgetised_column .recentpost-content{ display:inline-block; width:100%; margin-top:0}
+/*Fix*/
+.event_widget_fix .accordion .accordion-heading a.price_event{ text-align:left; left:15px}
+.event_widget_fix .accordion .accordion-heading h4{ padding-right:15px}
+.event_single_fix .meta-table .custom-pot-1{ float:left}
+.event_single_fix .meta-table .custom-pot-1 .meta-row.date_start_big{ float:left; padding-right:0}
+.event_single_fix .meta-table .meta-row.meta-data{ padding-right:20px}
+.event_single_fix .tribe-events-meta-group.tribe-events-meta-group-venue.vcard{ padding-right:5px}
+.tribe-events-event-meta .tribe-events-meta-group, .tribe-events-event-meta .column {
+	float: right;
+}
+.single-portfolio .single-portfolio-movie {
+	direction: ltr;
+}

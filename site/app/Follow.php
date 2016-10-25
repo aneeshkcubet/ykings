@@ -33,7 +33,7 @@ class Follow extends Model
 
     /**
      * Relation with following users
-     * @author Aneesh K<aneesh@cubettech.com>
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 12th November 2015
      */
     public function following()
@@ -43,7 +43,7 @@ class Follow extends Model
 
     /**
      * Relation with follw profile user.
-     * @author Aneesh K<aneesh@cubettech.com>
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 12th November 2015
      */
     public function followProfile()
@@ -53,7 +53,7 @@ class Follow extends Model
 
     /**
      * Relation with follwing profile user.
-     * @author Aneesh K<aneesh@cubettech.com>
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 12th November 2015
      */
     public function followingProfile()

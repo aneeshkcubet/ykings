@@ -294,6 +294,13 @@ class SkilltrainingsController extends Controller
         }
     }
 
+    /**
+     * Check whether the skill training unlocked or not.
+     * @param type $skillTraId
+     * @param type $userId
+     * @return int
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public static function isSkillTainingUnlocked($skillTraId, $userId)
     {
         $unlockCnt = DB::table('unlocked_skilltrainings')->where([

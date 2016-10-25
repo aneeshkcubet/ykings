@@ -54,10 +54,22 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
+            'host'      => 'ykings-db-norse.c0kwxi5w2l0n.eu-central-1.rds.amazonaws.com',
+            'database'  => 'ykingsDB_V2',
+            'username'  => 'admin_YK',
+            'password'  => 'Strive4Pro',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+	
+	'mysql2' => [
+            'driver'    => 'mysql',
+            'host'      => 'ykings-db-norse.c0kwxi5w2l0n.eu-central-1.rds.amazonaws.com',
+            'database'  => 'YkingsDB',
+            'username'  => 'admin_YK',
+            'password'  => 'Strive4Pro',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

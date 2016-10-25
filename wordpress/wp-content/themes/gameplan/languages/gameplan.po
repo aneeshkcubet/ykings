@@ -1,0 +1,5818 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gameplan\n"
+"POT-Creation-Date: 2015-08-06 14:19+0700\n"
+"PO-Revision-Date: 2015-08-06 14:20+0700\n"
+"Last-Translator: \n"
+"Language-Team: cactusthemes\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;esc_html__;esc_html_e;"
+"esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: gameplan/attachment.php:51 gameplan/index.php:95 gameplan/index.php:226
+#: gameplan/index.php:356 gameplan/search.php:57 gameplan/single.php:60
+#: gameplan/demo/demo-blog-classic-left.php:80
+#: gameplan/demo/demo-blog-classic-no.php:81
+#: gameplan/demo/demo-blog-classic-right.php:81
+#: gameplan/demo/demo-blog-modern-left.php:86
+#: gameplan/demo/demo-blog-modern-no.php:87
+#: gameplan/demo/demo-blog-modern-right.php:85
+#: gameplan/demo/demo-blog-wide-left.php:78
+#: gameplan/demo/demo-blog-wide-no.php:79
+#: gameplan/demo/demo-blog-wide-right.php:79
+msgid "comments"
+msgstr ""
+
+#: gameplan/attachment.php:93 gameplan/attachment.php:97
+#: gameplan/content-page.php:26 gameplan/single.php:124
+#: gameplan/single.php:128
+msgid "About The Author"
+msgstr ""
+
+#: gameplan/comments.php:26 gameplan/inc/widgets/latest-post-type.php:109
+#: gameplan-shortcodes/shortcodes/post_carousel.php:50
+#: gameplan-shortcodes/shortcodes/recent-post.php:57
+#: gameplan-shortcodes/shortcodes/related-post.php:61
+msgid "Comments"
+msgstr ""
+
+#: gameplan/comments.php:36
+msgid "Comment navigation"
+msgstr ""
+
+#: gameplan/comments.php:37
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: gameplan/comments.php:38
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: gameplan/comments.php:44
+msgid "Leave A Comment "
+msgstr ""
+
+#: gameplan/comments.php:48
+msgid "Comment"
+msgstr ""
+
+#: gameplan/functions.php:119
+msgid "Primary Menu"
+msgstr ""
+
+#: gameplan/functions.php:229
+msgid "Main Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:231
+msgid ""
+"Appears all pages & posts, exepts for pages which have defined sidebar such "
+"as Blog or Search page."
+msgstr ""
+
+#: gameplan/functions.php:239
+msgid "Top Menu"
+msgstr ""
+
+#: gameplan/functions.php:249 gameplan/tribe-events/modules/bar.php:31
+msgid "Search"
+msgstr ""
+
+#: gameplan/functions.php:259
+msgid "Navigation"
+msgstr ""
+
+#: gameplan/functions.php:269
+msgid "Main Top"
+msgstr ""
+
+#: gameplan/functions.php:280
+msgid "Single Blog Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:282
+msgid ""
+"Sidebar in single post page. If there is no widgets, Main Sidebar will be "
+"used "
+msgstr ""
+
+#: gameplan/functions.php:289
+msgid "Single Event Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:291
+msgid ""
+"Sidebar in single event page. If there is no widgets, Main Sidebar will be "
+"used "
+msgstr ""
+
+#: gameplan/functions.php:298
+msgid "Blog Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:300
+msgid ""
+"Sidebar in blog page. If there is no widgets, Main Sidebar will be used "
+msgstr ""
+
+#: gameplan/functions.php:307
+msgid "Event Listing Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:309
+msgid ""
+"Sidebar in event listing page. If there is no widgets, Main Sidebar will be "
+"used "
+msgstr ""
+
+#: gameplan/functions.php:316
+msgid "Search Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:318
+msgid ""
+"Sidebar in search page. If there is no widgets, Main Sidebar will be used "
+msgstr ""
+
+#: gameplan/functions.php:326
+msgid "Body Bottom"
+msgstr ""
+
+#: gameplan/functions.php:336
+msgid "Main Bottom"
+msgstr ""
+
+#: gameplan/functions.php:346
+msgid "Copyright"
+msgstr ""
+
+#: gameplan/functions.php:357
+msgid "WooCommerce Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:359
+msgid "Appears in WooCommerce Pages. If empty, Main Sidebar will be used"
+msgstr ""
+
+#: gameplan/functions.php:368 gameplan/functions.php:370
+msgid "Feature Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:377 gameplan/functions.php:379
+msgid "Shortcode Sidebar"
+msgstr ""
+
+#: gameplan/functions.php:410
+msgid "SEARCH"
+msgstr ""
+
+#: gameplan/functions.php:622 gameplan-portfolio/shortcode-portfolio.php:267
+msgid "All"
+msgstr ""
+
+#: gameplan/functions.php:662
+msgid "All Events"
+msgstr ""
+
+#: gameplan/functions.php:743
+msgid "Related Events"
+msgstr ""
+
+#: gameplan/functions.php:832
+msgid "Buy Now Button"
+msgstr ""
+
+#: gameplan/functions.php:834
+#: gameplan-tribe-addons/tribe-event-metadata.php:38
+msgid "Subscribe Button"
+msgstr ""
+
+#: gameplan/functions.php:836
+msgid "Donate Button"
+msgstr ""
+
+#: gameplan/functions.php:838
+msgid "Add to cart Button"
+msgstr ""
+
+#: gameplan/functions.php:840
+msgid "Buy gift Button"
+msgstr ""
+
+#: gameplan/header-search.php:17 gameplan/header-single.php:49
+#: gameplan/search-single.php:12
+msgid "Search results"
+msgstr ""
+
+#: gameplan/header-search.php:18 gameplan/search-single.php:13
+msgid "Search results for \""
+msgstr ""
+
+#: gameplan/header-single.php:33
+msgid "Shop"
+msgstr ""
+
+#: gameplan/header-single.php:45
+msgid "Archive"
+msgstr ""
+
+#: gameplan/header-single.php:50
+msgid "Search results for "
+msgstr ""
+
+#: gameplan/index.php:26
+msgid "STICKY"
+msgstr ""
+
+#: gameplan/index.php:103 gameplan/index.php:235 gameplan/index.php:365
+msgid "&rsaquo; Read more"
+msgstr ""
+
+#: gameplan/index.php:140 gameplan/index.php:271 gameplan/index.php:401
+#: gameplan/single.php:96
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: gameplan/search.php:99
+msgid "No search results for"
+msgstr ""
+
+#: gameplan/search.php:100
+msgid " \""
+msgstr ""
+
+#: gameplan/search.php:102
+msgid "\""
+msgstr ""
+
+#: gameplan/demo/demo-event_listing-left.php:62
+#: gameplan/demo/demo-event_listing-modern.php:75
+#: gameplan/demo/demo-event_listing-right.php:62
+#: gameplan-events/event_listing.php:101 gameplan-events/event_listing.php:216
+#: gameplan-events/single-event.php:28
+msgid "Time"
+msgstr ""
+
+#: gameplan/demo/demo-event_listing-left.php:63
+#: gameplan/demo/demo-event_listing-right.php:63
+#: gameplan-events/event_listing.php:109 gameplan-events/single-event.php:29
+#: gameplan-tribe-addons/timeline_tribe_list.php:161
+msgid "Venue"
+msgstr ""
+
+#: gameplan/demo/demo-event_listing-left.php:75
+#: gameplan/demo/demo-event_listing-right.php:75
+#: gameplan/demo/demo-event_tribe_listing-left.php:110
+#: gameplan/demo/demo-event_tribe_listing-right.php:110
+msgid "> View Details"
+msgstr ""
+
+#: gameplan/demo/demo-event_tribe_listing-left.php:91
+#: gameplan/demo/demo-event_tribe_listing-modern.php:88
+#: gameplan/demo/demo-event_tribe_listing-right.php:91
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:147
+#: gameplan-tribe-addons/listing_tribe_addons.php:124
+#: gameplan-tribe-addons/listing_tribe_addons.php:250
+msgid "Click to view a Google Map"
+msgstr ""
+
+#: gameplan/demo/demo-event_tribe_listing-left.php:92
+msgid "+ Google Map"
+msgstr ""
+
+#: gameplan/demo/demo-event_tribe_listing-modern.php:89
+#: gameplan/demo/demo-event_tribe_listing-right.php:92
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:148
+#: gameplan-tribe-addons/listing_tribe_addons.php:125
+#: gameplan-tribe-addons/listing_tribe_addons.php:251
+msgid "Google Map"
+msgstr ""
+
+#: gameplan/inc/functions-admin.php:22 gameplan/inc/functions-admin.php:29
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:32
+#: gameplan-events/event-post-type.php:64
+#: gameplan-member/member-post-type.php:79
+#: gameplan-portfolio/portfolio-post-type.php:38
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:208
+#: gameplan-shortcodes/shortcodes/post_carousel.php:172
+#: gameplan-shortcodes/shortcodes/recent-post.php:184
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:238
+msgid "ID"
+msgstr ""
+
+#: gameplan/inc/functions-admin.php:23 gameplan-events/event-post-type.php:65
+#: gameplan-portfolio/portfolio-post-type.php:39
+msgid "Thumbnail"
+msgstr ""
+
+#: gameplan/inc/functions-admin.php:67
+msgid "Small Carousel"
+msgstr ""
+
+#: gameplan/inc/functions-admin.php:68
+msgid "Medium Carousel"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:20
+#: gameplan-portfolio/portfolio-post-type.php:122
+msgid "Page Sub-Heading"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:29 gameplan/inc/post-metadata.php:29
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:48
+#: gameplan/option-tree/includes/ot-functions-admin.php:2416
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:110
+#: gameplan-portfolio/portfolio-post-type.php:131
+#: gameplan-shortcodes/shortcodes/alert.php:115
+#: gameplan-shortcodes/shortcodes/boxedicon.php:215
+#: gameplan-shortcodes/shortcodes/headline.php:186
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:121
+msgid "Background"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:30 gameplan/inc/post-metadata.php:30
+#: gameplan-portfolio/portfolio-post-type.php:132
+msgid "Background image for page header"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:38 gameplan/inc/post-metadata.php:38
+#: gameplan-portfolio/portfolio-post-type.php:140
+msgid "Header height"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:39 gameplan/inc/post-metadata.php:39
+#: gameplan-portfolio/portfolio-post-type.php:141
+msgid "Height of page header (in px)"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:47 gameplan/inc/post-metadata.php:47
+#: gameplan-portfolio/portfolio-post-type.php:96
+msgid "Show/hide social sharing"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:55 gameplan/inc/page-metadata.php:89
+#: gameplan/inc/post-metadata.php:55 gameplan/inc/post-metadata.php:84
+#: gameplan/inc/theme-options.php:1168
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:444
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:494
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:498
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:502
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:506
+#: gameplan-portfolio/portfolio-post-type.php:104
+#: gameplan-shortcodes/shortcodes/heading.php:100
+#: gameplan-tribe-addons/tribe-event-metadata.php:46
+msgid "Default"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:60 gameplan/inc/post-metadata.php:60
+#: gameplan/inc/theme-options.php:1115
+#: gameplan-portfolio/portfolio-post-type.php:109
+msgid "Show"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:65 gameplan/inc/post-metadata.php:65
+#: gameplan/inc/theme-options.php:1120
+#: gameplan-portfolio/portfolio-post-type.php:114
+msgid "Hide"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:72
+msgid "Revolution Slider Alias Name (used with Front-Page template only)"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:73
+msgid ""
+"Enter Alias Name of Revolution Slider to load if this page uses Front-Page "
+"template"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:81
+msgid "Slider Style"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:94
+msgid "Wide (Full width)"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:99
+#: gameplan-shortcodes/shortcodes/boxedicon.php:153
+msgid "Boxed"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:106
+msgid "Custom Sidebar"
+msgstr ""
+
+#: gameplan/inc/page-metadata.php:107
+msgid ""
+"Enter ID of sidebar to use in this page. This sidebar will replace main "
+"sidebar. Custom Sidebar only works with Sidebar Left or Sidebar Right Page "
+"Template. Custom Sidebars can be created in Appearance > Sidebars"
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:20 gameplan/inc/theme-options.php:1175
+msgid "Sticky Tag"
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:21 gameplan/inc/theme-options.php:1176
+msgid "Enter the word which will be used for the Sticky Tag."
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:73
+msgid ""
+"Select layout for a single post page. This setting can be overridden in a "
+"specific post"
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:89
+msgid "Sidebar Left"
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:94
+msgid "Sidebar Right"
+msgstr ""
+
+#: gameplan/inc/post-metadata.php:99
+msgid "Fullwidth"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1103
+msgid "Show Categories"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1104
+msgid ""
+"Show item's categories info. This will affect blog list and single post page"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1127 gameplan/inc/theme-options.php:1128
+msgid "Show Read More Link"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1151
+msgid "Pagination"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1163
+msgid "Use WP-PageNavi plugin"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1286
+msgid "Related Events - Count"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1287
+msgid "Enter number Ex:6 (default:3)"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1769
+msgid "Height of page header"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:1770
+msgid "Enter number Ex:600px"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:2074
+msgid "Enter your Envato username"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:2089
+msgid ""
+"Enter your Envato API. You can find your API under in Profile page > My "
+"Settings > API Keys"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:2103
+msgid "Allow Auto Update"
+msgstr ""
+
+#: gameplan/inc/theme-options.php:2104
+msgid ""
+"Allow Auto Update or Not. If not, you can go to Appearance > Themes and "
+"click on Update link"
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:77
+msgid "Install Required &amp; Recommended Plugins"
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:78
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:227
+msgid "Install Plugins"
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:79
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:228
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:80
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:91
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:240
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:92
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:242
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2116
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: gameplan/inc/core/skeleton-core.php:93
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:28
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:60
+msgid "Post navigation"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:61
+msgid "Older posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:62
+msgid "<span class=\"meta-nav\">&larr;</span> Newer posts"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:85
+msgid "Pingback:"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:85
+msgid "(Edit)"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:103
+#, php-format
+msgid "%1$s - at %2$s - "
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:106
+msgid "Reply"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:115
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:118
+#: gameplan/option-tree/includes/ot-functions-admin.php:4025
+#: gameplan/option-tree/includes/ot-functions-admin.php:4093
+#: gameplan/option-tree/includes/ot-functions-admin.php:4094
+#: gameplan/option-tree/includes/ot-functions-admin.php:4256
+#: gameplan/option-tree/includes/ot-functions-admin.php:4257
+#: gameplan/option-tree/includes/ot-functions-admin.php:4322
+#: gameplan/option-tree/includes/ot-functions-admin.php:4323
+#: gameplan/option-tree/includes/ot-functions-admin.php:4450
+#: gameplan/option-tree/includes/ot-functions-admin.php:4451
+#: gameplan/option-tree/includes/ot-functions-admin.php:4603
+#: gameplan/option-tree/includes/ot-functions-admin.php:4604
+#: gameplan/woocommerce/myaccount/my-address.php:45
+msgid "Edit"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:137
+msgid "Your Name"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:138
+msgid "Your Email"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:139
+msgid "Your Website"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:155 gameplan/inc/core/theme-core.php:158
+msgid ", "
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:169
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:175
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
+"\"> by %4$s</span>."
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:177
+#, php-format
+msgid ""
+"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+"span>."
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:179
+#, php-format
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:329
+msgid "Custom Variation"
+msgstr ""
+
+#: gameplan/inc/core/theme-core.php:429
+msgid "Theme Updated!"
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-protected-api.php:67
+msgid "Please enter your Envato Marketplace Username."
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-protected-api.php:71
+msgid "Please enter your Envato Marketplace API Key."
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-protected-api.php:96
+msgid "The API \"set\" is a required parameter."
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-protected-api.php:167
+msgid "The Envato Marketplace \"item ID\" is a required parameter."
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-wordpress-theme-upgrader.php:282
+msgid "Downloading upgrade package from the Envato API&#8230;"
+msgstr ""
+
+#: gameplan/inc/plugins/envato-wordpress-toolkit/class-envato-wordpress-theme-upgrader.php:293
+msgid "Downloading install package from the Envato API&#8230;"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:226
+msgid "Install Required Plugins"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:229
+msgid "Something went wrong."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:241
+msgid "Return to the dashboard"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:243
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:244
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:245
+msgid "Dismiss this notice"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:595
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2346
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1281
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1465
+msgid "Private Repository"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1285
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1469
+msgid "Pre-Packaged"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1290
+msgid "WordPress Repository"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1293
+msgid "Required"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1293
+msgid "Recommended"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1296
+msgid "Not Installed"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1299
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1490
+#, php-format
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\">Return to the Dashboard</"
+"a>"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1506
+msgid "Plugin"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1507
+msgid "Source"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1508
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:35
+msgid "Type"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1509
+msgid "Status"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1527
+msgid "Install"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1528
+#: gameplan/option-tree/includes/ot-functions-admin.php:4381
+#: gameplan/option-tree/includes/ot-functions-admin.php:4382
+msgid "Activate"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1639
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:1755
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2099
+msgid "Install package not available."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2100
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2101
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2102
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2103
+msgid "Plugin install failed."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2104
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2115
+msgid "Plugin activation failed."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2238
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2239
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2243
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2244
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2244
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2251
+msgid "Show Details"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2244
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2251
+msgid "Hide Details"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2245
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2246
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2250
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2251
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2252
+msgid "All installations have been completed."
+msgstr ""
+
+#: gameplan/inc/plugins/plugin-activation/class-tgm-plugin-activation.php:2253
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:42
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:72
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:80
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:43
+msgid ""
+"Details are shown above. The importer will now try again with a different "
+"parser..."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:84
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:89
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:279
+#: gameplan/inc/plugins/wordpress-importer/parsers.php:468
+msgid ""
+"This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:134
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:143
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:194
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:198
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:207
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:135
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:178
+msgid "All done."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:178
+msgid "Have fun!"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:179
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:199
+#, php-format
+msgid ""
+"The export file could not be found at <code>%s</code>. It is likely that "
+"this was caused by a permissions problem."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:215
+#, php-format
+msgid ""
+"This WXR file (version %s) may not be supported by this version of the "
+"importer. Please consider updating."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:240
+#, php-format
+msgid ""
+"Failed to import author %s. Their posts will be attributed to the current "
+"user."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:266
+msgid "Assign Authors"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:267
+msgid ""
+"To make it easier for you to edit and save the imported content, you may "
+"want to reassign the author of the imported item to an existing user of this "
+"site. For example, you may want to import all the entries as <code>admin</"
+"code>s entries."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:269
+#, php-format
+msgid ""
+"If a new user is created by WordPress, a new password will be randomly "
+"generated and the new user&#8217;s role will be set as %s. Manually changing "
+"the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:279
+msgid "Import Attachments"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:282
+msgid "Download and import file attachments"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:286
+msgid "Submit"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:299
+msgid "Import author:"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:310
+msgid "or create new user with login name:"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:313
+msgid "as a new user:"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:321
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:323
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:324
+msgid "- Select -"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:374
+#, php-format
+msgid ""
+"Failed to create new user for %s. Their posts will be attributed to the "
+"current user."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:425
+#, php-format
+msgid "Failed to import category %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:465
+#, php-format
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:511
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:652
+#, php-format
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:537
+#, php-format
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:559
+#, php-format
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:618
+#, php-format
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:783
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:790
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:853
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:866
+msgid "Invalid file type"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:910
+msgid "Remote server did not respond"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:916
+#, php-format
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:923
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:928
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:934
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:1033
+msgid "Import WordPress"
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:1040
+#, php-format
+msgid ""
+"A new version of this importer is available. Please update to version %s to "
+"ensure compatibility with newer export files."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:1055
+msgid ""
+"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
+"the posts, pages, comments, custom fields, categories, and tags into this "
+"site."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:1056
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: gameplan/inc/plugins/wordpress-importer/wordpress-importer.php:1131
+msgid ""
+"Import <strong>posts, pages, comments, custom fields, categories, and tags</"
+"strong> from a WordPress export file."
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:11
+msgid "Shows recent posts / custom post types...."
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:13
+msgid "GP-Advanced Recent Posts"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:218
+#: gameplan-events/widget-latest-event-post-type.php:296
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:180
+msgid "Title:"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:222
+#: gameplan-events/widget-latest-event-post-type.php:301
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:185
+msgid "ID list show:"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:230
+#: gameplan-events/widget-latest-event-post-type.php:310
+#: gameplan-shortcodes/shortcodes/headline.php:149
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:236
+msgid "Sort by"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:261
+msgid "Reverse sort order (ascending)"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:273
+msgid "Include post date"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:286
+msgid "Show number of comments"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:292
+#: gameplan-events/widget-latest-event-post-type.php:364
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:28
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:255
+msgid "Number of posts:"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:295
+#: gameplan-events/widget-latest-event-post-type.php:368
+msgid "Number of posts to show:"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:306
+msgid "Show post thumbnail"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:316
+msgid "Thumbnail dimensions"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:335
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:191
+msgid "Categories:"
+msgstr ""
+
+#: gameplan/inc/widgets/latest-post-type.php:361
+msgid "Show Post Type:"
+msgstr ""
+
+#: gameplan/option-tree/ot-loader.php:21
+msgid ""
+"OptionTree is installed as a plugin and also embedded in your current theme. "
+"Please deactivate the plugin to load the theme dependent version of "
+"OptionTree, and remove this warning."
+msgstr ""
+
+#: gameplan/option-tree/ot-loader.php:782
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:770
+#: gameplan/option-tree/includes/ot-functions-admin.php:846
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:398
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:170
+msgid "Send to OptionTree"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:23
+msgid "Demo Meta Box"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:30
+msgid "Conditions"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:35
+msgid "Show Gallery"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:38
+#, php-format
+msgid "Shows the Gallery when set to %s."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:45
+msgid "Congratulations, you created a gallery!"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:50
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:273
+#: gameplan/option-tree/includes/ot-functions-admin.php:2430
+#: gameplan/option-tree/includes/ot-functions-admin.php:5464
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:168
+msgid "Gallery"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:53
+#, php-format
+msgid "This is a Gallery option type. It displays when %s."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:57
+msgid "More Options"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:62
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:679
+#: gameplan/option-tree/includes/ot-functions-admin.php:2454
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:293
+msgid "Text"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:65
+msgid "This is a demo Text field."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:68
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:694
+#: gameplan/option-tree/includes/ot-functions-admin.php:2455
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:296
+msgid "Textarea"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-meta-boxes.php:71
+msgid "This is a demo Textarea field."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:33
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:42
+#: gameplan/option-tree/includes/ot-functions-admin.php:231
+#: gameplan/option-tree/includes/ot-ui-admin.php:143
+msgid "Option Types"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:34
+msgid "Help content goes here!"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:37
+msgid "Sidebar content goes here!"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:49
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:111
+#, php-format
+msgid ""
+"The Background option type is for adding background styles to your theme "
+"either dynamically via the CSS option type below or manually with %s. The "
+"Background option type has filters that allow you to remove fields or change "
+"the defaults. For example, you can filter %s to remove unwanted fields from "
+"all Background options or an individual one. You can also filter %s. These "
+"filters allow you to fine tune the select lists for your specific needs."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:49
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:755
+#: gameplan/option-tree/includes/ot-functions-admin.php:4219
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:111
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:378
+msgid "and"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:63
+#: gameplan/option-tree/includes/ot-functions-admin.php:2417
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:113
+msgid "Border"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:64
+msgid ""
+"The Border option type is used to set width, unit, style, and color values."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:78
+#: gameplan/option-tree/includes/ot-functions-admin.php:2418
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:116
+msgid "Box Shadow"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:79
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:117
+#, php-format
+msgid ""
+"The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:93
+#: gameplan/option-tree/includes/ot-functions-admin.php:2419
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:119
+msgid "Category Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:94
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:120
+msgid ""
+"The Category Checkbox option type displays a list of category IDs. It allows "
+"the user to check multiple category IDs and will return that value as an "
+"array for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:108
+#: gameplan/option-tree/includes/ot-functions-admin.php:2420
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:122
+msgid "Category Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:109
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:123
+msgid ""
+"The Category Select option type displays a list of category IDs. It allows "
+"the user to select only one category ID and will return that value for use "
+"in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:123
+#: gameplan/option-tree/includes/ot-functions-admin.php:2421
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:125
+msgid "Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:124
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:126
+msgid ""
+"The Checkbox option type displays a group of choices. It allows the user to "
+"check multiple choices and will return that value as an array for use in a "
+"custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:138
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:510
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:562
+#: gameplan-shortcodes/shortcodes/alert.php:127
+#: gameplan-shortcodes/shortcodes/boxedicon.php:180
+#: gameplan-shortcodes/shortcodes/carousel.php:99
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:208
+#: gameplan-shortcodes/shortcodes/divider.php:208
+#: gameplan-shortcodes/shortcodes/heading.php:136
+#: gameplan-shortcodes/shortcodes/heading.php:145
+#: gameplan-shortcodes/shortcodes/headline.php:141
+#: gameplan-shortcodes/shortcodes/headline.php:198
+#: gameplan-shortcodes/shortcodes/member.php:38
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:232
+#: gameplan-shortcodes/shortcodes/portfolio.php:75
+#: gameplan-shortcodes/shortcodes/portfolio.php:86
+#: gameplan-shortcodes/shortcodes/post_carousel.php:130
+#: gameplan-shortcodes/shortcodes/post_carousel.php:203
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:93
+#: gameplan-shortcodes/shortcodes/recent-post.php:142
+#: gameplan-shortcodes/shortcodes/recent-post.php:215
+#: gameplan-shortcodes/shortcodes/skill.php:266
+#: gameplan-shortcodes/shortcodes/testimonial.php:86
+#: gameplan-shortcodes/shortcodes/timeline.php:82
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:77
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:269
+msgid "No"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:143
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:505
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:557
+#: gameplan-shortcodes/shortcodes/heading.php:136
+#: gameplan-shortcodes/shortcodes/heading.php:145
+#: gameplan-shortcodes/shortcodes/headline.php:141
+#: gameplan-shortcodes/shortcodes/portfolio.php:75
+#: gameplan-shortcodes/shortcodes/post_carousel.php:130
+#: gameplan-shortcodes/shortcodes/recent-post.php:142
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:60
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:67
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:259
+msgid "Yes"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:150
+#: gameplan/option-tree/includes/ot-functions-admin.php:2422
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:128
+msgid "Colorpicker"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:151
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:129
+msgid ""
+"The Colorpicker option type saves a hexadecimal color code for use in CSS. "
+"Use it to modify the color of something in your theme."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:165
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:166
+#: gameplan/option-tree/includes/ot-functions-admin.php:2423
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:131
+msgid "Colorpicker Opacity"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:167
+#, php-format
+msgid ""
+"The Colorpicker Opacity option type saves an rgba color value for use in "
+"CSS. To add opacity to other colorpickers add the %s class to the %s array."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:181
+#: gameplan/option-tree/includes/ot-functions-admin.php:2424
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:134
+msgid "CSS"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:182
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:135
+#, php-format
+msgid ""
+"The CSS option type is a textarea that when used properly can add dynamic "
+"CSS to your theme from within OptionTree. Unfortunately, due server "
+"limitations you will need to create a file named %s at the root level of "
+"your theme and change permissions using %s so the server can write to the "
+"file. I have had the most success setting this single file to %s but feel "
+"free to play around with permissions until everything is working. A good "
+"starting point is %s. When the server can save to the file, CSS will "
+"automatically be updated when you save your Theme Options."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:182
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:137
+#, php-format
+msgid ""
+"This example assumes you have an option with the ID of %1$s. Which means "
+"this option will automatically insert the value of %1$s into the %2$s when "
+"the Theme Options are saved."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:198
+#: gameplan/option-tree/includes/ot-functions-admin.php:2425
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:153
+msgid "Custom Post Type Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:199
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:154
+#, php-format
+msgid ""
+"The Custom Post Type Select option type displays a list of IDs from any "
+"available WordPress post type or custom post type. It allows the user to "
+"check multiple post IDs for use in a custom function or loop. Requires at "
+"least one valid %1$s in the %1$s field."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:213
+#: gameplan/option-tree/includes/ot-functions-admin.php:2426
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:156
+msgid "Custom Post Type Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:214
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:157
+#, php-format
+msgid ""
+"The Custom Post Type Select option type displays a list of IDs from any "
+"available WordPress post type or custom post type. It will return a single "
+"post ID for use in a custom function or loop. Requires at least one valid "
+"%1$s in the %1$s field."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:228
+#: gameplan/option-tree/includes/ot-functions-admin.php:2427
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:159
+msgid "Date Picker"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:229
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:160
+msgid ""
+"The Date Picker option type is tied to a standard form input field which "
+"displays a calendar pop-up that allow the user to pick any date when focus "
+"is given to the input field. The returned value is a date formatted string."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:243
+#: gameplan/option-tree/includes/ot-functions-admin.php:2428
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:162
+msgid "Date Time Picker"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:244
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:163
+msgid ""
+"The Date Time Picker option type is tied to a standard form input field "
+"which displays a calendar pop-up that allow the user to pick any date and "
+"time when focus is given to the input field. The returned value is a date "
+"and time formatted string."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:258
+#: gameplan/option-tree/includes/ot-functions-admin.php:2429
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:165
+msgid "Dimension"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:259
+msgid "The Dimension option type is used to set width and height values."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:274
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:169
+msgid ""
+"The Gallery option type saves a comma separated list of image attachment "
+"IDs. You will need to create a front-end function to display the images in "
+"your theme."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:288
+msgid "Gallery Shortcode"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:289
+#, php-format
+msgid ""
+"The Gallery option type can also be saved as a shortcode by adding %s to the "
+"class attribute. Using the Gallery option type in this manner will result in "
+"a better user experience as you're able to save the link, column, and order "
+"settings."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:303
+#: gameplan/option-tree/includes/ot-functions-admin.php:2431
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:171
+msgid "Google Fonts"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:304
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:172
+#, php-format
+msgid ""
+"The Google Fonts option type will dynamically enqueue any number of Google "
+"Web Fonts into the document %1$s. As well, once the option has been saved "
+"each font family will automatically be inserted into the %2$s array for the "
+"Typography option type. You can further modify the font stack by using the "
+"%3$s filter, which is passed the %4$s, %5$s, and %6$s parameters. The %6$s "
+"parameter is being passed from %7$s, so it will be the ID of a Typography "
+"option type. This will allow you to add additional web safe fonts to "
+"individual font families on an as-need basis."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:324
+#: gameplan/option-tree/includes/ot-functions-admin.php:2432
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:174
+msgid "JavaScript"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:325
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:175
+#, php-format
+msgid ""
+"The JavaScript option type is a textarea that uses the %s code editor to "
+"highlight your JavaScript and display errors as you type."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:339
+#: gameplan/option-tree/includes/ot-functions-admin.php:2433
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:177
+msgid "Link Color"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:340
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:178
+msgid "The Link Color option type is used to set all link color states."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:354
+#: gameplan/option-tree/includes/ot-functions-admin.php:2434
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:180
+msgid "List Item"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:355
+msgid ""
+"The List Item option type allows for a great deal of customization. You can "
+"add settings to the List Item and those settings will be displayed to the "
+"user when they add a new List Item. Typical use is for creating sliding "
+"content or blocks of code for custom layouts."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:369
+#: gameplan-shortcodes/shortcodes/alert.php:60
+#: gameplan-shortcodes/shortcodes/boxedicon.php:224
+#: gameplan-shortcodes/shortcodes/carousel.php:130
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:127
+#: gameplan-shortcodes/shortcodes/divider.php:166
+#: gameplan-shortcodes/shortcodes/heading.php:92
+#: gameplan-shortcodes/shortcodes/headline.php:107
+#: gameplan-shortcodes/shortcodes/image-frame.php:46
+#: gameplan-shortcodes/shortcodes/member.php:11
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:178
+#: gameplan-shortcodes/shortcodes/portfolio.php:12
+#: gameplan-shortcodes/shortcodes/post_carousel.php:124
+#: gameplan-shortcodes/shortcodes/pricingtables.php:151
+#: gameplan-shortcodes/shortcodes/pricingtables.php:321
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:130
+#: gameplan-shortcodes/shortcodes/recent-post.php:136
+#: gameplan-shortcodes/shortcodes/skill.php:181
+#: gameplan-shortcodes/shortcodes/skill.php:254
+#: gameplan-shortcodes/shortcodes/testimonial.php:132
+#: gameplan-shortcodes/shortcodes/timeline.php:112
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:13
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:208
+msgid "Content"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:385
+#: gameplan/option-tree/includes/ot-functions-admin.php:2435
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:183
+msgid "Measurement"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:386
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:184
+#, php-format
+msgid ""
+"The Measurement option type is a mix of input and select fields. The text "
+"input excepts a value and the select lets you choose the unit of measurement "
+"to add to that value. Currently the default units are %s, %s, %s, and %s. "
+"However, you can change them with the %s filter."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:400
+#: gameplan/option-tree/includes/ot-functions-admin.php:2436
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:214
+msgid "Numeric Slider"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:401
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:215
+msgid ""
+"The Numeric Slider option type displays a jQuery UI slider. It will return a "
+"single numerical value for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:415
+#: gameplan/option-tree/includes/ot-functions-admin.php:2437
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:217
+msgid "On/Off"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:416
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:218
+#, php-format
+msgid ""
+"The On/Off option type displays a simple switch that can be used to turn "
+"things on or off. The saved return value is either %s or %s."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:430
+#: gameplan/option-tree/includes/ot-functions-admin.php:2438
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:220
+msgid "Page Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:431
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:221
+msgid ""
+"The Page Checkbox option type displays a list of page IDs. It allows the "
+"user to check multiple page IDs for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:445
+#: gameplan/option-tree/includes/ot-functions-admin.php:2439
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:223
+msgid "Page Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:446
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:224
+msgid ""
+"The Page Select option type displays a list of page IDs. It will return a "
+"single page ID for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:460
+#: gameplan/option-tree/includes/ot-functions-admin.php:2440
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:226
+msgid "Post Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:461
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:227
+msgid ""
+"The Post Checkbox option type displays a list of post IDs. It allows the "
+"user to check multiple post IDs for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:475
+#: gameplan/option-tree/includes/ot-functions-admin.php:2441
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:229
+msgid "Post Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:476
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:230
+msgid ""
+"The Post Select option type displays a list of post IDs. It will return a "
+"single post ID for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:490
+#: gameplan/option-tree/includes/ot-functions-admin.php:2442
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:232
+msgid "Radio"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:491
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:233
+msgid ""
+"The Radio option type displays a group of choices. It allows the user to "
+"choose one and will return that value as a string for use in a custom "
+"function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:515
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:567
+msgid "Maybe"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:522
+#: gameplan/option-tree/includes/ot-functions-admin.php:2443
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:235
+msgid "Radio Image"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:523
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:236
+#, php-format
+msgid ""
+"the Radio Images option type is primarily used for layouts. However, you can "
+"filter the image list using %s. As well, you can add your own custom images "
+"using the choices array."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:537
+#: gameplan/option-tree/includes/ot-functions-admin.php:2444
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:262
+msgid "Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:538
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:263
+msgid ""
+"The Select option type is used to list anything you want that would be "
+"chosen from a select list."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:552
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1234
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1277
+msgid "-- Choose One --"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:574
+#: gameplan/option-tree/includes/ot-functions-admin.php:2445
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:265
+msgid "Sidebar Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:575
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:266
+#, php-format
+msgid ""
+"This option type makes it possible for users to select a WordPress "
+"registered sidebar to use on a specific area. By using the two provided "
+"filters, %s, and %s we can be selective about which sidebars are available "
+"on a specific content area."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:575
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:267
+#, php-format
+msgid ""
+"For example, if we create a WordPress theme that provides the ability to "
+"change the Blog Sidebar and we don't want to have the footer sidebars "
+"available on this area, we can unset those sidebars either manually or by "
+"using a regular expression if we have a common name like %s."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:589
+#: gameplan/option-tree/includes/ot-functions-admin.php:2447
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:272
+msgid "Social Links"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:590
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:273
+#, php-format
+msgid ""
+"The Social Links option type utilizes a drag & drop interface to create a "
+"list of social links. There are a few filters that make extending this "
+"option type easy. You can set the %s filter to %s and turn off loading "
+"default values. Use the %s filter to change the default values that are "
+"loaded. To filter the settings array use the %s filter."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:604
+#: gameplan/option-tree/includes/ot-functions-admin.php:2448
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:275
+msgid "Spacing"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:605
+msgid ""
+"The Spacing option type is used to set spacing values such as padding or "
+"margin in the form of top, right, bottom, and left."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:619
+#: gameplan/option-tree/includes/ot-functions-admin.php:2450
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:281
+msgid "Tag Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:620
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:282
+msgid ""
+"The Tag Checkbox option type displays a list of tag IDs. It allows the user "
+"to check multiple tag IDs and will return that value as an array for use in "
+"a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:634
+#: gameplan/option-tree/includes/ot-functions-admin.php:2451
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:284
+msgid "Tag Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:635
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:285
+msgid ""
+"The Tag Select option type displays a list of tag IDs. It allows the user to "
+"select only one tag ID and will return that value for use in a custom "
+"function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:649
+#: gameplan/option-tree/includes/ot-functions-admin.php:2452
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:287
+msgid "Taxonomy Checkbox"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:650
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:288
+msgid ""
+"The Taxonomy Checkbox option type displays a list of taxonomy IDs. It allows "
+"the user to check multiple taxonomy IDs and will return that value as an "
+"array for use in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:664
+#: gameplan/option-tree/includes/ot-functions-admin.php:2453
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:290
+msgid "Taxonomy Select"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:665
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:291
+msgid ""
+"The Taxonomy Select option type displays a list of taxonomy IDs. It allows "
+"the user to select only one taxonomy ID and will return that value for use "
+"in a custom function or loop."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:680
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:294
+msgid ""
+"The Text option type is used to save string values. For example, any "
+"optional or required text that is of reasonably short character length."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:695
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:297
+#, php-format
+msgid ""
+"The Textarea option type is a large string value used for custom code or "
+"text in the theme and has a WYSIWYG editor that can be filtered to change "
+"the how it is displayed. For example, you can filter %s, %s, %s, and %s."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:709
+#: gameplan/option-tree/includes/ot-functions-admin.php:2456
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:355
+msgid "Textarea Simple"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:710
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:356
+msgid ""
+"The Textarea Simple option type is a large string value used for custom code "
+"or text in the theme. The Textarea Simple does not have a WYSIWYG editor."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:724
+#: gameplan/option-tree/includes/ot-functions-admin.php:2457
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:371
+msgid "Textblock"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:725
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:372
+msgid ""
+"The Textblock option type is used only on the Theme Option page. It will "
+"allow you to create & display HTML, but has no title above the text block. "
+"You can then use the Textblock to add a more detailed set of instruction on "
+"how the options are used in your theme. You would never use this in your "
+"themes template files as it does not save a value."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:739
+#: gameplan/option-tree/includes/ot-functions-admin.php:2458
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:374
+msgid "Textblock Titled"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:740
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:375
+msgid ""
+"The Textblock Titled option type is used only on the Theme Option page. It "
+"will allow you to create & display HTML, and has a title above the text "
+"block. You can then use the Textblock Titled to add a more detailed set of "
+"instruction on how the options are used in your theme. You would never use "
+"this in your themes template files as it does not save a value."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:754
+#: gameplan/option-tree/includes/ot-functions-admin.php:2459
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:377
+msgid "Typography"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:755
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:378
+#, php-format
+msgid ""
+"The Typography option type is for adding typography styles to your theme "
+"either dynamically via the CSS option type above or manually with %s. The "
+"Typography option type has filters that allow you to remove fields or change "
+"the defaults. For example, you can filter %s to remove unwanted fields from "
+"all Background options or an individual one. You can also filter %s. These "
+"filters allow you to fine tune the select lists for your specific needs."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:769
+#: gameplan/option-tree/includes/ot-functions-admin.php:2460
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:397
+msgid "Upload"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:770
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:398
+#, php-format
+msgid ""
+"The Upload option type is used to upload any WordPress supported media. "
+"After uploading, users are required to press the \"%s\" button in order to "
+"populate the input with the URI of that media. There is one caveat of this "
+"feature. If you import the theme options and have uploaded media on one site "
+"the old URI will not reflect the URI of your new site. You will have to re-"
+"upload or %s any media to your new server and change the URIs if necessary."
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:784
+msgid "Upload Attachment ID"
+msgstr ""
+
+#: gameplan/option-tree/assets/theme-mode/demo-theme-options.php:785
+#, php-format
+msgid ""
+"The Upload option type can also be saved as an attachment ID by adding %s to "
+"the class attribute."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:84
+#: gameplan/option-tree/includes/ot-cleanup-api.php:101
+#: gameplan/option-tree/includes/ot-cleanup-api.php:130
+msgid "OptionTree Cleanup"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:101
+#, php-format
+msgid ""
+"OptionTree has outdated data that should be removed. Please go to %s for "
+"more information."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:136
+msgid "Multiple Media Posts"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:138
+#, php-format
+msgid ""
+"There are currently %s OptionTree media posts in your database. At some "
+"point in the past, a version of OptionTree added multiple %s media post "
+"objects cluttering up your %s table. There is no associated risk or harm "
+"that these posts have caused other than to add size to your overall "
+"database. Thankfully, there is a way to remove all these orphaned media "
+"posts and get your database cleaned up."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:140
+#, php-format
+msgid ""
+"By clicking the button below, OptionTree will delete %s records and "
+"consolidate them into one single OptionTree media post for uploading "
+"attachments to. Additionally, the attachments will have their parent ID "
+"updated to the correct media post."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:142
+msgid ""
+"This could take a while to fully process depending on how many records you "
+"have in your database, so please be patient and wait for the script to "
+"finish."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:144
+#, php-format
+msgid ""
+"%s Your server is running in safe mode. Which means this page will "
+"automatically reload after deleting %s posts, you can filter this number "
+"using %s if your server is having trouble processing that many at one time."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:146
+msgid "Consolidate Posts"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:174
+msgid "Reloading..."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:210
+msgid "Clean up script has completed, the page will now reload..."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:230
+msgid "Outdated Table"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:232
+#, php-format
+msgid ""
+"If you have upgraded from an old 1.x version of OptionTree at some point, "
+"you have an extra %s table in your database that can be removed. It's not "
+"hurting anything, but does not need to be there. If you want to remove it. "
+"Click the button below."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:234
+msgid "Drop Table"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:238
+#, php-format
+msgid "Deleting the outdated and unused %s table..."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:244
+#, php-format
+msgid "The %s table has been successfully deleted. The page will now reload..."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-cleanup-api.php:256
+#, php-format
+msgid "Something went wrong. The %s table was not deleted."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:50
+#: gameplan/option-tree/includes/ot-functions-admin.php:51
+#: gameplan/option-tree/includes/ot-functions-admin.php:169
+#: gameplan/option-tree/includes/ot-functions-admin.php:193
+#: gameplan/option-tree/includes/ot-functions.php:363
+#: gameplan/option-tree/includes/ot-ui-admin.php:80
+#: gameplan/option-tree/includes/ot-ui-admin.php:104
+#: gameplan/option-tree/includes/ot-ui-theme-options.php:34
+#: gameplan/option-tree/includes/ot-ui-theme-options.php:35
+msgid "Theme Options"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:56
+#: gameplan/option-tree/includes/ot-functions-admin.php:126
+#: gameplan/option-tree/includes/ot-functions-admin.php:220
+#: gameplan/option-tree/includes/ot-ui-admin.php:36
+#: gameplan/option-tree/includes/ot-ui-admin.php:131
+#: gameplan/option-tree/includes/ot-ui-theme-options.php:40
+msgid "Theme Options updated."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:57
+#: gameplan/option-tree/includes/ot-functions-admin.php:127
+#: gameplan/option-tree/includes/ot-functions-admin.php:221
+#: gameplan/option-tree/includes/ot-ui-admin.php:37
+#: gameplan/option-tree/includes/ot-ui-admin.php:132
+#: gameplan/option-tree/includes/ot-ui-theme-options.php:41
+msgid "Theme Options reset."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:58
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:94
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:133
+#: gameplan/option-tree/includes/ot-ui-theme-options.php:42
+msgid "Save Changes"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:97
+msgid ""
+"The Theme Options UI Builder is being overridden by a custom file in your "
+"theme. Any changes you make via the UI Builder will not be saved."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:109
+#: gameplan/option-tree/includes/ot-functions-admin.php:110
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:821
+#: gameplan/option-tree/includes/ot-ui-admin.php:19
+#: gameplan/option-tree/includes/ot-ui-admin.php:20
+msgid "OptionTree"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:120
+#: gameplan/option-tree/includes/ot-functions-admin.php:121
+#: gameplan/option-tree/includes/ot-functions-admin.php:163
+#: gameplan/option-tree/includes/ot-functions-admin.php:187
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:49
+#: gameplan/option-tree/includes/ot-ui-admin.php:30
+#: gameplan/option-tree/includes/ot-ui-admin.php:31
+#: gameplan/option-tree/includes/ot-ui-admin.php:74
+#: gameplan/option-tree/includes/ot-ui-admin.php:98
+msgid "Settings"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:128
+#: gameplan/option-tree/includes/ot-functions-admin.php:222
+#: gameplan/option-tree/includes/ot-ui-admin.php:38
+#: gameplan/option-tree/includes/ot-ui-admin.php:133
+msgid "Save Settings"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:133
+#: gameplan/option-tree/includes/ot-ui-admin.php:44
+msgid "Theme Options UI"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:137
+#: gameplan/option-tree/includes/ot-ui-admin.php:48
+msgid "Import"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:141
+#: gameplan/option-tree/includes/ot-ui-admin.php:52
+msgid "Export"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:145
+#: gameplan/option-tree/includes/ot-functions-admin.php:175
+#: gameplan/option-tree/includes/ot-functions-admin.php:199
+#: gameplan/option-tree/includes/ot-ui-admin.php:56
+#: gameplan/option-tree/includes/ot-ui-admin.php:86
+#: gameplan/option-tree/includes/ot-ui-admin.php:110
+msgid "Layouts"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:151
+#: gameplan/option-tree/includes/ot-ui-admin.php:62
+msgid "Theme Options UI Builder"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:157
+#: gameplan/option-tree/includes/ot-ui-admin.php:68
+msgid "Settings XML"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:181
+#: gameplan/option-tree/includes/ot-ui-admin.php:92
+msgid "Settings PHP File"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:205
+msgid "Layout Management"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:214
+#: gameplan/option-tree/includes/ot-functions-admin.php:215
+#: gameplan/option-tree/includes/ot-ui-admin.php:125
+#: gameplan/option-tree/includes/ot-ui-admin.php:126
+msgid "Documentation"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:227
+#: gameplan/option-tree/includes/ot-ui-admin.php:139
+msgid "Creating Options"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:235
+#: gameplan/option-tree/includes/ot-ui-admin.php:147
+msgid "Function References"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:239
+#: gameplan/option-tree/includes/ot-functions-admin.php:281
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:366
+#: gameplan/option-tree/includes/ot-ui-admin.php:151
+#: gameplan/option-tree/includes/ot-ui-admin.php:193
+msgid "Theme Mode"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:243
+#: gameplan/option-tree/includes/ot-functions-admin.php:287
+#: gameplan/option-tree/includes/ot-ui-admin.php:155
+#: gameplan/option-tree/includes/ot-ui-admin.php:199
+msgid "Meta Boxes"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:247
+#: gameplan/option-tree/includes/ot-ui-admin.php:159
+msgid "Code Examples"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:251
+#: gameplan/option-tree/includes/ot-ui-admin.php:163
+msgid "Layouts Overview"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:257
+#: gameplan/option-tree/includes/ot-ui-admin.php:169
+msgid "Overview of available Theme Option fields."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:263
+#: gameplan/option-tree/includes/ot-ui-admin.php:175
+msgid "Option types in alphabetical order & hooks to filter them."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:269
+#: gameplan/option-tree/includes/ot-ui-admin.php:181
+msgid "Function Reference:ot_get_option()"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:275
+#: gameplan/option-tree/includes/ot-ui-admin.php:187
+msgid "Function Reference:get_option_tree()"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:293
+#: gameplan/option-tree/includes/ot-ui-admin.php:205
+msgid "Code examples for front-end development."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:299
+#: gameplan/option-tree/includes/ot-ui-admin.php:211
+msgid "What's a layout anyhow?"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:502
+#: gameplan/option-tree/includes/ot-functions-admin.php:604
+#: gameplan/option-tree/includes/ot-functions-admin.php:673
+#, php-format
+msgid "The %s input field for %s only allows numeric values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:563
+#, php-format
+msgid "The %s Colorpicker only allows valid hexadecimal or rgba values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:847
+#: gameplan/option-tree/includes/ot-functions-option-types.php:257
+#: gameplan/option-tree/includes/ot-functions-option-types.php:3218
+msgid "Remove Media"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:848
+msgid "Are you sure you want to reset back to the defaults?"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:849
+msgid "You can't remove this! But you can edit the values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:850
+msgid "Are you sure you want to remove this?"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:851
+msgid "Are you sure you want to activate this layout?"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:852
+msgid "Sorry, you can't have settings three levels deep."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:853
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1159
+msgid "Delete Gallery"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:854
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1160
+msgid "Edit Gallery"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:855
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1167
+msgid "Create Gallery"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:856
+msgid "Are you sure you want to delete this Gallery?"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:857
+msgid "Today"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:858
+msgid "Now"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:859
+msgid "Close"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:860
+msgid "Featured Image"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:861
+#: gameplan/option-tree/includes/ot-functions-admin.php:3250
+#: gameplan/option-tree/includes/ot-functions-admin.php:3311
+#: gameplan-shortcodes/shortcodes/image-frame.php:52
+msgid "Image"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:929
+msgid "Option Tree"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:1067
+msgid "General"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:1073
+msgid "Sample Text Field Label"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:1074
+msgid "Description for the sample text field."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2316
+msgid "Settings updated."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2320
+msgid "Settings could not be saved."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2328
+msgid "Settings Imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2332
+msgid "Settings could not be imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2339
+msgid "Data Imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2343
+msgid "Data could not be imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2351
+msgid "Layouts Imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2355
+msgid "Layouts could not be imported."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2363
+msgid "Layouts Updated."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2367
+msgid "Layouts could not be updated."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2371
+msgid "Layouts have been deleted."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2377
+msgid "Layout activated."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2446
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:269
+msgid "Slider"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:2449
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:278
+#: gameplan-shortcodes/shortcodes/pricingtables.php:201
+msgid "Tab"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3195
+msgid "Left Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3200
+msgid "Right Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3205
+msgid "Full Width (no sidebar)"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3210
+msgid "Dual Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3215
+msgid "Left Dual Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3220
+msgid "Right Dual Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3261
+#: gameplan/option-tree/includes/ot-functions-admin.php:3317
+#: gameplan/option-tree/includes/ot-functions-admin.php:5504
+#: gameplan-shortcodes/shortcodes/headline.php:139
+msgid "Link"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3272
+#: gameplan/option-tree/includes/ot-functions-admin.php:3323
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:43
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:428
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:478
+msgid "Description"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3387
+#: gameplan-shortcodes/shortcodes/portfolio.php:48
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:81
+#: gameplan-shortcodes/shortcodes/testimonial.php:107
+msgid "Name"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3388
+msgid "Enter the name of the social website."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3396
+msgid "Enter the text shown in the title attribute of the link."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3402
+#, php-format
+msgid ""
+"Enter a link to the profile or page on the social website. Remember to add "
+"the %s part to the front of the link."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:3754
+#, php-format
+msgid "Unable to write to file %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4024
+msgid "edit"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4027
+#: gameplan/option-tree/includes/ot-functions-admin.php:4028
+#: gameplan/option-tree/includes/ot-functions-admin.php:4096
+#: gameplan/option-tree/includes/ot-functions-admin.php:4097
+#: gameplan/option-tree/includes/ot-functions-admin.php:4259
+#: gameplan/option-tree/includes/ot-functions-admin.php:4260
+#: gameplan/option-tree/includes/ot-functions-admin.php:4325
+#: gameplan/option-tree/includes/ot-functions-admin.php:4326
+#: gameplan/option-tree/includes/ot-functions-admin.php:4384
+#: gameplan/option-tree/includes/ot-functions-admin.php:4385
+#: gameplan/option-tree/includes/ot-functions-admin.php:4453
+#: gameplan/option-tree/includes/ot-functions-admin.php:4454
+#: gameplan/option-tree/includes/ot-functions-admin.php:4606
+#: gameplan/option-tree/includes/ot-functions-admin.php:4607
+msgid "Delete"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4034
+msgid ""
+"<strong>Section Title</strong>: Displayed as a menu item on the Theme "
+"Options page."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4042
+msgid ""
+"<strong>Section ID</strong>: A unique lower case alphanumeric string, "
+"underscores allowed."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4103
+msgid ""
+"<strong>Label</strong>: Displayed as the label of a form element on the "
+"Theme Options page."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4111
+#: gameplan/option-tree/includes/ot-functions-admin.php:4340
+msgid ""
+"<strong>ID</strong>: A unique lower case alphanumeric string, underscores "
+"allowed."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4119
+msgid ""
+"<strong>Type</strong>: Choose one of the available option types from the "
+"dropdown."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4130
+msgid ""
+"<strong>Description</strong>: Enter a detailed description for the users to "
+"read on the Theme Options page, HTML is allowed. This is also where you "
+"enter content for both the Textblock & Textblock Titled option types."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4138
+msgid ""
+"<strong>Choices</strong>: This will only affect the following option types: "
+"Checkbox, Radio, Select & Select Image."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4143
+msgid "Add Choice"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4149
+msgid ""
+"<strong>Settings</strong>: This will only affect the List Item option type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4154
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:93
+msgid "Add Setting"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4160
+msgid ""
+"<strong>Standard</strong>: Setting the standard value for your option only "
+"works for some option types. Read the <code>OptionTree->Documentation</code> "
+"for more information on which ones."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4168
+msgid ""
+"<strong>Rows</strong>: Enter a numeric value for the number of rows in your "
+"textarea. This will only affect the following option types: CSS, Textarea, & "
+"Textarea Simple."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4176
+msgid ""
+"<strong>Post Type</strong>: Add a comma separated list of post type like "
+"'post,page'. This will only affect the following option types: Custom Post "
+"Type Checkbox, & Custom Post Type Select."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4184
+msgid ""
+"<strong>Taxonomy</strong>: Add a comma separated list of any registered "
+"taxonomy like 'category,post_tag'. This will only affect the following "
+"option types: Taxonomy Checkbox, & Taxonomy Select."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4192
+msgid ""
+"<strong>Min, Max, & Step</strong>: Add a comma separated list of options in "
+"the following format <code>0,100,1</code> (slide from <code>0-100</code> in "
+"intervals of <code>1</code>). The three values represent the minimum, "
+"maximum, and step options and will only affect the Numeric Slider option "
+"type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4200
+msgid "<strong>CSS Class</strong>: Add and optional class to this option type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4208
+#, php-format
+msgid ""
+"<strong>Condition</strong>: Add a comma separated list (no spaces) of "
+"conditions in which the field will be visible, leave this setting empty to "
+"always show the field. In these examples, <code>value</code> is a "
+"placeholder for your condition, which can be in the form of %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4216
+msgid ""
+"<strong>Operator</strong>: Choose the logical operator to compute the result "
+"of the conditions."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4220
+msgid "or"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4266
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:29
+msgid "Label"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4276
+msgid "Value"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4286
+msgid "Image Source (Radio Image only)"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4332
+msgid ""
+"<strong>Title</strong>: Displayed as a contextual help menu item on the "
+"Theme Options page."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4348
+msgid ""
+"<strong>Content</strong>: Enter the HTML content about this contextual help "
+"item displayed on the Theme Option page for end users to read."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4379
+msgid "Layout"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4418
+#: gameplan/option-tree/includes/ot-meta-box-api.php:231
+#: gameplan/option-tree/includes/ot-settings-api.php:626
+#: gameplan-shortcodes/shortcodes/boxedicon.php:201
+#: gameplan-shortcodes/shortcodes/headline.php:151
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:210
+#: gameplan-shortcodes/shortcodes/post_carousel.php:174
+#: gameplan-shortcodes/shortcodes/pricingtables.php:142
+#: gameplan-shortcodes/shortcodes/pricingtables.php:211
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:114
+#: gameplan-shortcodes/shortcodes/recent-post.php:186
+#: gameplan-shortcodes/shortcodes/timeline.php:105
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:240
+msgid "Title"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:4758
+msgid "New Layout"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5513
+msgid "Link URL"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5520
+msgid "Link Title"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5550
+msgid "Quote"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5559
+msgid "Source Name (ex. author, singer, actor)"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5566
+msgid "Source URL"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5573
+msgid "Source Title (ex. book, song, movie)"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5580
+msgid "Source Date"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5610
+msgid "Video"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5619
+#, php-format
+msgid ""
+"Embed video from services like Youtube, Vimeo, or Hulu. You can find a list "
+"of supported oEmbed sites in the %1$s. Alternatively, you could use the "
+"built-in %2$s shortcode."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5619
+#: gameplan/option-tree/includes/ot-functions-admin.php:5658
+msgid "Wordpress Codex"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5649
+msgid "Audio"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-admin.php:5658
+#, php-format
+msgid ""
+"Embed audio from services like SoundCloud and Rdio. You can find a list of "
+"supported oEmbed sites in the %1$s. Alternatively, you could use the built-"
+"in %2$s shortcode."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:30
+msgid ""
+"The Label field should be a short but descriptive block of text 100 "
+"characters or less with no HTML."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:33
+msgid ""
+"The ID field is a unique alphanumeric key used to differentiate each theme "
+"option (underscores are acceptable). Also, the plugin will change all text "
+"you write in this field to lowercase and replace spaces and special "
+"characters with an underscore automatically."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:36
+msgid ""
+"You are required to choose one of the supported option types when creating a "
+"new option. Here is a list of the available option types. For more "
+"information about each type click the <code>Option Types</code> tab to the "
+"left."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:44
+msgid ""
+"Enter a detailed description for the users to read on the Theme Options "
+"page, HTML is allowed. This is also where you enter content for both the "
+"Textblock & Textblock Titled option types."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:46
+msgid "Choices"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:47
+msgid ""
+"Click the \"Add Choice\" button to add an item to the choices array. This "
+"will only affect the following option types: Checkbox, Radio, Select & "
+"Select Image."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:50
+msgid ""
+"Click the \"Add Setting\" button found inside a newly created setting to add "
+"an item to the settings array. This will only affect the List Item type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:52
+msgid "Standard"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:53
+msgid ""
+"Setting the standard value for your option only works for some option types. "
+"Those types are one that have a single string value saved to them and not an "
+"array of values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:55
+msgid "Rows"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:56
+msgid ""
+"Enter a numeric value for the number of rows in your textarea. This will "
+"only affect the following option types: CSS, Textarea, & Textarea Simple."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:58
+msgid "Post Type"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:59
+msgid ""
+"Add a comma separated list of post type like <code>post,page</code>. This "
+"will only affect the following option types: Custom Post Type Checkbox, & "
+"Custom Post Type Select. Below are the default post types available with "
+"WordPress and that are also compatible with OptionTree. You can also add "
+"your own custom <code>post_type</code>. At this time <code>any</code> does "
+"not seem to return results properly and is something I plan on looking into."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:67
+msgid "Taxonomy"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:68
+msgid ""
+"Add a comma separated list of any registered taxonomy like <code>category,"
+"post_tag</code>. This will only affect the following option types: Taxonomy "
+"Checkbox, & Taxonomy Select."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:70
+msgid "Min, Max, & Step"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:71
+msgid ""
+"Add a comma separated list of options in the following format <code>0,100,1</"
+"code> (slide from <code>0-100</code> in intervals of <code>1</code>). The "
+"three values represent the minimum, maximum, and step options and will only "
+"affect the Numeric Slider option type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:73
+msgid "CSS Class"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:74
+msgid "Add and optional class to any option type."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:76
+msgid "Condition"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:77
+#, php-format
+msgid ""
+"Add a comma separated list (no spaces) of conditions in which the field will "
+"be visible, leave this setting empty to always show the field. In these "
+"examples, %s is a placeholder for your condition, which can be in the form "
+"of %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:79
+msgid "Operator"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:80
+#, php-format
+msgid ""
+"Choose the logical operator to compute the result of the conditions. Your "
+"options are %s and %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:114
+#, php-format
+msgid ""
+"The Border option type is used to set width, unit, style, and color values. "
+"The text input excepts a numerical value and the unit select lets you choose "
+"the unit of measurement to add to that value. Currently the default units "
+"are %s, %s, %s, and %s. However, you can change them with the %s filter. The "
+"style select lets you choose the border style. The default styles are %s, "
+"%s, %s, %s, %s, %s, %s, and %s. However, you can change them with the %s "
+"filter. The colorpicker saves a hexadecimal color code."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:132
+#, php-format
+msgid ""
+"The Colorpicker Opacity option type saves a hexadecimal color code with an "
+"opacity value from %s to %s in increments of %s. Though the value is saved "
+"as hexadecimal, if used within the CSS option type the color and opacity "
+"values will be converted into a valid RGBA CSS value."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:139
+msgid "Input"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:145
+msgid "Output"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:166
+#, php-format
+msgid ""
+"The Dimension option type is used to set width and height values. The text "
+"inputs except numerical values and the select lets you choose the unit of "
+"measurement to add to that value. Currently the default units are %s, %s, "
+"%s, and %s. However, you can change them with the %s filter."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:181
+msgid ""
+"The List Item option type replaced the Slider option type and allows for a "
+"great deal of customization. You can add settings to the List Item and those "
+"settings will be displayed to the user when they add a new List Item. "
+"Typical use is for creating sliding content or blocks of code for custom "
+"layouts."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:186
+#, php-format
+msgid ""
+"Example filter to add new units to the Measurement option type. Added to %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:199
+msgid ""
+"Example filter to completely change the units in the Measurement option "
+"type. Added to <code>functions.php</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:238
+msgid ""
+"This example executes the <code>ot_radio_images</code> filter on layout "
+"images attached to the <code>my_radio_images</code> field. Added to "
+"<code>functions.php</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:270
+msgid ""
+"The Slider option type is technically deprecated. Use the List Item option "
+"type instead, as it's infinitely more customizable. Typical use is for "
+"creating sliding image content."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:276
+#, php-format
+msgid ""
+"The Spacing option type is used to set spacing values such as padding or "
+"margin in the form of top, right, bottom, and left. The text inputs except "
+"numerical values and the select lets you choose the unit of measurement to "
+"add to that value. Currently the default units are %s, %s, %s, and %s. "
+"However, you can change them with the %s filter."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:279
+msgid ""
+"The Tab option type will break a section or metabox into tabbed content."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:299
+msgid ""
+"Example filters to alter the Textarea option type. Added to <code>functions."
+"php</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:301
+msgid ""
+"This example keeps WordPress from executing the <code>wpautop</code> filter "
+"on the line breaks. The default is <code>true</code> which means it wraps "
+"line breaks with an HTML <code>p</code> tag."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:314
+msgid ""
+"This example keeps WordPress from executing the <code>media_buttons</code> "
+"filter on the textarea WYSIWYG. The default is <code>true</code> which means "
+"show the buttons."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:327
+msgid ""
+"This example keeps WordPress from executing the <code>tinymce</code> filter "
+"on the textarea WYSIWYG. The default is <code>true</code> which means show "
+"the tinymce."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:340
+msgid ""
+"This example alters the <code>quicktags</code> filter on the textarea "
+"WYSIWYG. The default is <code>array( 'buttons' => 'strong,em,link,block,del,"
+"ins,img,ul,ol,li,code,spell,close' )</code> which means show those "
+"quicktags. It also means you can filter in your own custom quicktags."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:358
+#, php-format
+msgid ""
+"This example tells WordPress to execute the %s filter on the line breaks. "
+"The default is %s which means it does not wraps line breaks with an HTML %s "
+"tag. Added to %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:380
+msgid ""
+"This example would filter <code>ot_recognized_font_families</code> to build "
+"your own font stack. Added to <code>functions.php</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:430
+msgid ""
+"This function returns a value from the \"option_tree\" array of saved values "
+"or the default value supplied. The returned value would be mixed. Meaning it "
+"could be a string, integer, boolean, or array."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:432
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:482
+msgid "Usage"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:436
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:486
+msgid "Parameters"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:440
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:444
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:490
+msgid "string"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:440
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:490
+msgid "required"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:440
+msgid "Enter the options unique identifier."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:440
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:490
+msgid "Default:"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:440
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:444
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:490
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:494
+#: gameplan-shortcodes/shortcodes/image-frame.php:82
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:205
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:235
+msgid "None"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:444
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:494
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:498
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:502
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:506
+msgid "optional"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:444
+msgid ""
+"Enter a default return value. This is just incase the request returns null."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:474
+msgid ""
+"This function has been deprecated. That means it has been replaced by a new "
+"function or is no longer supported, and may be removed from future versions. "
+"All code that uses this function should be converted to use its replacement."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:476
+msgid "Use"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:476
+msgid "instead"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:480
+msgid ""
+"This function returns, or echos if asked, a value from the \"option_tree\" "
+"array of saved values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:490
+msgid "Enter a unique Option Key to get a returned value or array."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:494
+msgid "array"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:494
+msgid "Used to cut down on database queries in template files."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:498
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:502
+msgid "boolean"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:498
+msgid "Echo the output."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:502
+msgid "Used to indicate the $item_id is an array of values."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:506
+msgid "integer"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:506
+msgid ""
+"Numeric offset key for the $item_id array, -1 will return all values (an "
+"array starts at 0)."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:534
+msgid ""
+"If you're using the plugin version of OptionTree it is highly recommended to "
+"include a <code>function_exists</code> check in your code, as described in "
+"the examples below. If you've integrated OptionTree directly into your "
+"themes root directory, you will <strong>not</strong> need to wrap your code "
+"with <code>function_exists</code>, as you're guaranteed to have the "
+"<code>ot_get_option()</code> function available."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:536
+msgid "String Examples"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:538
+msgid "Returns the value of <code>test_input</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:544
+msgid ""
+"Returns the value of <code>test_input</code>, but also has a default value "
+"if it returns empty."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:550
+msgid "Array Examples"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:552
+msgid ""
+"Assigns the value of <code>navigation_ids</code> to the variable <code>$ids</"
+"code>. It then echos an unordered list of links (navigation) using "
+"<code>wp_list_pages()</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:572
+msgid ""
+"The next two examples demonstrate how to use the <strong>Measurement</"
+"strong> option type. The Measurement option type is an array with two key/"
+"value pairs. The first is the value of measurement and the second is the "
+"unit of measurement."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:598
+msgid "This example displays a very basic slider loop."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:643
+msgid "It's Super Simple"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:645
+msgid ""
+"Layouts make your theme awesome! With theme options data that you can save/"
+"import/export you can package themes with different color variations, or "
+"make it easy to do A/B testing on text and so much more. Basically, you save "
+"a snapshot of your data as a layout."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:647
+msgid ""
+"Once you have created all your different layouts, or theme variations, you "
+"can save them to a separate text file for repackaging with your theme. "
+"Alternatively, you could just make different variations for yourself and "
+"change your theme with the click of a button, all without deleting your "
+"previous options data."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:649
+msgid ""
+" Adding a layout is ridiculously easy, follow these steps and you'll be on "
+"your way to having a WordPress super theme."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:651
+msgid "For Developers"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:653
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:682
+msgid "Creating a Layout"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:655
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:662
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:668
+msgid "Go to the <code>OptionTre->Settings->Layouts</code> tab."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:656
+msgid ""
+"Enter a name for your layout in the text field and hit \"Save Layouts\", "
+"you've created your first layout."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:657
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:686
+msgid "Adding a new layout is as easy as repeating the steps above."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:660
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:689
+msgid "Activating a Layout"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:663
+msgid "Click on the activate layout button in the actions list."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:666
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:695
+msgid "Deleting a Layout"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:669
+msgid "Click on the delete layout button in the actions list."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:672
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:700
+msgid "Edit Layout Data"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:674
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:684
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:691
+msgid "Go to the <code>Appearance->Theme Options</code> page."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:675
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:703
+msgid ""
+"Modify and save your theme options and the layout will be updated "
+"automatically."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:676
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:704
+msgid ""
+"Saving theme options data will update the currently active layout, so before "
+"you start saving make sure you want to modify the current layout."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:677
+msgid ""
+"If you want to edit a new layout, first create it then save your theme "
+"options."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:680
+msgid "End-Users Mode"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:685
+msgid ""
+"Enter a name for your layout in the text field and hit \"New Layout\", "
+"you've created your first layout."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:692
+msgid ""
+"Choose a layout from the select list and click the \"Activate Layout\" "
+"button."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:697
+msgid "End-Users mode does not allow deleting layouts."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:702
+msgid "Go to the <code>Appearance->Theme Options</code> tab."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:733
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:815
+msgid "How-to-guide"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:735
+msgid ""
+"There are a few simple steps you need to take in order to use OptionTree's "
+"built in Meta Box API. In the code below I'll show you a basic demo of how "
+"to create your very own custom meta box using any number of the option types "
+"you have at your disposal. If you would like to see some demo code, there is "
+"a directory named <code>theme-mode</code> inside the <code>assets</code> "
+"directory that contains a file named <code>demo-meta-boxes.php</code> you "
+"can reference."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:737
+msgid ""
+"It's important to note that Meta Boxes do not support WYSIWYG editors at "
+"this time and if you set one of your options to Textarea it will "
+"automatically revert to a Textarea Simple until a valid solution is found. "
+"WordPress released this statement regarding the wp_editor() function:"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:739
+msgid ""
+"Once instantiated, the WYSIWYG editor cannot be moved around in the DOM. "
+"What this means in practical terms, is that you cannot put it in meta-boxes "
+"that can be dragged and placed elsewhere on the page."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:741
+msgid "Create and include your custom meta boxes file."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:743
+msgid ""
+"Create a file and name it anything you want, maybe <code>meta-boxes.php</"
+"code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:744
+msgid ""
+"As well, you'll probably want to create a directory named <code>includes</"
+"code> to put your <code>meta-boxes.php</code> into which will help keep you "
+"file structure nice and tidy."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:745
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:845
+msgid "Add the following code to your <code>functions.php</code>."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:755
+msgid ""
+"Add a variation of the following code to your <code>meta-boxes.php</code>. "
+"You'll obviously need to fill it in with all your custom array values. It's "
+"important to note here that we use the <code>admin_init</code> filter "
+"because if you were to call the <code>ot_register_meta_box</code> function "
+"before OptionTree was loaded the sky would fall on your head."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:817
+msgid ""
+"There are a few simple steps you need to take in order to use OptionTree as "
+"a theme included module. In the code below I'll show you a basic demo of how "
+"to include the entire plugin as a module, which will allow you to have the "
+"most up-to-date version of OptionTree without ever needing to hack the core "
+"of the plugin. If you would like to see some demo code, there is a directory "
+"named <code>theme-mode</code> inside the <code>assets</code> directory that "
+"contains a file named <code>demo-theme-options.php</code> you can reference."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:819
+msgid "Step 1: Include the plugin & turn on theme mode."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:821
+#, php-format
+msgid "Download the latest version of %s and unarchive the %s directory."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:822
+#, php-format
+msgid ""
+"Put the %s directory in the root of your theme. For example, the server path "
+"would be %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:823
+#, php-format
+msgid "Add the following code to the beginning of your %s."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:837
+#, php-format
+msgid ""
+"For a list of all the OptionTree UI display filters refer to the %s file "
+"found in the %s directory of this plugin. This file is the starting point "
+"for developing themes with Theme Mode."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:839
+msgid ""
+"You now have OptionTree built into your theme and anytime an update is "
+"available replace the old version with the new one."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:841
+msgid "Step 2: Create Theme Options without using the UI Builder."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:843
+msgid ""
+"Create a file and name it anything you want, maybe <code>theme-options.php</"
+"code>, or use the built in file export to create it for you. Remember, you "
+"should always check the file for errors before including it in your theme."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:844
+msgid ""
+"As well, you'll probably want to create a directory named <code>includes</"
+"code> to put your <code>theme-options.php</code> into which will help keep "
+"you file structure nice and tidy."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:855
+msgid ""
+"Add a variation of the following code to your <code>theme-options.php</"
+"code>. You'll obviously need to fill it in with all your custom array values "
+"for contextual help (optional), sections (required), and settings (required)."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-docs-page.php:858
+msgid ""
+"The code below is a boilerplate to get your started. For a full list of the "
+"available option types click the \"Option Types\" tab above. Also a quick "
+"note, you don't need to put OptionTree in theme mode to manually create "
+"options but you will want to hide the docs and settings as each time you "
+"load the admin area the settings be written over with the code below if "
+"they've changed in any way. However, this ensures your settings do not get "
+"tampered with by the end-user."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:46
+msgid "Sorry, this function does not exist"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:134
+msgid "background-repeat"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:152
+msgid "background-attachment"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:171
+msgid "background-position"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:224
+msgid "background-size"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:238
+msgid "background-image"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:241
+#: gameplan/option-tree/includes/ot-functions-option-types.php:3202
+msgid "Add Media"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:316
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1045
+msgid "width"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:327
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1065
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1550
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2506
+msgid "unit"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:346
+msgid "style"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:439
+msgid "offset-x"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:448
+msgid "offset-y"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:457
+msgid "blur-radius"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:466
+msgid "spread-radius"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:538
+#: gameplan/option-tree/includes/ot-functions-option-types.php:592
+msgid "No Categories Found"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:587
+#: gameplan/option-tree/includes/ot-functions-option-types.php:870
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1819
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1930
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2646
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2761
+msgid "Choose One"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:818
+#: gameplan/option-tree/includes/ot-functions-option-types.php:876
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1881
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1936
+msgid "No Posts Found"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1054
+msgid "height"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1232
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1275
+msgid "Remove Google Font"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1298
+msgid "Add Google Font"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1497
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2246
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2411
+msgid "Add New"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1500
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2249
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2414
+msgid "You can re-order with drag & drop, the order will update after saving."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1670
+msgid "On"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1692
+msgid "Off"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1770
+#: gameplan/option-tree/includes/ot-functions-option-types.php:1825
+msgid "No Pages Found"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2169
+msgid "Choose Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2174
+msgid "No Sidebars"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2282
+msgid "Facebook"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2287
+msgid "Twitter"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2292
+msgid "Google+"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2297
+msgid "LinkedIn"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2302
+msgid "Pinterest"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2307
+msgid "Youtube"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2312
+msgid "Dribbble"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2317
+msgid "Github"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2322
+msgid "Forrst"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2327
+msgid "Digg"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2332
+msgid "Delicious"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2337
+msgid "Tumblr"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2342
+msgid "Skype"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2347
+msgid "SoundCloud"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2352
+msgid "Vimeo"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2357
+msgid "Flickr"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2362
+msgid "VK.com"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2468
+msgid "top"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2477
+msgid "right"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2486
+msgid "bottom"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2495
+msgid "left"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2597
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2651
+msgid "No Tags Found"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2709
+#: gameplan/option-tree/includes/ot-functions-option-types.php:2766
+msgid "No Taxonomies Found"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:35
+msgid "Warning!"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:36
+#, php-format
+msgid ""
+"Go to the %s page if you want to save data, this page is for adding settings."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:37
+#, php-format
+msgid ""
+"If you're unsure or not completely positive that you should be editing these "
+"settings, you should read the %s first."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:38
+msgid ""
+"Things could break or be improperly displayed to the end-user if you do one "
+"of the following:"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:39
+msgid ""
+"Give two sections the same ID, give two settings the same ID, give two "
+"contextual help content areas the same ID, don't create any settings, or "
+"have a section at the end of the settings list."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:40
+msgid ""
+"You can create as many settings as your project requires and use them how "
+"you see fit. When you add a setting here, it will be available on the Theme "
+"Options page for use in your theme. To separate your settings into sections, "
+"click the \"Add Section\" button, fill in the input fields, and a new "
+"navigation menu item will be created."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:41
+msgid ""
+"All of the settings can be sorted and rearranged to your liking with Drag & "
+"Drop. Don't worry about the order in which you create your settings, you can "
+"always reorder them."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:92
+msgid "Add Section"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:99
+msgid "Contextual Help"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:103
+msgid "Contextual Help Sidebar"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:103
+msgid ""
+"If you decide to add contextual help to the Theme Option page, enter the "
+"optional \"Sidebar\" HTML here. This would be an extremely useful place to "
+"add links to your themes documentation or support forum. Only after you've "
+"added some content below will this display to the user."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:132
+msgid "Add Contextual Help Content"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:168
+msgid ""
+"This import method has been deprecated. That means it has been replaced by a "
+"new method and is no longer supported, and may be removed from future "
+"versions. All themes that use this import method should be converted to use "
+"its replacement below."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:170
+#, php-format
+msgid ""
+"If you were given a Theme Options XML file with a premium or free theme, "
+"locate it on your hard drive and upload that file by clicking the upload "
+"button. A popup window will appear, upload the XML file and click \"%s\". "
+"The file URL should be in the upload input, if it is click \"Import XML\"."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:173
+msgid "Import XML"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:189
+msgid "Add XML"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:226
+msgid ""
+"To import your Settings copy and paste what appears to be a random string of "
+"alpha numeric characters into this textarea and press the \"Import Settings"
+"\" button."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:229
+msgid "Import Settings"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:271
+msgid ""
+"Only after you've imported the Settings should you try and update your Theme "
+"Options."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:273
+msgid ""
+"To import your Theme Options copy and paste what appears to be a random "
+"string of alpha numeric characters into this textarea and press the \"Import "
+"Theme Options\" button."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:276
+msgid "Import Theme Options"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:318
+msgid ""
+"Only after you've imported the Settings should you try and update your "
+"Layouts."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:320
+msgid ""
+"To import your Layouts copy and paste what appears to be a random string of "
+"alpha numeric characters into this textarea and press the \"Import Layouts\" "
+"button. Keep in mind that when you import your layouts, the active layout's "
+"saved data will write over the current data set for your Theme Options."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:323
+msgid "Import Layouts"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:366
+#, php-format
+msgid ""
+"Export your Settings into a fully functional %s file. If you want to add "
+"your own custom %s text domain to the file, enter it into the text field "
+"before exporting. For more information on how to use this file read the "
+"documentation on %s. Remember, you should always check the file for errors "
+"before including it in your theme."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:375
+msgid "Export Settings File"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:405
+msgid ""
+"Export your Settings by highlighting this text and doing a copy/paste into a "
+"blank .txt file. Then save the file for importing into another install of "
+"WordPress later. Alternatively, you could just paste it into the "
+"<code>OptionTree->Settings->Import</code> <strong>Settings</strong> textarea "
+"on another web site."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:441
+msgid ""
+"Export your Theme Options data by highlighting this text and doing a copy/"
+"paste into a blank .txt file. Then save the file for importing into another "
+"install of WordPress later. Alternatively, you could just paste it into the "
+"<code>OptionTree->Settings->Import</code> <strong>Theme Options</strong> "
+"textarea on another web site."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:477
+msgid ""
+"Export your Layouts by highlighting this text and doing a copy/paste into a "
+"blank .txt file. Then save the file for importing into another install of "
+"WordPress later. Alternatively, you could just paste it into the "
+"<code>OptionTree->Settings->Import</code> <strong>Layouts</strong> textarea "
+"on another web site."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:519
+msgid ""
+"To add a new layout enter a unique lower case alphanumeric string (dashes "
+"allowed) in the text field and click \"Save Layouts\"."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:520
+msgid ""
+"As well, you can activate, remove, and drag & drop the order; all situations "
+"require you to click \"Save Layouts\" for the changes to be applied."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:521
+msgid ""
+"When you create a new layout it will become active and any changes made to "
+"the Theme Options will be applied to it. If you switch back to a different "
+"layout immediately after creating a new layout that new layout will have a "
+"snapshot of the current Theme Options data attached to it."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:522
+msgid ""
+"Visit <code>OptionTree->Documentation->Layouts Overview</code> to see a more "
+"in-depth description of what layouts are and how to use them."
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-functions-settings-page.php:559
+msgid "Save Layouts"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-settings-api.php:377
+msgid "Reset Options"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-settings-api.php:380
+msgid ""
+"We will import sample data. Make sure you have all required plugins "
+"installed! (The process will take few minutes. Stay calm!)"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-settings-api.php:380
+msgid "Import Sample Data"
+msgstr ""
+
+#: gameplan/option-tree/includes/ot-ui-admin.php:116
+msgid "Add, Activate, & Remove Layouts"
+msgstr ""
+
+#: gameplan/sample-data/gp_importer.php:87
+msgid "Sample sidebar. Drag GP-Latest Events widget here"
+msgstr ""
+
+#: gameplan/sample-data/gp_importer.php:90
+msgid "Sample sidebar. Drag GP-Advanced Recent Post widget here"
+msgstr ""
+
+#: gameplan/sample-data/gp_importer.php:360
+msgid "Sample data imported!"
+msgstr ""
+
+#: gameplan/tribe-events/single-event.php:76
+msgid "Recurring Event"
+msgstr ""
+
+#: gameplan/tribe-events/single-event.php:80
+msgid "(See all)"
+msgstr ""
+
+#: gameplan/tribe-events/single-event.php:129
+#: gameplan/tribe-events/single-event.php:200
+msgid "Join Now"
+msgstr ""
+
+#: gameplan/tribe-events/single-event.php:156
+#: gameplan/tribe-events/single-event.php:234
+msgid "Event Navigation"
+msgstr ""
+
+#: gameplan/tribe-events/day/content.php:111
+#: gameplan/tribe-events/list/content.php:133
+#: gameplan/tribe-events/map/content.php:113
+#: gameplan-events/event_listing.php:126
+#: gameplan-tribe-addons/listing_tribe_addons.php:145
+msgid "&gt; View Details"
+msgstr ""
+
+#: gameplan/tribe-events/list/single-event.php:76
+#: gameplan/tribe-events/list/single-event_month_mob.php:84
+#: gameplan/tribe-events/list/single-event_week_allday_mob.php:102
+#: gameplan/tribe-events/list/single-event_week_hourly_mob.php:79
+msgid "Find out more"
+msgstr ""
+
+#: gameplan/tribe-events/modules/bar.php:38
+msgid "Event Views Navigation"
+msgstr ""
+
+#: gameplan/tribe-events/modules/bar.php:39
+msgid "View As"
+msgstr ""
+
+#: gameplan/tribe-events/modules/bar.php:61
+#, php-format
+msgid "Find %s"
+msgstr ""
+
+#: gameplan/tribe-events/widgets/list-widget.php:99
+msgid "Organizer:"
+msgstr ""
+
+#: gameplan/tribe-events/widgets/list-widget.php:118
+msgid "View More&hellip;"
+msgstr ""
+
+#: gameplan/tribe-events/widgets/list-widget.php:125
+msgid "There are no upcoming events at this time."
+msgstr ""
+
+#: gameplan/woocommerce/content-productshop.php:52
+msgid "Sale!"
+msgstr ""
+
+#: gameplan/woocommerce/loop-shop.php:40
+#: gameplan/woocommerce/loop/no-products-found.php:14
+msgid "No products found which match your selection."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-empty.php:14
+msgid "Your cart is currently empty."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-empty.php:18
+msgid "&larr; Return To Shop"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:20
+#, php-format
+msgid "Shipping #%d"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:22
+msgid "Shipping and Handling"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:59
+msgid "Please use the shipping calculator to see available shipping methods."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:63
+msgid ""
+"Please continue to the checkout and enter your full address to see if there "
+"are any available shipping methods."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:67
+#: gameplan/woocommerce/cart/shipping-methods.php:68
+msgid "Please fill in your details to see available shipping methods."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:76
+#: gameplan/woocommerce/cart/cart-shipping.php:82
+msgid ""
+"There are no shipping methods available. Please double check your address, "
+"or contact us if you need any help."
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart-shipping.php:97
+#: gameplan/woocommerce/cart/totals.php:46
+msgid "Shipping"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:25
+msgid "Item"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:26
+#: gameplan/woocommerce/emails/admin-new-order.php:24
+#: gameplan/woocommerce/emails/customer-completed-order.php:25
+#: gameplan/woocommerce/emails/customer-note.php:29
+#: gameplan/woocommerce/emails/customer-processing-order.php:25
+msgid "Price"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:27
+#: gameplan/woocommerce/emails/admin-new-order.php:23
+#: gameplan/woocommerce/emails/customer-completed-order.php:24
+#: gameplan/woocommerce/emails/customer-note.php:28
+#: gameplan/woocommerce/emails/customer-processing-order.php:24
+msgid "Quantity"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:28
+#: gameplan/woocommerce/order/order-details.php:22
+msgid "Total"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:66
+msgid "Available on backorder"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:100
+msgid "Remove this item"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:116
+msgid "Coupon"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:116
+#: gameplan/woocommerce/checkout/form-coupon.php:23
+msgid "Coupon code"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:116
+#: gameplan/woocommerce/checkout/form-coupon.php:27
+msgid "Apply Coupon"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:123
+msgid "Update Cart"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cart.php:123
+msgid "Proceed to Checkout"
+msgstr ""
+
+#: gameplan/woocommerce/cart/cross-sells.php:38
+msgid "You may be interested in&hellip;"
+msgstr ""
+
+#: gameplan/woocommerce/cart/mini-cart.php:51
+msgid "No products in the cart."
+msgstr ""
+
+#: gameplan/woocommerce/cart/mini-cart.php:59
+msgid "Subtotal"
+msgstr ""
+
+#: gameplan/woocommerce/cart/mini-cart.php:64
+msgid "View Cart"
+msgstr ""
+
+#: gameplan/woocommerce/cart/mini-cart.php:65
+msgid "Checkout"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:22
+msgid "Calculate Shipping  "
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:28
+msgid "Select a country&hellip;"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:45
+#: gameplan/woocommerce/cart/shipping-calculator.php:51
+#: gameplan/woocommerce/cart/shipping-calculator.php:63
+msgid "State / county"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:52
+msgid "Select a state&hellip;"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:72
+msgid "City"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:80
+msgid "Postcode / Zip"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-calculator.php:85
+msgid "Update Totals"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-methods.php:32
+msgid "Free"
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-methods.php:76
+#: gameplan/woocommerce/cart/totals.php:141
+#, php-format
+msgid ""
+"Sorry, it seems that there are no available shipping methods for your "
+"location (%s)."
+msgstr ""
+
+#: gameplan/woocommerce/cart/shipping-methods.php:76
+#: gameplan/woocommerce/cart/totals.php:141
+msgid ""
+"If you require assistance or wish to make alternate arrangements please "
+"contact us."
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:22
+msgid "Cart Totals"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:28
+msgid "Cart Subtotal"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:35
+msgid "Cart Discount"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:35
+#: gameplan/woocommerce/cart/totals.php:83
+msgid "[Remove]"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:83
+msgid "Order Discount"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:92
+msgid "Order Total"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:105
+#: gameplan/woocommerce/order/order-details.php:126
+#: gameplan/woocommerce/order/order-details.php:130
+#, php-format
+msgid "(Includes %s)"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:121
+#, php-format
+msgid " (taxes estimated for %s)"
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:123
+#, php-format
+msgid ""
+"Note: Shipping and taxes are estimated%s and will be updated during checkout "
+"based on your billing and shipping information."
+msgstr ""
+
+#: gameplan/woocommerce/cart/totals.php:133
+msgid ""
+"No shipping methods were found; please recalculate your shipping and enter "
+"your state/county and zip/postcode to ensure there are no other available "
+"methods for your location."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/cart-errors.php:16
+msgid ""
+"There are some issues with the items in your cart (shown above). Please go "
+"back to the cart page and resolve these issues before checking out."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/cart-errors.php:20
+msgid "&larr; Return To Cart"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-billing.php:15
+msgid "Billing &amp; Shipping"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-billing.php:19
+#: gameplan/woocommerce/myaccount/form-edit-address.php:14
+#: gameplan/woocommerce/myaccount/my-address.php:19
+#: gameplan/woocommerce/myaccount/my-address.php:25
+#: gameplan/woocommerce/order/order-details.php:184
+msgid "Billing Address"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-billing.php:38
+msgid "Create an account?"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-billing.php:49
+msgid ""
+"Create an account by entering the information below. If you are a returning "
+"customer please login at the top of the page."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-checkout.php:20
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-checkout.php:51
+msgid "Your order"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-coupon.php:16
+msgid "Have a coupon?"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-coupon.php:16
+msgid "Click here to enter your code"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-login.php:14
+msgid "Returning customer?"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-login.php:18
+msgid "Click here to login"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-login.php:23
+msgid ""
+"If you have shopped with us before, please enter your details in the boxes "
+"below. If you are a new customer please proceed to the Billing &amp; "
+"Shipping section."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-pay.php:19
+#: gameplan/woocommerce/emails/admin-new-order.php:22
+#: gameplan/woocommerce/emails/customer-completed-order.php:23
+#: gameplan/woocommerce/emails/customer-note.php:27
+#: gameplan/woocommerce/emails/customer-processing-order.php:23
+#: gameplan/woocommerce/order/order-details.php:21
+msgid "Product"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-pay.php:20
+msgid "Qty"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-pay.php:21
+msgid "Totals"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-pay.php:78
+msgid ""
+"Sorry, it seems that there are no available payment methods for your "
+"location. Please contact us if you require assistance or wish to make "
+"alternate arrangements."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/form-pay.php:87
+msgid "Pay for order"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:16
+msgid ""
+"Unfortunately your order cannot be processed as the originating bank/"
+"merchant has declined your transaction."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:20
+msgid "Please attempt your purchase again or go to your account page."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:22
+msgid "Please attempt your purchase again."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:26
+msgid "Pay"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:28
+msgid "My Account"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:34
+#: gameplan/woocommerce/checkout/thankyou.php:65
+msgid "Thank you. Your order has been received."
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:38
+#: gameplan/woocommerce/emails/customer-completed-order.php:18
+#: gameplan/woocommerce/emails/customer-note.php:22
+#: gameplan/woocommerce/emails/customer-processing-order.php:18
+msgid "Order:"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:42
+msgid "Date:"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:46
+msgid "Total:"
+msgstr ""
+
+#: gameplan/woocommerce/checkout/thankyou.php:51
+msgid "Payment method:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/admin-new-order.php:13
+#, php-format
+msgid "You have received an order from %s. Their order is as follows:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/admin-new-order.php:17
+#, php-format
+msgid "Order: %s"
+msgstr ""
+
+#: gameplan/woocommerce/emails/admin-new-order.php:50
+#: gameplan/woocommerce/emails/customer-completed-order.php:51
+#: gameplan/woocommerce/emails/customer-note.php:55
+#: gameplan/woocommerce/emails/customer-processing-order.php:51
+#: gameplan/woocommerce/order/order-details.php:167
+msgid "Customer details"
+msgstr ""
+
+#: gameplan/woocommerce/emails/admin-new-order.php:53
+#: gameplan/woocommerce/emails/customer-completed-order.php:54
+#: gameplan/woocommerce/emails/customer-note.php:58
+#: gameplan/woocommerce/emails/customer-processing-order.php:54
+#: gameplan/woocommerce/order/order-details.php:170
+msgid "Email:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/admin-new-order.php:56
+#: gameplan/woocommerce/emails/customer-completed-order.php:57
+#: gameplan/woocommerce/emails/customer-note.php:61
+#: gameplan/woocommerce/emails/customer-processing-order.php:57
+msgid "Tel:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-completed-order.php:14
+#, php-format
+msgid ""
+"Hi there. Your recent order on %s has been completed. Your order details are "
+"shown below for your reference:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-new-account.php:14
+#, php-format
+msgid ""
+"Thanks for creating an account on %s. Your username is <strong>%s</strong>."
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-new-account.php:16
+#, php-format
+msgid "You can access your account area here: %s."
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-note.php:14
+msgid "Hello, a note has just been added to your order:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-note.php:18
+msgid "For your reference, your order details are shown below."
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-processing-order.php:14
+msgid ""
+"Your order has been received and is now being processed. Your order details "
+"are shown below for your reference:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-reset-password.php:14
+msgid "Someone requested that the password be reset for the following account:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-reset-password.php:15
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-reset-password.php:16
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-reset-password.php:17
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: gameplan/woocommerce/emails/customer-reset-password.php:20
+msgid "Click here to reset your password"
+msgstr ""
+
+#: gameplan/woocommerce/emails/email-order-items.php:25
+msgid "Product Image"
+msgstr ""
+
+#: gameplan/woocommerce/emails/email-order-items.php:46
+#, php-format
+msgid "Download %d"
+msgstr ""
+
+#: gameplan/woocommerce/emails/email-order-items.php:48
+msgid "Download"
+msgstr ""
+
+#: gameplan/woocommerce/loop/result-count.php:28
+msgid "Showing the single result"
+msgstr ""
+
+#: gameplan/woocommerce/loop/result-count.php:30
+#, php-format
+msgid "Showing all %d results"
+msgstr ""
+
+#: gameplan/woocommerce/loop/sale-flash.php:16
+#: gameplan/woocommerce/single-product/sale-flash.php:16
+msgid "Sale"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/form-change-password.php:20
+msgid "New password"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/form-change-password.php:24
+msgid "Re-enter new password"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/form-change-password.php:29
+msgid "Save"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/form-edit-address.php:14
+#: gameplan/woocommerce/myaccount/my-address.php:20
+#: gameplan/woocommerce/order/order-details.php:199
+msgid "Shipping Address"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/form-edit-address.php:38
+msgid "Save Address"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/my-address.php:17
+msgid "My Addresses"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/my-address.php:23
+msgid "My Address"
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/my-address.php:35
+msgid "The following addresses will be used on the checkout page by default."
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/my-address.php:64
+msgid "You have not set up this type of address yet."
+msgstr ""
+
+#: gameplan/woocommerce/myaccount/my-downloads.php:18
+msgid "Available downloads"
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:17
+msgid ""
+"To track your order please enter your Order ID in the box below and press "
+"return. This was given to you on your receipt and in the confirmation email "
+"you should have received."
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:19
+msgid "Order ID"
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:19
+msgid "Found in your order confirmation email."
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:20
+msgid "Billing Email"
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:20
+msgid "Email you used during checkout."
+msgstr ""
+
+#: gameplan/woocommerce/order/form-tracking.php:23
+msgid "Track"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:16
+msgid "Order Details"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:60
+#, php-format
+msgid "Download file%s"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:148
+msgid "Refunded:"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:157
+msgid "Note:"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:171
+msgid "Telephone:"
+msgstr ""
+
+#: gameplan/woocommerce/order/order-details.php:188
+#: gameplan/woocommerce/order/order-details.php:203
+msgid "N/A"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:63
+msgid "Products tagged &ldquo;"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:91
+#: gameplan/woocommerce/shop/breadcrumb.php:190
+msgid "Search results for &ldquo;"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:148
+msgid "Error 404"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:194
+msgid "Posts tagged &ldquo;"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:199
+msgid "Author:"
+msgstr ""
+
+#: gameplan/woocommerce/shop/breadcrumb.php:204
+msgid "Page"
+msgstr ""
+
+#: gameplan/woocommerce/shop/form-login.php:20
+msgid "Username or email"
+msgstr ""
+
+#: gameplan/woocommerce/shop/form-login.php:24
+msgid "Password"
+msgstr ""
+
+#: gameplan/woocommerce/shop/form-login.php:31
+msgid "Login"
+msgstr ""
+
+#: gameplan/woocommerce/shop/form-login.php:33
+msgid "Lost Password?"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/meta.php:19
+msgid "SKU:"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/related.php:36
+msgid "Related Products"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/review.php:26
+#, php-format
+msgid "Rated %d out of 5"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/review.php:27
+msgid "out of 5"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/review.php:34
+msgid "Your comment is awaiting approval"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/review.php:43
+msgid "verified owner"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/up-sells.php:39
+msgid "You may also like&hellip;"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/tabs/additional-information.php:14
+msgid "Additional Information"
+msgstr ""
+
+#: gameplan/woocommerce/single-product/tabs/description.php:14
+msgid "Product Description"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:19
+#: gameplan-events/event-post-type.php:20
+msgid "Event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:22
+msgid "Add New event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:23
+msgid "Edit event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:24
+msgid "New event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:25
+msgid "View event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:26
+msgid "Search event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:65
+msgid "Start date"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:159
+msgid "Address of event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:161
+msgid "Google maps shortcode"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:163
+msgid "Start day of event"
+msgstr ""
+
+#: gameplan-events/event-post-type.php:165
+msgid "End day of event"
+msgstr ""
+
+#: gameplan-events/single-event.php:28
+msgid "at"
+msgstr ""
+
+#: gameplan-events/single-event.php:30
+msgid "&gt; ViewMap"
+msgstr ""
+
+#: gameplan-events/single-event.php:82
+msgid "Location"
+msgstr ""
+
+#: gameplan-events/widget-latest-event-post-type.php:11
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:11
+msgid "Shows event posts "
+msgstr ""
+
+#: gameplan-events/widget-latest-event-post-type.php:13
+msgid "GP-Latest Event"
+msgstr ""
+
+#: gameplan-events/widget-latest-event-post-type.php:335
+msgid "Show Start date "
+msgstr ""
+
+#: gameplan-events/widget-latest-event-post-type.php:345
+msgid "Show address"
+msgstr ""
+
+#: gameplan-events/widget-latest-event-post-type.php:356
+msgid "Show Content "
+msgstr ""
+
+#: gameplan-member/member-post-type.php:8
+#: gameplan-member/member-post-type.php:9
+#: gameplan-shortcodes/shortcodes/member.php:7
+msgid "Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:10
+#: gameplan-member/member-post-type.php:11
+msgid "Add New Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:12
+msgid "Edit Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:13
+msgid "New Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:14
+msgid "View Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:15
+msgid "Search Member"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:16
+msgid "No Member found"
+msgstr ""
+
+#: gameplan-member/member-post-type.php:17
+msgid "No Member found in Trash"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:8
+#: gameplan-portfolio/portfolio-post-type.php:9
+#: gameplan-shortcodes/shortcodes/portfolio.php:7
+msgid "Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:10
+#: gameplan-portfolio/portfolio-post-type.php:11
+msgid "Add New Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:12
+msgid "Edit Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:13
+msgid "New Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:14
+msgid "View Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:15
+msgid "Search Portfolio"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:16
+msgid "No Portfolio found"
+msgstr ""
+
+#: gameplan-portfolio/portfolio-post-type.php:17
+msgid "No Portfolio found in Trash"
+msgstr ""
+
+#: gameplan-portfolio/single-post-portfolio.php:121
+#: gameplan-portfolio/single-post-portfolio.php:125
+msgid "Other Projects"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:56
+msgid "Alert"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:66
+msgid "Message"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:76
+#: gameplan-shortcodes/shortcodes/boxedicon.php:208
+#: gameplan-shortcodes/shortcodes/heading.php:107
+#: gameplan-shortcodes/shortcodes/headline.php:158
+msgid "Icon"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:86
+#: gameplan-shortcodes/shortcodes/boxedicon.php:164
+#: gameplan-shortcodes/shortcodes/heading.php:98
+msgid "Style"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:88
+msgid "Border Style"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:96
+#: gameplan-shortcodes/shortcodes/heading.php:125
+#: gameplan-shortcodes/shortcodes/headline.php:177
+msgid "Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:105
+msgid "Border Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:124
+#: gameplan-shortcodes/shortcodes/boxedicon.php:177
+#: gameplan-shortcodes/shortcodes/carousel.php:96
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:205
+#: gameplan-shortcodes/shortcodes/divider.php:205
+#: gameplan-shortcodes/shortcodes/headline.php:195
+#: gameplan-shortcodes/shortcodes/member.php:35
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:229
+#: gameplan-shortcodes/shortcodes/portfolio.php:83
+#: gameplan-shortcodes/shortcodes/post_carousel.php:200
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:90
+#: gameplan-shortcodes/shortcodes/recent-post.php:212
+#: gameplan-shortcodes/shortcodes/skill.php:263
+#: gameplan-shortcodes/shortcodes/testimonial.php:83
+#: gameplan-shortcodes/shortcodes/timeline.php:79
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:74
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:266
+msgid "CSS Animation"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:128
+#: gameplan-shortcodes/shortcodes/boxedicon.php:181
+#: gameplan-shortcodes/shortcodes/carousel.php:100
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:209
+#: gameplan-shortcodes/shortcodes/divider.php:209
+#: gameplan-shortcodes/shortcodes/headline.php:199
+#: gameplan-shortcodes/shortcodes/member.php:39
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:233
+#: gameplan-shortcodes/shortcodes/portfolio.php:87
+#: gameplan-shortcodes/shortcodes/post_carousel.php:204
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:94
+#: gameplan-shortcodes/shortcodes/recent-post.php:216
+#: gameplan-shortcodes/shortcodes/skill.php:267
+#: gameplan-shortcodes/shortcodes/testimonial.php:87
+#: gameplan-shortcodes/shortcodes/timeline.php:83
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:78
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:270
+msgid "Top to bottom"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:129
+#: gameplan-shortcodes/shortcodes/boxedicon.php:182
+#: gameplan-shortcodes/shortcodes/carousel.php:101
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:210
+#: gameplan-shortcodes/shortcodes/divider.php:210
+#: gameplan-shortcodes/shortcodes/headline.php:200
+#: gameplan-shortcodes/shortcodes/member.php:40
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:234
+#: gameplan-shortcodes/shortcodes/portfolio.php:88
+#: gameplan-shortcodes/shortcodes/post_carousel.php:205
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:95
+#: gameplan-shortcodes/shortcodes/recent-post.php:217
+#: gameplan-shortcodes/shortcodes/skill.php:268
+#: gameplan-shortcodes/shortcodes/testimonial.php:88
+#: gameplan-shortcodes/shortcodes/timeline.php:84
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:79
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:271
+msgid "Bottom to top"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:130
+#: gameplan-shortcodes/shortcodes/boxedicon.php:183
+#: gameplan-shortcodes/shortcodes/carousel.php:102
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:211
+#: gameplan-shortcodes/shortcodes/divider.php:211
+#: gameplan-shortcodes/shortcodes/headline.php:201
+#: gameplan-shortcodes/shortcodes/member.php:41
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:235
+#: gameplan-shortcodes/shortcodes/portfolio.php:89
+#: gameplan-shortcodes/shortcodes/post_carousel.php:206
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:96
+#: gameplan-shortcodes/shortcodes/recent-post.php:218
+#: gameplan-shortcodes/shortcodes/skill.php:269
+#: gameplan-shortcodes/shortcodes/testimonial.php:89
+#: gameplan-shortcodes/shortcodes/timeline.php:85
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:80
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:272
+msgid "Left to right"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:131
+#: gameplan-shortcodes/shortcodes/boxedicon.php:184
+#: gameplan-shortcodes/shortcodes/carousel.php:103
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:212
+#: gameplan-shortcodes/shortcodes/divider.php:212
+#: gameplan-shortcodes/shortcodes/headline.php:202
+#: gameplan-shortcodes/shortcodes/member.php:42
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:236
+#: gameplan-shortcodes/shortcodes/portfolio.php:90
+#: gameplan-shortcodes/shortcodes/post_carousel.php:207
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:97
+#: gameplan-shortcodes/shortcodes/recent-post.php:219
+#: gameplan-shortcodes/shortcodes/skill.php:270
+#: gameplan-shortcodes/shortcodes/testimonial.php:90
+#: gameplan-shortcodes/shortcodes/timeline.php:86
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:81
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:273
+msgid "Right to left"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/alert.php:132
+#: gameplan-shortcodes/shortcodes/boxedicon.php:185
+#: gameplan-shortcodes/shortcodes/carousel.php:104
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:213
+#: gameplan-shortcodes/shortcodes/divider.php:213
+#: gameplan-shortcodes/shortcodes/headline.php:203
+#: gameplan-shortcodes/shortcodes/member.php:43
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:237
+#: gameplan-shortcodes/shortcodes/portfolio.php:91
+#: gameplan-shortcodes/shortcodes/post_carousel.php:208
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:98
+#: gameplan-shortcodes/shortcodes/recent-post.php:220
+#: gameplan-shortcodes/shortcodes/skill.php:271
+#: gameplan-shortcodes/shortcodes/testimonial.php:91
+#: gameplan-shortcodes/shortcodes/timeline.php:87
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:82
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:274
+msgid "Appear from center"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/boxedicon.php:167
+msgid "Fancy Box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/boxedicon.php:168
+msgid "Solid Box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/boxedicon.php:169
+msgid "Classic Box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/boxedicon.php:193
+msgid "Boxed item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/boxedicon.php:231
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:137
+msgid "Link to go"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/carousel.php:85
+#: gameplan-shortcodes/shortcodes/portfolio.php:57
+msgid "Carousel"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/carousel.php:113
+msgid "Carousel item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/carousel.php:121
+msgid "Width per item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/carousel.php:124
+msgid "Width per item in slide. Ex: 250"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:32
+msgid "DAY"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:33
+msgid "HR"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:34
+msgid "MIN"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:35
+msgid "Second"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:123
+msgid "Countdown"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:133
+msgid "Year:"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:142
+msgid "Month"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:151
+msgid "Day"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:160
+msgid "Hour"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:169
+msgid "Minute"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:178
+#: gameplan-shortcodes/shortcodes/skill.php:236
+msgid "Background Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:187
+#: gameplan-shortcodes/shortcodes/skill.php:245
+msgid "Text Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/countdown_clock.php:196
+msgid "Unit Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:162
+msgid "Divider"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:172
+msgid "Color style"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:174
+msgid "Light"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:174
+msgid "Dark"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:181
+msgid "Divider style"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+#: gameplan-shortcodes/shortcodes/heading.php:100
+msgid "Dotted"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+msgid "Double dotted"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+msgid "Solid grey"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+msgid "1px Soild Grey"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+msgid "Solid color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:183
+msgid "Drop shadow"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:189
+#: gameplan-shortcodes/shortcodes/heading.php:150
+msgid "Padding Top"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:192
+#: gameplan-shortcodes/shortcodes/heading.php:153
+msgid "Padding top (in pixels). Ex. 10. Default:0"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:196
+#: gameplan-shortcodes/shortcodes/heading.php:157
+msgid "Padding Bottom"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/divider.php:199
+#: gameplan-shortcodes/shortcodes/heading.php:160
+msgid "Padding bottom (in pixels). Ex.10. Default:0"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/heading.php:88
+#: gameplan-shortcodes/shortcodes/heading.php:116
+msgid "Heading"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/heading.php:110
+msgid ""
+"Name of font Awesome in http://fortawesome.github.io/Font-Awesome/icons for "
+"style dotted. Ex: icon-mobile-phone"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/heading.php:134
+msgid "First Word Different for style Dotted"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/heading.php:143
+msgid "Show dotted for style Dotted"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:103
+msgid "Headline"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:113
+msgid "Number of post to show"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:123
+msgid "Categories ID"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:130
+#: gameplan-shortcodes/shortcodes/post_carousel.php:149
+#: gameplan-shortcodes/shortcodes/recent-post.php:161
+msgid "Post types"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:132
+#: gameplan-shortcodes/shortcodes/post_carousel.php:151
+#: gameplan-shortcodes/shortcodes/recent-post.php:163
+msgid "Select post types to populate posts from."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:142
+msgid "Link for title"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:151
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:212
+#: gameplan-shortcodes/shortcodes/post_carousel.php:176
+#: gameplan-shortcodes/shortcodes/recent-post.php:188
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:242
+msgid "Random"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:151
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:207
+#: gameplan-shortcodes/shortcodes/portfolio.php:48
+#: gameplan-shortcodes/shortcodes/post_carousel.php:171
+#: gameplan-shortcodes/shortcodes/recent-post.php:183
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:237
+msgid "Date"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:161
+msgid "Name Font-Awesome. Ex: icon-sort-by-alphabet"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:167
+msgid "Color for icon"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:170
+msgid "Color for Icon: #fff"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:180
+msgid "Color for text ex: #fff"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/headline.php:189
+msgid "Color Background ex: #fff"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:42
+msgid "Image Frames"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:61
+msgid "Image size"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:70
+msgid "Image ALT"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:79
+msgid "Type Image Frames"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:83
+msgid "Image Border"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:84
+msgid "Image Glow"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:85
+msgid "Image DropShadow"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:86
+msgid "Image BottomShadow"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:87
+msgid "Image BottomShadow 2"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:88
+msgid "Image Lifted corners"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:89
+msgid "Image Raised box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:90
+msgid "Image Horizontal curves"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/image-frame.php:91
+msgid "Image Single horizontal curve"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/member.php:17
+msgid "ID Member"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/member.php:26
+msgid "Background color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:174
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:204
+msgid "Modern Event Listing"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:182
+#: gameplan-shortcodes/shortcodes/post_carousel.php:135
+#: gameplan-shortcodes/shortcodes/recent-post.php:147
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:212
+msgid "Posts count"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:185
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:215
+msgid "How many events to show? Enter number or \"All\"."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:189
+#: gameplan-shortcodes/shortcodes/post_carousel.php:155
+#: gameplan-shortcodes/shortcodes/recent-post.php:167
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:219
+msgid "Post/Page IDs"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:192
+#: gameplan-shortcodes/shortcodes/post_carousel.php:158
+#: gameplan-shortcodes/shortcodes/recent-post.php:170
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:222
+msgid ""
+"Fill this field with page/posts IDs separated by commas (,), to retrieve "
+"only them. Use this in conjunction with \"Post types\" field."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:196
+#: gameplan-shortcodes/shortcodes/post_carousel.php:162
+#: gameplan-shortcodes/shortcodes/recent-post.php:174
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:35
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:226
+msgid "Categories"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:198
+#: gameplan-shortcodes/shortcodes/post_carousel.php:164
+#: gameplan-shortcodes/shortcodes/recent-post.php:176
+msgid ""
+"If you want to narrow output, enter category names here. Note: Only listed "
+"categories will be included. Divide categories with linebreaks (Enter)."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:202
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:220
+#: gameplan-shortcodes/shortcodes/post_carousel.php:168
+#: gameplan-shortcodes/shortcodes/post_carousel.php:184
+#: gameplan-shortcodes/shortcodes/recent-post.php:180
+#: gameplan-shortcodes/shortcodes/recent-post.php:196
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:232
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:250
+msgid "Order by"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:206
+msgid "Meta Value"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:209
+#: gameplan-shortcodes/shortcodes/post_carousel.php:173
+#: gameplan-shortcodes/shortcodes/recent-post.php:185
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:239
+msgid "Author"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:211
+#: gameplan-shortcodes/shortcodes/post_carousel.php:175
+#: gameplan-shortcodes/shortcodes/recent-post.php:187
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:241
+msgid "Modified"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:213
+#: gameplan-shortcodes/shortcodes/post_carousel.php:177
+#: gameplan-shortcodes/shortcodes/recent-post.php:189
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:243
+msgid "Comment count"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:214
+#: gameplan-shortcodes/shortcodes/post_carousel.php:178
+#: gameplan-shortcodes/shortcodes/recent-post.php:190
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:244
+msgid "Menu order"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:216
+#: gameplan-shortcodes/shortcodes/post_carousel.php:180
+#: gameplan-shortcodes/shortcodes/recent-post.php:192
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:246
+msgid ""
+"Select how to sort retrieved posts. More at <a href=\"http://codex.wordpress."
+"org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters\" target=\"_blank"
+"\">WordPress codex page</a>."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:222
+#: gameplan-shortcodes/shortcodes/post_carousel.php:186
+#: gameplan-shortcodes/shortcodes/recent-post.php:198
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:252
+msgid "Ascending"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:222
+#: gameplan-shortcodes/shortcodes/post_carousel.php:186
+#: gameplan-shortcodes/shortcodes/recent-post.php:198
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:252
+msgid "Descending"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/modern-event-listing.php:223
+#: gameplan-shortcodes/shortcodes/post_carousel.php:187
+#: gameplan-shortcodes/shortcodes/recent-post.php:199
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:253
+msgid ""
+"Designates the ascending or descending order. More at <a href=\"http://codex."
+"wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters\" target="
+"\"_blank\">WordPress codex page</a>."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/padding.php:19
+msgid "Margin"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/padding.php:23
+msgid "Structure"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/padding.php:29
+msgid "Margin Top"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/padding.php:38
+msgid "Margin Bottom"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:18
+msgid "Portfolio IDs"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:21
+msgid ""
+"If you want to display specific portfolios, enter list of IDs here, "
+"separated by a comma (,)."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:27
+msgid "Number of items"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:30
+msgid "If <=0, all projects will be shown"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:36
+msgid "Tags"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:46
+msgid "Order By"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:55
+msgid "Styles"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:57
+msgid "Classic Grid"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:57
+msgid "Modern Grid"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:64
+msgid "Portfolio column"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:67
+msgid ""
+"Number of columns. Works with Classic and Modern Grid layout. Note that 6-"
+"column layout does not work with Classic Grid"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/portfolio.php:73
+msgid "Filter Bar"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:120
+msgid "Posts Carousel"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:128
+#: gameplan-shortcodes/shortcodes/recent-post.php:140
+msgid "Show metadata"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:131
+#: gameplan-shortcodes/shortcodes/recent-post.php:143
+msgid "Show title, comment, date"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:138
+#: gameplan-shortcodes/shortcodes/recent-post.php:150
+msgid "How many slides to show? Enter number or \"All\"."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:142
+#: gameplan-shortcodes/shortcodes/recent-post.php:154
+msgid "Width per post"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:145
+#: gameplan-shortcodes/shortcodes/recent-post.php:157
+msgid "Width of post in slide (> 100). Ex: 260"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:191
+#: gameplan-shortcodes/shortcodes/recent-post.php:203
+msgid "Extra class name"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/post_carousel.php:194
+#: gameplan-shortcodes/shortcodes/recent-post.php:206
+msgid ""
+"If you wish to style particular content element differently, then use this "
+"field to add a class name and then refer to it in your css file."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:20
+msgid "Section"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:132
+msgid "c_row"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:185
+msgid "Empty section. Edit page to add content here."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:214
+msgid "Title which will be displayed as the tab anchor in navigation control"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:315
+msgid "Compare tables"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:326
+msgid "Number column"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:339
+msgid "Add pricingtables section"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:344
+#: gameplan-shortcodes/shortcodes/pricingtables.php:353
+msgid "Tab 1"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:345
+#: gameplan-shortcodes/shortcodes/pricingtables.php:354
+msgid "Tab 2"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:362
+#: gameplan-shortcodes/shortcodes/pricingtables.php:368
+#: gameplan-shortcodes/shortcodes/pricingtables.php:376
+msgid "I am text block. Click edit button to change this text."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:365
+msgid "Section 1"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/pricingtables.php:373
+msgid "Section 2"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:72
+msgid "Promo Box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/promoboxnew.php:106
+msgid "Promo item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/recent-post.php:132
+msgid "Recent post"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/related-post.php:35
+#: gameplan-shortcodes/shortcodes/related-post.php:47
+msgid "Related Posts"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:177
+msgid "Counters"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:187
+msgid "Skill type"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:190
+msgid "Counter Circle"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:191
+msgid "Progress Bar"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:192
+msgid "Content Box"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:200
+msgid "Values (%)"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:209
+msgid "Speed"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:218
+msgid "Start Animation ..."
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:220
+msgid "At appearance"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:220
+msgid "When User scroll to"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/skill.php:227
+msgid "Progress Color"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/testimonial.php:72
+msgid "Testimonial"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/testimonial.php:99
+msgid "Testimonial item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/testimonial.php:114
+msgid "Position"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/testimonial.php:123
+msgid "Company"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline.php:68
+msgid "Timeline"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline.php:97
+msgid "Timeline item"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:8
+msgid "Timeline Events"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:19
+msgid "List of IDs(optional):"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:22
+msgid "Ex: 1, 2 ,3 "
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:31
+msgid "Default all"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:37
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:228
+msgid "List of cat ID (or slug), separated by a comma"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:43
+msgid "Show Events this month only:"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "01"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "02"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "03"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "04"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "05"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "06"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "07"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "08"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "09"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "10"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "11"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:45
+msgid "12"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:51
+msgid "Select Year"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2005"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2006"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2007"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2008"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2009"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2010"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2011"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2012"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2013"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2014"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2015"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2016"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2017"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2018"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2019"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2020"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2021"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2022"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2023"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2024"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:53
+msgid "2025"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:58
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:257
+msgid "Show upcoming Event"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:61
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:260
+msgid ""
+"If not checked, All events will be displayed. If checked, upcoming events "
+"will be displayed"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:65
+msgid "Show past Event"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/timeline_event_list.php:68
+msgid ""
+"If not checked, All events will be displayed. If checked, past events will "
+"be displayed"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:129
+msgid "All day"
+msgstr ""
+
+#: gameplan-shortcodes/shortcodes/tribe-event-listing.php:236
+msgid "Meta value"
+msgstr ""
+
+#: gameplan-tribe-addons/timeline_tribe_list.php:158
+msgid "Start"
+msgstr ""
+
+#: gameplan-tribe-addons/timeline_tribe_list.php:158
+msgid "End"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:12
+msgid "More Settings"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:20
+msgid "Subscribe URL"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:21
+msgid ""
+"Enter subscribe URL for event here. You can also use Paypal Link. To get "
+"Paypal Link, see http://en.support.wordpress.com/paypal/ "
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:29
+msgid "Subscribe Text"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:51
+msgid "Paypal Buy Now"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:56
+msgid "Paypal Subscribe"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:61
+msgid "Paypal Donate"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:66
+msgid "Paypal Add To Cart"
+msgstr ""
+
+#: gameplan-tribe-addons/tribe-event-metadata.php:71
+msgid "Paypal Buy Gift Certificate"
+msgstr ""
+
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:13
+msgid "GP-Latest Tribe Event"
+msgstr ""
+
+#: gameplan-tribe-addons/widget-latest-tribe-addons.php:132
+msgid "Details"
+msgstr ""

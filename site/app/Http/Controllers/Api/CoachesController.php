@@ -5043,9 +5043,9 @@ class CoachesController extends Controller
                     } else {
                         $coach->description = DB::table('coach_descriptions')->where('week', 15)->pluck('description');
                     }
-                    
+
                     $currentTimestamp = date("Y-m-d H:i:s", time());
-                    
+
 //                    $currentTimestamp = '2016-09-28 18:30:01';
                     $offset = (isset($request->tz_offset) && $request->tz_offset != '' && $request->tz_offset != NULL) ? $request->tz_offset : '+00:00';
                     $offsetArr = explode(":", $offset);
@@ -5054,18 +5054,18 @@ class CoachesController extends Controller
                     $offsetMin = $operator . $offsetArr[1] . ' minutes';
 
                     $currentTimestamp = date("Y-m-d H:i:s", strtotime($currentTimestamp . ' ' . $offsetHrs));
-                    
-                    $coachUpdatedDate = date('Y-m-d H:i:s', strtotime($coachStatus->updated_at. ' ' . $offsetHrs));
+
+                    $coachUpdatedDate = date('Y-m-d H:i:s', strtotime($coachStatus->updated_at . ' ' . $offsetHrs));
 
                     if ($offsetArr[1] != '00'):
                         $currentTimestamp = date("Y-m-d H:i:s", strtotime($currentTimestamp . ' ' . $offsetMin));
-                        $coachUpdatedDate = date('Y-m-d H:i:s', strtotime($coachUpdatedDate. ' ' . $offsetMin));
+                        $coachUpdatedDate = date('Y-m-d H:i:s', strtotime($coachUpdatedDate . ' ' . $offsetMin));
                     endif;
 
                     $coachNextDay = strtotime(date('Y-m-d', strtotime($coachUpdatedDate)) . ' 00:00:01 + 1 days');
-                    
+
                     $currentTimestampNum = strtotime($currentTimestamp);
-                    
+
                     $dayStatus = json_decode($coachStatus->day_status, true);
 
                     $weekStatus = json_decode($coachStatus->week_status, true);
@@ -5080,7 +5080,6 @@ class CoachesController extends Controller
                         }
                     }
 
-
                     if ($coachStatus->need_update == 1) {
                         //User feedback required
                         return response()->json([
@@ -5094,7 +5093,7 @@ class CoachesController extends Controller
                                 'day_status' => $dayStatus,
                                 'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
                                 'coach' => $coach,
-                                'last_finished_date' => $coachStatus->updated_at,
+                                'last_finished_date' => $coachUpdatedDate,
                                 'urls' => config('urls.urls')], 200);
                     } else {
 //                        if ($coachStatus->need_update == 1) {
@@ -5113,7 +5112,7 @@ class CoachesController extends Controller
 //                        }
 
                         if ($coachStatus->need_update == 0) {
-                            if ($dayStatus[$coachStatus->day] == 1) {                               
+                            if ($dayStatus[$coachStatus->day] == 1) {
 //                                Development
 //                                $coachNextDay = strtotime($coachStatus->updated_at . ' + 5 Minutes');
                                 if ($coachNextDay > $currentTimestampNum) {
@@ -5128,7 +5127,7 @@ class CoachesController extends Controller
                                             'day_status' => $dayStatus,
                                             'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
                                             'coach' => $coach,
-                                            'last_finished_date' => $coachStatus->updated_at,
+                                            'last_finished_date' => $coachUpdatedDate,
                                             'urls' => config('urls.urls')], 200);
                                 } else {
                                     return response()->json([
@@ -5142,7 +5141,7 @@ class CoachesController extends Controller
                                             'day_status' => $dayStatus,
                                             'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
                                             'coach' => $coach,
-                                            'last_finished_date' => $coachStatus->updated_at,
+                                            'last_finished_date' => $coachUpdatedDate,
                                             'urls' => config('urls.urls')], 200);
                                 }
                             } else {
@@ -5157,7 +5156,7 @@ class CoachesController extends Controller
                                         'day_status' => $dayStatus,
                                         'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
                                         'coach' => $coach,
-                                        'last_finished_date' => $coachStatus->updated_at,
+                                        'last_finished_date' => $coachUpdatedDate,
                                         'urls' => config('urls.urls')], 200);
                             }
                         }
@@ -5432,18 +5431,6 @@ class CoachesController extends Controller
                 ['exercise_id' => 72, 'duration' => 45, 'test_done' => 0],
                 ['exercise_id' => 48, 'duration' => 20, 'test_done' => 0]
             ]
-//            ,
-//            1 => [
-//                ['exercise_id' => 43, 'duration' => 10, 'test_done' => 0],
-//                ['exercise_id' => 2, 'duration' => 10, 'test_done' => 0],
-//                ['exercise_id' => 40, 'duration' => 15, 'test_done' => 0],
-//                ['exercise_id' => 17, 'duration' => 15, 'test_done' => 0]
-//            ],
-//            2 => [
-//                ['exercise_id' => 43, 'duration' => 30, 'test_done' => 0],
-//                ['exercise_id' => 32, 'duration' => 10, 'test_done' => 0],
-//                ['exercise_id' => 38, 'duration' => 25, 'test_done' => 0]
-//            ],
         ];
 
         if (!isset($request->user_id) || ($request->user_id == null)) {
@@ -5552,7 +5539,6 @@ class CoachesController extends Controller
                 $dayExerciseArray = $exercisesArray['day' . $coachStatus->day];
 
                 $exercisesArray['day' . $coachStatus->day] = $this->updateDayExercises($dayExerciseArray);
-
 
                 for ($i = 1; $i <= $coach->days; $i++) {
                     if ($i <= $request->day) {
@@ -5736,7 +5722,6 @@ class CoachesController extends Controller
 
                 $weekStatus = json_decode($coachStatus->week_status, true);
 
-
                 return response()->json([
                         'status' => 1,
                         'message' => 'successfully finished week workouts',
@@ -5768,7 +5753,6 @@ class CoachesController extends Controller
         }
 
         if (isset($dayExercise['workout']) && count($dayExercise['workout'] > 0)) {
-
             if (!empty($dayExercise['workout'])) {
                 $dayExercise['workout']['is_completed'] = 1;
             }
@@ -7379,6 +7363,7 @@ class CoachesController extends Controller
                         DB::table('user_physique_options')->insert(['physique_options' => implode(',', $likeQueryArray), 'user_id' => $request->user_id]);
                     }
                 }
+                
                 if ((isset($request->focus) && ($request->focus != null) && ($request->focus != '(null)'))) {
                     Profile::where('user_id', $request->user_id)->update([
                         'goal' => $request->focus
@@ -7386,17 +7371,12 @@ class CoachesController extends Controller
                 }
 
                 if (is_null($userCoach)) {
-
                     Coach::create($data);
-
                     $coachId = DB::table('coaches')->where('user_id', $request->user_id)->pluck('id');
                 } else {
-
                     DB::table('coaches')->where('id', $userCoach->id)->update($data);
-
                     $coachId = $userCoach->id;
                 }
-
 
                 $data['test'] = $request->test;
 
@@ -7439,7 +7419,6 @@ class CoachesController extends Controller
                     }
 
                     $coach = Coach::where('user_id', $request->user_id)->first();
-
 
                     $coachStatus = DB::table('coach_status')->where('user_id', $request->user_id)->where('coach_id', $coach->id)->first();
 
@@ -8990,6 +8969,7 @@ class CoachesController extends Controller
                         $userRaidSelected = 1;
                     }
                 }
+                
                 if (($coachStatus->week + 1) > 4) {
                     if ($userRaidSelected == 0) {
                         return response()->json(["status" => "0", "error" => "Please select a raid to continue."]);
@@ -9016,6 +8996,7 @@ class CoachesController extends Controller
                 Profile::where('user_id', $request->user_id)->update([
                     'goal' => $request->focus
                 ]);
+                
                 $profile = Profile::where('user_id', $request->user_id)->first();
 
                 $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);
@@ -9247,6 +9228,7 @@ class CoachesController extends Controller
         }
 
         $str = str_replace($matches[0], $var, $str);
+        
         echo $str;
     }
 }

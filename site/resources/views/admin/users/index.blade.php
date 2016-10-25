@@ -93,7 +93,7 @@ $(function () {
             {data: 'last_name', name: 'last_name'},
             {data: 'email', name: 'email'},
             {data: 'status', name: 'status'},
-            {data: 'is_subscribed', name: 'is_subscribed', orderable: false, searchable: false},
+            {data: 'subscribed', name: 'subscribed', orderable: false, searchable: false},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         order: [[0, 'desc']]

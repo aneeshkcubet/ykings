@@ -49,7 +49,7 @@ class UsersController extends Controller {
     public function anyData() {
 
 
-        $posts = User::join('user_profiles', 'users.id', '=', 'user_profiles.user_id');
+        $posts = User::leftJoin('user_profiles', 'users.id', '=', 'user_profiles.user_id');
 
         return Datatables::of($posts)
                         ->addColumn('action', function ($list) {
@@ -70,7 +70,8 @@ class UsersController extends Controller {
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Featured"></i>
                                         </a>';
                             }
-                            if ($list->is_subscribed_backend != 1) {
+                            $user = User::where('id', $list->user_id)->first();
+                            if ($user->is_subscribed_backend != 1) {
                                 $html.='<a href = "'. route("admin.user.setsubscribed", $list->user_id). '" title = "Set as Subscribed User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Subscribed User"></i>
                                         </a>';
@@ -91,8 +92,9 @@ class UsersController extends Controller {
                                 return 'Not Verified';
                             }
                         })
-                        ->addColumn('is_subscribed', function ($list) {
-                            if($list->is_subscribed_backend == 1 || $list->is_subscribed == 1){
+                        ->addColumn('subscribed', function ($list) {
+                            $user = User::where('id', $list->user_id)->first();
+                            if($user->is_subscribed == '1'){
                                 return 'Yes';
                             } else {
                                 return 'No';

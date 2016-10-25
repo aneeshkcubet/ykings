@@ -1,0 +1,21 @@
+*** In Shape Changelog ***
+
+ 2015.06.25 - version 1.0.2
+ * fixed wpml blog page
+	inshape-parent/page.php
+ * fixed -webkit-appearance
+	inshape-parent/less/forms.less
+	inshape-parent/style.css
+ 
+ 2014.09.25 - version 1.0.1
+ * minor changes
+	inshape-parent/archive-workouts.php
+	inshape-parent/header.php
+	inshape-parent/js/general.js
+	inshape-parent/less/layout.less
+	inshape-parent/listing-blog.php
+	inshape-parent/listing-search.php
+	inshape-parent/style.css
+ 
+ 2014.07.29 - version 1.0
+ * First release!

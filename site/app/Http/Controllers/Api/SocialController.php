@@ -188,7 +188,6 @@ class SocialController extends Controller
         } elseif (!isset($request->provider) || ($request->provider == null) || ($request->provider == '(null)')) {
             return response()->json(["status" => "0", "error" => "The provider field is required."]);
         } else {
-
             if ($status = $this->create($request->all())) {
 
                 if (is_array($status)) {
@@ -197,7 +196,6 @@ class SocialController extends Controller
 
                 $user = User::where('email', '=', $request->input('email'))
                         ->with(['profile', 'settings'])->first();
-
 
                 if (Auth::loginUsingId($user->id)) {
                     DB::table('promo_code')->insert([
@@ -247,7 +245,6 @@ class SocialController extends Controller
                 } else {
                     return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
                 }
-                
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);
             }
@@ -554,7 +551,7 @@ class SocialController extends Controller
                 } else {
                     return response()->json(['status' => 0, 'error' => 'invalid_credentials'], 422);
                 }
-                
+
                 return response()->json(['status' => 1, 'success' => 'successfully_logged_in', 'user' => $user->toArray()], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_create_user'], 500);

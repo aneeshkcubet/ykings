@@ -1418,7 +1418,6 @@ class SkillsController extends Controller
 
                 $skills = Skill::where('row', $skill->row)->where('is_allies', '=', 0)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
                 
-
                 foreach ($skills as $sKey => $sValue) {
                     $isRaidActive = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
                     if ($isRaidActive > 0) {
@@ -1434,7 +1433,6 @@ class SkillsController extends Controller
                 $allies = Skill::where('row', $skill->row)->where('is_allies', '=', 1)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
 
                 foreach ($allies as $aKey => $aValue) {
-
                     $allies[$aKey]->is_selected = 0;
                     $allies[$aKey]->isLocked = $this->isLocked($aValue, $request->user_id);
                     $allies[$aKey]->isLockable = $this->isLockable($aValue, $request->user_id);
@@ -1453,6 +1451,13 @@ class SkillsController extends Controller
         }
     }
 
+    /**
+     * Check for skill is locked.
+     * @param type $skill
+     * @param type $userId
+     * @return int
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function isLocked($skill, $userId)
     {
         $unLockCount = DB::table('unlocked_skills')
@@ -1467,6 +1472,13 @@ class SkillsController extends Controller
         return 1;
     }
 
+    /**
+     * Check for skill is lockable.
+     * @param type $skill
+     * @param type $userId
+     * @return int
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function isLockable($skill, $userId)
     {
         if ($skill->level < 2 && $skill->level != 0) {
@@ -1485,6 +1497,13 @@ class SkillsController extends Controller
         return 0;
     }
 
+    /**
+     * Check for skill is unlockable.
+     * @param type $skill
+     * @param type $userId
+     * @return int.
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function isUnlockable($skill, $userId)
     {
         if ($skill->level >= 2) {
@@ -1500,13 +1519,14 @@ class SkillsController extends Controller
                 //get previous level skill
 
                 $skill = Skill::where('id', $skill->id)->first();
+                
                 if ($skill->level != 2) {
                     $prevSkill = Skill::where('row', $skill->row)
                         ->where('progression_id', $skill->progression_id)
                         ->where('level', '=', $skill->level - 1)
                         ->first();
+                    
                     if (!is_null($prevSkill)) {
-
                         $unLockCount = DB::table('unlocked_skills')
                             ->select('exercise_id')
                             ->whereRaw('user_id = ' . $userId . ' AND skill_id = ' . $prevSkill->id)
@@ -2099,7 +2119,6 @@ class SkillsController extends Controller
                         'exercise_id' => $unlockedSkill->exercise_id,
                         'user_id' => $request->user_id
                     ]);
-
 
                     $skills = Skill::where('row', $unlockedSkill->row)->where('is_allies', '=', 0)->where('progression_id', $unlockedSkill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
 

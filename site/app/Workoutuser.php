@@ -39,11 +39,6 @@ class Workoutuser extends Model
         return $this->hasOne('App\Profile', 'user_id', 'user_id');
     }
 
-    public function completeWorkout($data)
-    {
-        
-    }
-
     /**
      * Function to get workout count.
      * @author <ansa@cubettech.com>

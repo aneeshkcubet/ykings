@@ -84,7 +84,7 @@ class Exercise extends Model
 
     /**
      * Relation with video table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      */
     public function video()
@@ -94,7 +94,7 @@ class Exercise extends Model
 
     /**
      * Relation with video table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      */
     public function workoutexercises()

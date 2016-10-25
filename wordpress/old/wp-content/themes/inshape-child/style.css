@@ -1,0 +1,380 @@
+/*
+Theme Name: In Shape Child
+Theme URI: http://demo.themefuse.com/?theme=inshape
+Description: Child theme for the In Shape theme. Child themes are the recommended way of making modifications to a theme. <a href="http://codex.wordpress.org/Child_Themes">Reade More</a>
+Author: ThemeFuse
+Tags:translation-ready
+Author URI: http://themefuse.com
+Template: inshape-parent
+*/
+
+@import url("../inshape-parent/style.css");
+.quote-author span {
+    color: #291c1c;
+    font-weight: bold;
+}
+.quote-author {
+    color: #999999;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: none;
+}
+.testimonial_content {
+    width: 100%;
+}
+.quote-author span {
+    color: #291c1c;
+    font-weight: bold;
+}
+.quote-author {
+    color: #999999;
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 40px;
+    text-align: center;
+    text-transform: none;
+}
+.quote-text {
+    color: #d34d5e;
+    font-size: 20px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+.testimonial_content {
+    width: 100%;
+}
+.testimonial_heading {
+    color: #1a1212;
+    font-size: 52px;
+    font-weight: bold;
+    margin-bottom: 65px;
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+}
+.quote-text {
+    color: #1a1212;
+    font-size: 19px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    margin-top: 13px;
+}
+.testimonial_heading {
+    color: #1a1212;
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 65px;
+    width: 100%;
+}
+.slider {
+    position: relative;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.slider_quotes .prev,.slider_quotes .next {
+    color: #fcc42e;
+    top: 20px;
+    margin: 2px 40px 0 0;
+    font-size: 24px;
+}
+.dbl-quote {
+    position: absolute;
+    top: 5px;
+    left: -90px;
+}
+.quote-text {
+    color: #1a1212;
+    font-size: 19px;
+    font-weight: 300 !important;
+    line-height: 1.5em;
+    margin-top: 13px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+    /*background: url(../images/testtimonialQt.png) no-repeat left;*/
+    padding-top: 20px;
+    position: relative;
+}
+
+.slider_quotes .next {
+    margin-right: 0;
+}
+.postlist-sidebar li{
+    float: left;
+    width: 33%
+}
+.recent-posts .widget-title{
+    color: #291c1c;
+    font-weight: bold;
+    width: 100%;
+    font-size: 42px;
+    margin-bottom: .4em;
+    margin-top: 80px;
+    padding-bottom: 20px;
+    text-align: center;
+
+}
+.postlist-sidebar.recent-posts .post-thumbnail{
+    float: none !important;
+    display: block;
+    margin: 0 auto;
+    outline: medium none;
+    width: 100%;
+}
+.postlist-sidebar.recent-posts .post-thumbnail img{
+    /*border-radius: 50%;*/
+    margin: 0 auto 20px;
+    max-width: 200px;
+    width: 100%;
+
+}
+.main-header-map{
+    display: none;
+}
+/*.postlist-sidebar.recent-posts li{
+    height: 300px;
+    height: 300px;
+}*/
+
+.postlist-sidebar.recent-posts li{
+    border: none !important;
+}
+
+.common_padding{
+    padding: 0 15px;
+}
+.quote-image img{
+    border-radius: 50%;
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+}
+.app-store{
+    float:left; 
+    padding-right:15px;
+}
+ .main-slider .page-title{
+     text-shadow: 2px 1px 3px #000;
+}
+.banner-heading{
+    color: #fff; 
+    font-size: 72px; 
+    font-weight: bold;   
+    text-align: center;  
+    top: 40%;  
+    width: 100%;
+    position: absolute; 
+    text-shadow: 2px 1px 3px #000; 
+}
+.entry-content p {
+    color:#333;
+}
+.app-mob{
+    float :right;  
+    width :40%; 
+    margin-left:10%;
+}
+.app-left{
+    float:left;
+     width:50%; 
+     margin-bottom: 50px;
+}
+
+.app-left-text {
+    float: left;
+    width: 73%;
+}
+.app-left-img {
+    float: left;
+    height: 30%;
+    margin-right: 20px;
+    width: 23%;
+}
+.app-left-common{
+    margin-top: 80px;
+}
+.mid-heads{
+    margin-top: 42px;
+}
+.tf_nowidget{
+    display: none;
+}
+/* newsletter */
+
+.content-popup-newsletr {
+    color: #333;
+    padding: 30px;
+}
+.content-popup-newsletr .newsletter_subscription_submit{
+        top:0
+    }
+.subscr-btn{
+    margin:20px auto;
+    }
+
+.newsletter_subscription_message_success {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.modal-dialog{
+    margin : 160px auto;
+}
+
+.page-title{
+    text-shadow: 2px 1px 3px #000;
+}
+.post-thumbnail{
+
+}
+.postlist-3wide .post .entry-content {
+    margin-bottom: 32px;
+    min-height: 94px;
+}
+.postlist-sidebar.recent-posts li {
+    text-align: center;
+}
+.app-left-img img {
+    display: inline-block;
+}
+@media only screen and (max-width: 767px) {
+    .postlist-sidebar.recent-posts li{
+        width: 100%;
+        margin-bottom: 20px;
+        margin-left: 0px;
+        min-height: 100px;
+        text-align: center;
+    }
+    .postlist-sidebar{
+        padding-right: 20px;
+    }
+    .testimonial_heading{
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .app-store{
+        margin-bottom: 5px;
+        float: none;
+        display: inline-block;
+    }
+    .basics{
+        margin-top: 50px;
+    }
+    .recent-posts .widget-title{
+        font-size: 32px;
+        margin-top: 0;
+    }
+    .main-slider .page-title{
+        padding-left: 15px;
+        padding-right: 15px;
+        min-height: 150px;
+    }
+    .main-slider .carousel-indicators {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .banner-heading{
+        font-size: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .app-mob {
+        text-align: center;
+        width: 100%;
+        margin-left: 0;
+    }
+    .app-left {
+        text-align: center;
+        width: 100%;
+    }
+    .app-mob img{
+        margin: 0 auto;
+    }
+    .app-left-img{
+        width:auto;
+        display: inline-block;
+        float: none;
+        margin: 0;
+    }
+    .app-left-text{
+        width: 100%;
+    }
+    .app-left img{
+        display: inline-block;
+    }
+}
+@media only screen and (max-width: 479px) {
+    .recent-posts .widget-title{
+        font-size: 22px;
+    }
+    .testimonial_heading{
+        font-size: 22px;
+    }
+    .banner-heading{
+        font-size: 30px;
+    }
+    .main-slider .page-title{
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .workout-similar .workout{
+        width: 100%;
+    } 
+    
+}
+table.table-striped{
+	border: 1px solid  #e1e1e1;
+}
+table.table-striped td{
+	color: #291c1c;
+	font-weight: 300;
+	padding: 14px;
+}
+table.table-striped th{
+	color: #291c1c;
+	padding: 14px;
+}
+
+
+
+/** By Arun G  **/
+.app-left-text > h4 {
+   font-size: 15px;
+   line-height: 22px;
+   font-weight: normal;
+   padding-top:0px !important;
+}
+
+.app-left-common.clearfix ~ p {
+   display: none;
+}
+
+.app-left-common.clearfix ~ ul {
+   margin: 25px 0;
+}
+.app-left-common.clearfix ~ ul li {
+   position: relative;
+   line-height: 21px;
+   font-size: 14px;
+   font-weight: normal;
+   padding: 2px 0 1px 15px;
+   text-align:left
+}
+.app-left-common.clearfix ~ ul li:before {
+   content: "-";
+   position: absolute;
+   left: 0;
+}
+
+
+
+
+
+

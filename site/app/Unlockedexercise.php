@@ -28,7 +28,7 @@ class Unlockedexercise extends Model
     
     /**
      * Relation with video table.
-     * @author Aneesh K<aneesh@cubettech.com>
+     * @author Aneesh K<aneeshk@cubettech.com>
      * @since 11th November 2015
      */
     public function exercise()

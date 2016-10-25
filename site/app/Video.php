@@ -50,7 +50,7 @@ class Video extends Model
 
     /**
      * Relation with user_videos table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      * 
      */

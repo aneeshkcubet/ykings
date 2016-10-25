@@ -23,7 +23,7 @@ class Skilltrainingexercise extends Model
         'unit',
         'sets'
     ];
-    
+
 //    protected $hidden = [
 //        'skilltraining_id',
 //        'category',
@@ -32,26 +32,27 @@ class Skilltrainingexercise extends Model
 //        'updated_at',
 //        'created_at'
 //    ];
-    
+
     /**
      * Relation with video table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      */
     public function video()
     {
         return $this->hasOne('App\Video', 'parent_id', 'exercise_id');
     }
-    
+
     /**
      * Relation with video table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 20th November 2015
      */
     public function exercise()
     {
         return $this->belongsTo('App\Exercise', 'exercise_id', 'id')->with(['video']);
     }
+
     /**
      * Function to get follower count.
      * @author <ansa@cubettech.com>
@@ -64,6 +65,4 @@ class Skilltrainingexercise extends Model
             ->count();
         return $followerCount;
     }
-    
-    
 }

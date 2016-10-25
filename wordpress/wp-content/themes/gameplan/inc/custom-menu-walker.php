@@ -1,0 +1,252 @@
+<?php
+class custom_walker_nav_menu extends Walker_Nav_Menu {
+  
+	// add classes to ul sub-menus
+	function start_lvl( &$output, $depth = 0, $args = array()) {
+		// depth dependent classes
+		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$display_depth = ( $depth + 1); // because it counts the first submenu as 0
+		$classes = array(
+			'sub-menu',
+			( $display_depth >=2 ? 'sub-sub-menu' : '' ),
+			'menu-depth-' . $display_depth
+			);
+		$class_names = implode( ' ', $classes );
+		
+		// build html
+		$output .= "\n" . $indent . '<div class="div-sub-menu"><ul class="' . $class_names . '">' . "\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ){
+		$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+		$output .= "\n$indent</ul></div>\n";
+	}
+  
+	// add main/sub classes to li's and links
+	 function start_el( &$output, $item, $depth = 0, $args = array(),  $current_object_id = 0) {
+		$args = (object) $args;
+		global $wp_query;
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+	  
+		// depth dependent classes
+		$depth_classes = array(
+			( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
+			( $depth >=2 ? 'sub-sub-menu-item' : '' ),
+			'menu-item-depth-' . $depth
+		);
+		$depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+	  
+		// passed classes
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		
+		$is_parent = false;
+		
+		$valid_classes = array();
+		// check if there is "icon-*" class set. If found, remove it 
+		$icon_classes = array();
+		foreach($classes as $class){
+			if(ot_get_option('font_awesome')=='4'){
+				if(strpos($class,'fa-') === false || strpos($class,'fa-') != 0){
+					$valid_classes[] = $class;
+				} else {
+					$icon_classes[] = 'fa '.$class;
+				}
+			}else{
+				if(strpos($class,'icon-') === false || strpos($class,'icon-') != 0){
+					$valid_classes[] = $class;
+				} else {
+					$icon_classes[] = $class;
+				}
+			}
+			if($class == 'parent') $is_parent = true;
+		}
+		
+		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $valid_classes ), $item ) ) );
+	  
+		// build html
+		$output .= $indent . '<li id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . ' ' . $class_names . '">';
+	  
+		// link attributes
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : ' href="' . get_permalink($item->ID) . '"';
+		
+		$icon_class_names = '';
+		if(count($icon_classes) > 0){
+			$icon_class_names = '<i class="'.esc_attr( implode( '"></i><i class="', $icon_classes ) ).'"></i>';
+		}
+		
+		$attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
+	  
+		$item_output = sprintf( '%1$s<a%2$s>'.$icon_class_names.'%3$s%4$s%5$s ' . ($is_parent?'<i class="'.(ot_get_option('font_awesome')=='4'?'fa fa-angle-':'icon-angle-') . ($depth == 0?'down':(ot_get_option('righttoleft') ? 'left' : 'right')) .'"></i>':'') .'</a>%6$s',
+			is_array($args) ?  $args['before'] : $args->before,
+			$attributes,
+			is_array($args) ? $args['link_before'] : $args->link_before,
+			apply_filters( 'the_title',(empty($item->post_title) ? $item->title : $item->post_title) , $item->ID ),
+			is_array($args) ? $args['link_after']  : $args->link_after,
+			is_array($args) ? $args['after'] : $args->after
+		);
+	  
+		// build html
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}	
+}
+
+class custom_walker_nav_menu_mobile extends Walker_Nav_Menu {
+  
+	// add classes to ul sub-menus
+	function start_lvl( &$output, $depth = 0, $args = array()) {
+		$output .= "</option>\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array()){
+		$output .= "";
+	}
+	
+	function end_el( &$output, $item, $depth = 0, $args = array() ) {
+		if(substr($output, -strlen("</option>\n")) === "</option>\n"){
+			// if true, this should be end_lvl(), instead of end_el
+		} else {
+			$output .= "</option>\n";
+		}
+	}
+  
+	// add main/sub classes to li's and links
+	 function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
+		global $wp_query;
+		$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+	  
+		// depth dependent classes
+		$depth_classes = array(
+			( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
+			( $depth >=2 ? 'sub-sub-menu-item' : '' ),
+			'menu-item-depth-' . $depth
+		);
+		$depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+	  
+		// passed classes
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		
+		$is_parent = false;
+		
+		$valid_classes = array();
+		// check if there is "icon-*" class set. If found, remove it 
+		$icon_classes = array();
+		foreach($classes as $class){	
+			if(ot_get_option('font_awesome')=='4'){
+				if(strpos($class,'fa-') === false || strpos($class,'fa-') != 0){
+					$valid_classes[] = $class;
+				} else {
+					$icon_classes[] = 'fa '.$class;
+				}
+			}else{
+				if(strpos($class,'icon-') === false || strpos($class,'icon-') != 0){
+					$valid_classes[] = $class;
+				} else {
+					$icon_classes[] = $class;
+				}
+			}
+			if($class == 'parent') $is_parent = true;
+		}
+		
+		
+		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $valid_classes ), $item ) ) );
+	  
+		// build html
+		if(str_replace('current-menu-item', '', $class_names) != $class_names)
+			$output .= $indent . '<option value="'. ( ! empty( $item->url ) ? $item->url : get_permalink($item->ID)).'" selected="selected">';
+		else
+			$output .= $indent . '<option value="'.( ! empty( $item->url ) ? $item->url : get_permalink($item->ID)).'">';
+	  
+		// link attributes
+		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : ' href="' . get_permalink($item->ID) . '"';
+		
+		$attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
+		$sub_menu = '';
+		
+		if($depth > 0){
+			for($i = 0; $i < $depth; $i++){
+				$sub_menu .= ' - ';
+			}
+		}
+		$item_output = sprintf( '%1$s%3$s%4$s%5$s%6$s',
+			is_array($args) ?  $args['before'] : $args->before,
+			$attributes,
+			is_array($args) ? $args['link_before'] : $args->link_before,
+			apply_filters( 'the_title', $sub_menu . (empty($item->post_title) ? $item->title : $item->post_title) , $item->ID ),
+			is_array($args) ? $args['link_after']  : $args->link_after,
+			is_array($args) ? $args['after'] : $args->after
+		);
+	  
+		// build html
+		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}	
+}
+
+/* Filter to add "parent" class to <li> item if it has sub-menu */
+add_filter( 'wp_nav_menu_objects', 'add_menu_parent_class' );
+function add_menu_parent_class( $items ) {
+	
+	$parents = array();
+	foreach ( $items as $item ) {
+		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
+			$parents[] = $item->menu_item_parent;
+		}
+	}
+	
+	foreach ( $items as $item ) {
+		if ( in_array( $item->ID, $parents ) ) {
+			$item->classes[] = 'parent';
+		}
+	}
+	
+	return $items;    
+}
+
+/*WPML*/
+global $sitepress_settings;
+if(!empty($sitepress_settings['display_ls_in_menu'])){
+	add_filter('wp_nav_menu_items', 'mobile_menu_wpml', 10, 2);
+}
+function mobile_menu_wpml($items, $args){
+	global $sitepress_settings, $sitepress;
+
+	if( is_object($args->walker) && get_class($args->walker) == 'custom_walker_nav_menu_mobile'){
+		// menu can be passed as integger or object
+		if(isset($args->menu->term_id)) $args->menu = $args->menu->term_id;
+		
+		$abs_menu_id = icl_object_id($args->menu, 'nav_menu', false, $sitepress->get_default_language());
+		
+		if($abs_menu_id == $sitepress_settings['menu_for_ls'] || ($abs_menu_id=='' && $args->theme_location == 'primary')){
+			$languages = $sitepress->get_ls_languages();
+			
+			if(!empty($languages)){
+				foreach($languages as $code => $lang){
+					$items .= '<option value="'.$lang['url'].'">';
+					
+					$alt_title_lang = $sitepress_settings['icl_lso_native_lang'] ? esc_attr($lang['native_name']) : esc_attr($lang['translated_name']);
+					
+					if($sitepress_settings['icl_lso_native_lang']){
+						$items .= $lang['native_name'];
+					}
+					if($sitepress_settings['icl_lso_display_lang'] && $sitepress_settings['icl_lso_native_lang']){
+						$items .= ' (';
+					}
+					if($sitepress_settings['icl_lso_display_lang']){
+						$items .= $lang['translated_name'];
+					}
+					if($sitepress_settings['icl_lso_display_lang'] && $sitepress_settings['icl_lso_native_lang']){
+						$items .= ')';
+					}                
+					$items .= '</option>';
+				}
+			}
+		
+		}
+	}
+	return $items;
+}

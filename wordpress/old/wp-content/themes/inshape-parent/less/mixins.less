@@ -1,0 +1,98 @@
+//Icon Font
+.tficon-font() {
+  font-family: @tficon-font-name;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 1px;
+}
+
+//Transition
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  -ms-transition: @transition;
+  transition: @transition;
+}
+
+//Box Shadow
+.box-shadow(@box-shadow) {
+  -webkit-box-shadow: @box-shadow;
+  -moz-box-shadow: @box-shadow;
+  box-shadow: @box-shadow;
+}
+
+//Border Radius
+.border-radius(@border-radius) {
+  -webkit-border-radius: @border-radius;
+  -moz-border-radius: @border-radius;
+  border-radius: @border-radius;
+}
+
+//Background Size
+.background-size(@background-size) {
+  -webkit-background-size: @background-size;
+  -moz-background-size: @background-size;
+  -o-background-size: @background-size;
+  -ms-background-size: @background-size;
+  background-size: @background-size;
+}
+
+//Placeholders
+.placeholder(@placeholder-font-size, @placeholder-font-weight, @placeholder-font-color, @placeholder-text-transform) {
+  & :-moz-placeholder            {font-size: @placeholder-font-size; font-weight: @placeholder-font-weight; color: @placeholder-font-color; text-transform: @placeholder-text-transform;}
+  & ::-moz-placeholder           {font-size: @placeholder-font-size; font-weight: @placeholder-font-weight; color: @placeholder-font-color; text-transform: @placeholder-text-transform;}
+  & :-ms-input-placeholder       {font-size: @placeholder-font-size; font-weight: @placeholder-font-weight; color: @placeholder-font-color; text-transform: @placeholder-text-transform;}
+  & ::-webkit-input-placeholder  {font-size: @placeholder-font-size; font-weight: @placeholder-font-weight; color: @placeholder-font-color; text-transform: @placeholder-text-transform;}
+}
+
+//Buttons
+.button(@btn-name, @btn-color, @btn-text-color) {
+  &.@{btn-name} span,
+  &.@{btn-name} input {
+    background-color: @btn-color;
+    border-color: @btn-color;
+    color: @btn-text-color;
+  }
+  &.@{btn-name}.btn-transparent span,
+  &.@{btn-name}.btn-transparent input {
+    background-color: transparent; color: @btn-color;
+  }
+  &.@{btn-name}:hover span,
+  &.@{btn-name}:hover input,
+  &.@{btn-name}:active span,
+  &.@{btn-name}:active input,
+  &.@{btn-name}.hover span,
+  &.@{btn-name}.hover input,
+  &.@{btn-name}.active span,
+  &.@{btn-name}.active input {
+    background-color: transparent;
+    color: @btn-color;
+  }
+  &.@{btn-name}.btn-transparent:hover span,
+  &.@{btn-name}.btn-transparent:hover input,
+  &.@{btn-name}.btn-transparent:active span,
+  &.@{btn-name}.btn-transparent:active input,
+  &.@{btn-name}.btn-transparent.hover span,
+  &.@{btn-name}.btn-transparent.hover input,
+  &.@{btn-name}.btn-transparent.active span,
+  &.@{btn-name}.btn-transparent.active input {
+    background-color: @btn-color;
+    color: @btn-text-color;
+  }
+}
+
+// Sizing shortcuts
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size, @size);
+}

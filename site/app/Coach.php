@@ -2830,7 +2830,12 @@ class Coach extends Model
 
         return array($coach, $exerciseCat);
     }
-
+    /**
+     * Get the skill training with exercises
+     * @param type $data
+     * @return type
+     * @author Aneesh K <aneeshk@cubettech.com>
+     */
     public static function getUserSkilltainingwithExercises($data)
     {
         $userRaid = DB::table('user_goal_options')->where('user_id', $data['user_id'])->pluck('goal_options');

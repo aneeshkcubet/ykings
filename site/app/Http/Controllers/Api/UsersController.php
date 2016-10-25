@@ -1154,15 +1154,20 @@ class UsersController extends Controller
                 }
             }
 
-            $userArray['total_skills'] = 6;
-            $userArray['user_skills_count'] = 2;
+            $userArray['total_skills'] = DB::table('skills')
+                ->distinct()
+                ->count();
+            
+            $userArray['user_skills_count'] = DB::table('unlocked_skills')
+                ->where('user_id', '=', $user['id'])
+                ->distinct()
+                ->count();
 
             $userArray['athlete_since'] = $userArray['created_at'];
             //Code to check facebook connected for user.
             //Added by ansa@cubettech.com on 27-11-2015
             $userArray['facebook_connected'] = Social::isFacebookConnect($user['id']);
             $userArray['promo_code'] = DB::table('promo_code')->where('user_id', '=', $userArray['id'])->pluck('code');
-
 
             return response()->json(['status' => 1, 'success' => 'user_details', 'user' => $userArray, 'urls' => config('urls.urls')], 200);
         } else {
@@ -14589,7 +14594,6 @@ class UsersController extends Controller
             if (!is_null($user)) {
                 $pullRowCount = count(Skill::where('progression_id', $request->progression_id)->groupBy('row')->get());
 
-
                 $i = 1;
 
                 do {
@@ -14831,7 +14835,6 @@ class UsersController extends Controller
                 $coach = DB::table('coaches')->where('user_id', $request->user_id)->first();
 
                 if (!is_null($coach)) {
-
                     DB::table('coaches')
                         ->where('user_id', $request->user_id)
                         ->update(['goal_option' => 0]);
@@ -15206,8 +15209,6 @@ class UsersController extends Controller
 
                 Profile::where('user_id', $request->user_id)->update(['quote' => $request->quote]);
 
-
-
                 return response()->json(['status' => 1, 'success' => 'updated_user_motivation_messsage'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_does_not_exists'], 500);
@@ -15218,16 +15219,19 @@ class UsersController extends Controller
     public function crypto_rand_secure($min, $max)
     {
         $range = $max - $min;
-        if ($range < 1)
+        if ($range < 1){
             return $min; // not so random...
+        }
         $log = ceil(log($range, 2));
         $bytes = (int) ($log / 8) + 1; // length in bytes
         $bits = (int) $log + 1; // length in bits
         $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        
         do {
             $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
             $rnd = $rnd & $filter; // discard irrelevant bits
         } while ($rnd >= $range);
+        
         return $min + $rnd;
     }
 
@@ -15238,9 +15242,11 @@ class UsersController extends Controller
         $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
         $codeAlphabet.= "0123456789";
         $max = strlen($codeAlphabet) - 1;
+        
         for ($i = 0; $i < $length; $i++) {
             $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max)];
         }
+        
         return $token;
     }
 

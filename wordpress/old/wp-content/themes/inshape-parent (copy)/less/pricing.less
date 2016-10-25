@@ -1,0 +1,145 @@
+/*-----------------------------------*/
+/* Pricing */
+/*-----------------------------------*/
+
+.pricelist {
+  text-align: center;
+  margin-bottom: 180px;
+
+  .price-item {
+    display: inline-block;
+    background-color: @pricing-bg;
+    font-size: @pricing-font-size;
+    width: 300px;
+    vertical-align: middle;
+    position: relative;
+
+    .price-head {
+      background-color: @pricing-head-bg;
+      padding: 23px 10px;
+
+      strong, span {
+        font-size: 2.3em;
+        font-weight: 700;
+        color: @pricing-color;
+        vertical-align: middle;
+      }
+      span {
+        font-size: 1.3em;
+        color: @pricing-bg;
+      }
+    }
+    .price-body {padding: 40px;}
+    .price-content {
+      background-color: @pricing-color;
+      padding: 44px 10px 38px;
+      margin-bottom: 40px;
+    }
+    .price-title {
+      font-size: 2.5em;
+      color: @pricing-bg;
+      margin-bottom: 1em;
+    }
+    li {
+      color: @pricing-bg;
+      margin-bottom: .6em;
+    }
+    .btn {
+      span, input {
+        font-size: @pricing-font-size - 2;
+        height: 50px;
+        line-height: 46px;
+      }
+    }
+
+    // Different Colors, Active Item
+    &.red {
+      .price-head strong {color: @pricing-color-red;}
+      .price-content {background-color: @pricing-color-red;}
+    }
+    &.yellow {
+      .price-head strong {color: @pricing-color-yellow;}
+      .price-content {background-color: @pricing-color-yellow;}
+    }
+    &.active {
+      font-size: @pricing-font-size + 1;
+      width: 370px;
+      margin: 0 -6px;
+      z-index: 1;
+
+      .price-head {
+        background-color: lighten(desaturate(@pricing-head-bg, 50%), 8%);
+        padding: 40px 10px;
+        strong {font-size: 3em;}
+        span {font-size: 1.8em;}
+      }
+      .price-body {padding: 50px 60px 40px;}
+      .price-content {padding: 44px 10px; margin-bottom: 44px;}
+      .price-title {margin-bottom: .7em;}
+
+      .btn {
+        span, input {
+          color: @pricing-color;
+          border: 2px solid @pricing-color;
+          font-size: @pricing-font-size - 1;
+          height: 56px;
+          line-height: 52px;
+        }
+        &:hover span,
+        &:hover input,
+        &:active span,
+        &:active input,
+        &.hover span,
+        &.hover input,
+        &.active span,
+        &.active input {
+          background-color: @pricing-color;
+          border-color: @pricing-color;
+          color: @pricing-bg;
+        }
+      }
+      .box-shadow(0 0 12px rgba(0,0,0,.2));
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .pricelist {
+    margin-bottom: 120px;
+    .price-item {width: 280px;}
+  }
+}
+@media (max-width: 991px) {
+  .pricelist {
+    margin-bottom: 90px;
+    .price-item {
+      width: 240px;
+      .price-body {padding: 20px;}
+      .price-content {padding: 44px 5px 38px; margin-bottom: 30px;}
+      &.active {
+        width: 260px;
+        margin: 0 -16px;
+        .price-head {padding: 30px 10px;}
+        .price-body {padding: 20px;}
+        .price-content {padding: 44px 5px; margin-bottom: 30px;}
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .pricelist {
+    margin-bottom: 60px;
+    .price-item, .price-item.active {
+      display: block;
+      margin: 0 auto 40px;
+      width: 290px;
+      z-index: auto;
+      .box-shadow(none);
+    }
+  }
+}
+@media (max-width: 479px) {
+  .pricelist {
+    margin-bottom: 40px;
+    .price-item, .price-item.active {margin-bottom: 30px;}
+  }
+}

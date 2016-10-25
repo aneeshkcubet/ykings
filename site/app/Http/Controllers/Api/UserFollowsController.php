@@ -190,9 +190,9 @@ class UserFollowsController extends Controller
                     'user_id' => $follower->id,
                     'friend_id' => $following->id
                 ];
-                
-                PushNotificationFunction::pushNotification($request);                
-               
+
+                PushNotificationFunction::pushNotification($request);
+
                 return response()->json(['status' => 1, 'success' => 'successfully_followed'], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'could_not_able_to_follow'], 500);
@@ -315,7 +315,6 @@ class UserFollowsController extends Controller
      */
     public function unFollow(Request $request)
     {
-        $data = $request->all();
 
         $data = $request->all();
 
@@ -353,18 +352,8 @@ class UserFollowsController extends Controller
             }
             //Code Added by <ansa@cubettech.com> on 25-11-2015.
             $alreadyFollwed->delete();
-//            Follow::delete([
-//                'user_id' => $follower->id,
-//                'follow_id' => $following->id
-//            ]);
-
-            $user = User::where('id', '=', $follower->id)
-                    ->with(['profile', 'followers', 'followings'])->first();
 
             return response()->json(['status' => 1, 'success' => 'successfully_unfollowed'], 200);
-
-
-            return response()->json(['status' => 0, 'error' => 'could_not_able_to_follow'], 500);
         }
     }
 
@@ -720,7 +709,7 @@ class UserFollowsController extends Controller
     public function getMyFollowings(Request $request)
     {
         $data = $request->all();
-        $followingsList = array();
+        $followingsList = [];
         if (!isset($data['user_id'])) {
             return response()->json(['status' => 0, 'error' => 'user_id_required'], 422);
         }
@@ -753,8 +742,9 @@ class UserFollowsController extends Controller
                 $followings['level'] = Point::userLevel($followings->follow_id);
 
                 $followings['is_following'] = 0;
-                if ($data['user_id'] != $followings->follow_id)
+                if ($data['user_id'] != $followings->follow_id) {
                     $followings['is_following'] = Follow::isFollowing($data['user_id'], $followings->follow_id);
+                }
 
                 $followingsList[] = $followings;
                 unset($followings);

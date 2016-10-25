@@ -22,7 +22,7 @@ class Uservideo extends Model
 
     /**
      * Relation with user table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      * 
      */
@@ -33,7 +33,7 @@ class Uservideo extends Model
 
     /**
      * Relation with video table.
-     * @author <aneesh@cubettech.com>
+     * @author <aneeshk@cubettech.com>
      * @since 11th November 2015
      */
     public function video()

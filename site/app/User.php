@@ -130,19 +130,35 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-
+    
+    /**
+     * Function to set the user is subscribed
+     * @depends isSubscribed
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function getIsSubscribedAttribute()
     {
 
         return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
     }
-
+    /**
+     * Function to check weather renew of subscription needed
+     * @depends isSubscribed
+     * @return type
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function getNeedRenewAttribute()
     {
 
         return $this->attributes['need_renew'] = $this->needToUpdate($this->id);
     }
 
+    /**
+     * Function to set is_subscribed attribute
+     * @param type $userId
+     * @return int
+     */
     public function isSubscribed($userId)
     {
         $time = time();
@@ -174,6 +190,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
     }
 
+    /**
+     * Function to set need_renew attribute
+     * @param type $userId
+     * @return int
+     */
     public function needToUpdate($userId)
     {
         $time = time();
@@ -204,12 +225,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             return 0;
         }
     }
-
+    
+    /**
+     * Function to get the user raid
+     * @return type
+     */
     public function getUserRaidAttribute()
     {
         return $this->attributes['user_raid'] = $this->userRaid($this->id);
     }
 
+    /**
+     * Function to set the user_raid attribute
+     * @return type
+     */
     public function userRaid($userId)
     {
         $time = time();

@@ -491,7 +491,6 @@ class FeedController extends Controller
                 $userLevelAfter = Point::userLevel($user->id);
 
                 if ($userLevelAfter > $userLevelBefore) {
-
                     //Push Notification
                     $data = [
                         'type' => 'perfomance',
@@ -714,6 +713,7 @@ class FeedController extends Controller
     public function userFeeds(Request $request)
     {
         $feedsResponse = array();
+        
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else if (!isset($request->profile_id) || ($request->profile_id == null)) {
@@ -1157,12 +1157,14 @@ class FeedController extends Controller
 
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
+                
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
                     ->where('message.read', 0)
                     ->count();
+                
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'unread_notification_count' => $unreadNotificationCnt, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
@@ -1219,8 +1221,6 @@ class FeedController extends Controller
                     }
                     $feedsArray['item_name'] = $workout->name;
 
-
-
                     if (!is_null($workoutUser->time)) {
                         $feedsArray['duration'] = $workoutUser->time;
                     } else {
@@ -1228,6 +1228,7 @@ class FeedController extends Controller
                     }
 
                     $feedsArray['workout_rounds'] = $workout->rounds;
+                    
                     if ($workoutUser->is_coach == 1) {
                         $feedsArray['is_coach'] = 1;
                         $feedsArray['coach_workout_rounds'] = $workoutUser->coach_rounds;
@@ -1244,6 +1245,7 @@ class FeedController extends Controller
                     } else {
                         $feedsArray['intensity'] = $workoutUser->volume;
                     }
+                    
                     if (isset($workoutUser->focus) && $workoutUser->focus > 0) {
                         if ($workoutUser->focus == 1) {
                             $feedsArray['focus'] = 'Lean';
@@ -1329,7 +1331,6 @@ class FeedController extends Controller
                     $feedsArray['item_name'] = $hiit->name;
                 }
 
-
                 $hiitUser = DB::table('hiit_users')
                     ->where('feed_id', $feedsArray['id'])
                     ->first();
@@ -1389,7 +1390,6 @@ class FeedController extends Controller
         $json = json_encode($feedsResponse);
 
         $feedsResponse = str_replace('\r', '', $json);
-
 
         $feedsResponse = json_decode($feedsResponse, true);
 
@@ -1555,8 +1555,6 @@ class FeedController extends Controller
                             }
                             $feedsArray['item_name'] = $workout->name;
 
-
-
                             if (!is_null($workoutUser->time)) {
                                 $feedsArray['duration'] = $workoutUser->time;
                             } else {
@@ -1659,12 +1657,12 @@ class FeedController extends Controller
                     } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
+                        
                         if ($feedsArray['item_type'] == 'hiit_replacement') {
                             $feedsArray['item_name'] = $hiit->name . '(Replacement)';
                         } else {
                             $feedsArray['item_name'] = $hiit->name;
                         }
-
 
                         $hiitUser = DB::table('hiit_users')
                             ->where('feed_id', $feedsArray['id'])
@@ -1806,6 +1804,7 @@ class FeedController extends Controller
                     ->where('item_id', '=', $request->input('feed_id'))
                     ->where('item_type', '=', 'feed')
                     ->first();
+                
                 if (is_null($clap)) {
                     $clap_details = new Clap([
                         'user_id' => $request->input('user_id'),

@@ -232,30 +232,34 @@ class ExercisesController extends Controller
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
+            
             $user = User::where('id', '=', $request->input('user_id'))->first();
+            
             if (!is_null($user)) {
-
 
                 $exercises = [];
 
                 $leanExercisesFree = Exercise::whereRaw('category = 1 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
+                
                 $athleticExercisesFree = Exercise::whereRaw('category = 2 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
+                
                 $strongExercisesFree = Exercise::whereRaw('category = 3 AND type = 1 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
-
 
                 $leanExercisesPaid = Exercise::where('category', '=', 1)
                     ->whereRaw('category = 1 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
+                
                 $athleticExercisesPaid = Exercise::whereRaw('category = 2 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
+                
                 $strongExercisesPaid = Exercise::whereRaw('category = 3 AND type = 2 AND name != "Rest"')
                     ->with(['video'])
                     ->get();
@@ -1465,6 +1469,7 @@ class ExercisesController extends Controller
             }
 
             if (!is_null($exercise)) {
+                
                 $exerciseArray = $exercise->toArray();
                 
                 $leaderBoard = Array();
@@ -1501,7 +1506,9 @@ class ExercisesController extends Controller
                         unset($personalBest);
                     }
                 }
+                
                 $exerciseArray['leaderboard'] = $leaderBoard;
+                
                 return response()->json(['status' => 1, 'exercise' => $exerciseArray, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'exercise_not_exists'], 500);
