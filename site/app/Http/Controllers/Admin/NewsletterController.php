@@ -41,7 +41,7 @@ class NewsletterController extends Controller
         // Show the page
         return View('admin.newsletter.index', compact('newsletter', 'user'));
     }
-    
+
     /**
      * Process datatables ajax request.
      *
@@ -62,10 +62,10 @@ class NewsletterController extends Controller
                     return $html;
                 })
                 ->editColumn('content', function ($list) {
-                    return str_limit($list->content,200);
-                })                
+                    return str_limit($list->content, 200);
+                })
                 ->blacklist(['action'])
-                ->make(true); 
+                ->make(true);
     }
 
     /**
@@ -101,22 +101,23 @@ class NewsletterController extends Controller
                     ->withInput();
         }
 
+        try {
+            $newsletter = Newsletter::create([
+                    'subject' => Input::get('subject'),
+                    'content' => Input::get('content'),
+                    'subscribers' => '',
+                    'status' => 0
+            ]);
 
-        $newsletter = Newsletter::create([
-                'subject' => Input::get('subject'),
-                'content' => Input::get('content'),
-                'subscribers' => '',
-                'status' => 0
-        ]);
+            if (!is_null($newsletter)) {
 
-        if (!is_null($newsletter)) {
-
-            // Redirect to the home page with success menu
-            return Redirect::route("admin.newsletters")->with('success', 'Newsletter drafted successfully.');
+                // Redirect to the home page with success menu
+                return Redirect::route("admin.newsletters")->with('success', 'Newsletter drafted successfully.');
+            }
+        } catch (Exception $ex) {
+            // Redirect to the newsletter creation page
+            return Redirect::back()->withInput()->with('error', $ex->getMessage());
         }
-
-        // Redirect to the newsletter creation page
-        return Redirect::back()->withInput()->with('error', $error);
     }
 
     /**
@@ -137,53 +138,58 @@ class NewsletterController extends Controller
                     ->withInput();
         }
 
-        $data['subject'] = Input::get('subject');
+        try {
 
-        $data['content'] = Input::get('content');
 
-        $data['fromName'] = 'Ykings';
 
-        $dataSub = [];
+            $data['subject'] = Input::get('subject');
 
-        $subscribers = DB::table('user_settings')
-            ->select('users.email', 'user_profiles.first_name', 'user_profiles.last_name', 'users.id')
-            ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'user_settings.user_id')
-            ->leftJoin('users', 'users.id', '=', 'user_settings.user_id')
-            ->where('user_settings.key', '=', 'subscription')
-            ->where('user_settings.value', '=', 1)
-            ->where('users.status', 1)
-            ->get();
+            $data['content'] = Input::get('content');
 
-        foreach ($subscribers as $aKey => $subscriber) {
-            $data['name'] = $subscriber->first_name . ' ' . $subscriber->last_name;
+            $data['fromName'] = 'Ykings';
 
-            $data['code'] = base64_encode($subscriber->email . "_" . $subscriber->id);
+            $dataSub = [];
 
-            $data['toEmail'] = $subscriber->email;
+            $subscribers = DB::table('user_settings')
+                ->select('users.email', 'user_profiles.first_name', 'user_profiles.last_name', 'users.id')
+                ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'user_settings.user_id')
+                ->leftJoin('users', 'users.id', '=', 'user_settings.user_id')
+                ->where('user_settings.key', '=', 'subscription')
+                ->where('user_settings.value', '=', 1)
+                ->where('users.status', 1)
+                ->get();
 
-            Mail::send('email.newsletter', $data, function($message) use ($data) {
-                $message->to($data['toEmail'], $data['name'])
-                    ->subject($data['subject']);
-            });
+            foreach ($subscribers as $aKey => $subscriber) {
+                $data['name'] = $subscriber->first_name . ' ' . $subscriber->last_name;
 
-            $dataSub[] = $subscriber->id;
+                $data['code'] = base64_encode($subscriber->email . "_" . $subscriber->id);
+
+                $data['toEmail'] = $subscriber->email;
+
+                Mail::send('email.newsletter', $data, function($message) use ($data) {
+                    $message->to($data['toEmail'], $data['name'])
+                        ->subject($data['subject']);
+                });
+
+                $dataSub[] = $subscriber->id;
+            }
+
+            $newsletter = Newsletter::create([
+                    'subject' => Input::get('subject'),
+                    'content' => Input::get('content'),
+                    'subscribers' => implode(',', $dataSub),
+                    'status' => 1
+            ]);
+
+            if (!is_null($newsletter)) {
+
+                // Redirect to the home page with success menu
+                return Redirect::route("admin.newsletters")->with('success', 'Successfully sent newsletter to subscribers.');
+            }
+        } catch (Exception $ex) {
+            // Redirect to the newsletter creation page
+            return Redirect::back()->withInput()->with('error', $ex->getMessage());
         }
-
-        $newsletter = Newsletter::create([
-                'subject' => Input::get('subject'),
-                'content' => Input::get('content'),
-                'subscribers' => implode(',', $dataSub),
-                'status' => 1
-        ]);
-
-        if (!is_null($newsletter)) {
-
-            // Redirect to the home page with success menu
-            return Redirect::route("admin.newsletters")->with('success', 'Successfully sent newsletter to subscribers.');
-        }
-
-        // Redirect to the newsletter creation page
-        return Redirect::back()->withInput()->with('error', $error);
     }
 
     /**
@@ -226,8 +232,6 @@ class NewsletterController extends Controller
      */
     public function getEdit($id = null)
     {
-
-
         $newsletter = Newsletter::where('id', $id)->first();
 
         // Get the user information
@@ -292,53 +296,58 @@ class NewsletterController extends Controller
                     ->withInput();
         }
 
-        $data['subject'] = Input::get('subject');
+        try {
 
-        $data['content'] = Input::get('content');
 
-        $data['fromName'] = 'Ykings';
 
-        $dataSub = [];
+            $data['subject'] = Input::get('subject');
 
-        $subscribers = DB::table('user_settings')
-            ->select('users.email', 'user_profiles.first_name', 'user_profiles.last_name', 'users.id')
-            ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'user_settings.user_id')
-            ->leftJoin('users', 'users.id', '=', 'user_settings.user_id')
-            ->where('user_settings.key', '=', 'subscription')
-            ->where('user_settings.value', '=', 1)
-            ->where('users.status', 1)
-            ->get();
+            $data['content'] = Input::get('content');
 
-        foreach ($subscribers as $aKey => $subscriber) {
-            $data['name'] = $subscriber->first_name . ' ' . $subscriber->last_name;
+            $data['fromName'] = 'Ykings';
 
-            $data['code'] = base64_encode($subscriber->email . "_" . $subscriber->id);
+            $dataSub = [];
 
-            $data['toEmail'] = $subscriber->email;
+            $subscribers = DB::table('user_settings')
+                ->select('users.email', 'user_profiles.first_name', 'user_profiles.last_name', 'users.id')
+                ->leftJoin('user_profiles', 'user_profiles.user_id', '=', 'user_settings.user_id')
+                ->leftJoin('users', 'users.id', '=', 'user_settings.user_id')
+                ->where('user_settings.key', '=', 'subscription')
+                ->where('user_settings.value', '=', 1)
+                ->where('users.status', 1)
+                ->get();
 
-            Mail::send('email.newsletter', $data, function($message) use ($data) {
-                $message->to($data['toEmail'], $data['name'])
-                    ->subject($data['subject']);
-            });
+            foreach ($subscribers as $aKey => $subscriber) {
+                $data['name'] = $subscriber->first_name . ' ' . $subscriber->last_name;
 
-            $dataSub[] = $subscriber->id;
+                $data['code'] = base64_encode($subscriber->email . "_" . $subscriber->id);
+
+                $data['toEmail'] = $subscriber->email;
+
+                Mail::send('email.newsletter', $data, function($message) use ($data) {
+                    $message->to($data['toEmail'], $data['name'])
+                        ->subject($data['subject']);
+                });
+
+                $dataSub[] = $subscriber->id;
+            }
+
+            $newsletter = Newsletter::where('id', $id)->update([
+                'subject' => Input::get('subject'),
+                'content' => Input::get('content'),
+                'subscribers' => implode(',', $dataSub),
+                'status' => 1
+            ]);
+
+            if (!is_null($newsletter)) {
+
+                // Redirect to the home page with success menu
+                return Redirect::route("admin.newsletters")->with('success', 'Successfully sent newsletter to subscribers.');
+            }
+        } catch (Exception $ex) {
+            // Redirect to the newsletter creation page
+            return Redirect::back()->withInput()->with('error', $ex->getMessage());
         }
-
-        $newsletter = Newsletter::where('id', $id)->update([
-            'subject' => Input::get('subject'),
-            'content' => Input::get('content'),
-            'subscribers' => implode(',', $dataSub),
-            'status' => 1
-        ]);
-
-        if (!is_null($newsletter)) {
-
-            // Redirect to the home page with success menu
-            return Redirect::route("admin.newsletters")->with('success', 'Successfully sent newsletter to subscribers.');
-        }
-
-        // Redirect to the newsletter creation page
-        return Redirect::back()->withInput()->with('error', $error);
     }
 
     /**

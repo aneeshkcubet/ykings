@@ -115,6 +115,11 @@ class AdminController extends Controller
         return Redirect::route("admin.getlogin");
     }
 
+    /**
+     * Function to migrate users signed up with version 1 to version 2 of application.
+     * @author Aneesh K <aneeshk@cubettech.com>
+     * 
+     */
     public function migrateUsers()
     {
         $lastInsertId = DB::connection('mysql')->table('site_settings')->where('key', 'last_migrated_user')->pluck('value');

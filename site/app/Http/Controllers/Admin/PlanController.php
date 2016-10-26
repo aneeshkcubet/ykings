@@ -33,7 +33,7 @@ class PlanController extends Controller
     {
         // Grab all the users
         $plan = Plan::get();
-        
+
         $currencyCodes = [
             'ALL' => 'Albania Lek',
             'AFN' => 'Afghanistan Afghani',
@@ -464,7 +464,6 @@ class PlanController extends Controller
      */
     public function getEdit($id = null)
     {
-
         $plan = Plan::where('id', $id)->first();
         $currencyCodes = [
             'ALL' => 'Albania Lek',
@@ -595,7 +594,6 @@ class PlanController extends Controller
             // Redirect to the user management page
             return Redirect::route('admin.plans')->with('error', $error);
         }
-        
     }
 
     /**
@@ -606,7 +604,7 @@ class PlanController extends Controller
      */
     public function postEdit(Request $request, $id = null)
     {
-        $plan = Plan::where('id', $id)->first();        
+        $plan = Plan::where('id', $id)->first();
 
         if (!is_null($plan)) {
             Plan::where('id', $id)->update([
@@ -615,7 +613,7 @@ class PlanController extends Controller
                 'currency' => Input::get('currency'),
                 'duration' => Input::get('duration'),
                 'inapp_id' => Input::get('inapp_id')
-            ]);            
+            ]);
 
             return Redirect::route('admin.plans')->with('success', 'Updated successfully');
         } else {

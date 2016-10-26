@@ -155,14 +155,14 @@ class FundumentalController extends Controller
         $fundumental = Fundumental::where('id', $id)->first();
 
         if (!is_null($fundumental)) {
-            
+
             $exercise = Exercise::where('id', Input::get('exercise_id'))->first();
 
             $fundumental = Fundumental::where('id', $id)->update([
-                    'row' => Input::get('row'),
-                    'exercise_id' => Input::get('exercise_id'),
-                    'duration' => json_encode(Input::get('duration')),
-                    'unit' => $exercise->unit
+                'row' => Input::get('row'),
+                'exercise_id' => Input::get('exercise_id'),
+                'duration' => json_encode(Input::get('duration')),
+                'unit' => $exercise->unit
             ]);
 
 

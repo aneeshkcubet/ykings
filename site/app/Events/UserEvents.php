@@ -37,6 +37,11 @@ class UserEvents extends Event
         return [];
     }
 
+    /**
+     * Function to add user videos settings table entries if a new user signed up.
+     * @param Video $video
+     * @author Aneesh K <aneeshk@cubettech.com>
+     */
     public function userCreated(User $user)
     {
         $videos = Video::where('type', '=', 1)->get();

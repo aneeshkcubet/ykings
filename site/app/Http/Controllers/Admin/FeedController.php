@@ -45,6 +45,12 @@ class FeedController extends Controller {
         $this->middleware('admin');
     }
 
+    /**
+     * Method to render index page get
+     * @since 14/01/2015
+     * @author aneeshk@cubettech.com
+     * @return json
+     */
     public function getIndex() {
         $feeds = array();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
@@ -143,34 +149,6 @@ class FeedController extends Controller {
                         ->blacklist(['action', 'claps', 'comments', 'author'])
                         ->make(true);
     }
-
-    /**
-     * $htmlComments.='</td><td>                                               
-      <a href="' . $feeds['id'] . '/confirm-delete-feed" data-toggle="modal" data-target="#delete_confirm">
-      <i class="glyphicon glyphicon-remove" data-name="comment-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete comment.">
-      </i>
-      </a>
-      </td></tr></tbody></table>';
-     */
-//    public function getIndex()
-//    {
-//        $feeds = Feeds::with(['profile'])->orderBy('created_at', 'DESC')->get();
-//
-//
-//
-//        if (count($feeds) > 0) {
-//            $feeds = $this->AdditionalFeedsDetails($feeds);
-//        }
-//
-////        echo '<pre>';
-////        print_r($feeds->toArray());
-////        die;
-//
-//
-//        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-//        // Show the page
-//        return View('admin.feed.index', compact('feeds', 'user'));
-//    }
 
     /**
      * Function to get additional parameters in feeds.
@@ -290,6 +268,11 @@ class FeedController extends Controller {
         return $feeds;
     }
 
+    /**
+     * Function to get the comment details of a feed entry.
+     * @param type $feed
+     * @return type
+     */
     protected function AdditionalFeedsDetailsTest($feed) {
 // foreach ($feeds as $fKey => $feed) {
 //Clap count

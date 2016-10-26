@@ -11,15 +11,15 @@ class HiitController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Exercises Controller
+      | Hiit Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles exercises, user exercises.
+      | This controller handles hiits.
       |
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

@@ -40,8 +40,6 @@ class ExerciseController extends Controller
      */
     public function getIndex()
     {
-
-
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         // Show the page
@@ -92,7 +90,7 @@ class ExerciseController extends Controller
                     }
                 })
                 ->blacklist(['action'])
-                ->make(true); 
+                ->make(true);
     }
 
     /**
@@ -232,7 +230,7 @@ class ExerciseController extends Controller
                 'description' => Input::get('description'),
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
-                'rewards' => Input::get('rewards'),                
+                'rewards' => Input::get('rewards'),
                 'unit' => Input::get('unit'),
                 'equipment' => Input::get('equipment'),
                 'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
@@ -461,12 +459,13 @@ class ExerciseController extends Controller
             }
 
             $duration = Input::get('repetitions');
+            
             Exercise::where('id', $id)->update([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
                 'category' => Input::get('category'),
                 'type' => Input::get('type'),
-                'rewards' => Input::get('rewards'),                
+                'rewards' => Input::get('rewards'),
                 'unit' => Input::get('unit'),
                 'equipment' => Input::get('equipment'),
                 'muscle_groups' => (isset($muscleGroups) && !empty($muscleGroups != '')) ? implode(',', Input::get('muscle_groups')) : '',
@@ -497,12 +496,12 @@ class ExerciseController extends Controller
                 if (!is_null($video)) {
 
                     //Unlink previusly uploaded file and thumbnail
-                    
-                    if(file_exists(public_path('uploads/videos/') . $video->path)){
+
+                    if (file_exists(public_path('uploads/videos/') . $video->path)) {
                         unlink(public_path('uploads/videos/') . $video->path);
                     }
-                    
-                    if(file_exists(config("image.videoThumbPath") . $video->videothumbnail)){
+
+                    if (file_exists(config("image.videoThumbPath") . $video->videothumbnail)) {
                         unlink(config("image.videoThumbPath") . $video->videothumbnail);
                     }
 

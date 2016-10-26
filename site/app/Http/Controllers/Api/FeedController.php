@@ -40,7 +40,7 @@ class FeedController extends Controller
       | Workout Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles feeds,workout,exercise.
+      | This controller handles feeds.
       |
      */
 
@@ -150,7 +150,6 @@ class FeedController extends Controller
             $user = User::where('id', '=', $request->input('user_id'))->first();
 
             if ($user) {
-
                 $userLevelBefore = Point::userLevel($user->id);
 
                 //Code added by <ansa@cubettech.com> on 30-12-2015
@@ -172,7 +171,6 @@ class FeedController extends Controller
                 }
 
                 if ($addStar == 1) {
-
                     $feed = Feeds::where('id', '=', $feed->id)->with(['claps'])->first();
 
                     $clap_details = new Clap([
@@ -186,7 +184,6 @@ class FeedController extends Controller
 
 
                 if ($request->item_type == 'fundamental') {
-
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'item_id' => 0,
@@ -335,7 +332,17 @@ class FeedController extends Controller
                             $pointsEarned = $rewardsArray->strength;
                         }
                     } else {
-                        $pointsEarned = $request->rewards;
+                        if (isset($request->rewards) && $request->rewards != '' && $request->rewards != null) {
+                            $pointsEarned = $request->rewards;
+                        } else {
+                            if ($request->focus == 1) {
+                                $pointsEarned = $rewardsArray->lean;
+                            } elseif ($request->focus == 2) {
+                                $pointsEarned = $rewardsArray->athletic;
+                            } elseif ($request->focus == 3) {
+                                $pointsEarned = $rewardsArray->strength;
+                            }
+                        }
                     }
 
                     if (isset($request->is_coach) && $request->is_coach == 1) {
@@ -426,7 +433,6 @@ class FeedController extends Controller
                         'created_at' => Carbon::now()
                     ]);
                 } elseif ($request->item_type == 'test') {
-
                     $data = [
                         'test_id' => $request->item_id,
                         'user_id' => $request->user_id,
@@ -439,7 +445,6 @@ class FeedController extends Controller
 
                     $hiitUser = Testuser::create($data);
 
-
                     DB::table('points')->insert([
                         'user_id' => $request->user_id,
                         'item_id' => $hiitUser->id,
@@ -450,7 +455,6 @@ class FeedController extends Controller
                 }
 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK && $request->item_type != 'fundamental' && $request->item_type != 'test') {
-
                     $image = Image::make($_FILES['image']['tmp_name']);
 
                     $time = time();
@@ -713,7 +717,7 @@ class FeedController extends Controller
     public function userFeeds(Request $request)
     {
         $feedsResponse = array();
-        
+
         if (!isset($request->user_id) || ($request->user_id == null)) {
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else if (!isset($request->profile_id) || ($request->profile_id == null)) {
@@ -1157,14 +1161,14 @@ class FeedController extends Controller
 
                 $feedQuery->orderBy('created_at', 'DESC');
                 $feeds = $feedQuery->get();
-                
+
                 if (count($feeds) > 0) {
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
                     ->where('message.read', 0)
                     ->count();
-                
+
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'unread_notification_count' => $unreadNotificationCnt, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 500);
@@ -1202,12 +1206,11 @@ class FeedController extends Controller
 
             //To get Category
             if ($feedsArray['item_type'] == 'workout') {
-
                 $workoutUser = DB::table('workout_users')
                     ->where('feed_id', $feedsArray['id'])
                     ->first();
-                if (!is_null($workoutUser)) {
 
+                if (!is_null($workoutUser)) {
                     $workout = Workout::where('id', '=', $feedsArray['item_id'])->first();
 
                     if (!is_null($workout)) {
@@ -1228,7 +1231,7 @@ class FeedController extends Controller
                     }
 
                     $feedsArray['workout_rounds'] = $workout->rounds;
-                    
+
                     if ($workoutUser->is_coach == 1) {
                         $feedsArray['is_coach'] = 1;
                         $feedsArray['coach_workout_rounds'] = $workoutUser->coach_rounds;
@@ -1245,7 +1248,7 @@ class FeedController extends Controller
                     } else {
                         $feedsArray['intensity'] = $workoutUser->volume;
                     }
-                    
+
                     if (isset($workoutUser->focus) && $workoutUser->focus > 0) {
                         if ($workoutUser->focus == 1) {
                             $feedsArray['focus'] = 'Lean';
@@ -1290,7 +1293,6 @@ class FeedController extends Controller
                     }
                 }
             } elseif ($feedsArray['item_type'] == 'exercise') {
-
                 $exerciseUser = DB::table('exercise_users')
                     ->where('feed_id', $feedsArray['id'])
                     ->first();
@@ -1360,7 +1362,6 @@ class FeedController extends Controller
                 $feedsArray['category'] = "";
                 $feedsArray['item_name'] = "Knowledge";
             } elseif ($feedsArray['item_type'] == 'test') {
-
                 $hiitUser = DB::table('test_users')
                     ->where('feed_id', $feedsArray['id'])
                     ->first();
@@ -1657,7 +1658,7 @@ class FeedController extends Controller
                     } elseif ($feedsArray['item_type'] == 'hiit' || $feedsArray['item_type'] == 'hiit_replacement') {
 
                         $hiit = Hiit::where('id', '=', $feedsArray['item_id'])->first();
-                        
+
                         if ($feedsArray['item_type'] == 'hiit_replacement') {
                             $feedsArray['item_name'] = $hiit->name . '(Replacement)';
                         } else {
@@ -1804,7 +1805,7 @@ class FeedController extends Controller
                     ->where('item_id', '=', $request->input('feed_id'))
                     ->where('item_type', '=', 'feed')
                     ->first();
-                
+
                 if (is_null($clap)) {
                     $clap_details = new Clap([
                         'user_id' => $request->input('user_id'),

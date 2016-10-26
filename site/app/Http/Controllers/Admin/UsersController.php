@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\Admin;
+<?php namespace App\Http\Controllers\Admin;
 
 use Validator,
     Hash,
@@ -24,9 +22,11 @@ use App\Images;
 use App\CommonFunctions\PushNotificationFunction;
 use Yajra\Datatables\Datatables;
 
-class UsersController extends Controller {
+class UsersController extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('admin', ['except' => ['exportsubscribers', 'exportusers']]);
     }
 
@@ -35,7 +35,8 @@ class UsersController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function getIndex() {
+    public function getIndex()
+    {
         $usersList = array();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         return View('admin.users.index', compact('usersList', 'user'));
@@ -46,93 +47,61 @@ class UsersController extends Controller {
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function anyData() {
-
-
+    public function anyData()
+    {
         $posts = User::leftJoin('user_profiles', 'users.id', '=', 'user_profiles.user_id');
 
         return Datatables::of($posts)
-                        ->addColumn('action', function ($list) {
-                            $html = ' <a href=\'' . route("admin.user.show", $list->user_id) . '\'><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                                      <a href="'. route("admin.user.update", $list->user_id). '"><i class="glyphicon glyphicon-edit"></i></a>';
-                            if ($list->user_id != 1) {
-                                $html.='<a href="'. route("admin.confirm-delete.user", $list->user_id). '" data-toggle="modal" data-target="#delete_confirm">
+                ->addColumn('action', function ($list) {
+                    $html = ' <a href=\'' . route("admin.user.show", $list->user_id) . '\'><i class="glyphicon glyphicon-eye-open" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
+                                      <a href="' . route("admin.user.update", $list->user_id) . '"><i class="glyphicon glyphicon-edit"></i></a>';
+                    if ($list->user_id != 1) {
+                        $html.='<a href="' . route("admin.confirm-delete.user", $list->user_id) . '" data-toggle="modal" data-target="#delete_confirm">
                                         <i class="glyphicon glyphicon-remove" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user">
                                          </i>
                                         </a>';
-                            }
-                            if ($list->is_featured != 1) {
-                                $html.='<a href = "'. route("admin.user.setfeatured", $list->user_id). '" title = "Set as Featured User">
+                    }
+                    if ($list->is_featured != 1) {
+                        $html.='<a href = "' . route("admin.user.setfeatured", $list->user_id) . '" title = "Set as Featured User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Featured User"></i>
                                         </a>';
-                            } else {
-                                $html.='<a href = "'. route("admin.user.unsetfeatured", $list->user_id). '" title = "Remove Featured">
+                    } else {
+                        $html.='<a href = "' . route("admin.user.unsetfeatured", $list->user_id) . '" title = "Remove Featured">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Featured"></i>
                                         </a>';
-                            }
-                            $user = User::where('id', $list->user_id)->first();
-                            if ($user->is_subscribed_backend != 1) {
-                                $html.='<a href = "'. route("admin.user.setsubscribed", $list->user_id). '" title = "Set as Subscribed User">
+                    }
+                    $user = User::where('id', $list->user_id)->first();
+                    if ($user->is_subscribed_backend != 1) {
+                        $html.='<a href = "' . route("admin.user.setsubscribed", $list->user_id) . '" title = "Set as Subscribed User">
                                         <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Subscribed User"></i>
                                         </a>';
-                            } else {
-                                $html.='<a href = "'. route("admin.user.unsetsubscribed", $list->user_id). '" title = "Remove Subscribed">
+                    } else {
+                        $html.='<a href = "' . route("admin.user.unsetsubscribed", $list->user_id) . '" title = "Remove Subscribed">
                                         <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Subscribed"></i>
                                         </a>
                                         ';
-                            }
+                    }
 
-
-                            return $html;
-                        })                        
-                        ->editColumn('status', function ($list) {
-                            if ($list->status == '1') {
-                                return 'Active';
-                            } else {
-                                return 'Not Verified';
-                            }
-                        })
-                        ->addColumn('subscribed', function ($list) {
-                            $user = User::where('id', $list->user_id)->first();
-                            if($user->is_subscribed == '1'){
-                                return 'Yes';
-                            } else {
-                                return 'No';
-                            }
-                        })
-                        ->blacklist(['action'])
-                        ->make(true);
-
-//return Datatables::of(User::query())->make(true);
+                    return $html;
+                })
+                ->editColumn('status', function ($list) {
+                    if ($list->status == '1') {
+                        return 'Active';
+                    } else {
+                        return 'Not Verified';
+                    }
+                })
+                ->addColumn('subscribed', function ($list) {
+                    $user = User::where('id', $list->user_id)->first();
+                    if ($user->is_subscribed == '1') {
+                        return 'Yes';
+                    } else {
+                        return 'No';
+                    }
+                })
+                ->blacklist(['action'])
+                ->make(true);
     }
-
-    /**
-     * User index page
-     * @since 04/01/2015
-     * @author ansa@cubettech.com
-     * @return json
-     */
-//    public function getIndex()
-//    {
-//        // Grab all the users
-//        $usersList = User::all();
-//        
-//        if(count($usersList)>0){            
-//            foreach($usersList as $uKey => $user){
-//                $profile = Profile::where('user_id', $user->id)->get();
-//                if(!is_null($profile)){
-//                    $usersList[$uKey]->profile = $profile->toArray();
-//                } else {
-//                    $usersList[$uKey]->profile = [];
-//                }                
-//            }            
-//        }
-//
-//        $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-//
-//        // Show the page
-//        return View('admin.users.index', compact('usersList', 'user'));
-//    }
 
     /**
      * User create form processing.
@@ -140,7 +109,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getCreate() {
+    public function getCreate()
+    {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         $countries = Country::all();
@@ -154,7 +124,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function postCreate(Request $request) {
+    public function postCreate(Request $request)
+    {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
             $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
@@ -173,11 +144,11 @@ class UsersController extends Controller {
         $isAdmin = Input::get('is_admin');
 
         $user = User::create([
-                    'email' => Input::get('email'),
-                    'password' => Hash::make(Input::get('password')),
-                    'confirmation_code' => (isset($isActivated)) ? '' : $confirmation_code,
-                    'status' => (isset($isActivated)) ? 1 : 0,
-                    'is_admin' => (isset($isAdmin)) ? 1 : 0,
+                'email' => Input::get('email'),
+                'password' => Hash::make(Input::get('password')),
+                'confirmation_code' => (isset($isActivated)) ? '' : $confirmation_code,
+                'status' => (isset($isActivated)) ? 1 : 0,
+                'is_admin' => (isset($isAdmin)) ? 1 : 0,
         ]);
 
         $data['password'] = Input::get('password');
@@ -198,29 +169,29 @@ class UsersController extends Controller {
         ));
 
         $userProfile = $user->profile()->save($profile);
-        
+
         //If user verification required
         if (!isset($isActivated)) {
             Mail::send('email.verify', ['confirmation_code' => $confirmation_code, 'first_name' => $profile['first_name'], 'last_name' => $profile['last_name']], function($message) use ($data) {
                 $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
-                        ->subject('Verify your email address');
+                    ->subject('Verify your email address');
             });
         } else {
 //If already activated by Administrator
             Mail::send('email.welcome', ['first_name' => $profile['first_name'], 'last_name' => $profile['last_name']], function($message) use ($data) {
                 $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
-                        ->subject('Welcome to Ykings App');
+                    ->subject('Welcome to Ykings App');
             });
         }
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
-            $image = Image::make($_FILES['image']['tmp_name']);            
+            $image = Image::make($_FILES['image']['tmp_name']);
 
-            $image->encode('jpeg');            
+            $image->encode('jpeg');
 
             $image->save(config('image.profileOriginalPath') . $user->id . '_' . time() . '.jpg');
-            
+
             $image->crop(400, 400);
 
             $image->save(config('image.profileLargePath') . $user->id . '_' . time() . '.jpg');
@@ -247,7 +218,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function show($id) {
+    public function show($id)
+    {
 // Get the user information
         $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
 
@@ -267,13 +239,6 @@ class UsersController extends Controller {
             $tUser->refferance = $refer;
         }
 
-//        echo '<pre>';
-//        
-//        print_r($tUser->refferance);
-//        
-//        die;
-
-
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
 // Show the page
@@ -286,7 +251,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getEdit($id = null) {
+    public function getEdit($id = null)
+    {
 
 // Get the user information
         $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
@@ -314,7 +280,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function postEdit(Request $request, $id = null) {
+    public function postEdit(Request $request, $id = null)
+    {
 //        print_r($_FILES);
 //        die;
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -411,7 +378,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getDelete($id = null) {
+    public function getDelete($id = null)
+    {
         $user = User::where('id', $id)->delete();
 //        $user->status = 2;
 //        $user->update();
@@ -425,7 +393,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getModalDelete($id = null) {
+    public function getModalDelete($id = null)
+    {
         $model = 'users';
 
         $entity = 'user';
@@ -450,7 +419,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function setFeatured($id = null) {
+    public function setFeatured($id = null)
+    {
         $user = User::where('id', $id)->first();
         $user->is_featured = 1;
         $user->update();
@@ -464,7 +434,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function unsetFeatured($id = null) {
+    public function unsetFeatured($id = null)
+    {
         $user = User::where('id', $id)->first();
         $user->is_featured = 0;
         $user->update();
@@ -478,7 +449,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function setSubscribed($id = null) {
+    public function setSubscribed($id = null)
+    {
         $user = User::where('id', $id)->first();
         $user->is_subscribed_backend = 1;
         $user->update();
@@ -492,7 +464,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function unsetSubscribed($id = null) {
+    public function unsetSubscribed($id = null)
+    {
         $user = User::where('id', $id)->first();
         $user->is_subscribed_backend = 0;
         $user->update();
@@ -506,7 +479,8 @@ class UsersController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    public function getKnowledgeCreate() {
+    public function getKnowledgeCreate()
+    {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         $countries = Country::all();
@@ -520,7 +494,8 @@ class UsersController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function postKnowledgeCreate(Request $request) {
+    public function postKnowledgeCreate(Request $request)
+    {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
             $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
@@ -533,11 +508,11 @@ class UsersController extends Controller {
         }
 
         $feed = Feeds::create([
-                    'user_id' => Auth::user()->id,
-                    'item_type' => 'knowledge',
-                    'item_id' => 0,
-                    'feed_text' => $request->input('text'),
-                    'image' => ''
+                'user_id' => Auth::user()->id,
+                'item_type' => 'knowledge',
+                'item_id' => 0,
+                'feed_text' => $request->input('text'),
+                'image' => ''
         ]);
 
         $users = User::where('status', 1)->where('id', '!=', Auth::user()->id)->get();
@@ -579,11 +554,11 @@ class UsersController extends Controller {
             $image->save(config('image.feedSmallPath') . 'feed_' . $feed->id . '_' . $time . '.jpg');
 
             $image_upload = Images::create([
-                        'user_id' => Auth::user()->id,
-                        'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
-                        'description' => $request->input('text'),
-                        'parent_type' => 2,
-                        'parent_id' => $feed->id
+                    'user_id' => Auth::user()->id,
+                    'path' => 'feed_' . $feed->id . '_' . $time . '.jpg',
+                    'description' => $request->input('text'),
+                    'parent_type' => 2,
+                    'parent_id' => $feed->id
             ]);
 
             Feeds::where('id', $feed->id)->update([
@@ -599,30 +574,30 @@ class UsersController extends Controller {
 
         return Redirect::route("admin.feeds")->with('success', 'Successfully added message.');
     }
-    
+
     public function exportsubscribers()
     {
         $subscribers = DB::table('user_settings')->where('user_settings.key', '=', 'subscription')
-            ->where('user_settings.value', '=', 1)->distinct()->lists('user_id');
-        
+                ->where('user_settings.value', '=', 1)->distinct()->lists('user_id');
+
         $table = User::leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-            ->select(['user_profiles.first_name', 'user_profiles.last_name','users.email'])
+            ->select(['user_profiles.first_name', 'user_profiles.last_name', 'users.email'])
             ->whereIn('users.id', $subscribers)
             ->where('users.is_admin', '!=', 1)
             ->where('users.status', '=', 1)
             ->get();
-        
-        $filename = public_path()."/subscribers.xls";
-        if(!is_file($filename)){
+
+        $filename = public_path() . "/subscribers.xls";
+        if (!is_file($filename)) {
             touch($filename, time());
             chmod($filename, 0777);
         }
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Sl No.', 'First Name', 'Last name', 'email'));
-        
+
         $rowCount = 1;
 
-        foreach($table as $row) {            
+        foreach ($table as $row) {
             fputcsv($handle, array($rowCount, $row['first_name'], $row['last_name'], $row['email']));
             $rowCount++;
         }
@@ -633,28 +608,27 @@ class UsersController extends Controller {
             'Content-Type' => 'application/vnd.ms-excel; name=excel'
         );
 
-        return Response::download($filename, 'subscribers'.time().'.xls', $headers);
+        return Response::download($filename, 'subscribers' . time() . '.xls', $headers);
         return view('welcome');
     }
-    
+
     public function exportusers()
     {
-        
         $table = User::leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-            ->select(['user_profiles.first_name', 'user_profiles.last_name','users.email']) 
+            ->select(['user_profiles.first_name', 'user_profiles.last_name', 'users.email'])
             ->get();
-        
-        $filename = public_path()."/users.xls";
-        if(!is_file($filename)){
+
+        $filename = public_path() . "/users.xls";
+        if (!is_file($filename)) {
             touch($filename, time());
             chmod($filename, 0777);
         }
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Sl No.', 'First Name', 'Last name', 'email'));
-        
+
         $rowCount = 1;
 
-        foreach($table as $row) {            
+        foreach ($table as $row) {
             fputcsv($handle, array($rowCount, $row['first_name'], $row['last_name'], $row['email']));
             $rowCount++;
         }
@@ -665,8 +639,7 @@ class UsersController extends Controller {
             'Content-Type' => 'application/vnd.ms-excel; name=excel'
         );
 
-        return Response::download($filename, 'users_'.time().'.xls', $headers);
+        return Response::download($filename, 'users_' . time() . '.xls', $headers);
         return view('welcome');
     }
-
 }

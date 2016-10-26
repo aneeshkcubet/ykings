@@ -18,10 +18,10 @@ class UserFriendsController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Connect Controller
+      | UserFriendsController - Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles the registration and login from social media.
+      | This controller handles the user friends via facebook address books etc.
       |
      */
 

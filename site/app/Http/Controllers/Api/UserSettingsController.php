@@ -17,7 +17,7 @@ class UserSettingsController extends Controller
 {
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

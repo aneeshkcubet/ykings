@@ -18,9 +18,9 @@ use App\User;
 
 class WarmupController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -51,7 +51,6 @@ class WarmupController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
-
         // Show the page
         return View('admin.warmup.create', compact('user'));
     }
@@ -63,16 +62,16 @@ class WarmupController extends Controller
      * @return json
      */
     public function postCreate(Request $request)
-    {       
+    {
 
         $warmup = Warmup::create([
-                'name' => Input::get('name'),                
+                'name' => Input::get('name'),
                 'duration' => json_encode(Input::get('duration')),
-                'unit' => Input::get('unit')                
+                'unit' => Input::get('unit')
         ]);
 
-        if (!is_null($warmup)) { 
-            
+        if (!is_null($warmup)) {
+
             // Redirect to the home page with success menu
             return Redirect::route("admin.warmups")->with('success', 'Successfully created warmup.');
         }
@@ -89,12 +88,11 @@ class WarmupController extends Controller
      */
     public function show($id)
     {
-        $warmup = Warmup::where('id', $id)->first();        
+        $warmup = Warmup::where('id', $id)->first();
         // Get the user information
         if (!is_null($warmup)) {
-            
+
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
         } else {
             // Prepare the error message
             $error = 'Warmup not found';
@@ -115,13 +113,13 @@ class WarmupController extends Controller
     public function getEdit($id = null)
     {
 
-        
+
         $warmup = Warmup::where('id', $id)->first();
-        
+
         // Get the user information
         if (!is_null($warmup)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
+
             return View('admin.warmup.edit', compact('warmup', 'user', 'muscleGroups'));
         } else {
             // Prepare the error message
@@ -147,10 +145,10 @@ class WarmupController extends Controller
 
         if (!is_null($warmup)) {
             Warmup::where('id', $id)->update([
-                'name' => Input::get('name'),                
+                'name' => Input::get('name'),
                 'duration' => json_encode(Input::get('duration')),
-                'unit' => Input::get('unit')                
-            ]);  
+                'unit' => Input::get('unit')
+            ]);
 
             return Redirect::route('admin.warmups')->with('success', 'Updated successfully');
         } else {

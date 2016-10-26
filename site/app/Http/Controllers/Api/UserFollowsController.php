@@ -16,7 +16,7 @@ class UserFollowsController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | User Actions Controller
+      | UserFollowsController - Controller
       |--------------------------------------------------------------------------
       |
       | This controller handles the registration of new users, as well as the
@@ -25,7 +25,7 @@ class UserFollowsController extends Controller
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

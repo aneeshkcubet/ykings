@@ -34,6 +34,11 @@ class VideoEvents extends Event
         return [];
     }
     
+    /**
+     * Function to add user videos table if a new video uploaded by admin.
+     * @param Video $video
+     * @author Aneesh K <aneeshk@cubettech.com>
+     */
     public function videoCreated(Video $video)
     {
         $users = User::all();

@@ -20,15 +20,15 @@ class WorkoutsController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Exercises Controller
+      | WorkoutsController - Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles exercises, user exercises.
+      | This controller handles workouts, user workouts.
       |
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

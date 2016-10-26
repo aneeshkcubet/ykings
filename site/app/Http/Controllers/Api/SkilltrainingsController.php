@@ -20,15 +20,15 @@ class SkilltrainingsController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Exercises Controller
+      | SkilltrainingsController Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles exercises, user exercises.
+      | This controller handles skill trainings, user skill trainings.
       |
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

@@ -38,7 +38,7 @@ class UsersController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | User Actions Controller
+      | UsersController - Controller
       |--------------------------------------------------------------------------
       |
       | This controller handles the registration of new users, as well as the
@@ -47,7 +47,7 @@ class UsersController extends Controller
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */

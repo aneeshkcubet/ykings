@@ -14,7 +14,7 @@ use App\Profile;
 use App\Settings;
 use DB;
 
-/**
+/**   
  * Push notification
  *
  * Long description for file (if any)...
@@ -95,9 +95,9 @@ class PushNotificationFunction
                         'message' => $notfyMessage,
                         'read' => 0
                 ]);
-                
+
                 $unreadNotificationCnt = Notification::where('message.friend_id', '=', $request['friend_id'])
-                    ->where('message.read', 0)                    
+                    ->where('message.read', 0)
                     ->count();
 
                 $pushMessage = [

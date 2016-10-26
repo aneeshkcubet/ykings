@@ -17,9 +17,9 @@ use App\User;
 
 class HiitController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -112,7 +112,7 @@ class HiitController extends Controller
         // Get the user information
         if (!is_null($hiit)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
+
             return View('admin.hiit.edit', compact('hiit', 'user'));
         } else {
             // Prepare the error message
@@ -141,7 +141,7 @@ class HiitController extends Controller
             Hiit::where('id', $id)->update([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
-                'rewards' => Input::get('rewards')                
+                'rewards' => Input::get('rewards')
             ]);
 
             return Redirect::route('admin.hiits')->with('success', 'Updated successfully');

@@ -137,7 +137,6 @@ class WorkoutController extends Controller
      */
     public function show($id)
     {
-
         $workout = workout::where('id', $id)->first();
         if (!is_null($workout)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();

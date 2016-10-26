@@ -18,9 +18,9 @@ use App\User;
 
 class StretchingController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -50,8 +50,6 @@ class StretchingController extends Controller
     public function getCreate()
     {
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-
-
         // Show the page
         return View('admin.stretching.create', compact('user'));
     }
@@ -63,16 +61,15 @@ class StretchingController extends Controller
      * @return json
      */
     public function postCreate(Request $request)
-    {       
-
+    {
         $stretching = Stretching::create([
-                'exercise_id' => Input::get('name'),                
+                'exercise_id' => Input::get('name'),
                 'duration' => json_encode(Input::get('duration')),
-                'unit' => Input::get('unit')                
+                'unit' => Input::get('unit')
         ]);
 
-        if (!is_null($stretching)) { 
-            
+        if (!is_null($stretching)) {
+
             // Redirect to the home page with success menu
             return Redirect::route("admin.stretchings")->with('success', 'Successfully created stretching.');
         }
@@ -89,12 +86,11 @@ class StretchingController extends Controller
      */
     public function show($id)
     {
-        $stretching = Stretching::where('id', $id)->first();        
+        $stretching = Stretching::where('id', $id)->first();
         // Get the user information
         if (!is_null($stretching)) {
-            
+
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
         } else {
             // Prepare the error message
             $error = 'Stretching not found';
@@ -114,14 +110,12 @@ class StretchingController extends Controller
      */
     public function getEdit($id = null)
     {
-
-        
         $stretching = Stretching::where('id', $id)->first();
-        
+
         // Get the user information
         if (!is_null($stretching)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-            
+
             return View('admin.stretching.edit', compact('stretching', 'user', 'muscleGroups'));
         } else {
             // Prepare the error message
@@ -147,10 +141,10 @@ class StretchingController extends Controller
 
         if (!is_null($stretching)) {
             Stretching::where('id', $id)->update([
-                'name' => Input::get('name'),                
+                'name' => Input::get('name'),
                 'duration' => json_encode(Input::get('duration')),
-                'unit' => Input::get('unit')                
-            ]);  
+                'unit' => Input::get('unit')
+            ]);
 
             return Redirect::route('admin.stretchings')->with('success', 'Updated successfully');
         } else {

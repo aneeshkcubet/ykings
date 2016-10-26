@@ -163,7 +163,6 @@ class SkilltrainingController extends Controller
      */
     public function postCreate()
     {
-
         $rewardsArray = [
             'lean' => Input::get('lean-rewards'),
             'athletic' => Input::get('athletic-rewards'),
@@ -195,7 +194,6 @@ class SkilltrainingController extends Controller
      */
     public function show($id)
     {
-
         $skilltraining = Skilltraining::where('id', $id)->first();
         if (!is_null($skilltraining)) {
             $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();

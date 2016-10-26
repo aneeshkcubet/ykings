@@ -13,7 +13,7 @@ class UserVideosController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | User Videos Controller
+      | UserVideosController - Controller
       |--------------------------------------------------------------------------
       |
       | This controller handles the video subscription of users.

@@ -19,7 +19,7 @@ class CoachesController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Exercises Controller
+      | CoachesController Controller
       |--------------------------------------------------------------------------
       |
       | This controller handles coaches and Algorithm.
@@ -27,7 +27,7 @@ class CoachesController extends Controller
      */
 
     /**
-     * Create a new authentication controller instance.
+     * 
      *
      * @return void
      */
@@ -7363,7 +7363,7 @@ class CoachesController extends Controller
                         DB::table('user_physique_options')->insert(['physique_options' => implode(',', $likeQueryArray), 'user_id' => $request->user_id]);
                     }
                 }
-                
+
                 if ((isset($request->focus) && ($request->focus != null) && ($request->focus != '(null)'))) {
                     Profile::where('user_id', $request->user_id)->update([
                         'goal' => $request->focus
@@ -8969,7 +8969,7 @@ class CoachesController extends Controller
                         $userRaidSelected = 1;
                     }
                 }
-                
+
                 if (($coachStatus->week + 1) > 4) {
                     if ($userRaidSelected == 0) {
                         return response()->json(["status" => "0", "error" => "Please select a raid to continue."]);
@@ -8996,7 +8996,7 @@ class CoachesController extends Controller
                 Profile::where('user_id', $request->user_id)->update([
                     'goal' => $request->focus
                 ]);
-                
+
                 $profile = Profile::where('user_id', $request->user_id)->first();
 
                 $exercises = Coach::updateCoach($request->assessment, $coach->id, $profile->goal, $request->days);
@@ -9228,7 +9228,7 @@ class CoachesController extends Controller
         }
 
         $str = str_replace($matches[0], $var, $str);
-        
+
         echo $str;
     }
 }

@@ -22,9 +22,9 @@ use App\Progression;
 
 class SkillController extends Controller
 {
-    
+
     public function __construct()
-    {        
+    {
         $this->middleware('admin');
     }
 
@@ -133,7 +133,6 @@ class SkillController extends Controller
      */
     public function postCreate(Request $request)
     {
-
         $skill = Skill::create([
                 'description' => Input::get('description'),
                 'progression_id' => Input::get('progression_id'),
@@ -161,7 +160,6 @@ class SkillController extends Controller
      */
     public function show($id)
     {
-
         $skill = Skill::where('id', $id)->with(['exercise', 'progression'])->first();
         // Get the user information
         if (!is_null($skill)) {
@@ -185,7 +183,6 @@ class SkillController extends Controller
      */
     public function getEdit($id = null)
     {
-
         $skill = Skill::where('id', $id)->with(['exercise', 'progression'])->first();
         $exercises = Exercise::all();
         $progressions = Progression::all();
@@ -214,7 +211,7 @@ class SkillController extends Controller
         $skill = Skill::where('id', $id)->first();
 
         if (!is_null($skill)) {
-            
+
             Skill::where('id', $id)->update([
                 'description' => Input::get('description'),
                 'progression_id' => Input::get('progression_id'),
@@ -222,7 +219,7 @@ class SkillController extends Controller
                 'row' => Input::get('row'),
                 'exercise_id' => Input::get('exercise_id'),
                 'is_allies' => Input::get('is_allies'),
-        ]);
+            ]);
 
 
             return Redirect::route('admin.skills')->with('success', 'Skill updated successfully');

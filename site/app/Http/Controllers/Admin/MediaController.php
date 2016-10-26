@@ -39,7 +39,7 @@ class MediaController extends Controller
         // Show the page
         return View('admin.media.index', compact('medias', 'user'));
     }
-    
+
     /**
      * Process datatables ajax request.
      *
@@ -58,10 +58,10 @@ class MediaController extends Controller
                     return $html;
                 })
                 ->editColumn('content', function ($list) {
-                    return '<img width="100%" src="'.asset('uploads/images/media/small/'.$list->path).'" alt="'.$list->name.'" />';
-                })                
+                    return '<img width="100%" src="' . asset('uploads/images/media/small/' . $list->path) . '" alt="' . $list->name . '" />';
+                })
                 ->blacklist(['action'])
-                ->make(true); 
+                ->make(true);
     }
 
     /**
@@ -96,7 +96,7 @@ class MediaController extends Controller
                 return Redirect::back()->withInput()->with('error', $error);
             }
         }
-        
+
         $media = Media::create([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),
@@ -108,8 +108,8 @@ class MediaController extends Controller
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
             $image = Image::make($_FILES['image']['tmp_name']);
-            
-            
+
+
 
             $image->encode('jpeg');
 

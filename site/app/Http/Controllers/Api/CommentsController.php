@@ -19,7 +19,7 @@ class CommentsController extends Controller
       | Workout Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles feeds,workout,excersice.
+      | This controller handles comments.
       |
      */
 
@@ -270,10 +270,10 @@ class CommentsController extends Controller
                     $commentQuery->skip($request->input('limit'));
                     $commentQuery->take($request->input('offset'));
                 }
-                
+
                 $commentQuery->orderBy('created_at', 'DESC');
                 $comments = $commentQuery->get();
-                
+
                 return response()->json(['status' => 1, 'comments' => $comments->toArray(), 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'feed_not_exists'], 422);

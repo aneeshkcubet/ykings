@@ -34,7 +34,6 @@ class SettingController extends Controller
      */
     public function getEdit()
     {
-
         $settings = DB::table('site_settings')->get();
         // Get the user information
         if (!is_null($settings)) {
@@ -54,7 +53,6 @@ class SettingController extends Controller
      */
     public function postEdit(Request $request)
     {
-
         $inputArray = $request->except('_token');
 
         foreach ($inputArray as $iKey => $input) {
@@ -68,25 +66,6 @@ class SettingController extends Controller
 
     public function refferalIndex()
     {
-
-        // Grab all the refferals
-//        $refferalsList = Refferal::all();
-//
-//        if (count($refferalsList) > 0) {
-//            foreach ($refferalsList as $lKey => $refferal) {
-//                $profile = User::where('email', $refferal->email)->first();
-//                if (!is_null($profile)) {
-//                    if ($profile->is_subscribed == 1) {
-//                        $refferalsList[$lKey]->is_coach_subscribed = 1;
-//                    } else {
-//                        $refferalsList[$lKey]->is_coach_subscribed = 0;
-//                    }
-//                } else {
-//                    $refferalsList[$lKey]->is_coach_subscribed = 0;
-//                }
-//            }
-//        }
-//
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
 
         // Show the page
@@ -100,8 +79,6 @@ class SettingController extends Controller
      */
     public function anyData()
     {
-
-
         $posts = DB::table('refferals')
             ->select(['id', 'user_id', 'email', 'marketing_title', 'parameters']);
 
