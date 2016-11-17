@@ -24,15 +24,6 @@ class Skilltrainingexercise extends Model
         'sets'
     ];
 
-//    protected $hidden = [
-//        'skilltraining_id',
-//        'category',
-//        'repititions',
-//        'round',
-//        'updated_at',
-//        'created_at'
-//    ];
-
     /**
      * Relation with video table.
      * @author <aneeshk@cubettech.com>

@@ -40,5 +40,4 @@ class Uservideo extends Model
     {
         return $this->hasOne('App\Video', 'id', 'video_id');
     }
-
 }

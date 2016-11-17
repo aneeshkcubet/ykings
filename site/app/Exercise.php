@@ -32,14 +32,12 @@ class Exercise extends Model
         'video_tips_html',
         'range_of_motion_html'
     ];
-    
     protected $hidden = [
         'updated_at',
         'created_at'
     ];
-    
     protected $appends = ['musclegroup_string'];
-    
+
     /**
      * Function to stringify muscle groups related to an exercise.
      * @return type
@@ -49,7 +47,7 @@ class Exercise extends Model
     {
         return $this->attributes['musclegroup_string'] = self::musclegroupString($this->muscle_groups);
     }
-    
+
     /**
      * Function to get get muscle groups of an exercise.
      * @param type $muscleGroups
@@ -63,19 +61,19 @@ class Exercise extends Model
             return '';
         } else {
             $muscleGroupsArray = DB::table('muscle_groups')->lists('name', 'id');
-            
-            if(is_array($muscleGroups)){
+
+            if (is_array($muscleGroups)) {
                 $emuscleGroupsArray = $muscleGroups;
-            } elseif(is_string($muscleGroups)) {
+            } elseif (is_string($muscleGroups)) {
                 $emuscleGroupsArray = explode(',', $muscleGroups);
             } else {
                 $emuscleGroupsArray = [];
-            }                       
-            
+            }
+
             foreach ($emuscleGroupsArray as $exerciseMuscleGroup) {
-                if(isset($exerciseMuscleGroup) && $exerciseMuscleGroup != '' && !empty($exerciseMuscleGroup) && !is_null($exerciseMuscleGroup)){
+                if (isset($exerciseMuscleGroup) && $exerciseMuscleGroup != '' && !empty($exerciseMuscleGroup) && !is_null($exerciseMuscleGroup)) {
                     $eMuscleGroups[] = $muscleGroupsArray[$exerciseMuscleGroup];
-                }                
+                }
             }
 
             return implode(', ', $eMuscleGroups);

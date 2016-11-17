@@ -54,7 +54,7 @@ class Profile extends Model
 
         return $this->attributes['level'] = $this->getLevel($this->user_id);
     }
-    
+
     /**
      * Function to get user level
      * @param type $userId

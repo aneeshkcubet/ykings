@@ -40,7 +40,6 @@ class Video extends Model
         'parent_id',
         'type'
     ];
-    
     protected $hidden = [
         'user_id',
         'updated_at',

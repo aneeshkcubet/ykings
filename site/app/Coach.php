@@ -1278,11 +1278,11 @@ class Coach extends Model
                         ->first();
 
                     if (count($unLocked) <= 0) {
-//Not unlocked the skill
+                        //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
                         if ($skill->substitute > 0) {
-//Skill has substitute
+                            //Skill has substitute
                             $substitute = DB::table('skills')->where('row', $skill->row)
                                 ->where('progression_id', $skill->progression_id)
                                 ->where('exercise_id', '=', $skill->substitute)
@@ -1294,16 +1294,15 @@ class Coach extends Model
                                 ->count();
 
                             if ($unLockCount <= 0) {
-//Unlocked substitute then replace the workout exercise with new one.
+                                //Unlocked substitute then replace the workout exercise with new one.
                                 $category = 2;
                             }
                         } else {
-//Skill doesn't have substitute, down the difficulty level
+                            //Skill doesn't have substitute, down the difficulty level
                             $category = 2;
                         }
                     }
                 } else {
-//                    echo '1.exercise___'.$workoutExercise;
                     break;
                 }
             }
@@ -1323,13 +1322,11 @@ class Coach extends Model
                         ->first();
 
                     if (count($unLocked) <= 0) {
-
-
-//Not unlocked the skill
+                        //Not unlocked the skill
                         $skill = DB::table('skills')->where('exercise_id', $workoutExercise)->first();
 
                         if ($skill->substitute > 0) {
-//Skill has substitute
+                            //Skill has substitute
                             $substitute = DB::table('skills')->where('row', $skill->row)
                                 ->where('progression_id', $skill->progression_id)
                                 ->where('exercise_id', '=', $skill->substitute)
@@ -1341,16 +1338,16 @@ class Coach extends Model
                                 ->count();
 
                             if ($unLockCount == 0) {
-//Unlocked substitute then replace the workout exercise with new one.
+                                //Unlocked substitute then replace the workout exercise with new one.
                                 $category = 1;
                             }
                         } else {
-//Skill doesn't have substitute, down the difficulty level
+                            //Skill doesn't have substitute, down the difficulty level
                             $category = 1;
                         }
                     }
                 } else {
-//                    echo '2.exercise___'.$workoutExercise;
+                    //echo '2.exercise___'.$workoutExercise;
                     break;
                 }
             }
@@ -1359,9 +1356,7 @@ class Coach extends Model
         if ($category == 1 && $categoryArray[1] > 0) {
             $category = 1;
         }
-
-//        die;
-
+        
         return $category;
     }
 
@@ -1401,19 +1396,19 @@ class Coach extends Model
         $categoryArray = [1 => 0, 2 => 0, 3 => 0];
 
         do {
-            
-            if($workout->is_repsandsets == 1){
+
+            if ($workout->is_repsandsets == 1) {
                 $roundExercises = Workoutexercise::where('round', '=', $count)
-                ->where('category', '=', 1)
-                ->where('workout_id', '=', $workoutId)
-                ->with(['exercise', 'video'])
-                ->get();                
+                    ->where('category', '=', 1)
+                    ->where('workout_id', '=', $workoutId)
+                    ->with(['exercise', 'video'])
+                    ->get();
             } else {
                 $roundExercises = Workoutexercise::where('round', '=', $count)
-                ->where('category', '=', 1)
-                ->where('workout_id', '=', $workoutId)
-                ->with(['exercise', 'video'])
-                ->get();
+                    ->where('category', '=', 1)
+                    ->where('workout_id', '=', $workoutId)
+                    ->with(['exercise', 'video'])
+                    ->get();
             }
 
             $roundExerciseArray = $roundExercises->toArray();
@@ -1470,7 +1465,7 @@ class Coach extends Model
                     $roundExercise['unit'] = $exercise->unit;
 
                     $roundExercise['exercise'] = $exercise->toArray();
-                    
+
                     $roundExercise['video'] = $roundExercise['exercise']['video'][0];
                 }
 
@@ -1507,7 +1502,7 @@ class Coach extends Model
 
         return $workoutArray;
     }
-   
+
     /**
      * Function to update coach after week exercises completed.
      * @depends updateCoachExercises
@@ -1556,7 +1551,7 @@ class Coach extends Model
             }
         }
 
-//Restructure coach and get new exercises and add exercises to existing workouts according to user feedback
+        //Restructure coach and get new exercises and add exercises to existing workouts according to user feedback
         $i = 1;
 
         do {
@@ -1645,19 +1640,19 @@ class Coach extends Model
 
         $userLevel = $coach->category;
 
-        if ($userLevel == 'professional') {            
+        if ($userLevel == 'professional') {
             $stretchesArray = array_map(function($stretch) {
                 $stretch['duration']['min'] = round($stretch['duration']['min'] + ($stretch['duration']['min'] * (25 / 100)));
                 $stretch['duration']['max'] = round($stretch['duration']['max'] + ($stretch['duration']['max'] * (25 / 100)));
                 return $stretch;
             }, $stretchesArray);
         }
-        
-        if($assessment == 3){
+
+        if ($assessment == 3) {
             $intenseFactor = 0;
-        } elseif($assessment == 2){
+        } elseif ($assessment == 2) {
             $intenseFactor = 1;
-        } elseif($assessment == 1){
+        } elseif ($assessment == 1) {
             $intenseFactor = 2;
         }
 
@@ -1845,6 +1840,7 @@ class Coach extends Model
                     }
                 }
             }
+
             list($exercises, $exerciseCat) = self::getCoachForFocus($warmUps, $fundumentalArray, $stretchesArray, $data, $userWorkouts, $focus, $userLevel, $coachStatus->week + 1, $intenseFactor);
         } else {
             if ($focus == 1) {
@@ -1999,28 +1995,6 @@ class Coach extends Model
         }
 
         $selWorkouts = [];
-
-//        if (isset($data['week']) && $data['week'] <= 7) {
-//            if ($data['week'] == 1) {
-//                foreach (self::$workoutIntensityArray[1] as $wKey => $wValue) {
-//                    if ($userLevel == 0) {
-//                        if ($wValue[$userLevel] > 0) {
-//                            $selWorkouts[] = $wKey;
-//                        }
-//                    } else {
-//                        if ($wValue[$userLevel] > 0) {
-//                            $selWorkouts[] = $wKey;
-//                        }
-//                    }
-//                }
-//            } else {
-//                foreach (self::$workoutIntensityArray[1] as $wKey => $wValue) {
-//                    if ($wKey != 4 && $wKey != 6 && $wKey != 17) {
-//                        $selWorkouts[] = $wKey;
-//                    }
-//                }
-//            }
-//        }
 
         $selectedWorkouts = '';
 
@@ -2259,7 +2233,6 @@ class Coach extends Model
         $skillTraining = self::getUserSkilltainingwithExercises($data);
 
         if ($focus == 1) {
-
             if ($data['days'] == 2) {
                 $csWorkout1 = self::getWorkoutWithExercises($userWorkouts['cardio_strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 //                  Day1 exercise set
@@ -2522,7 +2495,7 @@ class Coach extends Model
 
                 $sWorkout1 = self::getWorkoutWithExercises($userWorkouts['strength'][0]->id, $intenseFactor, $data['user_id'], $week);
 
-//Day1 exercise set
+                //Day1 exercise set
                 $coach['day1']['warmup'] = $warmUps;
                 $coach['day1']['is_completed'] = 0;
                 $coach['day1']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
@@ -2534,8 +2507,7 @@ class Coach extends Model
                 $coach['day1']['hiit'] = [];
                 $coach['day1']['stretching'] = $stretches;
 
-//Day2 Exercise set
-
+                //Day2 Exercise set
                 $coach['day2']['warmup'] = $warmUps;
                 $coach['day2']['is_completed'] = 0;
                 $coach['day2']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
@@ -2547,7 +2519,7 @@ class Coach extends Model
                 $coach['day2']['hiit'] = [];
                 $coach['day2']['stretching'] = $stretches;
 
-//Day3 exercise set                    
+                //Day3 exercise set                    
                 $coach['day3']['warmup'] = $warmUps;
                 $coach['day3']['is_completed'] = 0;
                 $coach['day3']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
@@ -2559,7 +2531,7 @@ class Coach extends Model
                 $coach['day3']['hiit'] = [];
                 $coach['day3']['stretching'] = $stretches;
 
-//Day4 exercise set
+                //Day4 exercise set
                 $coach['day4']['warmup'] = $warmUps;
                 $coach['day4']['is_completed'] = 0;
                 $coach['day4']['fundumentals'] = $fundumentalArray[random_int(1, 5)];
@@ -2830,6 +2802,7 @@ class Coach extends Model
 
         return array($coach, $exerciseCat);
     }
+
     /**
      * Get the skill training with exercises
      * @param type $data

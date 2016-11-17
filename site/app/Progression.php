@@ -18,4 +18,5 @@ class Progression extends Model
         'name',
         'description'
     ];
+
 }

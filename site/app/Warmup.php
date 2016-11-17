@@ -16,7 +16,7 @@ class Warmup extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
-        'name',        
+        'name',
         'duration',
         'unit'
     ];

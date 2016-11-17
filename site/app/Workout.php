@@ -29,7 +29,6 @@ class Workout extends Model
     protected $hidden = [
         'updated_at'
     ];
-    
     protected $appends = ['progression_string'];
 
     /**
@@ -59,13 +58,13 @@ class Workout extends Model
         );
         $progrArray = explode(',', $progressions);
         $progrsArray = [];
-        foreach($progrArray as $progr){
-            if(array_key_exists(strtolower($progr), $progressionArray)){
+        foreach ($progrArray as $progr) {
+            if (array_key_exists(strtolower($progr), $progressionArray)) {
                 $progrsArray[] = $progressionArray[strtolower($progr)];
             }
         }
-        
-        return implode(', ', $progrsArray);  
+
+        return implode(', ', $progrsArray);
 //        return $progressions;
     }
 

@@ -20,5 +20,5 @@ class Media extends Model
         'description',
         'path'
     ];
-    
+
 }

@@ -22,11 +22,9 @@ class Hiit extends Model
         'rewards',
         'equipment'
     ];
-    
     protected $hidden = [
         'updated_at',
         'created_at'
     ];
-    
-    
+
 }

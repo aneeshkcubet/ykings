@@ -130,7 +130,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-    
+
     /**
      * Function to set the user is subscribed
      * @depends isSubscribed
@@ -142,6 +142,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
         return $this->attributes['is_subscribed'] = $this->isSubscribed($this->id);
     }
+
     /**
      * Function to check weather renew of subscription needed
      * @depends isSubscribed
@@ -225,7 +226,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             return 0;
         }
     }
-    
+
     /**
      * Function to get the user raid
      * @return type

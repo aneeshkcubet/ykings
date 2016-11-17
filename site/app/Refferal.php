@@ -22,4 +22,5 @@ class Refferal extends Model
         'parameters',
         'is_coach_subscribed'
     ];
+
 }

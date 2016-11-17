@@ -16,13 +16,13 @@ class Fundumental extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
-        'row',        
+        'row',
         'exercise_id',
         'duration',
         'unit',
         'is_completed'
     ];
-    
+
     /**
      * Define the relationship for the exercise
      * @return \Illuminate\Database\Query\Builder
@@ -32,5 +32,4 @@ class Fundumental extends Model
     {
         return $this->hasOne('App\Exercise', 'id', 'exercise_id')->with(['video']);
     }
-
 }

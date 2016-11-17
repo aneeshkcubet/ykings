@@ -16,8 +16,9 @@ class Stretching extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
-        'exercise_id',        
+        'exercise_id',
         'duration',
         'unit'
     ];
+
 }

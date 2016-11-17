@@ -24,7 +24,6 @@ class Subscription extends Model
         'end_time',
         'details',
         'status'
-       
     ];
 
     /**
@@ -36,7 +35,7 @@ class Subscription extends Model
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
     }
-    
+
     /**
      * Define the relationship for the plan
      * @return \Illuminate\Database\Query\Builder

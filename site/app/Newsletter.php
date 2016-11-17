@@ -6,6 +6,7 @@ use DB;
 
 class Newsletter extends Model
 {
+
     /**
      * Set the database specific table name
      */
@@ -15,9 +16,10 @@ class Newsletter extends Model
      * Set the fillable fields within the model
      */
     protected $fillable = [
-        'subject',        
+        'subject',
         'content',
         'status',
         'subscribers'
     ];
+
 }

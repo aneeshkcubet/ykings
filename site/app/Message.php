@@ -22,4 +22,5 @@ class Message extends Model
         'read',
         'message'
     ];
+
 }

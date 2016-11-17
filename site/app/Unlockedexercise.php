@@ -20,12 +20,11 @@ class Unlockedexercise extends Model
         'skill_id',
         'exercise_id'
     ];
-    
     protected $hidden = [
         'updated_at',
         'created_at'
     ];
-    
+
     /**
      * Relation with video table.
      * @author Aneesh K<aneeshk@cubettech.com>
@@ -34,7 +33,5 @@ class Unlockedexercise extends Model
     public function exercise()
     {
         return $this->hasOne('App\Exercise', 'id', 'exercise_id')->with(['video']);
-    }   
-   
-    
+    }
 }

@@ -20,7 +20,6 @@ class Feeds extends Model
         'item_type',
         'item_id',
         'feed_text'
-        
     ];
 
     /**
@@ -54,7 +53,7 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Images', 'parent_id', 'id')->where('parent_type', '=', 2);
     }
-    
+
     /**
      * Relation with clap table.
      * @author <ansa@cubettech.com>
@@ -74,5 +73,4 @@ class Feeds extends Model
     {
         return $this->hasMany('App\Comment', 'parent_id', $this->id)->where('parent_type', '=', 'feed')->with(['user']);
     }
-    
 }

@@ -24,16 +24,7 @@ class Workoutexercise extends Model
         'unit',
         'sets'
     ];
-    
-//    protected $hidden = [
-//        'workout_id',
-//        'category',
-//        'repititions',
-//        'round',
-//        'updated_at',
-//        'created_at'
-//    ];
-    
+
     /**
      * Relation with video table.
      * @author <aneeshk@cubettech.com>
@@ -43,7 +34,7 @@ class Workoutexercise extends Model
     {
         return $this->hasOne('App\Video', 'parent_id', 'exercise_id');
     }
-    
+
     /**
      * Relation with video table.
      * @author <aneeshk@cubettech.com>
@@ -53,6 +44,7 @@ class Workoutexercise extends Model
     {
         return $this->belongsTo('App\Exercise', 'exercise_id', 'id');
     }
+
     /**
      * Function to get follower count.
      * @author <ansa@cubettech.com>
@@ -65,6 +57,4 @@ class Workoutexercise extends Model
             ->count();
         return $followerCount;
     }
-    
-    
 }

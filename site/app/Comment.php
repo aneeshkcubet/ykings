@@ -41,7 +41,7 @@ class Comment extends Model
      */
     public function profile()
     {
-        return $this->hasOne('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image','gender'));
+        return $this->hasOne('App\Profile', 'user_id', 'user_id')->select(array('user_id', 'first_name', 'last_name', 'image', 'gender'));
     }
 
     /**
