@@ -110,7 +110,6 @@ class NewsletterController extends Controller
             ]);
 
             if (!is_null($newsletter)) {
-
                 // Redirect to the home page with success menu
                 return Redirect::route("admin.newsletters")->with('success', 'Newsletter drafted successfully.');
             }
@@ -139,8 +138,6 @@ class NewsletterController extends Controller
         }
 
         try {
-
-
 
             $data['subject'] = Input::get('subject');
 
@@ -182,7 +179,6 @@ class NewsletterController extends Controller
             ]);
 
             if (!is_null($newsletter)) {
-
                 // Redirect to the home page with success menu
                 return Redirect::route("admin.newsletters")->with('success', 'Successfully sent newsletter to subscribers.');
             }
@@ -242,7 +238,6 @@ class NewsletterController extends Controller
         } else {
             // Prepare the error message
             $error = 'Newsletter not found';
-
             // Redirect to the user management page
             return Redirect::route('admin.newsletters')->with('error', $error);
         }
@@ -297,9 +292,7 @@ class NewsletterController extends Controller
         }
 
         try {
-
-
-
+            
             $data['subject'] = Input::get('subject');
 
             $data['content'] = Input::get('content');

@@ -11,12 +11,9 @@ class NewsletterController extends Controller
 {
     /*
       |--------------------------------------------------------------------------
-      | Registration & Login Controller
+      | Newsletter Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles the registration of new users, as well as the
-      | authentication of existing users. By default, this controller uses
-      | a simple trait to add these behaviors. Why don't you explore it?
       |
      */
 
@@ -27,9 +24,14 @@ class NewsletterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest');
     }
 
+    /**
+     * Function to unsubscibe newsletter from email
+     * @param type $code
+     * @return type
+     */
     protected function unsubscribe($code = null)
     {
 
@@ -40,7 +42,7 @@ class NewsletterController extends Controller
             $codeRaw = base64_decode($code);
 
             $codeArray = explode('_', $codeRaw);
-            
+
             $user = User::where('id', $codeArray[1])->first();
 
             if (is_null($user)) {

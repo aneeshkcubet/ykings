@@ -876,9 +876,9 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-  "status": 1,
-  "skills": [
-    {
+      "status": 1,
+      "skills": [
+      {
       "id": "83",
       "description": "",
       "progression_id": "1",
@@ -894,27 +894,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "84",
-        "name": "Eccentric Pull-ups",
-        "description": "Eccentric Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "84",
+      "name": "Eccentric Pull-ups",
+      "description": "Eccentric Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "176",
       "description": "",
       "progression_id": "1",
@@ -930,27 +930,27 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "85",
-        "name": "Assisted Pull-ups",
-        "description": "Assisted Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "6.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "85",
+      "name": "Assisted Pull-ups",
+      "description": "Assisted Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "6.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "85",
       "description": "",
       "progression_id": "1",
@@ -966,34 +966,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "86",
-        "name": "Pull-ups ",
-        "description": "Pull-ups ",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "81",
-            "path": "86_1470654172.mp4",
-            "videothumbnail": "86_1470654172.jpg",
-            "description": "Pull-ups "
-          }
-        ]
+      "id": "86",
+      "name": "Pull-ups ",
+      "description": "Pull-ups ",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "81",
+      "path": "86_1470654172.mp4",
+      "videothumbnail": "86_1470654172.jpg",
+      "description": "Pull-ups "
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "86",
       "description": "",
       "progression_id": "1",
@@ -1009,27 +1009,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "88",
-        "name": "High Chest Pull-ups",
-        "description": "High Chest Pull-ups",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "88",
+      "name": "High Chest Pull-ups",
+      "description": "High Chest Pull-ups",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "87",
       "description": "",
       "progression_id": "1",
@@ -1045,36 +1045,36 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "89",
-        "name": "Muscleups",
-        "description": "Muscleups",
-        "category": "3",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "10.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "79",
-            "path": "89_1470649283.mp4",
-            "videothumbnail": "89_1470649283.jpg",
-            "description": ""
-          }
-        ]
+      "id": "89",
+      "name": "Muscleups",
+      "description": "Muscleups",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "79",
+      "path": "89_1470649283.mp4",
+      "videothumbnail": "89_1470649283.jpg",
+      "description": ""
       }
-    }
-  ],
-  "allies": [
-    {
+      ]
+      }
+      }
+      ],
+      "allies": [
+      {
       "id": "177",
       "description": "",
       "progression_id": "1",
@@ -1090,34 +1090,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "193",
-        "name": "Jump 2 MU",
-        "description": "Jump 2 MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "80",
-            "path": "193_1470649743.mp4",
-            "videothumbnail": "193_1470649743.jpg",
-            "description": ""
-          }
-        ]
+      "id": "193",
+      "name": "Jump 2 MU",
+      "description": "Jump 2 MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "80",
+      "path": "193_1470649743.mp4",
+      "videothumbnail": "193_1470649743.jpg",
+      "description": ""
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "178",
       "description": "",
       "progression_id": "1",
@@ -1133,27 +1133,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "194",
-        "name": "Assisted MU",
-        "description": "Assisted MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "194",
+      "name": "Assisted MU",
+      "description": "Assisted MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "179",
       "description": "",
       "progression_id": "1",
@@ -1169,27 +1169,27 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "195",
-        "name": "Gripchange Pull-ups",
-        "description": "Gripchange Pull-ups",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "195",
+      "name": "Gripchange Pull-ups",
+      "description": "Gripchange Pull-ups",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "180",
       "description": "",
       "progression_id": "1",
@@ -1205,27 +1205,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "196",
-        "name": "Pullover  to ecc. MU",
-        "description": "Pullover  to ecc. MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "196",
+      "name": "Pullover  to ecc. MU",
+      "description": "Pullover  to ecc. MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "181",
       "description": "",
       "progression_id": "1",
@@ -1241,27 +1241,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "197",
-        "name": "10s DH to High Chest Pull-up",
-        "description": "10s DH to High Chest Pull-up",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "197",
+      "name": "10s DH to High Chest Pull-up",
+      "description": "10s DH to High Chest Pull-up",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "182",
       "description": "",
       "progression_id": "1",
@@ -1277,27 +1277,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "198",
-        "name": "Pull-up / MU / Straight Bar Dip ",
-        "description": "Pull-up / MU / Straight Bar Dip ",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "198",
+      "name": "Pull-up / MU / Straight Bar Dip ",
+      "description": "Pull-up / MU / Straight Bar Dip ",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "183",
       "description": "",
       "progression_id": "1",
@@ -1313,45 +1313,45 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "199",
-        "name": "10s DH to MU",
-        "description": "10s DH to MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "199",
+      "name": "10s DH to MU",
+      "description": "10s DH to MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    }
-  ],
-  "is_subscribed": 1,
-  "urls": {
-    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
-    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
-    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
-    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
-    "video": "http://testing.ykings.com/uploads/videos",
-    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
-    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
-    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
-    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
-    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
-    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
-    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
-    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
-    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
-  }
-}
+      }
+      ],
+      "is_subscribed": 1,
+      "urls": {
+      "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+      "video": "http://testing.ykings.com/uploads/videos",
+      "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * 
@@ -1417,7 +1417,7 @@ class SkillsController extends Controller
                 $skill = Skill::where('id', $request->skill_id)->first();
 
                 $skills = Skill::where('row', $skill->row)->where('is_allies', '=', 0)->where('progression_id', $skill->progression_id)->with(['exercise'])->orderBy('level', 'ASC')->get();
-                
+
                 foreach ($skills as $sKey => $sValue) {
                     $isRaidActive = DB::table('user_goal_options')->where('user_id', $request->user_id)->where('goal_options', $sValue->id)->count();
                     if ($isRaidActive > 0) {
@@ -1519,13 +1519,13 @@ class SkillsController extends Controller
                 //get previous level skill
 
                 $skill = Skill::where('id', $skill->id)->first();
-                
+
                 if ($skill->level != 2) {
                     $prevSkill = Skill::where('row', $skill->row)
                         ->where('progression_id', $skill->progression_id)
                         ->where('level', '=', $skill->level - 1)
                         ->first();
-                    
+
                     if (!is_null($prevSkill)) {
                         $unLockCount = DB::table('unlocked_skills')
                             ->select('exercise_id')
@@ -1564,10 +1564,10 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-  "status": 1,
-  "message": "successfully unlocked the skill",
-  "skills": [
-    {
+      "status": 1,
+      "message": "successfully unlocked the skill",
+      "skills": [
+      {
       "id": "83",
       "description": "",
       "progression_id": "1",
@@ -1583,27 +1583,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "84",
-        "name": "Eccentric Pull-ups",
-        "description": "Eccentric Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "84",
+      "name": "Eccentric Pull-ups",
+      "description": "Eccentric Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "176",
       "description": "",
       "progression_id": "1",
@@ -1619,27 +1619,27 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "85",
-        "name": "Assisted Pull-ups",
-        "description": "Assisted Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "6.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "85",
+      "name": "Assisted Pull-ups",
+      "description": "Assisted Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "6.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "85",
       "description": "",
       "progression_id": "1",
@@ -1655,34 +1655,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "86",
-        "name": "Pull-ups ",
-        "description": "Pull-ups ",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "81",
-            "path": "86_1470654172.mp4",
-            "videothumbnail": "86_1470654172.jpg",
-            "description": "Pull-ups "
-          }
-        ]
+      "id": "86",
+      "name": "Pull-ups ",
+      "description": "Pull-ups ",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "81",
+      "path": "86_1470654172.mp4",
+      "videothumbnail": "86_1470654172.jpg",
+      "description": "Pull-ups "
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "86",
       "description": "",
       "progression_id": "1",
@@ -1698,27 +1698,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "88",
-        "name": "High Chest Pull-ups",
-        "description": "High Chest Pull-ups",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "88",
+      "name": "High Chest Pull-ups",
+      "description": "High Chest Pull-ups",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "87",
       "description": "",
       "progression_id": "1",
@@ -1734,36 +1734,36 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "89",
-        "name": "Muscleups",
-        "description": "Muscleups",
-        "category": "3",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "10.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "79",
-            "path": "89_1470649283.mp4",
-            "videothumbnail": "89_1470649283.jpg",
-            "description": ""
-          }
-        ]
+      "id": "89",
+      "name": "Muscleups",
+      "description": "Muscleups",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "79",
+      "path": "89_1470649283.mp4",
+      "videothumbnail": "89_1470649283.jpg",
+      "description": ""
       }
-    }
-  ],
-  "allies": [
-    {
+      ]
+      }
+      }
+      ],
+      "allies": [
+      {
       "id": "177",
       "description": "",
       "progression_id": "1",
@@ -1779,34 +1779,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "193",
-        "name": "Jump 2 MU",
-        "description": "Jump 2 MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "80",
-            "path": "193_1470649743.mp4",
-            "videothumbnail": "193_1470649743.jpg",
-            "description": ""
-          }
-        ]
+      "id": "193",
+      "name": "Jump 2 MU",
+      "description": "Jump 2 MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "80",
+      "path": "193_1470649743.mp4",
+      "videothumbnail": "193_1470649743.jpg",
+      "description": ""
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "178",
       "description": "",
       "progression_id": "1",
@@ -1822,27 +1822,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "194",
-        "name": "Assisted MU",
-        "description": "Assisted MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "194",
+      "name": "Assisted MU",
+      "description": "Assisted MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "179",
       "description": "",
       "progression_id": "1",
@@ -1858,27 +1858,27 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "195",
-        "name": "Gripchange Pull-ups",
-        "description": "Gripchange Pull-ups",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "195",
+      "name": "Gripchange Pull-ups",
+      "description": "Gripchange Pull-ups",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "180",
       "description": "",
       "progression_id": "1",
@@ -1894,27 +1894,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "196",
-        "name": "Pullover  to ecc. MU",
-        "description": "Pullover  to ecc. MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "196",
+      "name": "Pullover  to ecc. MU",
+      "description": "Pullover  to ecc. MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "181",
       "description": "",
       "progression_id": "1",
@@ -1930,27 +1930,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "197",
-        "name": "10s DH to High Chest Pull-up",
-        "description": "10s DH to High Chest Pull-up",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "197",
+      "name": "10s DH to High Chest Pull-up",
+      "description": "10s DH to High Chest Pull-up",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "182",
       "description": "",
       "progression_id": "1",
@@ -1966,27 +1966,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "198",
-        "name": "Pull-up / MU / Straight Bar Dip ",
-        "description": "Pull-up / MU / Straight Bar Dip ",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "198",
+      "name": "Pull-up / MU / Straight Bar Dip ",
+      "description": "Pull-up / MU / Straight Bar Dip ",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "183",
       "description": "",
       "progression_id": "1",
@@ -2002,45 +2002,45 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "199",
-        "name": "10s DH to MU",
-        "description": "10s DH to MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "199",
+      "name": "10s DH to MU",
+      "description": "10s DH to MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    }
-  ],
-  "is_subscribed": 1,
-  "urls": {
-    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
-    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
-    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
-    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
-    "video": "http://testing.ykings.com/uploads/videos",
-    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
-    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
-    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
-    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
-    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
-    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
-    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
-    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
-    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
-  }
-}
+      }
+      ],
+      "is_subscribed": 1,
+      "urls": {
+      "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+      "video": "http://testing.ykings.com/uploads/videos",
+      "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * 
@@ -2168,10 +2168,10 @@ class SkillsController extends Controller
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-  "status": 1,
-  "message": "successfully locked the skill",
-  "skills": [
-    {
+      "status": 1,
+      "message": "successfully locked the skill",
+      "skills": [
+      {
       "id": "83",
       "description": "",
       "progression_id": "1",
@@ -2187,27 +2187,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "84",
-        "name": "Eccentric Pull-ups",
-        "description": "Eccentric Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "84",
+      "name": "Eccentric Pull-ups",
+      "description": "Eccentric Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump into pullup, chin above bar level 3) Hold position briefly 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump into pullup, chin above bar level<br /> 3) Hold position briefly<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "176",
       "description": "",
       "progression_id": "1",
@@ -2223,27 +2223,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "85",
-        "name": "Assisted Pull-ups",
-        "description": "Assisted Pull-ups",
-        "category": "1",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "6.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "85",
+      "name": "Assisted Pull-ups",
+      "description": "Assisted Pull-ups",
+      "category": "1",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "6.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "85",
       "description": "",
       "progression_id": "1",
@@ -2259,34 +2259,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "86",
-        "name": "Pull-ups ",
-        "description": "Pull-ups ",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "81",
-            "path": "86_1470654172.mp4",
-            "videothumbnail": "86_1470654172.jpg",
-            "description": "Pull-ups "
-          }
-        ]
+      "id": "86",
+      "name": "Pull-ups ",
+      "description": "Pull-ups ",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup, chin above bar level 3) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup, chin above bar level<br /> 3) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "81",
+      "path": "86_1470654172.mp4",
+      "videothumbnail": "86_1470654172.jpg",
+      "description": "Pull-ups "
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "86",
       "description": "",
       "progression_id": "1",
@@ -2302,27 +2302,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "88",
-        "name": "High Chest Pull-ups",
-        "description": "High Chest Pull-ups",
-        "category": "2",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "7.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "88",
+      "name": "High Chest Pull-ups",
+      "description": "High Chest Pull-ups",
+      "category": "2",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "7.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively, chest above bar level 3) Controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively, chest above bar level<br /> 3) Controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "87",
       "description": "",
       "progression_id": "1",
@@ -2338,36 +2338,36 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 0,
       "exercise": {
-        "id": "89",
-        "name": "Muscleups",
-        "description": "Muscleups",
-        "category": "3",
-        "type": "1",
-        "muscle_groups": "",
-        "rewards": "10.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "79",
-            "path": "89_1470649283.mp4",
-            "videothumbnail": "89_1470649283.jpg",
-            "description": ""
-          }
-        ]
+      "id": "89",
+      "name": "Muscleups",
+      "description": "Muscleups",
+      "category": "3",
+      "type": "1",
+      "muscle_groups": "",
+      "rewards": "10.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position2) Pullup explosively into wrist transition3) Straight bar dip on top4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br />2) Pullup explosively into wrist transition<br />3) Straight bar dip on top<br />4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "79",
+      "path": "89_1470649283.mp4",
+      "videothumbnail": "89_1470649283.jpg",
+      "description": ""
       }
-    }
-  ],
-  "allies": [
-    {
+      ]
+      }
+      }
+      ],
+      "allies": [
+      {
       "id": "177",
       "description": "",
       "progression_id": "1",
@@ -2383,34 +2383,34 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "193",
-        "name": "Jump 2 MU",
-        "description": "Jump 2 MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": [
-          {
-            "id": "80",
-            "path": "193_1470649743.mp4",
-            "videothumbnail": "193_1470649743.jpg",
-            "description": ""
-          }
-        ]
+      "id": "193",
+      "name": "Jump 2 MU",
+      "description": "Jump 2 MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start with feet on the ground 2) Jump up into muscleup 3) Straight bar dip on top 4) Slow & controlled eccentric movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start with feet on the ground<br /> 2) Jump up into muscleup<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled eccentric movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": [
+      {
+      "id": "80",
+      "path": "193_1470649743.mp4",
+      "videothumbnail": "193_1470649743.jpg",
+      "description": ""
       }
-    },
-    {
+      ]
+      }
+      },
+      {
       "id": "178",
       "description": "",
       "progression_id": "1",
@@ -2426,27 +2426,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "194",
-        "name": "Assisted MU",
-        "description": "Assisted MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "194",
+      "name": "Assisted MU",
+      "description": "Assisted MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "1) Start in deadhang position 2) Pullup explosively into wrist transition 3) Straight bar dip on top 4) Slow & controlled movement into starting position",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>1) Start in deadhang position<br /> 2) Pullup explosively into wrist transition<br /> 3) Straight bar dip on top<br /> 4) Slow &amp; controlled movement into starting position</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "179",
       "description": "",
       "progression_id": "1",
@@ -2462,27 +2462,27 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "195",
-        "name": "Gripchange Pull-ups",
-        "description": "Gripchange Pull-ups",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "195",
+      "name": "Gripchange Pull-ups",
+      "description": "Gripchange Pull-ups",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "180",
       "description": "",
       "progression_id": "1",
@@ -2498,27 +2498,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "196",
-        "name": "Pullover  to ecc. MU",
-        "description": "Pullover  to ecc. MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "196",
+      "name": "Pullover  to ecc. MU",
+      "description": "Pullover  to ecc. MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "181",
       "description": "",
       "progression_id": "1",
@@ -2534,27 +2534,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "197",
-        "name": "10s DH to High Chest Pull-up",
-        "description": "10s DH to High Chest Pull-up",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "197",
+      "name": "10s DH to High Chest Pull-up",
+      "description": "10s DH to High Chest Pull-up",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "182",
       "description": "",
       "progression_id": "1",
@@ -2570,27 +2570,27 @@ class SkillsController extends Controller
       "isLockable": 0,
       "isUnlockable": 1,
       "exercise": {
-        "id": "198",
-        "name": "Pull-up / MU / Straight Bar Dip ",
-        "description": "Pull-up / MU / Straight Bar Dip ",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "198",
+      "name": "Pull-up / MU / Straight Bar Dip ",
+      "description": "Pull-up / MU / Straight Bar Dip ",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "This exercise is a combination of basic moves. Please read the pullups, muscleups & straight bar dip range of motion description beforehand.",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "<p>This exercise is a combination of basic moves. Please read the pullups, muscleups &amp; straight bar dip range of motion description beforehand.</p>",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    },
-    {
+      },
+      {
       "id": "183",
       "description": "",
       "progression_id": "1",
@@ -2606,45 +2606,45 @@ class SkillsController extends Controller
       "isLockable": 1,
       "isUnlockable": 0,
       "exercise": {
-        "id": "199",
-        "name": "10s DH to MU",
-        "description": "10s DH to MU",
-        "category": "3",
-        "type": "2",
-        "muscle_groups": "",
-        "rewards": "5.00",
-        "unit": "times",
-        "equipment": "",
-        "range_of_motion": "",
-        "video_tips": "",
-        "pro_tips": "",
-        "video_tips_html": "",
-        "pro_tips_html": "",
-        "range_of_motion_html": "",
-        "is_static": "0",
-        "musclegroup_string": "",
-        "video": []
+      "id": "199",
+      "name": "10s DH to MU",
+      "description": "10s DH to MU",
+      "category": "3",
+      "type": "2",
+      "muscle_groups": "",
+      "rewards": "5.00",
+      "unit": "times",
+      "equipment": "",
+      "range_of_motion": "",
+      "video_tips": "",
+      "pro_tips": "",
+      "video_tips_html": "",
+      "pro_tips_html": "",
+      "range_of_motion_html": "",
+      "is_static": "0",
+      "musclegroup_string": "",
+      "video": []
       }
-    }
-  ],
-  "is_subscribed": 1,
-  "urls": {
-    "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
-    "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
-    "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
-    "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
-    "video": "http://testing.ykings.com/uploads/videos",
-    "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
-    "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
-    "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
-    "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
-    "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
-    "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
-    "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
-    "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
-    "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
-  }
-}
+      }
+      ],
+      "is_subscribed": 1,
+      "urls": {
+      "profileImageSmall": "http://testing.ykings.com/uploads/images/profile/small",
+      "profileImageMedium": "http://testing.ykings.com/uploads/images/profile/medium",
+      "profileImageLarge": "http://testing.ykings.com/uploads/images/profile/large",
+      "profileImageOriginal": "http://testing.ykings.com/uploads/images/profile/original",
+      "video": "http://testing.ykings.com/uploads/videos",
+      "videothumbnail": "http://testing.ykings.com/uploads/images/videothumbnails",
+      "feedImageSmall": "http://testing.ykings.com/uploads/images/feed/small",
+      "feedImageMedium": "http://testing.ykings.com/uploads/images/feed/medium",
+      "feedImageLarge": "http://testing.ykings.com/uploads/images/feed/large",
+      "feedImageOriginal": "http://testing.ykings.com/uploads/images/feed/original",
+      "coverImageSmall": "http://testing.ykings.com/uploads/images/cover_image/small",
+      "coverImageMedium": "http://testing.ykings.com/uploads/images/cover_image/medium",
+      "coverImageLarge": "http://testing.ykings.com/uploads/images/cover_image/large",
+      "coverImageOriginal": "http://testing.ykings.com/uploads/images/cover_image/original"
+      }
+      }
      * 
      * 
      * 

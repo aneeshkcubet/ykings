@@ -9217,6 +9217,11 @@ class CoachesController extends Controller
         }
     }
 
+    /**
+     * Function to test replacement of html tags
+     * @param Request $request
+     * @author Aneesh K<aneeshk@cubettech.com>
+     */
     public function test(Request $request)
     {
         $str = "<p>Some Text Here for some good fun mmhmmm</p>\n<ul>\n<li>List</li>\n<li>Item</li>\n</ul>\n\n<ol>\n<li>Listo</li>\n<li>Itemo</li>\n</ol>\n<ul>\n<li>List2</li>\n<li>Item2</li>\n</ul>\n";

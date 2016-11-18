@@ -459,7 +459,7 @@ class ExerciseController extends Controller
             }
 
             $duration = Input::get('repetitions');
-            
+
             Exercise::where('id', $id)->update([
                 'name' => Input::get('name'),
                 'description' => Input::get('description'),

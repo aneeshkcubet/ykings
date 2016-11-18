@@ -1179,7 +1179,7 @@ class FeedController extends Controller
     /**
      * Function to get additional parameters in feeds.
      * @since 19/11/2015
-     * @author ansa@cubettech.com
+     * @author aneeshk@cubettech.com
      * @return json
      */
     protected function AdditionalFeedsDetails($feeds, $userId)

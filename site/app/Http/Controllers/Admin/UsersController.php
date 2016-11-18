@@ -224,10 +224,8 @@ class UsersController extends Controller
         $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
 
         if (is_null($tUser)) {
-
 // Prepare the error message
             $error = 'User does not exists';
-
 // Redirect to the user management page
             return Redirect::route('admin.users')->with('error', $error);
         }
@@ -258,10 +256,8 @@ class UsersController extends Controller
         $tUser = User::where('id', $id)->with(['profile', 'settings'])->first();
 
         if (is_null($tUser)) {
-
 // Prepare the error message
             $error = 'User does not exists';
-
 // Redirect to the user management page
             return Redirect::route('admin.users')->with('error', $error);
         }
@@ -282,8 +278,6 @@ class UsersController extends Controller
      */
     public function postEdit(Request $request, $id = null)
     {
-//        print_r($_FILES);
-//        die;
         if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
             $accepableTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg', 'image/pjpeg', 'image/x-png'];
@@ -316,13 +310,6 @@ class UsersController extends Controller
                 'is_admin' => (isset($isAdmin)) ? 1 : 0,
             ]);
         }
-
-// Create a new validator instance from our validation rules
-//        $validator = Validator::make(Input::all(), $this->validationRules);
-// If validation fails, we'll exit the operation now .
-//        if ($validator->fails()) {
-//            return Redirect::back()->withInput()->withErrors($validator);
-//        }
 
         $userProfile = Profile::where('user_id', $id)->first();
 // Update the user
@@ -366,10 +353,6 @@ class UsersController extends Controller
         $success = 'Successfully updated the user profile.';
 // Redirect to the user page
         return Redirect::route('admin.users')->with('success', $success);
-
-
-// Redirect to the user page
-        return Redirect::route('admin.user.update', $id)->withInput()->with('error', $error);
     }
 
     /**
@@ -575,6 +558,11 @@ class UsersController extends Controller
         return Redirect::route("admin.feeds")->with('success', 'Successfully added message.');
     }
 
+    /**
+     * Function to export subscribers to excel file
+     * @return type
+     * @author Aneesh K <aneeshk@cubettech.com>
+     */
     public function exportsubscribers()
     {
         $subscribers = DB::table('user_settings')->where('user_settings.key', '=', 'subscription')
@@ -612,6 +600,11 @@ class UsersController extends Controller
         return view('welcome');
     }
 
+    /**
+     * Function to export users to excel file
+     * @return type
+     * @author Aneesh K <aneeshk@cubettech.com>
+     */
     public function exportusers()
     {
         $table = User::leftJoin('user_profiles', 'user_profiles.user_id', '=', 'users.id')

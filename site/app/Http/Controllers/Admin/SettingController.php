@@ -27,7 +27,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Plan Edit page
+     * Setting Edit page
      * @since 14/01/2015
      * @author aneeshk@cubettech.com
      * @return json
@@ -46,7 +46,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Plan Post Edit page
+     * Setting Post Edit page
      * @since 14/01/2015
      * @author aneeshk@cubettech.com
      * @return json

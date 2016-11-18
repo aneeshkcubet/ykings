@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\Admin;
+<?php namespace App\Http\Controllers\Admin;
 
 use Validator,
     Hash,
@@ -31,7 +29,8 @@ use App\Hiit;
 use App\Hiituser;
 use Yajra\Datatables\Datatables;
 
-class FeedController extends Controller {
+class FeedController extends Controller
+{
     /*
       |--------------------------------------------------------------------------
       | Feed Controller
@@ -41,7 +40,8 @@ class FeedController extends Controller {
       |
      */
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('admin');
     }
 
@@ -51,31 +51,33 @@ class FeedController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getIndex() {
+    public function getIndex()
+    {
         $feeds = array();
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
         return View('admin.feed.index', compact('feeds', 'user'));
     }
 
-    public function anyData() {
+    public function anyData()
+    {
         $feeds = DB::table('feeds')
-                ->join('user_profiles', 'feed.user_id', '=', 'user_profiles.user_id')
-                ->select(['feeds.id,feeds.feed_text,user_profiles.user_id', 'user_profiles.first_name', 'user_profiles.last_name', 'user_profiles.image', 'user_profiles.quote', 'user_profiles.gender']);
+            ->join('user_profiles', 'feed.user_id', '=', 'user_profiles.user_id')
+            ->select(['feeds.id,feeds.feed_text,user_profiles.user_id', 'user_profiles.first_name', 'user_profiles.last_name', 'user_profiles.image', 'user_profiles.quote', 'user_profiles.gender']);
 
         return Datatables::of(Feeds::with(['profile']))
-                        ->edit_column('image', function ($list) {
-                            if (!empty($list->image)) {
-                                return '<img width="50" height="50" src="/uploads/images/feed/small/' . $list->image . '" />';
-                            } else {
-                                return '<img width="50" height="50" src="/img/feed_placeholder.png" />';
-                            }
-                        })
-                        ->edit_column('comments', function ($comments) {
-                            $feeds = $this->AdditionalFeedsDetailsTest($comments);
+                ->edit_column('image', function ($list) {
+                    if (!empty($list->image)) {
+                        return '<img width="50" height="50" src="/uploads/images/feed/small/' . $list->image . '" />';
+                    } else {
+                        return '<img width="50" height="50" src="/img/feed_placeholder.png" />';
+                    }
+                })
+                ->edit_column('comments', function ($comments) {
+                    $feeds = $this->AdditionalFeedsDetailsTest($comments);
 
 
-                            if ($feeds["comment_count"] > 0) {
-                                $htmlComments = '<table class="table table-bordered" width="100%">
+                    if ($feeds["comment_count"] > 0) {
+                        $htmlComments = '<table class="table table-bordered" width="100%">
                                               <thead>
                                               <tr class="filters">
                                               <th width="70%">Comment</th>
@@ -83,25 +85,25 @@ class FeedController extends Controller {
                                               <th width="10%">Actions</th>
                                               </tr></thead><tbody>';
 
-                                foreach ($feeds["comments"] AS $feedsVals) {
-                                    $htmlComments.=
-                                            '<tr>'
-                                            . '<td>' .
-                                            $feedsVals['comment_text'] .
-                                            '</td>
+                        foreach ($feeds["comments"] AS $feedsVals) {
+                            $htmlComments.=
+                                '<tr>'
+                                . '<td>' .
+                                $feedsVals['comment_text'] .
+                                '</td>
                                                <td>
                                               <a href="" title=' . $feedsVals['profile']['first_name'] . $feedsVals['profile']['last_name'] . '>';
-                                    if ($feedsVals['profile']['image'] != '') {
-                                        $htmlComments.=' <img width="30" height="30" src="/uploads/images/profile/small/' . $feedsVals['profile']['image'] . '" />';
-                                    } else {
-                                        if ($feedsVals['profile']['gender'] < 2) {
-                                            $htmlComments.='<img width="30" height="30" src="/img/avatar04.png" />';
-                                        } else {
-                                            $htmlComments.='<img width="30" height="30" src="/img/avatar3.png" />';
-                                        }
-                                    }
+                            if ($feedsVals['profile']['image'] != '') {
+                                $htmlComments.=' <img width="30" height="30" src="/uploads/images/profile/small/' . $feedsVals['profile']['image'] . '" />';
+                            } else {
+                                if ($feedsVals['profile']['gender'] < 2) {
+                                    $htmlComments.='<img width="30" height="30" src="/img/avatar04.png" />';
+                                } else {
+                                    $htmlComments.='<img width="30" height="30" src="/img/avatar3.png" />';
+                                }
+                            }
 
-                                    $htmlComments .='<br/>' . $feedsVals['profile']['first_name'] . $feedsVals['profile']['last_name'] . '
+                            $htmlComments .='<br/>' . $feedsVals['profile']['first_name'] . $feedsVals['profile']['last_name'] . '
                                       </a>
                                       </td>
                                       <td>
@@ -111,43 +113,43 @@ class FeedController extends Controller {
                                         </a>
                                        </td>
                                       </tr>';
-                                }
-                                $htmlComments .= "</tbody></table>";
-                            } else {
-                                $htmlComments = 'No Comments';
-                            }
-                            return $htmlComments;
-                        })
-                        ->edit_column('author', function($author) {
-                            $htmlAuthor = ' <a href="" title="' . $author['profile']['first_name'] . " " . $author['profile']['last_name'] . '">';
-                            if ($author['profile']['image'] != '') {
-                                $htmlAuthor.='<img width="50" height="50" src="/uploads/images/profile/small/' . $author['profile']['image'] . '" />';
-                            } else {
-                                if ($author['profile']['gender'] < 2) {
-                                    $htmlAuthor.='<img width="30" height="30" src="/img/avatar04.png" />';
-                                } else {
-                                    $htmlAuthor.='<img width="30" height="30" src="/img/avatar3.png" />';
-                                }
-                            }
-                            $htmlAuthor.=' <br />
+                        }
+                        $htmlComments .= "</tbody></table>";
+                    } else {
+                        $htmlComments = 'No Comments';
+                    }
+                    return $htmlComments;
+                })
+                ->edit_column('author', function($author) {
+                    $htmlAuthor = ' <a href="" title="' . $author['profile']['first_name'] . " " . $author['profile']['last_name'] . '">';
+                    if ($author['profile']['image'] != '') {
+                        $htmlAuthor.='<img width="50" height="50" src="/uploads/images/profile/small/' . $author['profile']['image'] . '" />';
+                    } else {
+                        if ($author['profile']['gender'] < 2) {
+                            $htmlAuthor.='<img width="30" height="30" src="/img/avatar04.png" />';
+                        } else {
+                            $htmlAuthor.='<img width="30" height="30" src="/img/avatar3.png" />';
+                        }
+                    }
+                    $htmlAuthor.=' <br />
                              ' . $author['profile']['first_name'] . $author['profile']['last_name'] . '
                                 </a>';
-                            return $htmlAuthor;
-                        })
-                        ->edit_column('claps', function($claps) {
-                            return Clap::clapCount($claps->id, 'feed');
-                        })
-                        ->add_column('action', function($action) {
-                            $htmlActions = '<td>                                               
+                    return $htmlAuthor;
+                })
+                ->edit_column('claps', function($claps) {
+                    return Clap::clapCount($claps->id, 'feed');
+                })
+                ->add_column('action', function($action) {
+                    $htmlActions = '<td>                                               
                                             <a href=\'' . route("admin.confirm-delete.feed", $action['id']) . '\' data-toggle="modal" data-target="#delete_confirm">
                                             <i class="glyphicon glyphicon-remove" data-name="comment-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete comment.">
                                             </i>
                                             </a>
                                             </td></tr></tbody></table>';
-                            return $htmlActions;
-                        })
-                        ->blacklist(['action', 'claps', 'comments', 'author'])
-                        ->make(true);
+                    return $htmlActions;
+                })
+                ->blacklist(['action', 'claps', 'comments', 'author'])
+                ->make(true);
     }
 
     /**
@@ -156,29 +158,28 @@ class FeedController extends Controller {
      * @author ansa@cubettech.com
      * @return json
      */
-    protected function AdditionalFeedsDetails($feeds) {
+    protected function AdditionalFeedsDetails($feeds)
+    {
         foreach ($feeds as $fKey => $feed) {
-//Clap count
+//           Clap count
             $feed->clap_count = Clap::clapCount($feed->id, 'feed');
 
-//comments count
+//           comments count
             $feed->comment_count = Comment::commentCount($feed->id, 'feed');
 
             $comments = Comment::where('parent_id', '=', $feed->id)
-                    ->where('parent_type', 'feed')
-                    ->orderBy('created_at', 'DESC')
-                    ->with(['profile'])
-                    ->get();
-
+                ->where('parent_type', 'feed')
+                ->orderBy('created_at', 'DESC')
+                ->with(['profile'])
+                ->get();
 
             $feed->comments = $comments->toArray();
-
 
             $image = Images::where('parent_id', $feed->id)->where('parent_type', '=', 2)->get();
 
             $feed->image = $image->toArray();
 
-//To get Category
+//              To get Category
             if ($feed->item_type == 'workout') {
 
                 $workout = Workout::where('id', '=', $feed->item_id)->first();
@@ -192,11 +193,12 @@ class FeedController extends Controller {
                 } else {
                     $feed->category = "";
                 }
+
                 $feed->item_name = $workout->name;
 
                 $workoutUser = DB::table('workout_users')
-                        ->where('feed_id', $feed->id)
-                        ->first();
+                    ->where('feed_id', $feed->id)
+                    ->first();
 
                 if (!is_null($workoutUser)) {
                     $feed->duration = $workoutUser->time;
@@ -217,7 +219,6 @@ class FeedController extends Controller {
                     $feed->duration = 0;
                 }
             } elseif ($feed->item_type == 'exercise') {
-
                 $exercise = Exercise::where('id', '=', $feed->item_id)->first();
                 if (!is_null($exercise)) {
                     if ($exercise->category == 1) {
@@ -230,11 +231,12 @@ class FeedController extends Controller {
                 } else {
                     $feed->category = "";
                 }
+
                 $feed->item_name = $exercise->name;
 
                 $exerciseUser = DB::table('exercise_users')
-                        ->where('feed_id', $feed->id)
-                        ->first();
+                    ->where('feed_id', $feed->id)
+                    ->first();
 
                 if (!is_null($exerciseUser)) {
                     $feed->duration = $exerciseUser->time;
@@ -242,15 +244,15 @@ class FeedController extends Controller {
                 } else {
                     $feed->duration = 0;
                 }
+
                 $feed->unit = $exercise->unit;
             } elseif ($feed->item_type == 'hiit') {
-
                 $hiit = Hiit::where('id', '=', $feed->item_id)->first();
                 $feed->item_name = $hiit->name;
 
                 $hiitUser = DB::table('hiit_users')
-                        ->where('feed_id', $feed->id)
-                        ->first();
+                    ->where('feed_id', $feed->id)
+                    ->first();
 
                 if (!is_null($hiitUser)) {
                     $feed->duration = $hiitUser->time;
@@ -273,29 +275,28 @@ class FeedController extends Controller {
      * @param type $feed
      * @return type
      */
-    protected function AdditionalFeedsDetailsTest($feed) {
-// foreach ($feeds as $fKey => $feed) {
-//Clap count
+    protected function AdditionalFeedsDetailsTest($feed)
+    {
+//      foreach ($feeds as $fKey => $feed) {
+//       Clap count
         $feed->clap_count = Clap::clapCount($feed->id, 'feed');
 
-//comments count
+//       comments count
         $feed->comment_count = Comment::commentCount($feed->id, 'feed');
 
         $comments = Comment::where('parent_id', '=', $feed->id)
-                ->where('parent_type', 'feed')
-                ->orderBy('created_at', 'DESC')
-                ->with(['profile'])
-                ->get();
-
+            ->where('parent_type', 'feed')
+            ->orderBy('created_at', 'DESC')
+            ->with(['profile'])
+            ->get();
 
         $feed->comments = $comments->toArray();
-
 
         $image = Images::where('parent_id', $feed->id)->where('parent_type', '=', 2)->get();
 
         $feed->image = $image->toArray();
 
-//To get Category
+//       To get Category
         if ($feed->item_type == 'workout') {
 
             $workout = Workout::where('id', '=', $feed->item_id)->first();
@@ -309,11 +310,12 @@ class FeedController extends Controller {
             } else {
                 $feed->category = "";
             }
+            
             $feed->item_name = $workout->name;
 
             $workoutUser = DB::table('workout_users')
-                    ->where('feed_id', $feed->id)
-                    ->first();
+                ->where('feed_id', $feed->id)
+                ->first();
 
             if (!is_null($workoutUser)) {
                 $feed->duration = $workoutUser->time;
@@ -347,11 +349,12 @@ class FeedController extends Controller {
             } else {
                 $feed->category = "";
             }
+            
             $feed->item_name = $exercise->name;
 
             $exerciseUser = DB::table('exercise_users')
-                    ->where('feed_id', $feed->id)
-                    ->first();
+                ->where('feed_id', $feed->id)
+                ->first();
 
             if (!is_null($exerciseUser)) {
                 $feed->duration = $exerciseUser->time;
@@ -359,15 +362,17 @@ class FeedController extends Controller {
             } else {
                 $feed->duration = 0;
             }
+            
             $feed->unit = $exercise->unit;
+            
         } elseif ($feed->item_type == 'hiit') {
 
             $hiit = Hiit::where('id', '=', $feed->item_id)->first();
             $feed->item_name = $hiit->name;
 
             $hiitUser = DB::table('hiit_users')
-                    ->where('feed_id', $feed->id)
-                    ->first();
+                ->where('feed_id', $feed->id)
+                ->first();
 
             if (!is_null($hiitUser)) {
                 $feed->duration = $hiitUser->time;
@@ -391,7 +396,8 @@ class FeedController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getDelete($id = null) {
+    public function getDelete($id = null)
+    {
         $feed = Feeds::where('id', $id)->first();
 
         if (is_null($feed)) {
@@ -416,7 +422,8 @@ class FeedController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getModalDelete($id = null) {
+    public function getModalDelete($id = null)
+    {
         $model = 'feeds';
 
         $confirm_route = $error = null;
@@ -441,7 +448,8 @@ class FeedController extends Controller {
      * @author aneeshk@cubettech.com
      * @return json
      */
-    public function getCommentDelete($id = null) {
+    public function getCommentDelete($id = null)
+    {
         $comment = Comment::where('id', $id)->first();
 
         if (is_null($comment)) {
@@ -456,5 +464,4 @@ class FeedController extends Controller {
 
         return Redirect::route("admin.feeds")->with('success', 'Successfully deleted comment.');
     }
-
 }
