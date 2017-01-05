@@ -7278,6 +7278,9 @@ class CoachesController extends Controller
             }
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
+            
+            print_r($user);
+            die;
 
             $feedbacks = json_decode($request->feedback, true);
 

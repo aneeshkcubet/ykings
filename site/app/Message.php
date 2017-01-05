@@ -20,6 +20,7 @@ class Message extends Model
         'message_type',
         'type_id',
         'read',
+        'status',
         'message'
     ];
 

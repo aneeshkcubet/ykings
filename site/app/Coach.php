@@ -83,19 +83,18 @@ class Coach extends Model
             13 => [0 => 1, 1 => 1, 2 => 1, 3 => 1]
         ],
         4 => [
-            1 => [0 => 5],
-            2 => [0 => 3],
-            3 => [0 => 5],
-            4 => [0 => 1],
-            5 => [0 => 1],
-            6 => [0 => 1],
-            7 => [0 => 6],
-            8 => [0 => 4],
-            9 => [0 => 4],
-            10 => [0 => 3],
-            11 => [0 => 3],
-            12 => [0 => 1],
-            13 => [0 => 1]
+            1 => [0 => 2, 1 => 3, 2 => 5, 3 => 5],
+            2 => [0 => 2, 1 => 3, 2 => 3, 3 => 3],
+            3 => [0 => 3, 1 => 4, 2 => 5, 3 => 5],
+            4 => [0 => 1, 1 => 1, 2 => 1, 3 => 1],
+            6 => [0 => 1, 1 => 1, 2 => 1, 3 => 1],
+            7 => [0 => 3, 1 => 4, 2 => 6, 3 => 6],
+            8 => [0 => 2, 1 => 3, 2 => 4, 3 => 4],
+            9 => [0 => 2, 1 => 3, 2 => 4, 3 => 4],
+            10 => [0 => 2, 1 => 3, 2 => 3, 3 => 3],
+            11 => [0 => 2, 1 => 3, 2 => 3, 3 => 3],
+            12 => [0 => 1, 1 => 1, 2 => 1, 3 => 1],
+            13 => [0 => 1, 1 => 1, 2 => 1, 3 => 1]
         ],
         5 => [
             1 => [0 => 2, 1 => 3, 2 => 5, 3 => 5],
@@ -487,14 +486,11 @@ class Coach extends Model
     {
 
         $coach = [];
-        if ($userLevel == 'professional') {
-            $intenseFactor = 2;
+        if ($userLevel == 'professional') {            
             $exerciseCat = 3;
-        } elseif ($userLevel == 'advanced') {
-            $intenseFactor = 1;
+        } elseif ($userLevel == 'advanced') {            
             $exerciseCat = 2;
-        } elseif ($userLevel == 'beginer') {
-            $intenseFactor = 0;
+        } elseif ($userLevel == 'beginer') {            
             $exerciseCat = 1;
         }
 
@@ -555,15 +551,15 @@ class Coach extends Model
         if (isset($data['week'])) {
             if ($data['week'] % 24 > 0 && $data['week'] % 24 <= 4) {
                 $hiit = [['id' => 2, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[2], 'replacement_round_count' => count($hiitReplacements[2][0])]];
-            } elseif ($data['week'] % 24 <= 8) {
+            } elseif ($data['week'] % 24 <= 8 ) {
                 $hiit = [['id' => 2, 'intensity' => 5, 'is_completed' => 0, 'replacement' => $hiitReplacements[2], 'replacement_round_count' => count($hiitReplacements[2][0])]];
-            } elseif ($data['week'] % 24 <= 12) {
+            } elseif ($data['week'] % 24 <= 12 ) {
                 $hiit = [['id' => 3, 'intensity' => 3, 'is_completed' => 0, 'replacement' => $hiitReplacements[3], 'replacement_round_count' => count($hiitReplacements[3][0])]];
-            } elseif ($data['week'] % 24 <= 16) {
+            } elseif ($data['week'] % 24 <= 16 ) {
                 $hiit = [['id' => 3, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[3], 'replacement_round_count' => count($hiitReplacements[3][0])]];
-            } elseif ($data['week'] % 24 <= 20) {
+            } elseif ($data['week'] % 24 <= 20 ) {
                 $hiit = [['id' => 1, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[1], 'replacement_round_count' => count($hiitReplacements[1][0])]];
-            } elseif ($data['week'] % 24 < 24 || $data['week'] % 24 == 0) {
+            } elseif (($data['week'] % 24 < 24 || $data['week'] % 24 == 0) ) {
                 $hiit = [['id' => 1, 'intensity' => 6, 'is_completed' => 0, 'replacement' => $hiitReplacements[1], 'replacement_round_count' => count($hiitReplacements[1][0])]];
             }
         }
@@ -1949,15 +1945,28 @@ class Coach extends Model
                 $whereSubQueryArray[] = 'exercise_id IN(' . $userOptedMuscleExercisesQuery . ')';
             }
         }
-
+        
+        $userRaid = DB::table('user_goal_options')->where('user_id', $userId)->pluck('goal_options');
+        
+        
+        if (!is_null($userRaid) && $userRaid != '') {
+            $skill = DB::table('skills')->where('id', $userRaid)->first(); 
+            
+            $userOptedRaidExercisesQuery = DB::table('skills')
+                    ->select('exercise_id')
+                    ->whereRaw('progression_id = '.$skill->progression_id.' AND row= '.$skill->row)
+                    ->toSql();
+            $whereSubQueryArray[] = 'exercise_id IN(' . $userOptedRaidExercisesQuery . ')';
+        }
+        
         if (count($whereSubQueryArray) > 0) {
-            $whereQuery .= 'AND (';
+            $whereQuery .= ' OR (';
 
             $whereQuery .= implode(' OR ', $whereSubQueryArray);
 
             $whereQuery .= ')';
         }
-
+        
         $whereLimitSubQueryArray = [];
 
         if (isset($data['limitations']) && $data['limitations'] != '') {
@@ -2001,7 +2010,7 @@ class Coach extends Model
         if (count($selWorkouts) > 0) {
             $selectedWorkouts .= ' AND t1.id IN(' . implode(",", $selWorkouts) . ')';
         }
-
+        
         return 'SELECT DISTINCT t1.id, 
                         s.totalCount AS exercise_count 
                 FROM workouts AS t1 
@@ -2202,17 +2211,17 @@ class Coach extends Model
         }, $hiitReplacements);
 
         if (isset($data['week'])) {
-            if ($data['week'] % 24 > 0 && $data['week'] % 24 <= 4) {
+            if ($data['week'] % 24 > 0 && $data['week'] % 24 <= 4 ) {
                 $hiit = [['id' => 2, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[2], 'replacement_round_count' => count($hiitReplacements[2][0])]];
-            } elseif ($data['week'] % 24 <= 8) {
+            } elseif ($data['week'] % 24 <= 8 ) {
                 $hiit = [['id' => 2, 'intensity' => 5, 'is_completed' => 0, 'replacement' => $hiitReplacements[2], 'replacement_round_count' => count($hiitReplacements[2][0])]];
-            } elseif ($data['week'] % 24 <= 12) {
+            } elseif ($data['week'] % 24 <= 12 ) {
                 $hiit = [['id' => 3, 'intensity' => 3, 'is_completed' => 0, 'replacement' => $hiitReplacements[3], 'replacement_round_count' => count($hiitReplacements[3][0])]];
-            } elseif ($data['week'] % 24 <= 16) {
+            } elseif ($data['week'] % 24 <= 16 ) {
                 $hiit = [['id' => 3, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[3], 'replacement_round_count' => count($hiitReplacements[3][0])]];
-            } elseif ($data['week'] % 24 <= 20) {
+            } elseif ($data['week'] % 24 <= 20 ) {
                 $hiit = [['id' => 1, 'intensity' => 4, 'is_completed' => 0, 'replacement' => $hiitReplacements[1], 'replacement_round_count' => count($hiitReplacements[1][0])]];
-            } elseif ($data['week'] % 24 < 24 || $data['week'] % 24 == 0) {
+            } elseif (($data['week'] % 24 < 24 || $data['week'] % 24 == 0) ) {
                 $hiit = [['id' => 1, 'intensity' => 6, 'is_completed' => 0, 'replacement' => $hiitReplacements[1], 'replacement_round_count' => count($hiitReplacements[1][0])]];
             }
         }

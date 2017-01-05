@@ -1166,8 +1166,8 @@ class FeedController extends Controller
                     $feedsResponse = $this->AdditionalFeedsDetails($feeds, $request->user_id);
                 }
                 $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
-                    ->where('message.read', 0)
-                    ->count();
+                        ->where('message.status', 0)
+                        ->count();
 
                 return response()->json(['status' => 1, 'success' => 'List', 'feed_list' => $this->removeNullfromArray($feedsResponse), 'unread_notification_count' => $unreadNotificationCnt, 'urls' => config('urls.urls')], 200);
             } else {

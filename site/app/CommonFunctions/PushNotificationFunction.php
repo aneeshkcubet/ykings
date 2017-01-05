@@ -201,7 +201,12 @@ class PushNotificationFunction
         ));
 
 // Then, create the push skel.
-        $message = new Message($details['message']);
+        $message = new Message($details['messageArray']['text'], array(
+            'badge' => 1,
+            'sound' => 'default',
+            'custom' => array(
+                'custom data' => $details['messageArray'],
+        )));
 
 // Finally, create and add the push to the manager, and push it!
         $push = new Push($apnsAdapter, $devices, $message);

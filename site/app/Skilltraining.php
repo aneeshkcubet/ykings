@@ -37,6 +37,11 @@ class Skilltraining extends Model
         return $this->attributes['progression_string'] = self::progressionString($this->description);
     }
 
+    /**
+     * Function to update the progression_string appended variable
+     * @param type $progressions
+     * @return type
+     */
     public static function progressionString($progressions)
     {
         $progressionArray = Array(
@@ -60,8 +65,8 @@ class Skilltraining extends Model
 
     /**
      * Function to find user skilltraining points.
-     * @author <ansa@cubettech.com>
-     * @since 9-12-2015
+     * @author <aneeshk@cubettech.com>
+     * @return integer
      */
     public static function skilltrainingCount($userId)
     {

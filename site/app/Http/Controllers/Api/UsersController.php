@@ -901,7 +901,7 @@ class UsersController extends Controller
                 //Code added by <ansa@cubettech.com> on 31-12-2015
                 //To save device token
                 if (isset($request->device_token) && isset($request->device_type) && $request->device_token != null && $request->device_token != '(null)') {
-                    $userDeviceToken = PushNotification::where('device_token', '=', $request->device_token)
+                    $userDeviceToken = PushNotification::where('user_id', '=', $user->id)
                         ->where('type', '=', $request->device_type)
                         ->first();
                     if (is_null($userDeviceToken)) {

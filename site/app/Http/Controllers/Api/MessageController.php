@@ -804,11 +804,11 @@ class MessageController extends Controller
                     ->select(array('message.*', 'user_profiles.image'))
                     ->orderBy('message.id', 'DESC')
                     ->get();
+                
+                Message::where('friend_id', '=', $request->user_id)
+                    ->update(['status'=> 1]);
 
-                $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
-                    ->where('message.read', 0)
-                    ->count();
-                return response()->json(['status' => 1, 'notifications' => $notifications, 'unread_notification_count' => $unreadNotificationCnt, 'urls' => config('urls.urls')], 200);
+                return response()->json(['status' => 1, 'notifications' => $notifications, 'unread_notification_count' => 0, 'urls' => config('urls.urls')], 200);
             } else {
                 return response()->json(['status' => 0, 'error' => 'user_not_exists'], 422);
             }
@@ -897,7 +897,7 @@ class MessageController extends Controller
                         ->update(['read' => 1]);
 
                     $unreadNotificationCnt = Message::where('message.friend_id', '=', $request->user_id)
-                        ->where('message.read', 0)
+                        ->where('message.status', 0)
                         ->count();
 
                     return response()->json(['status' => 1, 'success' => 'Successfully Updated', 'unread_notification_count' => $unreadNotificationCnt], 200);

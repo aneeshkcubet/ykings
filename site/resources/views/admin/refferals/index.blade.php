@@ -17,6 +17,12 @@ Refferals
         background: none;
         height:0;        
     }
+    table.table-bordered.dataTable{
+        table-layout: fixed;
+    }
+    table.table-bordered tbody th, table.table-bordered tbody td{
+        word-break: break-word;
+    }
 </style>
 @stop
 
@@ -49,12 +55,12 @@ Refferals
                 <table class="table table-bordered data" id="table">
                     <thead>
                         <tr class="filters">
-                            <th>ID</th>
-                            <th>UserId</th>
-                            <th>Email</th>
-                            <th>Marketing Title</th>                            
-                            <th>Parameters</th>
-                            <th>Is Coach Subscribed</th>                            
+                            <th width="5%">ID</th>
+                            <th width="10%">UserId</th>
+                            <th width="25%">Email</th>
+                            <th width="15%">Marketing Title</th>                            
+                            <th width="30%">Parameters</th>
+                            <th width="15%">Is Coach <br />Subscribed</th>                            
                         </tr>
                     </thead>
                 </table>
