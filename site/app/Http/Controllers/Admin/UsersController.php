@@ -71,16 +71,6 @@ class UsersController extends Controller
                                         </a>';
                     }
                     $user = User::where('id', $list->user_id)->first();
-                    if ($user->is_subscribed_backend != 1) {
-                        $html.='<a href = "' . route("admin.user.setsubscribed", $list->user_id) . '" title = "Set as Subscribed User">
-                                        <i class = "glyphicon glyphicon-thumbs-up" data-name = "thumbs-up" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Set as Subscribed User"></i>
-                                        </a>';
-                    } else {
-                        $html.='<a href = "' . route("admin.user.unsetsubscribed", $list->user_id) . '" title = "Remove Subscribed">
-                                        <i class = "glyphicon glyphicon-thumbs-down" data-name = "thumbs-down" data-size = "18" data-c = "#f56954" data-hc = "#f56954" data-loop = "true" title = "Remove Subscribed"></i>
-                                        </a>
-                                        ';
-                    }
 
                     return $html;
                 })
@@ -142,18 +132,38 @@ class UsersController extends Controller
         $isActivated = Input::get('is_activated');
 
         $isAdmin = Input::get('is_admin');
-
+        
+        if (isset($request->subscription_end_date) && ($request->subscription_end_date != NULL) && $request->subscription_end_date != '') {
+            $isAdminSubscribed = 1;
+        }
+        
+        if (isset($request->subscription_start_date) && ($request->subscription_start_date != NULL) && $request->subscription_start_date != '') {
+            if(strtotime($request->subscription_end_date) < strtotime($request->subscription_start_date)){
+                $error = 'Subscription end date should be greater than Subscription start date.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
+            if($isAdminSubscribed == 1){
+                $endDate = strtotime($request->subscription_start_date);
+            }
+            
+        } else {
+            if($isAdminSubscribed == 1){
+                $endDate = time();
+            }            
+        }
+        
         $user = User::create([
                 'email' => Input::get('email'),
                 'password' => Hash::make(Input::get('password')),
                 'confirmation_code' => (isset($isActivated)) ? '' : $confirmation_code,
                 'status' => (isset($isActivated)) ? 1 : 0,
                 'is_admin' => (isset($isAdmin)) ? 1 : 0,
+                'is_subscribed_backend' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? 1 : 0,
+                'subscription_end_date' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? strtotime($request->subscription_end_date) : 0,
+                'subscription_start_date' => isset($endDate)? $endDate : 0
         ]);
 
         $data['password'] = Input::get('password');
-
-
 
 // Register the user
         $profile = new Profile(array(
@@ -178,7 +188,7 @@ class UsersController extends Controller
             });
         } else {
 //If already activated by Administrator
-            Mail::send('email.welcome', ['first_name' => $profile['first_name'], 'last_name' => $profile['last_name']], function($message) use ($data) {
+            Mail::send('email.welcome', ['first_name' => $profile['first_name'], 'last_name' => $profile['last_name'], 'password' => Input::get('password')], function($message) use ($data) {
                 $message->to(Input::get('email'), Input::get('first_name') . ' ' . Input::get('last_name'))
                     ->subject('Welcome to Ykings App');
             });
@@ -265,7 +275,14 @@ class UsersController extends Controller
         $countries = Country::all();
 
         $user = User::where('id', Auth::user()->id)->with(['profile', 'settings'])->first();
-
+        
+        if($tUser->subscription_end_date != 0){
+            $tUser->subscription_end_date = date("Y/m/d", $tUser->subscription_end_date); 
+        }
+        if($tUser->subscription_start_date != 0){
+            $tUser->subscription_start_date = date("Y/m/d", $tUser->subscription_start_date); 
+        }
+       
 // Show the page
         return View('admin/users/edit', compact('user', 'tUser', 'countries'));
     }
@@ -301,14 +318,43 @@ class UsersController extends Controller
 
         $isAdmin = Input::get('is_admin');
 
-
-
+        $isAdminSubscribed = 0;
+       
+        if (isset($request->subscription_end_date) && ($request->subscription_end_date != NULL) && $request->subscription_end_date != '') {
+            $isAdminSubscribed = 1;
+        }
+        
+        if (isset($request->subscription_start_date) && ($request->subscription_start_date != NULL) && $request->subscription_start_date != '') {
+            if(strtotime($request->subscription_end_date) < strtotime($request->subscription_start_date)){
+                $error = 'Subscription end date should be greater than Subscription start date.';
+                return Redirect::back()->withInput()->with('error', $error);
+            }
+            if($isAdminSubscribed == 1){
+                $endDate = strtotime($request->subscription_start_date);
+            }
+            
+        } else {
+            if($isAdminSubscribed == 1){
+                $endDate = time();
+            }            
+        }
+        
 // Do we want to update the user password?
         if (Input::get('password')) {
             User::where('id', $id)->update([
                 'password' => Hash::make(Input::get('password')),
                 'is_admin' => (isset($isAdmin)) ? 1 : 0,
+                'is_subscribed_backend' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? 1 : 0,
+                'subscription_end_date' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? strtotime($request->subscription_end_date) : 0,
+                'subscription_start_date' => isset($endDate)? $endDate : 0
             ]);
+        } else {
+            User::where('id', $id)->update([                
+                'is_admin' => (isset($isAdmin)) ? 1 : 0,
+                'is_subscribed_backend' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? 1 : 0,
+                'subscription_end_date' => (isset($isAdminSubscribed) && $isAdminSubscribed == 1) ? strtotime($request->subscription_end_date) : 0,
+                'subscription_start_date' => isset($endDate)? $endDate : 0
+            ]);            
         }
 
         $userProfile = Profile::where('user_id', $id)->first();

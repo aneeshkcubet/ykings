@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Plan;
 use App\Subscription;
+use App\Coach;
 
 class SubscriptionsController extends Controller
 {

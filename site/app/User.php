@@ -48,7 +48,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin', 'is_subscribed_backend', 'referral_code'];
+    protected $fillable = ['email', 'password', 'status', 'confirmation_code', 'is_featured', 'is_admin', 'is_subscribed_backend', 'referral_code', 'subscription_end_date', 'subscription_start_date'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -164,31 +164,47 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $time = time();
 
-        $adminSubscribed = DB::table('users')
+        $user = DB::table('users')
             ->select('*')
-            ->where('id', $userId)
-            ->where('is_subscribed_backend', 1)
+            ->where('id', '=', $userId)
             ->first();
 
-        if (!is_null($adminSubscribed)) {
-            return 1;
-        }
+        if (!is_null($user)) {
 
-        $subscription = DB::table('subscriptions')
-            ->select('*')
-            ->where('user_id', '=', $userId)
-            ->orderBy('id', 'DESC')
-            ->first();
+            $freeUsageDate = strtotime($user->created_at . ' + 2 Weeks');
 
-        if (is_null($subscription)) {
-            return 0;
-        } else {
-            if ($subscription->end_time <= $time) {
-                return 0;
-            } else {
+            if ($time <= $freeUsageDate) {
                 return 1;
             }
+            
+            $adminSubscribed = DB::table('users')
+                ->select('*')
+                ->where('id', $userId)
+                ->where('is_subscribed_backend', 1)
+                ->first();
+
+            if (!is_null($adminSubscribed)) {
+                $startDate = strtotime(date("Y/m/d 00:00:01", $adminSubscribed->subscription_start_date));
+                $endDate = strtotime(date("Y/m/d 23:59:59", $adminSubscribed->subscription_end_date));
+                if ($endDate >= $time && $startDate <= $time) {
+                    return 1;
+                }
+            }
+
+
+            $subscription = DB::table('subscriptions')
+                ->select('*')
+                ->where('user_id', '=', $userId)
+                ->orderBy('id', 'DESC')
+                ->first();
+
+            if (!is_null($subscription)) {
+                if ($subscription->end_time > $time) {
+                    return 1;
+                }
+            }            
         }
+        return 0;
     }
 
     /**
@@ -200,31 +216,44 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $time = time();
 
-        $adminSubscribed = DB::table('users')
+        $user = DB::table('users')
             ->select('*')
             ->where('id', $userId)
-            ->where('is_subscribed_backend', 1)
             ->first();
+        if (!is_null($user)) {            
+            
+            $subscription = DB::table('subscriptions')
+                ->select('*')
+                ->where('user_id', '=', $userId)
+                ->orderBy('id', 'DESC')
+                ->first();
 
-        if (!is_null($adminSubscribed)) {
-            return 0;
+            if (!is_null($subscription)) {
+                if ($subscription->end_time >= $time) {
+                    return 0;
+                }
+            }
+            
+            $adminSubscribed = DB::table('users')
+                ->select('*')
+                ->where('id', $userId)
+                ->where('is_subscribed_backend', 1)
+                ->first();
+            
+            if (!is_null($adminSubscribed)) {                
+                if ($adminSubscribed->subscription_end_date >= $time && $adminSubscribed->subscription_start_date <= $time) {
+                    return 0;
+                }
+            }
+
+            $freeUsageDate = strtotime($user->created_at . ' + 2 Weeks');
+
+            if ($time <= $freeUsageDate) {
+                return 0;
+            }                       
         }
-
-        $subscription = DB::table('subscriptions')
-            ->select('*')
-            ->where('user_id', '=', $userId)
-            ->orderBy('id', 'DESC')
-            ->first();
-
-        if (is_null($subscription)) {
-            return 0;
-        }
-
-        if ($subscription->end_time <= $time) {
-            return 1;
-        } else {
-            return 0;
-        }
+        
+        return 1;
     }
 
     /**

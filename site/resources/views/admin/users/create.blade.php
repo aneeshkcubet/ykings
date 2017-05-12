@@ -11,7 +11,7 @@ Add New User
 <!--page level css -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/wizard/jquery-steps/css/wizard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/wizard/jquery-steps/css/jquery.steps.css') }}">
-<link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/vendors/bootstrapdatepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" media="screen" />
 <!--end of page level css-->
 @stop
 
@@ -43,7 +43,6 @@ Add New User
                     </span>
                 </div>
                 <div class="panel-body">
-
                     <!-- errors -->
                     <div class="has-error">
                         {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
@@ -70,36 +69,36 @@ Add New User
 
                                 <section>
                                     <div class="form-group">
-                                        <label for="first_name" class="col-sm-2 control-label">First Name *</label>
-                                        <div class="col-sm-10">
+                                        <label for="first_name" class="col-sm-3 control-label">First Name *</label>
+                                        <div class="col-sm-9">
                                             <input id="first_name" name="first_name" type="text" placeholder="First Name" class="form-control required" value="{{{ Input::old('first_name') }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="last_name" class="col-sm-2 control-label">Last Name *</label>
-                                        <div class="col-sm-10">
+                                        <label for="last_name" class="col-sm-3 control-label">Last Name *</label>
+                                        <div class="col-sm-9">
                                             <input id="last_name" name="last_name" type="text" placeholder="Last Name" class="form-control required" value="{{{ Input::old('last_name') }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Email *</label>
-                                        <div class="col-sm-10">
+                                        <label for="email" class="col-sm-3 control-label">Email *</label>
+                                        <div class="col-sm-9">
                                             <input id="email" name="email" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email') }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label">Password *</label>
-                                        <div class="col-sm-10">
+                                        <label for="password" class="col-sm-3 control-label">Password *</label>
+                                        <div class="col-sm-9">
                                             <input id="password" name="password" type="password" placeholder="Password" class="form-control required" value="{{{ Input::old('password') }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password_confirm" class="col-sm-2 control-label">Confirm Password *</label>
-                                        <div class="col-sm-10">
+                                        <label for="password_confirm" class="col-sm-3 control-label">Confirm Password *</label>
+                                        <div class="col-sm-9">
                                             <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirm Password " class="form-control required" value="{{{ Input::old('password_confirm') }}}" />
                                         </div>
                                     </div>
@@ -111,8 +110,8 @@ Add New User
                                 <h1>Bio</h1>
                                 <section>                             
                                     <div class="form-group">
-                                        <label for="pic" class="col-sm-2 control-label">Profile picture</label>
-                                        <div class="col-sm-10">
+                                        <label for="pic" class="col-sm-3 control-label">Profile picture</label>
+                                        <div class="col-sm-9">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
                                                     <img src="http://placehold.it/200x200" alt="profile pic">
@@ -135,8 +134,8 @@ Add New User
                                 <h1>Address</h1>
                                 <section>
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Gender</label>
-                                        <div class="col-sm-10">
+                                        <label for="email" class="col-sm-3 control-label">Gender</label>
+                                        <div class="col-sm-9">
                                             <select class="form-control" title="Select Gender..." name="gender">
                                                 <option value="">Select</option>
                                                 <option value="1" @if(Input::old('gender') === '1') selected="selected" @endif >Male</option>
@@ -146,8 +145,8 @@ Add New User
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="country" class="col-sm-2 control-label">Country</label>
-                                        <div class="col-sm-10">                                            
+                                        <label for="country" class="col-sm-3 control-label">Country</label>
+                                        <div class="col-sm-9">                                            
                                             <select id="country" name="country" class="form-control">
                                                 @foreach ($countries as $country => $code)
                                                 <option value="{{ $code->name }}" @if(Input::old('country') === $code->name) selected="selected" @endif>{{ $code->name }}</option>
@@ -157,37 +156,49 @@ Add New User
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="state" class="col-sm-2 control-label">State</label>
-                                        <div class="col-sm-10">
+                                        <label for="state" class="col-sm-3 control-label">State</label>
+                                        <div class="col-sm-9">
                                             <input id="state" name="state" type="text" class="form-control" value="{{{ Input::old('state') }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="city" class="col-sm-2 control-label">City</label>
-                                        <div class="col-sm-10">
+                                        <label for="city" class="col-sm-3 control-label">City</label>
+                                        <div class="col-sm-9">
                                             <input id="city" name="city" type="text" class="form-control" value="{{{ Input::old('city') }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="spot" class="col-sm-2 control-label">Spot</label>
-                                        <div class="col-sm-10">
+                                        <label for="spot" class="col-sm-3 control-label">Spot</label>
+                                        <div class="col-sm-9">
                                             <input id="spot" name="spot" type="text" class="form-control" value="{{{ Input::old('spot') }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quote" class="col-sm-2 control-label">Quote</label>
-                                        <div class="col-sm-10">
+                                        <label for="quote" class="col-sm-3 control-label">Quote</label>
+                                        <div class="col-sm-9">
                                             <input id="quote" name="quote" type="text" class="form-control" value="{{{ Input::old('quote') }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
+                                        <label for="subscription_start_date" class="col-sm-3 control-label">Subscription Start Date</label>
+                                        <div class="date form_datetime col-sm-8">
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" name="subscription_start_date" value="{{{ Input::old('subscription_start_date') }}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subscription_end_date" class="col-sm-3 control-label">Subscription End Date</label>
+                                        <div class="date form_datetime col-sm-8">
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" name="subscription_end_date" value="{{{ Input::old('subscription_end_date') }}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
                                             <input type="checkbox" name="is_activated" class="flat-red" @if(Input::old('is_activated') == 'on')checked="" @endif /> Check here to activate user.
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
+                                        <div class="col-sm-offset-3 col-sm-9">
                                             <input type="checkbox" name="is_admin" class="flat-red" @if(Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
                                         </div>
                                     </div>
@@ -209,6 +220,21 @@ Add New User
 @section('footer_scripts')
 <script type="text/javascript" src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
-<script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/vendors/bootstrapdatepicker/js/bootstrap-datepicker.js') }}" charset="UTF-8"></script>
 <script src="{{ asset('assets/js/pages/add_user.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    $('.form_datetime input').datepicker({
+        format: "yyyy/mm/dd",
+        weekStart: 1,
+        startDate: today,
+        clearBtn: true,
+        orientation: "bottom left",
+        autoclose: true
+    });
+});
+
+</script>
 @stop

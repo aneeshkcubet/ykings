@@ -11,7 +11,7 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
 <!--page level css -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/wizard/jquery-steps/css/wizard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/wizard/jquery-steps/css/jquery.steps.css') }}">
-<link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/vendors/bootstrapdatepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" media="screen" />
 <!--end of page level css-->
 @stop
 
@@ -69,35 +69,35 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                 <h1>User Profile</h1>
                                 <section>
                                     <div class="form-group">
-                                        <label for="first_name" class="col-sm-2 control-label">First Name *</label>
-                                        <div class="col-sm-10">
+                                        <label for="first_name" class="col-sm-3 control-label">First Name *</label>
+                                        <div class="col-sm-9">
                                             <input id="first_name" name="first_name" type="text" placeholder="First Name" class="form-control required" value="{{{ Input::old('first_name',$tUser['profile'][0]['first_name']) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="last_name" class="col-sm-2 control-label">Last Name *</label>
-                                        <div class="col-sm-10">
+                                        <label for="last_name" class="col-sm-3 control-label">Last Name *</label>
+                                        <div class="col-sm-9">
                                             <input id="last_name" name="last_name" type="text" placeholder="Last Name" class="form-control required" value="{{{ Input::old('last_name', $tUser['profile'][0]['last_name']) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Email *</label>
-                                        <div class="col-sm-10">
-                                            <input id="email" name="email" readonly="" placeholder="E-Mail" type="text" class="form-control required email" value="{{{ Input::old('email', $tUser->email) }}}" />
+                                        <label for="email" class="col-sm-3 control-label">Email *</label>
+                                        <div class="col-sm-9">
+                                            <input id="email" name="email" readonly="" placeholder="E-Mail" type="text" class="form-control required" value="{{{ Input::old('email', $tUser->email) }}}" />
                                         </div>
                                     </div>
                                     @if($tUser['is_admin'] == 1)
                                     <div class="form-group">
-                                        <label for="last_name" class="col-sm-2 control-label">Password</label>
-                                        <div class="col-sm-10">
+                                        <label for="last_name" class="col-sm-3 control-label">Password</label>
+                                        <div class="col-sm-9">
                                             <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="{{{ Input::old('password') }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="last_name" class="col-sm-2 control-label">Confirm Password</label>
-                                        <div class="col-sm-10">
+                                        <label for="last_name" class="col-sm-3 control-label">Confirm Password</label>
+                                        <div class="col-sm-9">
                                             <input id="password_confirm" name="password_confirm" type="password" placeholder="Confirm Password" class="form-control" value="{{{ Input::old('password_confirm') }}}" />
                                         </div>
                                     </div>
@@ -108,8 +108,8 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                 <h1>Bio</h1>
                                 <section>
                                     <div class="form-group">
-                                        <label for="pic" class="col-sm-2 control-label">Profile picture</label>
-                                        <div class="col-sm-10">
+                                        <label for="pic" class="col-sm-3 control-label">Profile picture</label>
+                                        <div class="col-sm-9">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
                                                     @if($tUser['profile'][0]['image'] )
@@ -135,8 +135,8 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                 <h1>Address</h1>
                                 <section>
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">Gender</label>
-                                        <div class="col-sm-10">
+                                        <label for="email" class="col-sm-3 control-label">Gender</label>
+                                        <div class="col-sm-9">
                                             <select class="form-control" title="Select Gender..." name="gender">
                                                 <option value="">Select</option>
                                                 <option value="1" @if($tUser['profile'][0]['gender'] === '1') selected="selected" @endif >Male</option>
@@ -145,8 +145,8 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="country" class="col-sm-2 control-label">Country</label>
-                                        <div class="col-sm-10">
+                                        <label for="country" class="col-sm-3 control-label">Country</label>
+                                        <div class="col-sm-9">
                                             <select id="country" name="country" class="form-control">
                                                 @foreach ($countries as $country => $code)
                                                 <option value="{{ $code->name }}" @if($tUser['profile'][0]['country'] == $code->name || Input::old('country') === $code->name) selected="selected" @endif>{{ $code->name }}</option>
@@ -156,20 +156,40 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="state" class="col-sm-2 control-label">State</label>
-                                        <div class="col-sm-10">
+                                        <label for="state" class="col-sm-3 control-label">State</label>
+                                        <div class="col-sm-9">
                                             <input id="state" name="state" type="text" class="form-control" value="{{{ Input::old('state',  $tUser['profile'][0]['state']) }}}" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="city" class="col-sm-2 control-label">City</label>
-                                        <div class="col-sm-10">
+                                        <label for="city" class="col-sm-3 control-label">City</label>
+                                        <div class="col-sm-9">
                                             <input id="city" name="city" type="text" class="form-control" value="{{{ Input::old('city', $tUser['profile'][0]['city']) }}}" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
+                                        <label for="subscription_start_date" class="col-sm-3 control-label">Subscription Start Date</label>
+                                        <div class="date form_datetime col-sm-8">
+                                            @if($tUser->subscription_start_date > 0)
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" value="{{{ Input::old('subscription_start_date', $tUser->subscription_start_date) }}}" name="subscription_start_date" readonly>
+                                            @else
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" value="{{{ Input::old('subscription_start_date') }}}" name="subscription_start_date" readonly>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subscription_end_date" class="col-sm-3 control-label">Subscription End Date</label>
+                                        <div class="date form_datetime col-sm-8">
+                                            @if($tUser->subscription_end_date > 0)
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" value="{{{ Input::old('subscription_end_date', $tUser->subscription_end_date) }}}" name="subscription_end_date" readonly>
+                                            @else
+                                            <input placeholder="yyyy/mm/dd" class="form-control" size="16" type="text" value="{{{ Input::old('subscription_end_date') }}}" name="subscription_end_date" readonly>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
                                             <input type="checkbox" name="is_admin" class="flat-red" @if($tUser['is_admin'] == 1 || Input::old('is_admin') == 'on')checked="" @endif /> Check here to add as Administrator.
                                         </div>
                                     </div>
@@ -192,6 +212,20 @@ Edit User - {{ $tUser['profile'][0]['first_name'] }} {{ $tUser['profile'][0]['la
 @section('footer_scripts')
 <script type="text/javascript" src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/wizard/jquery-steps/js/jquery.steps.js') }}"></script>
-<script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/vendors/bootstrapdatepicker/js/bootstrap-datepicker.min.js') }}" charset="UTF-8"></script>
 <script src="{{ asset('assets/js/pages/add_user.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    $('.form_datetime input').datepicker({
+        format: "yyyy/mm/dd",
+        weekStart: 1,
+        startDate: today,
+        clearBtn: true,
+        orientation: "bottom left",
+        autoclose: true
+    });
+});
+</script>
 @stop

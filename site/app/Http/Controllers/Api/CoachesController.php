@@ -5080,6 +5080,22 @@ class CoachesController extends Controller
                         }
                     }
 
+                    if ($user->need_renew == 1) {
+                        return response()->json([
+                                'status' => 1,
+                                'message' => 'coach_exercises',
+                                'coach_day' => $coachStatus->day,
+                                'coach_week' => $coachStatus->week,
+                                'is_subscribed' => $user->is_subscribed,
+                                'need_update' => 0,
+                                'week_status' => $weekStatus,
+                                'day_status' => $dayStatus,
+                                'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
+                                'coach' => new \stdClass(),
+                                'last_finished_date' => $coachUpdatedDate,
+                                'urls' => config('urls.urls')], 200);
+                    }
+
                     if ($coachStatus->need_update == 1) {
                         //User feedback required
                         return response()->json([
@@ -5096,21 +5112,6 @@ class CoachesController extends Controller
                                 'last_finished_date' => $coachUpdatedDate,
                                 'urls' => config('urls.urls')], 200);
                     } else {
-//                        if ($coachStatus->need_update == 1) {
-//                            return response()->json([
-//                                    'status' => 1,
-//                                    'message' => 'already_completed_week_workouts',
-//                                    'coach_day' => $coachStatus->day,
-//                                    'coach_week' => $coachStatus->week,
-//                                    'is_subscribed' => $user->is_subscribed,
-//                                    'need_update' => 1,
-//                                    'week_status' => $weekStatus,
-//                                    'day_status' => $dayStatus,
-//                                    'week_points' => DB::table('coach_points')->where('user_id', $request->user_id)->where('week', $coachStatus->week)->sum('points'),
-//                                    'coach' => $coach,
-//                                    'urls' => config('urls.urls')], 200);
-//                        }
-
                         if ($coachStatus->need_update == 0) {
                             if ($dayStatus[$coachStatus->day] == 1) {
 //                                Development
@@ -5161,7 +5162,7 @@ class CoachesController extends Controller
                             }
                         }
                     }
-                } else {
+                } elseif (is_null($coach)) {
                     return response()->json([
                             'status' => 1,
                             'message' => 'coach_not_found',
@@ -7278,9 +7279,6 @@ class CoachesController extends Controller
             }
 
             $user = User::where('id', '=', $request->input('user_id'))->first();
-            
-            print_r($user);
-            die;
 
             $feedbacks = json_decode($request->feedback, true);
 

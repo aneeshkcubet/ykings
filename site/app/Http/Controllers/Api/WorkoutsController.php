@@ -1687,13 +1687,9 @@ class WorkoutsController extends Controller
                 $isSubscribed = 0;
 
                 if (isset($request->user_id)) {
-                    $subscription = DB::table('subscriptions')
-                        ->select('*')
-                        ->where('user_id', '=', $request->user_id)
-                        ->orderBy('id', 'DESC')
-                        ->first();
+                    $user = User::where('id', '=', $request->input('user_id'))->first();
 
-                    if (!is_null($subscription) && $subscription->end_time > $time) {
+                    if ($user->is_subscribed == 1) {
                         $isSubscribed = 1;
                     }
                 }

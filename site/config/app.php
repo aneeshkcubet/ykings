@@ -23,7 +23,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => 'http://sandbox.ykings.com',
+    'url' => 'http://sandbox2.ykings.com',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone

@@ -281,8 +281,10 @@ class SkilltrainingsController extends Controller
                 $freeSkilltrainingsArray = $freeSkilltrainings->toArray();
                 $freeSkilltrainingsArray = array_map(function($freeSkilltraining) use ($user) {
                     $freeSkilltraining['is_unlocked'] = self::isSkillTainingUnlocked($freeSkilltraining['id'], $user->id);
+                    $freeSkilltraining['rewards'] = json_decode($freeSkilltraining['rewards']);
                     return $freeSkilltraining;
                 }, $freeSkilltrainingsArray);
+
                 return response()->json([
                         'status' => 1,
                         'is_subscribed' => $user->is_subscribed,
@@ -303,27 +305,23 @@ class SkilltrainingsController extends Controller
      */
     public static function isSkillTainingUnlocked($skillTraId, $userId)
     {
+        $user = User::where('id', '=', $userId)->first();
+        
+        $freeArray = Array(1, 8, 10);
+        
         $unlockCnt = DB::table('unlocked_skilltrainings')->where([
                 'user_id' => $userId,
                 'skilltraining_id' => $skillTraId
             ])->count();
-        $freeArray = Array(1, 8, 10);
 
-        $user = User::where('id', '=', $userId)->first();
-
-        if (in_array($skillTraId, $freeArray)) {
+        if ($user->is_subscribed == 1) {
+            return 1;
+        } elseif (in_array($skillTraId, $freeArray)) {
+            return 1;
+        } elseif ($unlockCnt > 0) {
             return 1;
         }
-
-        if ($user->is_subscribed == 0) {
-            return 0;
-        }
-
-        if ($unlockCnt > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 
     /**
@@ -1206,6 +1204,7 @@ class SkilltrainingsController extends Controller
             return response()->json(["status" => "0", "error" => "The user_id field is required"]);
         } else {
             $skilltraining = Skilltraining::where('id', '=', $request->input('skilltraining_id'))->first();
+            $user = User::where('id', $request->user_id)->first();
             if (!is_null($skilltraining)) {
 
                 $freeArray = Array(1, 8, 10);
@@ -1218,7 +1217,7 @@ class SkilltrainingsController extends Controller
                             'skilltraining_id' => $request->skilltraining_id,
                             'level' => $i
                         ])->count();
-                    if ($unlockCount > 0 || in_array($request->skilltraining_id, $freeArray)) {
+                    if ($unlockCount > 0 || in_array($request->skilltraining_id, $freeArray) || $user->is_subscribed == 1) {
                         $statusArray[$i] = 1;
                     } else {
                         $statusArray[$i] = 0;
@@ -1314,13 +1313,9 @@ class SkilltrainingsController extends Controller
                 $isSubscribed = 0;
 
                 if (isset($request->user_id)) {
-                    $subscription = DB::table('subscriptions')
-                        ->select('*')
-                        ->where('user_id', '=', $request->user_id)
-                        ->orderBy('id', 'DESC')
-                        ->first();
+                    $user = User::where('id', '=', $request->input('user_id'))->first();
 
-                    if (!is_null($subscription) && $subscription->end_time > $time) {
+                    if ($user->is_subscribed == 1) {
                         $isSubscribed = 1;
                     }
                 }

@@ -77,7 +77,7 @@ class UsersController extends Controller
      * @apiParam {number} [goal] user's goal 1-Get Lean, 2-Get Fit, 3-Get Strong 
      * @apiParam {string} [city] user's city 
      * @apiParam {string} [state] user's state 
-     * @apiParam {string} [country] user's country 
+     * @apiParam {string} country user's country 
      * @apiParam {string} [spot] Training Spot
      * @apiParam {string} [device_token] Device Token
      * @apiParam {string} [device_type] Device Type(android/ios)
@@ -236,6 +236,12 @@ class UsersController extends Controller
             return response()->json($respArray);
         } elseif (!isset($request->last_name) || ($request->last_name == NULL) || $request->last_name == '(null)') {
             $respArray = [ "status" => 0, "error" => "The last_name field is required"];
+            if (isset($request->referral_code) && $request->referral_code != '') {
+                $respArray['referral_code'] = $request->referral_code;
+            }
+            return response()->json($respArray);
+        } elseif (!isset($request->country) || ($request->country == NULL) || $request->country == '(null)') {
+            $respArray = ["status" => 0, "error" => "The country field is required"];
             if (isset($request->referral_code) && $request->referral_code != '') {
                 $respArray['referral_code'] = $request->referral_code;
             }
@@ -416,7 +422,7 @@ class UsersController extends Controller
      * @apiParam {number} [goal] user's goal
      * @apiParam {string} [city] user's city
      * @apiParam {string} [state] user's state 
-     * @apiParam {string} [country] user's country 
+     * @apiParam {string} country user's country 
      * @apiParam {string} [spot] spot
      * @apiParam {string} [twitter] twitter
      * @apiParam {string} [facebook] facebook
@@ -918,7 +924,15 @@ class UsersController extends Controller
                 }
 
                 $userArray = $user->toArray();
-
+                
+//                echo time();
+//                echo '-----';
+//                
+//                echo $startDate = strtotime(date("Y/m/d 00:00:01", $userArray['subscription_start_date']));
+//                echo '-----';
+//                echo $endDate = strtotime(date("Y/m/d 23:59:59", $userArray['subscription_end_date']));
+//                die;
+                
                 $userArray['follower_count'] = DB::table('follows')->where('follow_id', '=', $userArray['id'])->count();
                 $userArray['workout_count'] = Workout::workoutCount($userArray['id']);
                 $userArray['points'] = Point::userPoints($userArray['id']);
